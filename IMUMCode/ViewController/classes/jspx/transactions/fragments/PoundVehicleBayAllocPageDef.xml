@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PoundVehicleBayAllocPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTDocsVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl" id="PVTDocsVO1Iterator"/>
+    <iterator Binds="PoundBayDetailVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PoundBayDetailVO1Iterator"/>
+    <iterator id="PVTHeaderVO1Iterator" Binds="PVTHeaderVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator Binds="PVTSearchRVO2" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO2Iterator"/>
+    <searchRegion Criteria="PVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator" id="PVTSearchRVOCriteriaQuery"/>
+    <searchRegion Criteria="PVTSearchBayAllocCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator"
+                  id="PVTSearchBayAllocCriteriaQuery"/>
+    <iterator id="PvtEnforceVehicleAssignRVO1Iterator"
+              Binds="PvtEnforceVehicleAssignRVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="RemovalTruckMstVO1Iterator" Binds="RemovalTruckMstVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="PoundLocationLVO1Iterator" Binds="PoundLocationLVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="DOCSEQ">
+      <AttrNames>
+        <Item Value="DOCSEQ"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="Docstage">
+      <AttrNames>
+        <Item Value="Docstage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="PVTHDRSEQ">
+      <AttrNames>
+        <Item Value="PVTHDRSEQ"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="deleteflag">
+      <AttrNames>
+        <Item Value="deleteflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="filepath">
+      <AttrNames>
+        <Item Value="doctype"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="remarks">
+      <AttrNames>
+        <Item Value="remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PoundBayDetailVO1Iterator" StaticList="false"
+          Uses="LOV_POUNDLocationID" id="POUNDLocationID"
+          DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PoundBayDetailVO1Iterator" id="PVTNumber">
+      <AttrNames>
+        <Item Value="PVTNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PoundBayDetailVO1Iterator" StaticList="false"
+          Uses="LOV_Baynum" id="Baynum" DTSupportsMRU="false"/>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <methodAction id="getBayStatusNosAvailable" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getBayStatusNosAvailable"
+                  IsViewObjectMethod="true"
+                  DataControl="TransactionsAMDataControl"
+                  InstanceName="TransactionsAMDataControl.BayNumberLVO1">
+      <NamedData NDName="locId" NDType="java.lang.Integer"/>
+    </methodAction>
+    <methodAction id="uploadPvtDocs"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="uploadPvtDocs" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+      <NamedData NDName="uploadFiles" NDType="java.util.ArrayList"/>
+    </methodAction>
+    <methodAction IterBinding="PoundBayDetailVO1Iterator"
+                  id="refreshPoundBayAllocLovs"
+                  InstanceName="bindings.PoundBayDetailVO1Iterator.currentRow"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="refreshPoundBayAllocLovs"
+                  IsViewObjectMethod="false" IsLocalObjectReference="true"/>
+    <tree IterBinding="PVTSearchRVO2Iterator" id="PVTSearchRVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO20">
+        <AttrNames>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="Requestlogseq"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateId"/>
+          <Item Value="PVTSOURCE"/>
+          <Item Value="Contracode"/>
+          <Item Value="Obsrvseq"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PIID"/>
+          <Item Value="CustId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Rollback" DataControl="TransactionsAMDataControl"
+            RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <methodAction id="callRemovalChargesProc"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callRemovalChargesProc"
+                  IsViewObjectMethod="false"/>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="doctype">
+      <AttrNames>
+        <Item Value="doctype"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PoundBayDetailVO1Iterator" StaticList="false"
+          Uses="LOV_PoundBayLocation" id="PoundBayLocation"
+          DTSupportsMRU="true"/>
+    <list IterBinding="PoundBayDetailVO1Iterator" StaticList="false"
+          Uses="LOV_PoundBayNumber" id="PoundBayNumber" DTSupportsMRU="true"/>
+    <tree IterBinding="PVTDocsVO1Iterator" id="PVTDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDocsVO"
+                      Name="PVTDocsVO10">
+        <AttrNames>
+          <Item Value="FileUpload"/>
+          <Item Value="DOCDesc"/>
+          <Item Value="remarks"/>
+          <Item Value="FlageM" Binds="FlageM"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="updateBayStatusByLocIdAndBayNo"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="updateBayStatusByLocIdAndBayNo"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="pvtNo" NDType="java.lang.String"/>
+      <NamedData NDName="baySeq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="modifiedBy" NDType="java.lang.String"/>
+    </methodAction>
+    <action IterBinding="PVTDocsVO1Iterator" id="uploadDelete"
+            InstanceName="TransactionsAMDataControl.PVTDocsVO1"
+            DataControl="TransactionsAMDataControl" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <methodAction id="addUploadDoc"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addUploadDoc" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createNewRowDocUpload"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createNewRowDocUpload" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <button IterBinding="PVTDocsVO1Iterator" id="FlageM" DTSupportsMRU="false"
+            StaticList="true">
+      <AttrNames>
+        <Item Value="FlageM"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

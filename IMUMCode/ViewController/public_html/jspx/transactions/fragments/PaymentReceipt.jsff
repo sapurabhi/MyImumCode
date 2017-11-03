@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+           xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" inlineStyle="width:1175px; height:445px;"
+                       halign="center">
+    <af:spacer width="10" height="5" id="s6"/>
+    <af:panelGroupLayout id="pgl2" layout="horizontal">
+      <af:spacer width="350" height="7" id="s1"/>
+      <af:image source="/images/mawaquif.gif" shortDesc="DoT" id="i2"/>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl3" layout="horizontal">
+      <af:spacer width="355" height="7" id="s3"/>
+      <af:image source="/images/mawaquif2.gif" shortDesc="mawaqif" id="i3"/>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="30" id="s4"/>
+    <af:panelGroupLayout id="pgl4" layout="horizontal">
+      <af:spacer width="400" height="10" id="s5"/>
+      <af:panelLabelAndMessage id="plam3"
+                               label="#{viewcontrollerBundle.RECEIPT_NUMBER}">
+        <af:outputText value="#{bindings.ReceiptNum.inputValue}" id="ot1" inlineStyle="font-weight: bold;"/>
+      </af:panelLabelAndMessage>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="25" id="s7"/>
+    <af:panelGroupLayout id="pgl5" layout="horizontal">
+    
+   <af:spacer width="90" height="10" id="s8"/>
+ <!--  
+ <af:panelGridLayout id="pgl6"
+                        inlineStyle="border-color:ActiveCaption; border-style:inset; border-width:5px; background-color:Menu; text-decoration:none;"
+                        dimensionsFrom="children">
+      <af:gridRow marginTop="5px" height="auto" id="gr3">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="270px" id="gc4"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="Payment Information" id="ot4"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" height="10" id="s12"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="270px" id="gc3"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="Credit Card Information" id="ot2"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="138" height="10" id="s10"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="270px" id="gc2"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="Cheque Information" id="ot3"
+                         inlineStyle="background-color:Black; color:White; width:270.0px;"/>
+            <af:spacer width="154" height="10" id="s11"/>
+          </af:gridCell>
+        
+      </af:gridRow>
+      
+      <af:gridRow marginTop="5px" height="auto" id="gr2">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="100px" id="gc5">
+         <af:outputText value="Payment Type:" id="ot9"/>
+            <af:outputText value="#{bindings.PYMTType.inputValue}" id="ot17"/>
+        </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc6">
+          <af:outputText value="Credit Card Type:" id="ot5"/>
+            <af:outputText value="#{bindings.CCDType.inputValue}" id="ot8"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc8">
+         <af:outputText value="Cheque BankName:" id="ot7"/>
+            <af:outputText value="#{bindings.ChqBankname.inputValue}" id="ot6"/>
+          </af:gridCell>
+        
+      </af:gridRow>
+      
+      <af:gridRow marginTop="5px" marginBottom="5px" height="auto" id="gr1">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="100px" id="gc7">
+         <af:outputText value="Payment Amount:" id="ot15"/>
+            <af:outputText value="#{bindings.PYMTAMT.inputValue}" id="ot10"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc9">
+         <af:outputText value="Credit Card Number:" id="ot11"/>
+            <af:outputText value="#{bindings.CCDNum.inputValue}" id="ot12"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc1">
+         <af:outputText value="Cheque Date:" id="ot13"/>
+            <af:outputText value="#{bindings.ChqDate.inputValue}" id="ot14">
+              <af:convertDateTime pattern="#{bindings.ChqDate.format}"/>
+            </af:outputText>
+          </af:gridCell>       
+      </af:gridRow>
+    </af:panelGridLayout>
+  -->  
+    </af:panelGroupLayout>
+<!--Iterator for Payment Receipt Grid-Start-->
+
+   <af:panelGroupLayout id="pgl8" layout="vertical">
+    
+          <af:panelGroupLayout id="pgl61" layout="horizontal" >
+     
+        <af:spacer width="90" height="10" id="spacer21"/>
+
+        <af:spacer width="100" height="30" id="spacer11"/>
+         <af:panelGroupLayout id="P2"  rendered="#{pageFlowScope.backPVT !='PVTPayment'}" layout="horizontal">
+         <af:panelLabelAndMessage id="plam431"
+                                  label="#{viewcontrollerBundle.CARD_TYPE}"> 
+          <af:outputText value="#{pageFlowScope.cardTypeDisplay}" id="ot3231" inlineStyle="font-weight: bold;"/> 
+        </af:panelLabelAndMessage> 
+        
+        <af:panelLabelAndMessage label="#{viewcontrollerBundle.NUMBER_OF_CARDS}" id="plam4111" >
+          <af:outputText value="#{pageFlowScope.numOfCards}" id="ot3211" inlineStyle="font-weight: bold;"/> 
+        </af:panelLabelAndMessage> 
+        </af:panelGroupLayout>
+         
+        
+         <af:spacer width="120" height="30" id="spacer141"/>
+        <af:panelLabelAndMessage label="#{viewcontrollerBundle.SALE_DATE}" id="plam11">
+          <af:outputText value="#{bindings.SaleDate.inputValue}" id="ot4" inlineStyle="font-weight: bold;">
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:panelLabelAndMessage>
+        <af:spacer width="120" height="30" id="s2"/>
+        <af:panelLabelAndMessage label="Cashier" id="plame12">
+        <af:outputText value="#{sessionScope.loginprintid}" inlineStyle="font-weight: bold;" id="ot5"/>
+        </af:panelLabelAndMessage>
+      </af:panelGroupLayout>   
+
+            <af:group id="g1">
+                <af:panelGroupLayout id="pgl9" layout="horizontal">
+    
+               <af:spacer width="90" height="10" id="s16"/>
+              <af:panelGridLayout id="pgl7"
+                        inlineStyle="border-color:ActiveCaption; border-style:inset; border-width:5px; background-color:Menu; text-decoration:none;"
+                        dimensionsFrom="children">
+                        
+      <af:gridRow marginTop="5px" height="auto" id="gr4">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc10"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.PAYMENT_INFORMATION}" id="ot117"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" height="10" id="s13"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="200px" id="gc11"
+                     inlineStyle="background-color:Black;">
+          <af:outputText id="ot18"
+                         inlineStyle="background-color:Black; color:White;"
+                         value="#{viewcontrollerBundle.CREDIT_CARD_INFORMATION}"/>
+            <af:spacer width="138" height="10" id="s14"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="200px" id="gc12"
+                     inlineStyle="background-color:Black;">
+          <af:outputText id="ot19"
+                         inlineStyle="background-color:Black; color:White; width:270.0px;"
+                         value="#{viewcontrollerBundle.CHEQUE_INFORMATION}"/>
+            <af:spacer width="154" height="10" id="s15"/>
+          </af:gridCell>   
+          <af:gridCell marginStart="5px" marginEnd="5px" width="150px" id="gc100"
+                     inlineStyle="background-color:Black;">
+          <af:outputText id="ot1177"
+                         inlineStyle="background-color:Black; color:White;"
+                         value="#{viewcontrollerBundle.PAYMENT_AMOUNT}"/>
+            <af:spacer width="150" id="s133"/>
+          </af:gridCell>
+      </af:gridRow>
+      
+      
+     
+      
+      
+       <af:iterator id="i1" first="0"
+                       rows="#{bindings.PaymetReceiptVO1.rangeSize}"
+                       var="row"
+                       value="#{bindings.PaymetReceiptVO1.collectionModel}"
+                     rendered="true">
+      
+      <af:gridRow marginTop="5px" height="auto" id="gr5">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="100px" id="gc13">
+         <af:outputText id="ot20" value="#{viewcontrollerBundle.TYPE}"/>
+          <af:outputText value="#{row.PYMTType}" id="ot21" inlineStyle="font-weight: bold;"/>
+        </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc14">
+          <af:outputText value="#{viewcontrollerBundle.CARD_TYPE}" id="ot22"/>
+          <af:outputText value="   #{row.CCDType}" id="ot23" inlineStyle="font-weight: bold;"/><br/>
+          <af:outputText value="#{viewcontrollerBundle.CARD_}" id="ot28"/>
+          <af:outputText value="   #{row.CCDNum}" id="ot29" inlineStyle="font-weight: bold;"/>
+        </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc15">
+         <af:outputText value="#{viewcontrollerBundle.BANK_NAME}" id="ot24"/>
+          <af:outputText value="   #{row.ChqBankname}" id="ot25" inlineStyle="font-weight: bold;"/><br/>
+          <af:outputText value="#{viewcontrollerBundle.CHEQUE_DATE}" id="ot30"/>
+          <af:outputText value="   #{row.ChqDate}" id="ot31" inlineStyle="font-weight: bold;"/>
+        </af:gridCell> 
+        <af:gridCell marginStart="5px" marginEnd="5px" width="100px" id="gc16">
+         <af:outputText id="ot27"/>
+          <af:outputText value="   #{row.PYMTAMT}" id="ot26" inlineStyle="font-weight: bold;">
+           <f:convertNumber pattern="#0.00" />
+           </af:outputText>
+        </af:gridCell>
+      </af:gridRow>
+      
+    </af:iterator>  
+    
+    </af:panelGridLayout>
+    </af:panelGroupLayout>
+    </af:group>
+    
+      <af:panelGroupLayout id="pgl6" layout="horizontal" >
+     
+        <af:spacer width="90" height="10" id="spacer2"/>
+
+        <af:panelGroupLayout id="pgl0" rendered="#{pageFlowScope.backPVT!='PVTPayment'}">
+  <af:panelLabelAndMessage id="plam4"
+                           label="#{viewcontrollerBundle.INSTITUTION_NAME_IF_APPLICABLE}"> 
+          <af:outputText value="#{bindings.InstName.inputValue}" id="ot3" inlineStyle="font-weight: bold;"/> 
+        </af:panelLabelAndMessage> 
+</af:panelGroupLayout>
+       
+        <af:spacer width="400" height="30" id="spacer1"/>
+        <af:panelLabelAndMessage id="plam1"
+                                 label="#{viewcontrollerBundle.TOTAL_}">
+          <af:outputText value="#{bindings.SaleAmt.inputValue}" id="ot2" inlineStyle="font-weight: bold;">
+           <f:convertNumber pattern="#0.00" />
+           </af:outputText>
+        </af:panelLabelAndMessage>
+      </af:panelGroupLayout>
+  
+    </af:panelGroupLayout>
+    <!--Iterator for Payment Receipt Grid-End-->
+  </af:panelGroupLayout>
+   <af:spacer width="90" height="40" id="s9"/>
+   <af:toolbar>
+    <af:spacer width="400" height="10" id="spacer3"/>
+    <af:commandButton id="cb1" immediate="true"
+                        inlineStyle="background-color:#F39C11;"
+                      text="#{viewcontrollerBundle.PRINT}">
+     <af:clientListener method="self.print" type="action"/>
+    <af:showPrintablePageBehavior/>
+  </af:commandButton>
+    <af:spacer width="20" height="10" id="spacer4"/>
+    <af:commandButton id="cb2" immediate="true" rendered="#{pageFlowScope.backPVT!='PVTPayment'}"
+                        inlineStyle="background-color:#F39C11;"
+                      action="#{BulkCardsMBean.backBtnRcpt_action}"
+                      text="#{viewcontrollerBundle.BACK}"/> 
+    <af:commandButton text="#{viewcontrollerBundle.BACK}" id="cb3" immediate="true" rendered="#{pageFlowScope.backPVT=='PVTPayment'}"
+                        inlineStyle="background-color:#F39C11;"
+                      action="#{pageFlowScope.pvtPaymentBean.backBtnRcpt_action}"/> 
+  </af:toolbar>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:BulkCardsMBean-->
+</jsp:root>
+

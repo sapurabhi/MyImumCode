@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="SupervisorAssignmentVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="supervisorAssignmentEO.Sup_id, 
+       supervisorAssignmentEO.Assignedby, 
+       supervisorAssignmentEO.Status, 
+       supervisorAssignmentEO.Assgn_StartDate, 
+       supervisorAssignmentEO.Assgn_EndDate, 
+       supervisorAssignmentEO.CreatedDate, 
+       supervisorAssignmentEO.Alloc_id"
+  FromList="sup_alloc supervisorAssignmentEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.staffdeploy.vo.SupervisorAssignmentVORowImpl"
+  ComponentClass="com.imum.cpms.model.staffdeploy.vo.SupervisorAssignmentVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="supervisorAssignmentEO"
+    Entity="com.imum.cpms.model.staffdeploy.eo.supervisorAssignmentEO"/>
+  <ViewAttribute
+    Name="Supid"
+    PrecisionRule="true"
+    EntityAttrName="Supid"
+    EntityUsage="supervisorAssignmentEO"
+    AliasName="Sup_id"/>
+  <ViewAttribute
+    Name="Assignedby"
+    PrecisionRule="true"
+    EntityAttrName="Assignedby"
+    EntityUsage="supervisorAssignmentEO"
+    AliasName="Assignedby"/>
+  <ViewAttribute
+    Name="Status"
+    PrecisionRule="true"
+    EntityAttrName="Status"
+    EntityUsage="supervisorAssignmentEO"
+    AliasName="Status"/>
+  <ViewAttribute
+    Name="AssgnStartDate"
+    PrecisionRule="true"
+    EntityAttrName="AssgnStartDate"
+    EntityUsage="supervisorAssignmentEO"
+    AliasName="Assgn_StartDate"/>
+  <ViewAttribute
+    Name="AssgnEndDate"
+    PrecisionRule="true"
+    EntityAttrName="AssgnEndDate"
+    EntityUsage="supervisorAssignmentEO"
+    AliasName="Assgn_EndDate"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="supervisorAssignmentEO"
+    AliasName="CreatedDate"/>
+  <ViewAttribute
+    Name="Allocid1"
+    PrecisionRule="true"
+    EntityAttrName="Allocid1"
+    EntityUsage="supervisorAssignmentEO"
+    AliasName="Alloc_id"/>
+</ViewObject>

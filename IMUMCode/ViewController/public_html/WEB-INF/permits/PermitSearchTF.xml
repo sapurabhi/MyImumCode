@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PermitSearchTF">
+    <default-activity id="__1">PermitSearch</default-activity>
+    <data-control-scope id="__2">
+      <shared/>
+    </data-control-scope>
+    <managed-bean id="__7">
+      <managed-bean-name id="__6">PermitSearchResBean</managed-bean-name>
+      <managed-bean-class id="__8">com.imum.cpms.view.PermitSearchResMBean</managed-bean-class>
+      <managed-bean-scope id="__9">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PermitSearch">
+      <page>/jspx/masters/fragments/PermitSearch.jsff</page>
+    </view>
+    <view id="PermitDetails">
+      <page>/jspx/masters/fragments/PermitDetails.jsff</page>
+    </view>
+    <control-flow-rule id="__10">
+      <from-activity-id id="__11">PermitSearch</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome id="__14">success</from-outcome>
+        <to-activity-id id="__13">PermitDetails</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__15">
+      <from-activity-id id="__16">PermitDetails</from-activity-id>
+      <control-flow-case id="__18">
+        <from-outcome id="__19">Back</from-outcome>
+        <to-activity-id id="__17">PermitSearch</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

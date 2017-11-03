@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="RemovalTruckMstTF">
+    <default-activity id="__1">removalTruckMst</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__3">removalTruckMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.RemovalTruckMstBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="removalTruckMst">
+      <page>/jspx/masters/fragments/removalTruckMst.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTAmtAdjustmentPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTAMTPAYABLE">
+      <AttrNames>
+        <Item Value="PVTAMTPAYABLE"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="CreateEvent"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CreateEvent" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.CreateEvent_TransactionsAMDataControl_dataProvider_CreateEvent_result">
+      <NamedData NDName="pvtHeaderSeq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+      <NamedData NDName="EventId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="getPVTForAmtAdjustment"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPVTForAmtAdjustment" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getPVTForAmtAdjustment_TransactionsAMDataControl_dataProvider_getPVTForAmtAdjustment_result">
+      <NamedData NDName="PVTNum" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="IntPVTAdjSP"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="IntPVTAdjSP" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.IntPVTAdjSP_TransactionsAMDataControl_dataProvider_IntPVTAdjSP_result">
+      <NamedData NDName="pvtHDRSeq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="PVTupdateAdjustmentAmt"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="PVTupdateAdjustmentAmt" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.PVTupdateAdjustmentAmt_TransactionsAMDataControl_dataProvider_PVTupdateAdjustmentAmt_result">
+      <NamedData NDName="pvtHdrSeq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="PVTAdjAmount" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="Operator" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

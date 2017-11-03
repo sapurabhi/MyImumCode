@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AuctionOwnershipDetails">
+    <default-activity id="__1">AuctionOwnershipDetails1</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__4">AuctionOwnershipmBean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.model.AuctionOwnershipmBean</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="AuctionOwnershipDetails1">
+      <page>/jspx/transactions/fragments/AuctionOwnershipDetails.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

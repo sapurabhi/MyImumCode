@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="documentMasterPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DocMasterUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="DocMasterUVO2Iterator"
+              ChangeEventPolicy="ppr"/>
+    <iterator Binds="DocMstHdrUVO2" RangeSize="10"
+              DataControl="MastersAMDataControl" id="DocMstHdrUVO2Iterator"/>
+    <iterator Binds="DocMstHdrUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="DocMstHdrUVO1Iterator"/>
+    <searchRegion Binds="DocMstHdrUVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="DocMstHdrUVO1Query"/>
+    <iterator Binds="DocMstDtlUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="DocMstDtlUVO1Iterator"/>
+    <searchRegion Binds="DocMstDtlUVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="DocMstDtlUVO1Query"/>
+    <searchRegion Binds="DocMstHdrUVO2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="DocMstHdrUVO2Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DocMasterUVO2Iterator" id="DocMasterUVO21">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.DocMasterUVO"
+                      Name="DocMasterUVO210">
+        <AttrNames>
+          <Item Value="PRMDocMstseq"/>
+          <Item Value="CountryCode"/>
+          <Item Value="CityCode"/>
+          <Item Value="DocCtg"/>
+          <Item Value="DocSubCtg"/>
+          <Item Value="DocName"/>
+          <Item Value="DocDesc"/>
+          <Item Value="Mandatoryflag"/>
+          <Item Value="Activeflag"/>
+          <Item Value="Activefrom"/>
+          <Item Value="Activeto"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="Updatedby"/>
+          
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="submitDocMaster"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="submitDocMaster"
+                  IsViewObjectMethod="false"/>
+    <tree IterBinding="DocMstHdrUVO2Iterator" id="DocMstHdrUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.DocMstHdrUVO"
+                      Name="DocMstHdrUVO20">
+        <AttrNames>
+          <Item Value="PRMDocMstseq"/>
+          <Item Value="catgdesc"/>
+          <Item Value="permittype"/>
+          <Item Value="restype"/>
+          <Item Value="Relativeflag"/>
+          <Item Value="CompAccomFlag"/>
+          <Item Value="Activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="DocMstHdrUVO1Iterator" id="DocMstHdrUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.DocMstHdrUVO"
+                      Name="DocMstHdrUVO10">
+        <AttrNames>
+          <Item Value="PrmCategCode"/>
+          <Item Value="PrmTypeCode"/>
+          <Item Value="LocalFlag"/>
+          <Item Value="Relativeflag"/>
+          <Item Value="CompAccomFlag"/>
+          <Item Value="Activeflag"/>
+          <Item Value="BooleanRelative" Binds="BooleanRelative"/>
+          <Item Value="BooleanComp" Binds="BooleanComp"/>
+          <Item Value="BooleanActive" Binds="BooleanActive"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="DocMstDtlUVO1Iterator" id="DocMstDtlUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.DocMstDtlUVO"
+                      Name="DocMstDtlUVO10">
+        <AttrNames>
+          <Item Value="DocName"/>
+          <Item Value="DocDesc"/>
+          <Item Value="Mandatoryflag"/>
+          <Item Value="Activeflag"/>
+          <Item Value="MandatoryBoolean" Binds="MandatoryBoolean"/>
+          <Item Value="ActiveBoolean" Binds="ActiveBoolean"/>
+          <Item Value="ActivefromDate"/>
+          <Item Value="ActivetoDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="DocMstHdrUVO1Iterator" id="BooleanRelative"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="BooleanRelative"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="DocMstHdrUVO1Iterator" id="BooleanComp"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="BooleanComp"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="DocMstHdrUVO1Iterator" id="BooleanActive"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="BooleanActive"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="DocMstDtlUVO1Iterator" id="MandatoryBoolean"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MandatoryBoolean"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="DocMstDtlUVO1Iterator" id="ActiveBoolean"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveBoolean"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <methodAction id="CancelDocMaster"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="CancelDocMaster"
+                  IsViewObjectMethod="false"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="MastersAMDataControl"/>
+    <action IterBinding="DocMstDtlUVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="addNewDocMaster"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addNewDocMaster"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.addNewDocMaster_MastersAMDataControl_dataProvider_addNewDocMaster_result">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

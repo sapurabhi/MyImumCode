@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTPaymentsReportTF">
+    <default-activity id="__1">PVTPaymentsReport</default-activity>
+    <view id="PVTPaymentsReport">
+      <page>/jspx/reports/fragments/PVTPaymentsReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

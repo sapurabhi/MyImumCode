@@ -1,0 +1,653 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+          <af:panelGroupLayout id="pgl2" inlineStyle="width:735px; height:63px;"
+                         layout="horizontal" 
+                         binding="#{pageFlowScope.piobservationsMB.newviewbtnsbind}">
+      <af:toolbar id="t1" >
+       <af:spacer width="425" height="10" id="s4"/>
+        <af:commandButton text="#{viewcontrollerBundle.NEW}" id="newCourse"
+                          icon="/images/new.gif"
+                         disabled="#{sessionScope.seniourSup eq 'SeniourSupervisor'}"
+                          action="#{pageFlowScope.piobservationsMB.newBtnAction}"/>
+         <af:spacer width="10" height="10" id="s7"/>
+         <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="editCourse"
+                            icon="/images/edit.gif"
+                            visible="#{sessionScope.seniourSup eq 'SeniourSupervisor'}"
+                           action="#{pageFlowScope.piobservationsMB.editBtnAction}"/> 
+        <af:spacer width="10" height="10" id="s3"/>
+        <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="viewAuction"
+                          icon="/images/view.gif"
+                          action="#{pageFlowScope.piobservationsMB.viewBtnAction}"/>
+        <af:spacer width="10" height="10" id="s1"
+                  />
+      </af:toolbar>
+    </af:panelGroupLayout>
+  <af:panelGroupLayout>
+    <af:selectOneChoice value="#{bindings.supLovRVO1.inputValue}"
+                        label="Select Supervisor"
+                        visible="#{sessionScope.seniourSup eq 'SeniourSupervisor'}"
+                        required="#{bindings.supLovRVO1.hints.mandatory}"
+                        shortDesc="#{bindings.supLovRVO1.hints.tooltip}"
+                        id="soc10" autoSubmit="true"
+                        valueChangeListener="#{pageFlowScope.piobservationsMB.supLovVCL}"
+                        binding="#{pageFlowScope.piobservationsMB.supLovBind}">
+      <f:selectItems value="#{bindings.supLovRVO1.items}" id="si10"/>
+    </af:selectOneChoice>
+  </af:panelGroupLayout>
+  <af:spacer width="10" height="10" id="s9"/>
+  <af:showDetailHeader text="PI Observations" disclosed="true" id="sdh2"
+                       binding="#{pageFlowScope.piobservationsMB.sdhtablebind}">
+    <af:table value="#{bindings.PiobservationsVO2.collectionModel}" var="row"
+              rows="#{bindings.PiobservationsVO2.rangeSize}"
+              emptyText="#{bindings.PiobservationsVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PiobservationsVO2.rangeSize}"
+              rowBandingInterval="0"
+              selectedRowKeys="#{bindings.PiobservationsVO2.collectionModel.selectedRow}"
+              selectionListener="#{bindings.PiobservationsVO2.collectionModel.makeCurrent}"
+              rowSelection="single" id="t2"
+              filterVisible="true"
+                varStatus="vs" autoHeightRows="-1" 
+                inlineStyle="height:200px;" width="650"
+                styleClass="AFStretchWidth" scrollPolicy="page"
+                columnStretching="last">
+      <af:column sortProperty="#{bindings.PiobservationsVO2.hints.PIID.name}"
+                 sortable="false"
+                 headerText="PI ID"
+                 id="c4">
+        <af:outputText value="#{row.PIID}" id="ot2"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PiobservationsVO2.hints.Date.name}"
+                 sortable="false"
+                 headerText="#{bindings.PiobservationsVO2.hints.Date.label}"
+                 id="c2">
+        <af:outputText value="#{row.Date}" id="ot4">
+          <af:convertDateTime pattern="#{bindings.PiobservationsVO2.hints.Date.format}"/>
+        </af:outputText>
+      </af:column>
+      <!--<af:column sortProperty="#{bindings.PiobservationsVO2.hints.ObservationType.name}"
+                 sortable="false" width="120"
+                 headerText="Observation Type"
+                 id="c3">
+        <af:outputText value="#{row.ObservationType}" id="ot3"/>
+      </af:column>-->
+      <af:column headerText="#{bindings.PiobservationsVO2.hints.ObservationType.label}"
+                           sortProperty="#{bindings.PiobservationsVO2.hints.ObservationType.name}"
+                            sortable="false" width="120"
+                            id="c3">
+        <af:outputText value="#{row.ObservationType}" id="ot3"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PiobservationsVO2.hints.ObservationNotes.name}"
+                 sortable="false"
+                 headerText="Observation Notes"
+                 id="c1">
+        <af:outputText value="#{row.ObservationNotes}" id="ot1"/>
+      </af:column>
+    </af:table>
+  </af:showDetailHeader>
+  <af:showDetailHeader text="#{viewcontrollerBundle.PI_OBSERVATIONS}" disclosed="true" id="sdh1"
+                       inlineStyle="height:483px;" 
+                       binding="#{pageFlowScope.piobservationsMB.sdhBind}"
+                       visible="false">
+    <af:panelGroupLayout id="pgl0">
+    <af:panelFormLayout id="pfl1" inlineStyle="height:367px;"
+                        binding="#{pageFlowScope.piobservationsMB.pf11}">
+      <af:selectOneChoice value="#{bindings.pisforobservationsLOV1.inputValue}"
+                          label="#{viewcontrollerBundle.PI_NUMBER_3}" contentStyle="width:156px"
+                          required="#{bindings.pisforobservationsLOV1.hints.mandatory}"
+                          shortDesc="#{bindings.pisforobservationsLOV1.hints.tooltip}"
+                          id="soc12" showRequired="true" 
+                          binding="#{pageFlowScope.piobservationsMB.piIdBind}"
+                          autoSubmit="true"
+                          valueChangeListener="#{pageFlowScope.piobservationsMB.piIdVCE}">
+        <f:selectItems value="#{bindings.pisforobservationsLOV1.items}"
+                       id="si12"/>
+      </af:selectOneChoice>
+          <af:inputDate 
+                        label="#{viewcontrollerBundle.DATE_0}"  
+                        required="#{bindings.Date.hints.mandatory}"
+                        shortDesc="#{bindings.Date.hints.tooltip}" id="id2" 
+                        columns="18" showRequired="true"
+                        binding="#{pageFlowScope.piobservationsMB.uidate}">
+            <f:validator binding="#{bindings.Date.validator}"/>
+            <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+          </af:inputDate>
+          
+          <af:selectOneChoice value="#{bindings.ObservationstypesVO1.inputValue}"
+                              label="#{viewcontrollerBundle.PI_BEHAVIOR}" contentStyle="width:156px"
+                              required="#{bindings.ObservationstypesVO1.hints.mandatory}"
+                              shortDesc="#{bindings.ObservationstypesVO1.hints.tooltip}"
+                                                    id="soc5"
+                              showRequired="true">
+            <f:selectItems value="#{bindings.ObservationstypesVO1.items}"
+                           id="si6"/>
+          </af:selectOneChoice>
+          <af:inputText 
+                        label="#{viewcontrollerBundle.BEHAVIOR_COMMENTS__}"
+                        required="#{bindings.ObservationNotes.hints.mandatory}"
+                        columns="16" 
+                        maximumLength="#{bindings.ObservationNotes.hints.precision}"
+                        shortDesc="#{bindings.ObservationNotes.hints.tooltip}"
+                        id="it4" rows="2"
+                        binding="#{pageFlowScope.piobservationsMB.piBhacom}">
+            
+          </af:inputText>
+      <af:selectOneChoice label="#{viewcontrollerBundle.CID_CLEARANCE___}"
+                          unselectedLabel="-----------Select-----------" 
+                          required="#{bindings.CIDClearance.hints.mandatory}"
+                          shortDesc="#{bindings.CIDClearance.hints.tooltip}"
+                          id="soc1" autoSubmit="true" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.CIDC}" 
+                          valueChangeListener="#{pageFlowScope.piobservationsMB.getVal}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.CIDClearance.items}" id="si1"/>
+      </af:selectOneChoice>
+      <af:inputText label="CID Clearance Comments" partialTriggers="soc1"
+                    required="#{bindings.CIDClearancecomm.hints.mandatory}"
+                    columns="16" visible="false"
+                    maximumLength="#{bindings.CIDClearancecomm.hints.precision}"
+                    shortDesc="#{bindings.CIDClearancecomm.hints.tooltip}" 
+                    id="it1" binding="#{pageFlowScope.piobservationsMB.ciDcom}"
+                    rows="2" >
+        <f:validator binding="#{bindings.CIDClearancecomm.validator}"/>
+      </af:inputText>
+      <af:selectOneChoice label="#{viewcontrollerBundle.EMPLOYMENT_CONTRACT_}" autoSubmit="true"
+                          required="#{bindings.empcontract.hints.mandatory}"
+                          shortDesc="#{bindings.empcontract.hints.tooltip}"
+                          id="soc2"
+                          unselectedLabel="-----------Select-----------" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.employmentCon}"
+                          valueChangeListener="#{pageFlowScope.piobservationsMB.getEc}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.empcontract.items}" id="si2"/>
+      </af:selectOneChoice>
+      <af:inputText label="Employment Contract Comments" visible="false"
+                    required="#{bindings.empcontractcomm.hints.mandatory}"
+                    columns="16" partialTriggers="soc2"
+                    maximumLength="#{bindings.empcontractcomm.hints.precision}"
+                    shortDesc="#{bindings.empcontractcomm.hints.tooltip}"
+                    id="it2"
+                    binding="#{pageFlowScope.piobservationsMB.employmentContcom}"
+                    rows="2">
+        <f:validator binding="#{bindings.empcontractcomm.validator}"/>
+      </af:inputText>
+      <af:selectOneChoice label="#{viewcontrollerBundle.LEAVE_PAY_RECEIVED_}" autoSubmit="true"
+                          required="#{bindings.LeavePayreceived.hints.mandatory}"
+                          shortDesc="#{bindings.LeavePayreceived.hints.tooltip}"
+                          id="soc3"
+                          unselectedLabel="-----------Select-----------" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.leavePayRecevied}"
+                          valueChangeListener="#{pageFlowScope.piobservationsMB.getLpr}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.LeavePayreceived.items}" id="si3"/>
+      </af:selectOneChoice>
+      <af:inputText label="Leave Pay Received Comments" visible="false"
+                    required="#{bindings.LeavePayreceivedcomm.hints.mandatory}"
+                    columns="16" partialTriggers="soc3"
+                    maximumLength="#{bindings.LeavePayreceivedcomm.hints.precision}"
+                    shortDesc="#{bindings.LeavePayreceivedcomm.hints.tooltip}"
+                    id="it3"
+                    binding="#{pageFlowScope.piobservationsMB.leavePayReceivedCom}"
+                    rows="2">
+        <f:validator binding="#{bindings.LeavePayreceivedcomm.validator}"/>
+      </af:inputText>
+      <af:selectOneChoice label="#{viewcontrollerBundle.TRAINING_NEEDS_}"
+                          unselectedLabel="-----------Select-----------"
+                          required="#{bindings.TrainingNeeds.hints.mandatory}"
+                          shortDesc="#{bindings.TrainingNeeds.hints.tooltip}"
+                          id="soc4" autoSubmit="true" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.trainingNeeds}"
+                          valueChangeListener="#{pageFlowScope.piobservationsMB.getTN}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.TrainingNeeds.items}" id="si4"/>
+      </af:selectOneChoice>
+      <af:inputText label="Training Needs Comments" visible="false"
+                    required="#{bindings.TrainingNeedscomm.hints.mandatory}"
+                    columns="16" partialTriggers="soc4"
+                    maximumLength="#{bindings.TrainingNeedscomm.hints.precision}"
+                    shortDesc="#{bindings.TrainingNeedscomm.hints.tooltip}"
+                    id="it5"
+                    binding="#{pageFlowScope.piobservationsMB.trainingneedsCom}"
+                    rows="2">
+        <f:validator binding="#{bindings.TrainingNeedscomm.validator}"/>
+      </af:inputText>
+      <af:selectOneChoice label="#{viewcontrollerBundle.EMBEZZLEMENT_}"
+                          unselectedLabel="-----------Select-----------"
+                          required="#{bindings.Embezzlement.hints.mandatory}"
+                          shortDesc="#{bindings.Embezzlement.hints.tooltip}"
+                          id="soc6" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.embezzrement}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.Embezzlement.items}" id="si5"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice label="#{viewcontrollerBundle.EMPLOYEMENT_LETTER_FROM_COMPAY}"
+                          required="#{bindings.empletter.hints.mandatory}"
+                          shortDesc="#{bindings.empletter.hints.tooltip}"
+                          id="soc7" contentStyle="width:156px"
+                          unselectedLabel="-----------Select-----------"
+                          binding="#{pageFlowScope.piobservationsMB.empletter}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.empletter.items}" id="si7"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice label="#{viewcontrollerBundle.ANY_HOUSING_ALLOWANCE_}"
+                          required="#{bindings.Housingallowance.hints.mandatory}"
+                          shortDesc="#{bindings.Housingallowance.hints.tooltip}"
+                          id="soc8"
+                          unselectedLabel="-----------Select-----------" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.housingallowance}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.Housingallowance.items}" id="si8"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice label="#{viewcontrollerBundle.OCCUPATIONAL_INSURANCE_}"
+                          required="#{bindings.Occupationalinsurance.hints.mandatory}"
+                          shortDesc="#{bindings.Occupationalinsurance.hints.tooltip}"
+                          id="soc9"
+                          unselectedLabel="-----------Select-----------" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.occupationalInsurance}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.Occupationalinsurance.items}"
+                       id="si9"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice label="#{viewcontrollerBundle.EXCUSES_MADE_BY_PI}"
+                          required="#{bindings.ExcusesPI1.hints.mandatory}"
+                          shortDesc="#{bindings.ExcusesPI1.hints.tooltip}"
+                          id="soc11"
+                          unselectedLabel="-----------Select-----------" contentStyle="width:156px"
+                          binding="#{pageFlowScope.piobservationsMB.piEx}"
+                          showRequired="true">
+        <f:selectItems value="#{bindings.ExcusesPI1.items}" id="si11"/>
+      </af:selectOneChoice>
+      <af:spacer width="10" height="10" id="s2"/>
+    <af:table value="#{bindings.PIObservationDocsVO1.collectionModel}" var="row"
+              rows="#{bindings.PIObservationDocsVO1.rangeSize}"
+              emptyText="#{bindings.PIObservationDocsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PIObservationDocsVO1.rangeSize}"
+              rowBandingInterval="-1"
+              selectedRowKeys="#{bindings.PIObservationDocsVO1.collectionModel.selectedRow}"
+              selectionListener="#{bindings.PIObservationDocsVO1.collectionModel.makeCurrent}"
+              rowSelection="none" scrollPolicy="page" styleClass="AFStretchWidth"
+              width="750" inlineStyle="height:233px;" id="t3"
+              binding="#{pageFlowScope.piobservationsMB.docTable}">
+        <af:column sortProperty="#{bindings.PIObservationDocsVO1.hints.FileUpload.name}"
+                sortable="true" width="281" 
+                 headerText="#{viewcontrollerBundle.DOC_UPLOAD}"
+                 id="c8">
+       
+         <af:inputFile label="#{bindings.PIObservationDocsVO1.hints.FileUpload.label}" id="if1" 
+                      showRequired="true" autoSubmit="true" value="#{row.bindings.FileUpload.inputValue}"
+                       valueChangeListener="#{pageFlowScope.piobservationsMB.attachValueChangeListner}"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PIObservationDocsVO1.hints.DOCName.name}"
+                  sortable="true" width="230"
+                 headerText="Document Description"
+                 id="c6">
+        <af:inputText value="#{row.bindings.DOCName.inputValue}" 
+                      label="#{bindings.PIObservationDocsVO1.hints.DOCName.label}"
+                      required="#{bindings.PIObservationDocsVO1.hints.DOCName.mandatory}"
+                      columns="#{bindings.PIObservationDocsVO1.hints.DOCName.displayWidth}"
+                      maximumLength="#{bindings.PIObservationDocsVO1.hints.DOCName.precision}"
+                      shortDesc="#{bindings.PIObservationDocsVO1.hints.DOCName.tooltip}"
+                      id="it7" disabled="true">
+          <f:validator binding="#{row.bindings.DOCName.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PIObservationDocsVO1.hints.remarks.name}"
+                  sortable="true" width="120"
+                 headerText="Remarks"
+                 id="c7">
+        <af:inputText value="#{row.bindings.remarks.inputValue}"
+                      label="#{bindings.PIObservationDocsVO1.hints.remarks.label}"
+                      required="#{bindings.PIObservationDocsVO1.hints.remarks.mandatory}"
+                      columns="#{bindings.PIObservationDocsVO1.hints.remarks.displayWidth}"
+                      maximumLength="#{bindings.PIObservationDocsVO1.hints.remarks.precision}"
+                      shortDesc="#{bindings.PIObservationDocsVO1.hints.remarks.tooltip}"
+                      id="it9">
+          <f:validator binding="#{row.bindings.remarks.validator}"/>
+        </af:inputText>
+      </af:column>
+      <!--<af:column sortProperty="#{bindings.PIObservationDocsVO1.hints.FlageM.name}"
+                 sortable="false" headerText="Mandatary Flag"
+                  width="80" align="center" id="c5">
+        <af:inputText value="#{row.bindings.FlageM.inputValue eq Y?'Yes':'No'}"
+                      label="#{bindings.PIObservationDocsVO1.hints.FlageM.label}"
+                      required="#{bindings.PIObservationDocsVO1.hints.FlageM.mandatory}"
+                      columns="#{bindings.PIObservationDocsVO1.hints.FlageM.displayWidth}"
+                      maximumLength="#{bindings.PIObservationDocsVO1.hints.FlageM.precision}"
+                      shortDesc="#{bindings.PIObservationDocsVO1.hints.FlageM.tooltip}"
+                      id="it6" disabled="true">
+          <f:validator binding="#{row.bindings.FlageM.validator}"/>
+        </af:inputText>
+            --><!--<af:selectBooleanCheckbox value="#{row.bindings.FlageM.inputValue}"
+                                      label="#{row.bindings.FlageM.label}"
+                                      shortDesc="#{bindings.PIObservationDocsVO1.hints.FlageM.tooltip}"
+                                      id="sbc2"/>--><!--
+            --><!--<af:selectBooleanCheckbox value="#{row.bindings.FlageM.inputValue}"
+                                         label="#{bindings.PIObservationDocsVO1.hints.FlageM.label}" 
+                                         disabled="true"
+                                          shortDesc="#{bindings.PIObservationDocsVO1.hints.FlageM.tooltip}"
+                                          id="sbc1"/>--><!--
+      </af:column>-->
+          <af:column headerText="Mandatory" 
+                     id="c5">
+            <af:outputText value="#{row.FlageM}" id="ot22"/>
+          </af:column>
+        </af:table>    
+     
+     
+    <af:spacer width="10" height="10" id="s5"/>
+    
+    <af:panelGroupLayout id="pgl1">
+          <af:commandButton text="#{viewcontrollerBundle.SUBMIT_8}" id="cb1"
+                            inlineStyle="width:auto;background-color:#F39C11;"
+                            actionListener="#{pageFlowScope.piobservationsMB.piObservationsSave}">
+           
+          </af:commandButton>
+          <af:commandButton id="cb2" text="#{viewcontrollerBundle.CANCEL_9}"
+                            inlineStyle="width:auto;background-color:#F39C11;"
+                            action="#{pageFlowScope.piobservationsMB.doReset}">
+            <af:resetActionListener/>
+          </af:commandButton>
+        </af:panelGroupLayout>
+         </af:panelFormLayout>
+     </af:panelGroupLayout>
+  </af:showDetailHeader>
+  <af:showDetailHeader text="PI Observation Details" disclosed="true" id="sdh3" 
+                       binding="#{pageFlowScope.piobservationsMB.sdhviewbind}"
+                       visible="false">
+ 
+    <af:panelFormLayout id="pfl2">
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.PI_NUMBER_3}" id="plam1">
+        <af:outputText value="#{bindings.PIID.inputValue}" id="ot21"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.DATE_0}"  id="plam15">
+        <af:outputText value="#{bindings.Date.inputValue}" id="ot11">
+          <af:convertDateTime pattern="#{bindings.Date.format}"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.PI_BEHAVIOR}"
+                               id="plam8">
+        <af:outputText value="#{bindings.ObservationType.inputValue}"
+                       id="ot12"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.BEHAVIOR_COMMENTS__}"
+                               id="plam14">
+        <af:outputText value="#{bindings.ObservationNotes.inputValue}"
+                       id="ot18"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.CID_CLEARANCE___}"
+                               id="plam13">
+        <af:outputText value="#{bindings.CIDClearance1.inputValue}" id="ot15"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="CID Clearance Comments"
+                               id="plam4">
+        <af:outputText value="#{bindings.CIDClearancecomm.inputValue}"
+                       id="ot10"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMPLOYMENT_CONTRACT_}"
+                               id="plam9">
+        <af:outputText value="#{bindings.empcontract1.inputValue}" id="ot6"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="Employment Contract Comments"
+                               id="plam7">
+        <af:outputText value="#{bindings.empcontractcomm.inputValue}"
+                       id="ot19"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.LEAVE_PAY_RECEIVED_}"
+                               id="plam11">
+        <af:outputText value="#{bindings.LeavePayreceived1.inputValue}"
+                       id="ot20"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="Leave Pay Received Comments" 
+                               id="plam16">
+        <af:outputText value="#{bindings.LeavePayreceivedcomm.inputValue}"
+                       id="ot9"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.TRAINING_NEEDS_}"
+                               id="plam2">
+        <af:outputText value="#{bindings.TrainingNeeds1.inputValue}" id="ot14"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="Training Needs Comments"
+                               id="plam3">
+        <af:outputText value="#{bindings.TrainingNeedscomm.inputValue}"
+                       id="ot5"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMBEZZLEMENT_}"
+                               id="plam6">
+        <af:outputText value="#{bindings.Embezzlement1.inputValue}" id="ot7"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMPLOYEMENT_LETTER_FROM_COMPAY}"
+                               id="plam10">
+        <af:outputText value="#{bindings.empletter1.inputValue}" id="ot13"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.ANY_HOUSING_ALLOWANCE_}"
+                               id="plam17">
+        <af:outputText value="#{bindings.Housingallowance1.inputValue}"
+                       id="ot8"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.OCCUPATIONAL_INSURANCE_}"
+                               id="plam12">
+        <af:outputText value="#{bindings.Occupationalinsurance1.inputValue}"
+                       id="ot16"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.EXCUSES_MADE_BY_PI}"
+                               id="plam5">
+        <af:outputText value="#{bindings.ExcusesPI2.inputValue}" id="ot17"/>
+      </af:panelLabelAndMessage>
+       <af:commandButton id="cb3" text="#{viewcontrollerBundle.CANCEL_9}"
+                            inlineStyle="width:auto;background-color:#F39C11;"
+                            action="#{pageFlowScope.piobservationsMB.doReset}">
+            <af:resetActionListener/>
+          </af:commandButton>
+    </af:panelFormLayout>
+  </af:showDetailHeader>
+  <af:showDetailHeader text="#{viewcontrollerBundle.PI_OBSERVATIONS}" disclosed="true"
+                       id="sdh4" visible="false" 
+                       inlineStyle="height:483px;"
+                       binding="#{pageFlowScope.piobservationsMB.editSdhBind}">
+      <af:panelFormLayout id="pfl3" >
+        <af:inputText value="#{bindings.PIID.inputValue}" 
+                      label="#{viewcontrollerBundle.PI_NUMBER_3}" 
+                      required="#{bindings.PIID.hints.mandatory}"
+                      columns="#{bindings.PIID.hints.displayWidth}"
+                      maximumLength="#{bindings.PIID.hints.precision}"
+                      shortDesc="#{bindings.PIID.hints.tooltip}" id="it13"
+                      binding="#{pageFlowScope.piobservationsMB.editPiIdBind}"
+                      readOnly="true">
+          <f:validator binding="#{bindings.PIID.validator}"/>
+        </af:inputText>
+        <af:inputDate value="#{bindings.Date.inputValue}"
+                      label="#{viewcontrollerBundle.DATE_0}" 
+                      required="#{bindings.Date.hints.mandatory}"
+                      shortDesc="#{bindings.Date.hints.tooltip}" id="id1"
+                      binding="#{pageFlowScope.piobservationsMB.uidate1}">
+          <f:validator binding="#{bindings.Date.validator}"/>
+          <af:convertDateTime pattern="#{bindings.Date.format}"/>
+        </af:inputDate>
+        <!--<af:inputText value="#{bindings.ObservationType.inputValue}"
+                      label="#{bindings.ObservationType.hints.label}"
+                      required="#{bindings.ObservationType.hints.mandatory}"
+                      columns="#{bindings.ObservationType.hints.displayWidth}"
+                      maximumLength="#{bindings.ObservationType.hints.precision}"
+                      shortDesc="#{bindings.ObservationType.hints.tooltip}"
+                      id="it12" contentStyle="width:156px">
+          <f:validator binding="#{bindings.ObservationType.validator}"/>
+        </af:inputText>-->
+      <!--<af:selectOneChoice value="#{bindings.ObservationstypesVO1.inputValue}"
+                          label="#{bindings.ObservationstypesVO1.label}"
+                          required="#{bindings.ObservationstypesVO1.hints.mandatory}"
+                          shortDesc="#{bindings.ObservationstypesVO1.hints.tooltip}"
+                          id="soc24" contentStyle="width:156px">
+        <f:selectItems value="#{bindings.ObservationstypesVO1.items}"
+                       id="si24"/>
+      </af:selectOneChoice>-->
+      <af:selectOneChoice value="#{bindings.ObservationType1.inputValue}"
+                         label="#{viewcontrollerBundle.PI_BEHAVIOR}"
+                          required="#{bindings.ObservationType1.hints.mandatory}"
+                          shortDesc="#{bindings.ObservationType1.hints.tooltip}"
+                          id="soc15">
+        <f:selectItems value="#{bindings.ObservationType1.items}" id="si17"/>
+      </af:selectOneChoice>
+      <af:inputText value="#{bindings.ObservationNotes.inputValue}"
+                   label="#{viewcontrollerBundle.BEHAVIOR_COMMENTS__}"
+                      required="#{bindings.ObservationNotes.hints.mandatory}"
+                      maximumLength="#{bindings.ObservationNotes.hints.precision}"
+                      shortDesc="#{bindings.ObservationNotes.hints.tooltip}"
+                      id="it14" columns="16" rows="2" >
+          <f:validator binding="#{bindings.ObservationNotes.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.CIDClearance.inputValue}"
+                           label="#{viewcontrollerBundle.CID_CLEARANCE___}"
+                            required="#{bindings.CIDClearance.hints.mandatory}"
+                            shortDesc="#{bindings.CIDClearance.hints.tooltip}"
+                            id="soc16" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.ciDC1}">
+          <f:selectItems value="#{bindings.CIDClearance.items}" id="si16"/>
+        </af:selectOneChoice>
+        <af:inputText value="#{bindings.CIDClearancecomm.inputValue}"
+                     label="CID Clearance Comments"
+                      required="#{bindings.CIDClearancecomm.hints.mandatory}"
+                      columns="16" rows="2"
+                      maximumLength="#{bindings.CIDClearancecomm.hints.precision}"
+                      shortDesc="#{bindings.CIDClearancecomm.hints.tooltip}"
+                      id="it8" >
+          <f:validator binding="#{bindings.CIDClearancecomm.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.empcontract.inputValue}"
+                           label="#{viewcontrollerBundle.EMPLOYMENT_CONTRACT_}"
+                            required="#{bindings.empcontract.hints.mandatory}"
+                            shortDesc="#{bindings.empcontract.hints.tooltip}"
+                            id="soc22" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.employmentCon1}">
+          <f:selectItems value="#{bindings.empcontract.items}" id="si18"/>
+        </af:selectOneChoice>
+        <af:inputText value="#{bindings.empcontractcomm.inputValue}"
+                      label="Employment Contract Comments"
+                      required="#{bindings.empcontractcomm.hints.mandatory}"
+                      columns="16" rows="2"
+                      maximumLength="#{bindings.empcontractcomm.hints.precision}"
+                      shortDesc="#{bindings.empcontractcomm.hints.tooltip}"
+                      id="it11" >
+          <f:validator binding="#{bindings.empcontractcomm.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.LeavePayreceived.inputValue}"
+                            label="#{viewcontrollerBundle.LEAVE_PAY_RECEIVED_}"
+                            required="#{bindings.LeavePayreceived.hints.mandatory}"
+                            shortDesc="#{bindings.LeavePayreceived.hints.tooltip}"
+                            id="soc19" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.leavePayRecevied1}">
+          <f:selectItems value="#{bindings.LeavePayreceived.items}" id="si13"/>
+        </af:selectOneChoice>
+        <af:inputText value="#{bindings.LeavePayreceivedcomm.inputValue}"
+                      label="Leave Pay Received Comments"
+                      required="#{bindings.LeavePayreceivedcomm.hints.mandatory}"
+                      columns="16" rows="2"
+                      maximumLength="#{bindings.LeavePayreceivedcomm.hints.precision}"
+                      shortDesc="#{bindings.LeavePayreceivedcomm.hints.tooltip}"
+                      id="it6" >
+          <f:validator binding="#{bindings.LeavePayreceivedcomm.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.TrainingNeeds.inputValue}"
+                           label="#{viewcontrollerBundle.TRAINING_NEEDS_}"
+                            required="#{bindings.TrainingNeeds.hints.mandatory}"
+                            shortDesc="#{bindings.TrainingNeeds.hints.tooltip}"
+                            id="soc21" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.trainingNeeds1}">
+          <f:selectItems value="#{bindings.TrainingNeeds.items}" id="si21"/>
+        </af:selectOneChoice>
+        <af:inputText value="#{bindings.TrainingNeedscomm.inputValue}"
+                     label="Training Needs Comments"
+                      required="#{bindings.TrainingNeedscomm.hints.mandatory}"
+                      columns="16" rows="2"
+                      maximumLength="#{bindings.TrainingNeedscomm.hints.precision}"
+                      shortDesc="#{bindings.TrainingNeedscomm.hints.tooltip}"
+                      id="it10" >
+          <f:validator binding="#{bindings.TrainingNeedscomm.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.Embezzlement.inputValue}"
+                            label="#{viewcontrollerBundle.EMBEZZLEMENT_}"
+                            required="#{bindings.Embezzlement.hints.mandatory}"
+                            shortDesc="#{bindings.Embezzlement.hints.tooltip}"
+                            id="soc17" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.embezzrement1}">
+          <f:selectItems value="#{bindings.Embezzlement.items}" id="si20"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.empletter.inputValue}"
+                           label="#{viewcontrollerBundle.EMPLOYEMENT_LETTER_FROM_COMPAY}"
+                            required="#{bindings.empletter.hints.mandatory}"
+                            shortDesc="#{bindings.empletter.hints.tooltip}"
+                            id="soc14" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.empletter1}">
+          <f:selectItems value="#{bindings.empletter.items}" id="si22"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.Housingallowance.inputValue}"
+                           label="#{viewcontrollerBundle.ANY_HOUSING_ALLOWANCE_}"
+                            required="#{bindings.Housingallowance.hints.mandatory}"
+                            shortDesc="#{bindings.Housingallowance.hints.tooltip}"
+                            id="soc18" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.housingallowance1}">
+          <f:selectItems value="#{bindings.Housingallowance.items}" id="si15"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.Occupationalinsurance.inputValue}"
+                            label="#{viewcontrollerBundle.OCCUPATIONAL_INSURANCE_}"
+                            required="#{bindings.Occupationalinsurance.hints.mandatory}"
+                            shortDesc="#{bindings.Occupationalinsurance.hints.tooltip}"
+                            id="soc13" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.occupationalInsurance1}">
+          <f:selectItems value="#{bindings.Occupationalinsurance.items}"
+                         id="si23"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.ExcusesPI1.inputValue}"
+                           label="#{viewcontrollerBundle.EXCUSES_MADE_BY_PI}"
+                            required="#{bindings.ExcusesPI1.hints.mandatory}"
+                            shortDesc="#{bindings.ExcusesPI1.hints.tooltip}"
+                            id="soc23" contentStyle="width:156px"
+                            binding="#{pageFlowScope.piobservationsMB.piEx1}">
+          <f:selectItems value="#{bindings.ExcusesPI1.items}" id="si14"/>
+        </af:selectOneChoice>
+    <af:spacer width="10" height="10" id="s8"/>      
+        <af:panelGroupLayout id="pgl4">
+          <af:commandButton text="#{viewcontrollerBundle.SUBMIT_8}" id="cb6"
+                            inlineStyle="width:auto;background-color:#F39C11;"
+                            action="#{pageFlowScope.piobservationsMB.editBtnSubmitAction}">
+           
+          </af:commandButton>
+          <af:commandButton id="cb4" text="#{viewcontrollerBundle.CANCEL_9}"
+                            inlineStyle="width:auto;background-color:#F39C11;"
+                            action="#{pageFlowScope.piobservationsMB.editCancelAction}">
+            <af:resetActionListener/>
+          </af:commandButton>
+        </af:panelGroupLayout>
+      </af:panelFormLayout>
+    </af:showDetailHeader> 
+  <!--<af:panelGroupLayout id="pgl1">
+    <af:spacer width="25" height="10" id="s2"/>
+    <af:commandButton text="Submit" id="cb1"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      action="#{pageFlowScope.piobservationsMB.piObservationsSave}"/>
+    <af:commandButton id="cb2" text="Cancel"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      action="#{pageFlowScope.piobservationsMB.doReset}"/>
+  </af:panelGroupLayout>-->
+  <!-- <af:selectOneChoice value="#{bindings.CIDClearance.inputValue}"
+                      label="#{bindings.CIDClearance.label}"
+                      required="#{bindings.CIDClearance.hints.mandatory}"
+                      shortDesc="#{bindings.CIDClearance.hints.tooltip}"
+                      id="soc1" autoSubmit="true" >
+    <f:selectItems value="#{bindings.CIDClearance.items}" id="si1"/>
+  </af:selectOneChoice>
+  <af:inputText value="#{bindings.CIDClearancecomm.inputValue}"
+                label="#{bindings.CIDClearancecomm.hints.label}"
+                required="#{bindings.CIDClearancecomm.hints.mandatory}"
+                columns="#{bindings.CIDClearancecomm.hints.displayWidth}"
+                maximumLength="#{bindings.CIDClearancecomm.hints.precision}"
+                shortDesc="#{bindings.CIDClearancecomm.hints.tooltip}" id="it1"
+                 partialTriggers="soc1" visible="#{bindings.CIDClearance.selectedIndex ge '0'? true : false}">
+    <f:validator binding="#{bindings.CIDClearancecomm.validator}"/>
+  </af:inputText> -->
+  <!--oracle-jdev-comment:preferred-managed-bean-name:piobservationsMB-->
+</jsp:root>

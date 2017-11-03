@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="G4SOutstandingReportTF">
+    <default-activity id="__1">G4SOutstandingReport</default-activity>
+    <view id="G4SOutstandingReport">
+      <page>/jspx/reports/fragments/G4SOutstandingReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

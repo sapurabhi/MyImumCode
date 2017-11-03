@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VehiclePlateCategoryEO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName=" Veh_Plate_Ctg_mst"
+  AliasName="VehiclePlateCategoryEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="PlateCtgID"
+    IsUpdateable="false"
+    Precision="4"
+    Scale="0"
+    ColumnName="Plate_Ctg_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" Veh_Plate_Ctg_mst"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PlateCountryID"
+    Precision="4"
+    Scale="0"
+    ColumnName="Plate_Country_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PlateCtgDesc"
+    Precision="50"
+    ColumnName="Plate_Ctg_Desc"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CtgOrder"
+    Precision="4"
+    Scale="0"
+    ColumnName="Ctg_Order"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" Veh_Plate_Ctg_mst"
+    DefaultValue="1">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="mParkPlateCtg"
+    Precision="50"
+    ColumnName="mPark_Plate_Ctg"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ActiveFlag"
+    Precision="1"
+    ColumnName="Active_Flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Countrycode"
+    Precision="3"
+    ColumnName="Country_code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    ColumnName="Created_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" Veh_Plate_Ctg_mst"
+    IsNotNull="true"
+    IsUpdateable="while_insert"
+    HistoryColumn="DateHistory">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedBy"
+    Precision="20"
+    ColumnName="Updated_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedDate"
+    ColumnName="Updated_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" Veh_Plate_Ctg_mst"
+    HistoryColumn="DateHistory">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="adpplatectgid"
+    Precision="5"
+    Scale="0"
+    ColumnName="adp_plate_ctg_id"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" Veh_Plate_Ctg_mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="VehiclePlateTypeEO"
+    Association="com.imum.cpms.model.masters.eo.VehCtgToTypeAsso"
+    AssociationEnd="com.imum.cpms.model.masters.eo.VehCtgToTypeAsso.VehiclePlateTypeEO"
+    AssociationOtherEnd="com.imum.cpms.model.masters.eo.VehCtgToTypeAsso.VehiclePlateCategoryEO"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="Ctg_Country_Unique"
+    AltKey="true">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value=" Veh_Plate_Ctg_mst"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.VehiclePlateCategoryEO.PlateCtgDesc"/>
+      <Item
+        Value="com.imum.cpms.model.masters.eo.VehiclePlateCategoryEO.PlateCountryID"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="VehiclePlateCategoryEOPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="VehiclePlateCategoryEOPrimaryK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.VehiclePlateCategoryEO.PlateCtgID"/>
+    </AttrArray>
+  </Key>
+  <validation:UniqueKeyValidationBean
+    Name="VehiclePlateCategoryEO_Rule_0"
+    ResId="com.imum.cpms.model.masters.eo.VehiclePlateCategoryEO_Rule_0"
+    KeyName="Ctg_Country_Unique">
+    <validation:OnAttributes>
+      <validation:Item
+        Value="PlateCtgDesc"/>
+      <validation:Item
+        Value="PlateCountryID"/>
+    </validation:OnAttributes>
+  </validation:UniqueKeyValidationBean>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

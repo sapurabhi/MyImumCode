@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View3">
+      <property
+         name="activityId">HHCNewAssignment</property>
+      <property
+         name="page">/jspx/staffdeploy/fragments/HHCNewAssignment.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>HHCNewAssignment&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">196.09766</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">244.34961</property>
+   </View>
+   <View
+      id="View4">
+      <property
+         name="activityId">HHCReAssignment</property>
+      <property
+         name="page">/jspx/staffdeploy/fragments/HHCReAssignment.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>HHCReAssignment&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">193.39648</property>
+      <property
+         name="x">420.0166</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View4">
+      <property
+         name="fromOutcome">reassign</property>
+      <property
+         name="sdm:polyPoints">R46,285.3496,192.24707,378.91565,189.5459,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View4"
+      to="View3">
+      <property
+         name="fromOutcome">Back</property>
+      <property
+         name="sdm:polyPoints">L54,379.0166,196.5459,285.45053,199.24707,R54</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="PIMonthlyDeployNewPFPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <iterator Binds="PIAssignListVO1" RangeSize="-1"
+              DataControl="StaffDeployDataControl"
+              id="PIAssignListVO1Iterator"/>
+    <iterator id="PIUserMstUVO2Iterator" Binds="PIUserMstUVO2"
+              DataControl="StaffDeployDataControl" RangeSize="-1"/>
+    <iterator Binds="PIMonthlyAssignNewVO1" RangeSize="-1"
+              DataControl="StaffDeployDataControl"
+              id="PIMonthlyAssignNewVO1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="PIAssignListVO1Iterator" ListOperMode="navigation"
+          ListIter="PIAssignListVO1Iterator" id="PIAssignListVO1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="PIMonthlyAssignNewVO1Iterator"
+          id="PIMonthlyAssignNewVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIMonthlyAssignNewVO"
+                      Name="PIMonthlyAssignNewVO10">
+        <AttrNames>
+          <Item Value="Day"/>
+          <Item Value="PiAvailabitystatusID"/>
+          <Item Value="Shift"/>
+          <Item Value="SectorName"/>
+          <Item Value="ZoneName"/>
+          <Item Value="AssgnDate"/>
+          <Item Value="dbval"/>
+          <Item Value="dbpasi"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getMonthlDates"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getMonthlDates" IsViewObjectMethod="false">
+      <NamedData NDName="piid" NDType="java.lang.String"/>
+      <NamedData NDName="fromdate" NDType="java.util.Date"/>
+      <NamedData NDName="todate" NDType="java.util.Date"/>
+    </methodAction>
+    <methodAction id="resetWorkAssignNewVO"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="resetWorkAssignNewVO" IsViewObjectMethod="false"/>
+    <methodAction id="callRollback"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callRollback" IsViewObjectMethod="false"/>
+    <methodAction id="saveDB" InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveDB" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.saveDB_StaffDeployDataControl_dataProvider_saveDB_result"/>
+  </bindings>
+</pageDefinition>

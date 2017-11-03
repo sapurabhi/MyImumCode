@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="VehicleReceiptPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VehicleWhitelistMstVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="VehicleWhitelistMstVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="VehicleWhitelistMstVO1Iterator"
+                     id="PLATENUMBER">
+      <AttrNames>
+        <Item Value="PLATENUMBER"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleWhitelistMstVO1Iterator"
+                     id="ActiveDateFrom">
+      <AttrNames>
+        <Item Value="ActiveDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleWhitelistMstVO1Iterator"
+                     id="ActiveDateTo">
+      <AttrNames>
+        <Item Value="ActiveDateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VehicleWhitelistMstVO1Iterator" StaticList="false"
+          Uses="LOV_PlateCountryID" id="PlateCountryID" DTSupportsMRU="true"/>
+    <list IterBinding="VehicleWhitelistMstVO1Iterator" StaticList="false"
+          Uses="LOV_PLATECTGID" id="PLATECTGID" DTSupportsMRU="true"/>
+    <list IterBinding="VehicleWhitelistMstVO1Iterator" StaticList="false"
+          Uses="LOV_VEHCOLOURID" id="VEHCOLOURID" DTSupportsMRU="true"/>
+    <list IterBinding="VehicleWhitelistMstVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMAKEID" id="VEHMAKEID1" DTSupportsMRU="true"/>
+    <list IterBinding="VehicleWhitelistMstVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMODELID" id="VEHMODELID" DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

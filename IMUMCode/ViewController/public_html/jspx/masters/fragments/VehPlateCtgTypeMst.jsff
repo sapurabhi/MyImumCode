@@ -1,0 +1,357 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+<af:showDetailHeader text="#{viewcontrollerBundle.VEHICLE_PLATE_CATEGORY__TYPE_M}" disclosed="true" id="sdh2">
+  <af:panelGroupLayout id="pgl2" layout="scroll">
+    <af:panelGroupLayout id="panelGroupLayout1" layout="horizontal">
+      <af:panelGroupLayout id="pgl3" layout="horizontal"  visible="#{pageFlowScope.VehPlateCtgTypeMBean.submitCancelBtnLayout}"
+                           partialTriggers="cb4 cb5 cb1 cb2 cb3 commandButton1 commandButton2">
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb4"
+                          inlineStyle="background-color:#F39C11;"
+                          actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.submitChangesToDB}"
+                          disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"/>
+        <af:spacer width="10" height="10" id="s5"/>
+        <af:commandButton id="cb5" text="#{viewcontrollerBundle.CANCEL}"
+                          inlineStyle="background-color:#F39C11;"
+                          actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.cancelChangesToDB}"/>
+        <af:spacer width="10" height="10" id="s6"/>
+      </af:panelGroupLayout>
+      <af:spacer width="350" height="10" id="s2"/>
+      <af:panelGroupLayout id="panelGroupLayout3" layout="horizontal"  visible="#{!pageFlowScope.VehPlateCtgTypeMBean.submitCancelBtnLayout}"
+      partialTriggers="cb1 cb2 cb3 cb4 cb5 commandButton1 commandButton2">
+        <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"
+                          partialSubmit="true" icon="/images/new.gif"
+                          actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.createNewVehMasDetails}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="cb2"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"
+                          icon="/images/edit.gif"
+                          actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.editVehicleMakeDetails}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+        <af:spacer width="10" height="10" id="s7"/>
+        <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="cb3"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"
+                          icon="/images/view.gif"
+                          actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.viewVehicleMakeDetails}"/>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="spacer3"/>
+    <af:panelGroupLayout id="pgl1">
+      <af:table value="#{bindings.VehiclePlateCategoryVO1.collectionModel}"
+                width="896" var="row" rowBandingInterval="1" autoHeightRows="0"
+                scrollPolicy="page"
+                rows="#{bindings.VehiclePlateCategoryVO1.rangeSize}"
+                emptyText="#{bindings.VehiclePlateCategoryVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.VehiclePlateCategoryVO1.rangeSize}"
+                filterModel="#{bindings.VehiclePlateCategoryVO1Query.queryDescriptor}"
+                queryListener="#{bindings.VehiclePlateCategoryVO1Query.processQuery}"
+                filterVisible="true" varStatus="vs"
+                selectedRowKeys="#{bindings.VehiclePlateCategoryVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.VehiclePlateCategoryVO1.collectionModel.makeCurrent}"
+                rowSelection="#{pageFlowScope.VehPlateCtgTypeMBean.submitCancelBtnLayout == true ? 'none' : 'single'}" id="t1"
+                partialTriggers="::cb4 ::cb5 ::commandButton1 ::commandButton2">
+        <af:column sortProperty="#{bindings.VehiclePlateCategoryVO1.hints.PlateCtgID.name}"
+                   filterable="true" sortable="true" width="183"
+                   headerText="#{bindings.VehiclePlateCategoryVO1.hints.PlateCtgID.label}"
+                   id="c3">
+          <af:outputText value="#{row.PlateCtgID}" id="ot1">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.VehiclePlateCategoryVO1.hints.PlateCtgID.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.VehiclePlateCategoryVO1.hints.PlateCtgDesc.name}"
+                   filterable="true" sortable="true" width="205"
+                   headerText="#{bindings.VehiclePlateCategoryVO1.hints.PlateCtgDesc.label}"
+                   id="c4">
+          <af:outputText value="#{row.PlateCtgDesc}" id="ot2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.VehiclePlateCategoryVO1.hints.Countrycode.name}"
+                   filterable="true" sortable="true" width="181"
+                   headerText="#{bindings.VehiclePlateCategoryVO1.hints.Countrycode.label}"
+                   id="c2">
+          <af:selectOneChoice value="#{row.bindings.PlateCountryID.inputValue}"
+                              readOnly="true"
+                              label="#{row.bindings.PlateCountryID.label}"
+                              required="#{bindings.VehiclePlateCategoryVO1.hints.PlateCountryID.mandatory}"
+                              shortDesc="#{bindings.VehiclePlateCategoryVO1.hints.PlateCountryID.tooltip}"
+                              id="soc1">
+            <f:selectItems value="#{row.bindings.PlateCountryID.items}" id="si1"/>
+          </af:selectOneChoice>
+        </af:column>
+          <af:column sortProperty="#{bindings.VehiclePlateCategoryVO1.hints.adpplatectgid.name}"
+                   filterable="true" sortable="true" width="181" 
+                   headerText="#{viewcontrollerBundle.ADP_PLATE_CATEGORY}"
+                     id="c14">
+            <af:outputText value="#{row.adpplatectgid}" id="ot3">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.VehiclePlateCategoryVO1.hints.adpplatectgid.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.VehiclePlateCategoryVO1.hints.ActiveFlag.name}"
+                   filterable="false" sortable="true" align="center"
+                   headerText="#{bindings.VehiclePlateCategoryVO1.hints.ActiveFlag.label}"
+                   id="c1" width="107">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                    disabled="true"
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                    shortDesc="#{bindings.VehiclePlateCategoryVO1.hints.ActiveFlag.tooltip}"
+                                    id="sbc1"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="spacer4"/>
+    <af:showDetailHeader text="#{viewcontrollerBundle.VEHICLE_PLATE_CATEGORY__TYPE_M}"
+                         disclosed="true" id="sdh1"
+                         partialTriggers="cb4 cb5 cb1 cb2 cb3 commandButton1 commandButton2 t1"
+                         inlineStyle="width:747.0px;" visible="#{pageFlowScope.VehPlateCtgTypeMBean.submitCancelBtnLayout}" >
+      <af:panelFormLayout id="pfl1" >
+        <af:inputText value="#{bindings.PlateCtgDesc.inputValue}"  disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                      label="#{bindings.PlateCtgDesc.hints.label}"
+                      showRequired="true"
+                      columns="#{bindings.PlateCtgDesc.hints.displayWidth}"
+                      maximumLength="#{bindings.PlateCtgDesc.hints.precision}"
+                      shortDesc="#{bindings.PlateCtgDesc.hints.tooltip}"
+                      id="it1">
+          <f:validator binding="#{bindings.PlateCtgDesc.validator}"/>
+        </af:inputText>
+          <af:panelLabelAndMessage label="#{viewcontrollerBundle.VEHICLE_CATEGORY_NAME_IN_}" id="plam1" showRequired="true">
+
+          <af:panelGroupLayout id="pgl0" layout="horizontal"
+                               halign="left">
+          
+          <af:selectOneChoice value="#{bindings.Language.inputValue}"
+                              required="#{bindings.Language.hints.mandatory}" 
+                              disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                              id="soc3" simple="true">
+            <f:selectItems value="#{bindings.Language.items}" id="si3"/>
+          </af:selectOneChoice>
+          <af:spacer id="s01" width="10" height="10"/>
+          <af:inputText value="#{bindings.VehCtgNameLng.inputValue}"
+                        simple="true" disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                        required="#{bindings.VehCtgNameLng.hints.mandatory}"
+                        columns="#{bindings.VehCtgNameLng.hints.displayWidth}"
+                        maximumLength="#{bindings.VehCtgNameLng.hints.precision}"
+                        shortDesc="#{bindings.VehCtgNameLng.hints.tooltip}"
+                        id="it4">
+            <f:validator binding="#{bindings.VehCtgNameLng.validator}"/>
+          </af:inputText>
+          </af:panelGroupLayout></af:panelLabelAndMessage>
+          
+          <af:selectOneChoice value="#{bindings.PlateCountryID.inputValue}" disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                            label="#{bindings.PlateCountryID.label}" autoSubmit="true"
+                            showRequired="true"
+                            shortDesc="#{bindings.PlateCountryID.hints.tooltip}"
+                            id="soc2"
+                              binding="#{pageFlowScope.VehPlateCtgTypeMBean.countryid}">
+          <f:selectItems value="#{bindings.PlateCountryID.items}" id="si2"/>
+        </af:selectOneChoice>
+          <af:inputText value="#{bindings.mParkPlateCtg.inputValue}" disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                        label="#{viewcontrollerBundle.MPARK_CATEGORY}"
+                        required="#{bindings.mParkPlateCtg.hints.mandatory}"
+                        columns="25"
+                        maximumLength="#{bindings.mParkPlateCtg.hints.precision}"
+                        shortDesc="#{bindings.mParkPlateCtg.hints.tooltip}"
+                        id="it7">
+            <f:validator binding="#{bindings.mParkPlateCtg.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.adpplatectgid.inputValue}"
+                        disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                        label="#{viewcontrollerBundle.ADP_PLATE_CATEGORY}"
+                        required="#{bindings.adpplatectgid.hints.mandatory}"
+                        columns="#{bindings.adpplatectgid.hints.displayWidth}"
+                        maximumLength="#{bindings.adpplatectgid.hints.precision}"
+                        shortDesc="#{bindings.adpplatectgid.hints.tooltip}"
+                        id="it8">
+            <f:validator binding="#{bindings.adpplatectgid.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.adpplatectgid.format}"/>
+          </af:inputText>
+          <af:selectBooleanCheckbox value="#{bindings.ActiveFlag.inputValue}"
+                                    disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                                    label="#{bindings.ActiveFlag.label}"
+                                    shortDesc="#{bindings.ActiveFlag.hints.tooltip}"
+                                    id="sbc2"/>
+                                     <af:spacer width="10" height="10" id="spacer2"/>
+        </af:panelFormLayout>
+      <af:commandImageLink
+                            disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                           id="commandImageLink1" icon="/images/plus.png"
+                           text="#{viewcontrollerBundle.ADD_ROW}"
+                           actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.addNewVehPlateTypeRecord}"/>
+      <af:spacer width="10" height="10" id="spacer5"/>
+     
+      <af:table value="#{bindings.VehiclePlateTypeVO2.collectionModel}" 
+                rendered="#{pageFlowScope.VehPlateCtgTypeMBean.newPlateCtgModeEnabled}"
+                var="row" rows="#{bindings.VehiclePlateTypeVO2.rangeSize}"
+                width="677" 
+                emptyText="#{bindings.VehiclePlateTypeVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.VehiclePlateTypeVO2.rangeSize}"
+                rowBandingInterval="1" autoHeightRows="0" scrollPolicy="page"
+                selectionListener="#{bindings.VehiclePlateTypeVO2.collectionModel.makeCurrent}"
+                selectedRowKeys="#{bindings.VehiclePlateTypeVO2.collectionModel.selectedRow}"
+                id="t3"  rowSelection="single">
+        <af:column sortProperty="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.name}"
+                   sortable="false"  width="180"
+                   headerText="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.label}"
+                   id="c8">
+          <af:inputText value="#{row.bindings.PlateTypedesc.inputValue}"
+                        label="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.label}"
+                        required="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.mandatory}"
+                        columns="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.displayWidth}"
+                        maximumLength="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.precision}"
+                         disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                        shortDesc="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.tooltip}"
+                        id="it3">
+            <f:validator binding="#{row.bindings.PlateTypedesc.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.VehiclePlateTypeVO2.hints.PlateTypedesc.name}"
+                   sortable="false"  width="180"
+                   headerText="#{viewcontrollerBundle.VEHICLE_TYPE_NAME_IN_}(#{facesContext.viewRoot.locale == 'en' ? 'ARABIC' : 'English'})"
+                   id="c11">
+            <af:inputText value="#{row.bindings.VehTypeNameLng.inputValue}"
+                          simple="true"
+                          disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                          required="#{bindings.VehiclePlateTypeVO2.hints.VehTypeNameLng.mandatory}"
+                          columns="#{bindings.VehiclePlateTypeVO2.hints.VehTypeNameLng.displayWidth}"
+                          maximumLength="#{bindings.VehiclePlateTypeVO2.hints.VehTypeNameLng.precision}"
+                          shortDesc="#{bindings.VehiclePlateTypeVO2.hints.VehTypeNameLng.tooltip}"
+                          id="it5">
+              <f:validator binding="#{row.bindings.VehTypeNameLng.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.VehiclePlateTypeVO2.hints.adpplatetypeid.name}"
+                     sortable="false"  width="180"
+                     headerText="#{viewcontrollerBundle.ADP_PLATE_TYPE}"
+                     id="c13">
+            <af:inputText value="#{row.bindings.adpplatetypeid.inputValue}" simple="true"
+                          disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                          label="#{bindings.VehiclePlateTypeVO2.hints.adpplatetypeid.label}"
+                          required="#{bindings.VehiclePlateTypeVO2.hints.adpplatetypeid.mandatory}"
+                          columns="#{bindings.VehiclePlateTypeVO2.hints.adpplatetypeid.displayWidth}"
+                          maximumLength="#{bindings.VehiclePlateTypeVO2.hints.adpplatetypeid.precision}"
+                          shortDesc="#{bindings.VehiclePlateTypeVO2.hints.adpplatetypeid.tooltip}"
+                          id="it9">
+              <f:validator binding="#{row.bindings.adpplatetypeid.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.VehiclePlateTypeVO2.hints.adpplatetypeid.format}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.VehiclePlateTypeVO2.hints.ActiveFlag.name}"
+                   sortable="false" align="center" width="80"
+                   headerText="#{bindings.VehiclePlateTypeVO2.hints.ActiveFlag.label}"
+                   id="c9">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                     disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                                    shortDesc="#{bindings.VehiclePlateTypeVO2.hints.ActiveFlag.tooltip}"
+                                    id="sbc4"/>
+        </af:column>
+        <af:column id="c10" width="30" rendered="false">
+          <af:commandImageLink 
+           disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+           icon="/images/minus.png"
+                               actionListener="#{bindings.Delete1.execute}"
+                               rendered="false"/>
+        </af:column>
+      </af:table>
+ 
+      <af:table value="#{bindings.VehiclePlateTypeVO1.collectionModel}"
+                width="560" var="row" rendered="#{!pageFlowScope.VehPlateCtgTypeMBean.newPlateCtgModeEnabled}"
+                rows="#{bindings.VehiclePlateTypeVO1.rangeSize}"
+                emptyText="#{bindings.VehiclePlateTypeVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.VehiclePlateTypeVO1.rangeSize}" rowSelection="single"
+                rowBandingInterval="1" autoHeightRows="0" scrollPolicy="page"
+                id="t2" selectionListener="#{bindings.VehiclePlateTypeVO1.collectionModel.makeCurrent}"
+                selectedRowKeys="#{bindings.VehiclePlateTypeVO1.collectionModel.selectedRow}" >
+        <af:column sortProperty="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.name}"
+                   sortable="false"  width="170"
+                   headerText="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.label}"
+                   id="c5">
+          <af:inputText value="#{row.bindings.PlateTypedesc.inputValue}"
+                        label="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.label}"
+                        required="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.mandatory}"
+                        columns="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.displayWidth}"
+                         disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                        maximumLength="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.precision}"
+                        shortDesc="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.tooltip}"
+                        id="it2">
+            <f:validator binding="#{row.bindings.PlateTypedesc.validator}"/>
+          </af:inputText>
+        </af:column>
+    <af:column sortProperty="#{bindings.VehiclePlateTypeVO1.hints.PlateTypedesc.name}"
+                   sortable="false"  width="150"
+                   headerText="#{viewcontrollerBundle.VEHICLE_TYPE_NAME_IN_}(#{facesContext.viewRoot.locale == 'en' ? 'ARABIC' : 'English'})"
+                   id="c12">
+            <af:inputText value="#{row.bindings.VehTypeNameLng.inputValue}"
+                          simple="true" disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                          required="#{bindings.VehiclePlateTypeVO1.hints.VehTypeNameLng.mandatory}"
+                          columns="#{bindings.VehiclePlateTypeVO1.hints.VehTypeNameLng.displayWidth}"
+                          maximumLength="#{bindings.VehiclePlateTypeVO1.hints.VehTypeNameLng.precision}"
+                          shortDesc="#{bindings.VehiclePlateTypeVO1.hints.VehTypeNameLng.tooltip}"
+                          id="it6">
+              <f:validator binding="#{row.bindings.VehTypeNameLng.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.VehiclePlateTypeVO1.hints.adpplatetypeid.name}"
+                   sortable="false"  width="130"
+                    headerText="#{viewcontrollerBundle.ADP_PLATE_TYPE}"
+                     id="c15">
+            <af:inputText value="#{row.bindings.adpplatetypeid.inputValue}"
+                          simple="true" disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                          label="#{bindings.VehiclePlateTypeVO1.hints.adpplatetypeid.label}"
+                          required="#{bindings.VehiclePlateTypeVO1.hints.adpplatetypeid.mandatory}"
+                          columns="#{bindings.VehiclePlateTypeVO1.hints.adpplatetypeid.displayWidth}"
+                          maximumLength="#{bindings.VehiclePlateTypeVO1.hints.adpplatetypeid.precision}"
+                          shortDesc="#{bindings.VehiclePlateTypeVO1.hints.adpplatetypeid.tooltip}"
+                          id="it10">
+              <f:validator binding="#{row.bindings.adpplatetypeid.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.VehiclePlateTypeVO1.hints.adpplatetypeid.format}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.VehiclePlateTypeVO1.hints.ActiveFlag.name}"
+                   sortable="false" align="center" width="80"
+                   headerText="#{bindings.VehiclePlateTypeVO1.hints.ActiveFlag.label}"
+                   id="c6">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                     disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                                    shortDesc="#{bindings.VehiclePlateTypeVO1.hints.ActiveFlag.tooltip}"
+                                    id="sbc3"/>
+        </af:column>
+        <af:column id="c7" width="30" align="center" rendered="false">
+          <af:commandImageLink actionListener="#{bindings.Delete.execute}" 
+                                disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}" id="cil1"
+                               icon="/images/minus.png"/>
+        </af:column>
+      </af:table><!-- Delete -#{pageFlowScope.VehPlateCtgTypeMBean.deleteVehTypeRec} #{bindings.Delete.execute} -->
+    
+    </af:showDetailHeader>
+    <af:spacer width="10" height="10" id="spacer1"/>
+    <af:panelGroupLayout id="panelGroupLayout2" layout="horizontal"  partialTriggers="cb4 cb5 cb1 cb2 cb3 commandButton1 commandButton2"
+                         visible="#{pageFlowScope.VehPlateCtgTypeMBean.submitCancelBtnLayout}">
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}"
+                        inlineStyle="background-color:#F39C11;"
+                        actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.submitChangesToDB}"
+                        disabled="#{pageFlowScope.VehPlateCtgTypeMBean.viewModeEnabled}"
+                        id="commandButton1"/>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:commandButton id="commandButton2"
+                        actionListener="#{pageFlowScope.VehPlateCtgTypeMBean.cancelChangesToDB}"
+                        text="#{viewcontrollerBundle.CANCEL}"
+                        inlineStyle="background-color:#F39C11;"/>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s4"/>
+  </af:panelGroupLayout>
+  </af:showDetailHeader>
+</jsp:root>

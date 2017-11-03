@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VehicleCountrymstlngVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="VehicleCountrymstlngEO.veh_plate_cnt_lng_Seq, 
+       VehicleCountrymstlngEO.Plate_Country_ID, 
+       VehicleCountrymstlngEO.LNG_CODE, 
+       VehicleCountrymstlngEO.Plate_Country_Name, 
+       VehicleCountrymstlngEO.Created_By, 
+       VehicleCountrymstlngEO.Created_Date, 
+       VehicleCountrymstlngEO.Updated_by, 
+       VehicleCountrymstlngEO.Update_date"
+  FromList="Veh_Plate_Country_mst_lng VehicleCountrymstlngEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.VehicleCountrymstlngVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.VehicleCountrymstlngVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <EntityUsage
+    Name="VehicleCountrymstlngEO"
+    Entity="com.imum.cpms.model.masters.eo.VehicleCountrymstlngEO"/>
+  <ViewAttribute
+    Name="vehplatecntlngSeq"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="vehplatecntlngSeq"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="veh_plate_cnt_lng_Seq"/>
+  <ViewAttribute
+    Name="PlateCountryID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PlateCountryID"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="Plate_Country_ID"/>
+  <ViewAttribute
+    Name="LNGCODE"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LNGCODE"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="LNG_CODE"/>
+  <ViewAttribute
+    Name="PlateCountryName"
+    PrecisionRule="true"
+    EntityAttrName="PlateCountryName"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="Plate_Country_Name"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="Updatedate"
+    PrecisionRule="true"
+    EntityAttrName="Updatedate"
+    EntityUsage="VehicleCountrymstlngEO"
+    AliasName="Update_date"/>
+</ViewObject>

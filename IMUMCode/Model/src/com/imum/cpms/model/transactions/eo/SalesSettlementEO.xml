@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="SalesSettlementEO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName=" SLT_Sales_Settlement"
+  AliasName="SalesSettlementEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.transactions.eo.SalesSettlementEOImpl">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+    <Attr Name="_codeGenFlag2" Value="Init|Delete|Access|DML"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="SaleStlseq"
+    Precision="10"
+    Scale="0"
+    ColumnName="Sale_Stl_seq"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName=" SLT_Sales_Settlement"
+    IsNotNull="true"
+    PrimaryKey="true"
+    RetrievedOnUpdate="true"
+    ChangeIndicator="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Salehdrseq"
+    Precision="10"
+    Scale="0"
+    ColumnName="Sale_hdr_seq"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PYMTType"
+    Precision="3"
+    ColumnName="PYMT_Type"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PYMTAMT"
+    Precision="19"
+    Scale="4"
+    ColumnName="PYMT_AMT"
+    SQLType="DECIMAL"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    TableName=" SLT_Sales_Settlement"
+    IsNotNull="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="14"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Chqnum"
+    Precision="20"
+    ColumnName="Chq_num"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CCDType"
+    Precision="2"
+    ColumnName="CCD_Type"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CCDnum"
+    Precision="4"
+    ColumnName="CCD_num"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="18"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="AuthCode"
+    Precision="20"
+    ColumnName="Auth_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="OrgCardnum"
+    Precision="16"
+    ColumnName="Org_Card_num"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="18"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PromoDscCode"
+    Precision="5"
+    ColumnName="Promo_Dsc_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement"
+    IsNotNull="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    ColumnName="Created_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" SLT_Sales_Settlement"
+    IsNotNull="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updatedby"
+    Precision="20"
+    ColumnName="Updated_by"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updatedate"
+    ColumnName="&quot;Synchronize:Fix_SQL&quot;"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    IsPersistent="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LGCChqNum"
+    Precision="20"
+    ColumnName="LGC_Chq_Num"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LGCCCDNum"
+    Precision="20"
+    ColumnName="LGC_CCD_Num"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LGCAuthcode"
+    Precision="20"
+    ColumnName="LGC_Auth_code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updateddate"
+    ColumnName="Updated_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ChqBankname"
+    Precision="50"
+    ColumnName="Chq_Bank_name"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ChqDate"
+    ColumnName="Chq_Date"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Foreigncurrcode"
+    Precision="3"
+    ColumnName="Foreign_curr_code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ForeigncurrAmt"
+    Precision="19"
+    Scale="4"
+    ColumnName="Foreign_curr_Amt"
+    SQLType="DECIMAL"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="14"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="stlcomments"
+    Precision="200"
+    ColumnName="stl_comments"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="AltChqnum"
+    Precision="20"
+    ColumnName="Alt_Chq_num"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CCDSlipAckDate"
+    ColumnName="CCD_Slip_Ack_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CCDSlipAckUserID"
+    Precision="20"
+    ColumnName="CCD_Slip_Ack_User_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ChqAckDate"
+    ColumnName="Chq_Ack_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ChqAckUserID"
+    Precision="20"
+    ColumnName="Chq_Ack_User_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Ackstatusid"
+    Precision="3"
+    Scale="0"
+    ColumnName="Ack_status_id"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" SLT_Sales_Settlement">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="PKSLTSalesSettlement"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PK_SLT_Sales_Settlement"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.transactions.eo.SalesSettlementEO.SaleStlseq"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="FKSLTSalesSettlementSLTSalesheader">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PK__SLT_Sale__51084FCC762C88DA"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName"
+        Value="FK_SLT_Sales_Settlement_SLT_Sales_header"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.transactions.eo.SalesSettlementEO.Salehdrseq"/>
+    </AttrArray>
+  </Key>
+</Entity>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="BaumanCollectionReportTF">
+    <default-activity id="__1">BaumanCollectionReport</default-activity>
+    <view id="BaumanCollectionReport">
+      <page>/jspx/reports/fragments/BaumanCollectionReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PermitSearchCritVO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  ComponentClass="com.imum.cpms.model.masters.vo.PermitSearchCritVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="customer_name"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  
+  <Variable
+    Name="Emirates_Id"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="Utility_Bill"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="Permit_category"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="Permit_Type"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="Permit_Status"
+    Kind="viewcriteria"
+    Type="java.lang.Integer">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="permi_number"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="plate_number"
+    Kind="viewcriteria"
+    Type="java.lang.Long">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="Sector"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="Mobile_Number"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="Plate_Numbername"
+    Kind="viewcriteria"
+    Type="java.lang.Long">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <ViewAccessor
+    Name="PermitSearchCatgLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitSearchCatgLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PermitTypeLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitTypeLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PermitSearchStatusLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitSearchStatusLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="SectorLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.SectorLovVO">
+    <ViewCriteriaUsage
+      Name="SectorLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.SectorLovVO.SectorLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PermitCategLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitCategLovVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_Categcode"
+    ListVOName="PermitSearchCatgLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Categcode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="categcode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="categdesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PermitStatusID"
+    ListVOName="PermitSearchStatusLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PermitStatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="statusid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="statusname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SectorCode"
+    ListVOName="SectorLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PermitType"
+    ListVOName="PermitTypeLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PermitType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PermitType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Typecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PermitType"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Categcode1"
+    ListVOName="PermitCategLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Categcode1_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Categcode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="categcode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CategDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[select PermitHeaderEO.Addtl_chrgs, 
+PermitHeaderEO.Admin_Chrgs, 
+PermitHeaderEO.Appl_date, 
+PermitHeaderEO.Assg_Reason_ID, 
+PermitHeaderEO.Assigned_By, 
+PermitHeaderEO.Assigned_On, 
+PermitHeaderEO.Assigned_To, 
+PermitHeaderEO.Auto_Renew_Flag, 
+PermitHeaderEO.Changed_flag, 
+PermitHeaderEO.City_Code, 
+PermitHeaderEO.Country_Code, 
+PermitHeaderEO.Created_By, 
+PermitHeaderEO.Created_Date, 
+PermitHeaderEO.Cust_ID, 
+gim.CUST_NAME customer_name,
+gim.Mobile_num Mobile_num,
+PermitHeaderEO.DoT_Approval_Status, 
+PermitHeaderEO.DoT_Approved_Date, 
+PermitHeaderEO.DoT_Approved_by, 
+PermitHeaderEO.DoT_Insp_Comments, 
+PermitHeaderEO.Emirates_id, 
+PermitHeaderEO.Existing_Permit_count,
+PermitHeaderEO.Inst_Quota_seq, 
+PermitHeaderEO.Issue_date, 
+PermitHeaderEO.LGC_Permit_id, 
+PermitHeaderEO.LGC_permit_number, 
+PermitHeaderEO.Last_Assg_Note, 
+PermitHeaderEO.LastUndoableOperation, 
+PermitHeaderEO.UTIL_BILL_NUM,  
+PermitHeaderEO.PRM_APPL_NUM, 
+PermitHeaderEO.PRM_Header_seq, 
+PermitHeaderEO.Paid_flag, 
+PermitHeaderEO.Permit_Chrgs, 
+PermitHeaderEO.Permit_End_date, 
+PermitHeaderEO.Permit_Number, 
+PermitHeaderEO.Permit_Refund_Amt, 
+PermitHeaderEO.Permit_Remarks,
+PermitHeaderEO.Categ_code, 
+PermitHeaderEO.Permit_Status_ID, 
+PermitHeaderEO.Permit_Type, 
+PermitHeaderEO.Permit_start_date, 
+PermitHeaderEO.Prm_duration, 
+PermitHeaderEO.Proc_Chrgs, 
+PermitHeaderEO.Sector_Code, 
+PermitHeaderEO.Updated_by, 
+PermitHeaderEO.Updated_date,
+PermitHeaderEO.renewal_count,
+PermitHeaderEO.vhl_plate_id,
+PermitHeaderEO.permit_type permit_typename,
+PermitHeaderEO.status_name status_name,
+PermitHeaderEO.plate_number  plate_number
+from (select ph.Addtl_chrgs, 
+ph.Admin_Chrgs, 
+ph.Appl_date, 
+ph.Assg_Reason_ID, 
+ph.Assigned_By, 
+ph.Assigned_On, 
+ph.Assigned_To, 
+ph.Auto_Renew_Flag, 
+ph.Changed_flag, 
+ph.City_Code, 
+ph.Country_Code, 
+ph.Created_By, 
+ph.Created_Date, 
+ph.Cust_ID, 
+ph.DoT_Approval_Status, 
+ph.DoT_Approved_Date, 
+ph.DoT_Approved_by, 
+ph.DoT_Insp_Comments, 
+ph.Emirates_id, 
+ph.Existing_Permit_count,
+ph.Inst_Quota_seq, 
+ph.Issue_date, 
+ph.LGC_Permit_id, 
+ph.LGC_permit_number, 
+ph.Last_Assg_Note, 
+ph.LastUndoableOperation, 
+ph.UTIL_BILL_NUM,  
+ph.PRM_APPL_NUM, 
+ph.PRM_Header_seq, 
+ph.Paid_flag, 
+ph.Permit_Chrgs, 
+ph.Permit_End_date, 
+ph.Permit_Number, 
+ph.Permit_Refund_Amt, 
+ph.Permit_Remarks,
+ph.Categ_code, 
+ph.Permit_Status_ID, 
+ph.Permit_Type, 
+ph.Permit_start_date, 
+ph.Prm_duration, 
+ph.Proc_Chrgs, 
+ph.Sector_Code, 
+ph.Updated_by, 
+ph.Updated_date,
+ph.renewal_count,ph.vhl_plate_id,
+ph.permit_type permit_typename,
+pst.status_name status_name,
+vpm.plate_number  plate_number FROM  PRM_Header ph, 
+ prm_permit_type_mst pt, 
+ prm_permit_status_mst pst,
+ veh_plate_mst vpm
+Where pt.Type_code = ph.permit_type  and pt.Categ_code = ph.Categ_code
+AND pst.status_id = ph.permit_status_id
+AND  vpm.plate_id = ph.vhl_plate_id 
+) PermitHeaderEO
+join   (select inst_id as cust_id,INST_NAME as CUST_NAME,''as Mobile_num  from     GEN_INSTITUTION_MST
+            union
+            select cust_id,first_name as CUST_NAME,Mobile_num from  GEN_customer_MST )gim
+on  gim.cust_id = PermitHeaderEO.cust_id]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="Addtlchrgs"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="BIGINT"
+    AliasName="Addtl_chrgs"
+    Expression="Addtl_chrgs"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AdminChrgs"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Scale="3"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Admin_Chrgs"
+    Expression="Admin_Chrgs"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Appldate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="Appl_date"
+    Expression="Appl_date"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.Appldate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssgReasonID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Assg_Reason_ID"
+    Expression="Assg_Reason_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssignedBy"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Assigned_By"
+    Expression="Assigned_By"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssignedOn"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Assigned_On"
+    Expression="Assigned_On"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssignedTo"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Assigned_To"
+    Expression="Assigned_To"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AutoRenewFlag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Auto_Renew_Flag"
+    Expression="Auto_Renew_Flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Changedflag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Changed_flag"
+    Expression="Changed_flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CityCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="City_Code"
+    Expression="City_Code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CountryCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Country_Code"
+    Expression="Country_Code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Created_By"
+    Expression="Created_By"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Created_Date"
+    Expression="Created_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CustID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="bigint"
+    AliasName="Cust_ID"
+    Expression="Cust_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.CustID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="customername"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="customer_name"
+    Expression="customer_name"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.customername_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Mobilenum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Mobile_num"
+    Expression="Mobile_num"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.Mobilenum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DoTApprovalStatus"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="DoT_Approval_Status"
+    Expression="DoT_Approval_Status"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DoTApprovedDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="DoT_Approved_Date"
+    Expression="DoT_Approved_Date"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DoTApprovedby"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="DoT_Approved_by"
+    Expression="DoT_Approved_by"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DoTInspComments"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="DoT_Insp_Comments"
+    Expression="DoT_Insp_Comments"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Emiratesid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Emirates_id"
+    Expression="Emirates_id"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.Emiratesid_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ExistingPermitcount"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="bigint"
+    AliasName="Existing_Permit_count"
+    Expression="Existing_Permit_count"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="InstQuotaseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Inst_Quota_seq"
+    Expression="Inst_Quota_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.InstQuotaseq_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Issuedate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="Issue_date"
+    Expression="Issue_date"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.Issuedate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LGCPermitid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="LGC_Permit_id"
+    Expression="LGC_Permit_id"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LGCpermitnumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="LGC_permit_number"
+    Expression="LGC_permit_number"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LastAssgNote"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Last_Assg_Note"
+    Expression="Last_Assg_Note"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LastUndoableOperation"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="LastUndoableOperation"
+    Expression="LastUndoableOperation"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="UTILBILLNUM"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="UTIL_BILL_NUM"
+    Expression="UTIL_BILL_NUM"
+    SQLType="VARCHAR"
+    IsUpdateable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.UTILBILLNUM_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PRMAPPLNUM"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="PRM_APPL_NUM"
+    Expression="PRM_APPL_NUM"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PRMHeaderseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="PRM_Header_seq"
+    Expression="PRM_Header_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Paidflag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Paid_flag"
+    Expression="Paid_flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermitChrgs"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Scale="3"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Permit_Chrgs"
+    Expression="Permit_Chrgs"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermitEnddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="Permit_End_date"
+    Expression="Permit_End_date"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.PermitEnddate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermitNumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="Permit_Number"
+    Expression="Permit_Number"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.PermitNumber_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermitRefundAmt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Scale="3"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Permit_Refund_Amt"
+    Expression="Permit_Refund_Amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermitRemarks"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Permit_Remarks"
+    Expression="Permit_Remarks"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Categcode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Categ_code"
+    Expression="Categ_code"
+    SQLType="VARCHAR"
+    LOVName="LOV_Categcode">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.Categcode_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermitStatusID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="5"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Permit_Status_ID"
+    Expression="Permit_Status_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_PermitStatusID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.PermitStatusID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermitType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Permit_Type"
+    Expression="Permit_Type"
+    SQLType="INTEGER"
+    LOVName="LOV_PermitType">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.PermitType_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Permitstartdate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="Permit_start_date"
+    Expression="Permit_start_date"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Prmduration"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Prm_duration"
+    Expression="Prm_duration"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProcChrgs"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Scale="3"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Proc_Chrgs"
+    Expression="Proc_Chrgs"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SectorCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Sector_Code"
+    Expression="Sector_Code"
+    SQLType="VARCHAR"
+    LOVName="LOV_SectorCode">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.SectorCode_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Updatedby"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Updated_by"
+    Expression="Updated_by"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Updateddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Updated_date"
+    Expression="Updated_date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="renewalcount"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="renewal_count"
+    Expression="renewal_count"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="vhlplateid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="8"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="vhl_plate_id"
+    Expression="vhl_plate_id"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.vhlplateid_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="permittypename"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="permit_typename"
+    Expression="permit_typename"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="statusname"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="status_name"
+    Expression="status_name"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="platenumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="8"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="plate_number"
+    Expression="plate_number"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PermitSearchCritVO.platenumber_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="PermitSearchCritVOCriteria"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitSearchCritVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="Never"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow40"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="customername"
+        ViewAttribute="customername"
+        Operator="="
+        Conjunction="AND"
+        Value=":customer_name"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="Mobilenum"
+        ViewAttribute="Mobilenum"
+        Operator="="
+        Conjunction="AND"
+        Value=":Mobile_Number"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="Emiratesid"
+        ViewAttribute="Emiratesid"
+        Operator="="
+        Conjunction="AND"
+        Value=":Emirates_Id"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="UTILBILLNUM"
+        ViewAttribute="UTILBILLNUM"
+        Operator="="
+        Conjunction="AND"
+        Value=":Utility_Bill"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="PermitNumber"
+        ViewAttribute="PermitNumber"
+        Operator="="
+        Conjunction="AND"
+        Value=":permi_number"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Basic"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="Categcode"
+        ViewAttribute="Categcode"
+        Operator="="
+        Conjunction="AND"
+        Value=":Permit_category"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="PermitStatusID"
+        ViewAttribute="PermitStatusID"
+        Operator="="
+        Conjunction="AND"
+        Value=":Permit_Status"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="PermitType"
+        ViewAttribute="PermitType"
+        Operator="="
+        Conjunction="AND"
+        Value=":Permit_Type"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="SectorCode"
+        ViewAttribute="SectorCode"
+        Operator="="
+        Conjunction="AND"
+        Value=":Sector"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="platenumber"
+        ViewAttribute="platenumber"
+        Operator="="
+        Conjunction="AND"
+        Value=":Plate_Numbername"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true"
+        IsBindVarValue="true"
+        Required="SelectivelyRequired">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Basic"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="PRMHeaderseq"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<trinidad-config xmlns="http://myfaces.apache.org/trinidad/config">
+<skin-family>cpmsSkin</skin-family>    
+<debug-output>true</debug-output>
+<!-- Render the page right-to-left for Arabic -->
+<!-- and left-to-right for all other languages -->
+<right-to-left>#{view.locale.language=='ar' ? 'true' : 'false'}</right-to-left>
+
+</trinidad-config>

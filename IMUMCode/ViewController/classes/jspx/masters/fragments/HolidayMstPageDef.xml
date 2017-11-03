@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="HolidayMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="HolidayMstUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="HolidayMstUVO1Iterator"/>
+    <searchRegion Binds="HolidayMstUVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="HolidayMstUVO1Query"/>
+    <iterator Binds="HolidayMstUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="HolidayMstUVO2Iterator"/>
+    <searchRegion Binds="HolidayMstUVO2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="HolidayMstUVO2Query"/>
+  </executables>
+  <bindings>
+    <button IterBinding="HolidayMstUVO1Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <list IterBinding="HolidayMstUVO1Iterator" StaticList="false"
+          Uses="LOV_GroupId" id="GroupId" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="HolidayYear">
+      <AttrNames>
+        <Item Value="HolidayYear"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="HolidayDate">
+      <AttrNames>
+        <Item Value="HolidayDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="HolidayDesc">
+      <AttrNames>
+        <Item Value="HolidayDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="HolidayMstUVO1Iterator" StaticList="false"
+          Uses="LOV_HolidayType" id="HolidayType" DTSupportsMRU="false"/>
+    <list IterBinding="HolidayMstUVO1Iterator" StaticList="false"
+          Uses="LOV_RequestedBy" id="RequestedBy" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="RequestedDt">
+      <AttrNames>
+        <Item Value="RequestedDt"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="HolidayMstUVO1Iterator" StaticList="false"
+          Uses="LOV_DeclaredBy" id="DeclaredBy" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="DeclaredDt">
+      <AttrNames>
+        <Item Value="DeclaredDt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="OperationHrstart">
+      <AttrNames>
+        <Item Value="OperationHrstart"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HolidayMstUVO1Iterator" id="OperationHrEnd">
+      <AttrNames>
+        <Item Value="OperationHrEnd"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createNewHoliday"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createNewHoliday"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <tree IterBinding="HolidayMstUVO2Iterator" id="HolidayMstUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.HolidayMstUVO"
+                      Name="HolidayMstUVO20">
+        <AttrNames>
+          <Item Value="HolidayId"/>
+          <Item Value="HolidayDesc"/>
+          <Item Value="GroupName"/>
+          <Item Value="HolidayDate"/>
+          <Item Value="HolidayTypeDesc"/>
+          <Item Value="ActiveFlag" Binds="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="HolidayMstUVO2Iterator" StaticList="true"
+            id="ActiveFlag1">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="updateHolidaySequence"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="updateHolidaySequence"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="holidaySequence" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+  </bindings>
+</pageDefinition>

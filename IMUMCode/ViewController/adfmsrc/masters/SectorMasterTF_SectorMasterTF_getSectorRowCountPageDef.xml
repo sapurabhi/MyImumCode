@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="SectorMasterTF_SectorMasterTF_getSectorRowCountPageDef"
+                Package="masters" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="getSectorRowCount" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="getSectorRowCount"
+            IsViewObjectMethod="false" DataControl="MastersAMDataControl"
+            InstanceName="MastersAMDataControl.dataProvider"
+            ReturnName="data.MastersAMDataControl.methodResults.getSectorRowCount_MastersAMDataControl_dataProvider_getSectorRowCount_result"/>
+  </bindings>
+</pageDefinition>

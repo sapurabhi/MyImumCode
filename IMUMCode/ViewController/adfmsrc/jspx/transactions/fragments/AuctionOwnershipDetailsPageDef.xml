@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="AuctionOwnershipDetailsPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AuctionSearchRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="AuctionSearchRVO1Iterator"/>
+    <searchRegion Criteria="AuctionSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="AuctionSearchRVO1Iterator"
+                  id="AuctionSearchRVOCriteriaQuery"/>
+    <iterator Binds="AuctionOwnershipDetailsVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="AuctionOwnershipDetailsVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="AuctionSearchRVO1Iterator" id="AuctionSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.AuctionSearchRVO"
+                      Name="AuctionSearchRVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="SectorCode"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="AuctionOwnershipDetailsVO1Iterator"
+                     id="PVTNum">
+      <AttrNames>
+        <Item Value="PVTNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AuctionOwnershipDetailsVO1Iterator"
+                     id="CustFirstName">
+      <AttrNames>
+        <Item Value="CustFirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AuctionOwnershipDetailsVO1Iterator"
+                     id="CustLastName">
+      <AttrNames>
+        <Item Value="CustLastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AuctionOwnershipDetailsVO1Iterator"
+                     id="CustMobilenum">
+      <AttrNames>
+        <Item Value="CustMobilenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AuctionOwnershipDetailsVO1Iterator"
+                     id="CustEmailID">
+      <AttrNames>
+        <Item Value="CustEmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doRollback" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doRollback_TransactionsAMDataControl_dataProvider_doRollback_result"/>
+    <list IterBinding="AuctionOwnershipDetailsVO1Iterator" StaticList="false"
+          Uses="LOV_Vehownershiptypeid" id="Vehownershiptypeid"
+          DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

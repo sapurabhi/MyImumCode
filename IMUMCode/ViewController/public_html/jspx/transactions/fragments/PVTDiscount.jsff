@@ -1,0 +1,350 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+<c:set var="viewcontrollerBundle" 
+       value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+<af:showDetailHeader text="#{viewcontrollerBundle.PVT_DISCOUNT}" disclosed="true" id="sdh1">
+<af:spacer height="30" id="s123"/>
+  <af:panelFormLayout id="pfl1" rows="7" maxColumns="4"
+                      inlineStyle="width:900px; border:1px solid black; height:232px;">
+  
+    <af:inputDate value="#{bindings.PVTdatefrom.inputValue}"
+                  label="#{viewcontrollerBundle.PVT_ISSUED_DATE_FROM}"                  
+                  shortDesc="#{bindings.PVTdatefrom.hints.tooltip}" id="id2"
+                  showRequired="true">
+      <f:validator binding="#{bindings.PVTdatefrom.validator}"/>
+      <af:convertDateTime pattern="dd-MM-yyyy"/>
+    </af:inputDate>
+      <af:selectOneChoice value="#{bindings.PVTSTAGEID.inputValue}"
+                          label="#{viewcontrollerBundle.PVT_STAGE}"
+                          required="#{bindings.PVTSTAGEID.hints.mandatory}"
+                          shortDesc="#{bindings.PVTSTAGEID.hints.tooltip}"
+                          id="soc4" unselectedLabel="#{viewcontrollerBundle.SELECT}">
+        <f:selectItems value="#{bindings.PVTSTAGEID.items}" id="si4"/>
+      </af:selectOneChoice>
+      <af:inputText value="#{bindings.PVTAmtRangefrom.inputValue}"
+                    label="#{viewcontrollerBundle.OUTSTANDING_AMOUNT_GREATER_THA}"
+                    required="#{bindings.PVTAmtRangefrom.hints.mandatory}"
+                    columns="#{bindings.PVTAmtRangefrom.hints.displayWidth}"
+                    maximumLength="#{bindings.PVTAmtRangefrom.hints.precision}"
+                    shortDesc="#{bindings.PVTAmtRangefrom.hints.tooltip}"
+                    id="it2" wrap="off">
+        <f:validator binding="#{bindings.PVTAmtRangefrom.validator}"/>
+      </af:inputText>
+      <af:selectOneChoice value="#{bindings.Contracode.inputValue}"
+                          label="#{viewcontrollerBundle.CONTRAVENTION_CODE}"
+                          required="#{bindings.Contracode.hints.mandatory}"
+                          shortDesc="#{bindings.Contracode.hints.tooltip}"
+                          id="soc1" unselectedLabel="#{viewcontrollerBundle.SELECT}" contentStyle="width:28em;display:inline-block;">
+        <f:selectItems value="#{bindings.Contracode.items}" id="si2"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.SectorCode.inputValue}"
+                          label="#{viewcontrollerBundle.SECTOR}"
+                          required="#{bindings.SectorCode.hints.mandatory}"
+                          shortDesc="#{bindings.SectorCode.hints.tooltip}"
+                          id="sector" unselectedLabel="#{viewcontrollerBundle.SELECT}"
+                          autoSubmit="true">
+        <f:selectItems value="#{bindings.SectorCode.items}" id="si1"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.zonecode.inputValue}"
+                          label="#{viewcontrollerBundle.ZONE}"
+                          required="#{bindings.zonecode.hints.mandatory}"
+                          shortDesc="#{bindings.zonecode.hints.tooltip}"
+                          id="soc3" unselectedLabel="#{viewcontrollerBundle.SELECT}"
+                          partialTriggers="sector">
+        <f:selectItems value="#{bindings.zonecode.items}" id="si5"/>
+      </af:selectOneChoice>
+      <af:inputText value="#{bindings.PlateNumber.inputValue}"
+                    label="#{viewcontrollerBundle.PLATE_NUMBER}"
+                    required="#{bindings.PlateNumber.hints.mandatory}"
+                    columns="#{bindings.PlateNumber.hints.displayWidth}"
+                    maximumLength="#{bindings.PlateNumber.hints.precision}"
+                    shortDesc="#{bindings.PlateNumber.hints.tooltip}" id="it4">
+        <f:validator binding="#{bindings.PlateNumber.validator}"/>
+      </af:inputText>
+      <af:inputDate value="#{bindings.PVTdateto.inputValue}"
+                  label="#{viewcontrollerBundle.PVT_ISSUED_DATE_TO}"
+                  required="#{bindings.PVTdateto.hints.mandatory}"
+                  shortDesc="#{bindings.PVTdateto.hints.tooltip}" id="id1"
+                    showRequired="true">
+      <f:validator binding="#{bindings.PVTdateto.validator}"/>
+      <af:convertDateTime pattern="dd-MM-yyyy"/>
+    </af:inputDate>
+    <af:selectOneChoice value="#{bindings.PVTStatusID.inputValue}"
+                        label="#{viewcontrollerBundle.PVT_STATUS}"
+                        required="#{bindings.PVTStatusID.hints.mandatory}"
+                        shortDesc="#{bindings.PVTStatusID.hints.tooltip}"
+                        id="soc2" unselectedLabel="#{viewcontrollerBundle.SELECT}">
+      <f:selectItems value="#{bindings.PVTStatusID.items}" id="si3"/>
+    </af:selectOneChoice>
+    <af:inputText value="#{bindings.PVTAmtRangeTo.inputValue}"
+                  label="#{viewcontrollerBundle.OUTSTANDING_AMOUNT_LESS_THAN}"
+                  required="#{bindings.PVTAmtRangeTo.hints.mandatory}"
+                  columns="#{bindings.PVTAmtRangeTo.hints.displayWidth}"
+                  maximumLength="#{bindings.PVTAmtRangeTo.hints.precision}"
+                  shortDesc="#{bindings.PVTAmtRangeTo.hints.tooltip}" id="it1">
+      <f:validator binding="#{bindings.PVTAmtRangeTo.validator}"/>
+    </af:inputText>
+      <!--<af:selectOneChoice value="#{bindings.PlateCountry.inputValue}"
+                          label="#{bindings.PlateCountry.label}"
+                          required="#{bindings.PlateCountry.hints.mandatory}"
+                          shortDesc="#{bindings.PlateCountry.hints.tooltip}"
+                          id="soc5">
+        <f:selectItems value="#{bindings.PlateCountry.items}" id="si8"/>
+      </af:selectOneChoice>-->
+      <af:selectOneChoice value="#{bindings.PlateCountry.inputValue}"
+                          label="#{viewcontrollerBundle.PLATE_COUNTRY}"
+                          autoSubmit="true"
+                       
+                          shortDesc="#{bindings.PlateCountry.hints.tooltip}"
+                          id="soc5">
+        <f:selectItems value="#{bindings.PlateCountry.items}" id="si8"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.PlateCategory.inputValue}"
+                          label="#{viewcontrollerBundle.PLATE_CATEGORY}"
+                      
+                          shortDesc="#{bindings.PlateCategory.hints.tooltip}"
+                          id="platecategory" autoSubmit="true" partialTriggers="soc5"
+                          unselectedLabel="#{viewcontrollerBundle.SELECT}">
+        <f:selectItems value="#{bindings.PlateCategory.items}" id="si7"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.PlateType.inputValue}"
+                          label="#{viewcontrollerBundle.PLATE_TYPE}"
+                         
+                          shortDesc="#{bindings.PlateType.hints.tooltip}"
+                          id="soc6" partialTriggers="platecategory"
+                          unselectedLabel="#{viewcontrollerBundle.SELECT}">
+        <f:selectItems value="#{bindings.PlateType.items}" id="si6"/>
+      </af:selectOneChoice>
+    </af:panelFormLayout>
+  
+  <af:spacer height="20" id="s1434"/>
+  
+  <af:panelGroupLayout id="pg1" layout="horizontal">
+  <af:selectOneRadio label="#{viewcontrollerBundle.CONTRAVENTION_FEE}" id="contraFeeOption"
+                     layout="horizontal"
+                     binding="#{PVTDiscountMBean.contraFeeOption}"
+                     valueChangeListener="#{PVTDiscountMBean.contraFeeOptionVC}" value="PercentageDiscount">
+       <af:selectItem label="#{viewcontrollerBundle.PERCENTAGE}" value="PercentageDiscount" id="PercentageDiscount" />
+       <af:selectItem label="#{viewcontrollerBundle.FLAT_RATE}" value="FlatRate" id="FlatRate"/>
+  </af:selectOneRadio>
+   <af:spacer width="5" id="s14374"/>
+  <af:inputText simple="true" id="contraFeeEntered" label="#{viewcontrollerBundle.CONTRA_FEE_ENTERED}"
+                binding="#{PVTDiscountMBean.contraFeeEntered}">
+     <af:validateRegExp pattern="[0-9]+"
+                        messageDetailNoMatch="#{viewcontrollerBundle.PLEASE_ENTER_VALID_CONTRAVENTI}"/>
+  </af:inputText>
+  </af:panelGroupLayout>
+  
+  <af:toolbar id="t3">
+    <af:spacer height="50" width="275" id="s1234"/>
+      <af:commandButton text="#{viewcontrollerBundle.PVT_SEARCH}"
+                        id="pvtsearch" inlineStyle="background-color:#F39C11;width:100px;"
+                        action="#{PVTDiscountMBean.PVTSearchAction}"/>
+        <af:spacer width="20" id="s134"/>
+      <af:commandButton text="#{viewcontrollerBundle.RESET}"
+                        inlineStyle="background-color:#F39C11;" id="resetaction"
+                        action="#{PVTDiscountMBean.PVTSearchResetAction}">
+      </af:commandButton>
+    </af:toolbar>
+    
+     <af:spacer height="30" id="s1233"/>
+    
+    <af:panelGroupLayout id="pg123" binding="#{PVTDiscountMBean.pvTDiscountSearchResultsPanel}" rendered="#{PVTDiscountMBean.hide}" partialTriggers="pvtsearch">
+   
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_NUMBER_OF_ISSUED_PVTS_AV}" id="ot111"/> 
+      <af:outputText value="#{pageFlowScope.TotalPVTs}" id="ot211" inlineStyle="font-weight:bold;"/> 
+      
+      <af:spacer height="10" id="s1236"/>
+   
+      <af:table value="#{bindings.PVTDiscountHeaderSearchVO1.collectionModel}"
+                var="row"
+                rows="#{bindings.PVTDiscountHeaderSearchVO1.rangeSize}"
+                emptyText="#{bindings.PVTDiscountHeaderSearchVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.PVTDiscountHeaderSearchVO1.rangeSize}"
+                rowBandingInterval="1" id="t1" width="900"
+                inlineStyle="height:200px;" scrollPolicy="page"
+                autoHeightRows="0">
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.PVTNum.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_NUMBER}"
+                   id="c1" width="150" align="start">
+          <af:outputText value="#{row.PVTNum}" id="ot8"/>
+        </af:column>
+
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.PlateCategoryDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PLATE_CATEGORY}"
+                   id="c9" width="150" align="start">
+          <af:outputText value="#{row.PlateCategoryDesc}" id="ot1">
+        </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.PlateTypeDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PLATE_TYPE}"
+                   id="c2" width="150" align="start">
+          <af:outputText value="#{row.PlateTypeDesc}" id="ot5">
+        </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.PlateNumber.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PLATE_NUMBER}"
+                   id="c3" width="150" align="start">
+          <af:outputText value="#{row.PlateNumber}" id="ot13"/>
+        </af:column>
+       
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.StageDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_STAGE}"
+                   id="c6" width="150" align="start">
+          <af:outputText value="#{row.StageDesc}" id="ot6"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.StatusDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_STATUS}"
+                   id="c7" width="150" align="start">
+          <af:outputText value="#{row.StatusDesc}" id="ot4"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.PVTdatetime.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_ISSUANCE_DATE}"
+                   id="c8" width="150" align="start">
+          <af:outputText value="#{row.PVTdatetime}" id="ot7">
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:column>
+          <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.ContraCodeDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.CONTRAVENTION_CODE_1}"
+                   id="c22" width="150" align="end">
+          <af:outputText value="#{row.ContraCodeDesc}" id="ot3"/>
+        </af:column>
+         <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.SectorDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.SECTOR_0}"
+                   id="c13" width="150" align="end">
+          <af:outputText value="#{row.SectorDesc}" id="ot14"/>
+        </af:column>
+         <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.ZoneDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.ZONE}"
+                   id="c14" width="150" align="end">
+          <af:outputText value="#{row.ZoneDesc}" id="ot15"/>
+        </af:column>
+        
+       
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.PVTAMTPAYABLE.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_AMT_DETAILS}"
+                   id="c5" width="150" align="end">
+          <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot9">
+            <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+        </af:column>
+        <af:column headerText="#{viewcontrollerBundle.PVT_AMOUNT_AFTER_DISCOUNT}"
+                   id="c10" width="150" align="end">
+          <af:outputText value="#{row.PVTAmountAfterDiscount}" id="ot10">
+            <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTDiscountHeaderSearchVO1.hints.CONTRAAMT.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.CONTRAVENTION_FEE}"
+                   id="c4" width="150" align="end">
+          <af:outputText value="#{row.CONTRAAMT}" id="ot2">
+            <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+        </af:column>
+        <af:column headerText="#{viewcontrollerBundle.DISCOUNTED_CONTRA_FEE_AMOUNT}"
+                   id="c11" align="end" width="150">
+          <af:outputText value="#{row.DiscountedContraFee}" id="ot11">
+            <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+        </af:column>
+        <af:column headerText="#{viewcontrollerBundle.CONTRA_FEE_AMOUNT_AFTER_DISCOU}"
+                   id="c12" width="150" align="end">
+          <af:outputText value="#{row.ContraFeeAfterDiscount}" id="ot12">
+            <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+        </af:column>
+      </af:table>
+      
+      <af:spacer height="10" id="s1237"/>
+      <br/>
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_PVT_AMOUNT_PAYABLE__}" id="ot1111"/> 
+      <af:outputText value="#{pageFlowScope.TotalPVTAmountPayable}" id="ot2111" inlineStyle="font-weight:bold;">
+          <f:convertNumber pattern="#0.00" />
+      </af:outputText>
+      <br/><br/>
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_PVT_AMOUNT_PAYABLE_AFTER}" id="ot1121"/> 
+      <af:outputText value="#{pageFlowScope.TotalPVTAmountAfterDiscount}" id="ot2121" inlineStyle="font-weight:bold;">
+          <f:convertNumber pattern="#0.00" />
+      </af:outputText>
+      <br/><br/>
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_CONTRAVENTION_FEE__}" id="ot1311"/> 
+      <af:outputText value="#{pageFlowScope.TotalContraAmt}" id="ot2131" inlineStyle="font-weight:bold;">
+          <f:convertNumber pattern="#0.00" />
+      </af:outputText>
+      <br/><br/>
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_DISCOUNTED_CONTRAVENTION}" id="ot1411"/> 
+      <af:outputText value="#{pageFlowScope.TotalDiscountedContraFee}" id="ot2141" inlineStyle="font-weight:bold;">
+           <f:convertNumber pattern="#0.00" />
+      </af:outputText>
+      <br/><br/>
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_CONTRAVENTION_FEE_AFTER_}" id="ot1511"/> 
+      <af:outputText value="#{pageFlowScope.TotalContraFeeAfterDiscount}" id="ot2151" inlineStyle="font-weight:bold;">
+           <f:convertNumber pattern="#0.00" />
+      </af:outputText>
+      
+      
+      <af:spacer height="30" id="s11237"/>
+    
+    <af:panelGroupLayout id="pg21" layout="horizontal">
+    <af:inputDate value="#{bindings.Promoeffectivedatefrom.inputValue}"
+                  required="#{bindings.Promoeffectivedatefrom.hints.mandatory}"
+                  shortDesc="#{bindings.Promoeffectivedatefrom.hints.tooltip}"
+                  id="id3"
+                  label="#{viewcontrollerBundle.PROMOTIONAL_START_DATE}" showRequired="true">
+      <f:validator binding="#{bindings.Promoeffectivedatefrom.validator}"/>
+      <af:convertDateTime pattern="dd-MM-yyyy"/>
+    </af:inputDate>
+    <af:spacer width="50" id="s1263"/>
+    <af:inputDate value="#{bindings.PromoeffectivedateTo.inputValue}"
+                  required="#{bindings.PromoeffectivedateTo.hints.mandatory}"
+                  shortDesc="#{bindings.PromoeffectivedateTo.hints.tooltip}"
+                  id="id4" label="#{viewcontrollerBundle.PROMOTIONAL_END_DATE}" showRequired="true">
+      <f:validator binding="#{bindings.PromoeffectivedateTo.validator}"/>
+      <af:convertDateTime pattern="dd-MM-yyyy"/>
+    </af:inputDate>
+  </af:panelGroupLayout>
+  <af:spacer height="20" id="s1239"/>
+    <af:inputText value="#{bindings.Remarks.inputValue}"
+                  required="#{bindings.Remarks.hints.mandatory}"
+                  columns="55" rows="2"
+                  maximumLength="#{bindings.Remarks.hints.precision}"
+                  shortDesc="#{bindings.Remarks.hints.tooltip}" id="it3"
+                  label="#{viewcontrollerBundle.REASON_FOR_DISCOUNT}" wrap="off">
+      <f:validator binding="#{bindings.Remarks.validator}"/>
+    </af:inputText>
+    
+    <af:toolbar id="t31">
+    <af:spacer height="50" width="250" id="s1232"/>
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}"
+                        id="pvtsubmit"
+                        inlineStyle="background-color:#F39C11;width:70px;"
+                        action="#{PVTDiscountMBean.PVTSubmitAction}"/>
+        <af:spacer width="20" id="s124"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}"
+                        inlineStyle="background-color:#F39C11;" id="cancelaction"
+                        action="#{PVTDiscountMBean.PVTResultsCancelAction}"/>
+        <af:spacer width="20" id="s122"/>
+      <af:commandButton text="#{viewcontrollerBundle.RECALCULATE}"
+                        inlineStyle="background-color:#F39C11;width:100px;" id="recalculateaction"
+                        action="#{PVTDiscountMBean.PVTSearchAction}"/>
+    </af:toolbar>
+    </af:panelGroupLayout>
+  </af:showDetailHeader>
+  
+</jsp:root>

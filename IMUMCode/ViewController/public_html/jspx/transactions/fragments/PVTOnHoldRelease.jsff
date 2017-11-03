@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+                   
+<c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+<af:showDetailHeader text="#{viewcontrollerBundle.PVT_ONHOLDRELEASE}" disclosed="true" id="sdh1">
+  <af:panelGroupLayout layout="scroll" id="pgl1">
+ 
+    <af:panelHeader text=" " id="ph1" 
+                    inlineStyle="text-align:center; width:919px;">
+            <af:query id="qryId1" headerText="#{viewcontrollerBundle.SEARCH}" disclosed="true" 
+                      value="#{bindings.PVTOnHoldSearchRVOCriteriaQuery1.queryDescriptor}"
+                      model="#{bindings.PVTOnHoldSearchRVOCriteriaQuery1.queryModel}"
+                      queryListener="#{bindings.PVTOnHoldSearchRVOCriteriaQuery1.processQuery}"
+                       saveQueryMode="hidden" displayMode="default" rows="4"
+                maxColumns="2" resultComponentId="::resId1"
+                      queryOperationListener="#{bindings.PVTOnHoldSearchRVOCriteriaQuery1.processQueryOperation}"/>
+
+      </af:panelHeader>
+    <af:table value="#{bindings.PVTSearchRVO2.collectionModel}" var="row"
+              rows="#{bindings.PVTSearchRVO2.rangeSize}" width="840"
+              emptyText="#{bindings.PVTSearchRVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PVTSearchRVO2.rangeSize}"
+              rowBandingInterval="1" autoHeightRows="0" scrollPolicy="page" styleClass="AFStretchWidth"
+              selectedRowKeys="#{bindings.PVTSearchRVO2.collectionModel.selectedRow}"
+              selectionListener="#{bindings.PVTSearchRVO2.collectionModel.makeCurrent}"
+              rowSelection="single" id="resId1" >
+      <af:column sortProperty="#{bindings.PVTSearchRVO2.hints.PVTNum.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO2.hints.PVTNum.label}"
+                 id="resId1c1">
+        <af:outputText value="#{row.PVTNum}" id="ot1">
+      
+        </af:outputText>
+      </af:column>
+   
+      <af:column id="c1" headerText="#{bindings.PVTSearchRVO2.hints.PVTSTAGEID.label}">  
+      <af:selectOneChoice value="#{row.bindings.PVTSTAGEID.inputValue}"
+                            label="#{row.bindings.PVTSTAGEID.label}" readOnly="true"
+                            id="soc2">
+          <f:selectItems value="#{row.bindings.PVTSTAGEID.items}" id="si1"/>
+        </af:selectOneChoice>
+      </af:column>
+  
+      <af:column sortProperty="#{bindings.PVTSearchRVO2.hints.PVTStatusID.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO2.hints.PVTStatusID.label}"
+                 id="resId1c3">
+                       <af:selectOneChoice value="#{row.bindings.PVTStatusID.inputValue}"
+                            label="#{row.bindings.PVTStatusID.label}" readOnly="true"
+                            id="soc1">
+          <f:selectItems value="#{row.bindings.PVTStatusID.items}" id="si2"/>
+        </af:selectOneChoice>
+
+      </af:column>
+      <af:column sortProperty="#{bindings.PVTSearchRVO2.hints.PLATECTGID.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO2.hints.PLATECTGID.label}"
+                 id="resId1c4">
+                 <af:selectOneChoice value="#{row.bindings.PLATECTGID.inputValue}"
+                            label="#{row.bindings.PLATECTGID.label}" readOnly="true"
+                            id="soc3">
+          <f:selectItems value="#{row.bindings.PLATECTGID.items}" id="si3"/>
+        </af:selectOneChoice>
+ 
+      </af:column>
+      <af:column sortProperty="#{bindings.PVTSearchRVO2.hints.PLATETYPEID.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO2.hints.PLATETYPEID.label}"
+                 id="resId1c5">
+                 <af:selectOneChoice value="#{row.bindings.PLATETYPEID.inputValue}"
+                            label="#{row.bindings.PLATETYPEID.label}" readOnly="true"
+                            id="soc4">
+          <f:selectItems value="#{row.bindings.PLATETYPEID.items}" id="si4"/>
+        </af:selectOneChoice>
+
+      </af:column>
+      <af:column sortProperty="#{bindings.PVTSearchRVO2.hints.PLATENUMBER.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO2.hints.PLATENUMBER.label}"
+                 id="resId1c6">
+        <af:outputText value="#{row.PLATENUMBER}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PVTSearchRVO2.hints.PVTdatetime.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO2.hints.PVTdatetime.label}"
+                 id="resId1c7">
+        <af:outputText value="#{row.PVTdatetime}" id="ot2">
+          <af:convertDateTime pattern="#{bindings.PVTSearchRVO2.hints.PVTdatetime.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PVTSearchRVO2.hints.PIID.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO2.hints.PIID.label}"
+                 id="resId1c8">
+        <af:outputText value="#{row.PIID}" id="ot3"/>
+      </af:column>
+     
+    </af:table>
+    
+  
+    <af:spacer width="10" height="10" id="s2"/>
+    <af:panelGroupLayout id="pgl3" layout="horizontal">
+     
+    <af:selectOneRadio id="sor1" layout="horizontal" label="#{viewcontrollerBundle.PVT_STATUS}" 
+                 valueChangeListener="#{pageFlowScope.pvtOnHoldReleaseBean.radioButtonsValue}"
+                       autoSubmit="true" required="true"
+                       value="#{pageFlowScope.pvtOnHoldReleaseBean.deafultRadioValue}">
+       <af:selectItem label="#{viewcontrollerBundle.ON_HOLD}" id="si10" value="4"/>
+       <af:selectItem label="#{viewcontrollerBundle.RELEASE_PVT}" id="si9" value="1"/>
+    </af:selectOneRadio>
+
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s6"/>
+    <af:panelGroupLayout id="pgl5" layout="horizontal">
+        <af:inputText label="#{viewcontrollerBundle.NOTES}" id="it1"
+                      binding="#{pageFlowScope.pvtOnHoldReleaseBean.eventNotes}"/>
+      </af:panelGroupLayout>
+    
+     <af:spacer width="10" height="10" id="s4"/>
+     
+     <af:panelGroupLayout id="pgl4" layout="horizontal">
+    <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb6" 
+                     actionListener="#{pageFlowScope.pvtOnHoldReleaseBean.updatePvtStatusSubmit}"
+                         inlineStyle="background-color:#F39C11;" >
+           
+      </af:commandButton>
+       <af:spacer width="10" height="10" id="s3"/> 
+      <af:commandButton
+                          inlineStyle="background-color:#F39C11;" text="#{viewcontrollerBundle.CANCEL}"
+                          immediate="true" id="cb2"
+                          action="#{pageFlowScope.pvtOnHoldReleaseBean.cancelAction}"
+                          partialTriggers="resId1">
+                           <af:resetActionListener/>
+        <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+      </af:panelGroupLayout>
+  </af:panelGroupLayout>
+  </af:showDetailHeader>
+ 
+</jsp:root>

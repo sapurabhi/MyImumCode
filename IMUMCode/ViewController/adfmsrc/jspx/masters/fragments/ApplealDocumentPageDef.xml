@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ApplealDocumentPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AppealReasonMstVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="AppealReasonMstVO1Iterator"/>
+    <iterator Binds="PvtAppealdocMstVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PvtAppealdocMstVO1Iterator"/>
+    <iterator Binds="appealResVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="appealResVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="AppealReasonMstVO1Iterator"
+                     id="ReasonTypeDesc">
+      <AttrNames>
+        <Item Value="ReasonTypeDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AppealReasonMstVO1Iterator" id="ReasonDesc">
+      <AttrNames>
+        <Item Value="ReasonDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AppealReasonMstVO1Iterator" id="ReasonID">
+      <AttrNames>
+        <Item Value="ReasonID"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PvtAppealdocMstVO1Iterator" id="PvtAppealdocMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PvtAppealdocMstVO"
+                      Name="PvtAppealdocMstVO10">
+        <AttrNames>
+          <Item Value="DocName"/>
+          <Item Value="DocDesc"/>
+          <Item Value="Mandatoryflag" Binds="Mandatoryflag"/>
+          <Item Value="Activeflag" Binds="Activeflag"/>
+          <Item Value="ActivefromDate"/>
+          <Item Value="ActivetoDate"/>
+          <Item Value="ActiveFlagBoolean" Binds="ActiveFlagBoolean"/>
+          <Item Value="MFlagBoolean" Binds="MFlagBoolean"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AppealReasonMstVO1Iterator" id="AppealReasonMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AppealReasonMstVO"
+                      Name="AppealReasonMstVO10">
+        <AttrNames>
+          <Item Value="ReasonDesc"/>
+          <Item Value="Activeflag1"/>
+          <Item Value="ReasonTypeDesc"/>
+          <Item Value="ReasonTypeID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AppealReasonMstVO1Iterator" id="AppealReasonMstVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AppealReasonMstVO"
+                      Name="AppealReasonMstVO110">
+        <AttrNames>
+          <Item Value="Activeflag"/>
+          <Item Value="ReasonDesc"/>
+          <Item Value="ReasonID"/>
+          <Item Value="ReasonTypeDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="appealResVO1Iterator" id="appealResVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.appealResVO"
+                      Name="appealResVO10">
+        <AttrNames>
+          <Item Value="ReasonDesc"/>
+          <Item Value="ReasonID"/>
+          <Item Value="ReasonTypeID"/>
+          <Item Value="ReasonTypeDesc"/>
+          <Item Value="Activeflag" Binds="Activeflag1"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="appealResVO1Iterator" id="Activeflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="createnewRow"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createnewRow"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="reasonid" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <button IterBinding="PvtAppealdocMstVO1Iterator" id="Mandatoryflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Mandatoryflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="PvtAppealdocMstVO1Iterator" id="Activeflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="appealResVO1Iterator" id="ReasonTypeDesc1">
+      <AttrNames>
+        <Item Value="ReasonTypeDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="appealResVO1Iterator" id="ReasonID1">
+      <AttrNames>
+        <Item Value="ReasonID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="appealResVO1Iterator" id="ReasonDesc1">
+      <AttrNames>
+        <Item Value="ReasonDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="PvtAppealdocMstVO1Iterator" id="ActiveFlagBoolean"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlagBoolean"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="PvtAppealdocMstVO1Iterator" id="MFlagBoolean"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MFlagBoolean"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

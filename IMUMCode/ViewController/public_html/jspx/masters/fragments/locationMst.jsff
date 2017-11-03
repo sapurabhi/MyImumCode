@@ -1,0 +1,432 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+      <af:panelGroupLayout id="pgl7" inlineStyle="height:145px; width:589px;" layout="vertical">
+      <c:set var="viewcontrollerBundle"
+             value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/> 
+       <!--Header Buttons--> 
+       <af:spacer width="10" height="10" id="spacer4"/>
+       <af:panelGroupLayout id="pgl1" layout="horizontal" >
+       <af:panelGroupLayout id="pgl9" layout="horizontal" visible="#{pageFlowScope.setvisible}">
+       <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb4" 
+                         rendered="#{!pageFlowScope.locationMstbean.hide}"
+                         actionListener="#{pageFlowScope.locationMstbean.submitLocationChanges}"
+                         inlineStyle="background-color:#F39C11;"                                              
+                         partialTriggers="t1" 
+                        disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" 
+                        rendered="#{!pageFlowScope.locationMstbean.hide}"
+                        inlineStyle="background-color:#F39C11;" id="cb5" 
+                        actionListener="#{pageFlowScope.locationMstbean.cancelLocationChanges}"
+                        immediate="true" >                        
+            <af:resetActionListener/> 
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+       </af:commandButton> 
+       </af:panelGroupLayout>
+        <af:spacer width="425" height="10" id="s4"/>
+        <!--New,Edit,View buttons-->
+        <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"
+                          icon="/images/new.gif"
+                          action="#{pageFlowScope.locationMstbean.doNewLocMst}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}" >
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="cb2" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"                   
+                          icon="/images/edit.gif"
+                          action="#{pageFlowScope.locationMstbean.doEditLocMst}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="cb3" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"                         
+                          inlineStyle="background-color:#e3e3e3;"                          
+                          icon="/images/view.gif"
+                          action="#{pageFlowScope.locationMstbean.doViewLocMst}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s8"/>
+        </af:panelGroupLayout>
+        
+        <!--Location Table Details-->
+        
+        <af:spacer width="10" height="10" id="s9"/>
+           <af:panelGroupLayout id="pgl2" layout="horizontal"
+                           inlineStyle="height:145px; width:589px;">
+        <af:showDetailHeader text="#{viewcontrollerBundle.LOCATION_MASTER_SCREEN}" disclosed="true"
+                             id="sdh2"                            
+                             inlineStyle="width:747px;"
+                             binding="#{pageFlowScope.locationMstbean.locationTable}">
+         <!--Table need to show-->
+        <af:table value="#{bindings.LocationMstVO1.collectionModel}" var="row" 
+                  rows="#{bindings.LocationMstVO1.rangeSize}"
+                  emptyText="#{bindings.LocationMstVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.LocationMstVO1.rangeSize}"
+                  rowBandingInterval="1" 
+                  filterVisible="true" 
+                  selectedRowKeys="#{bindings.LocationMstVO1.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.LocationMstVO1.collectionModel.makeCurrent}"
+                  rowSelection="single" id="t1" width="100%"
+                  inlineStyle="height:234px;" columnStretching="multiple"
+                  scrollPolicy="page" styleClass="AFStretchWidth" 
+                  filterModel="#{bindings.LocationMstVO1Query.queryDescriptor}"
+                  queryListener="#{bindings.LocationMstVO1Query.processQuery}" autoHeightRows="0" >
+                  
+            <af:column sortProperty="#{bindings.LocationMstVO1.hints.LocationID.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.LocationMstVO1.hints.LocationID.label}"
+                     id="c4">
+            <af:outputText value="#{row.LocationID}" id="ot3">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.LocationMstVO1.hints.LocationID.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.LocationMstVO1.hints.LocDesc.name}"
+                     filterable="true" sortable="true" filterFeatures="caseInsensitive"
+                     headerText="#{bindings.LocationMstVO1.hints.LocDesc.label}"
+                     id="c1">
+            <af:outputText value="#{row.LocDesc}" id="ot2"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.LocationMstVO1.hints.CommunityName.name}"
+                     filterable="true" sortable="true" filterFeatures="caseInsensitive"
+                     headerText="#{bindings.LocationMstVO1.hints.CommunityCode.label}"
+                     id="c2">
+            <af:outputText value="#{row.CommunityName}" id="ot1"/>
+          </af:column>     
+          
+        <af:column sortProperty="#{bindings.LocationMstVO1.hints.CountryName.name}"
+                   filterable="true" sortable="true" filterFeatures="caseInsensitive"
+                   headerText="#{bindings.LocationMstVO1.hints.COUNTRYCODE.label}"
+                   id="c3" align="center">
+          <af:outputText value="#{row.CountryName}" id="ot6"/>
+        </af:column>
+          <af:column sortProperty="#{bindings.LocationMstVO1.hints.GoLiveDt.name}"
+                     filterable="true" sortable="true"
+                     headerText="#{bindings.LocationMstVO1.hints.GoLiveDt.label}"
+                     id="c6">
+           
+            <af:outputText value="#{row.GoLiveDt}" id="ot5">
+              <af:convertDateTime pattern="#{bindings.LocationMstVO1.hints.GoLiveDt.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.LocationMstVO1.hints.LocationTypeName.name}"
+                     filterable="true" sortable="true" filterFeatures="caseInsensitive"
+                     headerText="#{bindings.LocationMstVO1.hints.LOCTYPE.label}"
+                     id="c5">
+            <af:outputText value="#{row.LocationTypeName}" id="ot4"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.LocationMstVO1.hints.ActiveFlag.name}"
+                     sortable="false"
+                     headerText="#{bindings.LocationMstVO1.hints.ActiveFlag.label}" id="c8"
+                     align="center">
+            <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                      label="#{row.bindings.ActiveFlag.label}"  disabled="true"
+                                      shortDesc="#{bindings.LocationMstVO1.hints.ActiveFlag.tooltip}"
+                                      id="sbc9"/>
+          </af:column>
+        </af:table>
+        </af:showDetailHeader>
+      </af:panelGroupLayout>
+      
+        <!--Location Details Form-->
+    <af:spacer height="15" id="s345"/>
+     
+      <af:panelGroupLayout id="pgl5" rendered="#{pageFlowScope.setvisible}">
+        <af:showDetailHeader text="#{viewcontrollerBundle.LOCATION_DETAILS}"
+                             disclosed="true" id="sdh1"
+                             rendered="#{!pageFlowScope.locationMstbean.hide}">
+       
+        <!--PanelFormLayout Details-->
+        <af:panelFormLayout id="pfl1" inlineStyle="width:906px;">
+          <af:inputText value="#{bindings.LocationID.inputValue}" 
+                        label="#{bindings.LocationID.hints.label}"
+                        required="#{bindings.LocationID.hints.mandatory}"
+                        columns="#{bindings.LocationID.hints.displayWidth}"
+                        maximumLength="#{bindings.LocationID.hints.precision}"
+                        shortDesc="#{bindings.LocationID.hints.tooltip}"
+                        id="it6" disabled="#{!pageFlowScope.locationMstbean.enabled}"
+                        binding="#{pageFlowScope.locationMstbean.locationIdButton}">
+            <f:validator binding="#{bindings.LocationID.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.LocationID.format}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.LocDesc.inputValue}"
+                        label="#{bindings.LocDesc.hints.label}"
+                        required="true"
+                        columns="#{bindings.LocDesc.hints.displayWidth}"
+                        maximumLength="#{bindings.LocDesc.hints.precision}"
+                        shortDesc="#{bindings.LocDesc.hints.tooltip}" id="it2"
+                        disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:validator binding="#{bindings.LocDesc.validator}"/>
+          </af:inputText>
+          
+          <af:panelLabelAndMessage label="#{viewcontrollerBundle.LOCATION_NAME_IN}" id="plam1" showRequired="true">
+          <af:panelGroupLayout id="pgl0" layout="horizontal">
+        <af:selectOneChoice value="#{bindings.Language.inputValue}"
+                             simple="true" required="true" label="#{viewcontrollerBundle.LOCATION_NAME_IN}"
+                              shortDesc="#{bindings.Language.hints.tooltip}"
+                              id="soc4" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:selectItems value="#{bindings.Language.items}" id="si3"/>
+          </af:selectOneChoice>
+          <af:inputText value="#{bindings.LocationNameLng.inputValue}"
+                        required="true" 
+                        columns="#{bindings.LocationNameLng.hints.displayWidth}"
+                        maximumLength="#{bindings.LocationNameLng.hints.precision}"
+                        shortDesc="#{bindings.LocationNameLng.hints.tooltip}"
+                        id="it11" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:validator binding="#{bindings.LocationNameLng.validator}"/>
+          </af:inputText>
+         </af:panelGroupLayout>
+         </af:panelLabelAndMessage>
+         
+          <af:inputText value="#{bindings.LocAdd1.inputValue}" required="true"
+                        label="#{bindings.LocAdd1.hints.label}"
+                        columns="#{bindings.LocAdd1.hints.displayWidth}"
+                        maximumLength="#{bindings.LocAdd1.hints.precision}"
+                        shortDesc="#{bindings.LocAdd1.hints.tooltip}" id="it1"
+                        disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:validator binding="#{bindings.LocAdd1.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.LocAdd2.inputValue}"
+                        label="#{bindings.LocAdd2.hints.label}"
+                        required="#{bindings.LocAdd2.hints.mandatory}"
+                        columns="#{bindings.LocAdd2.hints.displayWidth}"
+                        maximumLength="#{bindings.LocAdd2.hints.precision}"
+                        shortDesc="#{bindings.LocAdd2.hints.tooltip}" id="it8"
+                        disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:validator binding="#{bindings.LocAdd2.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.POBox.inputValue}" contentStyle="text-align:left"
+                        label="#{bindings.POBox.hints.label}"
+                        required="#{bindings.POBox.hints.mandatory}"
+                        columns="#{bindings.POBox.hints.displayWidth}"
+                        maximumLength="#{bindings.POBox.hints.precision}"
+                        shortDesc="#{bindings.POBox.hints.tooltip}" id="it10"
+                        disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:validator binding="#{bindings.POBox.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.POBox.format}"/>
+          </af:inputText>
+          
+             <!--Displaying the fields in horizontal -->
+        <af:panelLabelAndMessage label="#{bindings.OprHrFrom.hints.label}" id="plam2" showRequired="true">
+            <af:panelGroupLayout id="pgl6" layout="horizontal">
+              <af:inputText value="#{bindings.OprHrFrom.inputValue}"
+                            simple="true"  required="true" label="#{viewcontrollerBundle.POUND_OPERATION_TIMING_FROM}"                       
+                            columns="#{bindings.OprHrFrom.hints.displayWidth}"
+                            maximumLength="#{bindings.OprHrFrom.hints.precision}"
+                            shortDesc="#{bindings.OprHrFrom.hints.tooltip}"
+                            id="it9"
+                            disabled="#{! pageFlowScope.locationMstbean.enabled}">  
+                 <f:convertDateTime pattern="HH:mm" type="time"/>
+              </af:inputText>
+              <af:inputText value="#{bindings.OprHrTo.inputValue}"
+                            label="#{bindings.OprHrTo.hints.label}"
+                            required="true"
+                            columns="#{bindings.OprHrTo.hints.displayWidth}"
+                            maximumLength="#{bindings.OprHrTo.hints.precision}"
+                            shortDesc="#{bindings.OprHrTo.hints.tooltip}"
+                            id="it5"
+                            disabled="#{! pageFlowScope.locationMstbean.enabled}">
+                   <f:convertDateTime pattern="HH:mm" type="time"/>
+              </af:inputText>
+              <af:outputLabel id="ol1" value="#{viewcontrollerBundle.TIME_24_HOUR_FORMAT}"/>             
+            </af:panelGroupLayout>          
+          </af:panelLabelAndMessage>
+        
+          <af:selectOneChoice value="#{bindings.COUNTRYCODE.inputValue}" 
+                        label="#{bindings.COUNTRYCODE.label}"
+                        required="true"
+                        shortDesc="#{bindings.COUNTRYCODE.hints.tooltip}"
+                        id="soc3" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+         <f:selectItems value="#{bindings.COUNTRYCODE.items}" id="si4"/>
+         </af:selectOneChoice>
+          <af:selectOneChoice value="#{bindings.CommunityCode.inputValue}"
+                        label="#{bindings.CommunityCode.label}"
+                        required="true"
+                        shortDesc="#{bindings.CommunityCode.hints.tooltip}"
+                        id="soc1" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+          <f:selectItems value="#{bindings.CommunityCode.items}" id="si1"/>
+          </af:selectOneChoice>
+          <af:inputText value="#{bindings.Geolatdeg.inputValue}" contentStyle="text-align:left"
+                        label="#{bindings.Geolatdeg.hints.label}"
+                        required="#{bindings.Geolatdeg.hints.mandatory}"
+                        columns="#{bindings.Geolatdeg.hints.displayWidth}"
+                        maximumLength="#{bindings.Geolatdeg.hints.precision}"
+                        shortDesc="#{bindings.Geolatdeg.hints.tooltip}"
+                        id="it12" disabled="#{! pageFlowScope.locationMstbean.enabled}">            
+            <f:convertNumber pattern="#0.000000" />
+            <f:validator binding="#{bindings.Geolatdeg.validator}"/>            
+            <!--<af:convertNumber groupingUsed="false" 
+                              pattern="#{bindings.Geolatdeg.format}"/>-->
+          </af:inputText>
+          <af:inputText value="#{bindings.Geolondeg.inputValue}" contentStyle="text-align:left"
+                        label="#{bindings.Geolondeg.hints.label}"
+                        required="#{bindings.Geolondeg.hints.mandatory}"
+                        columns="#{bindings.Geolondeg.hints.displayWidth}"
+                        maximumLength="#{bindings.Geolondeg.hints.precision}"
+                        shortDesc="#{bindings.Geolondeg.hints.tooltip}"
+                        id="it3" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:convertNumber pattern="#0.000000" />
+            <f:validator binding="#{bindings.Geolondeg.validator}"/>
+            <!--<af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.Geolondeg.format}"/>-->
+          </af:inputText>
+          
+          <af:selectOneChoice value="#{bindings.LOCTYPE.inputValue}" autoSubmit="true"
+                                label="#{bindings.LOCTYPE.label}"
+                                shortDesc="#{bindings.LOCTYPE.hints.tooltip}"
+                                id="soc2" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+              <f:selectItems value="#{bindings.LOCTYPE.items}" id="si2"/>
+             </af:selectOneChoice> 
+          <af:inputDate value="#{bindings.GoLiveDt.inputValue}"
+                        label="#{viewcontrollerBundle.G0_LIVE_DATE_LOCATION}"
+                        required="#{bindings.GoLiveDt.hints.mandatory}"
+                        shortDesc="#{bindings.GoLiveDt.hints.tooltip}" id="id2"
+                        disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:validator binding="#{bindings.GoLiveDt.validator}"/>
+            <af:convertDateTime pattern="#{bindings.GoLiveDt.format}"/>
+          </af:inputDate>
+          <!--<af:selectBooleanCheckbox value="#{bindings.AllowCommercialPermitsflag.inputValue}"
+                                    label="#{viewcontrollerBundle.COMMERCIALINSTITUTIONAL_PERMIT}"
+                                    shortDesc="#{bindings.AllowCommercialPermitsflag.hints.tooltip}"
+                                    id="sbc2"  disabled="#{! pageFlowScope.locationMstbean.enabled}"/>-->
+          <af:selectBooleanCheckbox value="#{bindings.ActiveFlag.inputValue}"
+                                      label="#{bindings.ActiveFlag.label}"
+                                      shortDesc="#{bindings.ActiveFlag.hints.tooltip}"
+                                      id="sbc1" disabled="#{! pageFlowScope.locationMstbean.enabled}"
+                                    valueChangeListener="#{pageFlowScope.locationMstbean.activeFlagBoolean}"
+                                    autoSubmit="true"/>
+          <af:inputText value="#{bindings.Remarks.inputValue}"
+                        label="#{bindings.Remarks.hints.label}"
+                        rows="2" disabled="#{! pageFlowScope.locationMstbean.enabled}"
+                        required="#{bindings.Remarks.hints.mandatory}"
+                        columns="#{bindings.Remarks.hints.displayWidth}"
+                        maximumLength="#{bindings.Remarks.hints.precision}"
+                        shortDesc="#{bindings.Remarks.hints.tooltip}" id="it7">
+            <f:validator binding="#{bindings.Remarks.validator}"/>
+          </af:inputText>
+        </af:panelFormLayout>
+        
+        <!--Pound Details-->
+         <af:spacer width="20" height="10" id="s7"/>
+        <af:panelGroupLayout id="pgl3" visible="#{pageFlowScope.setvisible}" partialTriggers="soc2">
+                             <af:showDetailHeader text="#{viewcontrollerBundle.POUND_DETAILS}"
+                             disclosed="true" id="sdh3" 
+                             rendered="#{(!pageFlowScope.locationMstbean.hide) and bindings.LOCTYPE.attributeValue=='PND'}">
+        <af:panelFormLayout id="pfl2" 
+                            inlineStyle="border-color:Black; border-style:inset; border-width:thin; width:600px;">
+          <af:spacer width="10" height="10" id="s5"/>
+           <af:inputText value="#{bindings.Clampingcharges.inputValue}" contentStyle="text-align:right"
+                        label="#{bindings.Clampingcharges.hints.label}"
+                        required="#{bindings.Clampingcharges.hints.mandatory}"
+                        columns="#{bindings.Clampingcharges.hints.displayWidth}"
+                        maximumLength="#{bindings.Clampingcharges.hints.precision}"
+                        shortDesc="#{bindings.Clampingcharges.hints.tooltip}"
+                        id="it17" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:convertNumber pattern="#0.00" />
+            <f:validator binding="#{bindings.RemovalCharge.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.RemovalCharge.inputValue}" contentStyle="text-align:right"
+                        label="#{bindings.RemovalCharge.hints.label}"
+                        required="#{bindings.RemovalCharge.hints.mandatory}"
+                        columns="#{bindings.RemovalCharge.hints.displayWidth}"
+                        maximumLength="#{bindings.RemovalCharge.hints.precision}"
+                        shortDesc="#{bindings.RemovalCharge.hints.tooltip}"
+                        id="it4" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:convertNumber pattern="#0.00" />
+            <f:validator binding="#{bindings.RemovalCharge.validator}"/>
+          </af:inputText>
+              <!--<af:inputText value="#{bindings.Storagecharge.inputValue}"
+                            label="#{viewcontrollerBundle.POUND_CHARGES}"
+                            required="#{bindings.Storagecharge.hints.mandatory}"
+                            maximumLength="#{bindings.Storagecharge.hints.precision}"
+                            shortDesc="#{bindings.Storagecharge.hints.tooltip}"
+                            id="it15" disabled="#{! pageFlowScope.locationMstbean.enabled}"
+                            columns="50">
+                <f:validator binding="#{bindings.Storagecharge.validator}"/>
+              </af:inputText>-->
+              <af:inputText value="#{bindings.AddlCharge.inputValue}" contentStyle="text-align:right"
+                        label="#{viewcontrollerBundle.ADDITIONAL_CHARGES}"
+                        required="#{bindings.AddlCharge.hints.mandatory}"
+                        columns="#{bindings.AddlCharge.hints.displayWidth}"
+                        maximumLength="#{bindings.AddlCharge.hints.precision}"
+                        shortDesc="#{bindings.AddlCharge.hints.tooltip}"
+                        id="it14" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:convertNumber pattern="#0.00" />
+            <f:validator binding="#{bindings.AddlCharge.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.BayCount.inputValue}" contentStyle="text-align:right"
+                        label="#{bindings.BayCount.hints.label}"
+                        columns="#{bindings.BayCount.hints.displayWidth}"
+                        maximumLength="#{bindings.BayCount.hints.precision}"
+                        shortDesc="#{bindings.BayCount.hints.tooltip}"
+                        required="true"
+                        id="it13" disabled="#{! pageFlowScope.locationMstbean.enabled}"
+                        binding="#{pageFlowScope.locationMstbean.bayCount}">
+            <f:validator binding="#{bindings.BayCount.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.BayCount.format}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.ContactDetails.inputValue}"
+                        label="#{bindings.ContactDetails.hints.label}"
+                        required="#{bindings.ContactDetails.hints.mandatory}"
+                        columns="#{bindings.ContactDetails.hints.displayWidth}"
+                        maximumLength="10"
+                        shortDesc="#{bindings.ContactDetails.hints.tooltip}"
+                        id="it16" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+         <af:validateRegExp pattern="(^0[5-6][0-9]{8}$)" messageDetailNoMatch="#{viewcontrollerBundle.TIME_FORMAT_05_06}"/>
+         <f:validator binding="#{bindings.ContactDetails.validator}"/>
+          </af:inputText>
+          <!--Moved to Pound Table-->
+          <!--<af:inputText value="#{bindings.Freedays.inputValue}"
+                        label="#{bindings.Freedays.hints.label}"
+                        required="#{bindings.Freedays.hints.mandatory}"
+                        columns="#{bindings.Freedays.hints.displayWidth}"
+                        maximumLength="#{bindings.Freedays.hints.precision}"
+                        shortDesc="#{bindings.Freedays.hints.tooltip}"
+                        id="it15" disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <f:validator binding="#{bindings.Freedays.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.Freedays.format}"/>
+          </af:inputText>-->
+          <af:spacer width="10" height="10" id="s6"/>
+        </af:panelFormLayout>        
+        </af:showDetailHeader>
+      </af:panelGroupLayout>      
+      </af:showDetailHeader>
+      </af:panelGroupLayout>
+      
+    <af:spacer width="10" height="10" id="s3345"/> 
+    <!--Submit Cancel buttons- Footer-->
+     <af:panelGroupLayout id="pgl4" layout="horizontal" visible="#{pageFlowScope.setvisible}">
+       <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb6" 
+                         rendered="#{!pageFlowScope.locationMstbean.hide}"
+                         actionListener="#{pageFlowScope.locationMstbean.submitLocationChanges}"
+                         inlineStyle="background-color:#F39C11;"                                              
+                         partialTriggers="t1" 
+                        disabled="#{! pageFlowScope.locationMstbean.enabled}">
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s10"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" 
+                        rendered="#{!pageFlowScope.locationMstbean.hide}"
+                        inlineStyle="background-color:#F39C11;" id="cb7" 
+                        actionListener="#{pageFlowScope.locationMstbean.cancelLocationChanges}"
+                        immediate="true" >                        
+            <af:resetActionListener/> 
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+       </af:commandButton> 
+       </af:panelGroupLayout>
+    </af:panelGroupLayout>
+</jsp:root>

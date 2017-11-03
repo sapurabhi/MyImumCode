@@ -1,0 +1,72 @@
+<wsdl:definitions
+    
+     targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/PVTRemovalApprovalBPMProcess"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/PVTRemovalApprovalBPMProcess"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>http://cpmsfmwappdc:8001/soa-infra/services/default/PVTRemovalApprovalBPM!1.0/PVTRemovalApprovalBPMProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="PVTRemovalApprovalBPMProcessPortTypePartnerLinkType">
+        <plnk:role name="PVTRemovalApprovalBPMProcessPortTypeProvider">
+            <plnk:portType name="tns:PVTRemovalApprovalBPMProcessPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/PVTRemovalApprovalBPMProcess">
+            <xsd:element name="start">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="PVTNum" type="xsd:long"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="cancelpvt">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="pvtsequence" type="xsd:long"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="cancelpvt">
+        <wsdl:part name="parameters" element="tns:cancelpvt"/>
+    </wsdl:message>
+    <wsdl:message name="start">
+        <wsdl:part name="parameters" element="tns:start"/>
+    </wsdl:message>
+    <wsdl:portType name="PVTRemovalApprovalBPMProcessPortType">
+        <wsdl:operation name="cancelpvt">
+            <wsdl:input message="tns:cancelpvt"/>
+        </wsdl:operation>
+        <wsdl:operation name="start">
+            <wsdl:input message="tns:start"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PVTRemovalApprovalBPMProcessBinding" type="tns:PVTRemovalApprovalBPMProcessPortType">
+        <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="cancelpvt">
+            <wsdlsoap:operation style="document" soapAction="cancelpvt"/>
+            <wsdl:input>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="start">
+            <wsdlsoap:operation style="document" soapAction="start"/>
+            <wsdl:input>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PVTRemovalApprovalBPMProcess.service">
+        <wsdl:port name="PVTRemovalApprovalBPMProcessPort" binding="tns:PVTRemovalApprovalBPMProcessBinding">
+            <wsdlsoap:address location="http://cpmsfmwappdc.cpms.local:8001/soa-infra/services/default/PVTRemovalApprovalBPM/PVTRemovalApprovalBPMProcess.service"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

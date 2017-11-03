@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="HomePageEnglishPageDef"
+                Package="jspx.common.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="MenuMstUVO1Iterator" Binds="MenuMstUVO1"
+              DataControl="MenuAMDataControl" RangeSize="25"/>
+    <page id="PageTemplateEnglishBinding"
+          path="jspx.common.cpmsEnglishTemplatePageDef" Refresh="ifNeeded"/>
+    <taskFlow id="CreateCustomerTF1"
+              taskFlowId="/WEB-INF/permits/CreateCustomerTF.xml#CreateCustomerTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              Refresh="default"/>
+    <taskFlow id="dynamicRegion1" taskFlowId="${TemplateBean.dynamicTaskFlowId}"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="menuURL"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow taskFlowId="/WEB-INF/permits/DocumentMasterTF.xml#DocumentMasterTF"
+              id="DocumentMasterTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MenuMstUVO1Iterator" id="MenuMstUVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.menu.vo.MenuMstUVO"
+                      Name="MenuMstUVO110">
+        <AttrNames>
+          <Item Value="MenuID"/>
+          <Item Value="MenuDefinition"/>
+          <Item Value="MenuURL"/>
+          <Item Value="ParentMenuID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MenuMstUVO1Iterator" id="MenuMstUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.menu.vo.MenuMstUVO"
+                      Name="MenuMstUVO10">
+        <AttrNames>
+          <Item Value="MenuDefinition"/>
+          <Item Value="MenuID"/>
+          <Item Value="MenuURL"/>
+          <Item Value="ParentMenuID"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="MenuMstUVO_2"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

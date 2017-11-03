@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">InventorySearch</property>
+      <property
+         name="page">/jspx/transactions/fragments/InventorySearch.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>InventorySearch&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">305.18945</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">632.6904</property>
+   </View>
+   <MethodCall
+      id="MethodCall5">
+      <property
+         name="activityId">CreateInsert</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>CreateInsert&lt;/b>&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">306.18945</property>
+      <property
+         name="x">396.01465</property>
+   </MethodCall>
+   <MethodCall
+      id="MethodCall6">
+      <property
+         name="activityId">clearCacheAllRows</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>clearCacheAllRows&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">304.82715</property>
+      <property
+         name="x">118.01953</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="MethodCall6"
+      to="MethodCall5">
+      <property
+         name="fromOutcome">clearCacheAllRows</property>
+      <property
+         name="sdm:polyPoints">R50,159.01953,304.47656,355.01465,305.83887,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase8"
+      from="MethodCall5"
+      to="View2">
+      <property
+         name="fromOutcome">CreateInsert</property>
+      <property
+         name="sdm:polyPoints">R50,437.01465,305.83887,591.6904,304.83887,L50</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTAmtAdjustmentTF">
+    <default-activity id="__1">PVTAmtAdjustment</default-activity>
+    <data-control-scope id="__6">
+      <isolated/>
+    </data-control-scope>
+    <managed-bean id="__4">
+      <managed-bean-name id="__2">PVTAmountAdjMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.transactions.PVTAmtAdjMBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTAmtAdjustment">
+      <page>/jspx/transactions/fragments/PVTAmtAdjustment.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

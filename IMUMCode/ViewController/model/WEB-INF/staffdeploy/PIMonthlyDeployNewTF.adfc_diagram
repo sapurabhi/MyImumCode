@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="y">439.20117</property>
+      <property
+         name="x">103.35156</property>
+   </OverallProperties>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">emptyPIworkVORowset</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>emptyPIworkVORowset&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">271.5</property>
+      <property
+         name="x">103.35156</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">PIMonthlyDeployNewPF</property>
+      <property
+         name="page">/jspx/staffdeploy/fragments/PIMonthlyDeployNewPF.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>PIMonthlyDeployNewPF&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">173.6753</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">311.72754</property>
+   </View>
+   <MethodCall
+      id="MethodCall4">
+      <property
+         name="activityId">setDisabled</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>setDisabled&lt;/b>&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">83.5</property>
+      <property
+         name="x">103.35156</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="MethodCall4"
+      to="View3">
+      <property
+         name="fromOutcome">pimonthly</property>
+      <property
+         name="sdm:polyPoints">R50,144.35156,83.149414,270.72754,169.8247,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">emptyPIworkVORowset</property>
+      <property
+         name="sdm:polyPoints">R50,144.35156,271.1494,270.72754,176.8247,L54</property>
+   </ControlFlowCase>
+</SDM>

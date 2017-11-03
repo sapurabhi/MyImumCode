@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PoundVehicleBayAllocTF">
+    <default-activity id="__17">createDocUploadPoundAlloc</default-activity>
+    <transaction id="__19">
+      <new-transaction/>
+    </transaction>
+    <data-control-scope id="__18">
+      <isolated/>
+    </data-control-scope>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">poundBayAllocTBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.transactions.PoundBayAllocationBean</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PoundVehicleBayAlloc">
+      <page>/jspx/transactions/fragments/PoundVehicleBayAlloc.jsff</page>
+    </view>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome id="__1">
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="createDocUploadPoundAlloc">
+      <method>#{bindings.createDocUploadPoundAlloc.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>createDocUploadPoundAlloc</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__11">
+      <from-activity-id id="__13">Execute</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__16">Execute</from-outcome>
+        <to-activity-id id="__14">PoundVehicleBayAlloc</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">createDocUploadPoundAlloc</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__12">createDocUploadPoundAlloc</from-outcome>
+        <to-activity-id id="__10">Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

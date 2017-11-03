@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PIAttendanceStCheckVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.staffdeploy.vo.PIAttendanceStCheckVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="dailyAssignDate"
+    Kind="viewcriteria"
+    Type="java.sql.Date"/>
+  <Variable
+    Name="PIID"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <SQLQuery>
+    <![CDATA[select distinct gpm.pi_id, CONVERT(varchar(10),ck.checktime,120) as currdate,
+(case when CONVERT(varchar(10),checktime,120)=assgn_date
+then
+'Present'
+Else
+'Not Present'
+end) as Attendance ,
+ 
+gpm.Assgn_Date,gpm.Shift1,gpm.Shift2,gpm.Shift3
+from
+PI_Sup_Alloc psa inner join GEN_PI_MonthlyDeployment gpm
+on psa.PI_id=gpm.PI_id
+inner join
+[172.16.15.9].[Sprinter Attendance].[dbo].[checkinout] ck on
+convert(varchar(30),ck.userid)=gpm.PI_id
+inner join [172.16.15.9].[Sprinter Attendance].[dbo].[Userinfo] UI on
+UI.USERID=CK.USERID
+where ck.checktype='I' 
+AND UI.Defaultdeptid=22]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="piid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="pi_id"
+    Expression="pi_id"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="currdate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="currdate"
+    Expression="currdate"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Attendance"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="7"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Attendance"
+    Expression="Attendance"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssgnDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="Assgn_Date"
+    Expression="Assgn_Date"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Shift1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Shift1"
+    Expression="Shift1"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Shift2"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Shift2"
+    Expression="Shift2"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Shift3"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Shift3"
+    Expression="Shift3"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="PIAttendanceStCheckVOCriteria"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.PIAttendanceStCheckVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow89"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="piid"
+        ViewAttribute="piid"
+        Operator="="
+        Conjunction="AND"
+        Value=":PIID"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="currdate"
+        ViewAttribute="currdate"
+        Operator="="
+        Conjunction="AND"
+        Value=":dailyAssignDate"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PIAttendanceStCheckVOCriteria_vcrow89_AssgnDate"
+        ViewAttribute="AssgnDate"
+        Operator="="
+        Conjunction="AND"
+        Value=":dailyAssignDate"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

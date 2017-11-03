@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+ <af:showDetailHeader text="Cards Inactivation" id="ph0" disclosed="true" >
+ <af:spacer height="25" id="spd"/>
+  <f:facet name="context"/>
+  <f:facet name="menuBar"/>
+  <f:facet name="toolbar"/>
+  <f:facet name="legend"/>
+  <f:facet name="info"/>
+   <af:panelGroupLayout id="pgl1" layout="horizontal"
+                       inlineStyle="height:33px; width:900px;">
+                       <af:spacer width="15" height="10" id="s10"/>
+  <af:inputText label="From Card Number" id="it1"
+                  binding="#{pageFlowScope.Activecards.fromcardno}"
+                columns="20"/>
+    <af:inputText label="To Card Number" id="it2"
+                  binding="#{pageFlowScope.Activecards.toCardno}" columns="20"/>
+    <af:panelGroupLayout id="pgl2" inlineStyle="width:671px; height:79px;">
+      <af:commandButton text="Search"
+                        inlineStyle="background-color:#F39C11;"
+                        id="cb2" action="#{pageFlowScope.Activecards.search}"/>
+      <af:spacer width="25" height="10" id="s1"/>
+      <af:commandButton text="Reset"
+                        inlineStyle="background-color:#F39C11;"
+                        id="cb1"
+                        action="#{pageFlowScope.Activecards.displayTable}">
+        <af:resetActionListener/>
+      </af:commandButton>
+  </af:panelGroupLayout>
+  </af:panelGroupLayout>
+   <af:spacer width="2" height="15" id="s3"/>
+  <!--<af:panelGroupLayout id="pgl7" inlineStyle="width:671px; height:79px;">
+    <af:spacer width="150" height="30" id="s8"/>
+    <af:commandButton text="Search"  inlineStyle="width:auto;background-color:#F39C11;"
+                      id="cb5"
+                      action="#{pageFlowScope.Activecards.search}"/>
+    <af:spacer width="100" height="10" id="s13"/>
+    <af:commandButton text="Reset"  inlineStyle="width:auto;background-color:#F39C11;"
+                      id="cb6">
+      <af:resetActionListener/>
+    </af:commandButton>
+  </af:panelGroupLayout>-->
+  <af:spacer width="2" height="0" id="s6"/>
+  <af:spacer width="10" height="10" id="s2"/>
+  <af:panelGroupLayout id="pgl3" inlineStyle="width:928px; height:310px;"
+                       layout="horizontal" visible="#{pageFlowScope.Activecards.display}">
+    <af:spacer width="50" height="10" id="s9"/>
+    <af:table value="#{bindings.ActiveCardsUVO12.collectionModel}" var="row"
+              rows="#{bindings.ActiveCardsUVO12.rangeSize}" binding="#{pageFlowScope.Activecards.resultsTbl}"
+              partialTriggers="::cb3 ::cb4"
+              emptyText="#{bindings.ActiveCardsUVO12.viewable ? 'Please Search for Data.' : 'Access Denied.'}"
+              fetchSize="#{bindings.ActiveCardsUVO12.rangeSize}"
+              rowBandingInterval="0" id="t1" width="840"
+              inlineStyle="height:339px;">
+      <af:column sortProperty="#{bindings.ActiveCardsUVO12.hints.Cardnum.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.CARD_NUMBER_0}"
+                 id="c4" width="188">
+        <af:outputText value="#{row.Cardnum}" id="ot1"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.ActiveCardsUVO12.hints.cardDecs.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.CARD_DESCRIPTION}"
+                 id="c2" width="151">
+        <af:outputText value="#{row.cardDecs}" id="ot2"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.ActiveCardsUVO11.hints.inActive.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.INACTIVE}"
+                 id="c3" align="center" width="75">
+        <af:selectBooleanCheckbox value="#{row.bindings.inActive.inputValue}" disabled="#{row.cardDecs eq 'Sold'}"
+                                  label="#{row.bindings.inActive.label}"  
+                                  shortDesc="#{bindings.ActiveCardsUVO11.hints.inActive.tooltip}"
+                                  id="sbc1" autoSubmit="true"
+                                  valueChangeListener="#{pageFlowScope.Activecards.checkVC}"/>
+                                  
+      </af:column>
+    
+      <af:column sortProperty="#{bindings.ActiveCardsUVO11.hints.Remarks.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.REASONS}"
+                 id="c1" width="251">
+     <af:selectOneChoice value="#{row.bindings.Remarks.inputValue}"
+                         label="#{row.bindings.Remarks.label}" 
+                         disabled="#{row.cardDecs eq 'Sold' ? 'true' : 'false' }"
+                         required="#{bindings.ActiveCardsUVO12.hints.Remarks.mandatory}"
+                         shortDesc="#{bindings.ActiveCardsUVO12.hints.Remarks.tooltip}"
+                         id="soc1">
+      <f:selectItems value="#{row.bindings.Remarks.items}" id="si1"/>
+     </af:selectOneChoice>
+    </af:column>
+    <af:column id="c5" headerText="Remarks" width="144">
+     <af:inputText label="#{bindings.ActiveCardsUVO12.hints.Remarksnew.label}" id="it3"
+                   binding="#{pageFlowScope.Activecards.remarks}"
+                   value="#{row.bindings.Remarksnew.inputValue}"
+                   required="#{bindings.ActiveCardsUVO12.hints.Remarksnew.mandatory}"
+                   columns="#{bindings.ActiveCardsUVO12.hints.Remarksnew.displayWidth}"
+                   maximumLength="#{bindings.ActiveCardsUVO12.hints.Remarksnew.precision}">
+      <f:validator binding="#{row.bindings.Remarksnew.validator}"/>
+     </af:inputText>
+    </af:column>
+   </af:table>
+    <af:spacer width="10" height="10" id="s7"/>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl5" inlineStyle="width:505px; height:42px;">
+    <af:spacer width="10" height="10" id="s12"/>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl4" inlineStyle="width:622px;" visible="#{pageFlowScope.Activecards.display}">
+   <af:spacer width="200" height="30" id="s5"/>
+    <af:commandButton text="Submit" inlineStyle="background-color:#F39C11;" id="cb3"
+                      action="#{pageFlowScope.Activecards.submitAction}"
+                      partialSubmit="true"/>
+    <af:spacer width="100" height="10" id="s4"/>
+     <af:commandButton text="Cancel" inlineStyle="background-color:#F39C11;" id="cb4"
+                       action="#{pageFlowScope.Activecards.cancelAction}"/>
+  </af:panelGroupLayout>
+ 
+</af:showDetailHeader>
+</jsp:root>

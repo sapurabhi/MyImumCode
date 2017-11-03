@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="HHCReAssignTF">
+    <default-activity id="__1">HHCReAssignment</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">HHCReAssignmentMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.staffdeployment.HHCReAssignmentMBean</managed-bean-class>
+      <managed-bean-scope id="__6">request</managed-bean-scope>
+    </managed-bean>
+    <view id="HHCReAssignment">
+      <page>/jspx/staffdeploy/fragments/HHCReAssignment.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

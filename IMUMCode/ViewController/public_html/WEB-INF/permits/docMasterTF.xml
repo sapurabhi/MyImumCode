@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="docMasterTF">
+    <default-activity id="__1">docMaster</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">SelectionBean</managed-bean-name>
+      <managed-bean-class id="__2">rowSelected</managed-bean-class>
+      <managed-bean-scope id="__3">request</managed-bean-scope>
+    </managed-bean>
+    <view id="docMaster">
+      <page>/jspx/masters/fragments/docMaster.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

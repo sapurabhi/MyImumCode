@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="VehicleWhitelistReportPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VehicleWhitelistMstVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="VehicleWhitelistMstVO1Iterator"/>
+    <searchRegion Criteria="VehicleWhitelistMstVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VehicleWhitelistMstVO1Iterator"
+                  id="VehicleWhitelistMstVOCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VehicleWhitelistMstVO1Iterator"
+          id="VehicleWhitelistMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehicleWhitelistMstVO"
+                      Name="VehicleWhitelistMstVO10">
+        <AttrNames>
+          <Item Value="Whitelistseq"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PlateCountryID"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="ActiveDateFrom"/>
+          <Item Value="ActiveDateTo"/>
+          <Item Value="Activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VehicleWhitelistMstVO1Iterator"
+          id="VehicleWhitelistMstVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehicleWhitelistMstVO"
+                      Name="VehicleWhitelistMstVO110">
+        <AttrNames>
+          <Item Value="Whitelistseq"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PlateCountryID"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="ActiveDateFrom"/>
+          <Item Value="ActiveDateTo"/>
+          <Item Value="Activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

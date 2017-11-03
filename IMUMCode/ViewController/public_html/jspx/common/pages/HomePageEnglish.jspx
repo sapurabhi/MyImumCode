@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+     <af:document id="d1" binding="#{backingBeanScope.backing_home.d1}" title="#{viewcontrollerBundle.HOME_PAGE_DISPLAY}">
+      <af:messages binding="#{backingBeanScope.backing_home.m1}" id="m1"/>
+      <af:form id="f1" binding="#{backingBeanScope.backing_home.f1}" usesUpload="true">
+               
+        <af:pageTemplate viewId="/jspx/common/cpmsEnglishTemplate.jspx"
+                         value="#{bindings.PageTemplateEnglishBinding}" id="pt1">                  
+          <f:facet name="Main">
+            <af:tree value="#{bindings.MenuMstUVO1.treeModel}" var="node"
+                     selectionListener="#{bindings.MenuMstUVO1.treeModel.makeCurrent}"
+                     rowSelection="single" id="t1" partialTriggers=":pt1" summary="#{viewcontrollerBundle.DISPLAY_MENU}"
+                     inlineStyle="height:595.0px;">
+              <f:facet name="nodeStamp">
+               <af:group id="g1">
+               
+                <af:outputText value="#{node.MenuDefinition}" id="ot1" rendered="#{(node.MenuURL eq null) ?true : false}"/>
+                <af:commandLink id="cl" text="#{node.MenuDefinition}"
+                                rendered="#{(node.MenuURL eq null) ?false : true}"
+                                actionListener="#{TemplateBean.setCurrentMenuTaskFlowURL}" partialSubmit="true" >
+                     <f:attribute name="requestedMenuURL" value="#{node.MenuURL}"/>
+                </af:commandLink>
+              </af:group>
+             </f:facet>
+            </af:tree>
+          </f:facet>
+          
+          <f:facet name="ContentDisplay">
+            <af:group id="g2">
+
+              <af:region value="#{bindings.dynamicRegion1.regionModel}" id="r1" />
+            </af:group>
+          </f:facet>         
+     
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

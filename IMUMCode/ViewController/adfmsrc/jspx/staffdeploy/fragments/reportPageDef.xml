@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="reportPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ReportVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="ReportVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ReportVO1Iterator" id="ReportVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.ReportVO"
+                      Name="ReportVO10">
+        <AttrNames>
+          <Item Value="AssignDate"/>
+          <Item Value="A8A8"/>
+          <Item Value="E302E302A"/>
+          <Item Value="E302E302B"/>
+          <Item Value="E302E302C"/>
+          <Item Value="E302E302D"/>
+          <Item Value="E302E302E"/>
+          <Item Value="E302E302F"/>
+          <Item Value="E302E302G"/>
+          <Item Value="E302E302H"/>
+          <Item Value="W1W1A"/>
+          <Item Value="W1W1B"/>
+          <Item Value="W1W1C"/>
+          <Item Value="W1W1D"/>
+          <Item Value="W1W1E"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="populateMonthlyReport"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="populateMonthlyReport"
+                  IsViewObjectMethod="false"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HHDeviceMstEO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName=" HHD_Mst"
+  AliasName="HHDeviceMst"
+  BindingStyle="JDBC"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.eo.HHDeviceMstEOImpl"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Init|Delete|Access|DML"/>
+    <AttrArray Name="_publishEvents"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="HHId"
+    Precision="4"
+    Scale="0"
+    ColumnName="HH_Id"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" HHD_Mst"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHModel"
+    Precision="50"
+    ColumnName="HH_Model"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHConfig"
+    Precision="100"
+    ColumnName="HH_Config"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHVer"
+    Precision="20"
+    ColumnName="HH_Ver"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHOS"
+    Precision="20"
+    ColumnName="HH_OS"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHIP"
+    Precision="20"
+    ColumnName="HH_IP"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHSNo"
+    Precision="20"
+    ColumnName="HH_SNo"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHSIMNo"
+    Precision="20"
+    ColumnName="HH_SIM_No"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <validation:RegExpValidationBean
+      Name="HHSIMNo_Rule_0"
+      ResId="PLEASE_ENTER_VALID_SIM_CARD_NU"
+      OnAttribute="HHSIMNo"
+      Pattern="[0-9]+"
+      Inverse="false"/>
+  </Attribute>
+  <Attribute
+    Name="WarrUpto"
+    ColumnName="Warr_Upto"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="NxtMntDt"
+    ColumnName="Nxt_Mnt_Dt"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ActiveFlag"
+    DefaultValue="Y"
+    Precision="1"
+    ColumnName="Active_Flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    ColumnName="Created_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedBy"
+    Precision="50"
+    ColumnName="Updated_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedDate"
+    ColumnName="Updated_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Assingedto"
+    Precision="20"
+    ColumnName="Assinged_to"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LastIssueddate"
+    ColumnName="Last_Issued_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="StatusCode"
+    Precision="1"
+    ColumnName="Status_Code"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="assettypecode"
+    Precision="1"
+    ColumnName="asset_type_code"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" HHD_Mst">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="PKHHDMstCA9AAAF81BFD2C07"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PK__HHD_Mst__CA9AAAF81BFD2C07"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserMstUVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="Created_date desc"
+  RowClass="com.imum.cpms.model.masters.vo.UserMstUVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.UserMstUVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="GroupLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.GroupLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="HolidayUserLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.HolidayUserLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CityLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.CityLovVO">
+    <ViewCriteriaUsage
+      Name="CityLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.CityLovVO.CityLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="CountryLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.CountryLovVO">
+    <ViewCriteriaUsage
+      Name="CountryLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.CountryLovVO.CountryLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="GenderLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.GenderLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PrefCommLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PrefCommLOVVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_GroupId"
+    ListVOName="GroupLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_GroupId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="GroupId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="groupid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="groupname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_LocalCountry"
+    ListVOName="CountryLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_LocalCountry_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LocalCountry"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CountryCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CountryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_LocalCity"
+    ListVOName="CityLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_LocalCity_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LocalCity"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CityCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CityName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PermCity"
+    ListVOName="CityLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PermCity_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PermCity"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CityCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CityName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PermCountry"
+    ListVOName="CountryLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PermCountry_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PermCountry"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CountryCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CountryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Gender"
+    ListVOName="GenderLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Gender_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Gender"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ManagerId"
+    ListVOName="HolidayUserLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ManagerId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ManagerId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="userid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="firstname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PrefComm"
+    ListVOName="PrefCommLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PrefComm_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PrefComm"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT UserMstEO.Active_Flag, 
+       UserMstEO.Active_On_Street_Flag, 
+       UserMstEO.Assign_Available_flag, 
+       UserMstEO.Base_Location, 
+       UserMstEO.Birth_Date, 
+       UserMstEO.Created_by, 
+       UserMstEO.Created_date, 
+       UserMstEO.Designation, 
+       UserMstEO.Ext_user_flag, 
+       UserMstEO.First_Name, 
+       UserMstEO.Gender, 
+       UserMstEO.Group_Id, 
+       UserMstEO.Last_Name, 
+       UserMstEO.Last_login_datetime, 
+       UserMstEO.Local_Add1, 
+       UserMstEO.Local_Add2, 
+       UserMstEO.Local_City, 
+       UserMstEO.Local_Country, 
+       UserMstEO.Local_PO_Box, 
+       UserMstEO.Login_PrintID, 
+       UserMstEO.Mail_Id, 
+       UserMstEO.Manager_Id, 
+       UserMstEO.Mobile_No, 
+       UserMstEO.Password1, 
+       UserMstEO.Password2, 
+       UserMstEO.Password3, 
+       UserMstEO.Password4, 
+       UserMstEO.Perm_Add1, 
+       UserMstEO.Perm_Add2, 
+       UserMstEO.Perm_City, 
+       UserMstEO.Perm_Country, 
+       UserMstEO.Perm_PO_Box, 
+       UserMstEO.Personal_Mail_Id, 
+       UserMstEO.Pref_Comm, 
+       UserMstEO.Secret_qust, 
+       UserMstEO.Updated_By, 
+       UserMstEO.Updated_Date, 
+       UserMstEO.User_Id, 
+       UserMstEO.last_Deactivated_date, 
+       UserMstEO.last_activated_date, 
+       
+     
+       UserMstEO.User_num,
+       convert(varchar(255),UserMstEO.Secret_ans)Secret_ans, 
+       convert(varchar(80),UserMstEO.Password)Password,
+       (select group_name from gen_group_mst where group_id = UserMstEO.Group_Id)Group_Name
+FROM GEN_USER_MST UserMstEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="UserMstEO"
+    Entity="com.imum.cpms.model.masters.eo.UserMstEO"/>
+  <ViewAttribute
+    Name="ActiveFlag"
+    PrecisionRule="true"
+    EntityAttrName="ActiveFlag"
+    EntityUsage="UserMstEO"
+    AliasName="Active_Flag"/>
+  <ViewAttribute
+    Name="ActiveOnStreetFlag"
+    PrecisionRule="true"
+    EntityAttrName="ActiveOnStreetFlag"
+    EntityUsage="UserMstEO"
+    AliasName="Active_On_Street_Flag"/>
+  <ViewAttribute
+    Name="AssignAvailableflag"
+    PrecisionRule="true"
+    EntityAttrName="AssignAvailableflag"
+    EntityUsage="UserMstEO"
+    AliasName="Assign_Available_flag"/>
+  <ViewAttribute
+    Name="BaseLocation"
+    PrecisionRule="true"
+    EntityAttrName="BaseLocation"
+    EntityUsage="UserMstEO"
+    AliasName="Base_Location"/>
+  <ViewAttribute
+    Name="BirthDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="BirthDate"
+    EntityUsage="UserMstEO"
+    AliasName="Birth_Date"/>
+  <ViewAttribute
+    Name="Createdby"
+    PrecisionRule="true"
+    EntityAttrName="Createdby"
+    EntityUsage="UserMstEO"
+    AliasName="Created_by"/>
+  <ViewAttribute
+    Name="Createddate"
+    PrecisionRule="true"
+    EntityAttrName="Createddate"
+    EntityUsage="UserMstEO"
+    AliasName="Created_date"/>
+  <ViewAttribute
+    Name="Designation"
+    PrecisionRule="true"
+    EntityAttrName="Designation"
+    EntityUsage="UserMstEO"
+    AliasName="Designation"/>
+  <ViewAttribute
+    Name="Extuserflag"
+    PrecisionRule="true"
+    EntityAttrName="Extuserflag"
+    EntityUsage="UserMstEO"
+    AliasName="Ext_user_flag"/>
+  <ViewAttribute
+    Name="FirstName"
+    PrecisionRule="true"
+    EntityAttrName="FirstName"
+    EntityUsage="UserMstEO"
+    AliasName="First_Name"/>
+  <ViewAttribute
+    Name="Gender"
+    PrecisionRule="true"
+    EntityAttrName="Gender"
+    EntityUsage="UserMstEO"
+    AliasName="Gender"
+    LOVName="LOV_Gender">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="radio"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="GroupId"
+    PrecisionRule="true"
+    EntityAttrName="GroupId"
+    EntityUsage="UserMstEO"
+    AliasName="Group_Id"
+    LOVName="LOV_GroupId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LastName"
+    PrecisionRule="true"
+    EntityAttrName="LastName"
+    EntityUsage="UserMstEO"
+    AliasName="Last_Name"/>
+  <ViewAttribute
+    Name="Lastlogindatetime"
+    PrecisionRule="true"
+    EntityAttrName="Lastlogindatetime"
+    EntityUsage="UserMstEO"
+    AliasName="Last_login_datetime"/>
+  <ViewAttribute
+    Name="LocalAdd1"
+    PrecisionRule="true"
+    EntityAttrName="LocalAdd1"
+    EntityUsage="UserMstEO"
+    AliasName="Local_Add1"/>
+  <ViewAttribute
+    Name="LocalAdd2"
+    PrecisionRule="true"
+    EntityAttrName="LocalAdd2"
+    EntityUsage="UserMstEO"
+    AliasName="Local_Add2"/>
+  <ViewAttribute
+    Name="LocalCity"
+    PrecisionRule="true"
+    EntityAttrName="LocalCity"
+    EntityUsage="UserMstEO"
+    AliasName="Local_City"
+    LOVName="LOV_LocalCity">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LocalCountry"
+    PrecisionRule="true"
+    EntityAttrName="LocalCountry"
+    EntityUsage="UserMstEO"
+    AliasName="Local_Country"
+    LOVName="LOV_LocalCountry">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LocalPOBox"
+    PrecisionRule="true"
+    EntityAttrName="LocalPOBox"
+    EntityUsage="UserMstEO"
+    AliasName="Local_PO_Box"/>
+  <ViewAttribute
+    Name="LoginPrintID"
+    PrecisionRule="true"
+    EntityAttrName="LoginPrintID"
+    EntityUsage="UserMstEO"
+    AliasName="Login_PrintID"/>
+  <ViewAttribute
+    Name="MailId"
+    PrecisionRule="true"
+    EntityAttrName="MailId"
+    EntityUsage="UserMstEO"
+    AliasName="Mail_Id"/>
+  <ViewAttribute
+    Name="ManagerId"
+    PrecisionRule="true"
+    EntityAttrName="ManagerId"
+    EntityUsage="UserMstEO"
+    AliasName="Manager_Id"
+    LOVName="LOV_ManagerId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MobileNo"
+    PrecisionRule="true"
+    EntityAttrName="MobileNo"
+    EntityUsage="UserMstEO"
+    AliasName="Mobile_No"/>
+  <ViewAttribute
+    Name="Password1"
+    PrecisionRule="true"
+    EntityAttrName="Password1"
+    EntityUsage="UserMstEO"
+    AliasName="Password1"/>
+  <ViewAttribute
+    Name="Password2"
+    PrecisionRule="true"
+    EntityAttrName="Password2"
+    EntityUsage="UserMstEO"
+    AliasName="Password2"/>
+  <ViewAttribute
+    Name="Password3"
+    PrecisionRule="true"
+    EntityAttrName="Password3"
+    EntityUsage="UserMstEO"
+    AliasName="Password3"/>
+  <ViewAttribute
+    Name="Password4"
+    PrecisionRule="true"
+    EntityAttrName="Password4"
+    EntityUsage="UserMstEO"
+    AliasName="Password4"/>
+  <ViewAttribute
+    Name="PermAdd1"
+    PrecisionRule="true"
+    EntityAttrName="PermAdd1"
+    EntityUsage="UserMstEO"
+    AliasName="Perm_Add1"/>
+  <ViewAttribute
+    Name="PermAdd2"
+    PrecisionRule="true"
+    EntityAttrName="PermAdd2"
+    EntityUsage="UserMstEO"
+    AliasName="Perm_Add2"/>
+  <ViewAttribute
+    Name="PermCity"
+    PrecisionRule="true"
+    EntityAttrName="PermCity"
+    EntityUsage="UserMstEO"
+    AliasName="Perm_City"
+    LOVName="LOV_PermCity">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermCountry"
+    PrecisionRule="true"
+    EntityAttrName="PermCountry"
+    EntityUsage="UserMstEO"
+    AliasName="Perm_Country"
+    LOVName="LOV_PermCountry">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PermPOBox"
+    PrecisionRule="true"
+    EntityAttrName="PermPOBox"
+    EntityUsage="UserMstEO"
+    AliasName="Perm_PO_Box"/>
+  <ViewAttribute
+    Name="PersonalMailId"
+    PrecisionRule="true"
+    EntityAttrName="PersonalMailId"
+    EntityUsage="UserMstEO"
+    AliasName="Personal_Mail_Id"/>
+  <ViewAttribute
+    Name="PrefComm"
+    PrecisionRule="true"
+    EntityAttrName="PrefComm"
+    EntityUsage="UserMstEO"
+    AliasName="Pref_Comm"
+    LOVName="LOV_PrefComm">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Secretqust"
+    PrecisionRule="true"
+    EntityAttrName="Secretqust"
+    EntityUsage="UserMstEO"
+    AliasName="Secret_qust"/>
+  <ViewAttribute
+    Name="UpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedBy"
+    EntityUsage="UserMstEO"
+    AliasName="Updated_By"/>
+  <ViewAttribute
+    Name="UpdatedDate"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedDate"
+    EntityUsage="UserMstEO"
+    AliasName="Updated_Date"/>
+  <ViewAttribute
+    Name="UserId"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="UserMstEO"
+    AliasName="User_Id"/>
+  <ViewAttribute
+    Name="lastDeactivateddate"
+    PrecisionRule="true"
+    EntityAttrName="lastDeactivateddate"
+    EntityUsage="UserMstEO"
+    AliasName="last_Deactivated_date"/>
+  <ViewAttribute
+    Name="lastactivateddate"
+    PrecisionRule="true"
+    EntityAttrName="lastactivateddate"
+    EntityUsage="UserMstEO"
+    AliasName="last_activated_date"/>
+  <ViewAttribute
+    Name="Usernum"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Usernum"
+    EntityUsage="UserMstEO"
+    AliasName="User_num"/>
+  <ViewAttribute
+    Name="Secretans"
+    PrecisionRule="true"
+    EntityAttrName="Secretans"
+    EntityUsage="UserMstEO"
+    AliasName="Secret_ans"/>
+  <ViewAttribute
+    Name="Password"
+    PrecisionRule="true"
+    EntityAttrName="Password"
+    EntityUsage="UserMstEO"
+    AliasName="Password"/>
+  <ViewAttribute
+    Name="GroupName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Group_Name"
+    Expression="Group_Name"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="rowStatus"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"/>
+  <ViewLinkAccessor
+    Name="UserRoleMapUVO"
+    ViewLink="com.imum.cpms.model.masters.vo.UserRoleVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

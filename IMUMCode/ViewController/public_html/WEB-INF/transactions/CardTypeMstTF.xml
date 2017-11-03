@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="CardTypeMstTF">
+    <default-activity id="__1">cardTypeMst</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__2">CardTypeMstMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.transactions.inventory.CardTypeMstMBean</managed-bean-class>
+      <managed-bean-scope id="__3">request</managed-bean-scope>
+    </managed-bean>
+    <view id="cardTypeMst">
+      <page>/jspx/transactions/fragments/CardTypeMst.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

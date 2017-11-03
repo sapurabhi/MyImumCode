@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="VehicleBlacklistMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VehicleBlaclListMstUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="VehicleBlaclListMstUVO1Iterator"/>
+    <iterator Binds="VehicleBlaclListMstUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="VehicleBlaclListMstUVO2Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VehicleBlaclListMstUVO1Iterator"
+          id="VehicleBlaclListMstUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehicleBlaclListMstUVO"
+                      Name="VehicleBlaclListMstUVO10">
+        <AttrNames>
+          <Item Value="Blacklistseq"/>
+          <Item Value="Plateid"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PlateCountryID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="Activeflag"/>
+          <Item Value="ActiveDateFrom"/>
+          <Item Value="ActiveDateTo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO1Iterator"
+                     id="PLATENUMBER">
+      <AttrNames>
+        <Item Value="PLATENUMBER"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VehicleBlaclListMstUVO1Iterator" StaticList="false"
+          Uses="LOV_PlateCountryID" id="PlateCountryID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO1Iterator" StaticList="false"
+          Uses="LOV_PLATECTGID" id="PLATECTGID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO1Iterator" StaticList="false"
+          Uses="LOV_PLATETYPEID" id="PLATETYPEID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMAKEID" id="VEHMAKEID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMODELID" id="VEHMODELID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO1Iterator" StaticList="false"
+          Uses="LOV_VEHCOLOURID" id="VEHCOLOURID" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO1Iterator"
+                     id="Activeflag">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO1Iterator"
+                     id="ActiveDateFrom">
+      <AttrNames>
+        <Item Value="ActiveDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO1Iterator"
+                     id="ActiveDateTo">
+      <AttrNames>
+        <Item Value="ActiveDateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="VehicleBlaclListMstUVO1Iterator" id="Activeflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO2Iterator"
+                     id="PLATENUMBER1">
+      <AttrNames>
+        <Item Value="PLATENUMBER"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VehicleBlaclListMstUVO2Iterator" StaticList="false"
+          Uses="LOV_PlateCountryID" id="PlateCountryID1" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO2Iterator" StaticList="false"
+          Uses="LOV_PLATECTGID" id="PLATECTGID1" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO2Iterator" StaticList="false"
+          Uses="LOV_PLATETYPEID" id="PLATETYPEID1" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO2Iterator" StaticList="false"
+          Uses="LOV_VEHMAKEID" id="VEHMAKEID1" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO2Iterator" StaticList="false"
+          Uses="LOV_VEHMODELID" id="VEHMODELID1" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleBlaclListMstUVO2Iterator" StaticList="false"
+          Uses="LOV_VEHCOLOURID" id="VEHCOLOURID1" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO2Iterator"
+                     id="Activeflag2">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO2Iterator"
+                     id="ActiveDateFrom1">
+      <AttrNames>
+        <Item Value="ActiveDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleBlaclListMstUVO2Iterator"
+                     id="ActiveDateTo1">
+      <AttrNames>
+        <Item Value="ActiveDateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="VehicleBlaclListMstUVO2Iterator" id="Activeflag3"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="doNewVehicleBlack"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNewVehicleBlack"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doEditVehicleBlack"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditVehicleBlack"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

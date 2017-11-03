@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PrintADPReceiptPageDef"
+                Package="jspx.reports.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTReleaseVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTReleaseVO1Iterator"/>
+    <iterator Binds="PVTArrivalVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTArrivalVO1Iterator"/>
+    <iterator Binds="PVTVehicleLiftedVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTVehicleLiftedVO1Iterator"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <iterator Binds="PVTPoundCodevo1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTPoundCodevo1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PVTReleaseVO1Iterator" id="EVENTDATE">
+      <AttrNames>
+        <Item Value="EVENTDATE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTArrivalVO1Iterator" id="EVENTDATE1">
+      <AttrNames>
+        <Item Value="EVENTDATE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTVehicleLiftedVO1Iterator" id="EVENTDATE2">
+      <AttrNames>
+        <Item Value="EVENTDATE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTNum">
+      <AttrNames>
+        <Item Value="PVTNum"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMAKEID" id="VEHMAKEID" DTSupportsMRU="true"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMODELID" id="VEHMODELID" DTSupportsMRU="true"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_VEHCOLOURID" id="VEHCOLOURID" DTSupportsMRU="true"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_Contracode" id="Contracode" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PVTPoundCodevo1Iterator" id="locationdesc">
+      <AttrNames>
+        <Item Value="locationdesc"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

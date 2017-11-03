@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="piselectionPageDef"
+                Package="jspx.staffdeployment.jsffragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PIAssignSearch1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="PIAssignSearch1Iterator"
+              Refresh="ifNeeded"/>
+    <iterator Binds="PIAssignVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="PIAssignVO1Iterator"
+              Refresh="ifNeeded"/>
+    <iterator Binds="TempTableVO1" RangeSize="-1"
+              DataControl="StaffDeployDataControl" id="TempTableVO1Iterator"/>
+    <iterator Binds="GenZoneMstVOLOV1" RangeSize="-1"
+              DataControl="StaffDeployDataControl"
+              id="GenZoneMstVOLOV1Iterator"/>
+    <iterator Binds="GenBeatMstVOLOV1" RangeSize="-1"
+              DataControl="StaffDeployDataControl"
+              id="GenBeatMstVOLOV1Iterator"/>
+    <iterator Binds="EditVO1" RangeSize="25" DataControl="StaffDeployDataControl"
+              id="EditVO1Iterator"/>
+    <iterator Binds="PIworkVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="PIworkVO1Iterator"/>
+    <iterator Binds="SectorVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="SectorVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PIAssignSearch1Iterator" id="PIAssignSearch1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIAssignSearch"
+                      Name="PIAssignSearch10">
+        <AttrNames>
+          <Item Value="Selection"/>
+          <Item Value="PIid"/>
+          <Item Value="AttendanceStatus"/>
+          <Item Value="Sector"/>
+          <Item Value="Zone"/>
+          <Item Value="Beat"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PIAssignVO1Iterator" id="PIAssignVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIAssignVO"
+                      Name="PIAssignVO10">
+        <AttrNames>
+          <Item Value="PIID"/>
+          <Item Value="Sector"/>
+          <Item Value="Zone"/>
+          <Item Value="Beat"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="TempTableVO1Iterator" id="TempTableVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.TempTableVO"
+                      Name="TempTableVO10">
+        <AttrNames>
+          <Item Value="PIID"/>
+          <Item Value="Sector"/>
+          <Item Value="Zone" Binds="ZoneCode"/>
+          <Item Value="Beat" Binds="Beat"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="TempTableVO1Iterator" id="ZoneCode"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="GenZoneMstVOLOV1Iterator">
+      <AttrNames>
+        <Item Value="Zone"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="ZoneCode"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="ZoneName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="GenZoneMstVOLOV1Iterator" id="ZoneName"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="TempTableVO1Iterator">
+      <AttrNames>
+        <Item Value="ZoneName"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="Zone"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Zone"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="GenZoneMstVOLOV1Iterator" id="ZoneCode1"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="TempTableVO1Iterator">
+      <AttrNames>
+        <Item Value="ZoneCode"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="Zone"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Zone"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="TempTableVO1Iterator" id="Beat" DTSupportsMRU="true"
+          StaticList="false" ListIter="GenBeatMstVOLOV1Iterator">
+      <AttrNames>
+        <Item Value="Beat"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="BeatCode"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="BeatName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="EditVO1Iterator" StaticList="false" Uses="LOV_Beat"
+          id="Beat1" DTSupportsMRU="true"/>
+    <tree IterBinding="PIworkVO1Iterator" id="PIworkVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIworkVO"
+                      Name="PIworkVO10">
+        <AttrNames>
+          <Item Value="PIID"/>
+          <Item Value="Sector"/>
+          <Item Value="Zone"/>
+          <Item Value="Beat"/>
+          <Item Value="ID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="clearTableContent"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="clearTableContent"
+                  IsViewObjectMethod="false"/>
+    <action IterBinding="PIworkVO1Iterator" id="removeRowWithKey"
+            RequiresUpdateModel="false" Action="removeRowWithKey">
+      <NamedData NDName="rowKey" NDType="java.lang.String"/>
+    </action>
+    <methodAction id="deleteFrmTable"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="deleteFrmTable"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="doCommit"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.doCommit_StaffDeployDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="insertToTable"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="insertToTable" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.insertToTable_StaffDeployDataControl_dataProvider_insertToTable_result">
+      <NamedData NDName="startDate" NDType="java.util.Date"/>
+      <NamedData NDName="endDate" NDType="java.util.Date"/>
+    </methodAction>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="Shift">
+      <AttrNames>
+        <Item Value="Shift"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getPiWorkStatus"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPiWorkStatus" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getPiWorkStatus_StaffDeployDataControl_dataProvider_getPiWorkStatus_result"/>
+    <methodAction id="getSectorDetails"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getSectorDetails" IsViewObjectMethod="false"/>
+    <list IterBinding="SectorVO1Iterator" ListOperMode="navigation"
+          ListIter="SectorVO1Iterator" id="SectorVO1" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="Sector"/>
+      </AttrNames>
+    </list>
+    <methodAction id="sectorSave"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="sectorSave" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.sectorSave_StaffDeployDataControl_dataProvider_sectorSave_result">
+      <NamedData NDName="sector" NDType="java.lang.String"/>
+      <NamedData NDName="rowID" NDType="int"/>
+    </methodAction>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="Supid">
+      <AttrNames>
+        <Item Value="Supid"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getPiAttendanceStatus"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPiAttendanceStatus" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getPiAttendanceStatus_StaffDeployDataControl_dataProvider_getPiAttendanceStatus_result"/>
+    <methodAction id="validatePiWorkAssign"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="validatePiWorkAssign" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.validatePiWorkAssign_StaffDeployDataControl_dataProvider_validatePiWorkAssign_result"/>
+  </bindings>
+</pageDefinition>

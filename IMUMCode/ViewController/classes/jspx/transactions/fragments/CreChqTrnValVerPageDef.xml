@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="CreChqTrnValVerPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CreChqTrnValVerUVO1" RangeSize="30"
+              DataControl="TransactionsAMDataControl"
+              id="CreChqTrnValVerUVO1Iterator"/>
+    <searchRegion Criteria="CreChqTrnValVerUVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CreChqTrnValVerUVO1Iterator"
+                  id="CreChqTrnValVerUVOCriteriaQuery2"/>
+    <iterator id="CreChqTrnValVerUVO1Iterator1" Binds="CreChqTrnValVerUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CreChqTrnValVerUVO1Iterator" id="CreChqTrnValVerUVO12">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.CreChqTrnValVerUVO"
+                      Name="CreChqTrnValVerUVO120">
+        <AttrNames>
+          <Item Value="ReceiptNum"/>
+          <Item Value="SaleDate"/>
+          <Item Value="AuthCode"/>
+          <Item Value="CCDType"/>
+          <Item Value="CCDnum"/>
+          <Item Value="Chqnum"/>
+          <Item Value="ChqBankname"/>
+          <Item Value="ChqDate"/>
+          <Item Value="PYMTAMT"/>
+          <Item Value="Ackstatusid"/>
+          <Item Value="AltChqnum"/>
+          <Item Value="SelectFlag"/>
+          <Item Value="PYMTType"/>
+          <Item Value="SaleStlseq"/>
+          <Item Value="Esysreceiptnum"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+    <button IterBinding="CreChqTrnValVerUVO1Iterator" id="SelectFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SelectFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <methodAction id="refreshCurrentRow" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="refreshCurrentRow"
+                  IsViewObjectMethod="true"
+                  DataControl="TransactionsAMDataControl"
+                  InstanceName="TransactionsAMDataControl.CreChqTrnValVerUVO1">
+      <NamedData NDName="row" NDType="oracle.jbo.Row"/>
+    </methodAction>
+    <methodAction id="doRollback"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doRollback" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doRollback_TransactionsAMDataControl_dataProvider_doRollback_result"/>
+  </bindings>
+</pageDefinition>

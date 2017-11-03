@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="pilocation-flow-definition">
+    <default-activity id="__1">pilocationmap</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__2">CreateTable</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.staffdeploy.CreateTable</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="pilocationmap">
+      <page>/jspx/staffdeploy/fragments/pilocationmap.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

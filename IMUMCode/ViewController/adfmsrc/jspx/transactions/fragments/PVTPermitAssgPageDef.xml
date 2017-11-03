@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTPermitAssgPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="5"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <searchRegion Binds="PVTSearchRVO1Iterator" Criteria="PVTRemarksRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="PVTSearchRVO1Query"/>
+    <iterator Binds="PermitSearchCriteriaVO1" RangeSize="5"
+              DataControl="MastersAMDataControl"
+              id="PermitSearchCriteriaVO1Iterator"/>
+    <searchRegion Binds="PermitSearchCriteriaVO1Iterator"
+                  Criteria="PermitSearchCriteriaVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="PermitSearchCriteriaVO1Query"/>
+    <searchRegion Criteria="PVTRemarksRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO1Iterator"
+                  id="PVTRemarksRVOCriteriaQuery"/>
+    <searchRegion Criteria="PermitSearchCriteriaVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PermitSearchCriteriaVO1Iterator"
+                  id="PermitSearchCriteriaVOCriteriaQuery"/>
+    <iterator Binds="PVTPermitGroupUserVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTPermitGroupUserVO1Iterator"/>
+    <iterator Binds="PVTPermitUserVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTPermitUserVO1Iterator"/>
+    <iterator id="PVTPermitAssignmentVO1Iterator" Binds="PVTPermitAssignmentVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateId"/>
+          <Item Value="PVTSOURCE"/>
+          <Item Value="PIID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PermitSearchCriteriaVO1Iterator"
+          id="PermitSearchCriteriaVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitSearchCriteriaVO"
+                      Name="PermitSearchCriteriaVO110">
+        <AttrNames>
+          <Item Value="PermitNumber"/>
+          <Item Value="vhlplateid"/>
+          <Item Value="PermitType"/>
+          <Item Value="PermitStatusID"/>
+          <Item Value="Permitstartdate"/>
+          <Item Value="permittypename"/>
+          <Item Value="statusname"/>
+          <Item Value="platenumber"/>
+          <Item Value="platetype"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO110">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateId"/>
+          <Item Value="PVTSOURCE"/>
+          <Item Value="PIID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="ENFORCESTAGEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PLATECTGID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PermitSearchCriteriaVO1Iterator"
+          id="PermitSearchCriteriaVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitSearchCriteriaVO"
+                      Name="PermitSearchCriteriaVO10">
+        <AttrNames>
+          <Item Value="PermitNumber"/>
+          <Item Value="Categcode"/>
+          <Item Value="PermitStatusID"/>
+          <Item Value="PermitType"/>
+          <Item Value="vhlplateid"/>
+          <Item Value="permittypename"/>
+          <Item Value="statusname"/>
+          <Item Value="platenumber"/>
+          <Item Value="platecountry"/>
+          <Item Value="platecategory"/>
+          <Item Value="platetype"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="PVTPermitGroupUserVO1Iterator" ListOperMode="navigation"
+          ListIter="PVTPermitGroupUserVO1Iterator" id="PVTPermitGroupUserVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="groupname"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="PVTPermitUserVO1Iterator" ListOperMode="navigation"
+          ListIter="PVTPermitUserVO1Iterator" id="PVTPermitUserVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="firstname"/>
+      </AttrNames>
+    </list>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doRollback" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doRollback_TransactionsAMDataControl_dataProvider_doRollback_result"/>
+  </bindings>
+</pageDefinition>

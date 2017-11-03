@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PITrainingActivityTF">
+    <default-activity id="__1">piTrainingActivityOnLoad</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__4">PITrainingActivityMBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.PITrainingActivityMBean</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PITrainingActivity">
+      <page>/jspx/staffdeploy/fragments/PITrainingActivity.jsff</page>
+    </view>
+    <method-call id="piTrainingActivityOnLoad">
+      <method>#{bindings.piTrainingActivityOnLoad.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>piTrainingActivityOnLoad</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">piTrainingActivityOnLoad</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__10">piTrainingActivityOnLoad</from-outcome>
+        <to-activity-id id="__9">PITrainingActivity</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

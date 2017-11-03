@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="UnassignPIPagePageDef"
+                Package="jspx.staffdeploy.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="jspx.common.cpmsEnglishTemplatePageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <taskFlow id="UnassignPITF1"
+              taskFlowId="/WEB-INF/staffdeploy/UnassignPITF.xml#UnassignPITF"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

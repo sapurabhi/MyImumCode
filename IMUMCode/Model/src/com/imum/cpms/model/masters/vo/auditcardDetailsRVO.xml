@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="auditcardDetailsRVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.masters.vo.auditcardDetailsRVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="ThreshholdCardTypeVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.ThreshholdCardTypeVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="ExcessShortageLOV1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.ExcessShortageLOV"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_cardtype1"
+    ListVOName="ThreshholdCardTypeVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_cardtype1_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="cardtype1"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CardTypeCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="cardtypedenom"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_excessshortageflag"
+    ListVOName="ExcessShortageLOV1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_excessshortageflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="excessshortageflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="sdesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT AuditcardDetailsEO.Audit_card_seq, 
+       AuditcardDetailsEO.Audit_card_cnt_seq, 
+       AuditcardDetailsEO.card_number, 
+       AuditcardDetailsEO.Remarks, 
+       AuditcardDetailsEO.created_by, 
+       AuditcardDetailsEO.created_date, 
+       AuditcardDetailsEO.updated_by, 
+       AuditcardDetailsEO.updated_date, 
+       AuditcardDetailsEO.excess_shortage_flag,
+       AuditcardDetailsEO.audit_seq,
+       (select Card_Type_Code from INV_AUDIT_CARD_COUNT_DTLS c where c.Audit_card_cnt_seq=AuditcardDetailsEO.Audit_card_cnt_seq) as cardtype1
+FROM INV_AUDIT_CARD_DETAILS AuditcardDetailsEO]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="Auditcardseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="BIGINT"
+    AliasName="Audit_card_seq"
+    Expression="Audit_card_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Auditcardcntseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Audit_card_cnt_seq"
+    Expression="Audit_card_cnt_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="cardnumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="16"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="card_number"
+    Expression="card_number"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Remarks"
+    Expression="Remarks"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="createdby"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="created_by"
+    Expression="created_by"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="createddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="created_date"
+    Expression="created_date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="updatedby"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="updated_by"
+    Expression="updated_by"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="updateddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="updated_date"
+    Expression="updated_date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="excessshortageflag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="excess_shortage_flag"
+    Expression="excess_shortage_flag"
+    SQLType="CHAR"
+    LOVName="LOV_excessshortageflag">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="auditseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="audit_seq"
+    Expression="audit_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="cardtype1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="cardtype1"
+    Expression="cardtype1"
+    SQLType="NUMERIC"
+    LOVName="LOV_cardtype1">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

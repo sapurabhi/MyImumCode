@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+
+  <af:panelGroupLayout layout="vertical" id="pgl1">
+
+   <!-- <af:table value="#{bindings.PvtHeaderPaySuperVisorRVO1.collectionModel}"
+              var="row" rows="#{bindings.PvtHeaderPaySuperVisorRVO1.rangeSize}"
+              emptyText="#{bindings.PvtHeaderPaySuperVisorRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PvtHeaderPaySuperVisorRVO1.rangeSize}"
+              rowBandingInterval="0"
+              filterModel="#{bindings.PvtHeaderPaySuperVisorRVO1Query.queryDescriptor}"
+              queryListener="#{bindings.PvtHeaderPaySuperVisorRVO1Query.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.PvtHeaderPaySuperVisorRVO1.collectionModel.selectedRow}"
+              selectionListener="#{bindings.PvtHeaderPaySuperVisorRVO1.collectionModel.makeCurrent}"
+              rowSelection="single" id="t1" width="800">
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTNum.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTNum.label}"
+                 id="c3" width="100">
+        <af:outputText value="#{row.PVTNum}" id="ot11"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PlateId.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PlateId.label}"
+                 id="c6" width="100">
+        <af:outputText value="#{row.PlateId}" id="ot3"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTSOURCE.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTSOURCE.label}"
+                 id="c4" width="100">
+        <af:outputText value="#{row.PVTSOURCE}" id="ot8"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTdatetime.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTdatetime.label}"
+                 id="c7" width="100">
+        <f:facet name="filter">
+          <af:inputDate value="#{vs.filterCriteria.PVTdatetime}" id="id1"/>
+        </f:facet>
+        <af:outputText value="#{row.PVTdatetime}" id="ot7">
+          <af:convertDateTime pattern="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTdatetime.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTStatusID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTStatusID.label}"
+                 id="c11" width="100">
+        <af:outputText value="#{row.PVTStatusID}" id="ot2">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTStatusID.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTSTAGEID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTSTAGEID.label}"
+                 id="c10" width="100">
+        <af:outputText value="#{row.PVTSTAGEID}" id="ot5">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTSTAGEID.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.ENFORCESTAGEID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.ENFORCESTAGEID.label}"
+                 id="c1" width="100">
+        <af:outputText value="#{row.ENFORCESTAGEID}" id="ot1">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.ENFORCESTAGEID.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.CLOSUREREMARKS.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.CLOSUREREMARKS.label}"
+                 id="c8" width="100">
+        <af:outputText value="#{row.CLOSUREREMARKS}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTAMTPAYABLE.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTAMTPAYABLE.label}"
+                 id="c5" width="100">
+        <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot10"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTAMTPAID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.PVTAMTPAID.label}"
+                 id="c2" width="100">
+        <af:outputText value="#{row.PVTAMTPAID}" id="ot9"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.KnockoffAmt.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorRVO1.hints.KnockoffAmt.label}"
+                 id="c9" width="100">
+        <af:outputText value="#{row.KnockoffAmt}" id="ot6"/>
+      </af:column>
+    </af:table>-->
+     <af:showDetailHeader text="#{viewcontrollerBundle.VEHICLE_RELEASE}" disclosed="true" id="sdh1">
+    <af:table value="#{bindings.PvtHeaderPaySuperVisorUVO1.collectionModel}"
+              var="row" rows="#{bindings.PvtHeaderPaySuperVisorUVO1.rangeSize}"
+              emptyText="#{bindings.PvtHeaderPaySuperVisorUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PvtHeaderPaySuperVisorUVO1.rangeSize}"
+              rowBandingInterval="1"
+              filterModel="#{bindings.PvtHeaderPaySuperVisorUVO1Query.queryDescriptor}"
+              queryListener="#{bindings.PvtHeaderPaySuperVisorUVO1Query.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.PvtHeaderPaySuperVisorUVO1.collectionModel.selectedRow}"
+              selectionListener="#{bindings.PvtHeaderPaySuperVisorUVO1.collectionModel.makeCurrent}"
+              rowSelection="single" id="t1" width="958"
+              inlineStyle="height:168px;" scrollPolicy="page" styleClass="AFStretchWidth" autoHeightRows="0">
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTNum.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTNum.label}"
+                 id="c1" width="100">
+        <af:outputText value="#{row.PVTNum}" id="ot3"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PlateId.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PlateId.label}"
+                 id="c10"  width="80">
+ 
+         <af:selectOneChoice value="#{row.bindings.PlateId.inputValue}"
+                            label="#{row.bindings.PlateId.label}" readOnly="true"
+                            id="soc6">
+          <f:selectItems value="#{row.bindings.PlateId.items}" id="si6"/>
+             <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PlateId.format}"/>
+
+        </af:selectOneChoice>
+       
+    
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTdatetime.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTdatetime.label}"
+                 id="c8"  width="80">
+        <f:facet name="filter">
+          <af:inputDate value="#{vs.filterCriteria.PVTdatetime}" id="id1"/>
+        </f:facet>
+        <af:outputText value="#{row.PVTdatetime}" id="ot11">
+          <af:convertDateTime pattern="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTdatetime.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTStatusID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTStatusID.label}"
+                 id="c3"  width="80">
+  <af:selectOneChoice value="#{row.bindings.PVTStatusID.inputValue}"
+                            label="#{row.bindings.PVTStatusID.label}" readOnly="true"
+                            id="so96">
+          <f:selectItems value="#{row.bindings.PVTStatusID.items}" id="s06"/>
+             <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTStatusID.format}"/>
+        </af:selectOneChoice>
+        
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTSTAGEID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTSTAGEID.label}"
+                 id="c11" width="80">
+                 
+                 
+                 
+                 
+        <af:selectOneChoice value="#{row.bindings.PVTSTAGEID.inputValue}"
+                            label="#{row.bindings.PVTSTAGEID.label}" readOnly="true"
+                            id="S096">
+          <f:selectItems value="#{row.bindings.PVTSTAGEID.items}" id="S86"/>
+             <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTSTAGEID.format}"/>
+        </af:selectOneChoice>
+        
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.ENFORCESTAGEID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.ENFORCESTAGEID.label}"
+                 id="c9"  width="80">
+           <af:selectOneChoice value="#{row.bindings.ENFORCESTAGEID.inputValue}"
+                            label="#{row.bindings.ENFORCESTAGEID.label}" readOnly="true"
+                            id="S796">
+          <f:selectItems value="#{row.bindings.ENFORCESTAGEID.items}" id="S786"/>
+             <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.ENFORCESTAGEID.format}"/>
+        </af:selectOneChoice>
+        
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.CLOSUREREMARKS.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.CLOSUREREMARKS.label}"
+                 id="c7"  width="80">
+        <af:outputText value="#{row.CLOSUREREMARKS}" id="ot5"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.CONTRAAMT.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.CONTRAAMT.label}"
+                 id="c6"  width="80">
+        <af:outputText value="#{row.CONTRAAMT}" id="ot1">
+        <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.Discountamt.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.Discountamt.label}"
+                 id="c5"  width="80">
+        <af:outputText value="#{row.Discountamt}" id="ot4">
+        <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTAMTPAYABLE.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTAMTPAYABLE.label}"
+                 id="c2"  width="80">
+        <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot9">
+            <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTAMTPAID.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{bindings.PvtHeaderPaySuperVisorUVO1.hints.PVTAMTPAID.label}"
+                 id="c4"  width="80">
+        <af:outputText value="#{row.PVTAMTPAID}" id="ot7">
+        <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:column>
+    </af:table>
+    </af:showDetailHeader>
+    <af:spacer height="80" id="s51"/>
+  
+  <af:panelGroupLayout id="PG2" layout="horizontal">
+    <af:commandButton text="#{viewcontrollerBundle.GET_DOCUMENTS}" id="cb12" inlineStyle="background-color:#F39C11;width:106px"
+                      action="#{pageFlowScope.pvtPaySuperVisor.getUploadedDocs}"/>
+  </af:panelGroupLayout>
+  
+  <af:spacer id="SP15" height="30"/>
+  <af:panelGridLayout id="pgl7" 
+                        inlineStyle="border-color:ActiveCaption; border-style:inset; border-width:2px; background-color:Menu; text-decoration:none;width:10px"
+                        dimensionsFrom="children">
+
+   <af:iterator id="i12" first="0"
+                       var="row"
+                       value="#{pageFlowScope.pvtPaySuperVisor.doclist}"
+                     rendered="true">
+      
+      <af:gridRow marginTop="20px" height="auto" id="gr5">
+      <af:gridCell marginStart="20px" marginEnd="0px" width="100px" id="gc13" >
+      <af:outputText id="ot30" value="#{viewcontrollerBundle.FILE_NAME_}"  />
+      </af:gridCell>
+      <af:gridCell marginStart="5px" marginEnd="80px" width="100px" id="gc14">
+      
+
+      <af:commandLink text="#{row.docName}" id="S134" inlineStyle="color:Blue; font-size:small; font-style:italic; font-weight:normal;text-decoration:underline;"     
+                     binding="#{pageFlowScope.pvtPaySuperVisor.filePropertyCommandLink}">
+      <af:fileDownloadActionListener filename="#{row.docName}"  method="#{pageFlowScope.pvtPaySuperVisor.downloadFileListener}"/>
+           <f:attribute name="filePath" value="#{row.docPath}"/>
+      </af:commandLink>
+      
+      
+      
+      </af:gridCell>
+      </af:gridRow>
+        </af:iterator>  
+  </af:panelGridLayout>
+  
+  <af:spacer height="30" id="s21"/>
+ <af:panelGroupLayout id="PG1" layout="horizontal" >
+    <af:inputText label="#{viewcontrollerBundle.REMARKS}" id="it1" rendered="#{pageFlowScope.pvtPaySuperVisor.remarksVisible}"
+                  value="#{pageFlowScope.pvtPaySuperVisor.remarks}" partialTriggers="cb12" showRequired="true"
+                  binding="#{pageFlowScope.pvtPaySuperVisor.closeRemarks}"/>
+  </af:panelGroupLayout>
+  
+  <af:spacer height="20" id="s1"/>
+   
+<!-- <af:panelGroupLayout id="PG2" layout="horizontal">
+    <af:selectBooleanCheckbox  label="Approved" id="sbc1"
+                              valueChangeListener="#{pageFlowScope.pvtPaySuperVisor.approved}"/> -->
+  </af:panelGroupLayout>
+ 
+   <af:panelGroupLayout id="PG4" layout="horizontal" >
+    <af:commandButton text="#{viewcontrollerBundle.APPROVE}" id="cb1" inlineStyle="background-color:#F39C11;width:80px"
+                      action="#{pageFlowScope.pvtPaySuperVisor.getApproved}"/>
+                      
+
+  </af:panelGroupLayout>
+</jsp:root>

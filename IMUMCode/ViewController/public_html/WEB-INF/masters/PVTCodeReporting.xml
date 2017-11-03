@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTCodeReporting">
+    <default-activity id="__1">codereporting</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">PVTCourtReportingMbean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.PVTCourtReportingMbean</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="codereporting">
+      <page>/jspx/masters/fragments/codereporting.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

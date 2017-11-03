@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+         
+  <af:panelGroupLayout id="pgl1">
+  <af:showDetailHeader text="#{viewcontrollerBundle.HHC_ASSIGNMENT_}" disclosed="true" id="sdi1">
+ 
+   <af:spacer height="5" id="s2"/>
+   
+  <af:panelFormLayout id="pfl0">
+    <af:inputDate label="#{viewcontrollerBundle.HHC_ASSIGNMENT_DATE_0_}" id="id1"
+                  readOnly="false" disabled="true"
+                  binding="#{pageFlowScope.HHCAssignMBean.date}"
+                  value="#{pageFlowScope.HHCAssignMBean.currentDate}">
+    <af:convertDateTime pattern= "dd-MM-yyyy HH:mm:ss" timeStyle = "short"/>
+    </af:inputDate>
+    <af:spacer height="5" id="s12"/>
+    <!--<af:selectOneChoice value="#{bindings.shiftlistVO1.inputValue}"
+                        label="#{viewcontrollerBundle.SHIFT_0}"
+                         showRequired="true"
+                          autoSubmit="true"
+                        binding="#{pageFlowScope.HHCAssignMBean.shiftId}"
+                        shortDesc="#{bindings.shiftlistVO1.hints.tooltip}"
+                        id="soc1"
+                        valueChangeListener="#{pageFlowScope.HHCAssignMBean.shiftValueChange}">
+      <f:selectItems value="#{bindings.shiftlistVO1.items}" id="si1"/>
+      --><!-- <f:selectItem itemLabel="Morning" itemValue="1" id="si1"/>
+      <f:selectItem itemLabel="Afternoon" itemValue="2" id="si5"/>
+      <f:selectItem itemLabel="Evening" itemValue="3" id="si6"/> --><!--
+    </af:selectOneChoice>-->
+        <!--<af:selectOneChoice value="#{bindings.Shift.inputValue}"
+                            label="#{bindings.Shift.label}"
+                            showRequired="true"
+                            autoSubmit="true"
+                            shortDesc="#{bindings.Shift.hints.tooltip}"
+                            id="soc1"
+                            valueChangeListener="#{pageFlowScope.HHCAssignMBean.newshiftVCL}">
+          <f:selectItems value="#{bindings.Shift.items}" id="si1"/>
+        </af:selectOneChoice>-->
+        <af:selectOneChoice value="#{bindings.GenpiShiftMstVO1.inputValue}"
+                            label="PI Shift"
+                            autoSubmit="true"
+                            
+                            shortDesc="#{bindings.GenpiShiftMstVO1.hints.tooltip}"
+                            id="soc3"
+                            valueChangeListener="#{pageFlowScope.HHCAssignMBean.newshiftVCL}"
+                            valuePassThru="true">
+          <f:selectItems value="#{bindings.GenpiShiftMstVO1.items}" id="si9"/>
+        </af:selectOneChoice>
+       
+        <af:spacer height="5" id="s3"/>
+      <af:selectOneChoice value="#{bindings.GenLocationLOVVO1.inputValue}"
+                          label="#{viewcontrollerBundle.LOCATION_0}"
+                           showRequired="true"
+                           autoSubmit="true"
+                          shortDesc="#{bindings.GenLocationLOVVO1.hints.tooltip}"
+                          id="soc2"
+                          binding="#{pageFlowScope.HHCAssignMBean.selectlocation}"
+                          valueChangeListener="#{pageFlowScope.HHCAssignMBean.locationValueChange}">         
+        <f:selectItems value="#{bindings.GenLocationLOVVO1.items}" id="si2"/>
+      </af:selectOneChoice>
+    <af:spacer height="5" id="s4"/>
+    <af:selectOneRadio label="#{viewcontrollerBundle.ISSUERECEIVE_}" id="sor1"
+                       partialTriggers="cb1"
+                       valueChangeListener="#{pageFlowScope.HHCAssignMBean.IssueReceive}"
+                       binding="#{pageFlowScope.HHCAssignMBean.issueselectedradio}"
+                    autoSubmit="true" layout="horizontal">
+      <af:selectItem label="Issue" value="I"  disabled="false" id="si4"
+                     binding="#{pageFlowScope.HHCAssignMBean.issueSelectOneChoice}"/>
+      <af:selectItem label="Receive" value="R" disabled="false" id="si3"
+                     binding="#{pageFlowScope.HHCAssignMBean.receiveSelectOneChoice}"/>
+    </af:selectOneRadio>
+ <af:spacer height="5" id="s5"/>
+                  <af:inputText label="#{viewcontrollerBundle.PI_NUMBER}" id="it1"
+                        showRequired="true" clientComponent="true"
+                        binding="#{pageFlowScope.HHCAssignMBean.piId}"
+                        partialTriggers="::cb1 ::cb2" autoTab="true"
+                        maximumLength="8">
+            <p>
+               
+            </p>
+            <p>
+               
+            </p>
+          </af:inputText>
+       
+        <af:spacer height="5" id="s6"/>
+         <af:inputText label="#{viewcontrollerBundle.HHC_ID_}" id="it2"
+                        showRequired="true"
+                        binding="#{pageFlowScope.HHCAssignMBean.hhcId}"
+                        
+                        partialTriggers="::cb1 ::cb2" autoTab="true"
+                        maximumLength="20"   valueChangeListener="#{pageFlowScope.HHCAssignMBean.hhcIdVCL}"
+                       autoSubmit="true"/>
+        
+        <af:panelGroupLayout id="pgl2" layout="horizontal" 
+                             binding="#{pageFlowScope.HHCAssignMBean.hhcReceivePgBind}">
+         
+          <af:selectOneRadio label="Select HHC Condition" id="sor2"   showRequired="true"
+                              autoSubmit="true" layout="horizontal" 
+                             binding="#{pageFlowScope.HHCAssignMBean.hhcReceiveConditionbind}"
+                             
+                            visible="false"
+                             valueChangeListener="#{pageFlowScope.HHCAssignMBean.hhcConditinVCL}">
+            <af:selectItem label="Good" value="G" id="si5" 
+                        />
+            <af:selectItem label="Damaged" value="D" disabled="false" id="si6"
+                           />
+          </af:selectOneRadio>
+        </af:panelGroupLayout>
+                  <af:inputFile id="if1"
+                        autoSubmit="true" 
+                        valueChangeListener="#{pageFlowScope.HHCAssignMBean.fileuploadVC}"
+                                visible="false" 
+                                binding="#{pageFlowScope.HHCAssignMBean.hhcInputFileBind}"/>
+
+        <af:spacer height="5" id="s13"/>
+          <af:inputText label="Printer ID" id="it6" showRequired="true"
+                        partialTriggers="::cb1 ::cb2" autoTab="true"
+                        maximumLength="20"
+                        binding="#{pageFlowScope.HHCAssignMBean.printerId}"
+                         autoSubmit="true"/>
+        <af:panelGroupLayout id="pgl3" layout="horizontal" 
+                             binding="#{pageFlowScope.HHCAssignMBean.printerReceivePgBind}">
+        
+          <af:selectOneRadio label="Select Printer Condition" id="sor3"   showRequired="true"
+                             valueChangeListener="#{pageFlowScope.HHCAssignMBean.priterConditionVCL}"
+                             binding="#{pageFlowScope.HHCAssignMBean.printerReceivedConditionBind}"
+                             autoSubmit="true" layout="horizontal" 
+                            visible="false" >
+            <af:selectItem label="Good" value="G" disabled="false" id="si7"
+                         />
+            <af:selectItem label="Damaged" value="D" disabled="false" id="si8"
+                           />
+          </af:selectOneRadio>
+        </af:panelGroupLayout>
+         <af:inputFile id="if2"
+                        autoSubmit="true" 
+                       valueChangeListener="#{pageFlowScope.HHCAssignMBean.fileuploadVC1}"
+                                visible="false"
+                       binding="#{pageFlowScope.HHCAssignMBean.printerInputFileBind}"/>
+        <af:spacer height="5" id="s7"/>
+  <af:inputText label="#{viewcontrollerBundle.COMMENTS_}" id="it3" visible="false"
+                  binding="#{pageFlowScope.HHCAssignMBean.it1}"
+                  partialTriggers="cb1"/>
+     
+    </af:panelFormLayout>
+    
+  <af:spacer  height="10" id="s1"/>
+  <af:panelGroupLayout id="pgl4" partialTriggers="::sor1">
+    <af:commandButton text="#{viewcontrollerBundle.ISSUE_0}" id="cb1"
+                      action="#{pageFlowScope.HHCAssignMBean.IssueHHC}"
+                      visible="#{pageFlowScope.HHCAssignMBean.flag1}"
+                      partialTriggers="::sor1"
+                      actionListener="#{pageFlowScope.HHCAssignMBean.onSetFocus}"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      partialSubmit="true">
+    <af:clientAttribute name="focusField" value="it1"/>
+    </af:commandButton>
+    <af:spacer width="10" id="s8"/>
+    <af:commandButton text="#{viewcontrollerBundle.RECEIVE_0}" id="cb2"  partialSubmit="true"
+                         visible="#{pageFlowScope.HHCAssignMBean.flag2}"
+                      action="#{pageFlowScope.HHCAssignMBean.ReceiveHHC}"
+                       actionListener="#{pageFlowScope.HHCAssignMBean.onSetFocus}"
+                      inlineStyle="width:auto;background-color:#F39C11;"/>
+    <af:spacer width="10" id="s11"/>
+    <af:commandButton text="#{viewcontrollerBundle.CANCEL_6}" id="cb4"
+                      actionListener="#{bindings.Rollback.execute}"
+                      
+                     visible="false"
+                      partialSubmit="true"  
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      action="#{pageFlowScope.HHCAssignMBean.CancelTop}">
+      <af:resetActionListener/>
+    </af:commandButton>
+  </af:panelGroupLayout>
+  
+    <af:spacer  height="10" id="s9"/>
+  
+  <af:panelGroupLayout id="pgl5" visible="#{pageFlowScope.panelVisible}" partialTriggers="::sor1 ::cb2 "
+                       binding="#{pageFlowScope.HHCAssignMBean.gridPanel}">
+        <af:table value="#{bindings.HHCAssignVO1.collectionModel}" var="row" 
+        autoHeightRows="0" scrollPolicy="page" 
+                  rows="#{bindings.HHCAssignVO1.rangeSize}"
+                  emptyText="#{bindings.HHCAssignVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.HHCAssignVO1.rangeSize}"
+                  rowBandingInterval="1" 
+                  selectedRowKeys="#{bindings.HHCAssignVO1.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.HHCAssignVO1.collectionModel.makeCurrent}"
+                  rowSelection="single" id="t1" 
+                  width="#{pageFlowScope.tableWidth eq 'R' ? 720 : 650}" styleClass="AFStretchWidth"
+                  varStatus="vs"
+                    first="0" filterVisible="true"
+                    columnBandingInterval="0"
+                  binding="#{pageFlowScope.HHCAssignMBean.hhcTable}"
+                  inlineStyle="height:274px;">
+                    <!--
+                    
+                
+                
+                ,,,,,,
+                ********visible="#{pageFlowScope.HHCAssignMBean.flagcancel}"
+                 varStatus="vs" scrollPolicy="page" inlineStyle="height:106px;" 
+                first="0" filterVisible="true" selectedRowKeys="#{bindings.leaveApproveVO11.collectionModel.selectedRow}"
+                selectionListener="#{bindings.leaveApproveVO11.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t2" width="983" autoHeightRows="0"  styleClass="AFStretchWidth"
+                columnBandingInterval="0"
+ -->                    
+                    
+                    
+                    
+                    
+                   
+          <af:column sortProperty="#{bindings.HHCAssignVO1.hints.HHCID.name}"
+                     sortable="false" displayIndex="-1"
+                     headerText="#{viewcontrollerBundle.HHC_ID_}"
+                     id="c3" width="150">
+            <af:outputText value="#{row.bindings.HHCID.inputValue}" 
+                          shortDesc="#{bindings.HHCAssignVO1.hints.HHCID.tooltip}"
+                          id="it5">
+            </af:outputText>
+          </af:column>
+          <af:column headerText="HH SNo."
+                     id="c5">
+            <af:outputText value="#{row.HHSNo}" id="ot1"/>
+          </af:column>
+          <af:column headerText="Printer SNo."
+                     id="c6">
+            <af:outputText value="#{row.PrinterSNo}" id="ot2"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.HHCAssignVO1.hints.PIID.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PI_NUMBER}"
+                     id="c2" width="150">
+            <af:outputText value="#{row.bindings.PIID.inputValue}"
+                          shortDesc="#{bindings.HHCAssignVO1.hints.PIID.tooltip}"
+                          id="it4">
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.HHCAssignVO1.hints.IssuedDate1.name}"
+                     sortable="false" displayIndex="-1"
+                     headerText="#{viewcontrollerBundle.ISSUED_DATE_2}"
+                     id="c1" width="150">
+            <af:outputText value="#{row.bindings.IssuedDate1.inputValue}"
+                          shortDesc="#{bindings.HHCAssignVO1.hints.IssuedDate1.tooltip}"
+                          id="id3">
+              <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" timeStyle="short"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.HHCAssignVO1.hints.RecievedDate.name}"
+                     sortable="false" displayIndex="-1"  visible = "false"
+                     headerText="#{viewcontrollerBundle.RECEIVED_DATE_}"
+                     id="c4" width="250"
+                     binding="#{pageFlowScope.HHCAssignMBean.receiveddate}"
+                     partialTriggers="::sor1">
+            <af:inputDate  readOnly="false" disabled="true"
+                  binding="#{pageFlowScope.HHCAssignMBean.date}"
+                  value="#{pageFlowScope.HHCAssignMBean.currentDate}"
+                          label="#{bindings.HHCAssignVO1.hints.RecievedDate.label}"
+                          minValue="#{row.bindings.IssuedDate1.inputValue}"
+                          required="#{bindings.HHCAssignVO1.hints.RecievedDate.mandatory}"
+                          shortDesc="#{bindings.HHCAssignVO1.hints.RecievedDate.tooltip}"
+                          id="id2" >
+              <f:validator binding="#{row.bindings.RecievedDate.validator}"/>
+               <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" timeStyle="short"/>
+            </af:inputDate>
+          </af:column>
+          <!--<af:column id="c5" width="100"
+                     headerText="#{viewcontrollerBundle.ACTION_0}"  visible = "false"
+                     binding="#{pageFlowScope.HHCAssignMBean.reAssignAction}"
+                     partialTriggers="::sor1">
+            <af:commandButton text="#{viewcontrollerBundle.REASSIGN}" id="cb5" action="reassign" inlineStyle="width:auto;background-color:#F39C11;"
+                              actionListener="#{pageFlowScope.HHCAssignMBean.ReAssignAction}"/>
+          </af:column>-->
+        </af:table>
+  
+  
+   <af:spacer  height="10" id="s10"/>
+  
+  <af:panelGroupLayout id="pgl6" rendered="#{pageFlowScope.Status eq 'Issue' ? 'true':'false'}">
+    <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb3"
+                      inlineStyle="width:auto;background-color:#F39C11;" visible="false"
+                      action="#{pageFlowScope.HHCAssignMBean.SubmitHHC}"
+                      partialSubmit="true">
+                      </af:commandButton>
+    
+          </af:panelGroupLayout> 
+      </af:panelGroupLayout>
+  
+  
+    </af:showDetailHeader>
+   </af:panelGroupLayout>
+  
+  
+  
+</jsp:root>

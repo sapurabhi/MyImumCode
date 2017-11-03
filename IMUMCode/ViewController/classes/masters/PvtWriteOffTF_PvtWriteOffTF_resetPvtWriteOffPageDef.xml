@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="PvtWriteOffTF_PvtWriteOffTF_resetPvtWriteOffPageDef"
+                Package="masters" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="resetPvtWriteOff" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="resetPvtWriteOff"
+            IsViewObjectMethod="false" DataControl="MastersAMDataControl"
+            InstanceName="MastersAMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

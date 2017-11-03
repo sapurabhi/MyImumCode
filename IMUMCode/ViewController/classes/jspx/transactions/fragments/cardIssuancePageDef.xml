@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="cardIssuancePageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="InvDetailUVO1"
+              DataControl="TransactionsAMDataControl"
+              id="InvDetailUVO1Iterator"/>
+    <iterator Binds="CardIssueSrchCriVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="CardIssueSrchCriVO1Iterator"/>
+    <iterator Binds="CardsInputFieldsVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="CardsInputFieldsVO1Iterator"/>
+    <iterator id="IssReturnDtlUVO1Iterator" Binds="IssReturnDtlUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="IssReturnHdrUVO1Iterator" Binds="IssReturnHdrUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CardIssueSrchCriVO1Iterator" id="CardIssueSrchCriVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVO"
+                      Name="CardIssueSrchCriVO10">
+        <AttrNames>
+          <Item Value="CardType"/>
+          <Item Value="Denomination"/>
+          <Item Value="NoOfCards"/>
+          <Item Value="StartNum"/>
+          <Item Value="EndNum"/>
+          <Item Value="RemoveFlag" Binds="RemoveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="InvDetailUVO1Iterator" id="InvDetailUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InvDetailUVO"
+                      Name="InvDetailUVO10">
+        <AttrNames>
+          <Item Value="Cardnum"/>
+          <Item Value="CardDenomAmt"/>
+          <Item Value="SelectFlag" Binds="SelectFlag"/>
+          <Item Value="cardTypeDesc"/>
+          <Item Value="cardStatusDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="searchCritRow"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="searchCritRow" IsViewObjectMethod="false"/>
+    <button IterBinding="InvDetailUVO1Iterator" id="SelectFlag"
+            DTSupportsMRU="false" StaticList="true" ChangeEventPolicy="ppr">
+      <AttrNames>
+        <Item Value="SelectFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="CardIssueSrchCriVO1Iterator" id="RemoveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="RemoveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="CardsInputFieldsVO1Iterator"
+                     id="dispatchDate">
+      <AttrNames>
+        <Item Value="dispatchDate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CardsInputFieldsVO1Iterator" StaticList="false"
+          Uses="LOV_LocationId" id="LocationId" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="CardsInputFieldsVO1Iterator"
+                     id="CardIssuancenumber">
+      <AttrNames>
+        <Item Value="CardIssuancenumber"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <methodAction id="displayTransRefNum"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="displayTransRefNum" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.displayTransRefNum_TransactionsAMDataControl_dataProvider_displayTransRefNum_result"/>
+    <methodAction id="pushIssReturnHeader"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="pushIssReturnHeader" IsViewObjectMethod="false">
+      <NamedData NDName="toLoc" NDType="java.lang.Integer"/>
+      <NamedData NDName="fromLoc" NDType="java.lang.Integer"/>
+      <NamedData NDName="dispatchDate" NDType="java.sql.Date"/>
+      <NamedData NDName="createdBy" NDType="java.lang.String"/>
+      <NamedData NDName="tranType" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="pushIssReturnDetail"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="pushIssReturnDetail" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+      <NamedData NDName="reasons" NDType="java.lang.String"/>
+      <NamedData NDName="fromPage" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="cardTypeLength"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="cardTypeLength" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.cardTypeLength_TransactionsAMDataControl_dataProvider_cardTypeLength_result">
+      <NamedData NDName="cardType" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

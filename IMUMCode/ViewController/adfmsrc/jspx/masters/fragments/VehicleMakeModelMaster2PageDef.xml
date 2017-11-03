@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="VehicleMakeModelMaster2PageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VehModelMstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="VehModelMstVO1Iterator"/>
+    <searchRegion Binds="VehModelMstVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VehModelMstVO1Query"/>
+    <iterator Binds="VehMakeMstVO1"
+              DataControl="MastersAMDataControl" id="VehMakeMstVO1Iterator"
+              RangeSize="10"/>
+    <searchRegion Binds="VehMakeMstVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VehMakeMstVO1Query"/>
+    <iterator Binds="VehModelMstVO2" RangeSize="10"
+              DataControl="MastersAMDataControl" id="VehModelMstVO2Iterator"/>
+    <iterator id="VehMakeMstLngVO2Iterator" Binds="VehMakeMstLngVO2"
+              DataControl="MastersAMDataControl" RangeSize="10"/>
+    <iterator id="VehModelMstLngVO2Iterator" Binds="VehModelMstLngVO2"
+              DataControl="MastersAMDataControl" RangeSize="10"/>
+    <iterator id="VehModelMstModelIdRVO1Iterator" Binds="VehModelMstModelIdRVO1"
+              DataControl="MastersAMDataControl" RangeSize="10"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VehModelMstVO1Iterator" id="VehModelMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehModelMstVO"
+                      Name="VehModelMstVO10">
+        <AttrNames>
+          <Item Value="MakeID"/>
+          <Item Value="ModelId"/>
+          <Item Value="ModelName"/>
+          <Item Value="ModelYear"/>
+          <Item Value="CountryCode"/>
+          <Item Value="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VehMakeMstVO1Iterator" id="MakeID">
+      <AttrNames>
+        <Item Value="MakeID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehMakeMstVO1Iterator" id="MakeName">
+      <AttrNames>
+        <Item Value="MakeName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VehMakeMstVO1Iterator" StaticList="false"
+          Uses="LOV_Countrycode" id="Countrycode" DTSupportsMRU="true"/>
+    <button IterBinding="VehMakeMstVO1Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" Uses="LOV_ActiveFlag" StaticList="false">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="VehModelMstVO1Iterator" id="VehModelMstVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehModelMstVO"
+                      Name="VehModelMstVO110">
+        <AttrNames>
+          <Item Value="ModelName"/>
+          <Item Value="ModelYear"/>
+          <Item Value="CountryCode"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="ModelId"/>
+          <Item Value="VehModelNameLng"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="VehModelMstVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"
+            InstanceName="MastersAMDataControl.VehModelMstVO1"
+            DataControl="MastersAMDataControl"/>
+    <tree IterBinding="VehMakeMstVO1Iterator" id="VehMakeMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehMakeMstVO"
+                      Name="VehMakeMstVO10">
+        <AttrNames>
+          <Item Value="MakeID"/>
+          <Item Value="MakeName"/>
+          <Item Value="Countrycode"/>
+          <Item Value="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VehModelMstVO2Iterator" id="VehModelMstVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehModelMstVO"
+                      Name="VehModelMstVO20">
+        <AttrNames>
+          <Item Value="ModelName"/>
+          <Item Value="ModelYear"/>
+          <Item Value="CountryCode"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="VehModelNameLng"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="VehModelMstVO2Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <methodAction id="createNewVehMstDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createNewVehMstDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.createNewVehMstDetails_MastersAMDataControl_dataProvider_createNewVehMstDetails_result">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="VehMakeMstVO1Iterator" id="VehMakeNameLng">
+      <AttrNames>
+        <Item Value="VehMakeNameLng"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VehMakeMstVO1Iterator" StaticList="false"
+          Uses="LOV_Language" id="Language" DTSupportsMRU="true"/>
+    <methodAction id="createNewMakeLangRec"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createNewMakeLangRec"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.createNewMakeLangRec_MastersAMDataControl_dataProvider_createNewMakeLangRec_result">
+      <NamedData NDName="Lang" NDType="java.lang.String"/>
+      <NamedData NDName="MakeName" NDType="java.lang.String"/>
+      <NamedData NDName="currentMakeId" NDType="java.lang.String"/>
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getLangRecForMake"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getLangRecForMake"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="Lang" NDType="java.lang.String"/>
+      <NamedData NDName="currentMakeId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createNewModelLangRec"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createNewModelLangRec"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.createNewModelLangRec_MastersAMDataControl_dataProvider_createNewModelLangRec_result">
+      <NamedData NDName="Lang" NDType="java.lang.String"/>
+      <NamedData NDName="ModelName" NDType="java.lang.String"/>
+      <NamedData NDName="currentModelId" NDType="java.lang.String"/>
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

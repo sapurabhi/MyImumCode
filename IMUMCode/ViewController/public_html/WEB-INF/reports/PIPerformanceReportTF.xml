@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PIPerformanceReportTF">
+    <default-activity id="__1">PIPerformanceReport</default-activity>
+    <view id="PIPerformanceReport">
+      <page>/jspx/reports/fragments/PIPerformanceReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

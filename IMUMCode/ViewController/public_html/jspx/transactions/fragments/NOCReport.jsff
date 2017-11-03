@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <table width="80%">
+    <tr>
+      <td width="539" height="20"> </td>
+      <td align="right" width="459" height="20">
+      <af:outputText value="#{bindings.PVTHDRSEQ.inputValue}" inlineStyle="font-weight:bolder;" id="ot23"/>  </td>
+      <td align="right" width="69" height="20">
+      <af:outputText value=":إشارة"  id="ot20" inlineStyle="font-weight:bolder;"/>
+      </td>
+    </tr><tr>
+      <td width="539"> </td>
+      <td align="right" width="459">
+      <af:outputText value="#{pageFlowScope.date}"  id="ot1" inlineStyle="font-weight:bolder;">
+      <af:convertDateTime pattern="dd-MM-yyyy" />
+     </af:outputText></td>
+  <td align="right" width="69" height="20"> 
+    <af:outputText value=":التاريخ"  id="ot24" inlineStyle="font-weight:bolder;"/></td>
+    </tr>
+       <tr>
+      <td width="539"> </td>
+      <td width="459" align="right"><af:outputText value="السادة/ الإدارة العامة لشرطة ابوظبي            المحترمين" id="ot2" inlineStyle="font-weight:bolder;"/></td>
+      <td align="right" width="69" height="20"> 
+    <af:outputText value=":إلى    "  id="ot25" inlineStyle="font-weight:bolder;"/></td>
+     </tr><tr>
+      <td width="539"> </td>
+      <td width="459" align="right"><af:outputText value="السيد/ مدير إدارة المرور و الترخيص              المحترم"
+ id="ot3" inlineStyle="font-weight:bolder;"/>    </td>
+ <td align="right" width="69" height="20"> 
+    <af:outputText value=":عناية "  id="ot27" inlineStyle="font-weight:bolder;"/></td>
+    </tr>
+      </table>
+      <table width="80%">
+      <tr>
+      <td width="166" height="24"> </td>
+      <td width="199" height="24"> </td>
+      <td width="702" align="right" height="24">
+        <af:outputText value="ص.ب (253) ابوظبي" id="ot4" inlineStyle="font-weight:bolder;"/>
+        <af:spacer width="50"  id="s1"/>
+      </td>
+    </tr><tr>
+      <td width="166" height="37"> </td>
+      <td width="199" height="37"> </td>
+         <td width="702" align="right" height="37">
+        <af:selectOneChoice value="#{bindings.PLATECTGID.inputValue}" simple="true"
+                            label="#{bindings.PLATECTGID.label}" readOnly="true" 
+                            required="#{bindings.PLATECTGID.hints.mandatory}"
+                            shortDesc="#{bindings.PLATECTGID.hints.tooltip}"
+                            id="soc1"
+                            inlineStyle="font-weight:bolder; color:Black;">
+          <f:selectItems value="#{bindings.PLATECTGID.items}" id="si1" />
+        </af:selectOneChoice><af:outputText value=" / #{bindings.PlateId.inputValue}  " inlineStyle="font-weight:bolder;" id="ot5">
+          <af:convertNumber groupingUsed="false"  pattern="#{bindings.PlateId.format}"/></af:outputText><af:outputText value="الموضوع:  رفع وتسديد قيود عن اللوحة المرورية "
+                   id="ot22" inlineStyle="font-weight:bolder; font-size:medium;"/>
+  </td>
+      
+    </tr>
+     <tr>
+      <td width="166"> </td>
+      <td width="199"> </td>
+      <td width="702" align="right"><af:outputText value="،،،السلام عليكم ورحمة الله وبركاته"
+ id="ot6" inlineStyle="font-weight:bolder;"/>
+      </td>
+    </tr><tr>
+      <td width="166" height="20"> </td>
+      <td width="199" height="20"> </td>
+      <td width="702" align="right" height="20">
+      
+    <af:outputText value="تهديكـم دائـرة النقـل أطيـب تحياتهـا،  بالإشارة إلى الموضوع أعلاه, وتنفيذاً لأحكام القانون رقم (18) لسنة 2009 بشأن تنظيم مواقف"
+                   id="ot7" inlineStyle="font-weight:bolder;"/>  
+      
+       </td>
+    </tr> 
+      <tr>
+      <td width="166" height="34"> </td>
+      <td width="199" height="34"> </td>
+      <td width="702" height="34" align="right"><af:outputText value=".المركبات في إمارة أبوظبي، و اللائحة التنفيذية"
+ id="ot8" inlineStyle="font-weight:bolder;"/>
+      </td>
+    </tr><tr>
+      <td width="166"> </td>
+      <td width="199"> </td>
+      <td width="702" height="34" align="right">
+      
+    <af:outputText value=":وحيث أنه قد تم سداد الغرامات المقررة لمخالفات مواقف على اللوحة المرورية المذكورة أعلاه وفق التفاصيل أدناه "
+                   id="ot9" inlineStyle="font-weight:bolder;"/>  
+      
+       </td>
+    </tr>
+    
+  </table>
+ 
+  
+<table cellspacing="2" cellpadding="3"  width="50%">
+<tr><td width="320"></td>
+
+<td>
+   <table cellspacing="2" cellpadding="3" border="1" width="250%">
+        <tr>
+      <td width="229" height="21"> 
+       <af:outputText value="تاريخ الدفع"
+                   id="ot10"
+                      inlineStyle="font-weight:bolder; text-align:center; font-size:medium;"/></td>
+      <td width="185" height="21"> <af:outputText value="تاريخ المخالفة"
+                   id="ot11" inlineStyle="font-weight:bolder; text-align:center; font-size:medium;"/></td>
+      <td width="184" height="21"><af:outputText value="رقم المخالفة"
+                   id="ot12" inlineStyle="font-weight:bolder; text-align:center; font-size:medium;"/> </td>
+    </tr><tr>
+
+      <td width="229">
+      <af:outputText value="#{pageFlowScope.paydate}"  id="ot26" inlineStyle="font-weight:bolder;">
+        <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+     </af:outputText>
+      </td>
+      <td width="185">
+        <af:outputText value="#{bindings.PVTdatetime.inputValue}" inlineStyle="font-weight:bolder;" id="ot21">
+            <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+        </af:outputText>
+      </td>
+      <td width="184">
+        <af:outputText value="#{bindings.ADPnumber.inputValue}" inlineStyle="font-weight:bolder;" id="ot13"/>
+      </td>
+    </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+  
+ 
+  <table cellspacing="2" cellpadding="3"  width="80%">
+    <tr>
+      <td width="36%"> </td>
+      <td width="64%" align="right">
+         <af:outputText value="عليه، يرجى رفع القيود عن اللوحة المرورية المذكورة أعلاه من سجلاتكم المرورية, وذلك فيما يخص ما تم السداد بشأنه."
+                   id="ot14" inlineStyle="font-weight:bolder;"/>
+      </td>
+     
+    </tr><tr>
+      <td width="36%"> </td>
+      <td width="64%" align="right"> <af:outputText value="،،،وتفضلوا بقبول فائق الاحترام"
+                   id="ot15" inlineStyle="font-weight:bolder;"/> </td>
+                   
+       
+    </tr>
+    <tr>
+      <td width="36%"> </td>
+      <td width="64%" align="right"><af:outputText value="مـــــركز خدمـــــــــة العمــــــــــلاء"
+                   id="ot16" inlineStyle="font-weight:bolder;"/></td>
+     
+    </tr>
+    <tr>
+      <td width="36%"> </td>
+      <td width="64%" align="right"> <af:outputText value="نسخة:"                   id="ot17" inlineStyle="font-weight:bolder;"/> </td>
+     
+    </tr>
+    <tr>
+      <td width="36%"> </td>
+      <td width="64%" align="right"><af:outputText value="- مركز خدمة العملاء"
+                   id="ot18" inlineStyle="font-weight:bolder;"/></td>
+     
+    </tr>
+    <tr>
+      <td width="36%"> </td>
+      <td width="64%" align="right"> <af:outputText value="- قطاع النقل البري"
+                   id="ot19" inlineStyle="font-weight:bolder;"/> </td>
+     
+    </tr>
+   
+  </table>
+  
+  
+   <af:panelGroupLayout id="pgl1" layout="horizontal">
+    <af:spacer width="380" height="10" id="s2"/>
+    <af:commandButton text="Print" id="cb1"
+                            inlineStyle="background-color:#F39C11;"
+                            action="Back">
+               <af:showPrintablePageBehavior/>
+               <af:showPrintablePageBehavior/>
+          </af:commandButton>
+    <af:spacer width="10" height="10" id="s3"/>
+    <af:commandButton text="Back " id="cb2"  inlineStyle="background-color:#F39C11;"
+                            action="Back"/>
+     </af:panelGroupLayout>
+</jsp:root>

@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PVTRollbackDiscountSearchVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.transactions.vo.PVTRollbackDiscountSearchVORowImpl"
+  ComponentClass="com.imum.cpms.model.transactions.vo.PVTRollbackDiscountSearchVOImpl"
+  OrderBy="disc_cncl_hdr_seq">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.transactions.vo.PVTRollbackDiscountSearchVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery>
+    <![CDATA[SELECT 
+pvt_header.pvt_hdr_seq,
+pvt_header.pvt_num,
+pvt_header.pvt_date_time,
+pvt_header.pvt_amt_payable,
+pvt_header.contra_amt,
+pvt_disc_cncl_header.disc_cncl_hdr_seq,
+pvt_disc_cncl_header.disc_cncl_type,
+pvt_header.contra_code,
+pvt_disc_cncl_header.pvt_date_from,
+pvt_disc_cncl_header.pvt_date_to,
+pvt_header.pvt_status_id,
+pvt_header.pvt_stage_id,
+pvt_disc_cncl_header.disc_pct,
+pvt_disc_cncl_header.disc_flat_amt,
+pvt_disc_cncl_header.pvt_amt_range_from,
+pvt_disc_cncl_header.pvt_amt_range_to,
+pvt_disc_cncl_header.promo_effective_date_from,
+pvt_disc_cncl_header.promo_effective_date_to,
+pvt_disc_cncl_header.plate_country_id,
+pvt_header.sector_code,
+pvt_header.zone_code,
+pvt_disc_cncl_header.remarks,
+pvt_disc_cncl_dtl.org_contra_amt,
+pvt_disc_cncl_dtl.comp_disc_on_contra_amt,
+pvt_disc_cncl_header.approved_date,
+pvt_disc_cncl_header.approved_by,
+pvt_disc_cncl_header.disc_cncl_status,
+(select Code_Name_En from pvt_contravention_mst where Contra_Code = pvt_header.contra_code)ContraCodeDesc,
+(select Sector_name from gen_sector_mst where Sector_Code = pvt_header.sector_code)SectorDesc,
+(select Zone_Name from gen_zone_mst where zone_code = pvt_header.zone_code)ZoneDesc,
+(ROW_NUMBER() OVER (PARTITION BY pvt_disc_cncl_header.disc_cncl_hdr_seq ORDER BY pvt_disc_cncl_header.disc_cncl_hdr_seq))uniqueDiscountSeq
+FROM
+pvt_header,
+pvt_disc_cncl_header,
+pvt_disc_cncl_dtl
+WHERE 
+pvt_disc_cncl_header.disc_cncl_hdr_seq = pvt_disc_cncl_dtl.disc_cncl_hdr_seq
+AND 
+pvt_header.pvt_hdr_seq = pvt_disc_cncl_dtl.pvt_hdr_seq]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="pvthdrseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="BIGINT"
+    AliasName="pvt_hdr_seq"
+    Expression="pvt_hdr_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtnum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="pvt_num"
+    Expression="pvt_num"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtdatetime"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="pvt_date_time"
+    Expression="pvt_date_time"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtamtpayable"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="pvt_amt_payable"
+    Expression="pvt_amt_payable"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="contraamt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="contra_amt"
+    Expression="contra_amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="disccnclhdrseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="disc_cncl_hdr_seq"
+    Expression="disc_cncl_hdr_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="disccncltype"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="disc_cncl_type"
+    Expression="disc_cncl_type"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="contracode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="contra_code"
+    Expression="contra_code"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtdatefrom"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="pvt_date_from"
+    Expression="pvt_date_from"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtdateto"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="pvt_date_to"
+    Expression="pvt_date_to"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtstatusid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="pvt_status_id"
+    Expression="pvt_status_id"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtstageid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="pvt_stage_id"
+    Expression="pvt_stage_id"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="discpct"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="2"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="disc_pct"
+    Expression="disc_pct"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="discflatamt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="disc_flat_amt"
+    Expression="disc_flat_amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtamtrangefrom"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="pvt_amt_range_from"
+    Expression="pvt_amt_range_from"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="pvtamtrangeto"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="pvt_amt_range_to"
+    Expression="pvt_amt_range_to"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="promoeffectivedatefrom"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="promo_effective_date_from"
+    Expression="promo_effective_date_from"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="promoeffectivedateto"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="promo_effective_date_to"
+    Expression="promo_effective_date_to"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="platecountryid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="plate_country_id"
+    Expression="plate_country_id"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="sectorcode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="sector_code"
+    Expression="sector_code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="zonecode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="zone_code"
+    Expression="zone_code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="remarks"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="remarks"
+    Expression="remarks"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="orgcontraamt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="org_contra_amt"
+    Expression="org_contra_amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="compdisconcontraamt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="comp_disc_on_contra_amt"
+    Expression="comp_disc_on_contra_amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="approveddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="approved_date"
+    Expression="approved_date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="approvedby"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="approved_by"
+    Expression="approved_by"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="disccnclstatus"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="disc_cncl_status"
+    Expression="disc_cncl_status"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ContraCodeDesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="75"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="ContraCodeDesc"
+    Expression="ContraCodeDesc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="75"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SectorDesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="SectorDesc"
+    Expression="SectorDesc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ZoneDesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="ZoneDesc"
+    Expression="ZoneDesc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="uniqueDiscountSeq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="bigint"
+    AliasName="uniqueDiscountSeq"
+    Expression="uniqueDiscountSeq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

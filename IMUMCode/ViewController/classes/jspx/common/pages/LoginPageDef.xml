@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="LoginPageDef"
+                Package="jspx.common.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String"
+                Name="checkLoginCredentials_enteredUserid" IsQueriable="false"/>
+      <variable Type="java.lang.String"
+                Name="checkLoginCredentials_enteredPassword"
+                IsQueriable="false"/>
+    </variableIterator>
+    <iterator id="UserVO1Iterator" Binds="UserVO1"
+              DataControl="LoginAMDataControl" RangeSize="25"/>
+    <iterator id="ResetPasswordVO1Iterator" Binds="ResetPasswordVO1"
+              DataControl="LoginAMDataControl" RangeSize="25"/>
+    <iterator id="MenuMstUVO1Iterator" Binds="MenuMstUVO1"
+              DataControl="MenuAMDataControl" RangeSize="25"/>
+    <iterator id="MenuLngDetailVO1Iterator" Binds="MenuLngDetailVO1"
+              DataControl="MenuAMDataControl" RangeSize="25"/>
+    <iterator id="LoginVO1Iterator" Binds="LoginVO1"
+              DataControl="LoginAMDataControl" RangeSize="25"/>
+    <iterator id="GroupMstUVO1Iterator" Binds="GroupMstUVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="UserRoleMapUVO2Iterator" Binds="UserRoleMapUVO2"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="variables" id="enteredUserid">
+      <AttrNames>
+        <Item Value="checkLoginCredentials_enteredUserid"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="enteredPassword">
+      <AttrNames>
+        <Item Value="checkLoginCredentials_enteredPassword"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="commit" InstanceName="LoginAMDataControl.dataProvider"
+                  DataControl="LoginAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="commit"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="getLastLoginDate"
+                  InstanceName="LoginAMDataControl.dataProvider"
+                  DataControl="LoginAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getLastLoginDate"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.LoginAMDataControl.methodResults.getLastLoginDate_LoginAMDataControl_dataProvider_getLastLoginDate_result"/>
+    <methodAction id="convertPwd" InstanceName="LoginAMDataControl.dataProvider"
+                  DataControl="LoginAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="convertPwd"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="userId" NDType="java.lang.String"/>
+      <NamedData NDName="pwd" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="checkLoginCredentials"
+                  InstanceName="LoginAMDataControl.dataProvider"
+                  DataControl="LoginAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="checkLoginCredentials"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.LoginAMDataControl.methodResults.checkLoginCredentials_LoginAMDataControl_dataProvider_checkLoginCredentials_result">
+      <NamedData NDName="enteredUserid" NDType="java.lang.String"/>
+      <NamedData NDName="enteredPassword" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getHashString"
+                  InstanceName="LoginAMDataControl.dataProvider"
+                  DataControl="LoginAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getHashString"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.LoginAMDataControl.methodResults.getHashString_LoginAMDataControl_dataProvider_getHashString_result">
+      <NamedData NDName="str" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="encryptLdapData"
+                  InstanceName="LoginAMDataControl.dataProvider"
+                  DataControl="LoginAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="encryptLdapData"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.LoginAMDataControl.methodResults.encryptLdapData_LoginAMDataControl_dataProvider_encryptLdapData_result">
+      <NamedData NDName="value" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

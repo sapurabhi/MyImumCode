@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="InvMakerCheckerReportParkingPermitCardsTF">
+    <default-activity id="__1">InvMakerCheckerReportParkingPermitCards</default-activity>
+    <view id="InvMakerCheckerReportParkingPermitCards">
+      <page>/jspx/reports/fragments/InvMakerCheckerReportParkingPermitCards.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

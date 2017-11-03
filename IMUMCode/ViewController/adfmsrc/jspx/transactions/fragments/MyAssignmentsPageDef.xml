@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="MyAssignmentsPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTPermitAssignmentRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTPermitAssignmentRVO1Iterator"/>
+    <iterator Binds="PVTPermitAssignRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTPermitAssignRVO1Iterator"/>
+    <iterator id="PVTPermitAssignmentVO1Iterator" Binds="PVTPermitAssignmentVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="PVTPermitUserVO1Iterator" Binds="PVTPermitUserVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="MyAssignmentEmailUVO1Iterator" Binds="MyAssignmentEmailUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTPermitAssignmentRVO1Iterator"
+          id="PVTPermitAssignmentRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTPermitAssignmentRVO"
+                      Name="PVTPermitAssignmentRVO10">
+        <AttrNames>
+          <Item Value="SOURCEMODULEID"/>
+          <Item Value="PVTNum"/>
+          <Item Value="AssignedDate"/>
+          <Item Value="AssignmentRemarks"/>
+          <Item Value="ASsignedstatusid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTPermitAssignRVO1Iterator" id="PVTPermitAssignRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTPermitAssignRVO"
+                      Name="PVTPermitAssignRVO10">
+        <AttrNames>
+          <Item Value="SOURCEMODULEID"/>
+          <Item Value="permitnumber"/>
+          <Item Value="AssignedDate"/>
+          <Item Value="AssignmentRemarks"/>
+          <Item Value="ASsignedstatusid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doSearchPvtPermit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doSearchPvtPermit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doSearchPvtPermit_TransactionsAMDataControl_dataProvider_doSearchPvtPermit_result">
+      <NamedData NDName="modetype" NDType="java.lang.String"/>
+      <NamedData NDName="hdrseq" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="executeMyAssignments"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="executeMyAssignments" IsViewObjectMethod="false"/>
+    <methodAction id="doSearchPermitpvt"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doSearchPermitpvt"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="modetype" NDType="java.lang.String"/>
+      <NamedData NDName="hdrseq" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

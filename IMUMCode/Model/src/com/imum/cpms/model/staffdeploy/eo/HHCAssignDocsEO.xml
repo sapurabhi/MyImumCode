@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HHCAssignDocsEO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="GEN_HHC_ASSIGN_DOCS"
+  AliasName="HHCAssignDocsEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="HHCASSIGNID"
+    IsNotNull="true"
+    ColumnName="HHC_ASSIGN_ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="BIGINT"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="doctype"
+    IsNotNull="true"
+    Precision="3"
+    Scale="0"
+    ColumnName="doc_type"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DOCDesc"
+    Precision="200"
+    ColumnName="DOC_Desc"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="remarks"
+    Precision="250"
+    ColumnName="remarks"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="250"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Docstage"
+    IsNotNull="true"
+    Precision="3"
+    Scale="0"
+    ColumnName="Doc_stage"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="filepath"
+    IsNotNull="true"
+    Precision="2000"
+    ColumnName="file_path"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="deleteflag"
+    IsNotNull="true"
+    Precision="1"
+    ColumnName="delete_flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    ColumnName="Created_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updatedby"
+    Precision="20"
+    ColumnName="Updated_by"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updateddate"
+    ColumnName="Updated_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="GEN_HHC_ASSIGN_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="HHCASSIGNDOCSEQ"
+    Precision="10"
+    Scale="0"
+    ColumnName="HHC_ASSIGN_DOC_SEQ"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName="GEN_HHC_ASSIGN_DOCS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="HhcassigndocseoPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="HHCASSIGNDOCSEO_PRIMARY_KEY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.staffdeploy.eo.HHCAssignDocsEO.HHCASSIGNDOCSEQ"/>
+    </AttrArray>
+  </Key>
+</Entity>

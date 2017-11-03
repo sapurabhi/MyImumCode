@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <af:panelGroupLayout id="pgl0">
+    <af:outputText value="PVT" id="ot13" inlineStyle="font-weight:bold;"/>
+    <af:spacer id="sp1" height="25"/>
+    <af:table value="#{bindings.PVTPermitAssignmentRVO1.collectionModel}"
+              var="row" rows="#{bindings.PVTPermitAssignmentRVO1.rangeSize}"
+              emptyText="#{bindings.PVTPermitAssignmentRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PVTPermitAssignmentRVO1.rangeSize}"
+              rowBandingInterval="0" id="t1"  width="73%"   
+              selectionListener="#{pageFlowScope.PVTPermitAssgBean.selectPVTAssignRow}"
+                rowSelection="single"
+              inlineStyle="height:142px;">
+      <af:column 
+                 headerText="Source Module"
+                 id="c1" width="110">
+        <af:outputText value="#{row.SOURCEMODULEID}" id="ot1">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PVTPermitAssignmentRVO1.hints.SOURCEMODULEID.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column 
+                 headerText="PVT Number"
+                 id="c3" width="120">
+        <af:outputText value="#{row.PVTNum}" id="ot2"/>
+      </af:column>
+      <af:column 
+                 headerText="Assigned Date"
+                 id="c4" width="110">
+        <af:outputText value="#{row.AssignedDate}" id="ot4">
+          <af:convertDateTime pattern="#{bindings.PVTPermitAssignmentRVO1.hints.AssignedDate.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column 
+                 headerText="Assignment Remarks"
+                 id="c5" width="147">
+        <af:outputText value="#{row.AssignmentRemarks}" id="ot5"/>
+      </af:column>
+      <af:column 
+                 headerText="Status"
+                 id="c2" width="90">
+        <af:outputText value="#{row.ASsignedstatusid}" id="ot3"/>
+      </af:column>
+       <af:column  headerText="Action"   id="c11" width="100" align="center">
+        <af:commandButton text="Update" inlineStyle="width:70px;background-color:#F39C11;" id="cb1"
+                          action="update"/>
+      </af:column>
+      <af:column  headerText="Status update"   id="c13" width="100"
+                 align="center">
+        <af:commandButton text="Complete" inlineStyle="width:70px;background-color:#F39C11;"
+                          id="cb3"   actionListener="#{pageFlowScope.PVTPermitAssgBean.commitPVTPermitAssign}"
+                         />
+      </af:column>
+    </af:table>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl1">
+   <af:spacer id="s1" height="25"/>
+    <af:outputText value="Permit" id="ot14" inlineStyle="font-weight:bold;"/>
+    <af:spacer id="s2" height="25"/>
+    <af:table value="#{bindings.PVTPermitAssignRVO1.collectionModel}" var="row"
+              rows="#{bindings.PVTPermitAssignRVO1.rangeSize}"
+              emptyText="#{bindings.PVTPermitAssignRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PVTPermitAssignRVO1.rangeSize}"
+              rowBandingInterval="0"
+              width="74%"   
+              selectionListener="#{pageFlowScope.PVTPermitAssgBean.selectPermitAssignRow}"
+              rowSelection="single" id="t2" inlineStyle="height:136px;">
+      <af:column 
+                 headerText="Source Module"
+                 id="c8" width="130">
+        <af:outputText value="#{row.SOURCEMODULEID}" id="ot7"/>
+      </af:column>
+      <af:column 
+                 headerText="Permit Number"
+                 id="c10" width="120">
+        <af:outputText value="#{row.permitnumber}" id="ot10"/>
+      </af:column>
+      <af:column 
+                 headerText="Assigned Date"
+                 id="c7" width="100">
+        <af:outputText value="#{row.AssignedDate}" id="ot9">
+          <af:convertDateTime pattern="#{bindings.PVTPermitAssignRVO1.hints.AssignedDate.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column 
+                 headerText="Assignment Remarks"
+                 id="c6" width="147">
+        <af:outputText value="#{row.AssignmentRemarks}" id="ot8"/>
+      </af:column>
+      <af:column 
+                 headerText="Status"
+                 id="c9" width="90">
+        <af:outputText value="#{row.ASsignedstatusid}" id="ot6"/>
+      </af:column>
+       <af:column  headerText="Action"   id="c12" width="100" align="center">
+        <af:commandButton text="Update" id="cb2" inlineStyle="width:70px;background-color:#F39C11;"
+                         action="update1" />
+      </af:column>
+            <af:column  headerText="Status update"   id="c16" width="100"
+                       align="center">
+        <af:commandButton text="Complete" inlineStyle="width:70px;background-color:#F39C11;"
+                          id="cb5" 
+                         actionListener="#{pageFlowScope.PVTPermitAssgBean.commitPVTPermitAssign}"/>
+      </af:column>
+    </af:table>
+  </af:panelGroupLayout>
+</jsp:root>

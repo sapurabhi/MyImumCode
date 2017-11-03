@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="docMasterPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DocMasterUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="DocMasterUVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DocMasterUVO1Iterator" id="DocMasterUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.DocMasterUVO"
+                      Name="DocMasterUVO10">
+        <AttrNames>
+          <Item Value="CountryCode"/>
+          <Item Value="CityCode"/>
+          <Item Value="DocCtg"/>
+          <Item Value="DocSubCtg"/>
+          <Item Value="DocName"/>
+          <Item Value="DocDesc"/>
+          <Item Value="Mandatoryflag"/>
+          <Item Value="Activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DocMasterUVO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="DocMasterUVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="DocMasterUVO1Iterator" id="DocMasterUVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.DocMasterUVO"
+                      Name="DocMasterUVO110">
+        <AttrNames>
+          <Item Value="CountryCode"/>
+          <Item Value="CityCode"/>
+          <Item Value="DocCtg"/>
+          <Item Value="DocSubCtg"/>
+          <Item Value="DocName"/>
+          <Item Value="DocDesc"/>
+          <Item Value="Mandatoryflag"/>
+          <Item Value="Activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MastersAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="MastersAMDataControl"/>
+  </bindings>
+</pageDefinition>

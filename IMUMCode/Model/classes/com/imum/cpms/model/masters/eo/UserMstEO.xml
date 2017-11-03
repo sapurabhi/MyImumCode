@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserMstEO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="GEN_USER_MST"
+  AliasName="UserMstEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+  RowClass="com.imum.cpms.model.masters.eo.UserMstEOImpl">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+    <Attr Name="_codeGenFlag2" Value="Init|Delete|Access|DML"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="ActiveFlag"
+    Precision="1"
+    ColumnName="Active_Flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="GEN_USER_MST"
+    DefaultValue="Y">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ActiveOnStreetFlag"
+    Precision="1"
+    ColumnName="Active_On_Street_Flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="GEN_USER_MST"
+    DefaultValue="N">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="AssignAvailableflag"
+    Precision="1"
+    ColumnName="Assign_Available_flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="GEN_USER_MST"
+    DefaultValue="N">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="BaseLocation"
+    Precision="75"
+    ColumnName="Base_Location"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="75"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="BirthDate"
+    ColumnName="Birth_Date"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <validation:PreDefinedValidationBean
+      Name="BirthDate_Rule_0"
+      ValName="Mandatory"
+      Subtype="MANDATORY"/>
+    <validation:CompareValidationBean
+      Name="BirthDate_Rule_1"
+      ResId="BIRTHDATE_CANNOT_BE_GREATOR_TH"
+      OnAttribute="BirthDate"
+      OperandType="EXPR"
+      Inverse="false"
+      CompareType="LESSTHANEQUALTO">
+      <validation:TransientExpression><![CDATA[adf.currentDate]]></validation:TransientExpression>
+    </validation:CompareValidationBean>
+  </Attribute>
+  <Attribute
+    Name="Createdby"
+    Precision="20"
+    ColumnName="Created_by"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Createddate"
+    ColumnName="Created_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Designation"
+    Precision="75"
+    ColumnName="Designation"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="75"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Extuserflag"
+    Precision="1"
+    ColumnName="Ext_user_flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="GEN_USER_MST"
+    DefaultValue="N">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="FirstName"
+    Precision="50"
+    ColumnName="First_Name"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Gender"
+    Precision="1"
+    ColumnName="Gender"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="GroupId"
+    Precision="5"
+    Scale="0"
+    ColumnName="Group_Id"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LastName"
+    Precision="50"
+    ColumnName="Last_Name"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Lastlogindatetime"
+    ColumnName="Last_login_datetime"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LocalAdd1"
+    Precision="50"
+    ColumnName="Local_Add1"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LocalAdd2"
+    Precision="50"
+    ColumnName="Local_Add2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LocalCity"
+    Precision="50"
+    ColumnName="Local_City"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LocalCountry"
+    Precision="50"
+    ColumnName="Local_Country"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LocalPOBox"
+    Precision="6"
+    Scale="0"
+    ColumnName="Local_PO_Box"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LoginPrintID"
+    Precision="100"
+    ColumnName="Login_PrintID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MailId"
+    Precision="100"
+    ColumnName="Mail_Id"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ManagerId"
+    Precision="20"
+    ColumnName="Manager_Id"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MobileNo"
+    Precision="30"
+    ColumnName="Mobile_No"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <validation:RegExpValidationBean
+      Name="MobileNo_Rule_0"
+      ResId="PLEASE_ENTER_VALID_MOBILE_NUMB"
+      OnAttribute="MobileNo"
+      Pattern="[0-9]+"
+      Inverse="false"/>
+  </Attribute>
+  <Attribute
+    Name="Password"
+    Precision="20"
+    Scale="0"
+    ColumnName="Password"
+    SQLType="VARBINARY"
+    Type="java.lang.String"
+    ColumnType="varbinary"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Password1"
+    Precision="20"
+    Scale="0"
+    ColumnName="Password1"
+    SQLType="VARBINARY"
+    Type="java.lang.String"
+    ColumnType="varbinary"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Password2"
+    Precision="20"
+    Scale="0"
+    ColumnName="Password2"
+    SQLType="VARBINARY"
+    Type="java.lang.String"
+    ColumnType="varbinary"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Password3"
+    Precision="20"
+    Scale="0"
+    ColumnName="Password3"
+    SQLType="VARBINARY"
+    Type="java.lang.String"
+    ColumnType="varbinary"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Password4"
+    Precision="20"
+    Scale="0"
+    ColumnName="Password4"
+    SQLType="VARBINARY"
+    Type="java.lang.String"
+    ColumnType="varbinary"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PermAdd1"
+    Precision="50"
+    ColumnName="Perm_Add1"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PermAdd2"
+    Precision="50"
+    ColumnName="Perm_Add2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PermCity"
+    Precision="50"
+    ColumnName="Perm_City"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PermCountry"
+    Precision="50"
+    ColumnName="Perm_Country"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PermPOBox"
+    Precision="6"
+    Scale="0"
+    ColumnName="Perm_PO_Box"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PersonalMailId"
+    Precision="100"
+    ColumnName="Personal_Mail_Id"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PrefComm"
+    Precision="1"
+    ColumnName="Pref_Comm"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Secretans"
+    Precision="255"
+    Scale="0"
+    ColumnName="Secret_ans"
+    SQLType="VARBINARY"
+    Type="java.lang.String"
+    ColumnType="varbinary"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="510"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Secretqust"
+    Precision="255"
+    ColumnName="Secret_qust"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="255"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedBy"
+    Precision="20"
+    ColumnName="Updated_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedDate"
+    ColumnName="Updated_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UserId"
+    Precision="20"
+    ColumnName="User_Id"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="GEN_USER_MST"
+    PrimaryKey="true"
+    ChangeIndicator="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="lastDeactivateddate"
+    ColumnName="last_Deactivated_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="lastactivateddate"
+    ColumnName="last_activated_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Usernum"
+    IsUpdateable="false"
+    Precision="5"
+    Scale="0"
+    ColumnName="User_num"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="GEN_USER_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="UserMstFirstNameCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_DBObjectName" Value="UserMstFirstNameCheck"/>
+      <Attr Name="_checkCondition" Value='"First_Name" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="UserMstRoleIdCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_DBObjectName" Value="UserMstRoleIdCheck"/>
+      <Attr Name="_checkCondition" Value='"Role_Id" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="UsermsteoPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="USERMSTEO_PRIMARY_KEY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.imum.cpms.model.masters.eo.UserMstEO.UserId"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

@@ -1,0 +1,162 @@
+<WL5G3N0:definitions
+     name="RCSaleWS"
+     targetNamespace="http://ws.sale.rc.mparking.infocomm.com/"
+     xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:WL5G3N1="http://ws.sale.rc.mparking.infocomm.com/"
+    >
+    <WL5G3N0:types>
+        <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.sale.rc.mparking.infocomm.com/"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://ws.sale.rc.mparking.infocomm.com/" schemaLocation="Card_RechargeSale_SCHEMA_2FCARDS_2FInterface_2FXMLSchemas_2FCard_RechargeSale_Client_Schema.xsd"/>
+        </xsd:schema>
+    </WL5G3N0:types>
+    <WL5G3N0:message name="checkRechargeCard">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:checkRechargeCard"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="checkRechargeCardResponse">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:checkRechargeCardResponse"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="soldRechargeCard">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:soldRechargeCard"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="soldRechargeCardResponse">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:soldRechargeCardResponse"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="rollbackRechargeCard">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:rollbackRechargeCard"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="rollbackRechargeCardResponse">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:rollbackRechargeCardResponse"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="deactivateRechargeCard">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:deactivateRechargeCard"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="deactivateRechargeCardResponse">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:deactivateRechargeCardResponse"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="deactivateRechargeCardByWeb">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:deactivateRechargeCardByWeb"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="deactivateRechargeCardByWebResponse">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:deactivateRechargeCardByWebResponse"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="linkRechargeCard">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:linkRechargeCard"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="linkRechargeCardResponse">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:linkRechargeCardResponse"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="topupMWallet">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:topupMWallet"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="topupMWalletResponse">
+        <WL5G3N0:part name="parameters" element="WL5G3N1:topupMWalletResponse"/>
+    </WL5G3N0:message>
+    <WL5G3N0:portType name="RCSaleWS">
+        <WL5G3N0:operation name="checkRechargeCard">
+            <WL5G3N0:input message="WL5G3N1:checkRechargeCard"/>
+            <WL5G3N0:output message="WL5G3N1:checkRechargeCardResponse"/>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="soldRechargeCard">
+            <WL5G3N0:input message="WL5G3N1:soldRechargeCard"/>
+            <WL5G3N0:output message="WL5G3N1:soldRechargeCardResponse"/>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="rollbackRechargeCard">
+            <WL5G3N0:input message="WL5G3N1:rollbackRechargeCard"/>
+            <WL5G3N0:output message="WL5G3N1:rollbackRechargeCardResponse"/>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="deactivateRechargeCard">
+            <WL5G3N0:input message="WL5G3N1:deactivateRechargeCard"/>
+            <WL5G3N0:output message="WL5G3N1:deactivateRechargeCardResponse"/>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="deactivateRechargeCardByWeb">
+            <WL5G3N0:input message="WL5G3N1:deactivateRechargeCardByWeb"/>
+            <WL5G3N0:output message="WL5G3N1:deactivateRechargeCardByWebResponse"/>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="linkRechargeCard">
+            <WL5G3N0:input message="WL5G3N1:linkRechargeCard"/>
+            <WL5G3N0:output message="WL5G3N1:linkRechargeCardResponse"/>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="topupMWallet">
+            <WL5G3N0:input message="WL5G3N1:topupMWallet"/>
+            <WL5G3N0:output message="WL5G3N1:topupMWalletResponse"/>
+        </WL5G3N0:operation>
+    </WL5G3N0:portType>
+    <WL5G3N0:binding name="RCSaleWSPortBinding" type="WL5G3N1:RCSaleWS">
+        <WL5G3N2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <WL5G3N0:operation name="checkRechargeCard">
+            <WL5G3N2:operation/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="soldRechargeCard">
+            <WL5G3N2:operation/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="rollbackRechargeCard">
+            <WL5G3N2:operation/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="deactivateRechargeCard">
+            <WL5G3N2:operation/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="deactivateRechargeCardByWeb">
+            <WL5G3N2:operation/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="linkRechargeCard">
+            <WL5G3N2:operation/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="topupMWallet">
+            <WL5G3N2:operation/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+    </WL5G3N0:binding>
+    <WL5G3N0:service name="RCSaleWS">
+        <WL5G3N0:port name="RCSaleWSPort" binding="WL5G3N1:RCSaleWSPortBinding">
+        <WL5G3N2:address location="http://cpmsfmwappdc.cpms.local:8011/CARDS/Card_RechargeSale"/>
+           <!-- <WL5G3N2:address location="http://192.168.200.113:8003/CARDS/Card_RechargeSale"/>-->
+            <!--<WL5G3N2:address location="http://192.168.200.117:8011/CARDS/Card_RechargeSale"/>-->
+            <!--<WL5G3N2:address location="http://192.168.200.112:8011/CARDS/Card_RechargeSale"/>-->
+        </WL5G3N0:port>
+    </WL5G3N0:service>
+</WL5G3N0:definitions>

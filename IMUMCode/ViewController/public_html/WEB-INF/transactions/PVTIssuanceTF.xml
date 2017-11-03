@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTIssuanceTF">
+    <default-activity id="__1">CreateInsert</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__6">PVTIssuanceMBean</managed-bean-name>
+      <managed-bean-class id="__8">com.imum.cpms.transactions.pvt.PVTIssuanceMBean</managed-bean-class>
+      <managed-bean-scope id="__7">request</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTIssuance">
+      <page>/jspx/transactions/fragments/PVTIssuance.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">CreateInsert</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">CreateInsert</from-outcome>
+        <to-activity-id id="__11">PVTIssuance</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

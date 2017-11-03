@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="CreateCustomerPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="InstitutionUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="InstitutionUVO1Iterator"/>
+    <iterator Binds="CustomerIndividualUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="CustomerIndividualUVO2Iterator"/>
+    <iterator Binds="CustomerIndividualUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="CustomerIndividualUVO1Iterator"/>
+    <iterator Binds="CustAddressUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="CustAddressUVO1Iterator"/>
+    <iterator Binds="AddressDetailsUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="AddressDetailsUVO1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="InstitutionUVO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="Salutation">
+      <AttrNames>
+        <Item Value="Salutation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator" id="LastName">
+      <AttrNames>
+        <Item Value="LastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="FirstName">
+      <AttrNames>
+        <Item Value="FirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="EmiratesID">
+      <AttrNames>
+        <Item Value="EmiratesID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="Residenttype">
+      <AttrNames>
+        <Item Value="Residenttype"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="Nationality">
+      <AttrNames>
+        <Item Value="Nationality"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="Mobilenum">
+      <AttrNames>
+        <Item Value="Mobilenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="Landlinenum">
+      <AttrNames>
+        <Item Value="Landlinenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator" id="EmailID">
+      <AttrNames>
+        <Item Value="EmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="Activeflag">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="Legacyinfo">
+      <AttrNames>
+        <Item Value="Legacyinfo"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CustomerIndividualUVO1Iterator"
+          id="CustomerIndividualUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.CustomerIndividualUVO"
+                      Name="CustomerIndividualUVO10">
+        <AttrNames>
+          <Item Value="Salutation"/>
+          <Item Value="FirstName"/>
+          <Item Value="EmiratesID"/>
+          <Item Value="Residenttype"/>
+          <Item Value="Nationality"/>
+          <Item Value="Mobilenum"/>
+          <Item Value="Updatedate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CustAddressUVO1Iterator" id="InstCustID">
+      <AttrNames>
+        <Item Value="InstCustID"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doCusIndView"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCusIndView"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCusIndView_MastersAMDataControl_dataProvider_doCusIndView_result"/>
+    <tree IterBinding="AddressDetailsUVO1Iterator" id="AddressDetailsUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AddressDetailsUVO"
+                      Name="AddressDetailsUVO10">
+        <AttrNames>
+          <Item Value="UTILBILLNUM"/>
+          <Item Value="TowTeeqNum"/>
+          <Item Value="ADDRLINE1"/>
+          <Item Value="ADDRLINE2"/>
+          <Item Value="ADDRLINE3"/>
+          <Item Value="PostBoxNum"/>
+          <Item Value="SectorCode"/>
+          <Item Value="ZoneCode"/>
+          <Item Value="CommunityCode"/>
+          <Item Value="CityCode"/>
+          <Item Value="Countrycode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCustomerSubmit"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCustomerSubmit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCustomerSubmit_MastersAMDataControl_dataProvider_doCustomerSubmit_result"/>
+    <attributeValues IterBinding="AddressDetailsUVO1Iterator" id="UTILBILLNUM">
+      <AttrNames>
+        <Item Value="UTILBILLNUM"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doCusAddressSearch"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCusAddressSearch"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCusAddressSearch_MastersAMDataControl_dataProvider_doCusAddressSearch_result"/>
+    <methodAction id="doCustomerNew"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCustomerNew"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCustomerNew_MastersAMDataControl_dataProvider_doCustomerNew_result"/>
+    <methodAction id="doCustomerEdit"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCustomerEdit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCustomerEdit_MastersAMDataControl_dataProvider_doCustomerEdit_result"/>
+    <attributeValues IterBinding="CustomerIndividualUVO2Iterator"
+                     id="ALTERNATEPHONENUM">
+      <AttrNames>
+        <Item Value="ALTERNATEPHONENUM"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="MastersAMDataControl"/>
+    <action IterBinding="AddressDetailsUVO1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <list IterBinding="CustomerIndividualUVO2Iterator" StaticList="false"
+          Uses="LOV_Salutation" id="Salutation1" DTSupportsMRU="true"/>
+    <action IterBinding="AddressDetailsUVO1Iterator" id="Delete"
+            InstanceName="MastersAMDataControl.AddressDetailsUVO1"
+            DataControl="MastersAMDataControl" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PIMonthlyDeployNewTF">
+    <default-activity id="__1">emptyPIworkVORowset</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__2">PiMonthlyDeployNewMBean</managed-bean-name>
+      <managed-bean-class id="__4">PiMonthlyDeployNewMBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PIMonthlyDeployNewPF">
+      <page>/jspx/staffdeploy/fragments/PIMonthlyDeployNewPF.jsff</page>
+    </view>
+    <method-call id="emptyPIworkVORowset">
+      <method>#{bindings.emptyPIworkVORowset.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>emptyPIworkVORowset</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="setDisabled">
+      <method>#{pageFlowScope.PiMonthlyDeployNewMBean.setDisabled}</method>
+      <outcome id="__17">
+        <fixed-outcome>pimonthly</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">emptyPIworkVORowset</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome id="__11">emptyPIworkVORowset</from-outcome>
+        <to-activity-id id="__9">PIMonthlyDeployNewPF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__12">
+      <from-activity-id id="__13">setDisabled</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__16">pimonthly</from-outcome>
+        <to-activity-id id="__14">PIMonthlyDeployNewPF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

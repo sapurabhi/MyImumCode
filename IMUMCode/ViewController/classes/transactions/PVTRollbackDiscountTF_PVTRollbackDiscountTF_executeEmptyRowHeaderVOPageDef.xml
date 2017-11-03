@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="PVTRollbackDiscountTF_PVTRollbackDiscountTF_executeEmptyRowHeaderVOPageDef"
+                Package="transactions" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="executeEmptyRowHeaderVO" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="executeEmptyRowHeaderVO"
+            IsViewObjectMethod="false" DataControl="TransactionsAMDataControl"
+            InstanceName="TransactionsAMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

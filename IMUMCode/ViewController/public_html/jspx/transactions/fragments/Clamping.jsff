@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:spacer width="50" height="10" id="s8"/>
+  <af:panelHeader text="Clamping" id="ph1">
+ 
+  <af:spacer width="10" height="20" id="s7"/>
+    <!--<af:table value="#{bindings.ClampingUVO11.collectionModel}" var="row"
+              rows="#{bindings.ClampingUVO11.rangeSize}"
+              emptyText="#{bindings.ClampingUVO11.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.ClampingUVO11.rangeSize}"
+              rowBandingInterval="0"
+              filterModel="#{bindings.ClampingUVO11Query.queryDescriptor}"
+              queryListener="#{bindings.ClampingUVO11Query.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.ClampingUVO11.collectionModel.selectedRow}"
+              selectionListener="#{bindings.ClampingUVO11.collectionModel.makeCurrent}"
+              rowSelection="single" id="t1">
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.PVTNum.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.PVTNum.label}"
+                 id="c5">
+        <af:inputText value="#{row.bindings.PVTNum.inputValue}"
+                      label="#{bindings.ClampingUVO11.hints.PVTNum.label}"
+                      required="#{bindings.ClampingUVO11.hints.PVTNum.mandatory}"
+                      columns="#{bindings.ClampingUVO11.hints.PVTNum.displayWidth}"
+                      maximumLength="#{bindings.ClampingUVO11.hints.PVTNum.precision}"
+                      shortDesc="#{bindings.ClampingUVO11.hints.PVTNum.tooltip}"
+                      id="it5">
+          <f:validator binding="#{row.bindings.PVTNum.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.PVTdatetime.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.PVTdatetime.label}"
+                 id="c7">
+        <f:facet name="filter">
+          <af:inputDate value="#{vs.filterCriteria.PVTdatetime}" id="id2"/>
+        </f:facet>
+        <af:inputDate value="#{row.bindings.PVTdatetime.inputValue}"
+                      label="#{bindings.ClampingUVO11.hints.PVTdatetime.label}"
+                      required="#{bindings.ClampingUVO11.hints.PVTdatetime.mandatory}"
+                      shortDesc="#{bindings.ClampingUVO11.hints.PVTdatetime.tooltip}"
+                      id="id1">
+          <f:validator binding="#{row.bindings.PVTdatetime.validator}"/>
+          <af:convertDateTime pattern="#{bindings.ClampingUVO11.hints.PVTdatetime.format}"/>
+        </af:inputDate>
+      </af:column>
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.Contracode.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.Contracode.label}"
+                 id="c1">
+        <af:inputText value="#{row.bindings.Contracode.inputValue}"
+                      label="#{bindings.ClampingUVO11.hints.Contracode.label}"
+                      required="#{bindings.ClampingUVO11.hints.Contracode.mandatory}"
+                      columns="#{bindings.ClampingUVO11.hints.Contracode.displayWidth}"
+                      maximumLength="#{bindings.ClampingUVO11.hints.Contracode.precision}"
+                      shortDesc="#{bindings.ClampingUVO11.hints.Contracode.tooltip}"
+                      id="it6">
+          <f:validator binding="#{row.bindings.Contracode.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ClampingUVO11.hints.Contracode.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.SectorCode.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.SectorCode.label}"
+                 id="c4">
+        <af:inputText value="#{row.bindings.SectorCode.inputValue}"
+                      label="#{bindings.ClampingUVO11.hints.SectorCode.label}"
+                      required="#{bindings.ClampingUVO11.hints.SectorCode.mandatory}"
+                      columns="#{bindings.ClampingUVO11.hints.SectorCode.displayWidth}"
+                      maximumLength="#{bindings.ClampingUVO11.hints.SectorCode.precision}"
+                      shortDesc="#{bindings.ClampingUVO11.hints.SectorCode.tooltip}"
+                      id="it8">
+          <f:validator binding="#{row.bindings.SectorCode.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.zonecode.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.zonecode.label}"
+                 id="c6">
+        <af:inputText value="#{row.bindings.zonecode.inputValue}"
+                      label="#{bindings.ClampingUVO11.hints.zonecode.label}"
+                      required="#{bindings.ClampingUVO11.hints.zonecode.mandatory}"
+                      columns="#{bindings.ClampingUVO11.hints.zonecode.displayWidth}"
+                      maximumLength="#{bindings.ClampingUVO11.hints.zonecode.precision}"
+                      shortDesc="#{bindings.ClampingUVO11.hints.zonecode.tooltip}"
+                      id="it7">
+          <f:validator binding="#{row.bindings.zonecode.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.PVTStatusID.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.PVTStatusID.label}"
+                 id="c8">
+        <af:inputText value="#{row.bindings.PVTStatusID.inputValue}"
+                      label="#{bindings.ClampingUVO11.hints.PVTStatusID.label}"
+                      required="#{bindings.ClampingUVO11.hints.PVTStatusID.mandatory}"
+                      columns="#{bindings.ClampingUVO11.hints.PVTStatusID.displayWidth}"
+                      maximumLength="#{bindings.ClampingUVO11.hints.PVTStatusID.precision}"
+                      shortDesc="#{bindings.ClampingUVO11.hints.PVTStatusID.tooltip}"
+                      id="it4">
+          <f:validator binding="#{row.bindings.PVTStatusID.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ClampingUVO11.hints.PVTStatusID.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.ENFORCESTAGEID.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.ENFORCESTAGEID.label}"
+                 id="c2">
+        <af:selectOneChoice value="#{row.bindings.ENFORCESTAGEID.inputValue}"
+                            label="#{row.bindings.ENFORCESTAGEID.label}"
+                            required="#{bindings.ClampingUVO11.hints.ENFORCESTAGEID.mandatory}"
+                            shortDesc="#{bindings.ClampingUVO11.hints.ENFORCESTAGEID.tooltip}"
+                            id="soc3">
+          <f:selectItems value="#{row.bindings.ENFORCESTAGEID.items}" id="si3"/>
+        </af:selectOneChoice>
+      </af:column>
+      <af:column sortProperty="#{bindings.ClampingUVO11.hints.PVTStatusDesc.name}"
+                 filterable="true" sortable="false"
+                 headerText="#{bindings.ClampingUVO11.hints.PVTStatusDesc.label}"
+                 id="c3">
+        <af:inputText value="#{row.bindings.PVTStatusDesc.inputValue}"
+                      label="#{bindings.ClampingUVO11.hints.PVTStatusDesc.label}"
+                      required="#{bindings.ClampingUVO11.hints.PVTStatusDesc.mandatory}"
+                      columns="#{bindings.ClampingUVO11.hints.PVTStatusDesc.displayWidth}"
+                      maximumLength="#{bindings.ClampingUVO11.hints.PVTStatusDesc.precision}"
+                      shortDesc="#{bindings.ClampingUVO11.hints.PVTStatusDesc.tooltip}"
+                      id="it2">
+          <f:validator binding="#{row.bindings.PVTStatusDesc.validator}"/>
+        </af:inputText>
+      </af:column>
+    </af:table>-->
+    <af:table value="#{bindings.ClampingUVO1.collectionModel}" var="row"
+            rows="#{bindings.ClampingUVO1.rangeSize}"
+            filterModel="#{bindings.ClampingUVO11Query.queryDescriptor}"
+            queryListener="#{bindings.ClampingUVO11Query.processQuery}"
+            emptyText="#{bindings.ClampingUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+            fetchSize="#{bindings.ClampingUVO1.rangeSize}"
+            rowBandingInterval="1"  filterVisible="true" varStatus="vs"
+            selectionListener="#{pageFlowScope.ClampingMbean.SelectedRow}"
+            rowSelection="single" id="t1" inlineStyle="height:170px;"
+            width="879" binding="#{pageFlowScope.ClampingMbean.selectedtable}">
+    <af:column sortProperty="#{bindings.ClampingUVO1.hints.PVTNum.name}"
+               sortable="false" filterable="true"
+               headerText="PVT Number" id="c6">
+      <af:outputText value="#{row.PVTNum}" id="ot9"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.ClampingUVO1.hints.PVTHDRSEQ.name}"
+               sortable="false" visible="false"
+               headerText="#{bindings.ClampingUVO1.hints.PVTHDRSEQ.label}"
+               id="c3">
+      <af:outputText value="#{row.PVTHDRSEQ}" id="ot4"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.ClampingUVO1.hints.PVTdatetime.name}"
+               filterable="true" sortable="false"
+               headerText="PVT Issued Date"
+               id="c7">
+      <af:outputText value="#{row.PVTdatetime}" id="ot5">
+            <af:convertDateTime pattern="dd-MM-yyyy" />
+      </af:outputText>
+    </af:column>
+    <af:column sortProperty="#{bindings.ClampingUVO1.hints.Contracode.name}"
+               filterable="true" sortable="false"
+               headerText="Contra Code"
+               id="c2">
+      <af:outputText value="#{row.Contracode}" id="ot7">
+        <af:convertNumber groupingUsed="false"
+                          pattern="#{bindings.ClampingUVO1.hints.Contracode.format}"/>
+      </af:outputText>
+    </af:column>
+    <af:column sortProperty="#{bindings.ClampingUVO1.hints.SectorCode.name}"
+               filterable="true" sortable="false"
+               headerText="Sector"
+               id="c4">
+      <af:outputText value="#{row.SectorCode}" id="ot3"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.ClampingUVO1.hints.zonecode.name}"
+               filterable="true" sortable="false"
+               headerText="Zone "
+               id="c5">
+      <af:outputText value="#{row.zonecode}" id="ot8"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.ClampingUVO1.hints.PVTStatusID.name}"
+              filterable="true" sortable="false"
+               headerText="PVT Status"
+               id="c1">
+      <af:outputText value="#{row.PVTStatusDesc}" id="ot6">  
+        <af:convertNumber groupingUsed="false"
+                          pattern="#{bindings.ClampingUVO1.hints.PVTStatusID.format}"/>
+      </af:outputText>
+    </af:column>
+    <af:column headerText="PVT Stage" filterable="true" sortable="false"
+               id="c8" width="220">
+      <af:selectOneChoice value="#{row.bindings.ENFORCESTAGEID.inputValue}"
+                          label="#{row.bindings.ENFORCESTAGEID.label}" readOnly="true"
+                          required="#{bindings.ClampingUVO1.hints.ENFORCESTAGEID.mandatory}"
+                          shortDesc="#{bindings.ClampingUVO1.hints.ENFORCESTAGEID.tooltip}"
+                          id="soc3">
+        <f:selectItems value="#{row.bindings.ENFORCESTAGEID.items}" id="si3"/>
+      </af:selectOneChoice>
+    </af:column>
+  </af:table>
+  
+ </af:panelHeader>
+  <af:spacer width="10" height="30" id="s1"/>
+  <af:panelFormLayout id="pfl1" visible="#{pageFlowScope.Mode eq 'Selected' ? 'true':'false'}"
+                       partialTriggers="t1">
+    <af:inputText label="PVT Number" id="it1" disabled="true"
+                  value="#{pageFlowScope.ClampingMbean.pvtnumber}"
+                  columns="25"/>
+     <af:spacer width="10" height="10" id="s2"/>              
+      <!--<af:inputText label="Current Status" id="it2" disabled="true"
+                    value="#{pageFlowScope.ClampingMbean.currentstatus}"/>-->
+    <af:selectOneChoice value="#{bindings.ENFORCESTAGEID.inputValue}"
+                        label="  Current Status" disabled="true"
+                        required="#{bindings.ENFORCESTAGEID.hints.mandatory}"
+                        shortDesc="#{bindings.ENFORCESTAGEID.hints.tooltip}"
+                        id="soc2">
+      <f:selectItems value="#{bindings.ENFORCESTAGEID.items}" id="si2"/>
+    </af:selectOneChoice>
+    <af:spacer width="10" height="10" id="s4"/>
+    <af:selectOneChoice value="#{bindings.ClampenforcementRVO1.inputValue}"
+                        label="New Status"  
+                       showRequired="true"
+                        shortDesc="#{bindings.ClampenforcementRVO1.hints.tooltip}"
+                        id="soc1" 
+                        binding="#{pageFlowScope.ClampingMbean.newstatus}">
+      <f:selectItems value="#{bindings.ClampenforcementRVO1.items}" id="si1"/>
+    </af:selectOneChoice>
+    <af:spacer width="10" height="10" id="s3"/>
+    <af:inputText label="Remarks" id="it3" rows="3" showRequired="true" columns="25"
+                  binding="#{pageFlowScope.ClampingMbean.remarks}"
+                  partialTriggers="cb1 cb2"
+                  value="#{pageFlowScope.ClampingMbean.remarksforclamping}"/>
+ </af:panelFormLayout>
+  <af:spacer width="10" height="30" id="s5"/>
+    <af:panelGroupLayout id="pgl2"   visible="#{pageFlowScope.Mode eq 'Selected' ? 'true':'false'}" partialTriggers="t1">                                                                                    
+      <af:commandButton text="Submit" id="cb1"   inlineStyle="background-color:#F39C11;"
+                        action="#{pageFlowScope.ClampingMbean.Submit}"/>
+      <af:spacer width="10" height="10" id="s6"/>
+      <af:commandButton text="Cancel" id="cb2"   inlineStyle="background-color:#F39C11;"
+                        action="#{pageFlowScope.ClampingMbean.Cancel}"
+                        immediate="true"/>
+    </af:panelGroupLayout>
+  <af:popup id="p1" binding="#{pageFlowScope.ClampingMbean.pvtamtpayablepopup}">
+    <af:dialog id="d1" title="Information">
+      <af:outputText value="PVT should be paid completely to raise Declamp request" id="ot1"/>
+    </af:dialog>
+  </af:popup>
+</jsp:root>

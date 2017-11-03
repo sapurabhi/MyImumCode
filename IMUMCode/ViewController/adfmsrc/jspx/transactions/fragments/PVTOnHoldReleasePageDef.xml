@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTOnHoldReleasePageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO2" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO2Iterator"/>
+    <searchRegion Criteria="PVTOnHoldSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator"
+                  id="PVTOnHoldSearchRVOCriteriaQuery"/>
+    <searchRegion Criteria="PVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator" id="PVTSearchRVOCriteriaQuery"/>
+    <iterator Binds="PVTEventDetailsVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTEventDetailsVO1Iterator"/>
+    <searchRegion Criteria="PVTOnHoldSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator"
+                  id="PVTOnHoldSearchRVOCriteriaQuery1"/>
+  </executables>
+  <bindings>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <tree IterBinding="PVTSearchRVO2Iterator" id="PVTSearchRVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO20">
+        <AttrNames>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="ADPnumber"/>
+          <Item Value="Appealnumber"/>
+          <Item Value="Balance"/>
+          <Item Value="Blacklistflag"/>
+          <Item Value="CLOSUREREASONS"/>
+          <Item Value="CLOSUREREMARKS"/>
+          <Item Value="CONTRAAMT"/>
+          <Item Value="Contracode"/>
+          <Item Value="ContraFeeAfterDiscount"/>
+          <Item Value="ContraFeeDiscountAmt"/>
+          <Item Value="CountryCode"/>
+          <Item Value="courtcasenumber"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="customername"/>
+          <Item Value="DEFCityCode"/>
+          <Item Value="DEFCountryMst"/>
+          <Item Value="Discountamt"/>
+          <Item Value="DiscPeriodenddate"/>
+          <Item Value="ENFORCESTAGEID"/>
+          <Item Value="ForeignPlate"/>
+          <Item Value="HHCID"/>
+          <Item Value="Mobilenum"/>
+          <Item Value="Obsrvseq"/>
+          <Item Value="PIID"/>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PlateId"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PVTAmtAfterDiscount"/>
+          <Item Value="PVTAMTPAID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTSOURCE"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTStatusID1"/>
+          <Item Value="PVTVHCLgeolat"/>
+          <Item Value="PVTVHCLgeolon"/>
+          <Item Value="Requestlogseq"/>
+          <Item Value="SectorCode"/>
+          <Item Value="TariffID"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="verifiedby"/>
+          <Item Value="verifieddate"/>
+          <Item Value="zonecode"/>
+          <Item Value="CustId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PVTEventDetailsVO1Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="updatePvtStatusForReleaseOnHold"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="updatePvtStatusForReleaseOnHold"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.updatePvtStatusForReleaseOnHold_TransactionsAMDataControl_dataProvider_updatePvtStatusForReleaseOnHold_result">
+      <NamedData NDName="pvtStatus" NDType="int"/>
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="notesEvent" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

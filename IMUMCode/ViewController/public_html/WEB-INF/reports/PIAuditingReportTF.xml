@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PIAuditingReportTF">
+    <default-activity id="__1">PIAuditingReport</default-activity>
+    <view id="PIAuditingReport">
+      <page>/jspx/reports/fragments/PIAuditingReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

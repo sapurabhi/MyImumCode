@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="SectorMstVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="SectorMstEO.Sector_Code, 
+       SectorMstEO.Community_Code, 
+       SectorMstEO.Sector_Name, 
+       SectorMstEO.Geo_Lat_Deg, 
+       SectorMstEO.Geo_Lon_Deg, 
+       SectorMstEO.Bay_Count, 
+       SectorMstEO.GoLive_Date, 
+       SectorMstEO.Max_permit_quota, 
+       SectorMstEO.Free_Sector_flag, 
+       SectorMstEO.DoT_Insp_Req_Flag, 
+       SectorMstEO.Country_code, 
+       SectorMstEO.Active_Flag, 
+       SectorMstEO.Changed_flag, 
+       SectorMstEO.Created_By, 
+       SectorMstEO.Created_Date, 
+       SectorMstEO.Updated_By, 
+       SectorMstEO.Updated_Date"
+  FromList=" GEN_SECTOR_MST SectorMstEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="SectorMstEO.Created_Date desc"
+  FetchMode="FETCH_AS_NEEDED"
+  FetchSize="11"
+  RangeSize="10"
+  RowClass="com.imum.cpms.model.masters.vo.SectorMstVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.SectorMstVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="YesNoLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.YesNoLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CommunityLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.CommunityLovVO">
+    <ViewCriteriaUsage
+      Name="CommunityLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.CommunityLovVO.CommunityLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="LangMstLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.LangMstLVO">
+    <ViewCriteriaUsage
+      Name="LangMstLVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.LangMstLVO.LangMstLVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_FreeSectorflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_FreeSectorflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="FreeSectorflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CommunityCode"
+    ListVOName="CommunityLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_CommunityCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CommunityCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CommunityCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CommunityName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_DoTInspReqFlag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_DoTInspReqFlag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DoTInspReqFlag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ActiveFlag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ActiveFlag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ActiveFlag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Changedflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Changedflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Changedflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Language"
+    ListVOName="LangMstLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Language_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Language"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LNGCODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LNGDESC"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="SectorMstEO"
+    Entity="com.imum.cpms.model.masters.eo.SectorMstEO"/>
+  <ViewAttribute
+    Name="SectorCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SectorCode"
+    EntityUsage="SectorMstEO"
+    AliasName="Sector_Code"/>
+  <ViewAttribute
+    Name="CommunityCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CommunityCode"
+    EntityUsage="SectorMstEO"
+    AliasName="Community_Code"
+    LOVName="LOV_CommunityCode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SectorName"
+    PrecisionRule="true"
+    EntityAttrName="SectorName"
+    EntityUsage="SectorMstEO"
+    AliasName="Sector_Name">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="GeoLatDeg"
+    PrecisionRule="true"
+    EntityAttrName="GeoLatDeg"
+    EntityUsage="SectorMstEO"
+    AliasName="Geo_Lat_Deg"/>
+  <ViewAttribute
+    Name="GeoLonDeg"
+    PrecisionRule="true"
+    EntityAttrName="GeoLonDeg"
+    EntityUsage="SectorMstEO"
+    AliasName="Geo_Lon_Deg"/>
+  <ViewAttribute
+    Name="BayCount"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="BayCount"
+    EntityUsage="SectorMstEO"
+    AliasName="Bay_Count"/>
+  <ViewAttribute
+    Name="GoLiveDate"
+    PrecisionRule="true"
+    EntityAttrName="GoLiveDate"
+    EntityUsage="SectorMstEO"
+    AliasName="GoLive_Date"/>
+  <ViewAttribute
+    Name="Maxpermitquota"
+    PrecisionRule="true"
+    EntityAttrName="Maxpermitquota"
+    EntityUsage="SectorMstEO"
+    AliasName="Max_permit_quota"/>
+  <ViewAttribute
+    Name="FreeSectorflag"
+    PrecisionRule="true"
+    EntityAttrName="FreeSectorflag"
+    EntityUsage="SectorMstEO"
+    AliasName="Free_Sector_flag"
+    LOVName="LOV_FreeSectorflag"/>
+  <ViewAttribute
+    Name="DoTInspReqFlag"
+    PrecisionRule="true"
+    EntityAttrName="DoTInspReqFlag"
+    EntityUsage="SectorMstEO"
+    AliasName="DoT_Insp_Req_Flag"
+    LOVName="LOV_DoTInspReqFlag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Countrycode"
+    PrecisionRule="true"
+    EntityAttrName="Countrycode"
+    EntityUsage="SectorMstEO"
+    AliasName="Country_code"/>
+  <ViewAttribute
+    Name="ActiveFlag"
+    PrecisionRule="true"
+    EntityAttrName="ActiveFlag"
+    EntityUsage="SectorMstEO"
+    AliasName="Active_Flag"
+    LOVName="LOV_ActiveFlag"
+    DefaultValue="Y">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Changedflag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Changedflag"
+    EntityUsage="SectorMstEO"
+    AliasName="Changed_flag"
+    LOVName="LOV_Changedflag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="SectorMstEO"
+    AliasName="Created_By"
+    IsUpdateable="while_insert"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="SectorMstEO"
+    AliasName="Created_Date"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="UpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedBy"
+    EntityUsage="SectorMstEO"
+    AliasName="Updated_By"/>
+  <ViewAttribute
+    Name="UpdatedDate"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedDate"
+    EntityUsage="SectorMstEO"
+    AliasName="Updated_Date"/>
+  <ViewAttribute
+    Name="Language"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_Language">
+    <TransientExpression><![CDATA[adf.context.locale.language=='en'?'AR':'EN']]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SectorNameLng"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="RowChanged"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

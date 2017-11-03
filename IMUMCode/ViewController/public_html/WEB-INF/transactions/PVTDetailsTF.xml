@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTDetailsTF">
+    <default-activity id="__3">PVTSearchFrag</default-activity>
+    <transaction id="__1">
+      <requires-transaction/>
+    </transaction>
+    <data-control-scope id="__17">
+      <shared/>
+    </data-control-scope>
+    <managed-bean id="__13">
+      <managed-bean-name id="__11">PVTDetailsMBean</managed-bean-name>
+      <managed-bean-class id="__12">com.imum.cpms.PVTDetailsMBean</managed-bean-class>
+      <managed-bean-scope id="__10">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTDetails">
+      <page>/jspx/transactions/fragments/PVTDetails.jsff</page>
+    </view>
+    <view id="PVTSearchFrag">
+      <page>/jspx/transactions/fragments/PVTSearchFrag.jsff</page>
+    </view>
+    <control-flow-rule id="__33">
+      <from-activity-id id="__34">PVTDetails</from-activity-id>
+      <control-flow-case id="__36">
+        <from-outcome id="__37">back</from-outcome>
+        <to-activity-id id="__35">PVTSearchFrag</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id id="__14">PVTSearchFrag</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__20">viewPVTDetails</from-outcome>
+        <to-activity-id id="__19">PVTDetails</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

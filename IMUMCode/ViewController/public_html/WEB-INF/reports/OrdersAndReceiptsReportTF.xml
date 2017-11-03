@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="OrdersAndReceiptsReportTF">
+    <default-activity id="__1">OrdersAndReceiptsReport</default-activity>
+    <view id="OrdersAndReceiptsReport">
+      <page>/jspx/reports/fragments/OrdersAndReceiptsReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

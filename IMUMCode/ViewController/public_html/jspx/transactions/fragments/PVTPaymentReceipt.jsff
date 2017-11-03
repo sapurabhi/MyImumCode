@@ -1,0 +1,364 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+           xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" inlineStyle="width:1175px; height:445px;"
+                       halign="center">
+    <af:spacer width="10" height="5" id="s6"/>
+    <af:panelGroupLayout id="pgl2" layout="horizontal">
+      <af:spacer width="350" height="7" id="s1"/>
+      <af:image source="/images/mawaquif.gif" shortDesc="DoT" id="i2"/>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl3" layout="horizontal">
+      <af:spacer width="355" height="7" id="s3"/>
+      <af:image source="/images/mawaquif2.gif" shortDesc="mawaqif" id="i3"/>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="30" id="s4"/>
+    <af:panelGroupLayout id="pgl4" layout="horizontal">
+      <af:spacer width="400" height="10" id="s5"/>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.RECEIPT_NUMBER}" id="plam3">
+        <af:outputText value="#{bindings.ReceiptNum.inputValue}" id="ot1" inlineStyle="font-weight: bold;"/>
+      </af:panelLabelAndMessage>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="25" id="s7"/>
+    <af:panelGroupLayout id="pgl5" layout="horizontal">
+    
+    <!--<af:panelFormLayout id="pfl1"  inlineStyle="border-color:Black; border-style:inset; border-width:thin; width:300px;">
+
+   <af:panelLabelAndMessage label="#{viewcontrollerBundle.CONTRAVENTION_FEE}"
+                               id="plam2">
+        <af:outputText value="#{pageFlowScope.pvtPaymentBean.conventionFee}" id="ot43">
+        <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+    
+    <af:panelLabelAndMessage label="#{viewcontrollerBundle.DISCOUNT_ON_CONTRAVENTION_FEE}"
+                               id="plam4">
+        <af:outputText value="#{pageFlowScope.pvtPaymentBean.discountOmConv}"
+                       id="ot11">
+         <f:convertNumber pattern="#0.00"/>
+         </af:outputText>
+      </af:panelLabelAndMessage>
+    
+    <af:panelLabelAndMessage label="#{viewcontrollerBundle.REMOVAL_CHARGES}"
+                               id="plam12">
+    <af:outputText value="#{pageFlowScope.pvtPaymentBean.removalCharge}"
+                   id="ot12">
+                    <f:convertNumber pattern="#0.00"/>
+                   </af:outputText>
+    </af:panelLabelAndMessage>
+    
+     <af:panelLabelAndMessage label="#{viewcontrollerBundle.CLAMPING_CHARGE}"
+                               id="plam132">
+                               <af:outputText value="#{pageFlowScope.pvtPaymentBean.clampingCharge}" id="ot13">
+                                <f:convertNumber pattern="#0.00"/>
+                               </af:outputText>
+    </af:panelLabelAndMessage>
+    
+    
+    
+     <af:panelLabelAndMessage label="#{viewcontrollerBundle.POUND_CHARGE}"
+                               id="plam1322">
+            <af:outputText value="#{pageFlowScope.pvtPaymentBean.poundCharge}" id="ot23">
+             <f:convertNumber pattern="#0.00"/>
+            </af:outputText>
+    </af:panelLabelAndMessage>
+    
+
+    <af:panelLabelAndMessage label="#{viewcontrollerBundle.PAID_AMT}"
+                               id="plame3">
+        <af:outputText value="#{pageFlowScope.pvtPaymentBean.paid}" id="ot15">
+         <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+   
+    <af:panelLabelAndMessage label="#{viewcontrollerBundle.OUTSTANDING_AMOUNT}"
+                               id="plam33">
+        <af:outputText value="#{pageFlowScope.pvtPaymentBean.payableAmt}" id="ot05">
+         <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+
+    </af:panelFormLayout>-->
+
+    
+    
+   <af:spacer width="90" height="10" id="s8"/>
+ 
+    </af:panelGroupLayout>
+<!--Iterator for Payment Receipt Grid-Start-->
+
+
+
+
+   <af:panelGroupLayout id="pgl8" layout="vertical">
+    
+          <af:panelGroupLayout id="pgl61" layout="horizontal" >
+     
+        <af:spacer width="90" height="10" id="spacer21"/>
+
+        <af:spacer width="100" height="30" id="spacer11"/>
+        
+         
+        
+         <af:spacer width="150" height="30" id="spacer141"/>
+        
+      </af:panelGroupLayout>   
+    
+            <af:group id="g1">
+                <af:panelGroupLayout id="pgl9" layout="horizontal">
+    
+               <af:spacer width="90" height="10" id="s16"/>
+              <af:panelGridLayout id="pgl7"
+                        inlineStyle="border-color:ActiveCaption; border-style:inset; border-width:5px; background-color:Menu; text-decoration:none;"
+                        dimensionsFrom="children">
+                        
+                        
+                        
+        <af:gridRow marginTop="5px" height="auto" id="gr774">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc710"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.INFORMATION}" id="ot7117"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" height="10" id="s173"/>
+          </af:gridCell>
+          
+            <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc910"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.CHARGE_PAYABLE}" id="ot8117"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" height="10" id="s873"/>
+          </af:gridCell>
+          
+          
+          <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc2"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.PAID_AMOUNT}" id="ot3"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" height="10" id="s2"/>
+          </af:gridCell>
+          
+           <af:gridCell marginStart="5px" marginEnd="5px" width="100px" id="gc4"
+                     inlineStyle="background-color:Black;">
+         <af:outputText value="    " id="ot5"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" height="10" id="s10"/>
+          </af:gridCell>
+        
+      </af:gridRow>
+      
+                        
+                        
+                        
+                        
+    <af:gridRow marginTop="5px" height="auto" id="gr54">
+               <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc510">
+        
+          <af:panelLabelAndMessage label="#{viewcontrollerBundle.CONTRAVENTION_FEE}"
+                               id="plam2">
+        <af:outputText value="#{pageFlowScope.pvtPaymentBean.conventionFee}" id="ot43">
+        <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+  
+    </af:gridCell>
+    
+    <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc9510">
+               
+               
+                <af:panelLabelAndMessage label="#{viewcontrollerBundle.DISCOUNT_}"
+                               id="plam4">
+              <af:outputText value="#{pageFlowScope.pvtPaymentBean.discountOmConv}"
+                       id="ot11">
+         <f:convertNumber pattern="#0.00"/>
+         </af:outputText>
+      </af:panelLabelAndMessage>
+               </af:gridCell>
+               
+               
+       <af:gridCell marginStart="5px" marginEnd="5px" width="200px"
+                                id="gc3">
+        
+         
+        <af:outputText value="#{bindings.SaleAmt.inputValue}"
+                       id="ot4">
+        <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+   
+  
+    </af:gridCell>
+               
+               </af:gridRow>
+   <af:gridRow marginTop="0px"  id="gr1">
+    <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc1">
+        
+         
+
+    <af:panelLabelAndMessage label="#{viewcontrollerBundle.REMOVAL_CHARGES}"
+                               id="plam12">
+    <af:outputText value="#{pageFlowScope.pvtPaymentBean.removalCharge}"
+                   id="ot12">
+                    <f:convertNumber pattern="#0.00"/>
+                   </af:outputText>
+    </af:panelLabelAndMessage>
+    
+     <af:panelLabelAndMessage label="#{viewcontrollerBundle.CLAMPING_CHARGE}"
+                               id="plam132">
+                               <af:outputText value="#{pageFlowScope.pvtPaymentBean.clampingCharge}" id="ot13">
+                                <f:convertNumber pattern="#0.00"/>
+                               </af:outputText>
+    </af:panelLabelAndMessage>
+    
+    
+    
+     <af:panelLabelAndMessage label="#{viewcontrollerBundle.POUND_CHARGE}"
+                               id="plam1322">
+            <af:outputText value="#{pageFlowScope.pvtPaymentBean.poundCharge}" id="ot23">
+             <f:convertNumber pattern="#0.00"/>
+            </af:outputText>
+    </af:panelLabelAndMessage>
+    
+
+    <af:panelLabelAndMessage label="#{viewcontrollerBundle.PAID_AMT}"
+                               id="plame3">
+        <af:outputText value="#{bindings.SaleAmt.inputValue}" id="ot15">
+         <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+   
+    
+
+  
+          
+          
+          
+          
+          
+          
+          
+          
+            <af:spacer width="150" height="10" id="s513"/>
+          </af:gridCell>
+        
+      </af:gridRow>          
+                        
+                        
+             <!-- <af:gridRow marginTop="5px" height="auto" id="gr954">
+               <af:gridCell marginStart="5px" marginEnd="5px" width="200px"
+                            id="gc2">
+               
+               
+                <af:panelLabelAndMessage label="#{viewcontrollerBundle.DISCOUNT_ON_CONTRAVENTION_FEE}"
+                               id="plam5">
+              <af:outputText value="#{pageFlowScope.pvtPaymentBean.discountOmConv}"
+                       id="ot3">
+         <f:convertNumber pattern="#0.00"/>
+         </af:outputText>
+      </af:panelLabelAndMessage>
+               </af:gridCell>
+               </af:gridRow>-->
+                        
+                        
+      <af:gridRow marginTop="5px" height="auto" id="gr4">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="200px" id="gc10"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.PAYMENT_INFORMATION}" id="ot117"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" height="10" id="s13"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="200px" id="gc11"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.CREDIT_CARD_INFORMATION}" id="ot18"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="138" height="10" id="s14"/>
+          </af:gridCell>
+        <af:gridCell marginStart="5px" width="200px" id="gc12"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.CHEQUE_INFORMATION}" id="ot19"
+                         inlineStyle="background-color:Black; color:White; width:270.0px;"/>
+            <af:spacer width="154" height="10" id="s15"/>
+          </af:gridCell>   
+          <af:gridCell marginStart="5px" marginEnd="5px" width="150px" id="gc100"
+                     inlineStyle="background-color:Black;">
+          <af:outputText value="#{viewcontrollerBundle.PAYMENT_AMOUNT}" id="ot1177"
+                         inlineStyle="background-color:Black; color:White;"/>
+            <af:spacer width="150" id="s133"/>
+          </af:gridCell>
+      </af:gridRow>
+      
+      
+      
+      
+  
+       <af:iterator id="i1" first="0"
+                       rows="#{bindings.PaymetReceiptVO1.rangeSize}"
+                       var="row"
+                       value="#{bindings.PaymetReceiptVO1.collectionModel}"
+                     rendered="true">
+      
+      <af:gridRow marginTop="5px" height="auto" id="gr5">
+      <af:gridCell marginStart="5px" marginEnd="5px" width="100px" id="gc13">
+         <af:outputText id="ot20" value="#{viewcontrollerBundle.TYPE}" />
+          <af:outputText value="#{row.PYMTType}" id="ot21" inlineStyle="font-weight: bold;"/>
+        </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc14">
+          <af:outputText value="#{viewcontrollerBundle.CARD_TYPE}" id="ot22"/>
+          <af:outputText value="   #{row.CCDType}" id="ot2e3" inlineStyle="font-weight: bold;"/><br/>
+          <af:outputText value="#{viewcontrollerBundle.CARD_}" id="ot28"/>
+          <af:outputText value="   #{row.CCDNum}" id="ot29" inlineStyle="font-weight: bold;"/>
+        </af:gridCell>
+        <af:gridCell marginStart="5px" width="100px" id="gc15">
+         <af:outputText value="#{viewcontrollerBundle.BANK_NAME}" id="ot24"/>
+          <af:outputText value="   #{row.ChqBankname}" id="ot25" inlineStyle="font-weight: bold;"/><br/>
+          <af:outputText value="#{viewcontrollerBundle.CHEQUE_DATE}" id="ot30"/>
+          <af:outputText value="   #{row.ChqDate}" id="ot31" inlineStyle="font-weight: bold;"/>
+        </af:gridCell> 
+        <af:gridCell marginStart="5px" marginEnd="5px" width="100px" id="gc16">
+         <af:outputText id="ot27"/>
+          <af:outputText value="   #{row.PYMTAMT}" id="ot26" inlineStyle="font-weight: bold;">
+           <f:convertNumber pattern="#0.00" />
+           </af:outputText>
+        </af:gridCell>
+      </af:gridRow>
+      
+    </af:iterator>  
+    
+    </af:panelGridLayout>
+    </af:panelGroupLayout>
+    </af:group>
+    
+      <af:panelGroupLayout id="pgl6" layout="horizontal" >
+     
+        <af:spacer width="90" height="10" id="spacer2"/>
+
+        
+       
+        <af:spacer width="400" height="30" id="spacer1"/>
+        <af:panelLabelAndMessage label="#{viewcontrollerBundle.TOTAL_}" id="plam1">
+          <af:outputText value="#{bindings.SaleAmt.inputValue}" id="ot2" inlineStyle="font-weight: bold;">
+           <f:convertNumber pattern="#0.00" />
+           </af:outputText>
+        </af:panelLabelAndMessage>
+      </af:panelGroupLayout>
+  
+    </af:panelGroupLayout>
+    <!--Iterator for Payment Receipt Grid-End-->
+  </af:panelGroupLayout>
+   <af:spacer width="90" height="40" id="s9"/>
+   <af:toolbar>
+    <af:spacer width="400" height="10" id="spacer3"/>
+    <af:commandButton text="#{viewcontrollerBundle.PRINT}" id="cb1" immediate="true"
+                        inlineStyle="background-color:#F39C11;">
+     <af:clientListener method="self.print" type="action"/>
+    <af:showPrintablePageBehavior/>
+  </af:commandButton>
+    <af:spacer width="20" height="10" id="spacer4"/>
+      <af:commandButton text="#{viewcontrollerBundle.BACK}" id="cb3" immediate="true" inlineStyle="background-color:#F39C11;"
+                      action="#{pageFlowScope.pvtPaymentBean.backBtnRcpt_action}"/> 
+  </af:toolbar>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:BulkCardsMBean-->
+</jsp:root>
+

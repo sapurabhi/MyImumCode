@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="PI Amendment" id="pb1" inlineStyle="height:250px;">
+    <f:facet name="toolbar"/>
+    <af:panelFormLayout id="panelFormLayout1" rows="4">
+      <af:spacer height="20" id="s1"/>
+      <af:inputText value="#{bindings.PIid.inputValue}"
+                    label="PI ID"  disabled="true"
+                     showRequired="true"
+                    columns="10"
+                    maximumLength="100"
+                    shortDesc="#{bindings.PIid.hints.tooltip}" id="inputText1"
+                    binding="#{PiDeployement.piid}">
+        <f:validator binding="#{bindings.PIid.validator}"/>
+      </af:inputText>
+      <af:spacer height="10" id="s5"/>
+      <af:selectOneChoice value="#{bindings.Sector.inputValue}"
+                          label="#{bindings.Sector.label}"
+                         showRequired="true"
+                          shortDesc="#{bindings.Sector.hints.tooltip}"
+                          id="selectOneChoice1"
+                          binding="#{PiDeployement.sector}">
+        <f:selectItems value="#{bindings.Sector.items}" id="selectItems1"/>
+      </af:selectOneChoice>
+      
+      <af:spacer height="20" id="s2"/>
+      <af:selectOneChoice value="#{bindings.Zone.inputValue}"
+                          label="#{bindings.Zone.label}"
+                          showRequired="true"
+                          shortDesc="#{bindings.Zone.hints.tooltip}"
+                          id="selectOneChoice2" binding="#{PiDeployement.zone}">
+        <f:selectItems value="#{bindings.Zone.items}" id="selectItems2"/>
+      </af:selectOneChoice>
+      <af:spacer height="10" id="s3"/>
+      <af:selectOneChoice value="#{bindings.Beat.inputValue}"
+                          label="#{bindings.Beat.label}"
+                          showRequired="true"
+                          shortDesc="#{bindings.Beat.hints.tooltip}"
+                          id="selectOneChoice3" binding="#{PiDeployement.beat}">
+        <f:selectItems value="#{bindings.Beat.items}" id="selectItems3"/>
+      </af:selectOneChoice> 
+    </af:panelFormLayout>
+    <af:spacer height="20" id="s4"/>
+    <af:panelGroupLayout halign="left" layout="horizontal">
+     <af:panelFormLayout id="pfl3" rows="1">
+      <af:commandButton text="Save" id="cb1"
+                        action="#{PiDeployement.editsavecb1_action}"/>
+     <af:spacer width="10" id="s6"/>                    
+      <af:commandButton text="Cancel" id="cb2"/>
+    </af:panelFormLayout>
+    </af:panelGroupLayout>
+  </af:panelBox>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:PiDeployement-->
+</jsp:root>

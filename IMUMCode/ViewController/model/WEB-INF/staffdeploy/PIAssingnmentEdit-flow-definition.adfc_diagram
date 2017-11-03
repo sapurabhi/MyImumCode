@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">piedit</property>
+      <property
+         name="page">/jspx/staffdeploy/fragments/piedit.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>piedit&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">215.69531</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">343.5</property>
+   </View>
+   <MethodCall
+      id="MethodCall3">
+      <property
+         name="activityId">getSectorDetails</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>getSectorDetails&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">215.54004</property>
+      <property
+         name="x">-14.978516</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall3"
+      to="View2">
+      <property
+         name="fromOutcome">getSectorDetails</property>
+      <property
+         name="sdm:polyPoints">R50,26.021484,215.18945,302.5,215.34473,L50</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CardIssueSrchCriVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+  RowClass="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVORowImpl"
+  ComponentClass="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVOImpl"
+  ComponentInterface="com.imum.cpms.model.transactions.vo.common.CardIssueSrchCriVO"
+  ClientProxyName="com.imum.cpms.model.transactions.vo.client.CardIssueSrchCriVOClient"
+  RowInterface="com.imum.cpms.model.transactions.vo.common.CardIssueSrchCriVORow"
+  ClientRowProxyName="com.imum.cpms.model.transactions.vo.client.CardIssueSrchCriVORowClient">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|Prog|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="CardTypeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.CardTypeLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="DenominationLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.DenominationLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="BulkCardtypeStaticLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.BulkCardtypeStaticLOVVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_CardType"
+    ListVOName="CardTypeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_CardType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CardType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="category"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="cardtypename"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Denomination"
+    ListVOName="DenominationLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Denomination_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Denomination"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="carddenomamt"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="carddenomamt"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_BulkSaleCardType"
+    ListVOName="BulkCardtypeStaticLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_BulkSaleCardType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="BulkSaleCardType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Description"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ViewAttribute
+    Name="CardType"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_CardType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Denomination"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_Denomination">
+    <Dependencies>
+      <Item
+        Value="CardType"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMAT
+          ResId="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVO.Denomination_FMT_FORMAT"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NoOfCards"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER">
+    <validation:RegExpValidationBean
+      Name="NoOfCards_Rule_0"
+      ResId="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVO.NoOfCards_Rule_0"
+      OnAttribute="NoOfCards"
+      Pattern="[0-9]+"
+      Inverse="false"/>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StartNum"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <validation:RegExpValidationBean
+      Name="StartNum_Rule_0"
+      ResId="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVO.StartNum_Rule_0"
+      OnAttribute="StartNum"
+      Pattern="[0-9]+"
+      Inverse="false"/>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EndNum"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="RemoveFlag"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="BIT"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="BulkSaleCardType"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    IsQueriable="false"
+    LOVName="LOV_BulkSaleCardType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+  <ClientInterface>
+    <Method
+      Name="clearCacheAllRows">
+      <Return
+        Type="void"/>
+    </Method>
+  </ClientInterface>
+  <ClientInterface>
+    <Method
+      Name="clearCacheAllRows">
+      <Return
+        Type="void"/>
+    </Method>
+  </ClientInterface>
+</ViewObject>

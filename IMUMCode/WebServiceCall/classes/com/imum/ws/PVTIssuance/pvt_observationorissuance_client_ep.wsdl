@@ -1,0 +1,164 @@
+<WL5G3N0:definitions
+     name="PVT_ObservationOrIssuance"
+     targetNamespace="http://www.zoneparking.ae/PVT_ObservationOrIssuance"
+     xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:WL5G3N2="http://www.zoneparking.ae/PVT_ObservationOrIssuance"
+     xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:WL5G3N1="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+    >
+    <WL5G3N0:documentation>http://192.168.200.113:8001/soa-infra/services/default/PVT_ObservationOrIssuance!1.0/PVT_ObservationOrIssuance.wsdl</WL5G3N0:documentation>
+    <WL5G3N1:partnerLinkType name="PVT_ObservationOrIssuance">
+        <WL5G3N1:role name="PVT_ObservationOrIssuanceProvider">
+            <WL5G3N1:portType name="WL5G3N2:PVT_ObservationOrIssuance"/>
+        </WL5G3N1:role>
+    </WL5G3N1:partnerLinkType>
+    <WL5G3N0:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.zoneparking.ae/PVT_ObservationOrIssuance"
+             xmlns="http://www.zoneparking.ae/PVT_ObservationOrIssuance" xmlns:client="http://www.zoneparking.ae/PVT_ObservationOrIssuance"
+             xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="PVT_ObservationOrIssuance_Request" type="PVT_HHC_Request_log"/>
+            <xs:complexType name="PVT_HHC_Request_log">
+                <xs:sequence>
+                <!--    <xs:element name="Request_log_seq" nillable="true" type="xs:string"/>-->
+                    <xs:element minOccurs="0" name="Request_Type">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Org_Obsrv_Seq" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="Obsrv_from" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="Obsrv_To" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="piId">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Sector_Code">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="zoneCode">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="5"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="PVT_Num" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="10"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Contra_code" type="xs:int"/>
+                    <xs:element minOccurs="0" name="contraAmt" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="pvtIssDatetime" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="pvtPrintDatetime" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="HHC_Serial_Num">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="100"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="printCount" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="VEH_geo_lat" type="xs:double"/>
+                    <xs:element minOccurs="0" name="VEH_geo_lon" type="xs:double"/>
+                    <xs:element minOccurs="0" name="plateNumber">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Plate_Country_ID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="plateCtgId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="plateTypeId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vehMakeId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vehModelId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vehColourId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="Tariff_ID">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="localAuthId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="memoDetails" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="responseTime" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="Request_DateTime" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="Created_By">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Created_Date" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="PVT_ObservationOrIssuance_Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="Plate_Number" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Contra_code" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Org_Obsrv_Seq" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Obsrv_Status_Code" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="PVT_Num" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Response_Code" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Response_Desc" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </WL5G3N0:types>
+    <WL5G3N0:message name="PVT_ObservationOrIssuanceRequestMessage">
+        <WL5G3N0:part name="payload" element="WL5G3N2:PVT_ObservationOrIssuance_Request"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="PVT_ObservationOrIssuanceResponseMessage">
+        <WL5G3N0:part name="payload" element="WL5G3N2:PVT_ObservationOrIssuance_Response"/>
+    </WL5G3N0:message>
+    <WL5G3N0:portType name="PVT_ObservationOrIssuance">
+        <WL5G3N0:operation name="PVT_ObservationOrIssuance">
+            <WL5G3N0:input message="WL5G3N2:PVT_ObservationOrIssuanceRequestMessage"/>
+            <WL5G3N0:output message="WL5G3N2:PVT_ObservationOrIssuanceResponseMessage"/>
+        </WL5G3N0:operation>
+    </WL5G3N0:portType>
+    <WL5G3N0:binding name="PVT_ObservationOrIssuanceBinding" type="WL5G3N2:PVT_ObservationOrIssuance">
+        <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <WL5G3N0:operation name="PVT_ObservationOrIssuance">
+            <WL5G3N3:operation style="document" soapAction="PVT_ObservationOrIssuance"/>
+            <WL5G3N0:input>
+                <WL5G3N3:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N3:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+    </WL5G3N0:binding>
+    <WL5G3N0:service name="pvt_observationorissuance_client_ep">
+        <WL5G3N0:port name="PVT_ObservationOrIssuance_pt" binding="WL5G3N2:PVT_ObservationOrIssuanceBinding">
+        <WL5G3N3:address location="http://cpmsfmwappdc.cpms.local:8011/PVT/ObservationOrIssuance"/>
+        <!--    <WL5G3N3:address location="http://192.168.200.113:8003/PVT/ObservationOrIssuance"/>-->
+       <!--      <WL5G3N3:address location="http://192.168.200.117:8011/PVT/ObservationOrIssuance"/>-->
+      <!--      <WL5G3N3:address location="http://192.168.200.112:8011/PVT/ObservationOrIssuance"/>-->
+        </WL5G3N0:port>
+    </WL5G3N0:service>
+</WL5G3N0:definitions>

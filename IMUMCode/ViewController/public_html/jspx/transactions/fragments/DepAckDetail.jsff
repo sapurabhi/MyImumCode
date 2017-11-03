@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+          <af:panelGroupLayout id="pgl1" layout="horizontal">
+    <af:toolbar id="t2">
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb11"
+                        inlineStyle="background-color:#F39C11;"
+                        action="#{DepAckDetailMBean.SubmitAction}"
+                        visible="#{DepAckDetailMBean.submissionPanel}"
+                        /> 
+      <af:spacer width="10" id="s1134"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"
+                        id="ct1b2" 
+                        action="#{DepAckDetailMBean.CancelAction}"
+                        visible="#{DepAckDetailMBean.cancelPanel}"
+                        immediate="true"/>
+        <af:spacer width="625" id="s13d4"/>
+      <af:commandButton text="#{viewcontrollerBundle.NEW}" id="New" icon="/images/new.gif"
+                        action="#{DepAckDetailMBean.NewAction}"
+                        rendered="#{DepAckDetailMBean.operationsPanel}"
+                        >
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="Edit" icon="/images/edit.gif"
+                        action="#{DepAckDetailMBean.EditAction}"
+                         rendered="#{DepAckDetailMBean.operationsPanel}"
+                         >
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="spacer1"/>
+      <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="View" icon="/images/view.gif"
+                        action="#{DepAckDetailMBean.ViewAction}"
+                         rendered="#{DepAckDetailMBean.operationsPanel}"
+                         >
+        </af:commandButton>
+    </af:toolbar>
+    <af:spacer height="5" id="spacer2"/>
+  </af:panelGroupLayout>
+   <af:showDetailHeader text="#{viewcontrollerBundle.CASH_DEPOSIT_DETAILS}" disclosed="true" id="sdh1">
+    <af:spacer height="10" id="spacer4"/>
+    <af:panelGroupLayout id="pgl2">
+      <af:table value="#{bindings.DepositAckDetailsUVO2.collectionModel}"
+                var="row" rows="#{bindings.DepositAckDetailsUVO2.rangeSize}"
+                emptyText="#{bindings.DepositAckDetailsUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.DepositAckDetailsUVO2.rangeSize}"
+                rowBandingInterval="1"
+                filterModel="#{bindings.DepositAckDetailsUVO2Query.queryDescriptor}"
+                queryListener="#{bindings.DepositAckDetailsUVO2Query.processQuery}"
+                filterVisible="true" varStatus="vs"
+                selectedRowKeys="#{bindings.DepositAckDetailsUVO2.collectionModel.selectedRow}"
+                selectionListener="#{bindings.DepositAckDetailsUVO2.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" autoHeightRows="0"
+                scrollPolicy="page" width="75%" contentDelivery="immediate">
+        <af:column sortProperty="#{bindings.DepositAckDetailsUVO2.hints.DepositAckSeq.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.DEPOSIT_ACKNOWLEDGEMENT_ID}"
+                   id="c5" align="right">
+          <af:outputText value="#{row.DepositAckSeq}" id="ot4"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.DepositAckDetailsUVO2.hints.DepositeDate.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.DEPOSIT_DATE}"
+                   id="c2" align="left">
+         
+          <af:outputText value="#{row.DepositeDate}" id="ot1">
+             <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.DepositAckDetailsUVO2.hints.DepositeSlipAmt.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.DEPOSIT_SLIP_AMOUNT}"
+                   id="c4" align="right">
+          <af:outputText value="#{row.DepositeSlipAmt}" id="ot3">
+          <f:convertNumber pattern="#0.00"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.DepositAckDetailsUVO2.hints.CashSrcDesc.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.LOCATION}"
+                   id="c3" align="left">
+          <af:outputText value="#{row.CashSrcDesc}" id="ot5"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.DepositAckDetailsUVO2.hints.SaleTrnDate.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.SALE_TRANSACTION_DATE}"
+                   id="c6" align="left">
+          
+          <af:outputText value="#{row.SaleTrnDate}" id="ot6">
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.DepositAckDetailsUVO2.hints.ExpectedAmt.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.EXPECTED_AMOUNT}"
+                   id="c1" align="right">
+          <af:outputText value="#{row.ExpectedAmt}" id="ot2">
+          <f:convertNumber pattern="#0.00"/>
+          </af:outputText>
+        </af:column>
+        <af:column id="c8"
+                   headerText="#{viewcontrollerBundle.DISCREPANCY_FLAG}"
+                   align="center">
+          <af:selectBooleanCheckbox value="#{row.bindings.Discrepancyflag.inputValue}"
+                                    label="#{row.bindings.Discrepancyflag.label}"
+                                    shortDesc="#{bindings.DepositAckDetailsUVO2.hints.Discrepancyflag.tooltip}"
+                                    id="sbc1" readOnly="true"/>
+        </af:column>
+      </af:table>
+      <af:spacer height="10" id="spacer3"/>
+      
+    </af:panelGroupLayout>
+     <af:showDetailHeader id="pgl3"
+                         text="#{viewcontrollerBundle.CASH_DEPOSITS}" disclosed="true"
+                            
+                             binding="#{DepAckDetailMBean.depAckDtlsForm}"   visible="false"
+                        >
+      <af:panelFormLayout id="pfl1" rows="6" partialTriggers="Edit View">
+        <af:selectOneChoice value="#{bindings.BankAccinfoSeq.inputValue}"
+                            label="#{viewcontrollerBundle.BANK_ACCOUNT}"
+                            required="#{bindings.BankAccinfoSeq.hints.mandatory}"
+                            shortDesc="#{bindings.BankAccinfoSeq.hints.tooltip}"
+                            id="soc3" disabled="#{DepAckDetailMBean.isDisabled}"
+                            showRequired="true">
+          <f:selectItems value="#{bindings.BankAccinfoSeq.items}" id="si2"/>
+        </af:selectOneChoice>
+        <af:inputDate value="#{bindings.DepositeDate.inputValue}"
+                      label="#{viewcontrollerBundle.DEPOSIT_DATE}"
+                      required="#{bindings.DepositeDate.hints.mandatory}"
+                      shortDesc="#{bindings.DepositeDate.hints.tooltip}"
+                      id="id2" disabled="#{DepAckDetailMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.DepositeDate.validator}"/>
+          <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.DepositorName.inputValue}"
+                      label="#{viewcontrollerBundle.DEPOSITOR_NAME}"
+                      required="#{bindings.DepositorName.hints.mandatory}"
+                      maximumLength="#{bindings.DepositorName.hints.precision}"
+                      shortDesc="#{bindings.DepositorName.hints.tooltip}"
+                      id="it1" disabled="#{DepAckDetailMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.DepositorName.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.DepositeSlipAmt.inputValue}"
+                      label="#{viewcontrollerBundle.DEPOSIT_SLIP_AMOUNT}"
+                      required="#{bindings.DepositeSlipAmt.hints.mandatory}"
+                      maximumLength="#{bindings.DepositeSlipAmt.hints.precision}"
+                      shortDesc="#{bindings.DepositeSlipAmt.hints.tooltip}"
+                      id="it3" disabled="#{DepAckDetailMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.DepositeSlipAmt.validator}"/>
+          <f:convertNumber pattern="#0.00"/>
+        </af:inputText>
+        <af:inputDate value="#{bindings.DepositeSlipAckDate.inputValue}"
+                      label="#{viewcontrollerBundle.DEPOSIT_SLIP_ACKNOWLEDGEMENT_D}"
+                      required="#{bindings.DepositeSlipAckDate.hints.mandatory}"
+                      shortDesc="#{bindings.DepositeSlipAckDate.hints.tooltip}"
+                      id="id3" disabled="#{DepAckDetailMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.DepositeSlipAckDate.validator}"/>
+          <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.Depositslipnum.inputValue}"
+                      label="#{viewcontrollerBundle.DEPOSIT_SLIP_NUMBER}"
+                      required="#{bindings.Depositslipnum.hints.mandatory}"
+                      maximumLength="#{bindings.Depositslipnum.hints.precision}"
+                      shortDesc="#{bindings.Depositslipnum.hints.tooltip}"
+                      id="it2" disabled="#{DepAckDetailMBean.isDisabled}"
+                      showRequired="true"              binding="#{DepAckDetailMBean.depositSlipNum}"
+                      partialTriggers="id1">
+          <f:validator binding="#{bindings.Depositslipnum.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.CashSource.inputValue}"
+                            label="#{viewcontrollerBundle.CASH_SOURCE}"
+                            required="#{bindings.CashSource.hints.mandatory}"
+                            shortDesc="#{bindings.CashSource.hints.tooltip}"
+                            id="soc1" autoSubmit="true"
+                            disabled="#{DepAckDetailMBean.isDisabled}"
+                            showRequired="true">
+          <f:selectItems value="#{bindings.CashSource.items}" id="si3"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.LOCATIONID.inputValue}"
+                            label="#{viewcontrollerBundle.LOCATION}"
+                            required="#{bindings.LOCATIONID.hints.mandatory}"
+                            shortDesc="#{bindings.LOCATIONID.hints.tooltip}"
+                            id="soc2" partialTriggers="soc1" autoSubmit="true"
+                            disabled="#{DepAckDetailMBean.isDisabled}"
+                            showRequired="true"
+                            valueChangeListener="#{DepAckDetailMBean.calExpAmount}">
+          <f:selectItems value="#{bindings.LOCATIONID.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:inputDate value="#{bindings.SaleTrnDate.inputValue}"
+                      label="#{viewcontrollerBundle.SALE_TRANSACTION_DATE}"
+                      required="#{bindings.SaleTrnDate.hints.mandatory}"
+                      shortDesc="#{bindings.SaleTrnDate.hints.tooltip}"
+                      id="id1" disabled="#{DepAckDetailMBean.isDisabled}"
+                       autoSubmit="true" showRequired="true"
+                      valueChangeListener="#{DepAckDetailMBean.fetchExpAmt}">
+          <f:validator binding="#{bindings.SaleTrnDate.validator}"/>
+          <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.ExpectedAmt.inputValue}"
+                      label="#{viewcontrollerBundle.EXPECTED_AMOUNT}"
+                      required="#{bindings.ExpectedAmt.hints.mandatory}"
+                      columns="#{bindings.ExpectedAmt.hints.displayWidth}"
+                      maximumLength="#{bindings.ExpectedAmt.hints.precision}"
+                      shortDesc="#{bindings.ExpectedAmt.hints.tooltip}"
+                      id="it4" partialTriggers="id1 soc2" autoSubmit="true"
+                      disabled="true" showRequired="true">
+          <f:validator binding="#{bindings.ExpectedAmt.validator}"/>
+          <f:convertNumber pattern="#0.00"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Ackslipnum.inputValue}"
+                      label="#{viewcontrollerBundle.ACKNOWLEDGEMENT_SLIP_NUMBER}"
+                      required="#{bindings.Ackslipnum.hints.mandatory}"
+                      maximumLength="#{bindings.Ackslipnum.hints.precision}"
+                      shortDesc="#{bindings.Ackslipnum.hints.tooltip}" id="it5"
+                      disabled="#{DepAckDetailMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.Ackslipnum.validator}"/>
+        </af:inputText>
+        <af:selectBooleanCheckbox value="#{bindings.Discrepancyflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.DISCREPANCY_FLAG}"
+                                  shortDesc="#{bindings.Discrepancyflag1.hints.tooltip}"
+                                  id="sbc2" disabled="#{DepAckDetailMBean.isDisabled}"/>
+        <af:outputText value="#{pageFlowScope.DepositRendertables}" id="ot11"/>
+      </af:panelFormLayout>
+     
+   <af:spacer width="10" height = "40" id="s3"/>
+     
+      <af:spacer height="10" id="s12344"/>
+    </af:showDetailHeader>
+    <af:panelGroupLayout id="pgl0" partialTriggers="id1"
+                           visible="#{DepAckDetailMBean.displayHari}"
+                           binding="#{DepAckDetailMBean.panelAck1}">
+        <af:showDetailHeader text="Day Remarks" disclosed="true" id="sdh2"
+                             binding="#{DepAckDetailMBean.showAck1}">
+          <af:table value="#{bindings.CashRemarksVO1.collectionModel}" var="row"
+                    rows="#{bindings.CashRemarksVO1.rangeSize}"
+                    emptyText="#{bindings.CashRemarksVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.CashRemarksVO1.rangeSize}"
+                    rowBandingInterval="0" id="t4" width="762" 
+                    inlineStyle="height:88px;"
+                    binding="#{DepAckDetailMBean.renderRemarksTable1}">
+            <af:column sortProperty="#{bindings.CashRemarksVO1.hints.TransDate.name}"
+                       sortable="false"
+                       headerText="#{viewcontrollerBundle.TRANSACTION_DATE}"
+                       id="c9" width="105">
+              <af:outputText value="#{row.TransDate}" id="ot7">
+                <af:convertDateTime pattern="dd-MM-yyyy"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CashRemarksVO1.hints.DayEndClosureremarks.name}"
+                       sortable="false"
+                       headerText="#{viewcontrollerBundle.DAY_REMARKS}" id="c7"
+                       width="500">
+              <af:outputText value="#{row.DayEndClosureremarks}" id="ot8"
+                             noWrap="false"/>
+            </af:column>
+          <af:column headerText="Stock verification Flag"
+                     id="c12" align="center" width="120">
+            <af:selectBooleanCheckbox value="#{row.bindings.StockverifyFlag.inputValue}"
+                                      label="#{row.bindings.StockverifyFlag.label}" readOnly="true"
+                                      shortDesc="#{bindings.CashRemarksVO1.hints.StockverifyFlag.tooltip}"
+                                      id="sbc3"/>
+          </af:column>
+        </af:table>
+        </af:showDetailHeader>
+           <af:spacer width="10" height = "10" id="s134"/>
+       
+      </af:panelGroupLayout>
+       <af:panelGroupLayout id="pgl4" binding="#{DepAckDetailMBean.panelAck2}"
+                             partialTriggers="id1"
+                             visible="#{DepAckDetailMBean.displayHari}">
+          <af:showDetailHeader text="Shift Remarks" disclosed="true" id="sdh3">
+            <af:table value="#{bindings.CashRemarksVO11.collectionModel}"
+                      var="row" rows="#{bindings.CashRemarksVO11.rangeSize}"
+                      emptyText="#{bindings.CashRemarksVO11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.CashRemarksVO11.rangeSize}" 
+                      rowBandingInterval="0" id="t5" inlineStyle="height:92px;"
+                      width="611"
+                      binding="#{DepAckDetailMBean.renderRemarksTable2}"
+                      partialTriggers="::id1">
+              <af:column sortProperty="#{bindings.CashRemarksVO11.hints.ShiftID.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.SHIFT}" id="c10">
+                <af:outputText value="#{row.ShiftID}" id="ot10">
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.CashRemarksVO11.hints.ShiftID.format}"/>
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.CashRemarksVO11.hints.shiftEndClosureRamarks.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.SHIFT_REMARKS}"
+                         id="c11" width="500">
+                <af:outputText value="#{row.shiftEndClosureRamarks}" id="ot9"/>
+              </af:column>
+            </af:table>
+          </af:showDetailHeader>
+        </af:panelGroupLayout>
+    <af:toolbar id="t3">
+      <af:commandButton id="ctb1"
+                        inlineStyle="background-color:#F39C11;"
+                        text="#{viewcontrollerBundle.SUBMIT}"
+                        action="#{DepAckDetailMBean.SubmitAction}"
+                        visible="#{DepAckDetailMBean.submissionPanel}"
+                        />
+      <af:spacer width="10"  id="s2"/>
+      <af:commandButton inlineStyle="background-color:#F39C11;"
+                        id="ctb2" text="#{viewcontrollerBundle.CANCEL}"
+                        action="#{DepAckDetailMBean.CancelAction}"
+                        visible="#{DepAckDetailMBean.cancelPanel}"
+                        immediate="true">
+                        <af:resetActionListener/>
+                        </af:commandButton>
+    </af:toolbar>
+    </af:showDetailHeader>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:DepAckDetailMBean-->
+</jsp:root>

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PermitRuleEO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName=" PRM_PERMIT_RULE_MST"
+  AliasName="PermitRuleEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="RuleId"
+    IsUpdateable="false"
+    Precision="5"
+    Scale="0"
+    ColumnName="Rule_Id"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CategCode"
+    Precision="10"
+    ColumnName="Categ_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ShortCode"
+    Precision="20"
+    ColumnName="Short_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <validation:RegExpValidationBean
+      Name="ShortCode_Rule_1"
+      ResId="SPECIAL_CHARACTERS_ARE_ALLOWED"
+      OnAttribute="ShortCode"
+      Pattern="[A-Za-z0-9]+"
+      Inverse="false"/>
+  </Attribute>
+  <Attribute
+    Name="LocalFlag"
+    Precision="1"
+    ColumnName="Local_Flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ValidMonths"
+    Precision="3"
+    Scale="0"
+    ColumnName="Valid_Months"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="RenwalMnths"
+    Precision="3"
+    Scale="0"
+    ColumnName="Renwal_Mnths"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <validation:CompareValidationBean
+      Name="RenwalMnths_Rule_0"
+      ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.MaxQuota_Rule_0"
+      OnAttribute="RenwalMnths"
+      OperandType="LITERAL"
+      Inverse="false"
+      CompareType="GREATERTHAN"
+      CompareValue="-1"/>
+  </Attribute>
+  <Attribute
+    Name="RenwalGrace"
+    Precision="2"
+    Scale="0"
+    ColumnName="Renwal_Grace"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+    <validation:CompareValidationBean
+      Name="RenwalGrace_Rule_0"
+      ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.MaxQuota_Rule_0"
+      OnAttribute="RenwalGrace"
+      OperandType="LITERAL"
+      Inverse="false"
+      CompareType="GREATERTHAN"
+      CompareValue="-1"/>
+  </Attribute>
+  <Attribute
+    Name="MaxQuota"
+    Precision="3"
+    Scale="0"
+    ColumnName="Max_Quota"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <validation:CompareValidationBean
+      Name="MaxQuota_Rule_0"
+      ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.MaxQuota_Rule_0"
+      OnAttribute="MaxQuota"
+      OperandType="LITERAL"
+      Inverse="false"
+      CompareType="GREATERTHAN"
+      CompareValue="-1"/>
+  </Attribute>
+  <Attribute
+    Name="PVTgracePeriod"
+    Precision="2"
+    Scale="0"
+    ColumnName="PVT_grace_Period"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+    <validation:CompareValidationBean
+      Name="PVTgracePeriod_Rule_0"
+      ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.MaxQuota_Rule_0"
+      OnAttribute="PVTgracePeriod"
+      OperandType="LITERAL"
+      Inverse="false"
+      CompareType="GREATERTHAN"
+      CompareValue="-1"/>
+  </Attribute>
+  <Attribute
+    Name="FreePermits"
+    Precision="2"
+    Scale="0"
+    ColumnName="Free_Permits"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+    <validation:CompareValidationBean
+      Name="FreePermits_Rule_0"
+      ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.MaxQuota_Rule_0"
+      OnAttribute="FreePermits"
+      OperandType="LITERAL"
+      Inverse="false"
+      CompareType="GREATERTHAN"
+      CompareValue="-1"/>
+  </Attribute>
+  <Attribute
+    Name="ValidInsp"
+    Precision="1"
+    ColumnName="Valid_Insp"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" PRM_PERMIT_RULE_MST"
+    DefaultValue="Y">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="AdminChrgs"
+    Precision="9"
+    Scale="3"
+    ColumnName="Admin_Chrgs"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ProcChrgs"
+    Precision="9"
+    Scale="3"
+    ColumnName="Proc_Chrgs"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PermitChrgs"
+    Precision="9"
+    Scale="3"
+    ColumnName="Permit_Chrgs"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="BayType"
+    Precision="100"
+    ColumnName="Bay_Type"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="EffectivedateFrom"
+    ColumnName="Effective_date_From"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.EffectivedateFrom_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.EffectivedateFrom_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="EffectivedateTo"
+    ColumnName="Effective_date_To"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.EffectivedateTo_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="com.imum.cpms.model.masters.eo.PermitRuleEO.EffectivedateTo_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="TypeCode"
+    Precision="5"
+    Scale="0"
+    ColumnName="Type_Code"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ActiveFlag"
+    Precision="1"
+    ColumnName="Active_Flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Changedflag"
+    Precision="1"
+    ColumnName="Changed_flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    ColumnName="Created_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Date"
+    ColumnType="datetime"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedBy"
+    Precision="50"
+    ColumnName="Updated_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="UpdatedDate"
+    ColumnName="Updated_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Date"
+    ColumnType="datetime"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Renewalperiodbeforeexp"
+    Precision="2"
+    Scale="0"
+    ColumnName="Renewal_period_before_exp"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="docverificationflag"
+    Precision="2"
+    Scale="0"
+    ColumnName="doc_verification_flag"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PRM_PERMIT_RULE_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="PKPermitR70B7089E14E61A24"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PK__Permit_R__70B7089E14E61A24"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.imum.cpms.model.masters.eo.PermitRuleEO.RuleId"/>
+    </AttrArray>
+  </Key>
+    <Key
+    Name="UniqueCategoryTypeResidence"
+    AltKey="true">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value=" PRM_PERMIT_RULE_MST"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.imum.cpms.model.masters.eo.PermitRuleEO.LocalFlag"/>
+      <Item Value="com.imum.cpms.model.masters.eo.PermitRuleEO.CategCode"/>
+      <Item Value="com.imum.cpms.model.masters.eo.PermitRuleEO.TypeCode"/>
+    </AttrArray>
+  </Key>
+  <validation:UniqueKeyValidationBean
+    Name="PermitRuleEO_Rule_0"
+    KeyName="UniqueCategoryTypeResidence"
+    ResId="COMBINATION_OF_CATEGORYTYPERES">
+    <validation:OnAttributes>
+      <validation:Item
+        Value="LocalFlag"/>
+      <validation:Item
+        Value="CategCode"/>
+      <validation:Item
+        Value="TypeCode"/>
+    </validation:OnAttributes>
+  </validation:UniqueKeyValidationBean>
+  <validation:CompareValidationBean
+    Name="PermitRuleEO_Rule_1"
+    ResId="EFFECTIVE_DATE_SHOULD_NOT_BE_L"
+    OnAttribute="EffectivedateFrom"
+    OperandType="ATTR"
+    Inverse="false"
+    CompareType="GREATERTHANEQUALTO"
+    CompareValue="CreatedDate">
+    <validation:OnAttributes>
+      <validation:Item
+        Value="EffectivedateFrom"/>
+      <validation:Item
+        Value="CreatedDate"/>
+    </validation:OnAttributes>
+  </validation:CompareValidationBean>
+  <validation:CompareValidationBean
+    Name="PermitRuleEO_Rule_2"
+    ResId="EFFECTIVE_DATE_SHOULD_NOT_BE_L"
+    OnAttribute="EffectivedateTo"
+    OperandType="ATTR"
+    Inverse="false"
+    CompareType="GREATERTHANEQUALTO"
+    CompareValue="CreatedDate">
+    <validation:OnAttributes>
+      <validation:Item
+        Value="EffectivedateTo"/>
+      <validation:Item
+        Value="CreatedDate"/>
+    </validation:OnAttributes>
+  </validation:CompareValidationBean>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

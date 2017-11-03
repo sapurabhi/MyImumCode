@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTPaymentsPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO2" RangeSize="5"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO2Iterator"/>
+    <searchRegion Criteria="PVTPaymentSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator"
+                  id="PVTPaymentSearchRVOCriteriaQuery"/>
+    <iterator Binds="PVTHeaderVO1" RangeSize="5"
+              DataControl="TransactionsAMDataControl"
+              id="PVTHeaderVO1Iterator"/>
+    <searchRegion Binds="PVTHeaderVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="PVTHeaderVO1Query"/>
+    <iterator id="PVTChargeDetailRVO1Iterator" Binds="PVTChargeDetailRVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="PVTHeaderVO2Iterator" Binds="PVTHeaderVO2"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator Binds="SalesSettlementUVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="SalesSettlementUVO1Iterator"/>
+    <searchRegion Binds="SalesSettlementUVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="SalesSettlementUVO1Query"/>
+    <iterator id="SalesDetailUVO1Iterator" Binds="SalesDetailUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="SalesHeaderUVO1Iterator" Binds="SalesHeaderUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="PaymetReceiptVO1Iterator" Binds="PaymetReceiptVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator Binds="PVTDocsVO1" RangeSize="5"
+              DataControl="TransactionsAMDataControl" id="PVTDocsVO1Iterator"/>
+    <iterator id="PoundBayDetailVO1Iterator" Binds="PoundBayDetailVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTSearchRVO2Iterator" id="PVTSearchRVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO20">
+        <AttrNames>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="CountryCode"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PLATECNTID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTHeaderVO1Iterator" id="PVTHeaderVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTHeaderVO"
+                      Name="PVTHeaderVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="CheckFlagBox"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="ENFORCESTAGEID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getSeqPVTPayMents"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getSeqPVTPayMents" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getSeqPVTPayMents_TransactionsAMDataControl_dataProvider_getSeqPVTPayMents_result">
+      <NamedData NDName="pvtNo" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="uploadPvtDocs"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="uploadPvtDocs" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+      <NamedData NDName="uploadFiles" NDType="java.util.ArrayList"/>
+    </methodAction>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <button IterBinding="PVTHeaderVO1Iterator" StaticList="true"
+            id="CheckFlagBox">
+      <AttrNames>
+        <Item Value="CheckFlagBox"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="SalesSettlementUVO1Iterator" id="SalesSettlementUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.SalesSettlementUVO"
+                      Name="SalesSettlementUVO10">
+        <AttrNames>
+          <Item Value="AuthCode"/>
+          <Item Value="CCDType"/>
+          <Item Value="CCDnum"/>
+          <Item Value="ChqBankname"/>
+          <Item Value="ChqDate"/>
+          <Item Value="Chqnum"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PYMTAMT"/>
+          <Item Value="PYMTType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="SalesSettlementUVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="addPaymentRow"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addPaymentRow" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCreatePVTPayment"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCreatePVTPayment" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCreatePVTPayment_TransactionsAMDataControl_dataProvider_doCreatePVTPayment_result">
+      <NamedData NDName="CustomerId" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="paidAmt" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+      <NamedData NDName="outSatndingAmt" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="pvtNumList" NDType="java.util.ArrayList"/>
+    </methodAction>
+    <attributeValues IterBinding="PVTHeaderVO1Iterator" id="KnockoffAmt">
+      <AttrNames>
+        <Item Value="KnockoffAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTHeaderVO1Iterator" id="CLOSUREREMARKS">
+      <AttrNames>
+        <Item Value="CLOSUREREMARKS"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="PVTPaymentCallRemovalCharges"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="PVTPaymentCallRemovalCharges"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="pvtHdrSeq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <action id="Rollback" DataControl="TransactionsAMDataControl"
+            RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <methodAction id="PVTupdatePaymentDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="PVTupdatePaymentDetails"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="pvtHdrSeq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="payableAmt" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="uploadPvtDocsPVTPayments"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="uploadPvtDocsPVTPayments"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+      <NamedData NDName="uploadFiles" NDType="java.util.ArrayList"/>
+      <NamedData NDName="pvtHdrseq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <tree IterBinding="PVTDocsVO1Iterator" id="PVTDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDocsVO"
+                      Name="PVTDocsVO10">
+        <AttrNames>
+          <Item Value="DOCDesc"/>
+          <Item Value="remarks"/>
+          <Item Value="FileUpload"/>
+          <Item Value="FlageM" Binds="FlageM"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="addUploadDoc"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addUploadDoc" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createNewRowDocUpload"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createNewRowDocUpload" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <action IterBinding="PVTDocsVO1Iterator" id="uploadDelete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="updatePVTEventAndAccountLog"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="updatePVTEventAndAccountLog"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="pvtHeaderSeq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+      <NamedData NDName="knockAmt" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="pvtHeaderSiebleSynch"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="pvtHeaderSiebleSynch" IsViewObjectMethod="false">
+      <NamedData NDName="pvtHdrSeq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="CreateEvent"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CreateEvent" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.CreateEvent_TransactionsAMDataControl_dataProvider_CreateEvent_result">
+      <NamedData NDName="pvtHeaderSeq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+      <NamedData NDName="EventId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="sendMail"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="sendMail" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.sendMail_TransactionsAMDataControl_dataProvider_sendMail_result">
+      <NamedData NDName="pvtHdrSeq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="pvteventsendDoTInstructions"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="pvteventsendDoTInstructions"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.pvteventsendDoTInstructions_TransactionsAMDataControl_dataProvider_pvteventsendDoTInstructions_result">
+      <NamedData NDName="pvtHeaderSeq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+      <NamedData NDName="EventId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createNewRowDocUploadReleaseVehicle"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createNewRowDocUploadReleaseVehicle"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <button IterBinding="PVTDocsVO1Iterator" id="FlageM" DTSupportsMRU="false"
+            StaticList="true">
+      <AttrNames>
+        <Item Value="FlageM"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="createNewRowDocUploadFree"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createNewRowDocUploadFree"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

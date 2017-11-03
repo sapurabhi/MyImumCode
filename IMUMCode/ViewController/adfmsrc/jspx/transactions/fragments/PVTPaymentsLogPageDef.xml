@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTPaymentsLogPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <searchRegion Criteria="PVTPaymentslogVCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO1Iterator"
+                  id="PVTPaymentslogVCriteriaQuery"/>
+    <iterator Binds="PaymentsTypesLOVVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PaymentsTypesLOVVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="PaymentsTypesLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="PaymentsTypesLOVVO1Iterator" id="PaymentsTypesLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="valuedesc"/>
+      </AttrNames>
+    </list>
+    <methodAction id="CallPaymentProcedure"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CallPaymentProcedure" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.CallPaymentProcedure_TransactionsAMDataControl_dataProvider_CallPaymentProcedure_result">
+      <NamedData NDName="PVTNumber" NDType="java.lang.String"/>
+      <NamedData NDName="Amount" NDType="java.lang.String"/>
+      <NamedData NDName="sqlDate" NDType="java.sql.Date"/>
+      <NamedData NDName="ReceiptNumber" NDType="java.lang.String"/>
+      <NamedData NDName="Transactionid" NDType="java.lang.String"/>
+      <NamedData NDName="kiosklocation" NDType="java.lang.String"/>
+      <NamedData NDName="PaymentChannel" NDType="java.lang.String"/>
+      <NamedData NDName="userName" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

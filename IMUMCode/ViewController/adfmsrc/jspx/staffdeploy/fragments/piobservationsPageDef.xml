@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="piobservationsPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PiobservationsVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="PiobservationsVO1Iterator"/>
+    <iterator Binds="pisforobservationsLOV1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="pisforobservationsLOV1Iterator"/>
+    <iterator Binds="ObservationstypesVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="ObservationstypesVO1Iterator"/>
+    <iterator Binds="YesNoLOVVO1" RangeSize="-1"
+              DataControl="StaffDeployLookUpDataControl"
+              id="YesNoLOVVO1Iterator"/>
+    <iterator Binds="PiobservationsVO2" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PiobservationsVO2Iterator"/>
+    <iterator Binds="PIObservationDocsVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PIObservationDocsVO1Iterator"/>
+    <iterator id="PIObservationDocMstVO1Iterator" Binds="PIObservationDocMstVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator Binds="supLovRVO1" RangeSize="-1"
+              DataControl="StaffDeployDataControl" id="supLovRVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="LeavePayreceivedcomm">
+      <AttrNames>
+        <Item Value="LeavePayreceivedcomm"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_TrainingNeeds" id="TrainingNeeds" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="TrainingNeedscomm">
+      <AttrNames>
+        <Item Value="TrainingNeedscomm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="empcontractcomm">
+      <AttrNames>
+        <Item Value="empcontractcomm"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_empcontract" id="empcontract" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_Housingallowance" id="Housingallowance"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_Occupationalinsurance" id="Occupationalinsurance"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_Embezzlement" id="Embezzlement" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_empletter" id="empletter" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="ObservationstypesVO1Iterator" ListOperMode="navigation"
+          ListIter="ObservationstypesVO1Iterator" id="ObservationstypesVO1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="OBSERVATIONTYPE"/>
+      </AttrNames>
+    </list>
+    <methodAction id="getpisforobser"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getpisforobser" IsViewObjectMethod="false"/>
+    <list IterBinding="pisforobservationsLOV1Iterator" ListOperMode="navigation"
+          ListIter="pisforobservationsLOV1Iterator" id="pisforobservationsLOV1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="PiobservationsVO1Iterator" ListOperMode="navigation"
+          ListIter="PiobservationsVO1Iterator" id="PiobservationsVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="CIDClearance"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_LeavePayreceived" id="LeavePayreceived"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <action id="Commit" DataControl="StaffDeployDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <list IterBinding="PiobservationsVO1Iterator" id="ExcusesPI"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="YesNoLOVVO1Iterator"
+          NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+          NullValueFlag="start">
+      <AttrNames>
+        <Item Value="ExcusesPI"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="StatusId"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="StatusName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="Date">
+      <AttrNames>
+        <Item Value="Date"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_CIDClearance" id="CIDClearance" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="CIDClearancecomm">
+      <AttrNames>
+        <Item Value="CIDClearancecomm"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_ExcusesPI" id="ExcusesPI1" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <methodAction id="SavePiobservation"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="SavePiobservation" IsViewObjectMethod="false">
+      <NamedData NDName="pi" NDType="java.lang.String"/>
+      <NamedData NDName="cdate" NDType="java.util.Date"/>
+      <NamedData NDName="obtype" NDType="java.lang.String"/>
+      <NamedData NDName="pibcom" NDType="java.lang.String"/>
+      <NamedData NDName="employ" NDType="java.lang.String"/>
+      <NamedData NDName="employcom" NDType="java.lang.String"/>
+      <NamedData NDName="cid" NDType="java.lang.String"/>
+      <NamedData NDName="cidcom1" NDType="java.lang.String"/>
+      <NamedData NDName="s" NDType="java.lang.String"/>
+      <NamedData NDName="training" NDType="java.lang.String"/>
+      <NamedData NDName="trainingcom" NDType="java.lang.String"/>
+      <NamedData NDName="leavepay" NDType="java.lang.String"/>
+      <NamedData NDName="leavepaycom" NDType="java.lang.String"/>
+      <NamedData NDName="emplett" NDType="java.lang.String"/>
+      <NamedData NDName="occ" NDType="java.lang.String"/>
+      <NamedData NDName="hous" NDType="java.lang.String"/>
+      <NamedData NDName="emb" NDType="java.lang.String"/>
+      <NamedData NDName="expix" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="validateFromDate"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="validateFromDate" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.validateFromDate_StaffDeployDataControl_dataProvider_validateFromDate_result">
+      <NamedData NDName="startdate" NDType="java.util.Date"/>
+      <NamedData NDName="piNumber" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="PiobservationsVO1Iterator" id="PiobservationsVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PiobservationsVO"
+                      Name="PiobservationsVO110">
+        <AttrNames>
+          <Item Value="PIID"/>
+          <Item Value="Date"/>
+          <Item Value="ObservationType"/>
+          <Item Value="ObservationNotes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="PIID">
+      <AttrNames>
+        <Item Value="PIID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="ObservationType">
+      <AttrNames>
+        <Item Value="ObservationType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="ObservationNotes">
+      <AttrNames>
+        <Item Value="ObservationNotes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="CIDClearance1">
+      <AttrNames>
+        <Item Value="CIDClearance"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="empcontract1">
+      <AttrNames>
+        <Item Value="empcontract"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="LeavePayreceived1">
+      <AttrNames>
+        <Item Value="LeavePayreceived"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="TrainingNeeds1">
+      <AttrNames>
+        <Item Value="TrainingNeeds"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="Embezzlement1">
+      <AttrNames>
+        <Item Value="Embezzlement"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="empletter1">
+      <AttrNames>
+        <Item Value="empletter"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="Housingallowance1">
+      <AttrNames>
+        <Item Value="Housingallowance"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator"
+                     id="Occupationalinsurance1">
+      <AttrNames>
+        <Item Value="Occupationalinsurance"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="ExcusesPI2">
+      <AttrNames>
+        <Item Value="ExcusesPI"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="ID">
+      <AttrNames>
+        <Item Value="ID"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PiobservationsVO1Iterator" id="PiobservationsVO12">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PiobservationsVO"
+                      Name="PiobservationsVO120">
+        <AttrNames>
+          <Item Value="PIID"/>
+          <Item Value="Date"/>
+          <Item Value="ObservationType"/>
+          <Item Value="ObservationNotes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PiobservationsVO2Iterator" id="PIID1">
+      <AttrNames>
+        <Item Value="PIID"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PiobservationsVO2Iterator" id="PiobservationsVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PiobservationsVO"
+                      Name="PiobservationsVO20">
+        <AttrNames>
+          <Item Value="PIID"/>
+          <Item Value="Date"/>
+          <Item Value="ObservationType"/>
+          <Item Value="ObservationNotes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PiobservationsVO1Iterator" id="Date1">
+      <AttrNames>
+        <Item Value="Date"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PiobservationsVO2Iterator" id="ID1">
+      <AttrNames>
+        <Item Value="ID"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PIObservationDocsVO1Iterator" id="PIObservationDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIObservationDocsVO"
+                      Name="PIObservationDocsVO10">
+        <AttrNames>
+          <Item Value="FileUpload"/>
+          <Item Value="DOCName"/>
+          <Item Value="remarks"/>
+          <Item Value="FlageM" Binds="FlageM"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="PIObservationDocsVO1Iterator" id="FlageM"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="FlageM"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <list IterBinding="supLovRVO1Iterator" ListOperMode="navigation"
+          ListIter="supLovRVO1Iterator" id="supLovRVO1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="PiobservationsVO1Iterator" StaticList="false"
+          Uses="LOV_ObservationType" id="ObservationType1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <action id="Rollback" DataControl="StaffDeployDataControl"
+            RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <action id="Commit1" DataControl="StaffDeployDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+  </bindings>
+</pageDefinition>

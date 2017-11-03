@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VehiclePlateCategoryVO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  SelectList="VehiclePlateCategoryEO.Plate_Ctg_ID, 
+       VehiclePlateCategoryEO.Plate_Country_ID, 
+       VehiclePlateCategoryEO.Plate_Ctg_Desc, 
+       VehiclePlateCategoryEO.Ctg_Order, 
+       VehiclePlateCategoryEO.mPark_Plate_Ctg, 
+       VehiclePlateCategoryEO.Active_Flag, 
+       VehiclePlateCategoryEO.Country_code, 
+       VehiclePlateCategoryEO.Created_By, 
+       VehiclePlateCategoryEO.Created_Date, 
+       VehiclePlateCategoryEO.Updated_By, 
+       VehiclePlateCategoryEO.Updated_Date, 
+       VehiclePlateCategoryEO.adp_plate_ctg_id"
+  FromList=" Veh_Plate_Ctg_mst VehiclePlateCategoryEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="VehiclePlateCategoryEO.Plate_Ctg_ID desc">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="platecountryidbind"
+    Kind="viewcriteria"
+    Type="java.lang.Integer">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <ViewAccessor
+    Name="YesNoLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.YesNoLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehiclePlateCountryLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO">
+    <ViewCriteriaUsage
+      Name="getByPlalateCountryId"
+      FullName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO.getByPlalateCountryId"/>
+    <ParameterMap>
+      <PIMap Variable="BindCountryId">
+        <TransientExpression><![CDATA[PlateCountryID]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehiclePlateCountryLVO2"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO">
+    <ViewCriteriaUsage
+      Name="getByPlalateCountryId"
+      FullName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO.getByPlalateCountryId"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="LangMstLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.LangMstLVO">
+    <ViewCriteriaUsage
+      Name="LangMstLVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.LangMstLVO.LangMstLVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_ActiveFlag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ActiveFlag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ActiveFlag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlateCountryID"
+    ListVOName="VehiclePlateCountryLVO2"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PlateCountryID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateCountryID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PlateCountryID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PlateCountryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Countrycode"
+    ListVOName="VehiclePlateCountryLVO2"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Countrycode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CountryCode"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Language"
+    ListVOName="LangMstLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Language_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Language"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LNGCODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LNGDESC"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="VehiclePlateCategoryEO"
+    Entity="com.imum.cpms.model.masters.eo.VehiclePlateCategoryEO"/>
+  <ViewAttribute
+    Name="PlateCtgID"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PlateCtgID"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Plate_Ctg_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO.PlateCtgID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateCountryID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PlateCountryID"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Plate_Country_ID"
+    LOVName="LOV_PlateCountryID">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO.PlateCountryID_LABEL"/>
+        <AUTOSUBMIT
+          Value="true"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateCtgDesc"
+    PrecisionRule="true"
+    EntityAttrName="PlateCtgDesc"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Plate_Ctg_Desc">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO.PlateCtgDesc_LABEL"/>
+        <DISPLAYWIDTH
+          Value="25"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CtgOrder"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CtgOrder"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Ctg_Order"/>
+  <ViewAttribute
+    Name="mParkPlateCtg"
+    PrecisionRule="true"
+    EntityAttrName="mParkPlateCtg"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="mPark_Plate_Ctg"/>
+  <ViewAttribute
+    Name="ActiveFlag"
+    PrecisionRule="true"
+    EntityAttrName="ActiveFlag"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Active_Flag"
+    LOVName="LOV_ActiveFlag"
+    DefaultValue="Y">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO.ActiveFlag_LABEL"/>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Countrycode"
+    PrecisionRule="true"
+    EntityAttrName="Countrycode"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Country_code"
+    LOVName="LOV_Countrycode">
+    <Dependencies>
+      <Item
+        Value="PlateCountryID"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO.Countrycode_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Created_By"
+    IsUpdateable="while_insert"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Created_Date"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="UpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedBy"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Updated_By"/>
+  <ViewAttribute
+    Name="UpdatedDate"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedDate"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="Updated_Date"
+    IsUpdateable="false"/>
+    <ViewAttribute
+    Name="Language"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_Language">
+    <TransientExpression><![CDATA[adf.context.locale.language=='en'?'AR':'EN']]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VehCtgNameLng"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="adpplatectgid"
+    PrecisionRule="true"
+    EntityAttrName="adpplatectgid"
+    EntityUsage="VehiclePlateCategoryEO"
+    AliasName="adp_plate_ctg_id"/>
+  <ViewCriteria
+    Name="VehiclePlateCategoryVOCriteria"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow140"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="PlateCountryID"
+        ViewAttribute="PlateCountryID"
+        Operator="="
+        Conjunction="AND"
+        Value=":platecountryidbind"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewLinkAccessor
+    Name="VehiclePlateTypeVO"
+    ViewLink="com.imum.cpms.model.masters.vo.VehPlateCtgToTypeVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

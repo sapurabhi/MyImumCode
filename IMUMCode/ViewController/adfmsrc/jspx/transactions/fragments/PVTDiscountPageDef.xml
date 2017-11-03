@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTDiscountPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTDiscCnclHeaderVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTDiscCnclHeaderVO1Iterator"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <iterator id="PVTDiscCnclDetailVO1Iterator" Binds="PVTDiscCnclDetailVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="PVTDiscountHeaderSearchVO1Iterator"
+              Binds="PVTDiscountHeaderSearchVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="10"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PVTdatefrom">
+      <AttrNames>
+        <Item Value="PVTdatefrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator" id="PVTdateto">
+      <AttrNames>
+        <Item Value="PVTdateto"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_PVTSTAGEID" id="PVTSTAGEID" DTSupportsMRU="false"/>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_PVTStatusID" id="PVTStatusID" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PVTAmtRangefrom">
+      <AttrNames>
+        <Item Value="PVTAmtRangefrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PVTAmtRangeTo">
+      <AttrNames>
+        <Item Value="PVTAmtRangeTo"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_Contracode" id="Contracode" DTSupportsMRU="true"/>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_SectorCode" id="SectorCode" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="Promoeffectivedatefrom">
+      <AttrNames>
+        <Item Value="Promoeffectivedatefrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PromoeffectivedateTo">
+      <AttrNames>
+        <Item Value="PromoeffectivedateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTAmtAfterDiscount"/>
+          <Item Value="CONTRAAMT"/>
+          <Item Value="ContraFeeDiscountAmt"/>
+          <Item Value="ContraFeeAfterDiscount"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="addPVTHeaderData"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addPVTHeaderData" IsViewObjectMethod="false">
+      <NamedData NDName="userid" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="PVTDiscountHeaderSearchVO1Iterator"
+          id="PVTDiscountHeaderSearchVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDiscountHeaderSearchVO"
+                      Name="PVTDiscountHeaderSearchVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateCategoryId"/>
+          <Item Value="PlateTypeId"/>
+          <Item Value="PlateId"/>
+          <Item Value="StageDesc"/>
+          <Item Value="StatusDesc"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="CONTRAAMT"/>
+          <Item Value="PVTAmountAfterDiscount"/>
+          <Item Value="DiscountedContraFee"/>
+          <Item Value="ContraFeeAfterDiscount"/>
+          <Item Value="PlateCategoryDesc"/>
+          <Item Value="PlateTypeDesc"/>
+          <Item Value="PlateNumber"/>
+          <Item Value="ContraCodeDesc"/>
+          <Item Value="SectorDesc"/>
+          <Item Value="ZoneDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_PlateType" id="PlateType" DTSupportsMRU="true"/>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_PlateCategory" id="PlateCategory" DTSupportsMRU="true"/>
+    <methodAction id="getDiscountHeaderSeq"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getDiscountHeaderSeq" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getDiscountHeaderSeq_TransactionsAMDataControl_dataProvider_getDiscountHeaderSeq_result"/>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PlateNumber">
+      <AttrNames>
+        <Item Value="PlateNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_zonecode" id="zonecode" DTSupportsMRU="true"/>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_PlateCountry" id="PlateCountry" DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

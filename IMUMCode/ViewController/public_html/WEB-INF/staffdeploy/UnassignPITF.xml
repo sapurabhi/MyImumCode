@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="UnassignPITF">
+    <default-activity id="__1">getLoggedSup</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__5">UnassignPIBean</managed-bean-name>
+      <managed-bean-class id="__4">com.imum.cpms.staffdeployment.UnassignPIBean</managed-bean-class>
+      <managed-bean-scope id="__2">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="UnassignPI">
+      <page>/jspx/staffdeploy/fragments/UnassignPI.jsff</page>
+    </view>
+    <method-call id="getLoggedSup">
+      <method>#{bindings.getLoggedSup.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>getLoggedSup</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">getLoggedSup</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__9">getLoggedSup</from-outcome>
+        <to-activity-id id="__10">UnassignPI</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

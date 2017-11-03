@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PoundBayDetailVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="Pound_bay_detail_Seq desc"
+  ComponentClass="com.imum.cpms.model.transactions.vo.PoundBayDetailVOImpl"
+  RowClass="com.imum.cpms.model.transactions.vo.PoundBayDetailVORowImpl"
+  FetchMode="FETCH_AS_NEEDED"
+  FetchSize="11"
+  RangeSize="10"
+  RowInterface="com.imum.cpms.model.transactions.vo.common.PoundBayDetailVORow"
+  ClientRowProxyName="com.imum.cpms.model.transactions.vo.client.PoundBayDetailVORowClient">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.transactions.vo.PoundBayDetailVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="BindPvtHdrSeq"
+    Kind="viewcriteria"
+    Type="java.math.BigDecimal"/>
+  <ViewAccessor
+    Name="PoundLocationLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PoundLocationLVO">
+    <ViewCriteriaUsage
+      Name="PoundLocationLVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.PoundLocationLVO.PoundLocationLVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="BayNumberLVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.BayNumberLVO">
+    <ViewCriteriaUsage
+      Name="BayNumberLVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.BayNumberLVO.BayNumberLVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="poundId">
+        <TransientExpression><![CDATA[PoundBayLocation]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_Baynum"
+    ListVOName="BayNumberLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Baynum_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Baynum"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Baynum"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Baynum"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_POUNDLocationID"
+    ListVOName="PoundLocationLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_POUNDLocationID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="POUNDLocationID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LocationID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LocDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PoundBayLocation"
+    ListVOName="PoundLocationLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PoundBayLocation_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PoundBayLocation"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LocationID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LocDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PoundBayNumber"
+    ListVOName="BayNumberLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PoundBayNumber_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PoundBayNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Baynum"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Baynum"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT PoundBayDetailEO.Bay_num, 
+       PoundBayDetailEO.Bay_status, 
+       PoundBayDetailEO.Created_By, 
+       PoundBayDetailEO.Created_Date, 
+       PoundBayDetailEO.POUND_Location_ID, 
+       PoundBayDetailEO.PVT_HDR_SEQ, 
+       PoundBayDetailEO.Pound_bay_detail_Seq, 
+       PoundBayDetailEO.Updated_by, 
+       PoundBayDetailEO.Updated_date
+FROM Gen_pound_bay_detail PoundBayDetailEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="PoundBayDetailEO"
+    Entity="com.imum.cpms.model.transactions.eo.PoundBayDetailEO"/>
+  <ViewAttribute
+    Name="Baynum"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Baynum"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="Bay_num"
+    LOVName="LOV_Baynum">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PoundBayDetailVO.Baynum_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Baystatus"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Baystatus"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="Bay_status"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="POUNDLocationID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="POUNDLocationID"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="POUND_Location_ID"
+    LOVName="LOV_POUNDLocationID">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PoundBayDetailVO.POUNDLocationID_LABEL"/>
+        <AUTOSUBMIT
+          Value="true"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTHDRSEQ"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PVTHDRSEQ"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="PVT_HDR_SEQ"/>
+  <ViewAttribute
+    Name="PoundbaydetailSeq"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PoundbaydetailSeq"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="Pound_bay_detail_Seq"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="Updateddate"
+    PrecisionRule="true"
+    EntityAttrName="Updateddate"
+    EntityUsage="PoundBayDetailEO"
+    AliasName="Updated_date"/>
+  <ViewAttribute
+    Name="PVTNumber"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PoundBayDetailVO.PVTNumber_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PoundBayLocation"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_PoundBayLocation">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PoundBayDetailVO.PoundBayLocation_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PoundBayNumber"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_PoundBayNumber">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PoundBayDetailVO.PoundBayNumber_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+
+    <ViewCriteria
+      Name="GetByPvtHeaderSeq"
+      ViewObjectName="com.imum.cpms.model.transactions.vo.PoundBayDetailVO"
+      Conjunction="AND">
+      <Properties>
+        <CustomProperties>
+          <Property
+            Name="displayOperators"
+            Value="InAdvancedMode"/>
+          <Property
+            Name="autoExecute"
+            Value="false"/>
+          <Property
+            Name="allowConjunctionOverride"
+            Value="true"/>
+          <Property
+            Name="showInList"
+            Value="true"/>
+          <Property
+            Name="mode"
+            Value="Basic"/>
+        </CustomProperties>
+      </Properties>
+      <ViewCriteriaRow
+        Name="vcrow105"
+        UpperColumns="1">
+        <ViewCriteriaItem
+          Name="PVTHDRSEQ"
+          ViewAttribute="PVTHDRSEQ"
+          Operator="="
+          Conjunction="AND"
+          Value=":BindPvtHdrSeq"
+          GenerateIsNullClauseForBindVars="false"
+          IsBindVarValue="true"
+          Required="Optional"/>
+      </ViewCriteriaRow>
+    </ViewCriteria>
+    <ResourceBundle>
+      <PropertiesBundle
+        PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+    </ResourceBundle>
+  <ClientRowInterface>
+    <Method
+      Name="refreshPoundBayAllocLovs">
+      <Return
+        Type="void"/>
+    </Method>
+  </ClientRowInterface>
+</ViewObject>

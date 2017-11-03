@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">StockReport</property>
+      <property
+         name="page">/jspx/transactions/fragments/StockReport.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>StockReport&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">376.79883</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">352.01465</property>
+   </View>
+</SDM>

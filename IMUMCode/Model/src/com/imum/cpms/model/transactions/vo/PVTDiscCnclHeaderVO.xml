@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PVTDiscCnclHeaderVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  FetchMode="FETCH_AS_NEEDED"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.transactions.vo.PVTDiscCnclHeaderVORowImpl"
+  ComponentClass="com.imum.cpms.model.transactions.vo.PVTDiscCnclHeaderVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="ZoneLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.ZoneLOVVO">
+    <ViewCriteriaUsage
+      Name="ZoneLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.ZoneLOVVO.ZoneLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="bindSectorCode">
+        <TransientExpression><![CDATA[SectorCode]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PVTStatusLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PVTStatusLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PVTStageLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PVTStageLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PlateCategoryLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PlateCategoryLOVVO">
+    <ViewCriteriaUsage
+      Name="PlateCategoryLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.PlateCategoryLOVVO.PlateCategoryLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="bindplateCountrynewId">
+        <TransientExpression><![CDATA[PlateCountry]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PlateTypeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PlateTypeLOVVO">
+    <ViewCriteriaUsage
+      Name="PlateTypeLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.PlateTypeLOVVO.PlateTypeLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="plate_ctg_id">
+        <TransientExpression><![CDATA[PlateCategory]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="ContraCodeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.ContraCodeLOVVO">
+    <ViewCriteriaUsage
+      Name="ContraCodeLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.ContraCodeLOVVO.ContraCodeLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="SectorLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.SectorLovVO">
+    <ViewCriteriaUsage
+      Name="SectorLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.SectorLovVO.SectorLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehiclePlateCountryLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PlateCountryLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PlateCountryLOVVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_PVTSTAGEID"
+    ListVOName="PVTStageLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PVTSTAGEID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PVTSTAGEID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="pvtstageid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="stagedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Contracode"
+    ListVOName="ContraCodeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Contracode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Contracode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ContraCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CodeNameEn"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SectorCode"
+    ListVOName="SectorLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_SectorCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_zonecode"
+    ListVOName="ZoneLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_zonecode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="zonecode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="zonecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="zonename"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PVTStatusID"
+    ListVOName="PVTStatusLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PVTStatusID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PVTStatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PVTStatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="statusdesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlateCategory"
+    ListVOName="PlateCategoryLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PlateCategory_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateCategory"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="platectgid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="platectgdesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlateType"
+    ListVOName="PlateTypeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PlateType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="platetypeid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="platetypedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlateCountry"
+    ListVOName="PlateCountryLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="LOV_PlateCountry_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateCountry"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="platecountryid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="platecountryname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT top 50 PVTDiscCnclHeaderEO.DISC_CNCL_hdr_Seq, 
+       PVTDiscCnclHeaderEO.DISC_CNCL_TYPE, 
+       PVTDiscCnclHeaderEO.DISC_PROMO_CODE, 
+       PVTDiscCnclHeaderEO.DISC_PROMO_NAME, 
+       PVTDiscCnclHeaderEO.Contra_code, 
+       PVTDiscCnclHeaderEO.PVT_date_from, 
+       PVTDiscCnclHeaderEO.PVT_date_to, 
+       PVTDiscCnclHeaderEO.PVT_SOURCE, 
+       PVTDiscCnclHeaderEO.PVT_Status_ID, 
+       PVTDiscCnclHeaderEO.PVT_STAGE_ID, 
+       PVTDiscCnclHeaderEO.DISC_PCT, 
+       PVTDiscCnclHeaderEO.DISC_FLAT_AMT, 
+       PVTDiscCnclHeaderEO.PVT_Amt_Range_from, 
+       PVTDiscCnclHeaderEO.PVT_Amt_Range_To, 
+       PVTDiscCnclHeaderEO.Promo_effective_date_from, 
+       PVTDiscCnclHeaderEO.Promo_effective_date_To, 
+       PVTDiscCnclHeaderEO.Plate_Country_ID, 
+       PVTDiscCnclHeaderEO.Sector_Code, 
+       PVTDiscCnclHeaderEO.zone_code, 
+       PVTDiscCnclHeaderEO.DISC_CNCL_STATUS, 
+       PVTDiscCnclHeaderEO.Remarks, 
+       PVTDiscCnclHeaderEO.Approved_By, 
+       PVTDiscCnclHeaderEO.Approved_Date, 
+       PVTDiscCnclHeaderEO.Approver_Remarks, 
+       PVTDiscCnclHeaderEO.DEF_City_Code, 
+       PVTDiscCnclHeaderEO.DEF_Country_Code, 
+       PVTDiscCnclHeaderEO.Created_By, 
+       PVTDiscCnclHeaderEO.Created_Date, 
+       PVTDiscCnclHeaderEO.Updated_by, 
+       PVTDiscCnclHeaderEO.updated_date
+FROM PVT_DISC_CNCL_HEADER PVTDiscCnclHeaderEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="PVTDiscCnclHeaderEO"
+    Entity="com.imum.cpms.model.transactions.eo.PVTDiscCnclHeaderEO"/>
+  <ViewAttribute
+    Name="DISCCNCLhdrSeq"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DISCCNCLhdrSeq"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DISC_CNCL_hdr_Seq"/>
+  <ViewAttribute
+    Name="DISCCNCLTYPE"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DISCCNCLTYPE"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DISC_CNCL_TYPE"
+    DefaultValue="D"/>
+  <ViewAttribute
+    Name="DISCPROMOCODE"
+    PrecisionRule="true"
+    EntityAttrName="DISCPROMOCODE"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DISC_PROMO_CODE"/>
+  <ViewAttribute
+    Name="DISCPROMONAME"
+    PrecisionRule="true"
+    EntityAttrName="DISCPROMONAME"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DISC_PROMO_NAME"/>
+  <ViewAttribute
+    Name="Contracode"
+    PrecisionRule="true"
+    EntityAttrName="Contracode"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Contra_code"
+    LOVName="LOV_Contracode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTdatefrom"
+    PrecisionRule="true"
+    EntityAttrName="PVTdatefrom"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="PVT_date_from"/>
+  <ViewAttribute
+    Name="PVTdateto"
+    PrecisionRule="true"
+    EntityAttrName="PVTdateto"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="PVT_date_to"/>
+  <ViewAttribute
+    Name="PVTSOURCE"
+    PrecisionRule="true"
+    EntityAttrName="PVTSOURCE"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="PVT_SOURCE"/>
+  <ViewAttribute
+    Name="PVTStatusID"
+    PrecisionRule="true"
+    EntityAttrName="PVTStatusID"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="PVT_Status_ID"
+    LOVName="LOV_PVTStatusID">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTSTAGEID"
+    PrecisionRule="true"
+    EntityAttrName="PVTSTAGEID"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="PVT_STAGE_ID"
+    LOVName="LOV_PVTSTAGEID">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DISCPCT"
+    PrecisionRule="true"
+    EntityAttrName="DISCPCT"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DISC_PCT"/>
+  <ViewAttribute
+    Name="DISCFLATAMT"
+    PrecisionRule="true"
+    EntityAttrName="DISCFLATAMT"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DISC_FLAT_AMT"/>
+  <ViewAttribute
+    Name="PVTAmtRangefrom"
+    PrecisionRule="true"
+    EntityAttrName="PVTAmtRangefrom"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="PVT_Amt_Range_from"/>
+  <ViewAttribute
+    Name="PVTAmtRangeTo"
+    PrecisionRule="true"
+    EntityAttrName="PVTAmtRangeTo"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="PVT_Amt_Range_To"/>
+  <ViewAttribute
+    Name="Promoeffectivedatefrom"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Promoeffectivedatefrom"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Promo_effective_date_from"/>
+  <ViewAttribute
+    Name="PromoeffectivedateTo"
+    PrecisionRule="true"
+    EntityAttrName="PromoeffectivedateTo"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Promo_effective_date_To"/>
+  <ViewAttribute
+    Name="PlateCountryID"
+    PrecisionRule="true"
+    EntityAttrName="PlateCountryID"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Plate_Country_ID"/>
+  <ViewAttribute
+    Name="SectorCode"
+    PrecisionRule="true"
+    EntityAttrName="SectorCode"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Sector_Code"
+    LOVName="LOV_SectorCode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="zonecode"
+    PrecisionRule="true"
+    EntityAttrName="zonecode"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="zone_code"
+    LOVName="LOV_zonecode">
+    <Dependencies>
+      <Item
+        Value="SectorCode"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DISCCNCLSTATUS"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DISCCNCLSTATUS"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DISC_CNCL_STATUS"
+    DefaultValue="1"/>
+  <ViewAttribute
+    Name="Remarks"
+    PrecisionRule="true"
+    EntityAttrName="Remarks"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Remarks"/>
+  <ViewAttribute
+    Name="ApprovedBy"
+    PrecisionRule="true"
+    EntityAttrName="ApprovedBy"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Approved_By"/>
+  <ViewAttribute
+    Name="ApprovedDate"
+    PrecisionRule="true"
+    EntityAttrName="ApprovedDate"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Approved_Date"/>
+  <ViewAttribute
+    Name="ApproverRemarks"
+    PrecisionRule="true"
+    EntityAttrName="ApproverRemarks"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Approver_Remarks"/>
+  <ViewAttribute
+    Name="DEFCityCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DEFCityCode"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DEF_City_Code"/>
+  <ViewAttribute
+    Name="DEFCountryCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DEFCountryCode"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="DEF_Country_Code"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="updateddate"
+    PrecisionRule="true"
+    EntityAttrName="updateddate"
+    EntityUsage="PVTDiscCnclHeaderEO"
+    AliasName="updated_date"/>
+  <ViewAttribute
+    Name="PlateType"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_PlateType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateCategory"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_PlateCategory">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateNumber"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="PlateCountry"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_PlateCountry">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

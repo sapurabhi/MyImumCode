@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserRoleMapUVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="RoleLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.RoleLOVVO"
+    RowLevelBinds="true"/>
+  <SQLQuery>
+    <![CDATA[SELECT UserRoleMapEO.User_Role_Map_ID, 
+       UserRoleMapEO.user_id, 
+       UserRoleMapEO.Role_ID, 
+       UserRoleMapEO.active_flag, 
+       UserRoleMapEO.Created_By, 
+       UserRoleMapEO.Created_Date, 
+       UserRoleMapEO.Updated_by, 
+       UserRoleMapEO.Updated_date,
+       (select role_name from gen_role_mst where role_id  = UserRoleMapEO.Role_ID)Role_Name,
+       (select role_desc from gen_role_mst where role_id  = UserRoleMapEO.Role_ID)Role_Desc
+FROM GEN_User_Role_Map UserRoleMapEO
+where UserRoleMapEO.active_flag = 'Y']]>
+  </SQLQuery>
+  <EntityUsage
+    Name="UserRoleMapEO"
+    Entity="com.imum.cpms.model.masters.eo.UserRoleMapEO"/>
+  <ViewAttribute
+    Name="UserRoleMapID"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="UserRoleMapID"
+    EntityUsage="UserRoleMapEO"
+    AliasName="User_Role_Map_ID"/>
+  <ViewAttribute
+    Name="userid"
+    PrecisionRule="true"
+    EntityAttrName="userid"
+    EntityUsage="UserRoleMapEO"
+    AliasName="user_id"/>
+  <ViewAttribute
+    Name="RoleID"
+    PrecisionRule="true"
+    EntityAttrName="RoleID"
+    EntityUsage="UserRoleMapEO"
+    AliasName="Role_ID"/>
+  <ViewAttribute
+    Name="activeflag"
+    PrecisionRule="true"
+    EntityAttrName="activeflag"
+    EntityUsage="UserRoleMapEO"
+    AliasName="active_flag"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="UserRoleMapEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="UserRoleMapEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="UserRoleMapEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="Updateddate"
+    PrecisionRule="true"
+    EntityAttrName="Updateddate"
+    EntityUsage="UserRoleMapEO"
+    AliasName="Updated_date"/>
+  <ViewAttribute
+    Name="RoleName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Role_Name"
+    Expression="Role_Name"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RoleDesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Role_Desc"
+    Expression="Role_Desc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+</ViewObject>

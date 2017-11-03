@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HolidayMstUVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.HolidayMstUVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.HolidayMstUVOImpl"
+  OrderBy="Holiday_Id desc, Created_Date desc">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="HolidayTypeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.HolidayTypeLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="HolidayUserLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.HolidayUserLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="HolidayGroupLOVVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.HolidayGroupLOVVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_GroupId"
+    ListVOName="HolidayGroupLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_GroupId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="GroupId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="groupid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="groupname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HolidayType"
+    ListVOName="HolidayTypeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_HolidayType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HolidayType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_RequestedBy"
+    ListVOName="HolidayUserLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_RequestedBy_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="RequestedBy"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="userid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="firstname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_DeclaredBy"
+    ListVOName="HolidayUserLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_DeclaredBy_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DeclaredBy"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="userid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="firstname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT HolidayMstEO.Holiday_Id, 
+       HolidayMstEO.Group_Id, 
+       HolidayMstEO.Holiday_Year, 
+       HolidayMstEO.Holiday_Date, 
+       HolidayMstEO.Holiday_Desc, 
+       HolidayMstEO.Holiday_Type, 
+       HolidayMstEO.Requested_By, 
+       HolidayMstEO.Requested_Dt, 
+       HolidayMstEO.Declared_By, 
+       HolidayMstEO.Declared_Dt, 
+       HolidayMstEO.Remarks, 
+       HolidayMstEO.Active_Flag, 
+       HolidayMstEO.Created_By, 
+       HolidayMstEO.Created_Date, 
+       HolidayMstEO.Updated_by, 
+       HolidayMstEO.Update_date, 
+       HolidayMstEO.Operation_Hr_start, 
+       HolidayMstEO.Operation_Hr_End,
+       (select group_name from gen_group_mst where group_id = HolidayMstEO.Group_Id)Group_Name,
+       (select  Value_Desc from Gen_Ref_data_Detail_mst where ref_data_header_seq = 32  and Value_Code = HolidayMstEO.Holiday_Type)HolidayType_Desc
+FROM GEN_Holiday_Mst HolidayMstEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="HolidayMstEO"
+    Entity="com.imum.cpms.model.masters.eo.HolidayMstEO"/>
+  <ViewAttribute
+    Name="HolidayId"
+    IsUnique="true"
+    PrecisionRule="true"
+    EntityAttrName="HolidayId"
+    EntityUsage="HolidayMstEO"
+    AliasName="Holiday_Id"/>
+  <ViewAttribute
+    Name="GroupId"
+    PrecisionRule="true"
+    EntityAttrName="GroupId"
+    EntityUsage="HolidayMstEO"
+    AliasName="Group_Id"
+    LOVName="LOV_GroupId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HolidayYear"
+    PrecisionRule="true"
+    EntityAttrName="HolidayYear"
+    EntityUsage="HolidayMstEO"
+    AliasName="Holiday_Year"/>
+  <ViewAttribute
+    Name="HolidayDate"
+    PrecisionRule="true"
+    EntityAttrName="HolidayDate"
+    EntityUsage="HolidayMstEO"
+    AliasName="Holiday_Date"/>
+  <ViewAttribute
+    Name="HolidayDesc"
+    PrecisionRule="true"
+    EntityAttrName="HolidayDesc"
+    EntityUsage="HolidayMstEO"
+    AliasName="Holiday_Desc"/>
+  <ViewAttribute
+    Name="HolidayType"
+    PrecisionRule="true"
+    EntityAttrName="HolidayType"
+    EntityUsage="HolidayMstEO"
+    AliasName="Holiday_Type"
+    LOVName="LOV_HolidayType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RequestedBy"
+    PrecisionRule="true"
+    EntityAttrName="RequestedBy"
+    EntityUsage="HolidayMstEO"
+    AliasName="Requested_By"
+    LOVName="LOV_RequestedBy">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RequestedDt"
+    PrecisionRule="true"
+    EntityAttrName="RequestedDt"
+    EntityUsage="HolidayMstEO"
+    AliasName="Requested_Dt"/>
+  <ViewAttribute
+    Name="DeclaredBy"
+    PrecisionRule="true"
+    EntityAttrName="DeclaredBy"
+    EntityUsage="HolidayMstEO"
+    AliasName="Declared_By"
+    LOVName="LOV_DeclaredBy">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DeclaredDt"
+    PrecisionRule="true"
+    EntityAttrName="DeclaredDt"
+    EntityUsage="HolidayMstEO"
+    AliasName="Declared_Dt"/>
+  <ViewAttribute
+    Name="Remarks"
+    PrecisionRule="true"
+    EntityAttrName="Remarks"
+    EntityUsage="HolidayMstEO"
+    AliasName="Remarks"/>
+  <ViewAttribute
+    Name="ActiveFlag"
+    PrecisionRule="true"
+    EntityAttrName="ActiveFlag"
+    EntityUsage="HolidayMstEO"
+    AliasName="Active_Flag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="HolidayMstEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="HolidayMstEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="HolidayMstEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="Updatedate"
+    PrecisionRule="true"
+    EntityAttrName="Updatedate"
+    EntityUsage="HolidayMstEO"
+    AliasName="Update_date"/>
+  <ViewAttribute
+    Name="OperationHrstart"
+    PrecisionRule="true"
+    EntityAttrName="OperationHrstart"
+    EntityUsage="HolidayMstEO"
+    AliasName="Operation_Hr_start"/>
+  <ViewAttribute
+    Name="OperationHrEnd"
+    PrecisionRule="true"
+    EntityAttrName="OperationHrEnd"
+    EntityUsage="HolidayMstEO"
+    AliasName="Operation_Hr_End"/>
+  <ViewAttribute
+    Name="GroupName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Group_Name"
+    Expression="Group_Name"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HolidayTypeDesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="HolidayType_Desc"
+    Expression="HolidayType_Desc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+</ViewObject>

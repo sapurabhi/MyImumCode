@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PiSupervisorMappingPageDef"
+                Package="jspx.staffdeploy.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PIsForGenPoolVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PIsForGenPoolVO1Iterator"/>
+    <taskFlow id="pisupervisormapping1"
+              taskFlowId="/WEB-INF/staffdeploy/pisupervisormapping.xml#pisupervisormapping"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="pisupervisormapping2"
+              taskFlowId="/WEB-INF/staffdeploy/pisupervisormapping.xml#pisupervisormapping"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings>
+    <list IterBinding="PIsForGenPoolVO1Iterator" ListOperMode="multiSelect"
+          ListIter="PIsForGenPoolVO1Iterator" id="PIsForGenPoolVO1">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="UserId"/>
+        <Item Value="FirstName"/>
+        <Item Value="LastName"/>
+        <Item Value="Gender"/>
+        <Item Value="BirthDate"/>
+        <Item Value="Designation"/>
+        <Item Value="MobileNo"/>
+        <Item Value="LocalAdd1"/>
+        <Item Value="LocalAdd2"/>
+        <Item Value="LocalPOBox"/>
+        <Item Value="LocalCity"/>
+        <Item Value="LocalCountry"/>
+        <Item Value="PermAdd1"/>
+        <Item Value="PermAdd2"/>
+        <Item Value="PermPOBox"/>
+        <Item Value="PermCity"/>
+        <Item Value="PermCountry"/>
+        <Item Value="MailId"/>
+        <Item Value="BaseLocation"/>
+        <Item Value="PrefComm"/>
+        <Item Value="ManagerId"/>
+        <Item Value="Extuserflag"/>
+        <Item Value="Lastlogindatetime"/>
+        <Item Value="Secretqust"/>
+        <Item Value="LoginPrintID"/>
+        <Item Value="ActiveOnStreetFlag"/>
+        <Item Value="AssignAvailableflag"/>
+        <Item Value="ActiveFlag"/>
+        <Item Value="Createdby"/>
+        <Item Value="Createddate"/>
+        <Item Value="UpdatedBy"/>
+        <Item Value="UpdatedDate"/>
+        <Item Value="GroupId"/>
+        <Item Value="PersonalMailId"/>
+        <Item Value="Password1"/>
+        <Item Value="Password2"/>
+        <Item Value="Password3"/>
+        <Item Value="Password4"/>
+        <Item Value="Secretans"/>
+        <Item Value="Password"/>
+        <Item Value="EmiratesId"/>
+        <Item Value="PassportNumber"/>
+        <Item Value="pssptDateofIssue"/>
+        <Item Value="PSSPTDateofExpiry"/>
+        <Item Value="Nationality"/>
+        <Item Value="EducationalQualifications"/>
+        <Item Value="HireDate"/>
+        <Item Value="MedicalExaminationsDetails"/>
+        <Item Value="HealthInsuranceDetails"/>
+        <Item Value="Trainingstatus"/>
+        <Item Value="DeactivationReason"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

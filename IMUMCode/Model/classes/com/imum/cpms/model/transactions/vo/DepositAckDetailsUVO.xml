@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DepositAckDetailsUVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.transactions.vo.DepositAckDetailsUVORowImpl"
+  ComponentClass="com.imum.cpms.model.transactions.vo.DepositAckDetailsUVOImpl"
+  OrderBy="Deposit_Ack_Seq desc,Created_Date desc">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="BankAccInfoRVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.BankAccInfoRVO">
+    <ViewCriteriaUsage
+      Name="BankAccInfoRVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.BankAccInfoRVO.BankAccInfoRVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="LocationTypeLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.LocationTypeLVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="DepAckDtlLocLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.DepAckDtlLocLOVVO">
+    <ViewCriteriaUsage
+      Name="DepAckDtlLocLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.DepAckDtlLocLOVVO.DepAckDtlLocLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="locType">
+        <TransientExpression><![CDATA[CashSource]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_BankAccinfoSeq"
+    ListVOName="BankAccInfoRVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_BankAccinfoSeq_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="BankAccinfoSeq"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="BankSeq"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="BankInfo"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CashSource"
+    ListVOName="LocationTypeLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_CashSource_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CashSource"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_LOCATIONID"
+    ListVOName="DepAckDtlLocLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_LOCATIONID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LOCATIONID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LocationId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LocDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT DepositAckDetailsEO.Deposit_Ack_Seq, 
+       DepositAckDetailsEO.Bank_Acc_info_Seq, 
+       DepositAckDetailsEO.Deposite_Date, 
+       DepositAckDetailsEO.Depositor_Name, 
+       DepositAckDetailsEO.Deposite_Slip_Amt, 
+       DepositAckDetailsEO.Deposite_Slip_Ack_Date, 
+       DepositAckDetailsEO.Deposit_slip_num, 
+       DepositAckDetailsEO.Cash_Source, 
+       DepositAckDetailsEO.Sale_Trn_Date, 
+       DepositAckDetailsEO.Ack_slip_num, 
+       DepositAckDetailsEO.Expected_Amt, 
+       DepositAckDetailsEO.Discrepancy_flag, 
+       DepositAckDetailsEO.Created_By, 
+       DepositAckDetailsEO.Created_Date, 
+       DepositAckDetailsEO.Updated_by, 
+       DepositAckDetailsEO.updated_date, 
+       DepositAckDetailsEO.LOCATION_ID,
+       (select Value_Desc from Gen_Ref_data_Detail_mst where ref_data_header_seq = 11 and value_code = DepositAckDetailsEO.Cash_Source)CashSrcDesc
+FROM GEN_CASH_DEPOSIT_ACK_DETAILS DepositAckDetailsEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="DepositAckDetailsEO"
+    Entity="com.imum.cpms.model.transactions.eo.DepositAckDetailsEO"/>
+  <ViewAttribute
+    Name="DepositAckSeq"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="DepositAckSeq"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Deposit_Ack_Seq"/>
+  <ViewAttribute
+    Name="BankAccinfoSeq"
+    PrecisionRule="true"
+    EntityAttrName="BankAccinfoSeq"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Bank_Acc_info_Seq"
+    LOVName="LOV_BankAccinfoSeq">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DepositeDate"
+    PrecisionRule="true"
+    EntityAttrName="DepositeDate"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Deposite_Date"/>
+  <ViewAttribute
+    Name="DepositorName"
+    PrecisionRule="true"
+    EntityAttrName="DepositorName"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Depositor_Name"/>
+  <ViewAttribute
+    Name="DepositeSlipAmt"
+    PrecisionRule="true"
+    EntityAttrName="DepositeSlipAmt"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Deposite_Slip_Amt"/>
+  <ViewAttribute
+    Name="DepositeSlipAckDate"
+    PrecisionRule="true"
+    EntityAttrName="DepositeSlipAckDate"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Deposite_Slip_Ack_Date"/>
+  <ViewAttribute
+    Name="Depositslipnum"
+    PrecisionRule="true"
+    EntityAttrName="Depositslipnum"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Deposit_slip_num"/>
+  <ViewAttribute
+    Name="CashSource"
+    PrecisionRule="true"
+    EntityAttrName="CashSource"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Cash_Source"
+    LOVName="LOV_CashSource">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SaleTrnDate"
+    PrecisionRule="true"
+    EntityAttrName="SaleTrnDate"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Sale_Trn_Date">
+    <Properties>
+      <SchemaBasedProperties>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Ackslipnum"
+    PrecisionRule="true"
+    EntityAttrName="Ackslipnum"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Ack_slip_num"/>
+  <ViewAttribute
+    Name="ExpectedAmt"
+    PrecisionRule="true"
+    EntityAttrName="ExpectedAmt"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Expected_Amt">
+    <Properties>
+      <SchemaBasedProperties>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Discrepancyflag"
+    PrecisionRule="true"
+    EntityAttrName="Discrepancyflag"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Discrepancy_flag"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="updateddate"
+    PrecisionRule="true"
+    EntityAttrName="updateddate"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="updated_date"/>
+  <ViewAttribute
+    Name="LOCATIONID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LOCATIONID"
+    EntityUsage="DepositAckDetailsEO"
+    AliasName="LOCATION_ID"
+    LOVName="LOV_LOCATIONID">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CashSrcDesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="CashSrcDesc"
+    Expression="CashSrcDesc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+</ViewObject>

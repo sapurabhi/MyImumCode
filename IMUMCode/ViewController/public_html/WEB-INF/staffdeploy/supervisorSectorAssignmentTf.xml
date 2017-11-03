@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="supervisorSectorAssignmentTf">
+    <default-activity id="__27">updateStatusExpiredEndDate</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__3">supervisorSectorAssignmentMB</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.staffdeployment.supervisorSectorAssignmentMB</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__17">
+      <managed-bean-name id="__19">SupervisorAmendmentBean</managed-bean-name>
+      <managed-bean-class id="__18">com.imum.cpms.staffdeployment.SupervisorAmendment</managed-bean-class>
+      <managed-bean-scope id="__16">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="supervisorSectorAssignment">
+      <page>/jspx/staffdeploy/fragments/supervisorSectorAssignment.jsff</page>
+    </view>
+    <view id="Supervisor_Ammendment">
+      <page>/jspx/staffdeploy/fragments/Supervisor_Ammendment.jsff</page>
+    </view>
+    <method-call id="updateStatusExpiredEndDate">
+      <method>#{bindings.updateStatusExpiredEndDate.execute}</method>
+      <outcome id="__1">
+        <fixed-outcome>updateStatusExpiredEndDate</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">supervisorSectorAssignment</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome id="__10">success</from-outcome>
+        <to-activity-id id="__9">Supervisor_Ammendment</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__11">
+      <from-activity-id id="__12">Supervisor_Ammendment</from-activity-id>
+      <control-flow-case id="__14">
+        <from-outcome id="__15">back</from-outcome>
+        <to-activity-id id="__13">supervisorSectorAssignment</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__22">
+      <from-activity-id id="__23">updateStatusExpiredEndDate</from-activity-id>
+      <control-flow-case id="__25">
+        <from-outcome id="__26">updateStatusExpiredEndDate</from-outcome>
+        <to-activity-id id="__24">supervisorSectorAssignment</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" layout="horizontal">
+    <af:toolbar id="t2">
+     <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb11"
+                        inlineStyle="background-color:#F39C11;"
+                        action="#{CardTypeMstMBean.Submit_action}"
+                        rendered="false"
+                         binding="#{CardTypeMstMBean.submitBtnTop}"/>
+      <af:spacer width="10" id="s1134"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"
+                        id="ct1b2"
+                        rendered="false"
+                         action="#{CardTypeMstMBean.Cancel_action}"
+                        binding="#{CardTypeMstMBean.cancelBtnTop}"/>
+      <af:spacer width="500" height="10" id="spacer2"/>
+      <af:commandButton text="#{viewcontrollerBundle.NEW}" id="New" icon="/images/new.gif"
+                        action="#{CardTypeMstMBean.New_action}"
+                        binding="#{CardTypeMstMBean.newBtn}"
+                        disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="Edit" icon="/images/edit.gif"
+                        action="#{CardTypeMstMBean.Edit_action}"
+                        binding="#{CardTypeMstMBean.editBtn}"
+                        disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="spacer1"/>
+      <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="View" icon="/images/view.gif"
+                        action="#{CardTypeMstMBean.View_action}"
+                        binding="#{CardTypeMstMBean.viewBtn}">
+        </af:commandButton>
+    </af:toolbar>
+  </af:panelGroupLayout>
+  <af:showDetailHeader text="#{viewcontrollerBundle.CARD_TYPE_MASTER}" disclosed="true" id="sdh1">
+    <af:panelGroupLayout id="pgl2">
+      <af:table value="#{bindings.CardTypeMstUVO2.collectionModel}" var="row"
+                rows="#{bindings.CardTypeMstUVO2.rangeSize}"
+                emptyText="#{bindings.CardTypeMstUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.CardTypeMstUVO2.rangeSize}"
+                rowBandingInterval="1"
+                filterModel="#{bindings.CardTypeMstUVO2Query.queryDescriptor}"
+                queryListener="#{bindings.CardTypeMstUVO2Query.processQuery}" varStatus="vs"
+                selectionListener="#{bindings.CardTypeMstUVO2.collectionModel.makeCurrent}"
+                rowSelection="multiple" id="t1" scrollPolicy="page"
+                autoHeightRows="0" width="66%" filterVisible="true">
+        <af:column sortProperty="#{bindings.CardTypeMstUVO2.hints.CardTypeCode.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.CARD_TYPE_CODE}"
+                   id="c7" align="right" width="120">
+          <af:outputText value="#{row.CardTypeCode}" id="ot2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CardTypeMstUVO2.hints.CardTypeName.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.CARD_TYPE}"
+                   id="c6" align="left" width="145" displayIndex="-1">
+          <af:outputText value="#{row.CardTypeName}" id="ot5"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CardTypeMstUVO2.hints.Category.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.CATEGORY}"
+                   id="c3" align="right" width="90">
+          <af:outputText value="#{row.Category}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CardTypeMstUVO2.hints.cardDenomamt.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.DENOMINATION}"
+                   id="c5" align="right" width="150">
+          <af:outputText value="#{row.cardDenomamt}" id="ot6">
+          <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+           
+        </af:column>
+        <af:column sortProperty="#{bindings.CardTypeMstUVO2.hints.BulkSaleLimit.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.BULK_SALE_LIMIT}"
+                   id="c4" align="right" width="130">
+          <af:outputText value="#{row.BulkSaleLimit}" id="ot1">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.CardTypeMstUVO2.hints.BulkSaleLimit.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.CardTypeMstUVO2.hints.ActiveInd.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                   id="c2" align="center" rendered="false">
+          <af:selectBooleanCheckbox value="#{row.bindings.BooleanActive.inputValue}"
+                                    label="#{row.bindings.BooleanActive.label}"
+                                    shortDesc="#{bindings.CardTypeMstUVO2.hints.BooleanActive.tooltip}"
+                                    id="sbc3" disabled="true"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+    <af:spacer height="50" id="spacer3"/>
+    <af:panelGroupLayout id="pgl3"
+                         binding="#{CardTypeMstMBean.cardTypeMstForm}"
+                         visible="false">
+      <af:panelFormLayout id="pfl1" rows="5" fieldWidth="20">
+        <af:inputText value="#{bindings.CardTypeCode.inputValue}"
+                      label="#{viewcontrollerBundle.CARD_TYPE_CODE}"
+                      required="#{bindings.CardTypeCode.hints.mandatory}"
+                      maximumLength="#{bindings.CardTypeCode.hints.precision}"
+                      shortDesc="#{bindings.CardTypeCode.hints.tooltip}"
+                      id="it3" disabled="true">
+          <f:validator binding="#{bindings.CardTypeCode.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.CardTypeName.inputValue}"
+                      label="#{viewcontrollerBundle.CARD_TYPE}"
+                      required="#{bindings.CardTypeName.hints.mandatory}"
+                      maximumLength="#{bindings.CardTypeName.hints.precision}"
+                      shortDesc="#{bindings.CardTypeName.hints.tooltip}"
+                      id="it11" disabled="#{CardTypeMstMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.CardTypeName.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Category.inputValue}"
+                      label="#{viewcontrollerBundle.CATEGORY}"
+                      required="#{bindings.Category.hints.mandatory}"
+                      maximumLength="#{bindings.Category.hints.precision}"
+                      shortDesc="#{bindings.Category.hints.tooltip}" id="it9"
+                      disabled="#{CardTypeMstMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.Category.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.CostAmt.inputValue}"
+                      label="#{viewcontrollerBundle.COST}"
+                      required="#{bindings.CostAmt.hints.mandatory}"
+                      maximumLength="#{bindings.CostAmt.hints.precision}"
+                      shortDesc="#{bindings.CostAmt.hints.tooltip}" 
+                      disabled="#{CardTypeMstMBean.isDisabled}"
+                      id="it2" showRequired="true">
+          <f:validator binding="#{bindings.CostAmt.validator}"/>
+          <f:convertNumber pattern="#0.00" />
+        </af:inputText>
+        <af:inputText value="#{bindings.cardDenomamt.inputValue}"
+                      label="#{viewcontrollerBundle.DENOMINATION}"
+                      required="#{bindings.cardDenomamt.hints.mandatory}"
+                      maximumLength="#{bindings.cardDenomamt.hints.precision}"
+                      shortDesc="#{bindings.cardDenomamt.hints.tooltip}"
+                      id="it5" disabled="#{CardTypeMstMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.cardDenomamt.validator}"/>
+           <f:convertNumber pattern="#0.00" />
+        </af:inputText>
+        <af:inputText value="#{bindings.BulkSaleLimit.inputValue}"
+                      label="#{viewcontrollerBundle.BULK_SALE_LIMIT}"
+                      required="#{bindings.BulkSaleLimit.hints.mandatory}"
+                      maximumLength="#{bindings.BulkSaleLimit.hints.precision}"
+                      shortDesc="#{bindings.BulkSaleLimit.hints.tooltip}"
+                      id="it7" disabled="#{CardTypeMstMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.BulkSaleLimit.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.BulkSaleLimit.format}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.ValDuration.inputValue}"
+                      label="#{viewcontrollerBundle.VALIDATION_DURATION}"
+                      required="#{bindings.ValDuration.hints.mandatory}"
+                      maximumLength="#{bindings.ValDuration.hints.precision}"
+                      shortDesc="#{bindings.ValDuration.hints.tooltip}"
+                      id="it8" disabled="#{CardTypeMstMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.ValDuration.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ValDuration.format}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.amendTimeLimit.inputValue}"
+                      label="#{viewcontrollerBundle.TIME_LIMIT_FOR_AMENDMENT}"
+                      required="#{bindings.amendTimeLimit.hints.mandatory}"
+                      maximumLength="#{bindings.amendTimeLimit.hints.precision}"
+                      shortDesc="#{bindings.amendTimeLimit.hints.tooltip}"
+                      id="it10" disabled="#{CardTypeMstMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.amendTimeLimit.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.amendTimeLimit.format}"/>
+        </af:inputText>
+        <af:selectBooleanCheckbox value="#{bindings.BooleanActive.inputValue}"
+                                  label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                                  shortDesc="#{bindings.BooleanActive.hints.tooltip}"
+                                  id="sbc1"
+                                  disabled="#{CardTypeMstMBean.isDisabled}"/>
+      </af:panelFormLayout>
+    </af:panelGroupLayout>
+     <af:spacer height="80" id="s12344"/>
+    <af:toolbar id="t3">
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb1"
+                        inlineStyle="background-color:#F39C11;"
+                        action="#{CardTypeMstMBean.Submit_action}"
+                        binding="#{CardTypeMstMBean.submitBtn}"
+                        rendered="false"/>
+      <af:spacer width="10" id="s134"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"
+                        id="ctb2" binding="#{CardTypeMstMBean.cancelBtn}"
+                        action="#{CardTypeMstMBean.Cancel_action}"
+                        rendered="false"/>
+    </af:toolbar>
+  </af:showDetailHeader>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:CardTypeMstMBean-->
+</jsp:root>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+ <af:showDetailHeader text="PI Unassign" disclosed="true" id="sdh1"> 
+ <af:spacer height="10" id="s1"/>
+    <af:panelLabelAndMessage label="Supervisor:" id="plam1" labelStyle="font-weight:bold; font-size:small;"
+                             visible="#{sessionScope.seniourSup ne 'SeniourSupervisor'}">
+     <af:outputText value="#{sessionScope.supervisorId}" id="ot3"
+                    inlineStyle="font-weight:bold; font-size:small; text-align:center;"/>
+    </af:panelLabelAndMessage>
+    <af:panelLabelAndMessage label="Senior Supervisor:" id="plam2" labelStyle="font-weight:bold; font-size:small;"
+                             visible="#{sessionScope.seniourSup eq 'SeniourSupervisor'}">
+     <af:outputText value="#{sessionScope.supervisorId}" id="ot2"
+                    inlineStyle="font-weight:bold; font-size:small; text-align:center;"/>
+    </af:panelLabelAndMessage>
+    <af:spacer height="10" id="s2"/>
+    <af:panelGroupLayout>
+   <af:selectOneChoice value="#{bindings.supLovRVO1.inputValue}"
+                       label="Select Supervisor"
+                       visible="#{sessionScope.seniourSup eq 'SeniourSupervisor'}"
+                       required="#{bindings.supLovRVO1.hints.mandatory}"
+                       shortDesc="#{bindings.supLovRVO1.hints.tooltip}"
+                       id="soc1"
+                       valueChangeListener="#{pageFlowScope.UnassignPIBean.supLovVCL}"
+                       autoSubmit="true">
+    <f:selectItems value="#{bindings.supLovRVO1.items}" id="si1"/>
+   </af:selectOneChoice>
+  </af:panelGroupLayout>
+   <af:spacer height="10" id="s3"/>
+    <af:panelGroupLayout id="pgl1">
+    <af:table value="#{bindings.PIAllocToSpvsrGrpUVO2.collectionModel}"
+              var="row" rows="#{bindings.PIAllocToSpvsrGrpUVO2.rangeSize}"
+              emptyText="#{bindings.PIAllocToSpvsrGrpUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PIAllocToSpvsrGrpUVO2.rangeSize}"
+              rowBandingInterval="0" 
+              selectionListener="#{bindings.PIAllocToSpvsrGrpUVO2.collectionModel.makeCurrent}"
+              rowSelection="multiple" id="t1" width="250"
+              binding="#{pageFlowScope.UnassignPIBean.piSupAllocTableBind}">
+    <af:column headerText="Select"
+               id="c2">
+     <af:selectBooleanCheckbox value="#{row.bindings.SelectedRow.inputValue}"
+                               label="#{row.bindings.SelectedRow.label}"
+                               shortDesc="#{bindings.PIAllocToSpvsrGrpUVO2.hints.SelectedRow.tooltip}"
+                               id="sbc1"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.PIAllocToSpvsrGrpUVO2.hints.PIid.name}"
+                 sortable="false"
+                 headerText="PI ID"
+                 id="c1" width="120">
+        <af:outputText value="#{row.PIid}" id="ot1"/>
+      </af:column>
+      <!--<af:column sortProperty="#{bindings.PIAllocToSpvsrGrpUVO2.hints.AssignedTo.name}"
+                 sortable="false" 
+                 headerText="Supervisor ID"
+                 id="c2" width="120">
+        <af:outputText value="#{row.AssignedTo}" id="ot2"/>
+      </af:column>-->
+    </af:table>
+    <af:spacer height="10" id="s4"/>
+     <af:commandButton text="Un-Assign" id="cb5" partialSubmit="true" 
+     inlineStyle="width:100px;font-weight:bold; background-color:#FFA500;"
+                       action="#{pageFlowScope.UnassignPIBean.unAssignAction}"
+                       disabled="#{sessionScope.PICount eq 0}">
+     </af:commandButton>
+  </af:panelGroupLayout>
+  </af:showDetailHeader>
+</jsp:root>

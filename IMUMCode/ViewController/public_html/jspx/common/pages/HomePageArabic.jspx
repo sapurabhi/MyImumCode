@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+     <af:document id="d1" binding="#{backingBeanScope.backing_home.d1}" title="#{viewcontrollerBundle.HOME_PAGE_DISPLAY}">
+      <af:messages binding="#{backingBeanScope.backing_home.m1}" id="m1"/>
+      <af:form id="f1" binding="#{backingBeanScope.backing_home.f1}" usesUpload="true">
+        
+        <af:pageTemplate viewId="/jspx/common/cpmsArabicTemplate.jspx"
+                         value="#{bindings.PageTemplateArabicBinding}" id="pt1">
+           <f:facet name="Main">
+            <af:tree value="#{bindings.MenuLngDetailVO1.treeModel}" var="node"
+                     selectionListener="#{bindings.MenuLngDetailVO1.treeModel.makeCurrent}"
+                     rowSelection="single" id="t1" partialTriggers=":pt1" summary="#{viewcontrollerBundle.DISPLAY_MENU}">
+              <f:facet name="nodeStamp">
+               <af:group id="g1">
+               
+                <af:outputText value="#{node.MenuDefinition}" id="ot1" rendered="#{(node.menuurl eq null) ?true : false}"/>
+                <af:commandLink id="cl" text="#{node.MenuDefinition}"
+                                rendered="#{(node.menuurl eq null) ?false : true}"
+                                actionListener="#{TemplateBean.setCurrentMenuTaskFlowURL}" partialSubmit="true" >
+                     <f:attribute name="requestedMenuURL" value="#{node.menuurl}"/>
+                </af:commandLink>
+              </af:group>
+             </f:facet>
+            </af:tree>
+          </f:facet>
+          
+          <f:facet name="ContentDisplay">
+            <af:group id="g2">
+              <af:region value="#{bindings.dynamicRegion1.regionModel}" id="r1" />
+            </af:group>
+          </f:facet>  
+          
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

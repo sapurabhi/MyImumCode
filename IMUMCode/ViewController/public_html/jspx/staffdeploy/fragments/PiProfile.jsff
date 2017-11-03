@@ -1,0 +1,685 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+          
+  
+  <af:panelGroupLayout layout="scroll" id="pgl1">
+      
+         <af:resource type="javascript" source="/javascript/validation.js"/>
+          
+ 
+     
+    <af:panelGroupLayout id="pgl5">
+                                                                                              
+    </af:panelGroupLayout>
+    <af:panelHeader text="#{viewcontrollerBundle.PI_PROFILE_0}" id="ph1">
+    <af:panelGroupLayout id="pgl6" valign="top" halign="end">
+        <af:spacer width="80%" height="10" id="s3"/>
+        <af:commandButton text="#{viewcontrollerBundle.NEW_PI_PROFILE}" id="cb1"
+                      
+                       
+                        action="#{PINewProfileMBean.CreatePIProfile}"
+                        iconPosition="leading"
+                        inlineStyle="width:auto;background-color:#F39C11;"
+                        useWindow="false"/>
+    </af:panelGroupLayout>
+      <af:query id="qryId1" headerText="#{viewcontrollerBundle.SEARCH_2}" disclosed="true"
+                value="#{bindings.PIUserMstUVOCriteriaQuery.queryDescriptor}"
+                model="#{bindings.PIUserMstUVOCriteriaQuery.queryModel}"
+                queryListener="#{bindings.PIUserMstUVOCriteriaQuery.processQuery}"
+                queryOperationListener="#{PINewProfileMBean.ResetSearchPage}"
+                resultComponentId="::resId1" saveQueryMode="hidden"
+                maxColumns="2" rows="4" displayMode="default"
+                modeChangeVisible="false" saveResultsLayout="never"
+                resetButtonText="Cancel"/>
+                
+    </af:panelHeader>
+    <af:spacer width="10" height="20" id="s2"/>
+    
+    <af:table value="#{bindings.PIUserMstUVO1.collectionModel}" var="row"
+              rows="#{bindings.PIUserMstUVO1.rangeSize}"
+              emptyText="#{bindings.PIUserMstUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PIUserMstUVO1.rangeSize}"
+              rowBandingInterval="1"  width="75%" 
+              selectionListener="#{PINewProfileMBean.PISelectionListener}"
+              rowSelection="single" id="resId1" inlineStyle="height:188px;"
+             partialTriggers="::pgl4" styleClass="AFStretchWidth"
+              columnStretching="column:resId1c2"
+              autoHeightRows="0" first="0"
+            filterVisible="true" columnBandingInterval="0"
+              scrollPolicy="page" binding="#{PINewProfileMBean.searchTable}">
+      <af:column sortProperty="#{bindings.PIUserMstUVO1.hints.UserId.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.PI_NO_}"
+                 id="resId1c1" width="148">
+        <af:outputText value="#{row.UserId}" id="ot17"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PIUserMstUVO1.hints.FirstName.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.FIRST_NAME}"
+                 id="resId1c2" width="140">
+        <af:outputText value="#{row.FirstName}" id="ot6"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PIUserMstUVO1.hints.LastName.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.LAST_NAME}"
+                 id="resId1c3" width="115">
+        <af:outputText value="#{row.LastName}" id="ot7"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PIUserMstUVO1.hints.BirthDate.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.DATE_OF_BIRTH}"
+                 id="resId1c5" width="160">
+        <af:outputText value="#{row.BirthDate}" id="ot1">
+          <af:convertDateTime pattern="#{bindings.PIUserMstUVO1.hints.BirthDate.format}"/>
+          <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PIUserMstUVO1.hints.HireDate.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.HIRE_DATE_}"
+                 id="resId1c17" width="182" minimumWidth="12">
+        <af:outputText value="#{row.HireDate}" id="ot2">
+          <af:convertDateTime pattern="#{bindings.PIUserMstUVO1.hints.HireDate.format}"/>
+          <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+        </af:outputText>
+      </af:column>
+    </af:table>
+  
+
+    <af:panelGroupLayout id="pgl2" layout="scroll"/>
+    <af:panelGroupLayout id="pgl7" layout="vertical">
+      <af:spacer width="10" height="20" id="s1"/>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl0" binding="#{PINewProfileMBean.editPanel}" partialTriggers="resId1"
+                         layout="scroll">
+                     
+  <af:panelFormLayout id="pfl3" partialTriggers="resId1"
+                     rendered="#{pageFlowScope.Entered eq 'Update' ? 'true':'false'}"
+                      maxColumns="3" rows="14">
+    
+   
+      <af:inputText value="#{bindings.UserId.inputValue}"
+                    label="#{viewcontrollerBundle.PI_NUMBER_2}"
+                    
+                    required="#{bindings.UserId.hints.mandatory}"
+                    columns="#{bindings.UserId.hints.displayWidth}"
+                    maximumLength="#{bindings.UserId.hints.precision}"
+                    shortDesc="#{bindings.UserId.hints.tooltip}" id="it29"
+                    binding="#{PINewProfileMBean.piId}" showRequired="true"
+                    requiredMessageDetail="Please enter PI ID" readOnly="false"
+                    contentStyle="width:225px" disabled="true">
+        <f:validator binding="#{bindings.UserId.validator}"/>
+      </af:inputText>
+      <af:inputText value="#{bindings.FirstName.inputValue}"
+                    label="#{viewcontrollerBundle.FIRST_NAME}"
+                    required="#{bindings.FirstName.hints.mandatory}"
+                    columns="20"
+                    maximumLength="20"
+                    shortDesc="#{bindings.FirstName.hints.tooltip}" id="it23"
+                    showRequired="true" contentStyle="width:225px">
+        <f:validator binding="#{bindings.FirstName.validator}"/>
+      </af:inputText>
+      <af:inputText value="#{bindings.LastName.inputValue}"
+                    label="#{viewcontrollerBundle.LAST_NAME}"
+                    required="#{bindings.LastName.hints.mandatory}"
+                    columns="20"
+                    maximumLength="20"
+                    shortDesc="#{bindings.LastName.hints.tooltip}" id="it17"
+                    showRequired="true" contentStyle="width:225px">
+        <f:validator binding="#{bindings.LastName.validator}"/>
+      </af:inputText>
+        <af:selectOneRadio value="#{bindings.Gender.inputValue}"
+                           label="#{viewcontrollerBundle.GENDER__0}"
+                           required="#{bindings.Gender.hints.mandatory}"
+                           shortDesc="#{bindings.Gender.hints.tooltip}"
+                           id="sor1" 
+                           contentStyle="width:230px">
+          <f:selectItems value="#{bindings.Gender.items}" id="si5"/>
+        </af:selectOneRadio>
+        <af:inputDate value="#{bindings.BirthDate.inputValue}"
+                    label="#{viewcontrollerBundle.DATE_OF_BIRTH_}"
+                    required="#{bindings.BirthDate.hints.mandatory}"
+                    shortDesc="#{bindings.BirthDate.hints.tooltip}" id="id5"
+                    showRequired="true"
+                      requiredMessageDetail="Please enter Date of Birth "
+                      contentStyle="width:225px">
+        <f:validator binding="#{bindings.BirthDate.validator}"/>
+        <af:convertDateTime pattern="#{bindings.BirthDate.format}"/>
+           <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+      </af:inputDate>
+      <af:inputText value="#{bindings.LocalAdd1.inputValue}"
+                    label="#{viewcontrollerBundle.ADDRESS_1}"
+                    required="#{bindings.LocalAdd1.hints.mandatory}"
+                    columns="20"
+                    maximumLength="30"
+                    shortDesc="#{bindings.LocalAdd1.hints.tooltip}" id="it8"
+                    showRequired="true" contentStyle="width:225px">
+        <f:validator binding="#{bindings.LocalAdd1.validator}"/>
+      </af:inputText>
+      <af:inputText value="#{bindings.LocalAdd2.inputValue}"
+                    label="#{viewcontrollerBundle.ADDRESS_2_0}"
+                    required="#{bindings.LocalAdd2.hints.mandatory}"
+                    columns="20"
+                    maximumLength="30"
+                    shortDesc="#{bindings.LocalAdd2.hints.tooltip}" id="it6"
+                    contentStyle="width:225px">
+        <f:validator binding="#{bindings.LocalAdd2.validator}"/>
+      </af:inputText>
+        <af:selectOneChoice value="#{bindings.LocalCity.inputValue}"
+                            label="#{viewcontrollerBundle.CITY}"
+                            required="#{bindings.LocalCity.hints.mandatory}"
+                            shortDesc="#{bindings.LocalCity.hints.tooltip}"
+                            id="soc1" showRequired="true"
+                            contentStyle="width:230px">
+          <f:selectItems value="#{bindings.LocalCity.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.LocalCountry.inputValue}"
+                            label="#{viewcontrollerBundle.COUNTRY}"
+                            required="#{bindings.LocalCountry.hints.mandatory}"
+                            shortDesc="#{bindings.LocalCountry.hints.tooltip}"
+                            id="soc2" showRequired="true"
+                            contentStyle="width:230px">
+          <f:selectItems value="#{bindings.LocalCountry.items}" id="si2"/>
+        </af:selectOneChoice>
+      <af:inputText value="#{bindings.EmiratesId.inputValue}"
+                    label="#{viewcontrollerBundle.EMIRATES_ID}"
+                    required="#{bindings.EmiratesId.hints.mandatory}"
+                    columns="18"
+                     clientComponent="true"
+                    maximumLength="18"
+                    shortDesc="#{bindings.EmiratesId.hints.tooltip}" id="it34"
+                    contentStyle="width:225px" showRequired="true">
+        <af:clientListener method="emiratesIdFormat" type="keyDown"/>
+        <f:validator binding="#{bindings.EmiratesId.validator}"/>
+      </af:inputText>
+        <af:selectOneChoice value="#{bindings.Trainingstatus.inputValue}"
+                            label="#{viewcontrollerBundle.PI_STATUS_}"
+                            required="#{bindings.Trainingstatus.hints.mandatory}"
+                            shortDesc="#{bindings.Trainingstatus.hints.tooltip}"
+                            id="soc3" showRequired="true"
+                            binding="#{PINewProfileMBean.piStatusUpdate}"
+                            contentStyle="width:230px">
+          <f:selectItems value="#{bindings.Trainingstatus.items}" id="si3"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.Nationality1.inputValue}"
+                            label="#{viewcontrollerBundle.NATIONALITY}"
+                            required="#{bindings.Nationality1.hints.mandatory}"
+                            shortDesc="#{bindings.Nationality1.hints.tooltip}"
+                            id="soc5" showRequired="true"
+                            contentStyle="width:230px">
+          <f:selectItems value="#{bindings.Nationality1.items}" id="si8"/>
+        </af:selectOneChoice>
+        <af:inputDate value="#{bindings.HireDate.inputValue}"
+                    label="#{viewcontrollerBundle.HIRE_DATE_0}"
+                    required="#{bindings.HireDate.hints.mandatory}"
+                    shortDesc="#{bindings.HireDate.hints.tooltip}" id="id1"
+                    showRequired="true" contentStyle="width:225px">
+        <f:validator binding="#{bindings.HireDate.validator}"/>
+        <af:convertDateTime pattern="#{bindings.HireDate.format}"/>
+           <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+      </af:inputDate>
+        <af:inputText value="#{bindings.PassportNumber.inputValue}"
+                    required="#{bindings.PassportNumber.hints.mandatory}"
+                    columns="20"
+                    maximumLength="20"
+                    shortDesc="#{bindings.PassportNumber.hints.tooltip}"
+                    id="it5" label="#{viewcontrollerBundle.PASSPORT_NUMBER}"
+                      autoSubmit="true" contentStyle="width:225px">
+                       <af:validateRegExp pattern= "[a-zA-Z0-9]*" messageDetailNoMatch="Please enter only alphanumeric characters for Passport Number."/>
+        <f:validator binding="#{bindings.PassportNumber.validator}"/>
+      </af:inputText>
+      <af:inputDate value="#{bindings.pssptDateofIssue.inputValue}"
+                    label="#{viewcontrollerBundle.DATE_OF_ISSUE}"
+                    visible="#{((bindings.PassportNumber.inputValue eq null) or (bindings.PassportNumber.inputValue eq '')) ? false : true}"
+                    required="#{bindings.pssptDateofIssue.hints.mandatory}"
+                    shortDesc="#{bindings.pssptDateofIssue.hints.tooltip}"
+                    id="id2" partialTriggers="it5" contentStyle="width:225px">
+        <f:validator binding="#{bindings.pssptDateofIssue.validator}"/>
+        <af:convertDateTime pattern="#{bindings.pssptDateofIssue.format}"/>
+           <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+      </af:inputDate>
+        <af:inputDate value="#{bindings.PSSPTDateofExpiry.inputValue}"
+                      label="#{viewcontrollerBundle.DATE_OF_EXPIRY_}"
+                      visible="#{((bindings.PassportNumber.inputValue eq null) or (bindings.PassportNumber.inputValue eq '')) ? false : true}"
+                      required="#{bindings.PSSPTDateofExpiry.hints.mandatory}"
+                      shortDesc="#{bindings.PSSPTDateofExpiry.hints.tooltip}"
+                      id="id3" partialTriggers="it5" contentStyle="width:225px">
+          <f:validator binding="#{bindings.PSSPTDateofExpiry.validator}"/>
+          <af:convertDateTime pattern="#{bindings.PSSPTDateofExpiry.format}"/>
+             <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+        </af:inputDate>
+        
+        <af:selectOneChoice value="#{bindings.EducationalQualifications1.inputValue}"
+                            label="#{viewcontrollerBundle.EDUCATIONAL_QUALIFICATION_}"
+                            required="#{bindings.EducationalQualifications1.hints.mandatory}"
+                            shortDesc="#{bindings.EducationalQualifications1.hints.tooltip}"
+                            id="soc6" contentStyle="width:230px">
+          <f:selectItems value="#{bindings.EducationalQualifications1.items}"
+                         id="si6"/>
+        </af:selectOneChoice>
+        <af:selectBooleanCheckbox value="#{bindings.medicaltestcompletedflag.inputValue}"
+                                  label="Medical Status"
+                                  shortDesc="#{bindings.medicaltestcompletedflag.hints.tooltip}"
+                                  id="sbc6"
+                                  binding="#{PINewProfileMBean.updateMedExamCheck}"/>
+        <af:inputText value="#{bindings.MedicalExaminationsDetails.inputValue}"
+                    label="#{viewcontrollerBundle.MEDICAL_EXAMINATION_DETAILS_}"
+                    required="#{bindings.MedicalExaminationsDetails.hints.mandatory}"
+                    columns="20"
+                    maximumLength="20"
+                    shortDesc="#{bindings.MedicalExaminationsDetails.hints.tooltip}"
+                    id="it18" rows="2" contentStyle="width:225px">
+        <f:validator binding="#{bindings.MedicalExaminationsDetails.validator}"/>
+      </af:inputText>
+        
+        <af:selectOneChoice value="#{bindings.HealthInsuranceDetails.inputValue}"
+                            label="#{viewcontrollerBundle.HEALTH_INSURANCE_DETAILS_}"
+                            required="#{bindings.HealthInsuranceDetails.hints.mandatory}"
+                            shortDesc="#{bindings.HealthInsuranceDetails.hints.tooltip}"
+                            id="soc4" contentStyle="width:230px">
+          <f:selectItems value="#{bindings.HealthInsuranceDetails.items}"
+                         id="si4"/>
+        </af:selectOneChoice>
+        <af:inputText value="#{bindings.comments.inputValue}"
+                      label="#{viewcontrollerBundle.COMMENTS}"
+                      required="#{bindings.comments.hints.mandatory}"
+                      columns="20"
+                      maximumLength="60"
+                      shortDesc="#{bindings.comments.hints.tooltip}" id="it2"
+                      rows="2" contentStyle="width:225px">
+          <f:validator binding="#{bindings.comments.validator}"/>
+        </af:inputText>
+        <af:selectBooleanCheckbox value="#{bindings.IntExtTrainingStatus.inputValue}"
+                                  label="Training Status"
+                                  shortDesc="#{bindings.IntExtTrainingStatus.hints.tooltip}"
+                                  id="sbc1"
+                                  binding="#{PINewProfileMBean.internalCheck}"
+                                  text="Internal Training Completed"/>
+        <af:selectBooleanCheckbox value="#{bindings.ExtTrainingStatus.inputValue}"
+                                  shortDesc="#{bindings.ExtTrainingStatus.hints.tooltip}"
+                                  id="sbc2"
+                                  binding="#{PINewProfileMBean.externalchecked}"
+                                  text="External Training Completed"/>
+                                  
+                                  
+        <af:goLink text="#{viewcontrollerBundle.PI_TRAINING_ACTIVITY_REPORT}"  id="gl1"
+                     inlineStyle="font-weight:bold; color:Blue;">
+          <af:showPopupBehavior popupId="p3" triggerType="click"/>
+       
+          <af:popup id="p3" autoCancel="disabled" >
+          <af:dialog  id="d3">
+            <af:showDetailHeader text="Training Report" disclosed="true"
+                                 id="sdh1">
+             
+          
+            <af:table value="#{bindings.PITrainingLinkVO1.collectionModel}"
+                      var="row" rows="#{bindings.PITrainingLinkVO1.rangeSize}"
+                      emptyText="#{bindings.PITrainingLinkVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PITrainingLinkVO1.rangeSize}"
+                      rowBandingInterval="0" id="t1" width="701"
+                      inlineStyle="height:108px;" styleClass="AFStretchWidth">
+              <af:column sortProperty="#{bindings.PITrainingLinkVO1.hints.Coursename.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.COURSE_NAME}"
+                         id="c6">
+                <af:outputText value="#{row.Coursename}" id="ot9"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PITrainingLinkVO1.hints.StartDate.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.START_DATE}"
+                         id="c3">
+                <af:outputText value="#{row.StartDate}" id="ot10">
+                  <af:convertDateTime pattern="#{bindings.PITrainingLinkVO1.hints.StartDate.format}"/>
+                  <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.PITrainingLinkVO1.hints.EndDate.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.END_DATE}"
+                         id="c5">
+                <af:outputText value="#{row.EndDate}" id="ot8">
+                  <af:convertDateTime pattern="#{bindings.PITrainingLinkVO1.hints.EndDate.format}"/>
+                  <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.PITrainingLinkVO1.hints.Result.name}"
+                         sortable="false"
+                         headerText="#{bindings.PITrainingLinkVO1.hints.Result.label}"
+                         id="c4">
+                <af:outputText value="#{row.Result}" id="ot3"/>
+              </af:column>
+              
+            </af:table>
+              </af:showDetailHeader>
+              </af:dialog>
+          </af:popup>
+        </af:goLink>
+        
+        <af:inputFile label="Update photo" id="if2"
+                      binding="#{PINewProfileMBean.uploadedUpdateFile}"
+                      valueChangeListener="#{PINewProfileMBean.onFileUploadUpdate}"/>
+        <af:spacer width="10" height="10" id="s6"/>
+        <af:spacer width="10" height="10" id="s7"/>
+        <af:spacer width="10" height="10" id="s8"/>
+      
+        <af:popup id="p1" autoCancel="disabled">
+      <af:dialog id="d1">
+            <af:panelGroupLayout id="pgl10" layout="vertical" halign="left"
+                                 inlineStyle="width:500px;height:100px">
+              <af:inputText label="Reasons for DeActivation" id="it1"
+                            binding="#{PINewProfileMBean.reasonsDeactivate}"
+                            rows="3"/>
+              <af:commandButton text="Confirm" id="cb6"
+                                action="#{PINewProfileMBean.Confirm}"
+                                inlineStyle="width:auto;background-color:#F39C11;"/>
+            </af:panelGroupLayout>
+          </af:dialog>
+      </af:popup>
+        <af:image id="i1"
+                  source="/imageservlet?id=#{bindings.Attachment.inputValue}"
+                     
+                  inlineStyle="width:100px; height:100.0px;"/>
+      </af:panelFormLayout>
+      <af:panelFormLayout id="pfl2" partialTriggers="resId1"
+                     rendered="#{pageFlowScope.Entered eq 'New' ? 'true':'false'}"
+                      maxColumns="3" rows="13">
+                  
+      <af:inputText 
+                    label="#{viewcontrollerBundle.PI_NUMBER_2}"
+                    
+                   
+                    columns="#{bindings.UserId.hints.displayWidth}"
+                    maximumLength="#{bindings.UserId.hints.precision}"
+                    shortDesc="#{bindings.UserId.hints.tooltip}" id="it3" showRequired="true"
+                    binding="#{PINewProfileMBean.piIdNew}"
+                    contentStyle="width:225px">
+                    <af:validateRegExp pattern= "[a-zA-Z0-9]*" messageDetailNoMatch="Please enter only alphanumeric characters for PI NO."/>
+        <f:validator binding="#{bindings.UserId.validator}"  />
+      </af:inputText>
+      <af:inputText 
+                    label="#{viewcontrollerBundle.FIRST_NAME}"
+                    required="#{bindings.FirstName.hints.mandatory}"
+                    columns="20"
+                    maximumLength="20"
+                    shortDesc="#{bindings.FirstName.hints.tooltip}" id="it4"
+                    showRequired="true"
+                    binding="#{PINewProfileMBean.firstnameNew}"
+                    contentStyle="width:225px">
+        <f:validator binding="#{bindings.FirstName.validator}"/>
+      </af:inputText>
+      <af:inputText 
+                    label="#{viewcontrollerBundle.LAST_NAME}"
+                    required="#{bindings.LastName.hints.mandatory}"
+                    columns="20"
+                    maximumLength="20"
+                    shortDesc="#{bindings.LastName.hints.tooltip}" id="it7"
+                    showRequired="true"
+                    binding="#{PINewProfileMBean.lastNameNew}"
+                    contentStyle="width:225px">
+        <f:validator binding="#{bindings.LastName.validator}"/>
+      </af:inputText>
+        <af:selectOneRadio   changed="true" 
+                           label="#{viewcontrollerBundle.GENDER}"
+                           required="#{bindings.Gender.hints.mandatory}"
+                           shortDesc="#{bindings.Gender.hints.tooltip}"
+                           id="sor3" 
+                           binding="#{PINewProfileMBean.gendernew}" contentStyle="width:230px">
+          <f:selectItems value="#{bindings.Gender.items}" id="si9"  />
+        </af:selectOneRadio>
+        
+       
+        <af:inputDate 
+                    label="#{viewcontrollerBundle.DATE_OF_BIRTH}"
+                  
+                    shortDesc="#{bindings.BirthDate.hints.tooltip}" id="id4"
+                    showRequired="true"
+                      binding="#{PINewProfileMBean.doBNew}"
+                      contentStyle="width:225px">
+        <f:validator binding="#{bindings.BirthDate.validator}"/>
+        <af:convertDateTime pattern="#{bindings.BirthDate.format}"/>
+           <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+      </af:inputDate>
+      <af:inputText 
+                    label="#{viewcontrollerBundle.ADDRESS_1}"
+                    required="#{bindings.LocalAdd1.hints.mandatory}"
+                    columns="20"
+                    maximumLength="30"
+                    shortDesc="#{bindings.LocalAdd1.hints.tooltip}" id="it9"
+                    showRequired="true" binding="#{PINewProfileMBean.addr1New}"
+                    contentStyle="width:225px">
+        <f:validator binding="#{bindings.LocalAdd1.validator}"/>
+      </af:inputText>
+      <af:inputText 
+                    label="#{viewcontrollerBundle.ADDRESS_2_}"
+                    required="#{bindings.LocalAdd2.hints.mandatory}"
+                    columns="20"
+                    maximumLength="30"
+                    shortDesc="#{bindings.LocalAdd2.hints.tooltip}" id="it10"
+                    binding="#{PINewProfileMBean.addr2New}"
+                    contentStyle="width:225px">
+        <f:validator binding="#{bindings.LocalAdd2.validator}"/>
+      </af:inputText>
+        <!--<af:selectOneChoice 
+                            label="#{viewcontrollerBundle.CITY}"
+                            required="#{bindings.LocalCity.hints.mandatory}"
+                            shortDesc="#{bindings.LocalCity.hints.tooltip}"
+                            id="soc7" showRequired="true"
+                            binding="#{PINewProfileMBean.cityNew}">
+          <f:selectItems value="#{bindings.LocalCity.items}" id="si10"/>
+        </af:selectOneChoice>-->
+        <af:selectOneChoice value="#{bindings.GenCityLOVVO1.inputValue}"
+                            label="#{viewcontrollerBundle.CITY}"
+                            required="#{bindings.GenCityLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.GenCityLOVVO1.hints.tooltip}"
+                            id="soc13" binding="#{PINewProfileMBean.cityNew}"
+                            showRequired="true" contentStyle="width:230px">
+          <f:selectItems value="#{bindings.GenCityLOVVO1.items}" id="si17"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.GenCountryLOVVO1.inputValue}"
+                            label="#{viewcontrollerBundle.COUNTRY_0}"
+                            required="#{bindings.GenCountryLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.GenCountryLOVVO1.hints.tooltip}"
+                            id="soc7" binding="#{PINewProfileMBean.countryNew}"
+                            showRequired="true"
+                            contentStyle="width:230px">
+          <f:selectItems value="#{bindings.GenCountryLOVVO1.items}" id="si10"/>
+        </af:selectOneChoice>
+        <af:inputText 
+                    label="#{viewcontrollerBundle.EMIRATES_ID}"
+                    required="#{bindings.EmiratesId.hints.mandatory}"
+                    columns="18"
+                     clientComponent="true"
+                    maximumLength="18"
+                    shortDesc="#{bindings.EmiratesId.hints.tooltip}" id="it12"
+                    binding="#{PINewProfileMBean.emiratesIdNew}"
+                      contentStyle="width:225px" showRequired="true">
+        <af:clientListener method="emiratesIdFormatit12" type="keyDown"/>
+        <f:validator binding="#{bindings.EmiratesId.validator}"/>
+      </af:inputText>
+        <af:selectOneChoice value="#{bindings.PITrainingStatusLOVVO1.inputValue}"
+                            label="#{viewcontrollerBundle.PI_STATUS_0}"
+                            required="#{bindings.PITrainingStatusLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.PITrainingStatusLOVVO1.hints.tooltip}"
+                            id="soc8"
+                            binding="#{PINewProfileMBean.piStatusNew}"
+                            showRequired="true" contentStyle="width:230px">
+          <f:selectItems value="#{bindings.PITrainingStatusLOVVO1.items}"
+                         id="si11"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.GennationalityLOVVO1.inputValue}"
+                            label="#{viewcontrollerBundle.NATIONALITY}"
+                            required="#{bindings.GennationalityLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.GennationalityLOVVO1.hints.tooltip}"
+                            id="soc9"
+                            binding="#{PINewProfileMBean.nationalityNew}"
+                            showRequired="true">
+          <f:selectItems value="#{bindings.GennationalityLOVVO1.items}"
+                         id="si12"/>
+        </af:selectOneChoice>
+        <af:inputDate label="#{viewcontrollerBundle.HIRE_DATE_}"
+                      required="#{bindings.HireDate.hints.mandatory}"
+                      shortDesc="#{bindings.HireDate.hints.tooltip}" id="id8"
+                      showRequired="true"
+                      binding="#{PINewProfileMBean.hiredateNew}"
+                      readOnly="false" contentStyle="width:225px">
+          <f:validator binding="#{bindings.HireDate.validator}"/>
+          <af:convertDateTime pattern="#{bindings.HireDate.format}"/>
+          <af:convertDateTime pattern="dd-MM-yyyy" timeStyle="short"/>
+        </af:inputDate>
+        <af:inputText required="#{bindings.PassportNumber.hints.mandatory}"
+                      columns="20" maximumLength="20" autoSubmit="true"
+                      shortDesc="#{bindings.PassportNumber.hints.tooltip}"
+                      id="it11" label="#{viewcontrollerBundle.PASSPORT_NUMBER_}"
+                      binding="#{PINewProfileMBean.passportNumberNew}"
+                      contentStyle="width:225px">
+                       <af:validateRegExp pattern= "[a-zA-Z0-9]*" messageDetailNoMatch="Please enter only alphanumeric characters for Passport Number."/>
+          <f:validator binding="#{bindings.PassportNumber.validator}"/>
+        </af:inputText>
+        <af:inputDate label="#{viewcontrollerBundle.DATE_OF_ISSUE__}"
+                      required="#{bindings.pssptDateofIssue.hints.mandatory}"
+                      shortDesc="#{bindings.pssptDateofIssue.hints.tooltip}"
+                      id="id6" binding="#{PINewProfileMBean.dateofIssueNew}"
+                      contentStyle="width:225px">
+          <f:validator binding="#{bindings.pssptDateofIssue.validator}"/>
+          <af:convertDateTime pattern="#{bindings.pssptDateofIssue.format}"/>
+             <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+        </af:inputDate>
+        <af:inputDate label="#{viewcontrollerBundle.DATE_OF_EXPIRY_}"
+                      required="#{bindings.PSSPTDateofExpiry.hints.mandatory}"
+                      shortDesc="#{bindings.PSSPTDateofExpiry.hints.tooltip}"
+                      id="id7" binding="#{PINewProfileMBean.dateofExpiryNew}"
+                      contentStyle="width:225px">
+          <f:validator binding="#{bindings.PSSPTDateofExpiry.validator}"/>
+          <af:convertDateTime pattern="#{bindings.PSSPTDateofExpiry.format}"/>
+             <af:convertDateTime pattern= "dd-MM-yyyy" timeStyle = "short"/>
+        </af:inputDate>
+        
+        <af:selectOneChoice value="#{bindings.PIQualificationLOVVO1.inputValue}"
+                            label="#{viewcontrollerBundle.EDUCATIONAL_QUALIFICATION}"
+                            required="#{bindings.PIQualificationLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.PIQualificationLOVVO1.hints.tooltip}"
+                            id="soc10"
+                            binding="#{PINewProfileMBean.educationalNew}"
+                            contentStyle="width:230px">
+          <f:selectItems value="#{bindings.PIQualificationLOVVO1.items}"
+                         id="si13"/>
+        </af:selectOneChoice>
+      
+        <af:selectOneChoice value="#{bindings.PIGroupLOVVO1.inputValue}"
+                            label="PI Group Name"
+                            required="#{bindings.PIGroupLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.PIGroupLOVVO1.hints.tooltip}"
+                            id="soc14" >
+          <f:selectItems value="#{bindings.PIGroupLOVVO1.items}" id="si15"/>
+        </af:selectOneChoice>
+        <!--<af:selectOneChoice value="#{bindings.SelectGroup.inputValue}"
+                            label="PI Group Name"
+                            required="#{bindings.SelectGroup.hints.mandatory}"
+                            shortDesc="#{bindings.SelectGroup.hints.tooltip}" contentStyle="width:230px"
+                            id="soc12" autoSubmit="true" requiredMessageDetail="please select group"
+                            valueChangeListener="#{PINewProfileMBean.selectedgroup}">
+          <f:selectItems value="#{bindings.SelectGroup.items}" id="si7"/>
+        </af:selectOneChoice>-->
+        <af:selectBooleanCheckbox value="#{bindings.medicaltestcompletedflag.inputValue}"
+                                  label="Medical Status"
+                                  shortDesc="#{bindings.medicaltestcompletedflag.hints.tooltip}"
+                                  id="sbc5"
+                                  binding="#{PINewProfileMBean.medicalexamcheck}"/>
+        <af:inputText 
+                    label="#{viewcontrollerBundle.MEDICAL_EXAMINATION_DETAILS__0}"
+                    required="#{bindings.MedicalExaminationsDetails.hints.mandatory}"
+                    columns="20" 
+                    maximumLength="20"
+                    shortDesc="#{bindings.MedicalExaminationsDetails.hints.tooltip}"
+                    id="it13" rows="2"
+                    binding="#{PINewProfileMBean.medicalNew}"
+                    contentStyle="width:225px">
+        <f:validator binding="#{bindings.MedicalExaminationsDetails.validator}"/>
+      </af:inputText>
+        <af:selectOneChoice value="#{bindings.YesNoLOVVO1.inputValue}"
+                            label="#{viewcontrollerBundle.HEALTH_INSURANCE_DETAILS}"
+                            required="#{bindings.YesNoLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.YesNoLOVVO1.hints.tooltip}"
+                            id="soc11" binding="#{PINewProfileMBean.healthNew}"
+                            contentStyle="width:230px">
+          <f:selectItems value="#{bindings.YesNoLOVVO1.items}" id="si14"/>
+        </af:selectOneChoice>
+        <af:inputText 
+                      label="#{viewcontrollerBundle.COMMENTS}"
+                      required="#{bindings.comments.hints.mandatory}"
+                      columns="20"
+                      maximumLength="60"
+                      shortDesc="#{bindings.comments.hints.tooltip}" id="it14"
+                      rows="2" binding="#{PINewProfileMBean.commentsNew}"
+                      contentStyle="width:225px">
+          <f:validator binding="#{bindings.comments.validator}"/>
+        </af:inputText>
+       <!-- <af:selectManyCheckbox label="Training Status" id="smc2"
+                               binding="#{PINewProfileMBean.trainingCheckbox}">
+          <af:selectItem label="Internal Training Completed" value="I" 
+                         id="si19"
+                         binding="#{PINewProfileMBean.internalTraining}"/>
+          <af:selectItem label="External Training Completed" value="E" 
+                         id="si20"
+                         binding="#{PINewProfileMBean.externaltraining}"/>
+        </af:selectManyCheckbox>-->
+        <af:selectBooleanCheckbox 
+                                  label="#{viewcontrollerBundle.TRAINING_STATUS}"
+                                  shortDesc="#{bindings.IntExtTrainingStatus.hints.tooltip}" 
+                                  id="sbc3" text="Internal Training Completed"
+                                  binding="#{PINewProfileMBean.internalTraining}"/>
+        <af:selectBooleanCheckbox
+                                  shortDesc="#{bindings.ExtTrainingStatus.hints.tooltip}" 
+                                  id="sbc4" text="External Training Completed"
+                                  binding="#{PINewProfileMBean.externalTraining}"/>
+        <af:inputFile label="#{viewcontrollerBundle.ATTACH_PHOTO__}" id="if1" columns="20"
+                      showRequired="false"  autoSubmit="true"  
+     
+                      valueChangeListener="#{PINewProfileMBean.onFileUpload}"
+                      binding="#{PINewProfileMBean.uploadedFile}"
+                      contentStyle="width:230px"/>
+        <f:facet name="footer">
+          <af:spacer width="10" height="10" id="s4"/>
+        </f:facet>
+      </af:panelFormLayout>
+      
+  
+    <af:panelGroupLayout id="pgl3" visible="#{pageFlowScope.Button eq 'New' ? 'true':'false'}" partialTriggers="resId1">
+             
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT_}" id="cb2"
+                       
+                        action="#{PINewProfileMBean.Submit}"
+                        inlineStyle="width:auto;background-color:#F39C11;"/>
+       <af:spacer width="10" height="10" id="s51"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL_PVT}" id="cb3"
+                        actionListener="#{bindings.Rollback.execute}"
+                      
+                        immediate="true"
+                        inlineStyle="width:auto;background-color:#F39C11;"
+                        action="#{PINewProfileMBean.Cancel}">
+        <af:resetActionListener/>
+        <af:resetActionListener/>
+      </af:commandButton>
+      
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s9"/>
+    <af:panelGroupLayout id="pgl4"
+                      visible="#{pageFlowScope.Button eq 'Update' ? 'true':'false'}"  partialTriggers="resId1">
+      <af:commandButton text="#{viewcontrollerBundle.UPDATE}" id="cb4" action="#{PINewProfileMBean.Update}"
+                      inlineStyle="width:auto;background-color:#F39C11;"/>
+      <af:spacer width="10" height="10" id="s5"/>
+      <af:commandButton text="#{viewcontrollerBundle.DEACTIVATE}" id="cb5" useWindow="true"
+                      inlineStyle="width:auto;background-color:#F39C11;">
+        <af:showPopupBehavior popupId="p1" triggerType="click"/>
+      </af:commandButton>
+  </af:panelGroupLayout>
+</af:panelGroupLayout>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:PINewProfileMBean-->
+</jsp:root>

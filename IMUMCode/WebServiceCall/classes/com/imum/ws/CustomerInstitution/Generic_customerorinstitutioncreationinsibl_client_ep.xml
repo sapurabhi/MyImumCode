@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle-webservice-clients xmlns:ns2="http://java.sun.com/xml/ns/javaee">
+   <webservice-client>
+      <service-qname localpart="generic_customerorinstitutioncreationinsibl_client_ep"
+                     namespaceURI="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"/>
+      <port-info>
+         <wsdl-port localpart="Generic_CustomerOrInstitutionCreationInSIBL_pt"
+                    namespaceURI="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"/>
+         <runtime/>
+         <operations>
+            <operation name="genericCustomerCreationInSIBL"/>
+            <operation name="genericInstitutionCreationInSIBL"/>
+         </operations>
+      </port-info>
+   </webservice-client>
+</oracle-webservice-clients>

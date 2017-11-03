@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View6">
+      <property
+         name="activityId">institution</property>
+      <property
+         name="page">/jspx/masters/fragments/institution.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>institution&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">25.396484</property>
+      <property
+         name="x">464.5</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">CustomerInstitution</property>
+      <property
+         name="page">/jspx/masters/fragments/CustomerInstitution.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>CustomerInstitution&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">123.09766</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">249.68848</property>
+   </View>
+</SDM>

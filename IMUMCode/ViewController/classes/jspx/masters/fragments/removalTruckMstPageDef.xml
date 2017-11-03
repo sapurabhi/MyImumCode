@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="removalTruckMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RemovalTruckMstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="RemovalTruckMstVO1Iterator"/>
+    <searchRegion Binds="RemovalTruckMstVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="RemovalTruckMstVO1Query"/>
+    <iterator Binds="RemovalTruckMstVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="RemovalTruckMstVO2Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="RemovalTruckMstVO2Iterator" StaticList="false"
+          Uses="LOV_ActiveFlag" id="ActiveFlag" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="CreatedDate">
+      <AttrNames>
+        <Item Value="CreatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator"
+                     id="DEFCountrycode">
+      <AttrNames>
+        <Item Value="DEFCountrycode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator"
+                     id="ENFORCEVHCLID">
+      <AttrNames>
+        <Item Value="ENFORCEVHCLID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="PLATENUMBER">
+      <AttrNames>
+        <Item Value="PLATENUMBER"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="Updatedby">
+      <AttrNames>
+        <Item Value="Updatedby"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="Updateddate">
+      <AttrNames>
+        <Item Value="Updateddate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RemovalTruckMstVO2Iterator" StaticList="false"
+          Uses="LOV_VHCLASSIGNSTATUS" id="VHCLASSIGNSTATUS"
+          DTSupportsMRU="false"/>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="VHCLDESC">
+      <AttrNames>
+        <Item Value="VHCLDESC"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RemovalTruckMstVO2Iterator" StaticList="false"
+          Uses="LOV_VHCLTYPE" id="VHCLTYPE" DTSupportsMRU="false"/>
+    <methodAction id="doEditTruck"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditTruck"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doNewTruck"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNewTruck"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="RemovalTruckMstVO1Iterator" id="RemovalTruckMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.RemovalTruckMstVO"
+                      Name="RemovalTruckMstVO10">
+        <AttrNames>
+          <Item Value="ENFORCEVHCLID"/>
+          <Item Value="VHCLTYPE"/>
+          <Item Value="VHCLASSIGNSTATUS"/>
+          <Item Value="VHCLDESC"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PlateCountryID"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="PlateCategoryName"/>
+          <Item Value="PlateCountryName"/>
+          <Item Value="PlateTypeName"/>
+          <Item Value="VehicleActiveFlag"/>
+          <Item Value="VehicleAssignStatus"/>
+          <Item Value="VehicleTypeName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="RemovalTruckMstVO2Iterator" StaticList="false"
+          Uses="LOV_PLATECTGID" id="PLATECTGID" DTSupportsMRU="false"/>
+    <list IterBinding="RemovalTruckMstVO2Iterator" StaticList="false"
+          Uses="LOV_PLATETYPEID" id="PLATETYPEID" DTSupportsMRU="false"/>
+    <list IterBinding="RemovalTruckMstVO2Iterator" StaticList="false"
+          Uses="LOV_PlateCountryID" id="PlateCountryID" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="LocationID">
+      <AttrNames>
+        <Item Value="LocationID"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RemovalTruckMstVO2Iterator" StaticList="false"
+          Uses="LOV_LocationID" id="LocationID1" DTSupportsMRU="false"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="VHCLNAME">
+      <AttrNames>
+        <Item Value="VHCLNAME"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <attributeValues IterBinding="RemovalTruckMstVO2Iterator" id="mobilenum">
+      <AttrNames>
+        <Item Value="mobilenum"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ApprovLeaveTF">
+    <default-activity id="__1">getTable</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__4">PiapprovelMB</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.staffdeployment.PiapprovelMB</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PiLeaveApprovel">
+      <page>/jspx/staffdeploy/fragments/PiLeaveApprovel.jsff</page>
+    </view>
+    <method-call id="getTable">
+      <method>#{bindings.getTable.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>getTable</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">getTable</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__10">getTable</from-outcome>
+        <to-activity-id id="__9">PiLeaveApprovel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

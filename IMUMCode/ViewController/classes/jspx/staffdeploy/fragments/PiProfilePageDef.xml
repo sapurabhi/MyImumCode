@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PiProfilePageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PIUserMstUVO1" RangeSize="5"
+              DataControl="StaffDeployDataControl" id="PIUserMstUVO1Iterator"/>
+    <searchRegion Criteria="PIUserMstUVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PIUserMstUVO1Iterator" id="PIUserMstUVOCriteriaQuery"/>
+    <iterator Binds="PIUserMstUVO2" RangeSize="5"
+              DataControl="StaffDeployDataControl" id="PIUserMstUVO2Iterator"/>
+    <searchRegion Criteria="PIUserMstUVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PIUserMstUVO1Iterator"
+                  id="PIUserMstUVOCriteriaQuery1"/>
+    <iterator Binds="GenCityLOVVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl" id="GenCityLOVVO1Iterator"/>
+    <iterator Binds="GenCountryLOVVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="GenCountryLOVVO1Iterator"/>
+    <iterator Binds="PITrainingStatusLOVVO1" RangeSize="25"
+              DataControl="StaffDeployLookUpDataControl"
+              id="PITrainingStatusLOVVO1Iterator"/>
+    <iterator Binds="GennationalityLOVVO1" RangeSize="1000"
+              DataControl="StaffDeployLookUpDataControl"
+              id="GennationalityLOVVO1Iterator"/>
+    <iterator Binds="PIQualificationLOVVO1" RangeSize="100"
+              DataControl="StaffDeployLookUpDataControl"
+              id="PIQualificationLOVVO1Iterator"/>
+    <iterator Binds="YesNoLOVVO1" RangeSize="25"
+              DataControl="StaffDeployLookUpDataControl"
+              id="YesNoLOVVO1Iterator"/>
+    <iterator Binds="PITrainingLinkVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PITrainingLinkVO1Iterator"/>
+    <iterator Binds="PIGroupLOVVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl" id="PIGroupLOVVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PIUserMstUVO1Iterator" id="PIUserMstUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIUserMstUVO"
+                      Name="PIUserMstUVO10">
+        <AttrNames>
+          <Item Value="UserId"/>
+          <Item Value="FirstName"/>
+          <Item Value="LastName"/>
+          <Item Value="BirthDate"/>
+          <Item Value="HireDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="UserId">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="FirstName">
+      <AttrNames>
+        <Item Value="FirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="LastName">
+      <AttrNames>
+        <Item Value="LastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="BirthDate">
+      <AttrNames>
+        <Item Value="BirthDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="LocalAdd1">
+      <AttrNames>
+        <Item Value="LocalAdd1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="LocalAdd2">
+      <AttrNames>
+        <Item Value="LocalAdd2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="EmiratesId">
+      <AttrNames>
+        <Item Value="EmiratesId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="PassportNumber">
+      <AttrNames>
+        <Item Value="PassportNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="pssptDateofIssue">
+      <AttrNames>
+        <Item Value="pssptDateofIssue"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="Nationality">
+      <AttrNames>
+        <Item Value="Nationality"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator"
+                     id="EducationalQualifications">
+      <AttrNames>
+        <Item Value="EducationalQualifications"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="HireDate">
+      <AttrNames>
+        <Item Value="HireDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator"
+                     id="MedicalExaminationsDetails">
+      <AttrNames>
+        <Item Value="MedicalExaminationsDetails"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_Trainingstatus" id="Trainingstatus" DTSupportsMRU="false"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="StaffDeployDataControl"/>
+    <tree IterBinding="PIUserMstUVO1Iterator" id="PIUserMstUVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIUserMstUVO"
+                      Name="PIUserMstUVO110">
+        <AttrNames>
+          <Item Value="UserId"/>
+          <Item Value="FirstName"/>
+          <Item Value="LastName"/>
+          <Item Value="BirthDate"/>
+          <Item Value="HireDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCommit"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.doCommit_StaffDeployDataControl_dataProvider_doCommit_result"/>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_LocalCity" id="LocalCity" DTSupportsMRU="true"/>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_LocalCountry" id="LocalCountry" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="PSSPTDateofExpiry">
+      <AttrNames>
+        <Item Value="PSSPTDateofExpiry"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_HealthInsuranceDetails" id="HealthInsuranceDetails"
+          DTSupportsMRU="true"/>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_Gender" id="Gender" DTSupportsMRU="false"/>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_EducationalQualifications" id="EducationalQualifications1"
+          DTSupportsMRU="true"/>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_Nationality" id="Nationality1" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="comments">
+      <AttrNames>
+        <Item Value="comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIUserMstUVO2Iterator" id="Attachment">
+      <AttrNames>
+        <Item Value="Attachment"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createPIProfile"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createPIProfile" IsViewObjectMethod="false">
+      <NamedData NDName="map" NDType="java.util.HashMap"/>
+    </methodAction>
+    <list IterBinding="GenCityLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="GenCityLOVVO1Iterator" id="GenCityLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="cityname"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="GenCountryLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="GenCountryLOVVO1Iterator" id="GenCountryLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="countryname"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="PITrainingStatusLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="PITrainingStatusLOVVO1Iterator" id="PITrainingStatusLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="trainingstatus"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="GennationalityLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="GennationalityLOVVO1Iterator" id="GennationalityLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="nationalitydesc"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="PIQualificationLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="PIQualificationLOVVO1Iterator" id="PIQualificationLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="qualificationdetails"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="YesNoLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="YesNoLOVVO1Iterator" id="YesNoLOVVO1" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="StatusName"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="PITrainingLinkVO1Iterator" id="PITrainingLinkVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PITrainingLinkVO"
+                      Name="PITrainingLinkVO10">
+        <AttrNames>
+          <Item Value="Sno"/>
+          <Item Value="PINumber"/>
+          <Item Value="Coursename"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="Result"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="deactivatworkpi"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="deactivatworkpi" IsViewObjectMethod="false">
+      <NamedData NDName="userId" NDType="java.lang.String"/>
+    </methodAction>
+    <button IterBinding="PIUserMstUVO2Iterator" id="ExtTrainingStatus"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ExtTrainingStatus"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="E"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+            Uses="LOV_IntExtTrainingStatus" id="IntExtTrainingStatus"
+            DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="IntExtTrainingStatus"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="I"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="PIProfileOnLoad"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="PIProfileOnLoad" IsViewObjectMethod="false"/>
+    <list IterBinding="PIGroupLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="PIGroupLOVVO1Iterator" id="PIGroupLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="GroupName"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="PIUserMstUVO2Iterator" StaticList="false"
+          Uses="LOV_SelectGroup" id="SelectGroup" DTSupportsMRU="true"/>
+    <button IterBinding="PIUserMstUVO2Iterator" id="medicaltestcompletedflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="medicaltestcompletedflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl3">
+     <af:spacer width="425" height="10" id="s4"/>
+    <af:commandButton text="#{viewcontrollerBundle.NEW}"  styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;" 
+                          icon="/images/new.gif" id="cb3"
+                      action="#{pageFlowScope.RevenueGroupMBean.NewRevenueGroup}"
+                      disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+                          <af:spacer width="30" height="10" id="s1"/>
+    <af:commandButton text="Edit" styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"                   
+                          icon="/images/edit.gif" id="cb1"
+                      action="#{pageFlowScope.RevenueGroupMBean.Edit}"
+                      disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+                            <af:spacer width="30" height="10" id="s2"/>
+    <af:commandButton text="View"  styleClass="checkoutbutton"                         
+                          inlineStyle="background-color:#e3e3e3;"                          
+                          icon="/images/view.gif" id="cb2"
+                      action="#{pageFlowScope.RevenueGroupMBean.View}"/>
+  </af:panelGroupLayout>
+  <af:showDetailHeader text="Revenue Group Details" disclosed="true" id="sdh1"
+                     inlineStyle="width:618px; height:287px;">
+   <af:panelGroupLayout id="pgl0">
+  <af:table value="#{bindings.RevenueGroupUVO1.collectionModel}" var="row"
+            rows="#{bindings.RevenueGroupUVO1.rangeSize}" autoHeightRows="0"
+            emptyText="#{bindings.RevenueGroupUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+            fetchSize="#{bindings.RevenueGroupUVO1.rangeSize}"
+            rowBandingInterval="1"
+            selectedRowKeys="#{bindings.RevenueGroupUVO1.collectionModel.selectedRow}"
+            selectionListener="#{bindings.RevenueGroupUVO1.collectionModel.makeCurrent}"
+            rowSelection="single" id="t1" inlineStyle="height:212px;"
+            width="546" columnStretching="last" scrollPolicy="page"
+            styleClass="AFStretchWidth">
+    <af:column sortProperty="#{bindings.RevenueGroupUVO1.hints.RevGrpCode.name}"
+               sortable="false"
+               headerText="#{viewcontrollerBundle.REVENUE_GROUP_CODE}"
+               id="c2" width="164">
+      <af:outputText value="#{row.RevGrpCode}" id="ot1"/>
+    </af:column>
+        
+        <af:column sortProperty="#{bindings.RevenueGroupUVO1.hints.RevGrpDesc.name}"
+               sortable="false"
+               headerText="#{viewcontrollerBundle.REVENUE_GROUP_DESCRIPTION}"
+               id="c1" width="200">
+      <af:outputText value="#{row.RevGrpDesc}" id="ot2"/>
+    </af:column>
+        <af:column headerText="#{bindings.RevenueGroupUVO1.hints.ActiveFlag.label}" align="center"
+                   id="c3" width="157">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}" readOnly="true"
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                    shortDesc="#{bindings.RevenueGroupUVO1.hints.ActiveFlag.tooltip}"
+                                    id="sbc1"/>
+        </af:column>
+      </af:table>
+</af:panelGroupLayout>
+  </af:showDetailHeader>
+  <af:showDetailHeader text="Create Revenue Group" disclosed="true" id="sdh2" visible="#{pageFlowScope.Mode eq 'New' ? 'true':'false'}"
+                       inlineStyle="height:187px;">
+    
+  
+  <af:panelFormLayout id="pfl1" inlineStyle="height:138px;" >
+    <af:inputText value="#{bindings.RevGrpCode1.inputValue}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"   
+                  readOnly="#{pageFlowScope.ROGrp eq 'Readonly' ? 'true':'false'}"
+                  label="#{viewcontrollerBundle.REVENUE_GROUP_CODE}"
+                  required="#{bindings.RevGrpCode1.hints.mandatory}"
+                  columns="#{bindings.RevGrpCode1.hints.displayWidth}"
+                  maximumLength="#{bindings.RevGrpCode1.hints.precision}"
+                  shortDesc="#{bindings.RevGrpCode1.hints.tooltip}" id="it2">
+          <f:validator binding="#{bindings.RevGrpCode1.validator}"/>
+        </af:inputText>
+    <af:inputText value="#{bindings.RevGrpDesc1.inputValue}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"     
+                  label="#{viewcontrollerBundle.REVENUE_GROUP_DESCRIPTION}"
+                  required="#{bindings.RevGrpDesc1.hints.mandatory}"
+                  columns="30"
+                  maximumLength="#{bindings.RevGrpDesc1.hints.precision}"
+                  shortDesc="#{bindings.RevGrpDesc1.hints.tooltip}" id="it1"
+                  rows="3">
+          <f:validator binding="#{bindings.RevGrpDesc1.validator}"/>
+        </af:inputText>
+        <af:selectBooleanCheckbox value="#{bindings.ActiveFlag1.inputValue}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"     
+                                  label="#{bindings.ActiveFlag1.label}"
+                                  shortDesc="#{bindings.ActiveFlag1.hints.tooltip}"
+                                  id="sbc2"/>
+      </af:panelFormLayout>
+ 
+
+</af:showDetailHeader>
+  <af:showDetailHeader text="Revenue Type Details" disclosed="true" id="sdh3" visible="#{pageFlowScope.Mode eq 'New' ? 'true':'false'}"
+                       inlineStyle="height:179px;">
+     <af:commandImageLink id="cil1"   partialSubmit="true"
+                                 text="#{viewcontrollerBundle.ADD_ROW}" icon="/images/plus.png" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"     
+                          action="#{pageFlowScope.RevenueGroupMBean.AddRevenueTypeRow}"/>
+   
+  
+  <af:panelGroupLayout id="pgl2">
+  <af:table value="#{bindings.RevenueTypeUVO1.collectionModel}" var="row"
+            rows="#{bindings.RevenueTypeUVO1.rangeSize}"
+            emptyText="#{bindings.RevenueTypeUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+            fetchSize="#{bindings.RevenueTypeUVO1.rangeSize}"
+            rowBandingInterval="0"
+            selectedRowKeys="#{bindings.RevenueTypeUVO1.collectionModel.selectedRow}"
+            selectionListener="#{bindings.RevenueTypeUVO1.collectionModel.makeCurrent}"
+            rowSelection="single" id="t2" inlineStyle="height:120px;"
+            width="600" columnStretching="last" partialTriggers="cil1">
+    <af:column sortProperty="#{bindings.RevenueTypeUVO1.hints.RevTypeCode.name}"
+               sortable="false"
+               headerText="#{viewcontrollerBundle.REVENUE_TYPE_CODE}"
+               id="c8" width="144">
+      <af:inputText value="#{row.bindings.RevTypeCode.inputValue}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"     
+                    label="#{bindings.RevenueTypeUVO1.hints.RevTypeCode.label}"
+                    required="#{bindings.RevenueTypeUVO1.hints.RevTypeCode.mandatory}"
+                    columns="#{bindings.RevenueTypeUVO1.hints.RevTypeCode.displayWidth}"
+                    maximumLength="#{bindings.RevenueTypeUVO1.hints.RevTypeCode.precision}"
+                    shortDesc="#{bindings.RevenueTypeUVO1.hints.RevTypeCode.tooltip}"
+                    id="it7">
+        <f:validator binding="#{row.bindings.RevTypeCode.validator}"/>
+      </af:inputText>
+    </af:column>
+    <af:column sortProperty="#{bindings.RevenueTypeUVO1.hints.RevTypeDesc.name}"
+               sortable="false"
+               headerText="Revenue Type Description"
+               id="c5" width="183">
+      <af:inputText value="#{row.bindings.RevTypeDesc.inputValue}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"     
+                    label="#{bindings.RevenueTypeUVO1.hints.RevTypeDesc.label}"
+                    required="#{bindings.RevenueTypeUVO1.hints.RevTypeDesc.mandatory}"
+                    columns="#{bindings.RevenueTypeUVO1.hints.RevTypeDesc.displayWidth}"
+                    maximumLength="#{bindings.RevenueTypeUVO1.hints.RevTypeDesc.precision}"
+                    shortDesc="#{bindings.RevenueTypeUVO1.hints.RevTypeDesc.tooltip}"
+                    id="it5">
+        <f:validator binding="#{row.bindings.RevTypeDesc.validator}"/>
+      </af:inputText>
+    </af:column>
+        <af:column headerText="#{bindings.RevenueTypeUVO1.hints.ActiveFlag.label}"
+                   id="c4">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"     
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                    shortDesc="#{bindings.RevenueTypeUVO1.hints.ActiveFlag.tooltip}"
+                                    id="sbc3"/>
+        </af:column>
+      </af:table>
+</af:panelGroupLayout>
+  </af:showDetailHeader>
+  <af:panelGroupLayout id="pgl4" visible="#{pageFlowScope.Mode eq 'New' ? 'true':'false'}">
+    <af:commandButton text="Submit"   inlineStyle="background-color:#F39C11;"    id="cb4" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                      action="#{pageFlowScope.RevenueGroupMBean.Submit}"/>
+    <af:spacer width="10" height="10" id="s3"/>
+    <af:commandButton text="Cancel"    inlineStyle="background-color:#F39C11;" immediate="true"  id="cb5"
+                     actionListener="#{pageFlowScope.RevenueGroupMBean.cancel}"/>
+  </af:panelGroupLayout>
+</jsp:root>

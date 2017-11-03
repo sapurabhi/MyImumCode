@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="printNOCPageDef"
+                Package="jspx.transactions.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="jspx.common.cpmsEnglishTemplatePageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <taskFlow id="NOCpvtReport1"
+              taskFlowId="/WEB-INF/reports/NOCpvtReport.xml#NOCpvtReport"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

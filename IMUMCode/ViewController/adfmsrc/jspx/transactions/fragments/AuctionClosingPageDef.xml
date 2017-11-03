@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="AuctionClosingPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+   <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTAUCTIONHeaderVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTAUCTIONHeaderVO1Iterator"/>
+    <searchRegion id="PVTAUCTIONHeaderVO1Query"
+                  Binds="PVTAUCTIONHeaderVO1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+    <iterator Binds="AuctionEvidenceSearchVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="AuctionEvidenceSearchVO1Iterator"/>
+    <searchRegion id="PVTAuctionSearchVO1Query"
+                  Binds="AuctionEvidenceSearchVO1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+    <iterator Binds="PVTDocsVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl" id="PVTDocsVO1Iterator"/>
+    <iterator id="PVTHeaderVO1Iterator" Binds="PVTHeaderVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+   <bindings>
+    <tree IterBinding="PVTAUCTIONHeaderVO1Iterator" id="PVTAUCTIONHeaderVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTAUCTIONHeaderVO"
+                      Name="PVTAUCTIONHeaderVO10">
+        <AttrNames>
+          <Item Value="AUCTIONHeaderseq"/>
+          <Item Value="AuctHouseRefnum"/>
+          <Item Value="AUCTInitiationDate"/>
+          <Item Value="BatchStatusID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AuctionEvidenceSearchVO1Iterator"
+          id="AuctionEvidenceSearchVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO"
+                      Name="AuctionEvidenceSearchVO10">
+        <AttrNames>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="SelectFlag"/>
+          <Item Value="ValuationAmt"/>
+          <Item Value="ValuationRecomdationID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTDocsVO1Iterator" id="PVTDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDocsVO"
+                      Name="PVTDocsVO10">
+        <AttrNames>
+          <Item Value="DOCDesc"/>
+          <Item Value="FileUpload"/>
+          <Item Value="remarks"/>
+          <Item Value="FlageM"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <tree IterBinding="AuctionEvidenceSearchVO1Iterator"
+          id="AuctionEvidenceSearchVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO"
+                      Name="AuctionEvidenceSearchVO110">
+        <AttrNames>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTNum"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="AUCTIONHeaderseq"/>
+          <Item Value="Balance"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="DotApprvforAuctflag"/>
+          <Item Value="PVTAMTPAID"/>
+          <Item Value="PVTAMTREFUNDED"/>
+          <Item Value="PVTFromDate"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTToDate"/>
+          <Item Value="Remarks"/>
+          <Item Value="SectorCode"/>
+          <Item Value="SelectFlag"/>
+          <Item Value="zonecode"/>
+          <Item Value="ValuationAmt"/>
+          <Item Value="ValuationRecomdationID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getAuctionClosingPvtDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getAuctionClosingPvtDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getAuctionClosingPvtDetails_TransactionsAMDataControl_dataProvider_getAuctionClosingPvtDetails_result">
+      <NamedData NDName="auctionHeaderseq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="createDocUploadAuctionClosing"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createDocUploadAuctionClosing"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="saveAuctionClosingDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveAuctionClosingDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.saveAuctionClosingDetails_TransactionsAMDataControl_dataProvider_saveAuctionClosingDetails_result">
+      <NamedData NDName="auctionHeaderseq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="updatedDate" NDType="java.sql.Date"/>
+      <NamedData NDName="updatedby" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="saveAuctionClosingPvtDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveAuctionClosingPvtDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.saveAuctionClosingPvtDetails_TransactionsAMDataControl_dataProvider_saveAuctionClosingPvtDetails_result">
+      <NamedData NDName="auctionHeaderseq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="finalBidAmount" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="bidderName" NDType="java.lang.String"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+      <NamedData NDName="bidDate" NDType="java.sql.Date"/>
+      <NamedData NDName="auctionInitiationDate" NDType="java.sql.Date"/>
+      <NamedData NDName="updatedBy" NDType="java.lang.String"/>
+      <NamedData NDName="pvthdrseq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="AutionInitiationPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="jspx.common.cpmsEnglishTemplatePageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <iterator Binds="PVTAUCTIONHeaderVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTAUCTIONHeaderVO1Iterator"/>
+    <searchRegion id="PVTAUTIONHeaderVO1Query"
+                  Binds="PVTAUTIONHeaderVO1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+    <searchRegion id="PVTAuctionSearchVO1Query"
+                  Binds="PVTAuctionSearchVO1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Criteria="PVTAuctionSearchVOCriteria"/>
+    <iterator Binds="PVTAuctionSearchVO1" RangeSize="20"
+              DataControl="TransactionsAMDataControl"
+              id="PVTAuctionSearchVO1Iterator"/>
+    <iterator Binds="PVTAuctionSearchVO1" RangeSize="20"
+              DataControl="TransactionsAMDataControl"
+              id="PVTAuctionSearchVO1Iterator1"/>
+    <iterator Binds="AuctionInitiationViewVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="AuctionInitiationViewVO1Iterator"/>
+    <searchRegion id="AuctionInitiationViewVO1Query"
+                  Binds="AuctionInitiationViewVO1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTAUCTIONHeaderVO1Iterator" id="PVTAUCTIONHeaderVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTAUCTIONHeaderVO"
+                      Name="PVTAUCTIONHeaderVO10">
+        <AttrNames>
+          <Item Value="AUCTIONHeaderseq"/>
+          <Item Value="AUCTInitiationDate"/>
+          <Item Value="TotalPVTCount"/>
+          <Item Value="BatchStatusID"/>
+          <Item Value="AuctHouseRefnum"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PVTdatefrom"/>
+          <Item Value="PVTdateto"/>
+          <Item Value="SectorCode"/>
+          <Item Value="Updatedate"/>
+          <Item Value="Updatedby"/>
+          <Item Value="zonecode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree id="PVTAuctionSearchVO1" IterBinding="PVTAuctionSearchVO1Iterator1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTAuctionSearchVO"
+                      Name="PVTAuctionSearchVO10">
+        <AttrNames>
+          <Item Value="ActiveFlag"/>
+          <Item Value="Balance"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PVTAMTPAID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTAMTREFUNDED"/>
+          <Item Value="PVTFromDate"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTToDate"/>
+          <Item Value="SectorCode"/>
+          <Item Value="SelectFlag"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="zonecode"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="vehownershiptypeid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="saveAuctionInitiationDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveAuctionInitiationDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.saveAuctionInitiationDetails_TransactionsAMDataControl_dataProvider_saveAuctionInitiationDetails_result">
+      <NamedData NDName="auctionInitiationDate" NDType="java.sql.Date"/>
+      <NamedData NDName="totalNosPVTs" NDType="java.lang.Integer"/>
+      <NamedData NDName="status" NDType="java.lang.String"/>
+      <NamedData NDName="createdBy" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="AuctionInitiationViewVO1Iterator"
+          id="AuctionInitiationViewVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.AuctionInitiationViewVO"
+                      Name="AuctionInitiationViewVO10">
+        <AttrNames>
+          <Item Value="ActiveFlag"/>
+          <Item Value="AUCTIONHeaderseq"/>
+          <Item Value="Balance"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PVTAMTPAID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTAMTREFUNDED"/>
+          <Item Value="PVTFromDate"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTToDate"/>
+          <Item Value="SectorCode"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="zonecode"/>
+          <Item Value="vehownershiptypeid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getAuctionInitiationPvtDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getAuctionInitiationPvtDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getAuctionInitiationPvtDetails_TransactionsAMDataControl_dataProvider_getAuctionInitiationPvtDetails_result">
+      <NamedData NDName="auctionHeaderseq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

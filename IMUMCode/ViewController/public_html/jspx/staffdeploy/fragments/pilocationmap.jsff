@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelFormLayout id="pfl0">
+  <af:resource type="javascript" source="/js/arcgis.js"/>
+    <af:resource type="css" source="/js/esri.css"/>
+    
+  <af:resource type="javascript">
+var map,pvtSymb;
+//alert("loading");      
+    function loadMap(long, lat) {
+                    //alert("lat::"+lat);  
+                //alert("long::"+long);     
+         //alert("loadMap1"); 
+          //alert("event::::"+evt);
+          //alert("longitude"+evt.getSource().getProperty("long"));
+          //alert("latitude"+evt.getSource().getProperty("lat"));
+          
+           require([
+                    "esri/map",
+                    "esri/layers/ArcGISDynamicMapServiceLayer",
+                    "esri/geometry/webMercatorUtils", "dojo/dom", "esri/geometry",
+                    "dojo/domReady!",
+                    "esri/symbols/SimpleMarkerSymbol",
+                    "esri/symbols/SimpleLineSymbol",
+                    "esri/symbols/PictureMarkerSymbol",
+                    "esri/Color"
+            ], function (Map, ArcGISDynamicMapServiceLayer, webMercatorUtils, dom) {
+                //alert("in Functuion");
+                var spatialRef = new esri.SpatialReference({ wkid: 4326 });
+                var startExtent = new esri.geometry.Extent();
+                startExtent.xmin = 54.3246;
+                startExtent.ymin = 24.4155;
+                startExtent.xmax = 54.4455;
+                startExtent.ymax = 24.4942;
+                startExtent.spatialReference = spatialRef;
+               //alert("loadMap2"); 
+                map = new Map("map_Div", {
+                    sliderOrientation: "horizontal",          
+                    extent: startExtent          
+                });
+                //Takes a URL to a non cached map service.
+                  //alert("loadMap3"); 
+                var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://www.darb.ae/arcgis/rest/services/BaseMaps/DOT_StreetMap_En/MapServer", {
+                    "opacity":5.9
+                });
+         
+                map.on("load", function () {
+                addPVTSymbol();
+                //long = evt.getSource().getProperty("long"); 
+                //lat = evt.getSource().getProperty("lat");
+                //alert("lat::"+lat);  
+                //alert("long::"+long);     
+                    var graphic = new esri.Graphic(
+                           new esri.geometry.Point( long,lat, map.spatialReference),
+                          new esri.symbol.PictureMarkerSymbol(pvtSymb)
+                         );
+                           //alert("loadMap4"); 
+                    map.graphics.add(graphic);
+                 
+                });
+        
+                map.addLayer(dynamicMapServiceLayer);
+               });         
+              
+        }
+        
+        function addPVTSymbol() {
+            //alert("addPVTSymbol");
+            pvtSymb = new esri.symbol.PictureMarkerSymbol({
+                "angle": 0,
+                "xoffset": 0,
+                "yoffset": 0,
+                "type": "esriPMS",
+                "url": "http://static.arcgis.com/images/Symbols/Transportation/CarRedBack.png",
+                "contentType": "image/png",
+                "width": 24,
+                "height": 24
+            });
+        //alert("loadMap-last"); 
+        }
+      </af:resource>
+  <af:panelGroupLayout id="pgl1">
+    <af:panelGroupLayout  id="pfl1"  layout="horizontal"
+                         inlineStyle="width:1095px; height:51px;">
+      <af:inputText label="PI Number" id="it1"/>
+      <af:inputDate label="Select Date" id="id1"/>
+      <af:commandButton text="View PI Traversed Route" id="cb1" partialSubmit="true"
+                        inlineStyle="width:80.0%;" clientComponent="true"
+                        action="#{pageFlowScope.CreateTable.generateReport}"/>
+      
+     
+    
+    </af:panelGroupLayout>
+       
+  </af:panelGroupLayout>
+   
+</af:panelFormLayout>
+  <af:panelFormLayout id="pfl2" partialTriggers="cb1"  inlineStyle="width:1095px; height:51px;">
+  <div id="map_Div" class="map_div" style="width:1000px; height:360px;"></div>
+  </af:panelFormLayout>
+</jsp:root>

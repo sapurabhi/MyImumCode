@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="PI Re-Assign" id="pb1" inlineStyle="height:256px;">
+    <af:panelFormLayout id="pfl1" rows="3">
+     <!--  Has to be enabled when Sr.Supervisor/Manager logs in :
+      <af:selectOneChoice value="#{bindings.SectorVO1.inputValue}"
+                          label="Sector"
+                          required="#{bindings.SectorVO1.hints.mandatory}"
+                          shortDesc="#{bindings.SectorVO1.hints.tooltip}"
+                          id="soc1">
+        <f:selectItems value="#{bindings.SectorVO1.items}" id="si1"/>
+      </af:selectOneChoice>-->
+
+
+ <!--  Has to be enabled when Supervisor logs in :   -->
+ 
+      <af:panelLabelAndMessage label="#{bindings.PIid.hints.label}" id="plam1">
+        <af:outputText value="#{bindings.PIid.inputValue}" id="ot4"
+                       binding="#{pageFlowScope.ReAssignMBean.pidVal}"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{bindings.Sector.hints.label}"
+                               id="plam2">
+        <af:outputFormatted value="#{bindings.Sector.inputValue}" id="of1"
+                            binding="#{pageFlowScope.ReAssignMBean.secVal}"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{bindings.Zone.hints.label}" id="plam3">
+        <af:outputFormatted value="#{bindings.Zone.inputValue}" id="of2"
+                            binding="#{pageFlowScope.ReAssignMBean.zoneVal}"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{bindings.Beat.hints.label}" id="plam4">
+        <af:outputFormatted value="#{bindings.Beat.inputValue}" id="of3"
+                            binding="#{pageFlowScope.ReAssignMBean.beatVal}"/>
+      </af:panelLabelAndMessage>
+     <af:panelLabelAndMessage label="Re-Assign Time" id="plam5">
+        <af:inputText id="of4"/>
+      </af:panelLabelAndMessage>
+      <!--<af:selectOneChoice value="#{bindings.shift.inputValue}"
+                          label="#{bindings.shift.label}"
+                          required="#{bindings.shift.hints.mandatory}"
+                          shortDesc="#{bindings.shift.hints.tooltip}" id="soc1">
+        <f:selectItems value="#{bindings.shift.items}" id="si1"/>
+      </af:selectOneChoice>-->
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl2" inlineStyle="height:38px;" rows="1">
+      <af:commandButton text="Cancel" id="cb2"/>
+      <af:commandButton text="Reassign" id="cb1"
+                        actionListener="#{pageFlowScope.ReAssignMBean.reassign}"/>
+    </af:panelFormLayout>
+  </af:panelBox>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:ReAssignMBean-->
+</jsp:root>
+ 

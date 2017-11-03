@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PIMonthlyAssignNewVO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  RowClass="com.imum.cpms.model.staffdeploy.vo.PIMonthlyAssignNewVORowImpl"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="Assgn_Date"
+  ComponentClass="com.imum.cpms.model.staffdeploy.vo.PIMonthlyAssignNewVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.staffdeploy.vo.PIMonthlyAssignNewVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="piid"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="fromdate"
+    Kind="viewcriteria"
+    Type="java.sql.Date">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="todate"
+    Kind="viewcriteria"
+    Type="java.sql.Date">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="assdt"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="supid"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <ViewAccessor
+    Name="GenpiShiftMstVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.GenpiShiftMstVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="GENREFCODESVWVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.GENREFCODESVWVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="SectorWorkNewVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.SectorWorkNewVO">
+    <ViewCriteriaUsage
+      Name="SectorWorkNewVOCriteria"
+      FullName="com.imum.cpms.model.staffdeploy.vo.SectorWorkNewVO.SectorWorkNewVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="superid">
+        <TransientExpression><![CDATA[adf.userSession.userData.loginuser]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="SectorWorkNewVO2"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.SectorWorkNewVO">
+    <ViewCriteriaUsage
+      Name="SectorWorkNewVOCriteria1"
+      FullName="com.imum.cpms.model.staffdeploy.vo.SectorWorkNewVO.SectorWorkNewVOCriteria1"/>
+    <ParameterMap>
+      <PIMap Variable="superid">
+        <TransientExpression><![CDATA[adf.userSession.userData.loginuser]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="sectorname">
+        <TransientExpression><![CDATA[SectorName]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="SectorDistinctVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.SectorDistinctVO">
+    <ViewCriteriaUsage
+      Name="SectorDistinctVOCriteria"
+      FullName="com.imum.cpms.model.staffdeploy.vo.SectorDistinctVO.SectorDistinctVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="superid">
+        <TransientExpression><![CDATA[adf.userSession.userData.loginuser]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_Shift"
+    ListVOName="GenpiShiftMstVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Shift"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="pishiftid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="pishiftdesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PiAvailabitystatusID"
+    ListVOName="GENREFCODESVWVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PiAvailabitystatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="valuecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="valuedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SectorName"
+    ListVOName="SectorDistinctVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_SectorName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ZoneName"
+    ListVOName="SectorWorkNewVO2"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ZoneName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZoneName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ZoneName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ZoneName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT PImonthlyWorkAssign.Active_Flag, 
+       PImonthlyWorkAssign.Alloc_Id, 
+       PImonthlyWorkAssign.Assgn_Date, 
+       PImonthlyWorkAssign.CreatedBy, 
+       PImonthlyWorkAssign.CreatedDate, 
+       PImonthlyWorkAssign.PI_id, 
+       PImonthlyWorkAssign.Sector_Name, 
+       PImonthlyWorkAssign.Sector_Zone, 
+       PImonthlyWorkAssign.Shift, 
+       PImonthlyWorkAssign.Shift1, 
+       PImonthlyWorkAssign.Shift1_Flag, 
+       PImonthlyWorkAssign.Shift2, 
+       PImonthlyWorkAssign.Shift2_Flag, 
+       PImonthlyWorkAssign.Shift3, 
+       PImonthlyWorkAssign.Shift3_Flag, 
+       PImonthlyWorkAssign.Sno, 
+       PImonthlyWorkAssign.Sup_Id, 
+       PImonthlyWorkAssign.UpdatedBy, 
+       PImonthlyWorkAssign.UpdatedDate, 
+       PImonthlyWorkAssign.Zone_Name,
+       'true' as dbval,
+       PImonthlyWorkAssign.Pi_Availabity_status_ID,
+       PImonthlyWorkAssign.Pi_Availabity_status_ID as dbpasi
+FROM GEN_PI_MonthlyDeployment PImonthlyWorkAssign]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="PImonthlyWorkAssign"
+    Entity="com.imum.cpms.model.staffdeploy.eo.PImonthlyWorkAssign"/>
+  <ViewAttribute
+    Name="ActiveFlag"
+    PrecisionRule="true"
+    EntityAttrName="ActiveFlag"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Active_Flag"/>
+  <ViewAttribute
+    Name="AllocId"
+    PrecisionRule="true"
+    EntityAttrName="AllocId"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Alloc_Id"/>
+  <ViewAttribute
+    Name="AssgnDate"
+    PrecisionRule="true"
+    EntityAttrName="AssgnDate"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Assgn_Date"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="CreatedBy"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="CreatedDate"/>
+  <ViewAttribute
+    Name="PIid"
+    PrecisionRule="true"
+    EntityAttrName="PIid"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="PI_id"/>
+  <ViewAttribute
+    Name="SectorName"
+    PrecisionRule="true"
+    EntityAttrName="SectorName"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Sector_Name"
+    LOVName="LOV_SectorName">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SectorZone"
+    PrecisionRule="true"
+    EntityAttrName="SectorZone"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Sector_Zone"/>
+  <ViewAttribute
+    Name="Shift"
+    PrecisionRule="true"
+    EntityAttrName="Shift"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Shift"
+    LOVName="LOV_Shift">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Shift1"
+    PrecisionRule="true"
+    EntityAttrName="Shift1"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Shift1"/>
+  <ViewAttribute
+    Name="Shift1Flag"
+    PrecisionRule="true"
+    EntityAttrName="Shift1Flag"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Shift1_Flag"/>
+  <ViewAttribute
+    Name="Shift2"
+    PrecisionRule="true"
+    EntityAttrName="Shift2"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Shift2"/>
+  <ViewAttribute
+    Name="Shift2Flag"
+    PrecisionRule="true"
+    EntityAttrName="Shift2Flag"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Shift2_Flag"/>
+  <ViewAttribute
+    Name="Shift3"
+    PrecisionRule="true"
+    EntityAttrName="Shift3"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Shift3"/>
+  <ViewAttribute
+    Name="Shift3Flag"
+    PrecisionRule="true"
+    EntityAttrName="Shift3Flag"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Shift3_Flag"/>
+  <ViewAttribute
+    Name="Sno"
+    PrecisionRule="true"
+    EntityAttrName="Sno"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Sno"/>
+  <ViewAttribute
+    Name="SupId"
+    PrecisionRule="true"
+    EntityAttrName="SupId"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Sup_Id"/>
+  <ViewAttribute
+    Name="UpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedBy"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="UpdatedBy"/>
+  <ViewAttribute
+    Name="UpdatedDate"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedDate"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="UpdatedDate"/>
+  <ViewAttribute
+    Name="ZoneName"
+    PrecisionRule="true"
+    EntityAttrName="ZoneName"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Zone_Name"
+    LOVName="LOV_ZoneName">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="dbval"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="4"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="dbval"
+    Expression="dbval"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PiAvailabitystatusID"
+    PrecisionRule="true"
+    EntityAttrName="PiAvailabitystatusID"
+    EntityUsage="PImonthlyWorkAssign"
+    AliasName="Pi_Availabity_status_ID"
+    LOVName="LOV_PiAvailabitystatusID">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="dbpasi"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="dbpasi"
+    Expression="dbpasi"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Day"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewCriteria
+    Name="PIMonthlyAssignNewVOCriteria"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.PIMonthlyAssignNewVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow235"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="PIMonthlyAssignNewVOCriteria_vcrow235_ActiveFlag"
+        ViewAttribute="ActiveFlag"
+        Operator="="
+        Conjunction="AND"
+        Value="Y"
+        Required="Optional"/>
+      <ViewCriteriaItemCompound
+        ViewAttribute="AssgnDate">
+        <ViewCriteria
+          Name="PIMonthlyAssignNewVOCriteria_vcrow235_AssgnDate_itemHolder"
+          ViewObjectName="com.imum.cpms.model.staffdeploy.vo.PIMonthlyAssignNewVO"
+          Conjunction="OR">
+          <ViewCriteriaRow
+            Name="vcrow236"
+            Conjunction="AND">
+            <ViewCriteriaItem
+              Name="AssgnDate"
+              ViewAttribute="AssgnDate"
+              Operator="ONORAFTER"
+              Conjunction="AND"
+              Value=":fromdate"
+              IsBindVarValue="true"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+          <ViewCriteriaRow
+            Name="vcrow237"
+            Conjunction="AND">
+            <ViewCriteriaItem
+              Name="PIMonthlyAssignNewVOCriteria_vcrow235_AssgnDate_PIMonthlyAssignNewVOCriteria_vcrow235_AssgnDate_itemHolder_vcrow237_AssgnDate"
+              ViewAttribute="AssgnDate"
+              Operator="ONORBEFORE"
+              Conjunction="AND"
+              Value=":todate"
+              IsBindVarValue="true"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+        </ViewCriteria>
+      </ViewCriteriaItemCompound>
+      <ViewCriteriaItem
+        Name="PIid"
+        ViewAttribute="PIid"
+        Operator="="
+        Conjunction="AND"
+        Value=":piid"
+        IsBindVarValue="true"
+        Required="Optional"
+        GenerateIsNullClauseForBindVars="false"/>
+      <ViewCriteriaItem
+        Name="SupId"
+        ViewAttribute="SupId"
+        Operator="="
+        Conjunction="AND"
+        Value=":supid"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

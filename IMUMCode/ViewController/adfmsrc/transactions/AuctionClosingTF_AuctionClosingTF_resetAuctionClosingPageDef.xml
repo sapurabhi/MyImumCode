@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57"
+                id="AuctionClosingTF_AuctionClosingTF_resetAuctionClosingPageDef"
+                Package="transactions" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="resetAuctionClosing" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="resetAuctionClosing"
+            IsViewObjectMethod="false" DataControl="TransactionsAMDataControl"
+            InstanceName="TransactionsAMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

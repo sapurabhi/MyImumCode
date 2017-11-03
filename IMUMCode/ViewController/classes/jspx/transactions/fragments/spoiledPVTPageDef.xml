@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="SpoiledPVTPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <iterator Binds="PVTSearchRVO2" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO2Iterator"/>
+    <searchRegion Criteria="PVTSpoiledPVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator"
+                  id="PVTSpoiledPVTSearchRVOCriteriaQuery"/>
+    <searchRegion Criteria="PVTSpoiledPVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO2Iterator"
+                  id="PVTSpoiledPVTSearchRVOCriteriaQuery1"/>
+    <iterator id="PVTCategorizedChargesRVO1Iterator"
+              Binds="PVTCategorizedChargesRVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <searchRegion Criteria="PVTSpoiledPVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO1Iterator"
+                  id="PVTSpoiledPVTSearchRVOCriteriaQuery2"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTSearchRVO2Iterator" id="PVTSearchRVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO20">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="CountryCode"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="SectorCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="TransactionsAMDataControl"/>
+    <methodAction id="updateSpoiledPVT"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="updateSpoiledPVT" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.updateSpoiledPVT_TransactionsAMDataControl_dataProvider_updateSpoiledPVT_result">
+      <NamedData NDName="userId" NDType="java.lang.String"/>
+      <NamedData NDName="pvts" NDType="java.util.ArrayList"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getPVTRemovalStatus"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPVTRemovalStatus" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getPVTRemovalStatus_TransactionsAMDataControl_dataProvider_getPVTRemovalStatus_result">
+      <NamedData NDName="pvtMap" NDType="java.util.Map"/>
+    </methodAction>
+    <methodAction id="getPVTDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPVTDetails" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getPVTDetails_TransactionsAMDataControl_dataProvider_getPVTDetails_result">
+      <NamedData NDName="PVTNum" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getPVTCountForVehicle"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPVTCountForVehicle" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getPVTCountForVehicle_TransactionsAMDataControl_dataProvider_getPVTCountForVehicle_result">
+      <NamedData NDName="PVTNum" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO10">
+        <AttrNames>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="Requestlogseq"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateId"/>
+          <Item Value="PVTSOURCE"/>
+          <Item Value="Contracode"/>
+          <Item Value="Obsrvseq"/>
+          <Item Value="SectorCode"/>
+          <Item Value="TariffID"/>
+          <Item Value="PIID"/>
+          <Item Value="PIName"/>
+          <Item Value="HHCID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTFromDate"/>
+          <Item Value="PVTToDate"/>
+          <Item Value="PVTVHCLgeolat"/>
+          <Item Value="PVTVHCLgeolon"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTStatusID1"/>
+          <Item Value="PVTStatusID2"/>
+          <Item Value="PVTStatusID3"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTSTAGEID1"/>
+          <Item Value="ENFORCESTAGEID"/>
+          <Item Value="ENFORCESTAGEID1"/>
+          <Item Value="CLOSUREREASONS"/>
+          <Item Value="CLOSUREREMARKS"/>
+          <Item Value="CONTRAAMT"/>
+          <Item Value="Discountamt"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTAMTPAID"/>
+          <Item Value="verifiedby"/>
+          <Item Value="verifieddate"/>
+          <Item Value="DEFCityCode"/>
+          <Item Value="DEFCountryMst"/>
+          <Item Value="ADPnumber"/>
+          <Item Value="Appealnumber"/>
+          <Item Value="courtcasenumber"/>
+          <Item Value="zonecode"/>
+          <Item Value="DiscPeriodenddate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+          <Item Value="CountryCode"/>
+          <Item Value="ForeignPlate"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="Blacklistflag"/>
+          <Item Value="customername"/>
+          <Item Value="Mobilenum"/>
+          <Item Value="PVTAmtAfterDiscount"/>
+          <Item Value="ContraFeeDiscountAmt"/>
+          <Item Value="ContraFeeAfterDiscount"/>
+          <Item Value="Balance"/>
+          <Item Value="CustId"/>
+          <Item Value="VehCustId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+  </bindings>
+</pageDefinition>

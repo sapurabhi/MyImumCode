@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl4">
+    <af:panelGroupLayout id="pgl5" layout="horizontal">
+      <af:spacer width="780" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1"
+                        icon="/images/new.gif"
+                        action="#{pageFlowScope.CreateCustomerMBean.doNew}">
+        <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" id="s22"/>
+      <af:commandButton text="Edit" id="cb4" icon="/images/edit.gif"
+                        action="#{pageFlowScope.CreateCustomerMBean.doEdit}">
+        <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" id="s222"/>
+      <af:commandButton text="View" id="cb5" icon="/images/view.gif"
+                        action="#{pageFlowScope.CreateCustomerMBean.doView}">
+        <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+    </af:panelGroupLayout>
+    
+    <af:spacer height="10" id="s2"/>
+    
+    <af:panelGroupLayout id="pgl1">
+    
+      <af:table summary="Customer Individual" value="#{bindings.CustomerIndividualUVO1.collectionModel}"
+                var="row" rows="#{bindings.CustomerIndividualUVO1.rangeSize}"
+                emptyText="#{bindings.CustomerIndividualUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.CustomerIndividualUVO1.rangeSize}"
+                rowBandingInterval="0"
+                selectedRowKeys="#{bindings.CustomerIndividualUVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.CustomerIndividualUVO1.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" width="97%"
+                 inlineStyle="height:181px;"
+                scrollPolicy="scroll" filterVisible="true"
+                columnStretching="multiple">
+        <af:column sortProperty="#{bindings.CustomerIndividualUVO1.hints.Salutation.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.SALUTATION}"
+                   id="c2" width="115" align="center">
+          <af:outputText value="#{row.Salutation}" id="ot6"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CustomerIndividualUVO1.hints.FirstName.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.FIRST_NAME}"
+                   id="c7" width="234" align="center">
+          <af:outputText value="#{row.FirstName}" id="ot5"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CustomerIndividualUVO1.hints.EmiratesID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.EMIRATES_ID}"
+                   id="c1" width="155" align="center">
+          <af:outputText value="#{row.EmiratesID}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CustomerIndividualUVO1.hints.Residenttype.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.RESIDENT_TYPE}"
+                   id="c4" width="150" align="center">
+          <af:outputText value="#{row.Residenttype}" id="ot2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CustomerIndividualUVO1.hints.Nationality.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.NATIONALITY}"
+                   id="c5" width="150" align="center">
+          <af:outputText value="#{row.Nationality}" id="ot4"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CustomerIndividualUVO1.hints.Mobilenum.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.MOBILE_NUMBER}"
+                   id="c6" width="150" align="center">
+          <af:outputText value="#{row.Mobilenum}" id="ot1"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+    
+    <af:spacer height="10" id="s3"/>
+    
+    <af:panelGroupLayout id="pgl2">
+      <af:panelFormLayout id="pfl1" rows="1" rendered="#{pageFlowScope.setvisible}">
+        <af:selectOneChoice value="#{bindings.Salutation1.inputValue}"
+                            label="#{bindings.Salutation1.label}"
+                            shortDesc="#{bindings.Salutation1.hints.tooltip}"
+                            id="soc5"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+          <f:selectItems value="#{bindings.Salutation1.items}" id="si5"/>
+        </af:selectOneChoice>
+
+        <af:inputText value="#{bindings.LastName.inputValue}"
+                      label="#{viewcontrollerBundle.LAST_NAME}"
+                      columns="20"
+                      maximumLength="#{bindings.LastName.hints.precision}"
+                      shortDesc="#{bindings.LastName.hints.tooltip}" id="it6"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      requiredMessageDetail="Please enter Last Name">
+          <f:validator binding="#{bindings.LastName.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.FirstName.inputValue}"
+                      label="#{viewcontrollerBundle.FIRST_NAME}"
+                      columns="20"
+                      maximumLength="#{bindings.FirstName.hints.precision}"
+                      shortDesc="#{bindings.FirstName.hints.tooltip}" id="it5"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      requiredMessageDetail="Please enter First name">
+          <f:validator binding="#{bindings.FirstName.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.EmiratesID.inputValue}"
+                      label="#{viewcontrollerBundle.EMIRATES_ID}"
+                      maximumLength="#{bindings.EmiratesID.hints.precision}"
+                      shortDesc="#{bindings.EmiratesID.hints.tooltip}" id="it7"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      rows="1">
+          <f:validator binding="#{bindings.EmiratesID.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Residenttype.inputValue}"
+                      label="#{viewcontrollerBundle.RESIDENT_TYPE}"
+                      columns="20"
+                      maximumLength="#{bindings.Residenttype.hints.precision}"
+                      shortDesc="#{bindings.Residenttype.hints.tooltip}"
+                      id="it11"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      requiredMessageDetail="Please select Resident type"
+                      rows="1">
+          <f:validator binding="#{bindings.Residenttype.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Nationality.inputValue}"
+                      label="#{viewcontrollerBundle.NATIONALITY}"
+                      maximumLength="#{bindings.Nationality.hints.precision}"
+                      shortDesc="#{bindings.Nationality.hints.tooltip}"
+                      id="it4"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      requiredMessageDetail="Please enter Nationality" rows="1">
+          <f:validator binding="#{bindings.Nationality.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Mobilenum.inputValue}"
+                      label="#{viewcontrollerBundle.MOBILE_NUMBER}"
+                      maximumLength="#{bindings.Mobilenum.hints.precision}"
+                      shortDesc="#{bindings.Mobilenum.hints.tooltip}" id="it1"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+          <f:validator binding="#{bindings.Mobilenum.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Landlinenum.inputValue}"
+                      label="#{viewcontrollerBundle.LAND_LINE_NUMBER}"
+                      maximumLength="#{bindings.Landlinenum.hints.precision}"
+                      shortDesc="#{bindings.Landlinenum.hints.tooltip}"
+                      id="it10"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+          <f:validator binding="#{bindings.Landlinenum.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.ALTERNATEPHONENUM.inputValue}"
+                      label="#{viewcontrollerBundle.ALTERNATE_PHONE_NUMBER}"
+                      maximumLength="#{bindings.ALTERNATEPHONENUM.hints.precision}"
+                      shortDesc="#{bindings.ALTERNATEPHONENUM.hints.tooltip}"
+                      id="it25"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      rows="1">
+          <f:validator binding="#{bindings.ALTERNATEPHONENUM.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.EmailID.inputValue}"
+                      label="#{viewcontrollerBundle.EMAIL_ID}"
+                      columns="20"
+                      maximumLength="#{bindings.EmailID.hints.precision}"
+                      shortDesc="#{bindings.EmailID.hints.tooltip}" id="it14"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+          <f:validator binding="#{bindings.EmailID.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Activeflag.inputValue}"
+                      label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                      columns="#{bindings.Activeflag.hints.displayWidth}"
+                      maximumLength="#{bindings.Activeflag.hints.precision}"
+                      shortDesc="#{bindings.Activeflag.hints.tooltip}" id="it2"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+          <f:validator binding="#{bindings.Activeflag.validator}"/>
+        </af:inputText>
+        
+        <af:inputText value="#{bindings.Comments.inputValue}"
+                      label="#{viewcontrollerBundle.COMMENTS}"
+                      columns="40"
+                      maximumLength="#{bindings.Comments.hints.precision}"
+                      shortDesc="#{bindings.Comments.hints.tooltip}" id="it3"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      rows="2">
+          <f:validator binding="#{bindings.Comments.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.Legacyinfo.inputValue}"
+                      label="#{viewcontrollerBundle.LEGACY_INFO}"
+                      columns="40"
+                      maximumLength="#{bindings.Legacyinfo.hints.precision}"
+                      shortDesc="#{bindings.Legacyinfo.hints.tooltip}"
+                      id="it13"
+                      disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                      rows="2">
+          <f:validator binding="#{bindings.Legacyinfo.validator}"/>
+        </af:inputText>
+      </af:panelFormLayout>
+      
+            <af:spacer height="25" id="s02"/>
+
+        <af:panelFormLayout id="pfl2" visible="#{pageFlowScope.setvisible}"
+                            rendered="#{pageFlowScope.setvisible}">
+            <af:panelGroupLayout id="pgl8">
+              <af:panelGroupLayout id="pgl9" layout="horizontal">
+                <af:inputText label="Utility Bill Number" id="searchUtilityBillNumber"
+                              binding="#{pageFlowScope.CreateCustomerMBean.searchUtilityBillNumber}"
+                              disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                              wrap="off"/>
+                               <af:spacer width="10" id="s012"/>
+                <af:commandButton text="Search" id="utilityBillNumber" 
+                                  inlineStyle="background-color:#F39C11;"
+                                  action="#{pageFlowScope.CreateCustomerMBean.doCusAddressSearch}"
+                                  disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"/>
+                                   <af:spacer width="10" id="s232"/>
+                <af:commandButton text="Reset" id="resetUtilityBillNumber" 
+                                  inlineStyle="background-color:#F39C11;"
+                                  action="#{pageFlowScope.CreateCustomerMBean.resetCusAddressSearch}"
+                                  binding="#{pageFlowScope.CreateCustomermBean.resetUtilityBillNumber}"
+                                  disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"/>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+           <af:panelFormLayout id="pf17"
+                               inlineStyle="text-align:left;">
+          <af:table value="#{bindings.AddressDetailsUVO1.collectionModel}"
+                    var="row" rows="#{bindings.AddressDetailsUVO1.rangeSize}"
+                    emptyText="#{bindings.AddressDetailsUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.AddressDetailsUVO1.rangeSize}"
+                    rowBandingInterval="0" id="t2" scrollPolicy="scroll"
+                    inlineStyle="height:120px; text-align:left;width:970px;">
+            <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.name}"
+                       sortable="false"
+                       headerText="Utility Bill #"
+                       id="c13" width="120">
+              <af:inputText value="#{row.bindings.UTILBILLNUM.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.label}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.tooltip}"
+                            id="it16"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                            requiredMessageDetail="Please enter Utility Bill Number"
+                            rows="1">
+                <f:validator binding="#{row.bindings.UTILBILLNUM.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.name}"
+                       sortable="false"
+                       headerText="TowTeeq #"
+                       id="c10" width="120">
+              <af:inputText value="#{row.bindings.TowTeeqNum.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.label}"
+                            columns="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.displayWidth}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.tooltip}"
+                            id="it15"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+                <f:validator binding="#{row.bindings.TowTeeqNum.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.name}"
+                       sortable="false"
+                       headerText="Address1"
+                       id="c12" width="120">
+              <af:inputText value="#{row.bindings.ADDRLINE1.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.label}"
+                            columns="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.displayWidth}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.tooltip}"
+                            id="it23"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                            requiredMessageDetail="Please enter Address"
+                            readOnly="false">
+                <f:validator binding="#{row.bindings.ADDRLINE1.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.name}"
+                       sortable="false"
+                       headerText="Address2"
+                       id="c9" width="120">
+              <af:inputText value="#{row.bindings.ADDRLINE2.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.label}"
+                            columns="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.displayWidth}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.tooltip}"
+                            id="it19"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                            readOnly="false">
+                <f:validator binding="#{row.bindings.ADDRLINE2.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.name}"
+                       sortable="false"
+                       headerText="Address3"
+                       id="c8" width="120">
+              <af:inputText value="#{row.bindings.ADDRLINE3.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.label}"
+                            columns="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.displayWidth}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.tooltip}"
+                            id="it22"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+                <f:validator binding="#{row.bindings.ADDRLINE3.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.name}"
+                       sortable="false"
+                       headerText="Post Box #"
+                       id="c17" width="115">
+              <af:inputText value="#{row.bindings.PostBoxNum.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.label}"
+                            columns="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.displayWidth}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.tooltip}"
+                            id="it21"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+                <f:validator binding="#{row.bindings.PostBoxNum.validator}"/>
+              </af:inputText>
+            </af:column>
+              <af:column headerText="Sector"
+                         id="c16" width="120">
+                <af:selectOneChoice value="#{row.bindings.SectorCode.inputValue}"
+                                    label="#{row.bindings.SectorCode.label}"
+                                    shortDesc="#{bindings.AddressDetailsUVO1.hints.SectorCode.tooltip}"
+                                    id="soc3"
+                                    disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+                  <f:selectItems value="#{row.bindings.SectorCode.items}"
+                                 id="si3"/>
+                </af:selectOneChoice>
+              </af:column>
+              <af:column headerText="Zone"
+                         id="c19" width="120">
+                <af:selectOneChoice value="#{row.bindings.ZoneCode.inputValue}"
+                                    label="#{row.bindings.ZoneCode.label}"
+                                    shortDesc="#{bindings.AddressDetailsUVO1.hints.ZoneCode.tooltip}"
+                                    id="soc4"
+                                    disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+                  <f:selectItems value="#{row.bindings.ZoneCode.items}"
+                                 id="si4"/>
+                </af:selectOneChoice>
+              </af:column>
+              <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ZoneCode.name}"
+                       sortable="false"
+                       headerText="Zone"
+                       id="c14" width="100">
+              <af:inputText value="#{row.bindings.ZoneCode.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.ZoneCode.label}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.ZoneCode.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.ZoneCode.tooltip}"
+                            id="it20"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+                <f:validator binding="#{row.bindings.ZoneCode.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.CommunityCode.name}"
+                       sortable="false"
+                       headerText="Community"
+                       id="c11" width="100">
+              <af:inputText value="#{row.bindings.CommunityCode.inputValue}"
+                            label="#{bindings.AddressDetailsUVO1.hints.CommunityCode.label}"
+                            maximumLength="#{bindings.AddressDetailsUVO1.hints.CommunityCode.precision}"
+                            shortDesc="#{bindings.AddressDetailsUVO1.hints.CommunityCode.tooltip}"
+                            id="it17"
+                            disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"
+                            rows="1">
+                <f:validator binding="#{row.bindings.CommunityCode.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column id="c18" width="30" headerText="Add">
+                <af:commandImageLink id="cil1"
+                                     icon="/images/plus.png"
+                                     actionListener="#{bindings.CreateInsert1.execute}"
+                                     disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"/>
+              </af:column>
+               <af:column id="c118" width="40" headerText="Delete">
+                <af:commandImageLink id="ci2l1"
+                                     icon="/images/minus.png"
+                                     actionListener="#{bindings.Delete.execute}"
+                                     disabled="#{pageFlowScope.CreateCustomerMBean.enabled}"/>
+              </af:column>
+          </af:table>
+           </af:panelFormLayout>
+        
+        </af:panelFormLayout>
+        </af:panelGroupLayout>
+        
+        <af:spacer height="40" id="s123"/>
+      <af:panelGroupLayout id="pgl3" layout="horizontal"
+                           rendered="#{pageFlowScope.setvisible}">
+                                                                                                                         
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="commandButton1"
+                          inlineStyle="background-color:#F39C11;"
+                          action="#{pageFlowScope.CreateCustomerMBean.doCustomerSubmit}"
+                          rendered="#{pageFlowScope.setvisible}"
+                          disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+         <af:spacer width="10" id="s1223"/>
+        <af:commandButton text="#{viewcontrollerBundle.CANCEL}"
+                             inlineStyle="background-color:#F39C11;"
+                          actionListener="#{bindings.Rollback.execute}"
+                        
+                          immediate="true"
+                          rendered="#{pageFlowScope.setvisible}"
+                          disabled="#{pageFlowScope.CreateCustomerMBean.enabled}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+          <af:resetActionListener/>
+        </af:commandButton>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:CreateCustomerMBean-->
+</jsp:root>

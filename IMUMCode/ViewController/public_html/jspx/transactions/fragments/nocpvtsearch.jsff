@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  
+     <af:panelGroupLayout layout="vertical" id="pgl3">
+      <af:panelHeader text="PVT Search" id="ph3">
+       <af:query id="qryId1" headerText="Search" disclosed="true"
+                 value="#{bindings.NOCPVTSearchRVOQuery1.queryDescriptor}"
+                 model="#{bindings.NOCPVTSearchRVOQuery1.queryModel}"
+                 queryListener="#{bindings.NOCPVTSearchRVOQuery1.processQuery}"
+                 queryOperationListener="#{bindings.NOCPVTSearchRVOQuery1.processQueryOperation}"
+                 type="default" saveQueryMode="hidden"/>
+      </af:panelHeader>
+ 
+    <af:table value="#{bindings.PVTSearchRVO1.collectionModel}" var="row"
+              rows="#{bindings.PVTSearchRVO1.rangeSize}"
+              emptyText="#{bindings.PVTSearchRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PVTSearchRVO1.rangeSize}"
+              rowBandingInterval="0" partialTriggers="qryId1"
+              selectedRowKeys="#{bindings.PVTSearchRVO1.collectionModel.selectedRow}"
+              selectionListener="#{bindings.PVTSearchRVO1.collectionModel.makeCurrent}"
+              rowSelection="single" id="resId1" width="771"
+              inlineStyle="height:243px;">
+     <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PVTNum.name}"
+                sortable="false"
+                headerText="#{bindings.PVTSearchRVO1.hints.PVTNum.label}"
+                id="resId1c1">
+      <af:outputText value="#{row.PVTNum}" id="ot4"/>
+     </af:column>
+     <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PlateId.name}"
+                sortable="false"
+                headerText="Plate Id"
+                id="resId1c2">
+      <af:outputText value="#{row.PlateId}" id="ot5">
+       <af:convertNumber groupingUsed="false"
+                         pattern="#{bindings.PVTSearchRVO1.hints.PlateId.format}"/>
+      </af:outputText>
+     </af:column>
+     <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.SectorCode.name}"
+                sortable="false"
+                headerText="#{bindings.PVTSearchRVO1.hints.SectorCode.label}"
+                id="resId1c3">
+      <af:outputText value="#{row.SectorCode}" id="ot3"/>
+     </af:column>
+     <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PVTdatetime.name}"
+                sortable="false"
+                headerText="#{bindings.PVTSearchRVO1.hints.PVTdatetime.label}"
+                id="resId1c4">
+      <af:outputText value="#{row.PVTdatetime}" id="ot7">
+      <af:convertDateTime pattern="dd-MM-yyyy" />
+      </af:outputText>
+     </af:column>
+     <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PVTStatusID.name}"
+                sortable="false"
+                headerText="#{bindings.PVTSearchRVO1.hints.PVTStatusID.label}"
+                id="resId1c5">
+    <af:selectOneChoice value="#{row.bindings.PVTStatusID.inputValue}"
+                        label="#{row.bindings.PVTStatusID.label}" readOnly="true"
+                        required="#{bindings.PVTSearchRVO1.hints.PVTStatusID.mandatory}"
+                        shortDesc="#{bindings.PVTSearchRVO1.hints.PVTStatusID.tooltip}"
+                        id="soc1">
+     <f:selectItems value="#{row.bindings.PVTStatusID.items}" id="si1"/>
+    </af:selectOneChoice>
+   </af:column>
+     <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PVTSTAGEID.name}"
+                sortable="false"
+                headerText="#{bindings.PVTSearchRVO1.hints.PVTSTAGEID.label}"
+                id="resId1c6">
+    <af:selectOneChoice value="#{row.bindings.PVTSTAGEID.inputValue}"
+                        label="#{row.bindings.PVTSTAGEID.label}" readOnly="true"
+                        required="#{bindings.PVTSearchRVO1.hints.PVTSTAGEID.mandatory}"
+                        shortDesc="#{bindings.PVTSearchRVO1.hints.PVTSTAGEID.tooltip}"
+                        id="soc2">
+     <f:selectItems value="#{row.bindings.PVTSTAGEID.items}" id="si2"/>
+    </af:selectOneChoice>
+   </af:column>
+   <af:column headerText="#{bindings.PVTSearchRVO1.hints.PLATECTGID.label}" rendered="false"
+              id="c2">
+    <af:selectOneChoice value="#{row.bindings.PLATECTGID.inputValue}"
+                        label="#{row.bindings.PLATECTGID.label}" readOnly="true"
+                        required="#{bindings.PVTSearchRVO1.hints.PLATECTGID.mandatory}"
+                        shortDesc="#{bindings.PVTSearchRVO1.hints.PLATECTGID.tooltip}"
+                        id="soc3">
+     <f:selectItems value="#{row.bindings.PLATECTGID.items}" id="si3"/>
+    </af:selectOneChoice>
+   </af:column>
+   <af:column id="c1" headerText="#{viewcontrollerBundle.VIEW_0}"
+                 width="135">
+      <af:commandButton text="NOC" id="cb1"
+         action="print" inlineStyle="background-color:#F39C11;"  rendered = "#{row.PVTStatusID==2}"
+                        actionListener="#{pageFlowScope.NOCreportMB.actionPrint}">
+         </af:commandButton>
+     
+      </af:column>
+    </af:table>
+   </af:panelGroupLayout>
+  
+</jsp:root>

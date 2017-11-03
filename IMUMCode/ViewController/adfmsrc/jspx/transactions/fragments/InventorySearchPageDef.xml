@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="InventorySearchPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="InventorySearchCriteriaVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="InventorySearchCriteriaVO1Iterator"/>
+    <iterator Binds="InvDetailUVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="InvDetailUVO1Iterator"/>
+    <iterator Binds="InventoryEventDetailsVO1" RangeSize="4"
+              DataControl="TransactionsAMDataControl"
+              id="InventoryEventDetailsVO1Iterator"/>
+    <iterator Binds="InventorySaleAccDetailsVO1" RangeSize="9"
+              DataControl="TransactionsAMDataControl"
+              id="InventorySaleAccDetailsVO1Iterator"/>
+    <iterator Binds="InventorySaleDetailsVO1" RangeSize="8"
+              DataControl="TransactionsAMDataControl"
+              id="InventorySaleDetailsVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="InventorySearchCriteriaVO1Iterator"
+          id="InventorySearchCriteriaVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InventorySearchCriteriaVO"
+                      Name="InventorySearchCriteriaVO10">
+        <AttrNames>
+          <Item Value="CardType"/>
+          <Item Value="Denomination" Binds="Denomination"/>
+          <Item Value="CardStatus"/>
+          <Item Value="FromCard"/>
+          <Item Value="ToCard"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="InventorySearchCriteriaVO1Iterator" StaticList="false"
+          Uses="LOV_Denomination" id="Denomination" DTSupportsMRU="true"/>
+    <tree IterBinding="InvDetailUVO1Iterator" id="InvDetailUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InvDetailUVO"
+                      Name="InvDetailUVO10">
+        <AttrNames>
+          <Item Value="cardTypeDesc"/>
+          <Item Value="Cardnum"/>
+          <Item Value="CardDenomAmt"/>
+          <Item Value="ExpiryDate"/>
+          <Item Value="cardStatusDesc"/>
+          <Item Value="LOcationid"/>
+          <Item Value="SelectFlag"/>
+          <Item Value="BulkSaleFlag"/>
+          <Item Value="CSAAssignedTo"/>
+          <Item Value="CSAAssignedDate"/>
+          <Item Value="Salehdrseq"/>
+          <Item Value="LocationDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="InventoryEventDetailsVO1Iterator"
+          id="InventoryEventDetailsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InventoryEventDetailsVO"
+                      Name="InventoryEventDetailsVO10">
+        <AttrNames>
+          <Item Value="eventid"/>
+          <Item Value="LoginprintID"/>
+          <Item Value="eventdate"/>
+          <Item Value="eventdesc"/>
+          <Item Value="remarks"/>
+          <Item Value="eventamt"/>
+          <Item Value="balanceamt"/>
+          <Item Value="invdetailseq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="InventorySaleAccDetailsVO1Iterator"
+          id="InventorySaleAccDetailsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InventorySaleAccDetailsVO"
+                      Name="InventorySaleAccDetailsVO10">
+        <AttrNames>
+          <Item Value="acccode"/>
+          <Item Value="accdesc"/>
+          <Item Value="accdate"/>
+          <Item Value="SaleAmt"/>
+          <Item Value="dramnt"/>
+          <Item Value="cramnt"/>
+          <Item Value="BulkSaleFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="InventorySaleDetailsVO1Iterator"
+          id="InventorySaleDetailsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InventorySaleDetailsVO"
+                      Name="InventorySaleDetailsVO10">
+        <AttrNames>
+          <Item Value="saleamt"/>
+          <Item Value="saledate"/>
+          <Item Value="ActionDesc"/>
+          <Item Value="PaymentDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="InventorySaleDetailsVO1Iterator"
+                     id="receiptnum">
+      <AttrNames>
+        <Item Value="receiptnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InventorySaleDetailsVO1Iterator"
+                     id="saledate">
+      <AttrNames>
+        <Item Value="saledate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InventorySaleDetailsVO1Iterator" id="saleamt">
+      <AttrNames>
+        <Item Value="saleamt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InventorySaleDetailsVO1Iterator"
+                     id="ActionDesc">
+      <AttrNames>
+        <Item Value="ActionDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InventorySaleDetailsVO1Iterator"
+                     id="PaymentDesc">
+      <AttrNames>
+        <Item Value="PaymentDesc"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+<af:panelGroupLayout id="pgl7" inlineStyle="height:145px; width:589px;" layout="vertical">
+      <c:set var="viewcontrollerBundle"
+             value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/> 
+       <!--Header Buttons--> 
+        <af:spacer width="10" height="10" id="spacer4"/>
+       <af:panelGroupLayout id="pgl1" layout="horizontal" >
+       <af:panelGroupLayout id="pgl9" layout="horizontal" visible="#{pageFlowScope.setvisible}">
+       <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb4" 
+                         rendered="#{!pageFlowScope.VehicleCountrymstMB.hide}"
+                        partialTriggers="t1" 
+                         inlineStyle="background-color:#F39C11;"                                              
+                        
+                        disabled="#{! pageFlowScope.VehicleCountrymstMB.enabled}"
+                        actionListener="#{pageFlowScope.VehicleCountrymstMB.actionSubmit}">
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" 
+                        rendered="#{!pageFlowScope.VehicleCountrymstMB.hide}"
+                        inlineStyle="background-color:#F39C11;" id="cb5" 
+                        
+                        immediate="true"
+                        actionListener="#{pageFlowScope.VehicleCountrymstMB.actionCancel}">                        
+            <af:resetActionListener/> 
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+       </af:commandButton> 
+       </af:panelGroupLayout>
+        <af:spacer width="425" height="10" id="s4"/>
+            <!--New,Edit,View buttons-->
+        <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"
+                          icon="/images/new.gif"
+                          actionListener="#{pageFlowScope.VehicleCountrymstMB.actionNew}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="cb2" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"                   
+                          icon="/images/edit.gif"
+                          actionListener="#{pageFlowScope.VehicleCountrymstMB.actionEdit}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="cb3" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"                          
+                          inlineStyle="background-color:#e3e3e3;"                          
+                          icon="/images/view.gif"
+                          action="#{pageFlowScope.VehicleCountrymstMB.actionView}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s8"/>
+        </af:panelGroupLayout>
+         <!--Truck Table Details-->
+ 
+  <af:spacer width="10" height="10" id="s9"/>
+           <af:panelGroupLayout id="pgl2" layout="horizontal"
+                           inlineStyle="height:110px; width:458px;">
+        <af:showDetailHeader text=" Vehicle Plate Country Master" disclosed="true"
+                             id="sdh2"                            
+                             inlineStyle="width:655px; height:171px;">
+              
+              
+              
+              
+         <!--Table need to show-->
+    <af:table value="#{bindings.VehicleCountrymstVO1.collectionModel}" var="row"
+              rows="#{bindings.VehicleCountrymstVO1.rangeSize}" autoHeightRows="0"
+              emptyText="#{bindings.VehicleCountrymstVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.VehicleCountrymstVO1.rangeSize}"
+              rowBandingInterval="1" scrollPolicy="page" columnStretching="last"
+              selectedRowKeys="#{bindings.VehicleCountrymstVO1.collectionModel.selectedRow}"
+              selectionListener="#{bindings.VehicleCountrymstVO1.collectionModel.makeCurrent}"
+              rowSelection="single" id="t1" width="550"
+              inlineStyle="height:180px;">
+     <af:column sortProperty="#{bindings.VehicleCountrymstVO1.hints.PlateCountryID.name}"
+                sortable="false"
+                headerText="Plate Country ID"
+                id="c3" width="70" align="center">
+      <af:outputText value="#{row.PlateCountryID}" id="ot2">
+       <af:convertNumber groupingUsed="false"
+                         pattern="#{bindings.VehicleCountrymstVO1.hints.PlateCountryID.format}"/>
+      </af:outputText>
+     </af:column>
+     
+     <af:column sortProperty="#{bindings.VehicleCountrymstVO1.hints.PlateCountryName.name}"
+                sortable="false"
+                headerText="Plate County Name"
+                id="c5" width="150">
+      <af:outputText value="#{row.PlateCountryName}" id="ot1"/>
+     </af:column>
+     <af:column sortProperty="#{bindings.VehicleCountrymstVO1.hints.mParkPlateCountry.name}"
+                sortable="false"
+                headerText="mPark Plate Country ID"
+                id="c1" width="150">
+      <af:outputText value="#{row.mParkPlateCountry}" id="ot3"/>
+     </af:column>
+     <af:column sortProperty="#{bindings.VehicleCountrymstVO1.hints.adpplatecountryID.name}"
+                sortable="false"
+                headerText="ADP Plate Country"
+                id="c2">
+      <af:outputText value="#{row.adpplatecountryID}" id="ot4">
+       <af:convertNumber groupingUsed="false"
+                         pattern="#{bindings.VehicleCountrymstVO1.hints.adpplatecountryID.format}"/>
+      </af:outputText>
+     </af:column>
+     <af:column sortProperty="#{bindings.VehicleCountrymstVO1.hints.ActiveFlag.name}"
+                sortable="false"
+                headerText="Active Flage"
+                id="c4" align="center" width="50">
+      <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                label="#{row.bindings.ActiveFlag.label}" readOnly="true"
+                                shortDesc="#{bindings.VehicleCountrymstVO1.hints.ActiveFlag.tooltip}"
+                                id="sbc1"/>
+     </af:column>
+    </af:table>
+   </af:showDetailHeader>
+         </af:panelGroupLayout>
+          <!--Truck Details Form-->
+  <af:spacer width="10" height="130" id="s5"/>
+  <af:panelGroupLayout id="pgl5" rendered="#{pageFlowScope.setvisible}">
+        <af:showDetailHeader text=" Vehicle Plate Country Master Details"
+                             disclosed="true" id="sdh1"
+                             rendered="#{!pageFlowScope.VehicleCountrymstMB.hide}">
+       
+        <!--PanelFormLayout Details-->
+    <af:panelFormLayout id="pfl1" labelAlignment="start">
+     <af:inputText value="#{bindings.PlateCountryName.inputValue}"
+                   label="Plate Country Name"
+                    disabled="#{!pageFlowScope.VehicleCountrymstMB.enabled}"
+                   required="#{bindings.PlateCountryName.hints.mandatory}"
+                   columns="25" showRequired="true"
+                   maximumLength="#{bindings.PlateCountryName.hints.precision}"
+                   shortDesc="#{bindings.PlateCountryName.hints.tooltip}"
+                   id="it4">
+      <f:validator binding="#{bindings.PlateCountryName.validator}"/>
+     </af:inputText>
+     <af:inputText value="#{bindings.mParkPlateCountry.inputValue}"
+                   label="mPark Plate Country"
+                    disabled="#{!pageFlowScope.VehicleCountrymstMB.enabled}"
+                   required="#{bindings.mParkPlateCountry.hints.mandatory}"
+                   columns="25" showRequired="true"
+                   maximumLength="#{bindings.mParkPlateCountry.hints.precision}"
+                   shortDesc="#{bindings.mParkPlateCountry.hints.tooltip}"
+                   id="it3">
+      <f:validator binding="#{bindings.mParkPlateCountry.validator}"/>
+     </af:inputText>
+     <af:inputText value="#{bindings.adpplatecountryID.inputValue}"
+                   label="ADP Plate Country ID"
+                   disabled="#{!pageFlowScope.VehicleCountrymstMB.enabled}"
+                   required="#{bindings.adpplatecountryID.hints.mandatory}"
+                   columns="#{bindings.adpplatecountryID.hints.displayWidth}"
+                   maximumLength="#{bindings.adpplatecountryID.hints.precision}"
+                   shortDesc="#{bindings.adpplatecountryID.hints.tooltip}"
+                   id="it1">
+      <f:validator binding="#{bindings.adpplatecountryID.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.adpplatecountryID.format}"/>
+     </af:inputText>
+     <af:selectBooleanCheckbox value="#{bindings.ActiveFlag2.inputValue}"
+      disabled="#{!pageFlowScope.VehicleCountrymstMB.enabled}"
+                               label="Active Flag"
+                               shortDesc="#{bindings.ActiveFlag2.hints.tooltip}"
+                               id="sbc2"/>
+     <af:selectBooleanCheckbox value="#{bindings.adpsyncreqflag.inputValue}"
+                               label="ADP Sync Flag"
+                                disabled="#{!pageFlowScope.VehicleCountrymstMB.enabled}"
+                               shortDesc="#{bindings.adpsyncreqflag.hints.tooltip}"
+                               id="sbc3"/>
+    </af:panelFormLayout>
+   </af:showDetailHeader>
+  </af:panelGroupLayout>
+ 
+    <af:spacer width="10" height="10" id="s3345"/> 
+    <!--Submit Cancel buttons- Footer-->
+     <af:panelGroupLayout id="pgl4" layout="horizontal" visible="#{pageFlowScope.setvisible}">
+       <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb6" 
+                         rendered="#{!pageFlowScope.VehicleCountrymstMB.hide}"
+                          actionListener="#{pageFlowScope.VehicleCountrymstMB.actionSubmit}"
+                         inlineStyle="background-color:#F39C11;" 
+                         partialTriggers="t1" 
+                         disabled="#{! pageFlowScope.VehicleCountrymstMB.enabled}">
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s10"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" 
+                        rendered="#{!pageFlowScope.VehicleCountrymstMB.hide}"
+                        inlineStyle="background-color:#F39C11;" id="cb7" 
+                        actionListener="#{pageFlowScope.VehicleCountrymstMB.actionCancel}"
+                        immediate="true" >                        
+            <af:resetActionListener/> 
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+       </af:commandButton> 
+       </af:panelGroupLayout>
+    </af:panelGroupLayout>
+
+
+
+</jsp:root>

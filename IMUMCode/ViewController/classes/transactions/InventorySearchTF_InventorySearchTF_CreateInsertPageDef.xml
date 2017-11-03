@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="InventorySearchTF_InventorySearchTF_CreateInsertPageDef"
+                Package="transactions" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="InventorySearchCriteriaVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="InventorySearchCriteriaVO1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="InventorySearchCriteriaVO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

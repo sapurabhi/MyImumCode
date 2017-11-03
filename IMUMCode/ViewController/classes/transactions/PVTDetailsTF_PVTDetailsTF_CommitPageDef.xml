@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="PVTDetailsTF_PVTDetailsTF_CommitPageDef"
+                Package="transactions" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="getPVTDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPVTDetails" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getPVTDetails_TransactionsAMDataControl_dataProvider_getPVTDetails_result">
+      <NamedData NDName="PVTNum" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

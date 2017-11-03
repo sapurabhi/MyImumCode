@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout id="pgl1" inlineStyle="width:674px; height:309px;"
+                       halign="center">
+    <af:panelFormLayout id="pfl3"
+                        inlineStyle="height:25px; text-align:center; width:1387px; font-family:'Times New Roman', 'Arial Black', times, Serif; vertical-align:middle;"
+                        labelAlignment="start" rows="1" >
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:activeOutputText value="Supervisor Sectorwise Monthly Report" id="aot1"
+                           inlineStyle="color:Orange; font-weight:bold; font-size:large;"/>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl2" inlineStyle="width:733px; height:40px;"
+                        rows="1">
+      <af:inputDate label="MonthYear" id="id1"
+                    binding="#{CreateTable.reportdate}">
+      <af:convertDateTime pattern="MM-yyyy" hintDate="MM-yyyy" dateStyle="medium"/>
+      </af:inputDate>
+      <af:selectOneChoice label="Shift" id="soc1"
+                          binding="#{CreateTable.shiftreport}">
+        <af:selectItem label="Shift1" value="1" id="si3"/>
+        <af:selectItem label="Shift2" value="2" id="si1"/>
+        <af:selectItem label="Shift3" value="3" id="si2"/>
+      </af:selectOneChoice>
+      <af:commandButton text="Generate Report" id="cb1"
+                        inlineStyle="font-size:small; width:130.0px;"
+                        actionListener="#{CreateTable.generateReport}"
+                        partialSubmit="true"/>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl1" visible="true"
+                        binding="#{CreateTable.panelformlayout}"
+                        partialTriggers="cb1">
+      <f:facet name="footer"/>
+      <af:table rows="#{bindings.ReportVO1.rangeSize}"
+                fetchSize="#{bindings.ReportVO1.rangeSize}"
+                emptyText="#{bindings.ReportVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                var="row" rowBandingInterval="0"
+                value="#{bindings.ReportVO1.collectionModel}"
+                selectedRowKeys="#{bindings.ReportVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.ReportVO1.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" width="1404"
+                inlineStyle="height:609px;" partialTriggers="::cb1">
+        <af:forEach items="#{bindings.ReportVO1.attributeDefs}" var="def">
+          <af:column headerText="#{bindings.ReportVO1.labels[def.name]}"
+                     sortable="true" sortProperty="#{def.name}" id="c1">
+            <af:outputText value="#{row[def.name]}"  id="ot1"/>
+          </af:column>
+        </af:forEach>
+      </af:table>
+    </af:panelFormLayout>
+  </af:panelGroupLayout>
+</jsp:root>

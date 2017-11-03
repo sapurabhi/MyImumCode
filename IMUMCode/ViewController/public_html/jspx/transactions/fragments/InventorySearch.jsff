@@ -1,0 +1,379 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+         
+  <af:showDetailHeader text="#{viewcontrollerBundle.INVENTORY_SEARCH}" disclosed="true" id="sdh1">
+  
+  <af:spacer height="10" id="s123"/>
+           
+  <af:table summary="#{viewcontrollerBundle.INVENTORY_SEARCH_CRITERIA}" value="#{bindings.InventorySearchCriteriaVO1.collectionModel}"
+            var="row" rows="#{bindings.InventorySearchCriteriaVO1.rangeSize}"
+            emptyText="#{bindings.InventorySearchCriteriaVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+            fetchSize="#{bindings.InventorySearchCriteriaVO1.rangeSize}"
+            rowBandingInterval="0" id="t1" inlineStyle="height:40px;"
+            width="94%">
+    <af:column sortProperty="#{bindings.InventorySearchCriteriaVO1.hints.CardType.name}"
+               sortable="false" headerText="#{viewcontrollerBundle.CARD_TYPE}"
+               id="ct"
+               width="200" align="center">
+      <af:selectOneChoice value="#{row.bindings.CardType.inputValue}"
+                          label="#{row.bindings.CardType.label}"
+                          required="#{bindings.InventorySearchCriteriaVO1.hints.CardType.mandatory}"
+                          shortDesc="#{bindings.InventorySearchCriteriaVO1.hints.CardType.tooltip}"
+                          id="cardtype" autoSubmit="true" unselectedLabel="#{viewcontrollerBundle.SELECT}">
+        <f:selectItems value="#{row.bindings.CardType.items}" id="si1"/>
+      </af:selectOneChoice>
+    </af:column>
+      <af:column headerText="#{viewcontrollerBundle.DENOMINATION}"
+                 id="c5" width="195" align="center">
+        <af:selectOneChoice value="#{row.bindings.Denomination.inputValue}" contentStyle="text-align:right;"
+                            label="#{row.bindings.Denomination.label}"
+                            required="#{bindings.InventorySearchCriteriaVO1.hints.Denomination.mandatory}"
+                            shortDesc="#{bindings.InventorySearchCriteriaVO1.hints.Denomination.tooltip}"
+                            id="soc1" partialTriggers="cardtype" unselectedLabel="#{viewcontrollerBundle.SELECT}">
+          <f:selectItems value="#{row.bindings.Denomination.items}" id="si3"/>
+        </af:selectOneChoice>
+      </af:column>
+      <af:column headerText="#{viewcontrollerBundle.STATUS}"
+                 id="c4" width="155" align="center">
+        <af:selectOneChoice value="#{row.bindings.CardStatus.inputValue}"
+                            label="#{row.bindings.CardStatus.label}"
+                            required="#{bindings.InventorySearchCriteriaVO1.hints.CardStatus.mandatory}"
+                            shortDesc="#{bindings.InventorySearchCriteriaVO1.hints.CardStatus.tooltip}"
+                            id="soc2" unselectedLabel="#{viewcontrollerBundle.SELECT}">
+          <f:selectItems value="#{row.bindings.CardStatus.items}" id="si2"/>
+        </af:selectOneChoice>
+      </af:column>
+    <af:column sortProperty="#{bindings.InventorySearchCriteriaVO1.hints.FromCard.name}"
+               sortable="false" headerText="#{viewcontrollerBundle.CARD_FROM}" id="c2"
+               width="200">
+      <af:inputText value="#{row.bindings.FromCard.inputValue}"
+                    label="#{bindings.InventorySearchCriteriaVO1.hints.FromCard.label}"
+                    required="#{bindings.InventorySearchCriteriaVO1.hints.FromCard.mandatory}"
+                    columns="#{bindings.InventorySearchCriteriaVO1.hints.FromCard.displayWidth}"
+                    maximumLength="#{bindings.InventorySearchCriteriaVO1.hints.FromCard.precision}"
+                    shortDesc="#{bindings.InventorySearchCriteriaVO1.hints.FromCard.tooltip}"
+                    id="it2">
+        <f:validator binding="#{row.bindings.FromCard.validator}"/>
+      </af:inputText>
+    </af:column>
+    <af:column sortProperty="#{bindings.InventorySearchCriteriaVO1.hints.ToCard.name}"
+               sortable="false" headerText="#{viewcontrollerBundle.CARD_TO}" id="c3"
+               width="200">
+      <af:inputText value="#{row.bindings.ToCard.inputValue}"
+                    label="#{bindings.InventorySearchCriteriaVO1.hints.ToCard.label}"
+                    required="#{bindings.InventorySearchCriteriaVO1.hints.ToCard.mandatory}"
+                    columns="#{bindings.InventorySearchCriteriaVO1.hints.ToCard.displayWidth}"
+                    maximumLength="#{bindings.InventorySearchCriteriaVO1.hints.ToCard.precision}"
+                    shortDesc="#{bindings.InventorySearchCriteriaVO1.hints.ToCard.tooltip}"
+                    id="it3">
+        <f:validator binding="#{row.bindings.ToCard.validator}"/>
+      </af:inputText>
+    </af:column>
+  </af:table>
+  
+  <af:spacer height="10" id="s12"/>
+  
+  <af:commandButton id="search"
+                    action="#{InventorySearchMBean.InventorySearch}"
+                    text="#{viewcontrollerBundle.SEARCH}"
+                    inlineStyle="width:60px;background-color:#F39C11;"/>
+                    
+  <af:commandButton id="reset"
+                    action="#{InventorySearchMBean.InventorySearchReset}"
+                    text="#{viewcontrollerBundle.RESET}"
+                    inlineStyle="width:60px;background-color:#F39C11;"/>
+  
+    <af:spacer height="10" id="s112"/>
+    
+    <af:panelGroupLayout id="pg121" rendered="#{InventorySearchMBean.hide}" 
+                         partialTriggers="search"
+                         binding="#{InventorySearchMBean.inventorySearchResultsPanel}">
+                           
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_NUMBER_OF_AVAILABLE_CARD}" id="ot111"/> 
+      <af:outputText value="#{pageFlowScope.TotalCardsInInventory}" id="ot211" inlineStyle="font-weight:bold;"/> 
+      
+      <af:spacer height="10" id="s11237"/>
+    
+    <af:table value="#{bindings.InvDetailUVO1.collectionModel}" var="row"
+              rows="#{bindings.InvDetailUVO1.rangeSize}"
+              emptyText="#{bindings.InvDetailUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.InvDetailUVO1.rangeSize}"
+              rowBandingInterval="1" id="t2" width="970px" scrollPolicy="page" 
+              autoHeightRows="0" rowSelection="single">
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.cardTypeDesc.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.CARD_TYPE}"
+                 id="c1" width="150" align="center" visible="false">
+        <af:outputText value="#{row.cardTypeDesc}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.Cardnum.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.CARD_}"
+                 id="c7" width="130" align="left">
+        <af:outputText value="#{row.Cardnum}" id="ot6" inlineStyle="text-align:right;"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.CardDenomAmt.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.DENOMINATION}"
+                 id="c10" width="120" align="right" visible="false">
+        <af:outputText value="#{row.CardDenomAmt}" id="ot1">
+            <f:convertNumber pattern="#0.00" />
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.cardStatusDesc.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.STATUS}"
+                 id="c8" width="150" align="left">
+        <af:outputText value="#{row.cardStatusDesc}" id="ot5"/>
+      </af:column>
+        <af:column sortProperty="#{bindings.InvDetailUVO1.hints.ExpiryDate.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.EXPIRY_DATE}" id="c6"
+                   width="90" align="left">
+          <af:outputText value="#{row.ExpiryDate}" id="ot3">
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.InvDetailUVO1.hints.LOcationid.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.LOCATION}"
+                 id="c9" width="150" rendered="false">
+        <af:outputText value="#{row.LOcationid}" id="ot2"/>
+      </af:column>
+        <af:column headerText="#{bindings.InvDetailUVO1.hints.LocationDesc.label}"
+                   id="c32">
+          <af:outputText value="#{row.LocationDesc}" id="ot27"/>
+        </af:column>
+        <af:column headerText="#{viewcontrollerBundle.CSA_ASSIGNED_TO}"
+                   id="c29" width="120">
+          <af:outputText value="#{row.CSAAssignedTo}" id="ot24"/>
+        </af:column>
+        <af:column headerText="#{viewcontrollerBundle.CSA_ASSIGNED_DATE}"
+                   id="c30" width="130">
+          <af:outputText value="#{row.CSAAssignedDate}" id="ot25">
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+          
+        </af:column>
+        <af:column headerText="#{viewcontrollerBundle.BULK_SALE}"
+                   id="c27" width="70">
+          <af:outputText value="#{row.BulkSaleFlag}" id="ot22"/>
+        </af:column>
+        <af:column headerText="#{bindings.InvDetailUVO1.hints.Salehdrseq.label}"
+                   id="c31" visible="false">
+          <af:outputText value="#{row.Salehdrseq}" id="ot26"/>
+        </af:column>
+        <af:column id="c11" align="center" width="85"
+                   headerText="#{viewcontrollerBundle.VIEW_DETAILS}">
+          <af:commandImageLink text="#{viewcontrollerBundle.VIEW}" id="viewdetails"
+                               icon="/images/view.gif" inlineStyle="background-color:#F39C11; width:110.0px;"
+                               action="#{InventorySearchMBean.SelectedInventoryDetails}">
+                <af:setPropertyListener from="#{row.Cardnum}" to="#{pageFlowScope.SelectedCardNumber}" type="action" />
+                <af:setPropertyListener from="#{row.cardStatusDesc}" to="#{pageFlowScope.SelectedCardStatus}" type="action" />
+                <af:setPropertyListener from="#{row.Salehdrseq}" to="#{pageFlowScope.SelectedSaleHrdSeq}" type="action" />
+          </af:commandImageLink>
+        </af:column>
+        
+      </af:table>
+    
+    <af:spacer height="10" id="s1237"/>
+    
+    <af:panelTabbed id="inventoryDetails" inlineStyle="width:950px;height:250px;"  partialTriggers="t2:viewdetails" 
+                    rendered="#{InventorySearchMBean.hide}"
+                    binding="#{InventorySearchMBean.inventoryDetails}">
+    
+    <af:showDetailItem text="#{viewcontrollerBundle.EVENT_DETAILS}" id="showDetailItem1" inlineStyle="height:auto;">    
+    
+    <af:panelGroupLayout id="pg1211"  
+                         binding="#{InventorySearchMBean.inventoryEventDetailsPanel}">
+      <af:table value="#{bindings.InventoryEventDetailsVO1.collectionModel}"
+                var="row" rows="#{bindings.InventoryEventDetailsVO1.rangeSize}"
+                emptyText="#{bindings.InventoryEventDetailsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.InventoryEventDetailsVO1.rangeSize}"
+                rowBandingInterval="1" id="t3" width="940px"
+                inlineStyle="height:auto;" scrollPolicy="page"
+                autoHeightRows="0">
+        <!--<af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.cardnum.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.CARD_}"
+                   id="c13" width="130" visible="false">
+          <af:outputText value="#{row.cardnum}" id="ot13"/>
+        </af:column>-->
+        <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.eventid.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.EVENT_ID}"
+                   id="c17" width="60" align="right">
+          <af:outputText value="#{row.eventid}" id="ot9"/>
+        </af:column>
+                <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.LoginprintID.name}"
+                   sortable="false"
+                   headerText="#{bindings.InventoryEventDetailsVO1.hints.LoginprintID.label}"
+                   id="c12" width="80" noWrap="false">
+          <af:outputText value="#{row.LoginprintID}" id="ot10"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.eventdate.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.EVENT_DATE}"
+                   id="c18" width="80">
+          <af:outputText value="#{row.eventdate}" id="ot7">
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.eventdesc.name}"
+                   sortable="false"
+                   id="c15" width="230"
+                   headerText="#{viewcontrollerBundle.EVENT_DESCRIPTION_}">
+          <af:outputText value="#{row.eventdesc}" id="ot11"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.remarks.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.REMARKS}"
+                   id="c28" width="460" noWrap="false">
+          <af:outputText value="#{row.remarks}" id="ot28"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.eventamt.name}"
+                   sortable="false"
+                   headerText="#{bindings.InventoryEventDetailsVO1.hints.eventamt.label}"
+                   id="c14" rendered="false">
+          <af:outputText value="#{row.eventamt}" id="ot14"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.balanceamt.name}"
+                   sortable="false"
+                   headerText="#{bindings.InventoryEventDetailsVO1.hints.balanceamt.label}"
+                   id="c19" rendered="false">
+          <af:outputText value="#{row.balanceamt}" id="ot12"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.InventoryEventDetailsVO1.hints.invdetailseq.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.SEQUENCE_}"
+                   id="c16" align="right" width="80" visible="false">
+          <af:outputText value="#{row.invdetailseq}" id="ot8"/>
+        </af:column>
+      </af:table>
+      
+      </af:panelGroupLayout>
+    
+    </af:showDetailItem>
+      
+    <af:showDetailItem text="#{viewcontrollerBundle.SALE_DETAILS}" id="showDetailItem2">   
+    
+    <af:panelGroupLayout id="pg1221" binding="#{InventorySearchMBean.inventorySaleDetailsPanel}">
+            <af:panelFormLayout id="pfl1">
+            <af:spacer height="10" id="s1267"/>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.RECEIPT_NUMBER} :"
+                                       id="plam1">
+                <af:outputText value="#{bindings.receiptnum.inputValue}"
+                               id="ot35"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.SALE_DATE} :"
+                                       id="plam2">
+                <af:outputText value="#{bindings.saledate.inputValue}"
+                               id="ot31">
+                  <af:convertDateTime pattern="dd-MM-yyyy"/>
+                </af:outputText>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.SALE_AMOUNT} :"
+                                       id="plam5">
+                <af:outputText value="#{bindings.saleamt.inputValue}"
+                               id="ot23">
+                    <f:convertNumber pattern="#0.00" />
+                </af:outputText>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.ACTION} :"
+                                       id="plam10">
+                <af:outputText value="#{bindings.ActionDesc.inputValue}"
+                               id="ot36"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PAYMENT_TYPE} :"
+                                       id="plam8">
+                <af:outputText value="#{bindings.PaymentDesc.inputValue}"
+                               id="ot34"/>
+              </af:panelLabelAndMessage>
+            </af:panelFormLayout>
+          </af:panelGroupLayout>  
+    
+    </af:showDetailItem>
+      
+    <af:showDetailItem text="#{viewcontrollerBundle.ACCOUNT_DETAILS}" id="showDetailItem3">
+    
+     <af:panelGroupLayout id="pg1222" binding="#{InventorySearchMBean.inventoryAccountDetailsPanel}">
+        <af:table value="#{bindings.InventorySaleAccDetailsVO1.collectionModel}"
+                  var="row"
+                  rows="#{bindings.InventorySaleAccDetailsVO1.rangeSize}"
+                  emptyText="#{bindings.InventorySaleAccDetailsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.InventorySaleAccDetailsVO1.rangeSize}"
+                  rowBandingInterval="1" id="t4" width="940px"
+                  scrollPolicy="page"
+                  autoHeightRows="0">
+          <af:column sortProperty="#{bindings.InventorySaleAccDetailsVO1.hints.acccode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ACCOUNT_CODE}"
+                     id="c25" align="right">
+            <af:outputText value="#{row.acccode}" id="ot16"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.InventorySaleAccDetailsVO1.hints.accdesc.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ACCOUNT_DESCRIPTION}"
+                     id="c26" width="400">
+            <af:outputText value="#{row.accdesc}" id="ot18"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.InventorySaleAccDetailsVO1.hints.accdate.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ACCOUNT_DATE}"
+                     id="c23" width="150">
+            <af:outputText value="#{row.accdate}" id="ot15">
+              <af:convertDateTime pattern="dd-MM-yyyy"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.InventorySaleAccDetailsVO1.hints.SaleAmt.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.SALE_AMOUNT}"
+                     id="c21" align="right" visible="false">
+            <af:outputText value="#{row.SaleAmt}" id="ot20">
+                 <f:convertNumber pattern="#0.00" />
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.InventorySaleAccDetailsVO1.hints.dramnt.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.DR_AMOUNT}"
+                     id="c22" align="right" width="120">
+            <af:outputText value="#{row.dramnt}" id="ot17">
+                <f:convertNumber pattern="#0.00" />
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.InventorySaleAccDetailsVO1.hints.cramnt.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.CR_AMOUNT}"
+                     id="c20" align="right" width="120">
+            <af:outputText value="#{row.cramnt}" id="ot21">
+                <f:convertNumber pattern="#0.00" />
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.InventorySaleAccDetailsVO1.hints.BulkSaleFlag.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.BULK_SALE_FLAG}"
+                     id="c24" visible="false">
+            <af:outputText value="#{row.BulkSaleFlag}" id="ot19"/>
+          </af:column>
+        </af:table>
+      </af:panelGroupLayout>  
+    
+    </af:showDetailItem>
+    
+    </af:panelTabbed>
+      
+      <af:spacer height="2" id="s1231"/>
+    
+      <af:commandButton id="cancel"
+                    action="#{InventorySearchMBean.InventorySearchReset}"
+                    text="#{viewcontrollerBundle.CANCEL}"
+                    inlineStyle="width:60px;background-color:#F39C11;"/>
+    
+    </af:panelGroupLayout>
+  </af:showDetailHeader>
+</jsp:root>

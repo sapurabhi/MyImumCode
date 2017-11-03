@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" layout="scroll">
+    <af:spacer width="10" height="10" id="s3"/>
+    <af:panelGroupLayout id="pgl5" layout="horizontal">
+      <af:panelGroupLayout id="pgl4" layout="horizontal" rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                           partialTriggers="cb4 cb5 cb1 cb2 cb3 commandButton1 commandButton2" >
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb4" inlineStyle="background-color:#F39C11;" 
+                          actionListener="#{pageFlowScope.vehicleMakeModelMBean.submitChangesToDB}"
+                          rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                          disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"/>
+        <af:spacer width="10" height="10" id="s5"/>
+        <af:commandButton id="cb5" text="#{viewcontrollerBundle.CANCEL}"  inlineStyle="background-color:#F39C11;" 
+        rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                         immediate="true" actionListener="#{pageFlowScope.vehicleMakeModelMBean.cancelChangesToDB}"/>
+        <af:spacer width="10" height="10" id="s6"/>
+      </af:panelGroupLayout>
+      <af:spacer width="350" height="10" id="spacer1"/>
+      <af:panelGroupLayout id="pgl3" layout="horizontal" rendered="#{!pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                           partialTriggers="cb4 cb5 cb2 cb3 cb1 commandButton1 commandButton2">
+        <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1" styleClass="checkoutbutton"
+        rendered="#{!pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                          inlineStyle="background-color:#e3e3e3;" 
+                          icon="/images/new.gif" 
+                          actionListener="#{pageFlowScope.vehicleMakeModelMBean.createNewVehMasDetails}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="cb2"  styleClass="checkoutbutton"
+        rendered="#{!pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                          inlineStyle="background-color:#e3e3e3;" 
+                          icon="/images/edit.gif"
+                          actionListener="#{pageFlowScope.vehicleMakeModelMBean.editVehicleMakeDetails}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="cb3" styleClass="checkoutbutton"
+        rendered="#{!pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                          inlineStyle="background-color:#e3e3e3;" 
+                          icon="/images/view.gif"
+                          actionListener="#{pageFlowScope.vehicleMakeModelMBean.viewVehicleMakeDetails}"/>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s4"/>
+    <af:panelGroupLayout id="pgl2" >
+    
+ <af:showDetailHeader text="#{viewcontrollerBundle.VEHICLE_MAKE_MODEL_MASTER}" disclosed="true" id="sdh2">
+    
+      <af:table value="#{bindings.VehMakeMstVO1.collectionModel}" var="row"
+                rows="#{bindings.VehMakeMstVO1.rangeSize}"  width="581"
+                emptyText="#{bindings.VehMakeMstVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.VehMakeMstVO1.rangeSize}"
+                rowBandingInterval="1"  autoHeightRows="0" 
+                scrollPolicy="page"
+                partialTriggers="::cb4 ::cb5 ::commandButton1 ::commandButton2"
+                filterModel="#{bindings.VehMakeMstVO1Query.queryDescriptor}"
+                queryListener="#{bindings.VehMakeMstVO1Query.processQuery}"
+                varStatus="vs" filterVisible="true"
+                selectedRowKeys="#{bindings.VehMakeMstVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.VehMakeMstVO1.collectionModel.makeCurrent}"
+                rowSelection="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout == true ? 'none' : 'single'}" id="t1">
+        <af:column sortProperty="#{bindings.VehMakeMstVO1.hints.MakeID.name}"
+                   filterable="true" sortable="true" align="center" 
+                   headerText="#{bindings.VehMakeMstVO1.hints.MakeID.label}"
+                   id="c2" width="120">
+          <af:outputText value="#{row.MakeID}" id="ot2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.VehMakeMstVO1.hints.MakeName.name}"
+                   filterable="true" sortable="true" width="180"
+                   headerText="#{bindings.VehMakeMstVO1.hints.MakeName.label}"
+                   id="c4">
+          <af:outputText value="#{row.MakeName}" id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.VehMakeMstVO1.hints.Countrycode.name}"
+                   filterable="true" sortable="true" width="160"
+                   headerText="#{bindings.VehMakeMstVO1.hints.Countrycode.label}"
+                   id="c3">
+          
+          <af:selectOneChoice value="#{row.bindings.Countrycode.inputValue}"
+                              label="#{row.bindings.Countrycode.label}" readOnly="true"
+                              required="#{bindings.VehMakeMstVO1.hints.Countrycode.mandatory}"
+                              shortDesc="#{bindings.VehMakeMstVO1.hints.Countrycode.tooltip}"
+                              id="soc3">
+            <f:selectItems value="#{row.bindings.Countrycode.items}" id="si3"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.VehMakeMstVO1.hints.ActiveFlag.name}"
+                   filterable="false" sortable="false"  align="center" 
+                   headerText="#{bindings.VehMakeMstVO1.hints.ActiveFlag.label}"
+                   id="c1">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}" disabled="true"
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                    shortDesc="#{bindings.VehMakeMstVO1.hints.ActiveFlag.tooltip}"
+                                    id="sbc3"/>
+        </af:column>
+      </af:table>
+
+      <af:spacer width="10" height="20" id="spacer7"/>
+      </af:showDetailHeader>
+    </af:panelGroupLayout>
+    <af:showDetailHeader text="#{viewcontrollerBundle.VEHICLE_MODEL_MASTER}" disclosed="true" id="sdh1"  partialTriggers="cb4 cb5 cb1 cb2 cb3 commandButton1 commandButton2"
+                         inlineStyle="width:747.0px;" rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}" >
+      
+        <af:spacer width="10" height="10" id="s8"/>
+        <af:spacer width="10" height="10" id="spacer8"/>
+        <af:panelFormLayout id="pfl1" rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}" >
+          <af:inputText value="#{bindings.MakeName.inputValue}" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                        label="#{bindings.MakeName.hints.label}"
+                        rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                        columns="#{bindings.MakeName.hints.displayWidth}"
+                        maximumLength="#{bindings.MakeName.hints.precision}"
+                        shortDesc="#{bindings.MakeName.hints.tooltip}" id="it1"
+                        showRequired="true"
+                        requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_NAME_FOR_VEHICLE_}">
+            <f:validator binding="#{bindings.MakeName.validator}"/>
+          </af:inputText>
+             <af:panelLabelAndMessage label="#{viewcontrollerBundle.VEHICLE_MAKE_NAME_IN_}" id="plam1" showRequired="true">
+
+          <af:panelGroupLayout id="pgl0" layout="horizontal" >
+          <af:selectOneChoice value="#{bindings.Language.inputValue}"
+                              required="#{bindings.Language.hints.mandatory}"
+                              shortDesc="#{bindings.Language.hints.tooltip}"
+                              disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                              id="soc2" simple="true">
+            <f:selectItems value="#{bindings.Language.items}" id="si2"/>
+          </af:selectOneChoice><af:spacer id="s01" width="10" height="10"/>
+          <af:inputText value="#{bindings.VehMakeNameLng.inputValue}"
+                      simple="true" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                      required="#{bindings.VehMakeNameLng.hints.mandatory}"
+                      showRequired="true"
+                      columns="#{bindings.VehMakeNameLng.hints.displayWidth}"
+                      maximumLength="#{bindings.VehMakeNameLng.hints.precision}"
+                      shortDesc="#{bindings.VehMakeNameLng.hints.tooltip}"
+                      id="it2">
+          <f:validator binding="#{bindings.VehMakeNameLng.validator}"/>
+        </af:inputText>
+          </af:panelGroupLayout>
+          </af:panelLabelAndMessage>
+        <af:selectOneChoice value="#{bindings.Countrycode.inputValue}" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                              label="#{bindings.Countrycode.label}"
+                              rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                              required="true"
+                              shortDesc="#{bindings.Countrycode.hints.tooltip}"
+                              id="soc1">
+            <f:selectItems value="#{bindings.Countrycode.items}" id="si1"/>
+          </af:selectOneChoice>
+          <af:selectBooleanCheckbox value="#{bindings.ActiveFlag.inputValue}" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                                    label="#{bindings.ActiveFlag.label}"
+                                    rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                                    shortDesc="#{bindings.ActiveFlag.hints.tooltip}"
+                                    id="sbc1"/>
+        </af:panelFormLayout>
+        <af:spacer width="10" height="20" id="spacer5"/>
+      <af:commandImageLink actionListener="#{pageFlowScope.vehicleMakeModelMBean.addNewVehModelRecord}"
+                            text="#{viewcontrollerBundle.ADD_ROW}" icon="/images/plus.png"  disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                            rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                           id="cil3" visible="false"/>
+      <af:spacer width="10" height="10" id="spacer4"/>
+      <af:table value="#{bindings.VehModelMstVO2.collectionModel}" var="row"
+                rows="#{bindings.VehModelMstVO2.rangeSize}"   width="580"
+                rendered="#{pageFlowScope.vehicleMakeModelMBean.newMakeModeEnabled}"
+                emptyText="#{bindings.VehModelMstVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.VehModelMstVO2.rangeSize}"  
+                rowBandingInterval="1" autoHeightRows="0" scrollPolicy="page" id="t3"
+                visible="false">
+        <af:column sortProperty="#{bindings.VehModelMstVO2.hints.ModelName.name}"
+                   sortable="false"  width="180"
+                   headerText="#{bindings.VehModelMstVO2.hints.ModelName.label}"
+                   id="c5">
+          <af:inputText value="#{row.bindings.ModelName.inputValue}"
+                        label="#{bindings.VehModelMstVO2.hints.ModelName.label}"
+                        columns="#{bindings.VehModelMstVO2.hints.ModelName.displayWidth}"
+                        maximumLength="#{bindings.VehModelMstVO2.hints.ModelName.precision}"
+                        shortDesc="#{bindings.VehModelMstVO2.hints.ModelName.tooltip}"
+                        id="it5"
+                        requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_NAME_FOR_VEHICL_0}"
+                        showRequired="true">
+            <f:validator binding="#{row.bindings.ModelName.validator}"/>
+          </af:inputText>
+        </af:column>
+                <af:column sortProperty="#{bindings.VehModelMstVO2.hints.ModelName.name}"
+                   sortable="false"  width="180"
+                   headerText="#{viewcontrollerBundle.VEHICLE_MODEL_NAME_IN_}(#{facesContext.viewRoot.locale == 'en' ? 'ARABIC' : 'English'})"
+                   id="c6">
+          <af:inputText value="#{row.bindings.VehModelNameLng.inputValue}"
+                        simple="true" showRequired="true" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                        required="#{bindings.VehModelMstVO2.hints.VehModelNameLng.mandatory}"
+                        columns="#{bindings.VehModelMstVO2.hints.VehModelNameLng.displayWidth}"
+                        maximumLength="#{bindings.VehModelMstVO2.hints.VehModelNameLng.precision}"
+                        shortDesc="#{bindings.VehModelMstVO2.hints.VehModelNameLng.tooltip}"
+                        id="it7">
+            <f:validator binding="#{row.bindings.VehModelNameLng.validator}"/>
+          </af:inputText>
+        </af:column>
+
+        <af:column sortProperty="#{bindings.VehModelMstVO2.hints.ModelYear.name}"
+                   sortable="false"  width="80"
+                   headerText="#{bindings.VehModelMstVO2.hints.ModelYear.label}"
+                   id="c7">
+          <af:inputText value="#{row.bindings.ModelYear.inputValue}"
+                        label="#{bindings.VehModelMstVO2.hints.ModelYear.label}"
+                        required="#{bindings.VehModelMstVO2.hints.ModelYear.mandatory}"
+                        columns="#{bindings.VehModelMstVO2.hints.ModelYear.displayWidth}"
+                        maximumLength="#{bindings.VehModelMstVO2.hints.ModelYear.precision}"
+                        shortDesc="#{bindings.VehModelMstVO2.hints.ModelYear.tooltip}"
+                        id="it6">
+            <!--<f:validator binding="#{row.bindings.ModelYear.validator}"/>-->
+            <!--<af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.VehModelMstVO2.hints.ModelYear.format}"/>-->
+          </af:inputText>
+        </af:column>
+        <!--<af:column sortProperty="#{bindings.VehModelMstVO2.hints.CountryCode.name}"
+                   sortable="false"   width="180"
+                   headerText="#{bindings.VehModelMstVO2.hints.CountryCode.label}"
+                   id="c6">
+          <af:selectOneChoice value="#{row.bindings.CountryCode.inputValue}"
+                              label="#{row.bindings.CountryCode.label}"
+                              required="#{bindings.VehModelMstVO2.hints.CountryCode.mandatory}"
+                              shortDesc="#{bindings.VehModelMstVO2.hints.CountryCode.tooltip}"
+                              id="soc4">
+            <f:selectItems value="#{row.bindings.CountryCode.items}" id="si4"/>
+          </af:selectOneChoice>
+        </af:column>-->
+        <af:column sortProperty="#{bindings.VehModelMstVO2.hints.ActiveFlag.name}"
+                   sortable="false"  align="center" width="80"
+                   headerText="#{bindings.VehModelMstVO2.hints.ActiveFlag.label}"
+                   id="c13">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                    shortDesc="#{bindings.VehModelMstVO2.hints.ActiveFlag.tooltip}"
+                                    id="sbc4"/>
+        </af:column>
+        <af:column id="c12" width="35" headerText=" ">
+            <af:commandImageLink actionListener="#{bindings.Delete1.execute}"
+                                disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                               id="cil4" icon="/images/minus.png"/>
+        </af:column>
+      </af:table>
+      <af:table value="#{bindings.VehModelMstVO11.collectionModel}" var="row" 
+               rendered="#{!pageFlowScope.vehicleMakeModelMBean.newMakeModeEnabled}"
+                  rows="#{bindings.VehModelMstVO11.rangeSize}"   width="580" 
+                  emptyText="#{bindings.VehModelMstVO11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.VehModelMstVO11.rangeSize}" 
+                  rowBandingInterval="1" autoHeightRows="0" scrollPolicy="page" id="t2"
+                visible="false">
+                 
+        <af:column sortProperty="#{bindings.VehModelMstVO11.hints.ModelName.name}"
+                     sortable="false"  width="180"
+                     headerText="#{bindings.VehModelMstVO11.hints.ModelName.label}"
+                     id="c9">
+            <af:inputText value="#{row.bindings.ModelName.inputValue}" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                          label="#{bindings.VehModelMstVO11.hints.ModelName.label}"
+                          required="#{bindings.VehModelMstVO11.hints.ModelName.mandatory}"
+                          columns="#{bindings.VehModelMstVO11.hints.ModelName.displayWidth}"
+                          maximumLength="#{bindings.VehModelMstVO11.hints.ModelName.precision}"
+                          showRequired="true"
+                          shortDesc="#{bindings.VehModelMstVO11.hints.ModelName.tooltip}"
+                          id="it3">
+              <f:validator binding="#{row.bindings.ModelName.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.VehModelMstVO11.hints.ModelName.name}"
+                   sortable="false"  width="180"
+                   headerText="#{viewcontrollerBundle.VEHICLE_MODEL_NAME_IN_}(#{facesContext.viewRoot.locale == 'en' ? 'ARABIC' : 'English'})"
+                   id="c10">
+          <af:inputText value="#{row.bindings.VehModelNameLng.inputValue}" showRequired="true"
+                        simple="true" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                        required="#{bindings.VehModelMstVO11.hints.VehModelNameLng.mandatory}"
+                        columns="#{bindings.VehModelMstVO11.hints.VehModelNameLng.displayWidth}"
+                        maximumLength="#{bindings.VehModelMstVO11.hints.VehModelNameLng.precision}"
+                        shortDesc="#{bindings.VehModelMstVO11.hints.VehModelNameLng.tooltip}"
+                        id="it8">
+            <f:validator binding="#{row.bindings.VehModelNameLng.validator}"/>
+          </af:inputText>
+        </af:column>
+
+          <af:column sortProperty="#{bindings.VehModelMstVO11.hints.ModelYear.name}"
+                     sortable="false" width="80"
+                     headerText="#{bindings.VehModelMstVO11.hints.ModelYear.label}"
+                     id="c8">
+            <af:inputText value="#{row.bindings.ModelYear.inputValue}" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                          label="#{bindings.VehModelMstVO11.hints.ModelYear.label}"
+                          required="#{bindings.VehModelMstVO11.hints.ModelYear.mandatory}"
+                          columns="#{bindings.VehModelMstVO11.hints.ModelYear.displayWidth}"
+                          maximumLength="#{bindings.VehModelMstVO11.hints.ModelYear.precision}"
+                          shortDesc="#{bindings.VehModelMstVO11.hints.ModelYear.tooltip}"
+                          id="it4">
+              <!--<f:validator binding="#{row.bindings.ModelYear.validator}"/>-->
+              <!--<af:convertNumber groupingUsed="false"
+                                pattern="YYYY"/>-->
+            </af:inputText>
+          </af:column>
+          <!--<af:column sortProperty="#{bindings.VehModelMstVO11.hints.CountryCode.name}"
+                     sortable="false"  width="180"
+                     headerText="#{bindings.VehModelMstVO11.hints.CountryCode.label}"
+                     id="c10">
+            <af:selectOneChoice value="#{row.bindings.CountryCode.inputValue}"
+                                label="#{row.bindings.CountryCode.label}" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                                required="#{bindings.VehModelMstVO11.hints.CountryCode.mandatory}"
+                                shortDesc="#{bindings.VehModelMstVO11.hints.CountryCode.tooltip}"
+                                id="soc2">
+              <f:selectItems value="#{row.bindings.CountryCode.items}"
+                             id="si2"/>
+            </af:selectOneChoice>
+          </af:column>-->
+          <af:column sortProperty="#{bindings.VehModelMstVO11.hints.ActiveFlag.name}"
+                     sortable="false" align="center" width="80"
+                     headerText="#{bindings.VehModelMstVO11.hints.ActiveFlag.label}"
+                     id="c11">
+            <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                      label="#{row.bindings.ActiveFlag.label}" disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                                      shortDesc="#{bindings.VehModelMstVO11.hints.ActiveFlag.tooltip}"
+                                      id="sbc2"/>
+          </af:column>
+          <af:column id="c14" width="35" >
+            <af:commandImageLink actionListener="#{bindings.Delete.execute}"
+                                  disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                                 id="cil2" icon="/images/minus.png"/>
+          </af:column>
+      </af:table>
+        <af:spacer width="10" height="10" id="spacer6"/>
+      
+    </af:showDetailHeader>
+    <af:spacer width="10" height="10" id="s7"/>
+    <af:panelGroupLayout id="panelGroupLayout1" layout="horizontal"  rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                         partialTriggers="commandButton1 commandButton2 cb3 cb2 cb1 cb5 cb4">
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" inlineStyle="background-color:#F39C11;"  
+                          actionListener="#{pageFlowScope.vehicleMakeModelMBean.submitChangesToDB}"
+                           rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                           disabled="#{pageFlowScope.vehicleMakeModelMBean.viewModeEnabled}"
+                        id="commandButton1"/>
+      <af:spacer width="10" height="10" id="spacer2"/>
+      <af:commandButton id="commandButton2"   immediate="true" 
+       rendered="#{pageFlowScope.vehicleMakeModelMBean.submitCancelBtnLayout}"
+                          actionListener="#{pageFlowScope.vehicleMakeModelMBean.cancelChangesToDB}"
+                        text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"/>
+      <af:spacer width="10" height="10" id="spacer3"/>
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
+  
+</jsp:root>

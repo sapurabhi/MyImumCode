@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PIActiveInactiveTF">
+    <default-activity id="__1">PIActiveInactive</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__2">PIActiveInactiveMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.transactions.pilocationmap.PIActiveInactiveMBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PIActiveInactive">
+      <page>/jspx/transactions/fragments/PIActiveInactive.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

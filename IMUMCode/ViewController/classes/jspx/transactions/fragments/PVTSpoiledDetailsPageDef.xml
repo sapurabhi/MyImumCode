@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTSpoiledDetailsPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+   <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO2" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <iterator Binds="PVTDocsVO1" RangeSize="3"
+              DataControl="TransactionsAMDataControl" id="PVTDocsVO1Iterator"/>
+    <iterator Binds="PVTPhotoRVO1" RangeSize="3"
+              DataControl="TransactionsAMDataControl"
+              id="PVTPhotoRVO1Iterator"/>
+    <iterator Binds="PVTObservationRVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTObservationRVO1Iterator"/>
+    <iterator Binds="CustomerIndividualUVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="CustomerIndividualUVO1Iterator"/>
+    <iterator Binds="CustomerInstitutionVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="CustomerInstitutionVO1Iterator"/>
+    <iterator Binds="PVTCategorizedChargesRVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTCategorizedChargesRVO1Iterator"/>
+    <iterator Binds="PVTReceiptRVO1" RangeSize="3"
+              DataControl="TransactionsAMDataControl"
+              id="PVTReceiptRVO1Iterator"/>
+    <iterator Binds="PVTAppealDetailsRVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTAppealDetailsRVO1Iterator"/>
+    <iterator Binds="PoundBayDetailVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PoundBayDetailVO1Iterator"/>
+    <!--iterator id="PVTAppealDetailsRVO1Iterator" Binds="PVTAppealDetailsRVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/-->
+    <iterator Binds="PVTEventHistoryRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTEventHistoryRVO1Iterator"/>
+    <iterator Binds="PVTHeaderVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTHeaderVO1Iterator"/>
+    <iterator Binds="PVTAccEntriesRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTAccEntriesRVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTNum">
+      <AttrNames>
+        <Item Value="PVTNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="Contracode">
+      <AttrNames>
+        <Item Value="Contracode"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_SectorCode" id="SectorCode" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTdatetime">
+      <AttrNames>
+        <Item Value="PVTdatetime"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_PVTStatusID" id="PVTStatusID" DTSupportsMRU="false"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_PVTSTAGEID" id="PVTSTAGEID" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="CLOSUREREASONS">
+      <AttrNames>
+        <Item Value="CLOSUREREASONS"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="CLOSUREREMARKS">
+      <AttrNames>
+        <Item Value="CLOSUREREMARKS"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="CONTRAAMT">
+      <AttrNames>
+        <Item Value="CONTRAAMT"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTAMTPAYABLE">
+      <AttrNames>
+        <Item Value="PVTAMTPAYABLE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTAMTPAID">
+      <AttrNames>
+        <Item Value="PVTAMTPAID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="courtcasenumber">
+      <AttrNames>
+        <Item Value="courtcasenumber"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_zonecode" id="zonecode" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="CreatedDate">
+      <AttrNames>
+        <Item Value="CreatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="Updatedby">
+      <AttrNames>
+        <Item Value="Updatedby"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMODELID" id="VEHMODELID" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="Updateddate">
+      <AttrNames>
+        <Item Value="Updateddate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_CountryCode" id="CountryCode" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PLATENUMBER">
+      <AttrNames>
+        <Item Value="PLATENUMBER"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_PLATECTGID" id="PLATECTGID" DTSupportsMRU="false"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_PLATETYPEID" id="PLATETYPEID" DTSupportsMRU="false"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_VEHMAKEID" id="VEHMAKEID" DTSupportsMRU="false"/>
+              <!--list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_VEHCOLOURID" id="VEHCOLOURID" DTSupportsMRU="false"/ -->
+
+    <!--attributeValues IterBinding="PVTSearchRVO1Iterator" id="VEHCOLOURID">
+      <AttrNames>
+        <Item Value="VEHCOLOURID"/>
+      </AttrNames>
+    </attributeValues -->
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="Balance">
+      <AttrNames>
+        <Item Value="Balance"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PVTDocsVO1Iterator" id="PVTDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDocsVO"
+                      Name="PVTDocsVO10">
+        <AttrNames>
+          <Item Value="doctype"/>
+          <Item Value="filepath"/>
+          <Item Value="remarks"/>
+          <Item Value="DOCDesc"/>
+          <Item Value="CreatedDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTPhotoRVO1Iterator" id="PVTPhotoRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTPhotoRVO"
+                      Name="PVTPhotoRVO10">
+        <AttrNames>
+          <Item Value="filepath"/>
+          <Item Value="remarks"/>
+          <Item Value="Docdesc"/>
+          <Item Value="CreatedDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PVTObservationRVO1Iterator" id="HHCID1">
+      <AttrNames>
+        <Item Value="HHCID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTObservationRVO1Iterator"
+                     id="ObsrvVHCLgeolat">
+      <AttrNames>
+        <Item Value="ObsrvVHCLgeolat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTObservationRVO1Iterator"
+                     id="ObsrvVHCLgeolon">
+      <AttrNames>
+        <Item Value="ObsrvVHCLgeolon"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTObservationRVO1Iterator" id="Obsrvfrom">
+      <AttrNames>
+        <Item Value="Obsrvfrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTObservationRVO1Iterator" id="ObsrvTo">
+      <AttrNames>
+        <Item Value="ObsrvTo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTObservationRVO1Iterator" id="responsetime">
+      <AttrNames>
+        <Item Value="responsetime"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTObservationRVO1Iterator" StaticList="false"
+          Uses="LOV_PIID" id="PIID1" DTSupportsMRU="true"/>
+    <list IterBinding="PVTObservationRVO1Iterator" StaticList="false"
+          Uses="LOV_OBSRVSTATUSCODE" id="OBSRVSTATUSCODE1"
+          DTSupportsMRU="true"/>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="ALTERNATEPHONENUM">
+      <AttrNames>
+        <Item Value="ALTERNATEPHONENUM"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Activeflag">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="CityCode">
+      <AttrNames>
+        <Item Value="CityCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Countrycode">
+      <AttrNames>
+        <Item Value="Countrycode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="CustID">
+      <AttrNames>
+        <Item Value="CustID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="EmailID">
+      <AttrNames>
+        <Item Value="EmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="EmiratesID">
+      <AttrNames>
+        <Item Value="EmiratesID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="FirstName">
+      <AttrNames>
+        <Item Value="FirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="Gender">
+      <AttrNames>
+        <Item Value="Gender"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Landlinenum">
+      <AttrNames>
+        <Item Value="Landlinenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="LastName">
+      <AttrNames>
+        <Item Value="LastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Legacyinfo">
+      <AttrNames>
+        <Item Value="Legacyinfo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="MiddleName">
+      <AttrNames>
+        <Item Value="MiddleName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Mobilenum">
+      <AttrNames>
+        <Item Value="Mobilenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Nationality">
+      <AttrNames>
+        <Item Value="Nationality"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Salutation">
+      <AttrNames>
+        <Item Value="Salutation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Residenttype">
+      <AttrNames>
+        <Item Value="Residenttype"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="ALTERNATEPHONENUM1">
+      <AttrNames>
+        <Item Value="ALTERNATEPHONENUM"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="Activeflag1">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="CUSTINSTADDRSEQ">
+      <AttrNames>
+        <Item Value="CUSTINSTADDRSEQ"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="CityCode1">
+      <AttrNames>
+        <Item Value="CityCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="CountryCode1">
+      <AttrNames>
+        <Item Value="CountryCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="EmailID1">
+      <AttrNames>
+        <Item Value="EmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="Faxnum">
+      <AttrNames>
+        <Item Value="Faxnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTID">
+      <AttrNames>
+        <Item Value="INSTID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTNAME">
+      <AttrNames>
+        <Item Value="INSTNAME"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTTYPE">
+      <AttrNames>
+        <Item Value="INSTTYPE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="Landlinenum1">
+      <AttrNames>
+        <Item Value="Landlinenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="Primarycontact">
+      <AttrNames>
+        <Item Value="Primarycontact"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="tradelicensenum">
+      <AttrNames>
+        <Item Value="tradelicensenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTURL">
+      <AttrNames>
+        <Item Value="INSTURL"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getPVTDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPVTDetails" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getPVTDetails_TransactionsAMDataControl_dataProvider_getPVTDetails_result">
+      <NamedData NDName="PVTNum" NDType="java.lang.String"/>
+    </methodAction>
+    <list Uses="LOV_VEHCOLOURID" StaticList="false"
+          IterBinding="PVTSearchRVO1Iterator" id="VEHCOLOURID"/>
+    <tree IterBinding="PVTCategorizedChargesRVO1Iterator"
+          id="PVTCategorizedChargesRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTCategorizedChargesRVO"
+                      Name="PVTCategorizedChargesRVO10">
+        <AttrNames>
+          <Item Value="ChargeType"/>
+          <Item Value="ChargeAmount"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTVHCLgeolat">
+      <AttrNames>
+        <Item Value="PVTVHCLgeolat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PVTVHCLgeolon">
+      <AttrNames>
+        <Item Value="PVTVHCLgeolon"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="HHCID">
+      <AttrNames>
+        <Item Value="HHCID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="PIName">
+      <AttrNames>
+        <Item Value="PIName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTSearchRVO1Iterator" id="Discountamt">
+      <AttrNames>
+        <Item Value="Discountamt"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_PIName" id="PIName1" DTSupportsMRU="true"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_ENFORCESTAGEID" id="ENFORCESTAGEID" DTSupportsMRU="true"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_Contracode" id="Contracode1" DTSupportsMRU="true"/>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_PLATECNTID" id="PLATECNTID" DTSupportsMRU="true"/>
+    <tree IterBinding="PVTReceiptRVO1Iterator" id="PVTReceiptRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTReceiptRVO"
+                      Name="PVTReceiptRVO10">
+        <AttrNames>
+          <Item Value="receiptnum"/>
+          <Item Value="saledate"/>
+          <Item Value="saleamt"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="PVTSearchRVO1Iterator" StaticList="false"
+          Uses="LOV_TariffID" id="TariffID" DTSupportsMRU="true"/>
+    <list Uses="LOV_ENFORCESTAGEID" StaticList="false"
+          IterBinding="PVTSearchRVO1Iterator" id="ENFORCESTAGEID1"/>
+    <tree IterBinding="PVTAppealDetailsRVO1Iterator" id="PVTAppealDetailsRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO"
+                      Name="PVTAppealDetailsRVO10">
+        <AttrNames>
+          <Item Value="AppealSeq"/>
+          <Item Value="AppealDate"/>
+          <Item Value="AppealstageID"/>
+          <Item Value="AppealstatusID"/>
+          <Item Value="headerComments"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="PVTAppealstatusID"/>
+          <Item Value="APPEALSPVTDETAILSSEQ"/>
+          <Item Value="APPEALSSTAGEDESC"/>
+          <Item Value="AppealComments"/>
+          <Item Value="CommentsBy"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="PoundBayDetailVO1Iterator" StaticList="false"
+          Uses="LOV_POUNDLocationID" id="POUNDLocationID" DTSupportsMRU="true"/>
+    <list IterBinding="PoundBayDetailVO1Iterator" StaticList="false"
+          Uses="LOV_Baynum" id="Baynum" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PVTAppealDetailsRVO1Iterator"
+                     id="AppealstageID">
+      <AttrNames>
+        <Item Value="AppealstageID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTAppealDetailsRVO1Iterator"
+                     id="AppealstatusID">
+      <AttrNames>
+        <Item Value="AppealstatusID"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTAppealDetailsRVO1Iterator" StaticList="false"
+          Uses="LOV_AppealstageID" id="AppealstageID1" DTSupportsMRU="true"/>
+    <list IterBinding="PVTAppealDetailsRVO1Iterator" StaticList="false"
+          Uses="LOV_AppealstatusID" id="AppealstatusID1" DTSupportsMRU="true"/>
+    <tree IterBinding="PVTEventHistoryRVO1Iterator" id="PVTEventHistoryRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTEventHistoryRVO"
+                      Name="PVTEventHistoryRVO10">
+        <AttrNames>
+          <Item Value="eventid"/>
+          <Item Value="EVENTDATE"/>
+          <Item Value="EventDesc"/>
+          <Item Value="remarks"/>
+          <Item Value="EventAmt"/>
+          <Item Value="BalanceAmt"/>
+          <Item Value="PVTHDRSEQ"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PVTHeaderVO1Iterator" id="zonecode1">
+      <AttrNames>
+        <Item Value="zonecode"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PVTAccEntriesRVO1Iterator" id="PVTAccEntriesRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTAccEntriesRVO"
+                      Name="PVTAccEntriesRVO10">
+        <AttrNames>
+          <Item Value="accdate"/>
+          <Item Value="acccode"/>
+          <Item Value="accdesc"/>
+          <Item Value="dramnt"/>
+          <Item Value="cramnt"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

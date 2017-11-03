@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="AuctionEvidenceUploadPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AuctionEvidenceSearchVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="AuctionEvidenceSearchVO1Iterator"/>
+    <searchRegion id="PVTAuctionSearchVO1Query"
+                  Binds="AuctionEvidenceSearchVO1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+    <iterator Binds="PVTDocsVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl" id="PVTDocsVO1Iterator"/>
+    <iterator id="PVTHeaderVO1Iterator" Binds="PVTHeaderVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="AuctionEvidenceSearchVO1Iterator"
+          id="AuctionEvidenceSearchVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO"
+                      Name="AuctionEvidenceSearchVO10">
+        <AttrNames>
+          <Item Value="ActiveFlag"/>
+          <Item Value="Balance"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="DotApprvforAuctflag"/>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PVTAMTPAID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTAMTREFUNDED"/>
+          <Item Value="PVTFromDate"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTToDate"/>
+          <Item Value="Remarks"/>
+          <Item Value="SectorCode"/>
+          <Item Value="SelectFlag"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="zonecode"/>
+          <Item Value="vehownershiptypeid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getAuctionEvidenceSearchPvtDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getAuctionEvidenceSearchPvtDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getAuctionEvidenceSearchPvtDetails_TransactionsAMDataControl_dataProvider_getAuctionEvidenceSearchPvtDetails_result">
+      <NamedData NDName="auctionHeaderseq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <tree IterBinding="PVTDocsVO1Iterator" id="PVTDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDocsVO"
+                      Name="PVTDocsVO10">
+        <AttrNames>
+          <Item Value="FileUpload"/>
+          <Item Value="DOCDesc"/>
+          <Item Value="remarks"/>
+          <Item Value="FlageM"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="createDocUploadAuctionEvidence"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createDocUploadAuctionEvidence"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="AuctionEvidenceSearchVO1Iterator"
+          id="AuctionEvidenceSearchVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO"
+                      Name="AuctionEvidenceSearchVO110">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATECNTID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="vehownershiptypeid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <methodAction id="saveAuctionEvidenceDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveAuctionEvidenceDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.saveAuctionEvidenceDetails_TransactionsAMDataControl_dataProvider_saveAuctionEvidenceDetails_result">
+      <NamedData NDName="auctionHeaderseq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="updatedDate" NDType="java.sql.Date"/>
+      <NamedData NDName="updatedby" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

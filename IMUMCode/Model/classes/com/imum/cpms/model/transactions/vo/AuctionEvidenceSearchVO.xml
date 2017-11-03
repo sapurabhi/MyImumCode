@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AuctionEvidenceSearchVO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  OrderBy='"PVT_From_Date" desc'
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVORowImpl"
+  ComponentClass="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bindPVTHDRSeq"
+    Kind="viewcriteria"
+    Type="java.math.BigDecimal">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <ViewAccessor
+    Name="VehColourmstVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehColourmstVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehicleCountrymstVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehicleCountrymstVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehiclePlateCategoryVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehiclePlateTypeVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateTypeVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehMakeMstVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehMakeMstVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehModelMstVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehModelMstVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="AuctionVehOwnshipTypeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.AuctionVehOwnshipTypeLOVVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_VEHCOLOURID"
+    ListVOName="VehColourmstVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHCOLOURID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ColourID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ColourName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VEHMODELID"
+    ListVOName="VehModelMstVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHMODELID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ModelId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ModelName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VEHMAKEID"
+    ListVOName="VehMakeMstVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHMAKEID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="MakeID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="MakeName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PLATETYPEID"
+    ListVOName="VehiclePlateTypeVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PLATETYPEID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PlateTypeID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PlateTypedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PLATECTGID"
+    ListVOName="VehiclePlateCategoryVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PLATECTGID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PlateCtgID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PlateCtgDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PLATECNTID"
+    ListVOName="VehicleCountrymstVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PLATECNTID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PlateCountryID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PlateCountryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_vehownershiptypeid"
+    ListVOName="AuctionVehOwnshipTypeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="vehownershiptypeid"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="valuecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="valuedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT PVT_SEARCH.PVT_Num,
+PVT_SEARCH.PVT_HDR_SEQ,
+PVT_SEARCH.PVT_AMT_REFUNDED,
+PVT_SEARCH.PVT_AMT_PAYABLE,
+PVT_SEARCH.PVT_AMT_PAID,
+PVT_SEARCH.Sector_Code,
+PVT_SEARCH.zone_code,
+PVT_SEARCH.PVT_From_Date,
+PVT_SEARCH.PVT_To_Date,
+PVT_SEARCH.Created_Date,
+PVT_SEARCH.PLATE_NUMBER,
+PVT_SEARCH.PVT_STAGE_ID,
+PVT_SEARCH.PLATE_CNT_ID,
+PVT_SEARCH.PLATE_CTG_ID,
+PVT_SEARCH.PLATE_TYPE_ID,
+PVT_SEARCH.VEH_MAKE_ID,
+PVT_SEARCH.VEH_MODEL_ID,
+PVT_SEARCH.VEH_COLOUR_ID,
+PVT_SEARCH.Active_Flag,
+PVT_SEARCH.Dot_Apprv_for_Auct_flag,
+PVT_SEARCH.Remarks,
+PVT_SEARCH.AUCTION_Header_seq,
+PVT_SEARCH.Valuation_Amt,
+PVT_SEARCH.Valuation_Recomdation_ID,
+PVT_SEARCH.Final_Bid_Amt,
+PVT_SEARCH.veh_ownership_type_id
+from (SELECT pvth.PVT_Num,pvth.PVT_HDR_SEQ,pvth.PVT_AMT_REFUNDED,pvth.PVT_AMT_PAYABLE,pvth.PVT_AMT_PAID,
+pvth.Sector_Code,pvth.zone_code,pvth.PVT_date_time as PVT_From_Date,
+pvth.PVT_date_time as PVT_To_Date,pvth.Created_Date,vpm.PLATE_NUMBER,pvth.PVT_STAGE_ID,
+vpm.PLATE_CNT_ID,vpm.PLATE_CTG_ID,vpm.PLATE_TYPE_ID,pvth.veh_ownership_type_id,
+pvth.VEH_MAKE_ID,pvth.VEH_MODEL_ID,pvth.VEH_COLOUR_ID,Vpm.Active_Flag,
+papd.Dot_Apprv_for_Auct_flag,papd.Remarks,papd.AUCTION_Header_seq,papd.Valuation_Amt,papd.Valuation_Recomdation_ID,papd.Final_Bid_Amt
+from PVT_AUCTION_PVT_DETAILS papd,Pvt_Header pvth, Veh_Plate_Mst vpm
+where papd.PVT_HDR_SEQ = pvth.PVT_HDR_SEQ and pvth.Plate_Id=vpm.Plate_Id)PVT_SEARCH]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="PVTNum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="PVT_Num"
+    Expression="PVT_Num"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.PVTNum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTHDRSEQ"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="PVT_HDR_SEQ"
+    Expression="PVT_HDR_SEQ"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTAMTREFUNDED"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="PVT_AMT_REFUNDED"
+    Expression="PVT_AMT_REFUNDED"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTAMTPAYABLE"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="PVT_AMT_PAYABLE"
+    Expression="PVT_AMT_PAYABLE"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.PVTAMTPAYABLE_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTAMTPAID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="PVT_AMT_PAID"
+    Expression="PVT_AMT_PAID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SectorCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Sector_Code"
+    Expression="Sector_Code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="zonecode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="zone_code"
+    Expression="zone_code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTFromDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="PVT_From_Date"
+    Expression="PVT_From_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTToDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="PVT_To_Date"
+    Expression="PVT_To_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Created_Date"
+    Expression="Created_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.CreatedDate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATENUMBER"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="PLATE_NUMBER"
+    Expression="PLATE_NUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTSTAGEID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_STAGE_ID"
+    Expression="PVT_STAGE_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATECNTID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PLATE_CNT_ID"
+    Expression="PLATE_CNT_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_PLATECNTID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.PLATECNTID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATECTGID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PLATE_CTG_ID"
+    Expression="PLATE_CTG_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_PLATECTGID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.PLATECTGID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATETYPEID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PLATE_TYPE_ID"
+    Expression="PLATE_TYPE_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_PLATETYPEID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.PLATETYPEID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHMAKEID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="VEH_MAKE_ID"
+    Expression="VEH_MAKE_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_VEHMAKEID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.VEHMAKEID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHMODELID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="VEH_MODEL_ID"
+    Expression="VEH_MODEL_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_VEHMODELID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.VEHMODELID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHCOLOURID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="VEH_COLOUR_ID"
+    Expression="VEH_COLOUR_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_VEHCOLOURID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.VEHCOLOURID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ActiveFlag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Active_Flag"
+    Expression="Active_Flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DotApprvforAuctflag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Dot_Apprv_for_Auct_flag"
+    Expression="Dot_Apprv_for_Auct_flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.DotApprvforAuctflag_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    IsUpdateable="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2147483647"
+    Type="java.lang.String"
+    ColumnType="text"
+    AliasName="Remarks"
+    Expression="Remarks"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2147483647"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AUCTIONHeaderseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="AUCTION_Header_seq"
+    Expression="AUCTION_Header_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ValuationAmt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="Valuation_Amt"
+    Expression="Valuation_Amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.ValuationAmt_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ValuationRecomdationID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Valuation_Recomdation_ID"
+    Expression="Valuation_Recomdation_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.ValuationRecomdationID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FinalBidAmt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="Final_Bid_Amt"
+    Expression="Final_Bid_Amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="vehownershiptypeid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="veh_ownership_type_id"
+    Expression="veh_ownership_type_id"
+    SQLType="INTEGER"
+    LOVName="LOV_vehownershiptypeid">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO.vehownershiptypeid_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Balance"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="BIGINT"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SelectFlag"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="BIT"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"
+    IsQueriable="false"/>
+  <ViewCriteria
+    Name="AuctionEvidenceSearchVOCriteria"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.AuctionEvidenceSearchVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow173"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="DotApprvforAuctflag"
+        ViewAttribute="DotApprvforAuctflag"
+        Operator="="
+        Conjunction="AND"
+        Value="Y"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="AuctionEvidenceSearchVOCriteria_vcrow173_AUCTIONHeaderseq"
+        ViewAttribute="AUCTIONHeaderseq"
+        Operator="="
+        Conjunction="AND"
+        Value=":bindPVTHDRSeq"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

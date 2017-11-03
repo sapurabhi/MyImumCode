@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" layout="horizontal">
+    <af:toolbar id="t2">
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb11"
+                        inlineStyle="background-color:#F39C11;" visible="false"
+                        action="#{HHDeviceMstBean.Submit_action}"
+                        binding="#{HHDeviceMstBean.submitTop}"/>
+      <af:spacer width="10" id="s1134"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"
+                        id="ct1b2" 
+                        visible="false"
+                        action="#{HHDeviceMstBean.Cancel_action}"
+                        binding="#{HHDeviceMstBean.cancelTop}"/>
+        <af:spacer width="625" id="s13d4"/>
+      <af:commandButton text="#{viewcontrollerBundle.NEW}" id="New" icon="/images/new.gif"
+                        action="#{HHDeviceMstBean.New_action}"
+                        binding="#{HHDeviceMstBean.newBtn}"
+                        disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="Edit" icon="/images/edit.gif"
+                        action="#{HHDeviceMstBean.Edit_action}"
+                        binding="#{HHDeviceMstBean.editBtn}"
+                        disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="spacer1"/>
+      <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="View" icon="/images/view.gif"
+                        action="#{HHDeviceMstBean.View_action}"
+                        binding="#{HHDeviceMstBean.viewBtn}">
+        </af:commandButton>
+    </af:toolbar>
+  </af:panelGroupLayout>
+    <af:spacer height="5" id="spacer2"/>
+  <af:showDetailHeader text="#{viewcontrollerBundle.ASSET_MASTER}" disclosed="true" id="sdh1">
+    <af:table value="#{bindings.HHDeviceMstUVO2.collectionModel}" var="row"
+              rows="#{bindings.HHDeviceMstUVO2.rangeSize}"
+              emptyText="#{bindings.HHDeviceMstUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.HHDeviceMstUVO2.rangeSize}"
+             rowBandingInterval="1"
+             rowSelection="single" id="t1"
+             autoHeightRows="0"
+              filterModel="#{bindings.HHDeviceMstUVO2Query.queryDescriptor}"
+              queryListener="#{bindings.HHDeviceMstUVO2Query.processQuery}"
+              filterVisible="true" varStatus="vs" 
+              selectedRowKeys="#{bindings.HHDeviceMstUVO2.collectionModel.selectedRow}"
+              selectionListener="#{bindings.HHDeviceMstUVO2.collectionModel.makeCurrent}"
+              width="81%" inlineStyle="height:69px;" scrollPolicy="page"
+              contentDelivery="immediate" partialTriggers="::New ::Edit ::View">
+      <af:column sortProperty="#{bindings.HHDeviceMstUVO2.hints.HHId.name}"
+                 filterable="true" sortable="true"
+                 id="c5" width="60" align="right"
+                 headerText="#{viewcontrollerBundle.DEVICE_ID}">
+        <af:outputText value="#{row.HHId}" id="ot5">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.HHDeviceMstUVO2.hints.HHId.format}"/>
+        </af:outputText>
+      </af:column>
+   
+      <af:column sortProperty="#{bindings.HHDeviceMstUVO2.hints.HHModel.name}"
+                 filterable="true" sortable="true"
+                 id="c6" width="120" align="left"
+                 headerText="#{viewcontrollerBundle.HAND_HELD_MODEL_NAME}">
+        <af:outputText value="#{row.HHModel}" id="ot1"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.HHDeviceMstUVO2.hints.HHConfig.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.HH_CONFIGURATION_DESCRIPTION}"
+                 id="c1" width="200" align="left">
+        <af:outputText value="#{row.HHConfig}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.HHDeviceMstUVO2.hints.HHVer.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.HH_VERSION}"
+                 id="c3" align="left">
+        <af:outputText value="#{row.HHVer}" id="ot3"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.HHDeviceMstUVO2.hints.HHOS.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.HH_OS}"
+                 id="c2" align="left">
+        <af:outputText value="#{row.HHOS}" id="ot6"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.HHDeviceMstUVO2.hints.HHSNo.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.HH_SERIAL_NUMBER}"
+                 id="c4" align="right">
+        <af:outputText value="#{row.HHSNo}" id="ot2"/>
+      </af:column>
+         <af:column headerText="Asset Type" 
+                    sortProperty="#{bindings.HHDeviceMstUVO2.hints.assettypecode.name}"
+                filterable="true" sortable="true" align="right"
+                 id="c8">
+        <af:outputText value="#{row.assettypecode}" id="ot7"/>
+      </af:column>
+      <af:column
+                 id="c7" headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                 align="center">
+        <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag1.inputValue}"
+                                  label="#{row.bindings.ActiveFlag1.label}"
+                                  shortDesc="#{bindings.HHDeviceMstUVO2.hints.ActiveFlag1.tooltip}"
+                                  readOnly="true"
+                                  id="sbc2"/>
+      </af:column>
+    </af:table>
+    <af:spacer height="10" id="spacer4"/>
+    <af:panelGroupLayout id="pgl2"/>
+     <af:spacer height="10" id="spacer3"/>
+      <af:showDetailHeader id="pgl3"
+                         text="#{viewcontrollerBundle.ASSET_MASTER_DETAILS}" disclosed="true"
+                           visible="false"
+                           binding="#{HHDeviceMstBean.assetForm}">
+      <af:panelFormLayout id="pfl1" rows="11" fieldWidth="10">
+        <af:inputText value="#{bindings.HHModel.inputValue}"
+                      label="#{viewcontrollerBundle.HAND_HELD_MODEL_NAME}"
+                      required="#{bindings.HHModel.hints.mandatory}"
+                      maximumLength="#{bindings.HHModel.hints.precision}"
+                      shortDesc="#{bindings.HHModel.hints.tooltip}" id="it8"
+                      disabled="#{HHDeviceMstBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.HHModel.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.HHConfig.inputValue}"
+                      label="#{viewcontrollerBundle.HH_CONFIGURATION_DESCRIPTION}"
+                      required="#{bindings.HHConfig.hints.mandatory}"
+                      maximumLength="#{bindings.HHConfig.hints.precision}"
+                      disabled="#{HHDeviceMstBean.isDisabled}"
+                      shortDesc="#{bindings.HHConfig.hints.tooltip}" id="it5">
+          <f:validator binding="#{bindings.HHConfig.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.HHVer.inputValue}"
+                      label="#{viewcontrollerBundle.HH_VERSION}"
+                      required="#{bindings.HHVer.hints.mandatory}"
+                      maximumLength="#{bindings.HHVer.hints.precision}"
+                      disabled="#{HHDeviceMstBean.isDisabled}"
+                      shortDesc="#{bindings.HHVer.hints.tooltip}" id="it1">
+          <f:validator binding="#{bindings.HHVer.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.HHOS.inputValue}"
+                      label="#{viewcontrollerBundle.HH_OS}"
+                      required="#{bindings.HHOS.hints.mandatory}"
+                      maximumLength="#{bindings.HHOS.hints.precision}"
+                      disabled="#{HHDeviceMstBean.isDisabled}"
+                      shortDesc="#{bindings.HHOS.hints.tooltip}" id="it3">
+          <f:validator binding="#{bindings.HHOS.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.HHIP.inputValue}"
+                      label="#{viewcontrollerBundle.HH_IP}"
+                      required="#{bindings.HHIP.hints.mandatory}"
+                      maximumLength="#{bindings.HHIP.hints.precision}"
+                      disabled="#{HHDeviceMstBean.isDisabled}"
+                      shortDesc="#{bindings.HHIP.hints.tooltip}" id="it7">
+          <f:validator binding="#{bindings.HHIP.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.HHSNo.inputValue}"
+                      required="#{bindings.HHSNo.hints.mandatory}"
+                      maximumLength="#{bindings.HHSNo.hints.precision}"
+                      shortDesc="#{bindings.HHSNo.hints.tooltip}" id="it2"
+                      disabled="#{HHDeviceMstBean.isDisabled}"
+                      label="#{viewcontrollerBundle.HH_SERIAL_NUMBER}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.HHSNo.validator}"/>
+        </af:inputText>
+            
+      <af:selectOneRadio label="Asset Type" id="sor1"
+                         autoSubmit="true" disabled="#{HHDeviceMstBean.isDisabled}"
+                         binding="#{HHDeviceMstBean.assetypeBind}">
+        <af:selectItem label="HHD" value="H" id="si3"/>
+        <af:selectItem label="Printer" value="P" id="si2"/>
+      </af:selectOneRadio>
+      <af:selectOneRadio label="Device Status" id="sor2"
+                         autoSubmit="true" disabled="#{HHDeviceMstBean.isDisabled}"
+                         binding="#{HHDeviceMstBean.deviceStatusBind}"
+                         visible="false">
+        <af:selectItem label="Damaged" value="D" id="si1"/>
+        <af:selectItem label="Available" value="A" id="si4"/>
+      </af:selectOneRadio>
+        <!--<af:selectOneRadio value="#{bindings.assettypecode.inputValue}"
+                           label="#{bindings.assettypecode.label}"
+                           required="#{bindings.assettypecode.hints.mandatory}"
+                           shortDesc="#{bindings.assettypecode.hints.tooltip}"
+                           binding="#{HHDeviceMstBean.assetypeBind}"
+                           id="sor2">
+          <f:selectItems value="#{bindings.assettypecode.items}" id="si1"/>
+        </af:selectOneRadio>-->
+        <af:inputText value="#{bindings.HHSIMNo.inputValue}"
+                      label="#{viewcontrollerBundle.SIM_CARD_NUMBER}"
+                      required="#{bindings.HHSIMNo.hints.mandatory}"
+                      maximumLength="#{bindings.HHSIMNo.hints.precision}"
+                      disabled="#{HHDeviceMstBean.isDisabled}"
+                      shortDesc="#{bindings.HHSIMNo.hints.tooltip}" id="it4">
+          <f:validator binding="#{bindings.HHSIMNo.validator}"/>
+        </af:inputText>
+        <af:inputDate value="#{bindings.WarrUpto.inputValue}"
+                      label="#{viewcontrollerBundle.WARRANTY_UPTO}"
+                      required="#{bindings.WarrUpto.hints.mandatory}"
+                      shortDesc="#{bindings.WarrUpto.hints.tooltip}" 
+                      disabled="#{HHDeviceMstBean.isDisabled}" id="id2">
+          <f:validator binding="#{bindings.WarrUpto.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:inputDate value="#{bindings.NxtMntDt.inputValue}"
+                      label="#{viewcontrollerBundle.NEXT_MAINTENANCE_DUE_ON}"
+                      required="#{bindings.NxtMntDt.hints.mandatory}"
+                      shortDesc="#{bindings.NxtMntDt.hints.tooltip}" 
+                      disabled="#{HHDeviceMstBean.isDisabled}" id="id1">
+          <f:validator binding="#{bindings.NxtMntDt.validator}"/>
+         <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:selectBooleanCheckbox value="#{bindings.ActiveFlag.inputValue}"
+                                  shortDesc="#{bindings.ActiveFlag.hints.tooltip}"
+                                  id="sbc1" disabled="#{HHDeviceMstBean.isDisabled}"
+                                  label="#{viewcontrollerBundle.ACTIVE_FLAG}"/>
+      </af:panelFormLayout>
+    </af:showDetailHeader>
+    <af:spacer height="10" id="s12344"/>
+        <af:toolbar id="t3">
+      <af:commandButton id="ctb1"
+                        inlineStyle="background-color:#F39C11;"
+                        visible="false" action="#{HHDeviceMstBean.Submit_action}"
+                        binding="#{HHDeviceMstBean.submitBottom}"
+                        text="#{viewcontrollerBundle.SUBMIT}"/>
+      <af:spacer width="10" id="s134"/>
+      <af:commandButton inlineStyle="background-color:#F39C11;"
+                        id="ctb2" 
+                        visible="false" action="#{HHDeviceMstBean.Cancel_action}"
+                        binding="#{HHDeviceMstBean.cancelBottom}"
+                        text="#{viewcontrollerBundle.CANCEL}"/>
+    </af:toolbar>
+  </af:showDetailHeader>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:HHDeviceMstBean-->
+</jsp:root>

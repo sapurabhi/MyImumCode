@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="TrainingCoursesMasterPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GenTrainingCoursesMasterVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl"
+              id="GenTrainingCoursesMasterVO1Iterator"/>
+    <searchRegion Binds="GenTrainingCoursesMasterVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="GenTrainingCoursesMasterVO1Query"/>
+    <iterator Binds="GenTrainingCoursesMasterPiTypeVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="GenTrainingCoursesMasterPiTypeVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="GenTrainingCoursesMasterVO1Iterator"
+                     id="CourseCode">
+      <AttrNames>
+        <Item Value="CourseCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenTrainingCoursesMasterVO1Iterator"
+                     id="CourseDuration">
+      <AttrNames>
+        <Item Value="CourseDuration"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenTrainingCoursesMasterVO1Iterator"
+                     id="Coursename">
+      <AttrNames>
+        <Item Value="Coursename"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenTrainingCoursesMasterVO1Iterator"
+                     id="Groupid">
+      <AttrNames>
+        <Item Value="Groupid"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenTrainingCoursesMasterVO1Iterator"
+                     id="ActiveFlag">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="addNewTrainingCourseMst"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addNewTrainingCourseMst"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="saveTrainingCourseMaster"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveTrainingCourseMaster"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.saveTrainingCourseMaster_StaffDeployDataControl_dataProvider_saveTrainingCourseMaster_result">
+      <NamedData NDName="courseCode" NDType="java.lang.String"/>
+      <NamedData NDName="coursesDuration" NDType="java.lang.String"/>
+      <NamedData NDName="courseName" NDType="java.lang.String"/>
+      <NamedData NDName="groupId" NDType="java.lang.String"/>
+      <NamedData NDName="activeFlag" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="GenTrainingCoursesMasterPiTypeVO1Iterator"
+          ListOperMode="navigation"
+          ListIter="GenTrainingCoursesMasterPiTypeVO1Iterator"
+          id="GenTrainingCoursesMasterPiTypeVO1" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="GroupName"/>
+      </AttrNames>
+    </list>
+    <methodAction id="editTrainingCourseMaster"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="editTrainingCourseMaster"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.editTrainingCourseMaster_StaffDeployDataControl_dataProvider_editTrainingCourseMaster_result">
+      <NamedData NDName="courseCode" NDType="java.lang.String"/>
+      <NamedData NDName="coursesDuration" NDType="java.lang.String"/>
+      <NamedData NDName="courseName" NDType="java.lang.String"/>
+      <NamedData NDName="groupId" NDType="java.lang.String"/>
+      <NamedData NDName="activeFlag" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getPiTypeGroupName"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPiTypeGroupName" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getPiTypeGroupName_StaffDeployDataControl_dataProvider_getPiTypeGroupName_result">
+      <NamedData NDName="selectedGroupPiid" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="GenTrainingCoursesMasterVO1Iterator"
+          id="GenTrainingCoursesMasterVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.GenTrainingCoursesMasterVO"
+                      Name="GenTrainingCoursesMasterVO10">
+        <AttrNames>
+          <Item Value="CourseCode"/>
+          <Item Value="CourseDuration"/>
+          <Item Value="Coursename"/>
+          <Item Value="GroupName"/>
+          <Item Value="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="CustomerInstitutionPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="InstitutionUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="InstitutionUVO1Iterator"/>
+    <iterator Binds="InstitutionUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="InstitutionUVO2Iterator"/>
+    <iterator Binds="AddressDetailsUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="AddressDetailsUVO1Iterator"/>
+    <iterator Binds="CustomerInstitutionVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="CustomerInstitutionVO1Iterator" Refresh="ifNeeded"/>
+    <iterator Binds="CustomerInstitutionVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="CustomerInstitutionVO2Iterator"/>
+    <searchRegion Binds="CustomerInstitutionVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="CustomerInstitutionVO11Query"/>
+  </executables>
+  <bindings>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="MastersAMDataControl"/>
+    <action IterBinding="AddressDetailsUVO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <methodAction id="doNew" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNew"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doSubmitInstitution"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doSubmitInstitution"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="display_Meaasge"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="display_Meaasge"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.display_Meaasge_MastersAMDataControl_dataProvider_display_Meaasge_result">
+      <NamedData NDName="msg_id" NDType="java.lang.Number"/>
+    </methodAction>
+    <tree IterBinding="CustomerInstitutionVO1Iterator"
+          id="CustomerInstitutionVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.CustomerInstitutionVO"
+                      Name="CustomerInstitutionVO10">
+        <AttrNames>
+          <Item Value="INSTID"/>
+          <Item Value="INSTNAME"/>
+          <Item Value="INSTTYPE"/>
+          <Item Value="Primarycontact"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CustomerInstitutionVO2Iterator" id="INSTID">
+      <AttrNames>
+        <Item Value="INSTID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO2Iterator" id="INSTNAME">
+      <AttrNames>
+        <Item Value="INSTNAME"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO2Iterator"
+                     id="Landlinenum">
+      <AttrNames>
+        <Item Value="Landlinenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO2Iterator" id="Faxnum">
+      <AttrNames>
+        <Item Value="Faxnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO2Iterator" id="EmailID">
+      <AttrNames>
+        <Item Value="EmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CustomerInstitutionVO2Iterator" StaticList="false"
+          Uses="LOV_Activeflag" id="Activeflag" DTSupportsMRU="false"/>
+    <button IterBinding="CustomerInstitutionVO2Iterator" StaticList="false"
+            Uses="LOV_Activeflag" id="Activeflag1" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </button>
+    <attributeValues IterBinding="CustomerInstitutionVO2Iterator"
+                     id="Primarycontact">
+      <AttrNames>
+        <Item Value="Primarycontact"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CustomerInstitutionVO1Iterator"
+          id="CustomerInstitutionVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.CustomerInstitutionVO"
+                      Name="CustomerInstitutionVO110">
+        <AttrNames>
+          <Item Value="INSTID"/>
+          <Item Value="INSTNAME"/>
+          <Item Value="INSTTYPE"/>
+          <Item Value="Primarycontact"/>
+          <Item Value="Landlinenum"/>
+          <Item Value="INSTURL"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AddressDetailsUVO1Iterator" id="AddressDetailsUVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AddressDetailsUVO"
+                      Name="AddressDetailsUVO110">
+        <AttrNames>
+          <Item Value="ADDRESSDTLSEQ"/>
+          <Item Value="ADDRLINE1"/>
+          <Item Value="ADDRLINE2"/>
+          <Item Value="ADDRLINE3"/>
+          <Item Value="CityCode"/>
+          <Item Value="CommunityCode"/>
+          <Item Value="Countrycode"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PostBoxNum"/>
+          <Item Value="SectorCode"/>
+          <Item Value="TowTeeqNum"/>
+          <Item Value="UTILBILLNUM"/>
+          <Item Value="Updatedate"/>
+          <Item Value="Updatedby"/>
+          <Item Value="ZoneCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="AddressDetailsUVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="CustomerInstitutionVO2Iterator" id="INSTURL">
+      <AttrNames>
+        <Item Value="INSTURL"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doEditInstitution"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditInstitution"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="updateAddressSequence"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="updateAddressSequence"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="addressSequence" NDType="java.math.BigDecimal"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,73 @@
+<wsdl:definitions
+    
+     targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/ClampingApprovalBPMProcess"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/ClampingApprovalBPMProcess"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>http://cpmsdev1:8001/soa-infra/services/default/ClampingApprovalBPM!8.0/ClampingApprovalBPMProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="ClampingApprovalBPMProcessPortTypePartnerLinkType">
+        <plnk:role name="ClampingApprovalBPMProcessPortTypeProvider">
+            <plnk:portType name="tns:ClampingApprovalBPMProcessPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/ClampingApprovalBPMProcess">
+            <xsd:element name="cancellationrequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="pvthdrseq" type="xsd:long"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="start">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="pvthdrseq" type="xsd:long"/>
+                        <xsd:element name="requestType" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="cancellationrequest">
+        <wsdl:part name="parameters" element="tns:cancellationrequest"/>
+    </wsdl:message>
+    <wsdl:message name="start">
+        <wsdl:part name="parameters" element="tns:start"/>
+    </wsdl:message>
+    <wsdl:portType name="ClampingApprovalBPMProcessPortType">
+        <wsdl:operation name="cancellationrequest">
+            <wsdl:input message="tns:cancellationrequest"/>
+        </wsdl:operation>
+        <wsdl:operation name="start">
+            <wsdl:input message="tns:start"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ClampingApprovalBPMProcessBinding" type="tns:ClampingApprovalBPMProcessPortType">
+        <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="cancellationrequest">
+            <wsdlsoap:operation style="document" soapAction="cancellationrequest"/>
+            <wsdl:input>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="start">
+            <wsdlsoap:operation style="document" soapAction="start"/>
+            <wsdl:input>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ClampingApprovalBPMProcess.service">
+        <wsdl:port name="ClampingApprovalBPMProcessPort" binding="tns:ClampingApprovalBPMProcessBinding">
+            <wsdlsoap:address location="http://cpmsfmwappdc.cpms.local:8001/soa-infra/services/default/ClampingApprovalBPM/ClampingApprovalBPMProcess.service"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

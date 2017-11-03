@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ActiveCardsPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ActiveCardsUVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="ActiveCardsUVO1Iterator"/>
+    <searchRegion Binds="ActiveCardsUVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="ActiveCardsUVO1Query"/>
+    <iterator id="InvCardInactivationdtlVO1Iterator"
+              Binds="InvCardInactivationdtlVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="InvCardInactivationHdrVO1Iterator"
+              Binds="InvCardInactivationHdrVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ActiveCardsUVO1Iterator" id="ActiveCardsUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.ActiveCardsUVO"
+                      Name="ActiveCardsUVO10">
+        <AttrNames>
+          <Item Value="Cardnum"/>
+          <Item Value="CardStatusID"/>
+          <Item Value="Remarks"/>
+          <Item Value="inActive" Binds="inActive"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="ActiveCardsUVO1Iterator" id="inActive"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="inActive"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="ActiveCardsUVO1Iterator" id="ActiveCardsUVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.ActiveCardsUVO"
+                      Name="ActiveCardsUVO110">
+        <AttrNames>
+          <Item Value="Cardnum"/>
+          <Item Value="CardStatusID"/>
+          <Item Value="inActive" Binds="inActive"/>
+          <Item Value="Remarks"/>
+          <Item Value="cardDecs"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+    <tree IterBinding="ActiveCardsUVO1Iterator" id="ActiveCardsUVO12">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.ActiveCardsUVO"
+                      Name="ActiveCardsUVO120">
+        <AttrNames>
+          <Item Value="Cardnum"/>
+          <Item Value="cardDecs"/>
+          <Item Value="inActive"/>
+          <Item Value="Remarksnew"/>
+          <Item Value="Remarks"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="submitCards"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="submitCards" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.submitCards_TransactionsAMDataControl_dataProvider_submitCards_result">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="loc" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="resultCards"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="resultCards" IsViewObjectMethod="false">
+      <NamedData NDName="str" NDType="java.lang.String"/>
+      <NamedData NDName="end" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="CreateGenEventDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CreateGenEventDetails" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.CreateGenEventDetails_TransactionsAMDataControl_dataProvider_CreateGenEventDetails_result">
+      <NamedData NDName="depositAckSeqbigD" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="NewDepSlip" NDType="java.lang.String"/>
+      <NamedData NDName="OldDepSlip" NDType="java.lang.String"/>
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+      <NamedData NDName="EventId" NDType="java.lang.Integer"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

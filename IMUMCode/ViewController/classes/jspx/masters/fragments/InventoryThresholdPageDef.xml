@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="InventoryThresholdPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="InvStockReorderLevelDetailsVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="InvStockReorderLevelDetailsVO1Iterator"/>
+    <searchRegion Binds="InvStockReorderLevelDetailsVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="InvStockReorderLevelDetailsVO1Query"/>
+    <iterator Binds="InvStockReorderLevelDetailsVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="InvStockReorderLevelDetailsVO2Iterator"/>
+    <iterator Binds="InvCardInactivationHdrVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="InvCardInactivationHdrVO1Iterator"/>
+    <iterator id="InvStockReorderLevelDetailsVO3Iterator"
+              Binds="InvStockReorderLevelDetailsVO3"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="InvStockReorderLevelDetailsVO1Iterator"
+          id="InvStockReorderLevelDetailsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.InvStockReorderLevelDetailsVO"
+                      Name="InvStockReorderLevelDetailsVO10">
+        <AttrNames>
+          <Item Value="stockReorderSeq"/>
+          <Item Value="LocationID"/>
+          <Item Value="CardTypeCode"/>
+          <Item Value="ReorderLevel"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="InvStockReorderLevelDetailsVO2Iterator"
+          StaticList="false" Uses="LOV_LocationID" id="LocationID"
+          DTSupportsMRU="true"/>
+    <attributeValues IterBinding="InvStockReorderLevelDetailsVO2Iterator"
+                     id="CardTypeCode">
+      <AttrNames>
+        <Item Value="CardTypeCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InvStockReorderLevelDetailsVO2Iterator"
+                     id="ReorderLevel">
+      <AttrNames>
+        <Item Value="ReorderLevel"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="InvStockReorderLevelDetailsVO2Iterator"
+                     id="TriggerEmailflag">
+      <AttrNames>
+        <Item Value="TriggerEmailflag"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="donewInventoryThreshold"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="donewInventoryThreshold"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doEditINVStockReorderLevelDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="doEditINVStockReorderLevelDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doEditINVStockReorderLevelDetails_MastersAMDataControl_dataProvider_doEditINVStockReorderLevelDetails_result">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <attributeValues IterBinding="InvStockReorderLevelDetailsVO2Iterator"
+                     id="stockReorderSeq">
+      <AttrNames>
+        <Item Value="stockReorderSeq"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="InvStockReorderLevelDetailsVO2Iterator"
+          StaticList="false" Uses="LOV_CardTypeCode" id="CardTypeCode1"
+          DTSupportsMRU="true"/>
+    <button IterBinding="InvStockReorderLevelDetailsVO2Iterator"
+            id="TriggerEmailflag1" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="TriggerEmailflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

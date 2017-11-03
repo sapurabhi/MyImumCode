@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="pisupervisormapping">
+    <default-activity id="__1">getDate</default-activity>
+    <managed-bean id="__9">
+      <managed-bean-name id="__7">PISpvsrMapMBean</managed-bean-name>
+      <managed-bean-class id="__6">com.imum.cpms.staffdeployment.PISpvsrMapMBean</managed-bean-class>
+      <managed-bean-scope id="__8">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PiSupervisorMapping">
+      <page>/jspx/staffdeploy/fragments/PiSupervisorMapping.jsff</page>
+    </view>
+    <method-call id="getDate">
+      <method>#{pageFlowScope.PISpvsrMapMBean.getCurrentDate}</method>
+      <outcome id="__11">
+        <fixed-outcome>goto</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">getDate</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__10">goto</from-outcome>
+        <to-activity-id id="__4">PiSupervisorMapping</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>
+
+

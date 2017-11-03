@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+    <af:showDetailHeader text="#{viewcontrollerBundle.TRANSACTIONS_VERIFICATION_AND_}" disclosed="true" id="sdh1">       
+  <af:panelGroupLayout layout="vertical" id="pgl1">
+    <af:panelHeader text=" " id="ph1">
+      <af:query id="qryId1"
+                headerText="#{viewcontrollerBundle.SEARCH}" disclosed="true"
+                value="#{bindings.CreChqTrnValVerUVOCriteriaQuery2.queryDescriptor}"
+                model="#{bindings.CreChqTrnValVerUVOCriteriaQuery2.queryModel}"
+                queryListener="#{CreChqTrnValVerMBean.processCustomListener}"
+                queryOperationListener="#{bindings.CreChqTrnValVerUVOCriteriaQuery2.processQueryOperation}"
+                resultComponentId="::resId1" rows="1" maxColumns="3"
+                labelWidth="100" modeChangeVisible="false" saveQueryMode="hidden"
+                displayMode="compact"
+                binding="#{CreChqTrnValVerMBean.richQuery}"/>
+    </af:panelHeader>
+    
+    <af:spacer height="10" id="s2"/>
+      
+      
+      <af:table value="#{bindings.CreChqTrnValVerUVO12.collectionModel}" var="row"
+              rows="#{bindings.CreChqTrnValVerUVO12.rangeSize}"
+              emptyText="#{bindings.CreChqTrnValVerUVO12.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.CreChqTrnValVerUVO12.rangeSize}"
+              rowBandingInterval="1" 
+              filterModel="#{bindings.CreChqTrnValVerUVOCriteriaQuery2.queryDescriptor}"
+              queryListener="#{bindings.CreChqTrnValVerUVOCriteriaQuery2.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.CreChqTrnValVerUVO12.collectionModel.selectedRow}"
+              selectionListener="#{bindings.CreChqTrnValVerUVO12.collectionModel.makeCurrent}"
+              rowSelection="single" id="resId1" 
+              autoHeightRows="0" width="90%"
+              partialTriggers="::qryId1  "
+              binding="#{CreChqTrnValVerMBean.resultsTbl}"
+                >
+      <af:column id="c1" headerText="#{viewcontrollerBundle.SELECT}"
+                 width="109" align="center">
+        <af:selectBooleanCheckbox value="#{row.bindings.SelectFlag.inputValue}"
+                                  label=" #{row.bindings.SelectFlag.inputValue}"
+                                  shortDesc="#{bindings.CreChqTrnValVerUVO12.hints.SelectFlag.tooltip}"
+                                  id="sbc1"  valueChangeListener="#{CreChqTrnValVerMBean.selectFlagValChangeLstnr}" 
+                                  autoSubmit="true" 
+                                 />
+                                 <!-- <f:facet name="header"  >
+         <af:selectBooleanCheckbox text="#{viewcontrollerBundle.SELECTDESELECT_ALL}"
+                                   id="sbc3" autoSubmit="true" 
+                                 valueChangeListener="#{CreChqTrnValVerMBean.selectDeselect}" />
+                            
+            </f:facet>--> 
+      </af:column>
+    
+       <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.ReceiptNum.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.RECEIPT_NUMBER}"
+                 rendered="#{pageFlowScope.pymtTypeRec eq 'REC' ? 'true':'false'}"
+                 id="resId1c1" align="right" width="100"
+                 inlineStyle="font-weight:bolder;">
+        <af:outputText value="#{row.ReceiptNum}" id="ot1"/>
+      </af:column>
+       <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.Esysreceiptnum.name}"
+                 filterable="true" sortable="true"   noWrap="false"              
+                 headerText="#{viewcontrollerBundle.ESYS_RECEIPT_NUMBER}"
+                 rendered="#{pageFlowScope.pymtTypeRec eq 'ESYS' ? 'true':'false'}"
+                 id="resId1c13" align="right" width="80">
+        <af:outputText value="#{row.Esysreceiptnum}" id="ot2"/>
+      </af:column>
+      
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.SaleDate.name}"
+                 filterable="false" sortable="true" align="left"
+                 headerText="#{viewcontrollerBundle.TRANSACTION_DATE}"
+                 id="resId1c2" width="101">
+        <af:outputText value="#{row.SaleDate}" id="ot6">
+         <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.AuthCode.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.AUTHORIZATION_CODE}"
+                 id="resId1c3" align="right" width="80"
+                 rendered="#{pageFlowScope.pymtTypeCrit eq 'CCD' ? 'true':'false'}">
+        <af:outputText value="#{row.AuthCode}" id="ot8">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CreChqTrnValVerUVO12.hints.AuthCode.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.CCDType.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.CREDIT_CARD_TYPE}"
+                 id="resId1c4" align="left" width="80"
+                 rendered="#{pageFlowScope.pymtTypeCrit eq 'CCD' ? 'true':'false'}">
+        <af:outputText value="#{row.CCDType}" id="ot3"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.CCDnum.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.CREDIT_CARD_NUMBER}"
+                 id="resId1c5" align="right" width="115"
+                 rendered="#{pageFlowScope.pymtTypeCrit eq 'CCD' ? 'true':'false'}">
+        <af:outputText value="#{row.CCDnum}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.Chqnum.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.CHEQUE_NUMBER}"
+                 id="resId1c6" align="right" width="80"
+                 rendered="#{pageFlowScope.pymtTypeCrit eq 'CHQ' ? 'true':'false'}">
+                 
+        <af:outputText value="#{row.Chqnum}" id="ot11"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.ChqBankname.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.CHEQUE_BANK_NAME}"
+                 id="resId1c7" align="left"
+                 rendered="#{pageFlowScope.pymtTypeCrit eq 'CHQ' ? 'true':'false'}"
+                 width="140">
+        <af:outputText value="#{row.ChqBankname}" id="ot10"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.ChqDate.name}"
+                 filterable="false" sortable="true"
+                 headerText="#{viewcontrollerBundle.CHEQUE_DATE}"
+                 id="resId1c8" align="left" width="80"
+                 rendered="#{pageFlowScope.pymtTypeCrit eq 'CHQ' ? 'true':'false'}">
+        <af:outputText value="#{row.ChqDate}" id="ot5">
+         <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.PYMTAMT.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.AMOUNT}"
+                 id="resId1c9" align="right" width="80">
+        <af:outputText value="#{row.PYMTAMT}" id="ot7">
+        <f:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.Ackstatusid.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.ACKNOWLEDGEMENT_STATUS}"
+                 id="resId1c10" align="left" width="220">
+          <af:selectOneRadio value="#{row.bindings.Ackstatusid.inputValue}"
+                             label="#{row.bindings.Ackstatusid.label}"
+                             required="#{bindings.CreChqTrnValVerUVO12.hints.Ackstatusid.mandatory}"
+                             shortDesc="#{bindings.CreChqTrnValVerUVO12.hints.Ackstatusid.tooltip}"
+                             id="sor1" disabled="#{row.bindings.SelectFlag.inputValue eq true ? 'false':'true'}"
+                           partialTriggers="sbc1 ::cb3"
+                             binding="#{CreChqTrnValVerMBean.ackStatus}">
+            <f:selectItems value="#{row.bindings.Ackstatusid.items}" id="si1"/>
+          </af:selectOneRadio>
+        </af:column>
+      <af:column sortProperty="#{bindings.CreChqTrnValVerUVO12.hints.AltChqnum.name}"
+                 filterable="true" sortable="true"
+                 headerText="#{viewcontrollerBundle.ALTERNATE_CHEQUE_NUMBER}"
+                 id="resId1c11" width="115"
+                 rendered="#{pageFlowScope.pymtTypeCrit eq 'CHQ' ? 'true':'false'}"
+                 align="right">                 
+        <af:inputText value="#{row.bindings.AltChqnum.inputValue}"
+                      label="#{bindings.CreChqTrnValVerUVO12.hints.AltChqnum.label}"
+                      required="#{bindings.CreChqTrnValVerUVO12.hints.AltChqnum.mandatory}"
+                      columns="#{bindings.CreChqTrnValVerUVO12.hints.AltChqnum.displayWidth}"
+                      maximumLength="#{bindings.CreChqTrnValVerUVO12.hints.AltChqnum.precision}"
+                      shortDesc="#{bindings.CreChqTrnValVerUVO12.hints.AltChqnum.tooltip}"
+                      id="it1"
+                      disabled="#{row.bindings.SelectFlag.inputValue eq true ? 'false':'true'}"
+                      partialTriggers="sbc1">
+          <f:validator binding="#{row.bindings.AltChqnum.validator}"/>
+        </af:inputText>
+      </af:column>
+    </af:table>
+       <af:spacer height="10" id="s13w4"/>
+      <af:panelGroupLayout id="pgl2" layout="horizontal">
+      <af:panelGroupLayout id="pgl3" layout="horizontal">
+      <af:spacer  id="s5" width="10"/>
+        <!--<af:selectBooleanCheckbox text="#{viewcontrollerBundle.SELECTDESELECT_ALL}" id="sbc2" autoSubmit="true"
+                                  binding="#{CreChqTrnValVerMBean.check}"  
+                                  valueChangeListener="#{CreChqTrnValVerMBean.selectAllRowsInTable}"/>-->  
+                                  <af:commandButton text="SelectAll" id="cb12"
+                          inlineStyle="width:auto;background-color:#F39C11;"
+                          action="#{CreChqTrnValVerMBean.buttonselect}"/>
+                          <af:spacer width="10" height="10" id="s3"/>
+          <af:commandButton text="DeSelectAll" id="cb3" inlineStyle="width:auto;background-color:#F39C11;"
+                        action="#{CreChqTrnValVerMBean.deSelect}">
+            
+          </af:commandButton>
+          <af:spacer width="10" height="10" id="s8"/>
+        </af:panelGroupLayout>
+       
+        <af:commandButton text="#{viewcontrollerBundle.CLICK_TO_VIEW_SUMMARY}" id="cb1"
+                          inlineStyle="width:auto;background-color:#F39C11;"
+                          action="#{CreChqTrnValVerMBean.CheckAmount}"/>
+        <af:spacer width="10" height="10" id="s4"/>
+        <af:inputText label="Total Amount" id="it2" disabled="true"
+                      partialTriggers="cb3"
+                      binding="#{CreChqTrnValVerMBean.totalAmount}"
+                      columns="10"/>
+               <af:spacer width="10" height="10" id="s7"/>
+        <af:inputText label="Count" id="it3" disabled="true" columns="10"  partialTriggers="cb3"
+                      binding="#{CreChqTrnValVerMBean.countRows}"/>
+        <!--  <af:outputText label=""  id="it3" disabled="true"
+                      columns="10" binding="#{CreChqTrnValVerMBean.countRows}"/>-->
+                      <af:spacer width="10" height="10" id="s6"/>   
+        <af:commandButton text="#{viewcontrollerBundle.ACKNOWLEDGE_ALL}" id="cb2" inlineStyle="width:auto;background-color:#F39C11;"
+                        action="#{CreChqTrnValVerMBean.selectAllAck}"/>
+      </af:panelGroupLayout>
+      <af:spacer height="10" id="s1"/>
+      <af:toolbar id="t3">
+      <af:commandButton id="ctb1"
+                        inlineStyle="background-color:#F39C11;"
+                        text="#{viewcontrollerBundle.SUBMIT}"
+                        action="#{CreChqTrnValVerMBean.SubmitAction}"/>
+      <af:spacer width="10" id="s134"/>
+      <af:commandButton inlineStyle="background-color:#F39C11;"
+                        id="ctb2" text="#{viewcontrollerBundle.CANCEL}"
+                        immediate="true"
+                        action="#{CreChqTrnValVerMBean.CancelAction}">
+                     <af:resetActionListener/>
+                        </af:commandButton>
+    </af:toolbar>
+  </af:panelGroupLayout>
+  </af:showDetailHeader>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:CreChqTrnValVerMBean-->
+</jsp:root>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ContraventionMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ContraventionMstUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="ContraventionMstUVO1Iterator"/>
+    <iterator Binds="ContraventionMstUVO2" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="ContraventionMstUVO2Iterator"/>
+    <searchRegion id="ContraventionMstUVO2Query"
+                  Binds="ContraventionMstUVO2Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+    <iterator id="ContraMstLngVO1Iterator" Binds="ContraMstLngVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator Binds="PVTExceptionzoneVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PVTExceptionzoneVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="ContraCode">
+      <AttrNames>
+        <Item Value="ContraCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="CodeNameEn">
+      <AttrNames>
+        <Item Value="CodeNameEn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="DescEn">
+      <AttrNames>
+        <Item Value="DescEn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="LawVerNo">
+      <AttrNames>
+        <Item Value="LawVerNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="LawVerDt">
+      <AttrNames>
+        <Item Value="LawVerDt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator"
+                     id="BaseCostAmt">
+      <AttrNames>
+        <Item Value="BaseCostAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="ObservTime">
+      <AttrNames>
+        <Item Value="ObservTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="ValidFrom">
+      <AttrNames>
+        <Item Value="ValidFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="ValidTo">
+      <AttrNames>
+        <Item Value="ValidTo"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="addNewContrMst"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addNewContrMst"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+                  <!-- methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result" /> -->
+    
+    <button IterBinding="ContraventionMstUVO1Iterator" id="ActiveFlag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="WhiteListFlag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="WhiteListFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="valonholidayflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="valonholidayflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="PermitcheckReqflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="PermitcheckReqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="mParkcheckreqflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="mParkcheckreqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="Warningreqflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Warningreqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="RemovalReqflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="RemovalReqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="Stickerreqflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Stickerreqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="ClampReqflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ClampReqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="Observreqflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Observreqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="isPermitRelated1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="isPermitRelated"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ContraventionMstUVO1Iterator" id="isPymtRelatedflag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="isPymtRelatedflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="ContraventionMstUVO2Iterator" id="ContraventionMstUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.ContraventionMstUVO"
+                      Name="ContraventionMstUVO20">
+        <AttrNames>
+          <Item Value="ContraCode"/>
+          <Item Value="CodeNameEn"/>
+          <Item Value="DescEn"/>
+          <Item Value="CountryName"/>
+          <Item Value="BaseCostAmt"/>
+          <Item Value="ValidFrom"/>
+          <Item Value="ValidTo"/>
+          <Item Value="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="ContraventionMstUVO2Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator"
+                     id="EnfreqPVTcnt">
+      <AttrNames>
+        <Item Value="EnfreqPVTcnt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator" id="Enfreqdays">
+      <AttrNames>
+        <Item Value="Enfreqdays"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="ContraventionMstUVO1Iterator" StaticList="false"
+          Uses="LOV_CountryCode" id="CountryCode" DTSupportsMRU="true"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <list IterBinding="ContraventionMstUVO1Iterator" StaticList="false"
+          Uses="LOV_Language" id="Language" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator"
+                     id="ContraCodeLng">
+      <AttrNames>
+        <Item Value="ContraCodeLng"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PVTExceptionzoneVO1Iterator" id="PVTExceptionzoneVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTExceptionzoneVO"
+                      Name="PVTExceptionzoneVO10">
+        <AttrNames>
+          <Item Value="CONTRACODE"/>
+          <Item Value="ZoneCode"/>
+          <Item Value="activeflag" Binds="activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="PVTExceptionzoneVO1Iterator" id="activeflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="activeflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="ContraventionMstUVO1Iterator"
+                     id="DiscountPCT">
+      <AttrNames>
+        <Item Value="DiscountPCT"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

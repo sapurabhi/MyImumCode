@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="CardIssuanceTF">
+    <default-activity id="__11">CreateInsert</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">CardIssuanceMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.transactions.inventory.CardIssuanceMBean</managed-bean-class>
+      <managed-bean-scope id="__2">request</managed-bean-scope>
+    </managed-bean>
+    <view id="cardIssuance">
+      <page>/jspx/transactions/fragments/CardIssuance.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__1">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="clearCacheAllRows">
+      <method>#{bindings.clearCacheAllRows.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>clearCacheAllRows</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">clearCacheAllRows</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__12">clearCacheAllRows</from-outcome>
+        <to-activity-id id="__10">cardIssuance</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__13">
+      <from-activity-id id="__14">CreateInsert</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome id="__15">CreateInsert</from-outcome>
+        <to-activity-id id="__16">clearCacheAllRows</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

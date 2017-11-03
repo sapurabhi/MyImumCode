@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="RolesMenuMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GenRoleUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="GenRoleUVO1Iterator"/>
+    <searchRegion Binds="GenRoleUVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="GenRoleUVO1Query"/>
+    <iterator Binds="GenRoleUVO2"
+              DataControl="MastersAMDataControl" id="GenRoleUVO2Iterator"/>
+    <iterator id="GenMenuRoleUVO2Iterator" Binds="GenMenuRoleUVO2"
+              DataControl="MastersAMDataControl"/>
+    <iterator id="GenMenuRoleUVO3Iterator" Binds="GenMenuRoleUVO3"
+              DataControl="MastersAMDataControl"/>
+    <iterator id="MenuMstUVO1Iterator" Binds="MenuMstUVO1"
+              DataControl="MastersAMDataControl"/>
+    <iterator id="GenRoleUVO1Iterator1" Binds="GenRoleUVO1"
+              DataControl="MastersAMDataControl"/>
+    <iterator id="MenuMstRVO1Iterator" Binds="MenuMstRVO1"
+              DataControl="MenuAMDataControl"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="GenRoleUVO1Iterator" id="GenRoleUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.GenRoleUVO"
+                      Name="GenRoleUVO10">
+        <AttrNames>
+          <Item Value="RoleID"/>
+          <Item Value="roleName"/>
+          <Item Value="roleDesc"/>
+          <Item Value="RequestedBy"/>
+          <Item Value="Activatedate"/>
+          <Item Value="Inactivedate"/>
+          <Item Value="activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="GenRoleUVO2Iterator" id="roleName">
+      <AttrNames>
+        <Item Value="roleName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenRoleUVO2Iterator" id="roleDesc">
+      <AttrNames>
+        <Item Value="roleDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenRoleUVO2Iterator" id="RequestedBy">
+      <AttrNames>
+        <Item Value="RequestedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenRoleUVO2Iterator" id="Activatedate">
+      <AttrNames>
+        <Item Value="Activatedate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GenRoleUVO2Iterator" id="Inactivedate">
+      <AttrNames>
+        <Item Value="Inactivedate"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="GenRoleUVO2Iterator" StaticList="false"
+            Uses="LOV_activeflag" id="activeflag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="activeflag"/>
+      </AttrNames>
+    </button>
+    <methodAction id="doEditRolesMenuMst"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditRolesMenuMst"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doNewRolesMenuMst"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNewRolesMenuMst"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <action id="MenuRoleRollback" DataControl="MastersAMDataControl"
+            RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <action id="MenuRoleCommit" DataControl="MastersAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <attributeValues IterBinding="GenRoleUVO2Iterator" id="RoleID">
+      <AttrNames>
+        <Item Value="RoleID"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="GenMenuRoleUVO3Iterator" id="CreateInsert"
+            InstanceName="MastersAMDataControl.GenMenuRoleUVO3"
+            DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="GenMenuRoleUVO3Iterator" id="Delete"
+            InstanceName="MastersAMDataControl.GenMenuRoleUVO3"
+            DataControl="MastersAMDataControl" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

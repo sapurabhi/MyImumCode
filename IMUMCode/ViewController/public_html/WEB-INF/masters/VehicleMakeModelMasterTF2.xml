@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="VehicleMakeModelMasterTF2">
+    <default-activity id="__1">VehicleMakeModelMaster2</default-activity>
+    <data-control-scope id="__11">
+      <isolated/>
+    </data-control-scope>
+    <managed-bean id="__10">
+      <managed-bean-name id="__9">vehicleMakeModelMBean</managed-bean-name>
+      <managed-bean-class id="__8">com.imum.cpms.vehicleMakeModelMBean</managed-bean-class>
+      <managed-bean-scope id="__7">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="VehicleMakeModelMaster2">
+      <page>/jspx/masters/fragments/VehicleMakeModelMaster2.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

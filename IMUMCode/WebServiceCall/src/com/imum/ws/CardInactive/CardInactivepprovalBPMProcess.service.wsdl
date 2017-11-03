@@ -1,0 +1,53 @@
+<wsdl:definitions
+    
+     targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/CardInactivepprovalBPMProcess"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnProcess/CardInactivepprovalBPMProcess"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>http://cpmsdev1:8001/soa-infra/services/default/CardInactiveApprovalBPM!3.0/CardInactivepprovalBPMProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="CardInactivepprovalBPMProcessPortTypePartnerLinkType">
+        <plnk:role name="CardInactivepprovalBPMProcessPortTypeProvider">
+            <plnk:portType name="tns:CardInactivepprovalBPMProcessPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnProcess/CardInactivepprovalBPMProcess">
+            <xsd:element name="start">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="cardInactive_seq" type="xsd:long"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="start">
+        <wsdl:part name="parameters" element="tns:start"/>
+    </wsdl:message>
+    <wsdl:portType name="CardInactivepprovalBPMProcessPortType">
+        <wsdl:operation name="start">
+            <wsdl:input message="tns:start"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CardInactivepprovalBPMProcessBinding" type="tns:CardInactivepprovalBPMProcessPortType">
+        <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="start">
+            <wsdlsoap:operation style="document" soapAction="start"/>
+            <wsdl:input>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CardInactivepprovalBPMProcess.service">
+        <wsdl:port name="CardInactivepprovalBPMProcessPort" binding="tns:CardInactivepprovalBPMProcessBinding">
+            <wsdlsoap:address location="http://cpmsfmwappdc.cpms.local:8001/soa-infra/services/default/CardInactiveApprovalBPM/CardInactivepprovalBPMProcess.service"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

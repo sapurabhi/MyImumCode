@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="SerchleavePageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="serchleaveVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl" id="serchleaveVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="serchleaveVO1Iterator" id="serchleaveVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.serchleaveVO"
+                      Name="serchleaveVO10">
+        <AttrNames>
+          <Item Value="piid"/>
+          <Item Value="leavetype"/>
+          <Item Value="fromdate"/>
+          <Item Value="ToDate"/>
+          <Item Value="leavesapplied"/>
+          <Item Value="status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getleaveserch"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getleaveserch" IsViewObjectMethod="false">
+      <NamedData NDName="pi" NDType="java.lang.String"/>
+      <NamedData NDName="fd" NDType="java.util.Date"/>
+      <NamedData NDName="td" NDType="java.util.Date"/>
+      <NamedData NDName="sup" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getSupervisorUnderpis"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getSupervisorUnderpis" IsViewObjectMethod="false">
+      <NamedData NDName="sup_id" NDType="java.lang.String"/>
+      <NamedData NDName="pinumber" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

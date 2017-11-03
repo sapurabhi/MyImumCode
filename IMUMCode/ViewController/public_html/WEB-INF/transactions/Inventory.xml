@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-template id="Inventory">
+    <default-activity id="__1">InventoryUpload</default-activity>
+    <view id="InventoryUpload">
+      <page>/jspx/transactions/fragments/InventoryUpload.jsff</page>
+      <train-stop id="__2"/>
+    </view>
+    <train/>
+    <use-page-fragments/>
+  </task-flow-template>
+</adfc-config>

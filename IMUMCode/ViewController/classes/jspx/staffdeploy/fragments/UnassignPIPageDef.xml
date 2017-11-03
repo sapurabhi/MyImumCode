@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="UnassignPIPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PIAllocToSpvsrGrpUVO2" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PIAllocToSpvsrGrpUVO2Iterator"/>
+    <iterator Binds="supLovRVO1" RangeSize="-1"
+              DataControl="StaffDeployDataControl" id="supLovRVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PIAllocToSpvsrGrpUVO2Iterator"
+          id="PIAllocToSpvsrGrpUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIAllocToSpvsrGrpUVO"
+                      Name="PIAllocToSpvsrGrpUVO20">
+        <AttrNames>
+          <Item Value="PIid"/>
+          <Item Value="AssignedTo"/>
+          <Item Value="SelectedRow"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="supLovRVO1Iterator" ListOperMode="navigation"
+          ListIter="supLovRVO1Iterator" id="supLovRVO1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </list>
+    <methodAction id="piUnassign"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="piUnassign" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.piUnassign_StaffDeployDataControl_dataProvider_piUnassign_result"/>
+  </bindings>
+</pageDefinition>

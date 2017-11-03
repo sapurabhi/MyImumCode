@@ -1,0 +1,140 @@
+<xs:schema version="1.0" targetNamespace="http://ws.sale.rc.mparking.infocomm.com/" elementFormDefault="qualified"
+     attributeFormDefault="qualified" xmlns="http://ws.sale.rc.mparking.infocomm.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="checkRechargeCard" type="checkRechargeCard"/>
+    <xs:element name="checkRechargeCardResponse" type="checkRechargeCardResponse"/>
+    <xs:element name="deactivateRechargeCard" type="deactivateRechargeCard"/>
+    <xs:element name="deactivateRechargeCardByWeb" type="deactivateRechargeCardByWeb"/>
+    <xs:element name="deactivateRechargeCardByWebResponse" type="deactivateRechargeCardByWebResponse"/>
+    <xs:element name="deactivateRechargeCardResponse" type="deactivateRechargeCardResponse"/>
+    <xs:element name="linkRechargeCard" type="linkRechargeCard"/>
+    <xs:element name="linkRechargeCardResponse" type="linkRechargeCardResponse"/>
+    <xs:element name="rollbackRechargeCard" type="rollbackRechargeCard"/>
+    <xs:element name="rollbackRechargeCardResponse" type="rollbackRechargeCardResponse"/>
+    <xs:element name="soldRechargeCard" type="soldRechargeCard"/>
+    <xs:element name="soldRechargeCardResponse" type="soldRechargeCardResponse"/>
+    <xs:element name="topupMWallet" type="topupMWallet"/>
+    <xs:element name="topupMWalletResponse" type="topupMWalletResponse"/>
+    <xs:complexType name="topupMWallet">
+        <xs:sequence>
+            <xs:element name="msisdn" type="xs:string"/>
+            <xs:element name="cardNo" type="xs:string"/>
+            <xs:element name="amount" type="xs:int"/>
+            <xs:element name="parkingShopId" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="pwd" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="topupMWalletResponse">
+        <xs:sequence>
+            <xs:element name="return" type="mWalletObj" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="mWalletObj">
+        <xs:sequence>
+            <xs:element name="operationStatusCode" type="xs:int"/>
+            <xs:element name="operationStatusDesc" type="xs:string" minOccurs="0"/>
+            <xs:element name="mWalletTransactionId" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="rollbackRechargeCard">
+        <xs:sequence>
+            <xs:element name="cardNo" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="pwd" type="xs:string"/>
+            <xs:element name="cvc" type="xs:string" minOccurs="0"/>
+            <xs:element name="expiryDate" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="rollbackRechargeCardResponse">
+        <xs:sequence>
+            <xs:element name="return" type="rechargeCardObj" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="rechargeCardObj">
+        <xs:sequence>
+            <xs:element name="costPerCard" type="xs:int"/>
+            <xs:element name="cvc" type="xs:string" minOccurs="0"/>
+            <xs:element name="expiryMonth" type="xs:string" minOccurs="0"/>
+            <xs:element name="msisdn" type="xs:string" minOccurs="0"/>
+            <xs:element name="operationStatusCode" type="xs:int"/>
+            <xs:element name="operationStatusDesc" type="xs:string" minOccurs="0"/>
+            <xs:element name="rechargeCardNo" type="xs:string" minOccurs="0"/>
+            <xs:element name="rechargeCardStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="sessionID" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deactivateRechargeCardByWeb">
+        <xs:sequence>
+            <xs:element name="cardNo" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="pwd" type="xs:string"/>
+            <xs:element name="cvc" type="xs:string" minOccurs="0"/>
+            <xs:element name="expiryDate" type="xs:string" minOccurs="0"/>
+            <xs:element name="webUserId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deactivateRechargeCardByWebResponse">
+        <xs:sequence>
+            <xs:element name="return" type="rechargeCardObj" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="soldRechargeCard">
+        <xs:sequence>
+            <xs:element name="cardNo" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="pwd" type="xs:string"/>
+            <xs:element name="cvc" type="xs:string" minOccurs="0"/>
+            <xs:element name="expiryDate" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="soldRechargeCardResponse">
+        <xs:sequence>
+            <xs:element name="return" type="rechargeCardObj" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deactivateRechargeCard">
+        <xs:sequence>
+            <xs:element name="cardNo" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="pwd" type="xs:string"/>
+            <xs:element name="cvc" type="xs:string" minOccurs="0"/>
+            <xs:element name="expiryDate" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deactivateRechargeCardResponse">
+        <xs:sequence>
+            <xs:element name="return" type="rechargeCardObj" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="linkRechargeCard">
+        <xs:sequence>
+            <xs:element name="cardNo" type="xs:string"/>
+            <xs:element name="msisdn" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="pwd" type="xs:string"/>
+            <xs:element name="cvc" type="xs:string" minOccurs="0"/>
+            <xs:element name="expiryDate" type="xs:string" minOccurs="0"/>
+            <xs:element name="emiratesID" type="xs:string" minOccurs="0"/>
+            <xs:element name="activationSource" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="linkRechargeCardResponse">
+        <xs:sequence>
+            <xs:element name="return" type="rechargeCardObj" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="checkRechargeCard">
+        <xs:sequence>
+            <xs:element name="cardNo" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="pwd" type="xs:string"/>
+            <xs:element name="cvc" type="xs:string" minOccurs="0"/>
+            <xs:element name="expiryDate" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="checkRechargeCardResponse">
+        <xs:sequence>
+            <xs:element name="return" type="rechargeCardObj" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

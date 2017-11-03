@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PiSearch-flow-definition">
+    <default-activity id="__1">getPITable</default-activity>
+    <input-parameter-definition id="__28">
+      <name id="__29">PIid</name>
+      <value>#{pageFlowScope.PIid}</value>
+    </input-parameter-definition>
+    <managed-bean id="__10">
+      <managed-bean-name id="__11">AddToTempTable</managed-bean-name>
+      <managed-bean-class id="__9">com.imum.cpms.staffdeploy.AddToTempTable</managed-bean-class>
+      <managed-bean-scope id="__8">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__33">
+      <managed-bean-name id="__32">getSlectedPID</managed-bean-name>
+      <managed-bean-class id="__31">GetSlectedPID</managed-bean-class>
+      <managed-bean-scope id="__30">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="piselection">
+      <page>/jspx/staffdeploy/fragments/piselection.jsff</page>
+    </view>
+    <method-call id="getPITable">
+      <method>#{bindings.getPITable.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>getPITable</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="supervisorDeatials">
+      <method>#{bindings.supervisorDeatials.execute}</method>
+      <outcome id="__12">
+        <fixed-outcome>supervisorDeatials</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="PIAssignment-Amendment-flow-definition">
+      <task-flow-reference>
+        <document>/WEB-INF/staffdeploy/PIAssignment-Amendment-flow-definition.xml</document>
+        <id>PIAssignment-Amendment-flow-definition</id>
+      </task-flow-reference>
+    </task-flow-call>
+    <method-call id="getEmptyTable">
+      <method>#{bindings.getEmptyTable.execute}</method>
+      <outcome id="__3">
+        <fixed-outcome>getEmptyTable</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__13">
+      <from-activity-id id="__14">supervisorDeatials</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__16">supervisorDeatials</from-outcome>
+        <to-activity-id id="__17">piselection</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__18">
+      <from-activity-id id="__19">piselection</from-activity-id>
+      <control-flow-case id="__20">
+        <from-outcome id="__22">amend</from-outcome>
+        <to-activity-id id="__21">PIAssignment-Amendment-flow-definition</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__23">
+      <from-activity-id id="__24">PIAssignment-Amendment-flow-definition</from-activity-id>
+      <control-flow-case id="__25">
+        <from-outcome id="__27">back</from-outcome>
+        <to-activity-id id="__26">piselection</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id id="__5">getEmptyTable</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome id="__7">getEmptyTable</from-outcome>
+        <to-activity-id id="__34">piselection</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__35">
+      <from-activity-id id="__36">getPITable</from-activity-id>
+      <control-flow-case id="__38">
+        <from-outcome id="__37">getPITable</from-outcome>
+        <to-activity-id id="__39">piselection</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ShiftMstTF">
+    <default-activity id="__16">ShiftMst</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">ShiftMstMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.view.backing.ShiftMstMBean</managed-bean-class>
+      <managed-bean-scope id="__2">request</managed-bean-scope>
+    </managed-bean>
+    <view id="ShiftMst">
+      <page>/jspx/masters/fragments/ShiftMst.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

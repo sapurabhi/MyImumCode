@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ADPReportSerachPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <searchRegion Criteria="PVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO1Iterator" id="PVTSearchRVOCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateId"/>
+          <Item Value="PIID"/>
+          <Item Value="PVTFromDate"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="ENFORCESTAGEID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="ADPPrintDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="ADPPrintDetails" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.ADPPrintDetails_TransactionsAMDataControl_dataProvider_ADPPrintDetails_result">
+      <NamedData NDName="PVTHeaderId" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

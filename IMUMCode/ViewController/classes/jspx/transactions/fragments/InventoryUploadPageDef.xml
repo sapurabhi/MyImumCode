@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="InventoryUploadPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="InventoryStockUploadDetailsVO1Iterator"
+              Binds="InventoryStockUploadDetailsVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator id="InventoryStockUploadUVO1Iterator"
+              Binds="InventoryStockUploadUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator Binds="StockUploadErrorVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="StockUploadErrorVO1Iterator"/>
+    <iterator id="InventoryStockUploadUVO2Iterator"
+              Binds="InventoryStockUploadUVO2"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <methodAction id="callValProc"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callValProc" IsViewObjectMethod="false"/>
+    <tree IterBinding="StockUploadErrorVO1Iterator" id="StockUploadErrorVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.StockUploadErrorVO"
+                      Name="StockUploadErrorVO10">
+        <AttrNames>
+          <Item Value="errormsg"/>
+          <Item Value="cardnumber"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="delRecieptDetail"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="delRecieptDetail" IsViewObjectMethod="false"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,348 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, ection, summary {
+display:block;
+}
+* {
+	margin:0;
+	padding:0;
+
+}
+body {
+	margin:0;
+	padding:0;
+	width:100%;
+	font-family:arial;
+	font-size:12px;
+	
+}
+#wrapper {
+	margin:0 auto;
+	padding:0;
+	width:100%;
+	
+	
+}
+ /* Header Part Starts here */
+.header {
+	background:#404040;
+    height: 159px;
+}
+.header > .logo {
+	display: table-cell;
+	height: 121px;
+	vertical-align: middle;
+}
+.header > .logo > a {
+	background: url("April15_Updated Zone html/April15_Updated Zone html/April15_Updated Zone html/css/images/imum-logo.jpg");
+	height:68px;
+	width: 178px;
+	display:block;
+	margin-left:20px;
+}
+ .welcome {
+	position:absolute;
+	top:2px;
+	right:10px;
+	color:#fff;
+}
+header h1 {
+	position:absolute;
+	top:75px;
+	right:10px;
+	color:#fff;
+	font-size: 34px;
+}
+header h1 small {
+	font-size:16px;
+}
+/* Header Part Ends here */
+a:link {
+	color:#3FB2FF;
+	text-decoration:none;
+}      /* unvisited link */
+a:visited {
+	color:#3FB2FF;
+}  /* visited link */
+a:hover {
+	color:#EF7F0E;
+	text-decoration:underline;
+}  /* mouse over link */
+a:active {
+	color:#fff;
+}  /* selected link */
+
+/* Menu Part Starts here */
+header nav {
+	background:#FFA500;
+    height: 37px;
+    line-height: 37px;
+    margin-top: 1px;
+    width: 100%;
+}
+nav ul {
+	margin:0;
+	float:left;
+	padding-left: 15px;
+}
+nav ul li {
+	float: left;
+	list-style: none outside none;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#wrapper nav ul li a {
+	color:#333333;
+	/*display: block;*/
+	font-weight: bold;
+	padding: 6px 10px;
+	text-transform: uppercase;
+}
+#wrapper nav ul li a:hover, #wrapper nav ul li a.active {
+	background: #404040;
+    border-radius: 4px;
+    color: #FFFFFF;
+    padding: 6px 10px;
+    text-decoration: none;
+	behavior: url(April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/css/css/PIE.htc);position:relative;border-radius:5px;border:1px solid #222222;}
+
+nav h5 {
+	
+	margin-right: 10px;
+}
+/* Menu Part Ends here */
+/* left menu starts here */
+.leftMenu {
+	
+	float:left;
+	margin-right:20px;
+	min-height:600px;
+	border:1px solid #ccc;
+	position:absolute;
+	margin-top:15px;
+	margin-left:15px;
+	width:210px;
+}
+.title {
+	background:#7a7a7a;
+	padding: 10px;
+	color:#fff;
+	font-size:14px;
+}
+.title a {
+	color:#fff;
+	text-decoration:none;
+	margin: 0 5px;
+	font-weight:bold;
+	margin-left:70px;
+	font-size:12px;
+	vertical-align:top;
+	
+}
+.title a:hover {
+	text-decoration:underline;
+}
+.rightarr {
+	position:absolute;
+	left:-16%;
+	
+}
+/* left menu Ends here */
+/* breadcrum starts here */
+.breadcrum {
+	color:#999;
+	font-weight:bold;
+	margin-left:240px;
+	padding-top:10px;
+}
+
+.breadcrumdiv {
+
+padding-left:10px;
+}
+.bredcrumtitle{color:#f39c11;
+	font-weight:bold;}
+/* breadcrum Ends here */
+.rightMenu {
+	width:80%;
+	float:right;
+	margin-right:15px;
+	min-height:600px;
+	border:1px solid #ccc;
+	margin-left:35px;
+}
+/* Table Start here */
+table tr th, table tr td {
+	padding : 4px 0;
+	padding-left:15px;
+
+}
+table tr.rowDark {
+	background: #ededed;
+	border:1px solid #ccc;
+}
+table tr.rowLight {
+	background: #f6f6f6;
+	border:1px solid #ccc;
+}
+table tr.rowLightGrey {
+	background: #f6f6f6;
+	border:1px solid #ccc;
+}
+table tr.rowLightGreen {
+	background: #ededed;
+}
+.tableStyle {
+	background-color:#fff;
+	border:1px solid #ccc;
+	margin-left:10px;
+	text-align:left;
+}
+.tableStyle tr.tableHd {
+	background: #f39c11;
+	color:#000;
+
+}
+.tableStyle tr.rowDark {
+	background: #ededed;
+	border:1px solid #ccc;
+}
+.tableStyle tr.rowLight {
+	background: #f6f6f6;
+	border:1px solid #ccc;
+}
+.tableStyleRecon {
+	background-color:#fff;
+	border:1px solid #77933c;
+}
+.tableStyleRecon tr.tableHd {
+	background: #9bbb59;
+	color:#FFF;
+	border:1px solid #ccc;
+}
+.tableStyleRecon tr.rowDark {
+	background: #ecfcd7;
+}
+.tableStyleRecon tr.rowLight {
+	background: #f4fde7;
+}
+.tableStyleRecon tr:hover {
+	background: #fff0000;
+}
+.tableStyle tr.rowLightGrey {
+	background: #f9f9f9;
+}
+.tableStyle1{background-color:#ededed; width:99%; margin-left:10px;}
+.tableStyle2{background-color:#d5d4c8;  height:100px; margin-left:10px;}
+/* Table Ends here */
+.hrclass{background-color:#6b83a4; width:96%;margin-top:15px; margin-left:17px; margin-bottom:5px;}
+/* Lables and button starts here */
+.labels{color:#000; font-weight:bold; padding-left:10px; text-align:left;}
+.checkoutbutton {
+    background-color: #e3e3e3;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #222222;
+  padding: 5px;
+width:70px;
+  cursor:pointer;
+  
+  
+behavior: url(April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/css/css/PIE.htc);position:relative;border-radius:5px;border:1px solid #CDCCB7;}
+.checkoutbuttonedit {
+    background-color: #e3e3e3;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #222222;
+  padding-top:9px;
+  padding-bottom:5px;
+  padding-left:5px;
+  padding-right:5px;
+width:70px;
+  cursor:pointer;
+  
+  
+behavior: url(April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/css/css/PIE.htc);position:relative;border-radius:5px;border:1px solid #CDCCB7;}
+.checkoutbuttondel{
+    background-color: #e3e3e3;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #222222;
+  padding-top:7px;
+  padding-bottom:5px;
+  padding-left:5px;
+  padding-right:5px;
+width:80px;
+  cursor:pointer;
+  
+  
+behavior: url(April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/css/css/PIE.htc);position:relative;border-radius:5px;border:1px solid #CDCCB7;}
+
+
+ .resetbutton {
+    background-color: #f39c11;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #6b83a4;
+  padding: 5px;
+  width:70px;
+  cursor:pointer;
+  behavior: url(April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/April15_Updated%20Zone%20html/css/css/PIE.htc);position:relative;border-radius:5px;border:1px solid #6b83a4;}
+ 
+ .buttonsdiv
+ {padding-right:15px;
+ padding-left:5px;
+ padding-top:5px;
+ padding-bottom:5px;
+ }
+ .successmsg
+{
+	color:#3C763D;
+	font-weight:bold;
+	padding-left:15px;
+}
+ /* Lables and button Ends here */
+  /* Footer starts here */
+ .footer{background-color:#FFA500;
+    bottom: 0;
+    position: fixed;
+    width: 100%;}
+.footer .left{float:left;}
+.footer ul li{list-style:none;color:#000; font-weight:bold; padding:10px;}
+.footer .right{float:right;}
+  /* Footer Ends here */
+  .MyMenuStyleClass{background:#FFA500;
+    height: 37px;
+    line-height: 37px;
+    margin-top: 1px;
+    width: 100%;}
+    
+    
+    
+af|table af|inputText::content
+{
+border-color: transparent;
+}
+
+.af_column_column-filter-cell  .af_inputText_content {
+background-image: url(images/findTorch.png);
+background-color: transparent;
+background-repeat: no-repeat;
+background-position:left;
+}
+
+.af_column_column-filter-cell:hover  .af_inputText_content {
+background-image: none;
+}
+.af_column_column-filter-cell:focus  .af_inputText_content {
+background-image: none;
+}

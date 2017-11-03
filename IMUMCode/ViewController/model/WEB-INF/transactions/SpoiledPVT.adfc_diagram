@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="y">258.8506</property>
+      <property
+         name="x">88.01758</property>
+   </OverallProperties>
+   <View
+      id="View3">
+      <property
+         name="activityId">SpoiledPVT1</property>
+      <property
+         name="page">/jspx/transactions/fragments/SpoiledPVT.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>SpoiledPVT1&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">191.69531</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">242.53516</property>
+   </View>
+   <View
+      id="View6">
+      <property
+         name="activityId">PVTSpoiledDetails</property>
+      <property
+         name="page">/jspx/transactions/fragments/PVTSpoiledDetails.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>PVTSpoiledDetails&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">179.09766</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">468.0244</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="View3"
+      to="View6">
+      <property
+         name="fromOutcome">showPVTDetails</property>
+      <property
+         name="sdm:polyPoints">R46,283.53516,187.84473,426.7174,175.24707,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase8"
+      from="View6"
+      to="View3">
+      <property
+         name="fromOutcome">back</property>
+      <property
+         name="sdm:polyPoints">L54,427.0244,182.24707,283.84186,194.84473,R54</property>
+   </ControlFlowCase>
+</SDM>

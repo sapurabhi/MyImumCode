@@ -1,0 +1,1460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AuctionSearchRVO"
+  Version="11.1.1.65.57"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.transactions.vo.AuctionSearchRVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bindPVTnumber"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="PVTIssueddatefrom"
+    Kind="viewcriteria"
+    Type="java.sql.Timestamp">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="PVTIssueddateTo"
+    Kind="viewcriteria"
+    Type="java.sql.Timestamp">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="bindSectorId"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="bindZoneId"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <Variable
+    Name="bindPlateNumber"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <ViewAccessor
+    Name="SectorLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.SectorLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="ZoneLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.ZoneLOVVO">
+    <ViewCriteriaUsage
+      Name="ZoneLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.ZoneLOVVO.ZoneLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="bindSectorCode">
+        <TransientExpression><![CDATA[SectorCode]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PvtStageMstLovVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PvtStageMstLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PvtStatusMstLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PvtStatusMstLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehMakeMstVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehMakeMstVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehModelMstVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehModelMstVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_SectorCode"
+    ListVOName="SectorLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_zonecode"
+    ListVOName="ZoneLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_zonecode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="zonecode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="zonecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="zonename"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PVTSTAGEID"
+    ListVOName="PvtStageMstLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PVTSTAGEID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PVTSTAGEID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PVTSTAGEID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="StageDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PVTStatusID"
+    ListVOName="PvtStatusMstLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PVTStatusID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PVTStatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PVTStatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="StatusDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VEHMAKEID"
+    ListVOName="VehMakeMstVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VEHMAKEID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHMAKEID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="MakeID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="MakeName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VEHMODELID"
+    ListVOName="VehModelMstVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VEHMODELID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHMODELID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ModelId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ModelName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT PVT_SEARCH.PVT_HDR_SEQ,
+PVT_SEARCH.Request_log_seq,
+PVT_SEARCH.PVT_Num,
+PVT_SEARCH.Plate_Id,
+PVT_SEARCH.PVT_SOURCE,
+PVT_SEARCH.Contra_code,
+PVT_SEARCH.Obsrv_seq,
+PVT_SEARCH.Cust_Id,
+PVT_SEARCH.Veh_CustId,
+PVT_SEARCH.Sector_Code,
+PVT_SEARCH.Tariff_ID,
+PVT_SEARCH.PI_ID,
+PVT_SEARCH.PI_ID as PI_Name,
+PVT_SEARCH.HHC_ID,
+PVT_SEARCH.PVT_date_time,
+PVT_SEARCH.PVT_date_time as PVT_From_Date,
+PVT_SEARCH.PVT_date_time as PVT_To_Date,
+PVT_SEARCH.PVT_VHCL_geo_lat,
+PVT_SEARCH.PVT_VHCL_geo_lon,
+PVT_SEARCH.PVT_Status_ID,
+PVT_SEARCH.PVT_Status_ID as PVT_Status_ID1,
+PVT_SEARCH.PVT_Status_ID as PVT_Status_ID2,
+PVT_SEARCH.PVT_Status_ID as PVT_Status_ID3,
+PVT_SEARCH.PVT_STAGE_ID,
+PVT_SEARCH.PVT_STAGE_ID as PVT_STAGE_ID1,
+PVT_SEARCH.ENFORCE_STAGE_ID,
+PVT_SEARCH.ENFORCE_STAGE_ID as ENFORCE_STAGE_ID1,
+PVT_SEARCH.CLOSURE_REASONS,
+PVT_SEARCH.CLOSURE_REMARKS,
+PVT_SEARCH.CONTRA_AMT,
+PVT_SEARCH.Discount_amt,
+PVT_SEARCH.PVT_AMT_PAYABLE,
+PVT_SEARCH.PVT_AMT_PAID,
+PVT_SEARCH.verified_by,
+PVT_SEARCH.verified_date,
+PVT_SEARCH.DEF_City_Code,
+PVT_SEARCH.DEF_Country_Mst,
+PVT_SEARCH.ADP_number,
+PVT_SEARCH.Appeal_number,
+PVT_SEARCH.court_case_number,
+PVT_SEARCH.zone_code,
+PVT_SEARCH.Disc_Period_end_date,
+PVT_SEARCH.Created_By,
+PVT_SEARCH.Created_Date,
+PVT_SEARCH.Updated_by,
+PVT_SEARCH.Updated_date,
+PVT_SEARCH.Country_Code,
+PVT_SEARCH.Foreign_Plate,
+PVT_SEARCH.PLATE_NUMBER,
+PVT_SEARCH.PLATE_CNT_ID,
+PVT_SEARCH.PLATE_CTG_ID,
+PVT_SEARCH.PLATE_TYPE_ID,
+PVT_SEARCH.VEH_MAKE_ID,
+PVT_SEARCH.VEH_MODEL_ID,
+PVT_SEARCH.VEH_COLOUR_ID,
+PVT_SEARCH.Active_Flag,
+PVT_SEARCH.Blacklist_flag,
+PVT_SEARCH.veh_ownership_type_id,
+gim.CUST_NAME customer_name,
+gim.Mobile_num Mobile_num,
+PVT_SEARCH.ready_for_auction_flag
+ FROM 
+ (SELECT 
+pvth.PVT_HDR_SEQ,
+pvth.Request_log_seq,
+pvth.PVT_Num,
+pvth.Plate_Id,
+pvth.PVT_SOURCE,
+pvth.Contra_code,
+pvth.Obsrv_seq,
+pvth.Cust_ID,
+pvth.Sector_Code,
+pvth.Tariff_ID,
+pvth.PI_ID,
+pvth.HHC_ID,
+pvth.PVT_date_time,
+pvth.PVT_VHCL_geo_lat,
+pvth.PVT_VHCL_geo_lon,
+pvth.PVT_Status_ID,
+pvth.PVT_STAGE_ID,
+pvth.ENFORCE_STAGE_ID,
+pvth.CLOSURE_REASONS,
+pvth.CLOSURE_REMARKS,
+pvth.CONTRA_AMT,
+pvth.Discount_amt,
+pvth.PVT_AMT_PAYABLE,
+pvth.PVT_AMT_PAID,
+pvth.verified_by,
+pvth.verified_date,
+pvth.DEF_City_Code,
+pvth.DEF_Country_Mst,
+pvth.ADP_number,
+pvth.Appeal_number,
+pvth.court_case_number,
+pvth.zone_code,
+pvth.Disc_Period_end_date,
+pvth.Created_By,
+pvth.Created_Date,
+pvth.Updated_by,
+pvth.Updated_date,
+vpm.Country_Code,
+vpm.Foreign_Plate,
+vpm.PLATE_NUMBER,
+vpm.PLATE_CNT_ID,
+vpm.PLATE_CTG_ID,
+vpm.PLATE_TYPE_ID,
+pvth.VEH_MAKE_ID,
+pvth.VEH_MODEL_ID,
+pvth.VEH_COLOUR_ID,
+Vpm.Active_Flag,
+Vpm.Blacklist_Flag,
+vpm.Cust_ID as Veh_CustId,
+pvth.ready_for_auction_flag,
+pvth.veh_ownership_type_id
+from Pvt_Header pvth, Veh_Plate_Mst vpm
+where pvth.Plate_Id=vpm.Plate_Id and pvth.ready_for_auction_flag='Y') PVT_SEARCH 
+LEFT OUTER join 
+(
+-- select inst_id as cust_id,INST_NAME as CUST_NAME,''as Mobile_num  from     GEN_INSTITUTION_MST
+ -- union
+select cust_id,first_name as CUST_NAME,Mobile_num from  GEN_customer_MST)gim
+On  Gim.Cust_Id = PVT_SEARCH.Veh_CustId]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="PVTHDRSEQ"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="BIGINT"
+    AliasName="PVT_HDR_SEQ"
+    Expression="PVT_HDR_SEQ"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Requestlogseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Request_log_seq"
+    Expression="Request_log_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTNum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="PVT_Num"
+    Expression="PVT_Num"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.PVTSearchRVO.PVTNum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Plate_Id"
+    Expression="Plate_Id"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTSOURCE"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="5"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="PVT_SOURCE"
+    Expression="PVT_SOURCE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Contracode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Contra_code"
+    Expression="Contra_code"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Obsrvseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="16"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Obsrv_seq"
+    Expression="Obsrv_seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="18"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CustId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Cust_Id"
+    Expression="Cust_Id"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VehCustId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Veh_CustId"
+    Expression="Veh_CustId"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SectorCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Sector_Code"
+    Expression="Sector_Code"
+    SQLType="VARCHAR"
+    LOVName="LOV_SectorCode">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionSearchRVO.SectorCode_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TariffID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Tariff_ID"
+    Expression="Tariff_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PIID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="PI_ID"
+    Expression="PI_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PIName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="PI_Name"
+    Expression="PI_Name"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HHCID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="HHC_ID"
+    Expression="HHC_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTdatetime"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="PVT_date_time"
+    Expression="PVT_date_time"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTFromDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="PVT_From_Date"
+    Expression="PVT_From_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionSearchRVO.PVTFromDate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTToDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="PVT_To_Date"
+    Expression="PVT_To_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionSearchRVO.PVTToDate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTVHCLgeolat"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="java.lang.Float"
+    ColumnType="float"
+    AliasName="PVT_VHCL_geo_lat"
+    Expression="PVT_VHCL_geo_lat"
+    SQLType="FLOAT">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTVHCLgeolon"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="java.lang.Float"
+    ColumnType="float"
+    AliasName="PVT_VHCL_geo_lon"
+    Expression="PVT_VHCL_geo_lon"
+    SQLType="FLOAT">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTStatusID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_Status_ID"
+    Expression="PVT_Status_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_PVTStatusID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTStatusID1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_Status_ID1"
+    Expression="PVT_Status_ID1"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTStatusID2"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_Status_ID2"
+    Expression="PVT_Status_ID2"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTStatusID3"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_Status_ID3"
+    Expression="PVT_Status_ID3"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTSTAGEID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_STAGE_ID"
+    Expression="PVT_STAGE_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_PVTSTAGEID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTSTAGEID1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_STAGE_ID1"
+    Expression="PVT_STAGE_ID1"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ENFORCESTAGEID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="ENFORCE_STAGE_ID"
+    Expression="ENFORCE_STAGE_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ENFORCESTAGEID1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="ENFORCE_STAGE_ID1"
+    Expression="ENFORCE_STAGE_ID1"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CLOSUREREASONS"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="CLOSURE_REASONS"
+    Expression="CLOSURE_REASONS"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CLOSUREREMARKS"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2000"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="CLOSURE_REMARKS"
+    Expression="CLOSURE_REMARKS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CONTRAAMT"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="CONTRA_AMT"
+    Expression="CONTRA_AMT"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Discountamt"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="Discount_amt"
+    Expression="Discount_amt"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTAMTPAYABLE"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="PVT_AMT_PAYABLE"
+    Expression="PVT_AMT_PAYABLE"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTAMTPAID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="19"
+    Scale="4"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    AliasName="PVT_AMT_PAID"
+    Expression="PVT_AMT_PAID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="verifiedby"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="verified_by"
+    Expression="verified_by"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="verifieddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="verified_date"
+    Expression="verified_date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DEFCityCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="DEF_City_Code"
+    Expression="DEF_City_Code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DEFCountryMst"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="DEF_Country_Mst"
+    Expression="DEF_Country_Mst"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ADPnumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="ADP_number"
+    Expression="ADP_number"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Appealnumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="Appeal_number"
+    Expression="Appeal_number"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="courtcasenumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="court_case_number"
+    Expression="court_case_number"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="zonecode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="zone_code"
+    Expression="zone_code"
+    SQLType="VARCHAR"
+    LOVName="LOV_zonecode">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionSearchRVO.zonecode_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DiscPeriodenddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Disc_Period_end_date"
+    Expression="Disc_Period_end_date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Created_By"
+    Expression="Created_By"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Created_Date"
+    Expression="Created_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Updatedby"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Updated_by"
+    Expression="Updated_by"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Updateddate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Updated_date"
+    Expression="Updated_date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CountryCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Country_Code"
+    Expression="Country_Code"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ForeignPlate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Foreign_Plate"
+    Expression="Foreign_Plate"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATENUMBER"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="PLATE_NUMBER"
+    Expression="PLATE_NUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionSearchRVO.PLATENUMBER_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATECNTID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PLATE_CNT_ID"
+    Expression="PLATE_CNT_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATECTGID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PLATE_CTG_ID"
+    Expression="PLATE_CTG_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATETYPEID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PLATE_TYPE_ID"
+    Expression="PLATE_TYPE_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHMAKEID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="VEH_MAKE_ID"
+    Expression="VEH_MAKE_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_VEHMAKEID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHMODELID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="VEH_MODEL_ID"
+    Expression="VEH_MODEL_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_VEHMODELID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHCOLOURID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="VEH_COLOUR_ID"
+    Expression="VEH_COLOUR_ID"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ActiveFlag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Active_Flag"
+    Expression="Active_Flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Blacklistflag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="Blacklist_flag"
+    Expression="Blacklist_flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="vehownershiptypeid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="veh_ownership_type_id"
+    Expression="veh_ownership_type_id"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.AuctionSearchRVO.vehownershiptypeid_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="customername"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="customer_name"
+    Expression="customer_name"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Mobilenum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Mobile_num"
+    Expression="Mobile_num"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="readyforauctionflag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="char"
+    AliasName="ready_for_auction_flag"
+    Expression="ready_for_auction_flag"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="AuctionSearchRVOCriteria"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.AuctionSearchRVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow656"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="PVTNum"
+        ViewAttribute="PVTNum"
+        Operator="="
+        Conjunction="AND"
+        Value=":bindPVTnumber"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="SectorCode"
+        ViewAttribute="SectorCode"
+        Operator="="
+        Conjunction="AND"
+        Value=":bindSectorId"
+        Required="Optional"
+        IsBindVarValue="true"/>
+      <ViewCriteriaItem
+        Name="PVTFromDate"
+        ViewAttribute="PVTFromDate"
+        Operator="ONORAFTER"
+        Conjunction="AND"
+        Value=":PVTIssueddateTo"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PVTToDate"
+        ViewAttribute="PVTToDate"
+        Operator="ONORBEFORE"
+        Conjunction="AND"
+        Value=":PVTIssueddatefrom"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="zonecode"
+        ViewAttribute="zonecode"
+        Operator="="
+        Conjunction="AND"
+        Value=":bindZoneId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PLATENUMBER"
+        ViewAttribute="PLATENUMBER"
+        Operator="="
+        Conjunction="AND"
+        Value=":bindPlateNumber"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

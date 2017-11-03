@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AuctionHouseEvaluationTF">
+    <default-activity id="__1">resetAuctionEvaluation</default-activity>
+    <managed-bean id="__7">
+      <managed-bean-name id="__9">AuctionHouseEvaluationBean</managed-bean-name>
+      <managed-bean-class id="__8">com.imum.cpms.transactions.aution.AuctionHouseEvaluationBean</managed-bean-class>
+      <managed-bean-scope id="__6">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="auctionHouseEvaluation">
+      <page>/jspx/transactions/fragments/AuctionHouseEvaluation.jsff</page>
+    </view>
+    <method-call id="resetAuctionEvaluation">
+      <method>#{bindings.resetAuctionEvaluation.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>resetAuctionEvaluation</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">resetAuctionEvaluation</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__11">resetAuctionEvaluation</from-outcome>
+        <to-activity-id id="__10">auctionHouseEvaluation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

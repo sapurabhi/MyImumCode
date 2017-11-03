@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="GroupMgmtTF">
+    <default-activity id="__2">displayDML</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__4">GroupMgmtMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.view.backing.GroupMgmtMBean</managed-bean-class>
+      <managed-bean-scope id="__1">request</managed-bean-scope>
+    </managed-bean>
+    <view id="GroupMgmt">
+      <page>/jspx/masters/fragments/GroupMgmt.jsff</page>
+    </view>
+    <method-call id="displayDML">
+      <method>#{GroupMgmtMBean.displayDML}</method>
+      <outcome id="__11">
+        <fixed-outcome>*callGroupMgmt</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">displayDML</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">*callGroupMgmt</from-outcome>
+        <to-activity-id id="__8">GroupMgmt</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

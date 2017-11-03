@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle-webservice-clients xmlns:ns2="http://java.sun.com/xml/ns/javaee">
+   <webservice-client>
+      <service-qname namespaceURI="http://www.zoneparking.ae/PVT_ObservationOrIssuance"
+                     localpart="pvt_observationorissuance_client_ep"/>
+      <port-info>
+         <wsdl-port namespaceURI="http://www.zoneparking.ae/PVT_ObservationOrIssuance"
+                    localpart="PVT_ObservationOrIssuance_pt"/>
+         <runtime/>
+         <operations>
+            <operation name="pvtObservationOrIssuance"/>
+         </operations>
+      </port-info>
+   </webservice-client>
+</oracle-webservice-clients>

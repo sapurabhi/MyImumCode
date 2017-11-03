@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTBulkCancellationTF">
+    <default-activity id="__1">CreateInsert</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">BulkPVtcancellationMB</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.transactions.pvt.BulkPVtcancellationMB</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="BulkPVTCancellation">
+      <page>/jspx/transactions/fragments/BulkPVTCancellation.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__8">
+      <from-activity-id id="__9">CreateInsert</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__12">CreateInsert</from-outcome>
+        <to-activity-id id="__10">BulkPVTCancellation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

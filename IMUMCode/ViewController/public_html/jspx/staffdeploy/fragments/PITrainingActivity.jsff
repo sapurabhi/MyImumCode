@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelHeader text="PI Training Activities" id="ph1"
+                  inlineStyle="height:27px; width:651px;"/>
+  
+  <af:panelFormLayout id="pfl0" inlineStyle="width:661px;">
+  <f:facet name="footer"/>
+    <af:selectOneChoice value="#{bindings.genPITypeLOVVO1.inputValue}"
+                        required="#{bindings.genPITypeLOVVO1.hints.mandatory}"
+                        shortDesc="#{bindings.genPITypeLOVVO1.hints.tooltip}"
+                        id="soc1"
+                        valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.PITypeValueentered}"
+                        autoSubmit="true"
+                        binding="#{pageFlowScope.PITrainingActivityMBean.piType}"
+                        label="#{viewcontrollerBundle.PI_TYPE}"
+                        contentStyle="width:155px">
+      <f:selectItems value="#{bindings.genPITypeLOVVO1.items}" id="si1"/>
+    </af:selectOneChoice>
+    <af:spacer width="10" height="10" id="s25"/>
+    <af:selectOneChoice value="#{bindings.GenPINumberLOVVO1.inputValue}"
+                        label="PI Number" disabled="false"
+                        required="#{bindings.GenPINumberLOVVO1.hints.mandatory}"
+                        shortDesc="#{bindings.GenPINumberLOVVO1.hints.tooltip}"
+                        id="soc3" autoSubmit="true"
+                        binding="#{pageFlowScope.PITrainingActivityMBean.piNumber}"
+                        partialTriggers="::soc1" contentStyle="width:155px"
+                        
+                        valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.PINumberValueChangeLisner}">
+      <f:selectItems value="#{bindings.GenPINumberLOVVO1.items}" id="si3"/>
+      
+    </af:selectOneChoice>
+    <af:spacer width="10" height="10" id="s27"/>
+  </af:panelFormLayout>
+  <af:panelGroupLayout id="pgl1">
+    <af:commandButton text="Search" id="cb1"
+                      action="#{pageFlowScope.PITrainingActivityMBean.SearchPI}"
+                      inlineStyle="width:100px;text-align:center;background-color:#F39C11;"/>
+  </af:panelGroupLayout>
+  <af:spacer width="30" height="10" id="s10"/>
+  <af:outputText partialTriggers="::soc1 ::soc3" value="Please Click on Search to Create/Update Training Activities" id="aot1" binding="#{pageFlowScope.PITrainingActivityMBean.outPutText}"
+                 inlineStyle="background-color:Yellow;"/>
+  <af:toolbar id="t2">
+  <!--<af:commandButton text="#{viewcontrollerBundle.SUBMIT_5}" id="cb8"
+                      action="#{pageFlowScope.PITrainingActivityMBean.Submit}"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.submitAllocationTop}"
+                      partialTriggers="::soc1 ::soc3"/>
+ 
+    <af:commandButton text="#{viewcontrollerBundle.CANCEL_7}" id="cb9"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      action="#{pageFlowScope.PITrainingActivityMBean.Cancel}"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.cancelAllocationTop}"
+                      partialTriggers="::soc1 ::soc3">
+      <af:resetActionListener/>
+    </af:commandButton>
+    <af:commandButton text="#{viewcontrollerBundle.UPDATE}" id="cb10"
+                      action="#{pageFlowScope.PITrainingActivityMBean.updatetraining}"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.submitUpdationTop}"
+                      partialTriggers="::soc1 ::soc3"/>
+    <af:commandButton text="#{viewcontrollerBundle.CANCEL_8}" id="cb11"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      action="#{pageFlowScope.PITrainingActivityMBean.CancelUpdate}"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.cancelUpdationTop}"
+                      partialTriggers="::soc1 ::soc3">
+      <af:resetActionListener/>
+    </af:commandButton>-->
+    <af:spacer width="380" height="30" id="s1"/>
+    <af:commandButton text="New" id="cb4" binding="#{pageFlowScope.PITrainingActivityMBean.newTraining}"
+                      inlineStyle="width:100px;text-align:center;background-color:#F39C11;" visible="false"
+                      action="#{pageFlowScope.PITrainingActivityMBean.NewTraining}"
+                      partialTriggers="::soc1 ::soc3"/>
+    <af:spacer width="10" height="10" id="s11"/>
+    <af:commandButton text="Edit" id="cb5" binding="#{pageFlowScope.PITrainingActivityMBean.editTraining}"
+                      action="#{pageFlowScope.PITrainingActivityMBean.EditTraining}" visible="false"
+                      inlineStyle="width:100px;text-align:center;background-color:#F39C11;"
+                      partialTriggers="::soc1 ::soc3"/>
+    <h:inputHidden id="ih1"/>
+  </af:toolbar>
+  <af:panelGroupLayout id="pgl10" layout="vertical" inlineStyle="width:659px;">
+    <af:spacer width="10" height="30" id="s28"/>
+  </af:panelGroupLayout>
+  <af:panelHeader text="PI Training Courses Allocated" id="pgl3" inlineStyle="width:659px;" visible="false"
+                  binding="#{pageFlowScope.PITrainingActivityMBean.piTrainingCourseTableForm}" partialTriggers="::soc1 ::soc3">
+    <af:spacer width="10" height="10" id="s24"/>
+    <af:table value="#{bindings.PITrainingActivityUVO1.collectionModel}"
+              var="row" rows="#{bindings.PITrainingActivityUVO1.rangeSize}"
+              emptyText="#{bindings.PITrainingActivityUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="10" rowBandingInterval="1"
+              selectionListener="#{bindings.PITrainingActivityUVO1.collectionModel.makeCurrent}"
+              rowSelection="single" id="t1" styleClass="AFStretchWidth"
+              width="607" scrollPolicy="page" columnBandingInterval="0"
+              inlineStyle="height:178px;"
+              filterModel="#{bindings.PITrainingActivityUVO1Query.queryDescriptor}"
+              queryListener="#{bindings.PITrainingActivityUVO1Query.processQuery}"
+              selectedRowKeys="#{bindings.PITrainingActivityUVO1.collectionModel.selectedRow}"
+              autoHeightRows="0" first="0" filterVisible="true">
+      <af:column sortProperty="#{bindings.PITrainingActivityUVO1.hints.Coursename.name}"
+                 sortable="false" id="c5"
+                 headerText="#{viewcontrollerBundle.COURSE_NAME}" width="115">
+        <af:outputText value="#{row.Coursename}" id="ot5"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PITrainingActivityUVO1.hints.CourseDesc.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.COURSE_DESCRIPTION}" id="c3"
+                 width="140">
+        <af:outputText value="#{row.CourseDesc}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PITrainingActivityUVO1.hints.StartDate.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.START_DATE_0}" id="c4"
+                 width="110">
+        <af:outputText value="#{row.StartDate}" id="ot2">
+          <af:convertDateTime pattern="#{bindings.PITrainingActivityUVO1.hints.StartDate.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PITrainingActivityUVO1.hints.EndDate.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.END_DATE_0}" id="c1"
+                 width="113">
+        <af:outputText value="#{row.EndDate}" id="ot1">
+          <af:convertDateTime pattern="#{bindings.PITrainingActivityUVO1.hints.EndDate.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.PITrainingActivityUVO1.hints.Result.name}"
+                 sortable="false" headerText="#{viewcontrollerBundle.RESULT}"
+                 id="c2" width="101">
+        <af:outputText value="#{row.Result}" id="ot3"/>
+      </af:column>
+    </af:table>
+    <af:spacer width="10" height="25" id="s16"/>
+    <h:inputHidden id="ih2"
+                   binding="#{pageFlowScope.PITrainingActivityMBean.snoHidden}"/>
+    <h:inputHidden id="ih3"
+                   binding="#{pageFlowScope.PITrainingActivityMBean.piNumberHidden}"/>
+    <h:inputHidden id="ih4"
+                   binding="#{pageFlowScope.PITrainingActivityMBean.piTypeHidden}"/>
+  </af:panelHeader>
+  <af:panelGroupLayout id="pgl2"  rendered="#{pageFlowScope.Button eq 'New' ? 'true':'false'}" inlineStyle="width:659px;"
+  binding="#{pageFlowScope.PITrainingActivityMBean.trainingCourseAllocationForm}"
+                       partialTriggers="::soc1 ::soc3">
+      <af:showDetailHeader text="Training/Course Allocation" disclosed="true" id="sdh1" 
+                           inlineStyle="width:523px;">
+   <af:panelFormLayout id="pfl1"  inlineStyle="width:519px;">
+  
+  <f:facet name="footer">
+        
+      </f:facet>
+  
+    
+ 
+      <af:selectOneChoice value="#{bindings.GenCoursesLOVVO1.inputValue}"
+                          label="#{viewcontrollerBundle.COURSE_NAME}"
+                          required="#{bindings.GenCoursesLOVVO1.hints.mandatory}"
+                          showRequired="true"
+                          shortDesc="#{bindings.GenCoursesLOVVO1.hints.tooltip}"
+                          id="soc2" partialTriggers="::soc1 ::soc3"
+                          binding="#{pageFlowScope.PITrainingActivityMBean.courseName}"
+                          autoSubmit="true"
+                          valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.coursenamechanged}"
+                          contentStyle="width:170px">
+        <f:selectItems value="#{bindings.GenCoursesLOVVO1.items}" id="si2"/>
+      </af:selectOneChoice>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:inputText label="Course Description" id="it2" partialTriggers="::soc2" showRequired="true"
+                    binding="#{pageFlowScope.PITrainingActivityMBean.courseDescription}"/>
+        <af:spacer width="10" height="10" id="s3"/>
+        <af:inputDate label="Start Date" id="id1"
+                  binding="#{pageFlowScope.PITrainingActivityMBean.startDate}"
+                  partialTriggers="::soc2 ::id1" showRequired="true"
+                  valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.StartDateValuechanged}"
+                  autoSubmit="true">
+    <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+    </af:inputDate>
+        <af:spacer width="10" height="10" id="s4"/>
+        <af:inputDate label="End Date" id="id2" 
+                  binding="#{pageFlowScope.PITrainingActivityMBean.endDate}"
+                  partialTriggers="::id1 ::soc2" disabled="true">
+    <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+    </af:inputDate>
+        <af:spacer width="10" height="10" id="s5"/>
+        <af:inputText label="Result" id="it1"
+        partialTriggers="::soc2" showRequired="true"
+                  binding="#{pageFlowScope.PITrainingActivityMBean.result}"/>
+        <af:spacer width="10" height="5" id="s9"/>
+          <!--<af:inputFile value="file upload" id="if3"
+                        autoSubmit="true" showRequired="true"  
+                       valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.fileuploadVC}"/>-->
+        <af:inputFile label="Upload Docs" id="if1"  autoSubmit="true" showRequired="true"
+        valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.fileuploadVC}"/>
+      </af:panelFormLayout>
+  </af:showDetailHeader>
+    <af:spacer width="10" height="10" id="s15"/>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl5" rendered="#{pageFlowScope.Button eq 'Edit' ? 'true':'false'}" inlineStyle="width:659px;"
+  binding="#{pageFlowScope.PITrainingActivityMBean.trainingCourseUpdationForm}"
+                       partialTriggers="::soc1 ::soc3">
+    <af:showDetailHeader text="Training/Course Updation" disclosed="true"
+                         id="sdh2" inlineStyle="width:521px; height:228px;">
+    <af:panelFormLayout id="pfl2" partialTriggers="::t1"
+                        inlineStyle="width:507px;">
+  
+    
+  
+      <!--<af:selectOneChoice value="#{bindings.Coursename.inputValue}" visible="false"
+                          label="#{viewcontrollerBundle.COURSE_NAME}" disabled="true"
+                          required="#{bindings.Coursename.hints.mandatory}"
+                          shortDesc="#{bindings.Coursename.hints.tooltip}"
+                          id="soc4" partialTriggers="::soc1 ::soc3"
+                          valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.CourseNameUpdateValueChanged}"
+                          autoSubmit="true"
+                          binding="#{pageFlowScope.PITrainingActivityMBean.courseNameUpdate}"
+                          contentStyle="width:170px">
+        <f:selectItems value="#{bindings.Coursename.items}" id="si4"/>
+      </af:selectOneChoice>-->
+      <af:inputText label="#{viewcontrollerBundle.COURSE_NAME}"
+                    showRequired="true" columns="30" id="it6" disabled="true"
+                    binding="#{pageFlowScope.PITrainingActivityMBean.courseNameUpdateText}">
+        
+      </af:inputText>
+        <af:spacer width="10" height="10" id="s6"/>
+        <af:inputText label="#{viewcontrollerBundle.COURSE_DESCRIPTION}"
+                    showRequired="true" columns="30" id="it4"
+                    binding="#{pageFlowScope.PITrainingActivityMBean.courseDescriptionUpdate}">
+        <f:validator binding="#{bindings.CourseDesc.validator}"/>
+      </af:inputText>
+        <af:spacer width="10" height="10" id="s7"/>
+        <af:inputDate label="#{viewcontrollerBundle.START_DATE}"
+                    showRequired="true" id="id3"
+                    autoSubmit="true" partialTriggers="::id3"
+                    valueChangeListener="#{pageFlowScope.PITrainingActivityMBean.StartDateUpdateValueChanged}"
+                    binding="#{pageFlowScope.PITrainingActivityMBean.startDateUpdate}">
+        <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+      </af:inputDate>
+        <af:spacer width="10" height="10" id="s8"/>
+        <af:inputDate label="#{viewcontrollerBundle.END_DATE_1}"
+                    id="id4" disabled="true" partialTriggers="::id3"
+                    binding="#{pageFlowScope.PITrainingActivityMBean.endDateUpdate}">
+        <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+      </af:inputDate>
+        <af:spacer width="10" height="10" id="s17"/>
+        <af:inputText label="#{viewcontrollerBundle.RESULT}"
+                    showRequired="true" columns="10"
+                    id="it5"
+                    binding="#{pageFlowScope.PITrainingActivityMBean.resultUpdate}">
+        </af:inputText>
+      </af:panelFormLayout>
+     </af:showDetailHeader>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl9" layout="vertical" inlineStyle="width:515px;">
+    <af:spacer width="10" height="10" id="s14"/>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl4"   rendered="#{pageFlowScope.Button eq 'New' ? 'true':'false'}">
+    <af:commandButton text="#{viewcontrollerBundle.SUBMIT_5}" id="cb2"
+                      action="#{pageFlowScope.PITrainingActivityMBean.Submit}"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.submitAllocation}"
+                      partialTriggers="::soc1 ::soc3"/>
+    <af:spacer width="10" height="10" id="s12"/>
+    <af:commandButton text="#{viewcontrollerBundle.CANCEL_7}" id="cb3"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      action="#{pageFlowScope.PITrainingActivityMBean.Cancel}"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.cancelAllocation}"
+                      partialTriggers="::soc1 ::soc3">
+      <af:resetActionListener/>
+      <af:resetActionListener/>
+    </af:commandButton>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl7" layout="horizontal"  rendered="#{pageFlowScope.Button eq 'Edit' ? 'true':'false'}">
+    <af:commandButton text="#{viewcontrollerBundle.UPDATE}" id="cb6"
+                      action="#{pageFlowScope.PITrainingActivityMBean.updatetraining}"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.submitUpdation}"
+                      partialTriggers="::soc1 ::soc3"/>
+    <af:spacer width="10" height="10" id="s13"/>
+    <af:commandButton text="#{viewcontrollerBundle.CANCEL_8}" id="cb7"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      action="#{pageFlowScope.PITrainingActivityMBean.CancelUpdate}"
+                      binding="#{pageFlowScope.PITrainingActivityMBean.cancelUpdation}"
+                      partialTriggers="::soc1 ::soc3">
+      <af:resetActionListener/>
+    </af:commandButton>
+  </af:panelGroupLayout>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:PITrainingActivityMBean-->
+</jsp:root>
+

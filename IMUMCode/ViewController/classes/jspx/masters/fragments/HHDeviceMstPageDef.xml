@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="HHDeviceMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="HHDeviceMstUVO1" RangeSize="-1"
+              DataControl="MastersAMDataControl" id="HHDeviceMstUVO1Iterator"/>
+    <iterator Binds="HHDeviceMstUVO2" RangeSize="10"
+              DataControl="MastersAMDataControl" id="HHDeviceMstUVO2Iterator"/>
+    <searchRegion Binds="HHDeviceMstUVO2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="HHDeviceMstUVO2Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="HHModel">
+      <AttrNames>
+        <Item Value="HHModel"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="HHConfig">
+      <AttrNames>
+        <Item Value="HHConfig"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="HHVer">
+      <AttrNames>
+        <Item Value="HHVer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="HHOS">
+      <AttrNames>
+        <Item Value="HHOS"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="HHIP">
+      <AttrNames>
+        <Item Value="HHIP"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="HHSNo">
+      <AttrNames>
+        <Item Value="HHSNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="HHSIMNo">
+      <AttrNames>
+        <Item Value="HHSIMNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="WarrUpto">
+      <AttrNames>
+        <Item Value="WarrUpto"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HHDeviceMstUVO1Iterator" id="NxtMntDt">
+      <AttrNames>
+        <Item Value="NxtMntDt"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="HHDeviceMstUVO1Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="HHDeviceMstUVO2Iterator" id="HHDeviceMstUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.HHDeviceMstUVO"
+                      Name="HHDeviceMstUVO20">
+        <AttrNames>
+          <Item Value="HHId"/>
+          <Item Value="HHModel"/>
+          <Item Value="HHConfig"/>
+          <Item Value="HHVer"/>
+          <Item Value="HHOS"/>
+          <Item Value="HHSNo"/>
+          <Item Value="HHIP"/>
+          <Item Value="ActiveFlag" Binds="ActiveFlag1"/>
+          <Item Value="assettypecode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <button IterBinding="HHDeviceMstUVO2Iterator" id="ActiveFlag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <methodAction id="addNewAssetMst"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addNewAssetMst"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="HHDeviceMstUVO2Iterator" id="assettypecode"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"
+          StaticList="false" ListIter="HHDeviceMstUVO1Iterator">
+      <AttrNames>
+        <Item Value="assettypecode"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="HHModel"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="assettypecode"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="HHCNewAssignmentPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="shiftlistVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="shiftlistVO1Iterator"/>
+    <iterator Binds="HHCAssignVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl" id="HHCAssignVO1Iterator"
+              Refresh="ifNeeded"/>
+    <iterator Binds="GenLocationLOVVO1" RangeSize="-1"
+              DataControl="StaffDeployLookUpDataControl"
+              id="GenLocationLOVVO1Iterator"/>
+    <iterator Binds="HHCNewRe1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="HHCNewRe1Iterator"
+              Refresh="ifNeeded"/>
+    <iterator id="HHDeviceMstUVO1Iterator" Binds="HHDeviceMstUVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator id="HHCAssignDocsVO1Iterator" Binds="HHCAssignDocsVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator id="HHCAssignVO2Iterator" Binds="HHCAssignVO2"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator Binds="GenpiShiftMstVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="GenpiShiftMstVO1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="shiftlistVO1Iterator" ListOperMode="navigation"
+          ListIter="shiftlistVO1Iterator" id="shiftlistVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="shiftId"/>
+      </AttrNames>
+    </list>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="StaffDeployDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="StaffDeployDataControl"/>
+    <list IterBinding="HHCAssignVO1Iterator" id="locdesc"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="GenLocationLOVVO1Iterator">
+      <AttrNames>
+        <Item Value="Locationid"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="locationid"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="locdesc"/>
+      </ListDisplayAttrNames>
+    </list>
+
+    <list IterBinding="GenLocationLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="GenLocationLOVVO1Iterator" id="GenLocationLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="locdesc"/>
+      </AttrNames>
+    </list>
+    
+    <methodAction id="CheckPIShift"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CheckPIShift" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.CheckPIShift_StaffDeployDataControl_dataProvider_CheckPIShift_result">
+      <NamedData NDName="checkPIID" NDType="java.lang.String"/>
+      <NamedData NDName="shiftentered" NDType="java.lang.String"/>
+      <NamedData NDName="stDate" NDType="java.util.Date"/>
+    </methodAction>
+    <tree IterBinding="HHCAssignVO1Iterator" id="HHCAssignVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.HHCAssignVO"
+                      Name="HHCAssignVO10">
+        <AttrNames>
+          <Item Value="HHCID"/>
+          <Item Value="IssuedDate1"/>
+          <Item Value="PIID"/>
+          <Item Value="RecievedDate"/>
+          <Item Value="HHSNo"/>
+          <Item Value="PrinterSNo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="HHCNewRe1Iterator" id="HHCNewRe1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.HHCNewRe"
+                      Name="HHCNewRe10">
+        <AttrNames>
+          <Item Value="AssignedStatus"/>
+          <Item Value="CoOrdinator"/>
+          <Item Value="Comments"/>
+          <Item Value="HHCID"/>
+          <Item Value="ID"/>
+          <Item Value="IssuedDate1"/>
+          <Item Value="Locationid"/>
+          <Item Value="PIID"/>
+          <Item Value="Reassignedby"/>
+          <Item Value="RecievedDate"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCommit"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.doCommit_StaffDeployDataControl_dataProvider_doCommit_result"/>
+    <tree IterBinding="HHCNewRe1Iterator" id="HHCNewRe11">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.HHCNewRe"
+                      Name="HHCNewRe110">
+        <AttrNames>
+          <Item Value="HHCID"/>
+          <Item Value="IssuedDate1"/>
+          <Item Value="PIID"/>
+          <Item Value="RecievedDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="backReAssign"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="backReAssign" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.backReAssign_StaffDeployDataControl_dataProvider_backReAssign_result"/>
+    <methodAction id="displayHHCdtls"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="displayHHCdtls" IsViewObjectMethod="false">
+      <NamedData NDName="shift" NDType="java.lang.String"/>
+      <NamedData NDName="location" NDType="java.lang.String"/>
+      <NamedData NDName="currentDate" NDType="java.sql.Date"/>
+    </methodAction>
+    <methodAction id="CheckUnique"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CheckUnique" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.CheckUnique_StaffDeployDataControl_dataProvider_CheckUnique_result">
+      <NamedData NDName="checkPIID" NDType="java.lang.String"/>
+      <NamedData NDName="stDate" NDType="java.util.Date"/>
+      <NamedData NDName="assignedstatuss" NDType="java.lang.String"/>
+      <NamedData NDName="status" NDType="java.lang.String"/>
+      <NamedData NDName="HhcId" NDType="java.lang.String"/>
+      <NamedData NDName="Shift" NDType="java.lang.String"/>
+      <NamedData NDName="PrinterId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="checkHHCValid"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="checkHHCValid" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.checkHHCValid_StaffDeployDataControl_dataProvider_checkHHCValid_result">
+      <NamedData NDName="checkPIID" NDType="java.lang.String"/>
+      <NamedData NDName="stDate" NDType="java.util.Date"/>
+      <NamedData NDName="HhcId" NDType="java.lang.String"/>
+      <NamedData NDName="PrinterId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createHHCAssignRow"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createHHCAssignRow" IsViewObjectMethod="false">
+      <NamedData NDName="checkPIID" NDType="java.lang.String"/>
+      <NamedData NDName="stDate" NDType="java.util.Date"/>
+      <NamedData NDName="masterHHId" NDType="java.lang.String"/>
+      <NamedData NDName="HHCID" NDType="java.lang.String"/>
+      <NamedData NDName="shift" NDType="java.lang.String"/>
+      <NamedData NDName="location" NDType="int"/>
+      <NamedData NDName="comments" NDType="java.lang.String"/>
+      <NamedData NDName="PriterIssuedStatusCode" NDType="java.lang.String"/>
+      <NamedData NDName="PrinterId" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="HHCAssignVO1Iterator" StaticList="false" Uses="LOV_Shift"
+          id="Shift" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="GenpiShiftMstVO1Iterator" ListOperMode="navigation"
+          ListIter="GenpiShiftMstVO1Iterator" id="GenpiShiftMstVO1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="pishiftdesc"/>
+      </AttrNames>
+    </list>
+    <methodAction id="callRollback"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callRollback" IsViewObjectMethod="false"/>
+  </bindings>
+</pageDefinition>

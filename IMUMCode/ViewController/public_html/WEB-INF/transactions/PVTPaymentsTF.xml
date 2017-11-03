@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTPaymentsTF">
+    <default-activity id="__1">PVTPayments</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__4">pvtPaymentBean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.transactions.pvt.PVTPaymentBean</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTPayments">
+      <page>/jspx/transactions/fragments/PVTPayments.jsff</page>
+    </view>
+    <view id="PVTPaymentReceipt">
+      <page>/jspx/transactions/fragments/PVTPaymentReceipt.jsff</page>
+    </view>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">PVTPayments</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__14">Success</from-outcome>
+        <to-activity-id id="__8">PVTPaymentReceipt</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__10">
+      <from-activity-id id="__11">PVTPaymentReceipt</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome id="__15">backNav</from-outcome>
+        <to-activity-id id="__13">PVTPayments</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="pilocation-flow-definition">
+    <default-activity id="__1">getPISupId</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__4">BulkPVtcancellationMB</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.transactions.pvt.BulkPVtcancellationMB</managed-bean-class>
+      <managed-bean-scope id="__2">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__9">
+      <managed-bean-name id="__6">PiLocation</managed-bean-name>
+      <managed-bean-class id="__7">com.imum.cpms.transactions.pilocationmap.PiLocation</managed-bean-class>
+      <managed-bean-scope id="__8">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="pilocationmap">
+      <page>/jspx/transactions/fragments/pilocationmap.jsff</page>
+    </view>
+    <method-call id="getPISupId">
+      <method>#{bindings.getPISupId.execute}</method>
+      <outcome id="__10">
+        <fixed-outcome>getPISupId</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__11">
+      <from-activity-id id="__12">getPISupId</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__14">getPISupId</from-outcome>
+        <to-activity-id id="__13">pilocationmap</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

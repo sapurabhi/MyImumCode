@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57"
+                id="piDailyDeploymentTF_piDailyDeploymentTF_emptyPiDailyworkPageDef"
+                Package="staffdeploy">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="emptyPiDailywork" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="emptyPiDailywork"
+            IsViewObjectMethod="false" DataControl="StaffDeployDataControl"
+            InstanceName="StaffDeployDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

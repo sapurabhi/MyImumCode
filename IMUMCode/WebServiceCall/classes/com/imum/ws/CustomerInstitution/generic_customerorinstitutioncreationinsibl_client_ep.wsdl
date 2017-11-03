@@ -1,0 +1,439 @@
+<WL5G3N0:definitions
+     name="CustomerProfileCreationInSIBL"
+     targetNamespace="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"
+     xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:WL5G3N2="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"
+     xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:WL5G3N1="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+    >
+    <WL5G3N0:documentation>http://192.168.200.113:8001/soa-infra/services/default/Generic_CustomerOrInstitutionCreationInSIBL!1.0/Generic_CustomerOrInstitutionCreationInSIBL.wsdl</WL5G3N0:documentation>
+    <WL5G3N1:partnerLinkType name="Generic_CustomerOrInstitutionCreationInSIBL">
+        <WL5G3N1:role name="Generic_CustomerOrInstitutionCreationInSIBLProvider">
+            <WL5G3N1:portType name="WL5G3N2:Generic_CustomerOrInstitutionCreationInSIBL"/>
+        </WL5G3N1:role>
+    </WL5G3N1:partnerLinkType>
+    <WL5G3N0:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"
+             xmlns="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"
+             xmlns:client="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"
+             xmlns:ns1="http://www.zoneparking.ae/fault" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="Generic_CustomerCreationInSIBL_Request" type="GenCustomerMst"/>
+            <xs:complexType name="GenCustomerMst">
+                <xs:sequence>
+                    <xs:element name="Cust_ID" type="xs:long"/>
+                    <xs:element minOccurs="0" name="Salutation" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="10"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Last_Name" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="First_Name" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Middle_Name" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Gender" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Emirates_ID" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Resident_type" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Nationality" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="50"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="City_Code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="3"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Country_code">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="3"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Mobile_num" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Landline_num" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="alternatePhoneNum" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Email_ID" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Active_flag" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Comments" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Legacy_info" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Created_By" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Created_Date" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="Updated_by" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Update_date" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="GenAddressDetailsCollection">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="GenAddressDetails"
+                                     type="GenAddressDetails"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GenAddressDetails">
+                <xs:sequence>
+                    <xs:element name="addressDtlSeq" type="xs:long"/>
+                    <xs:element minOccurs="0" name="utilBillNum" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="TowTeeq_Num" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="addrLine1" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="addrLine2" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="addrLine3" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Post_Box_Num" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="Sector_Code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Zone_Code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="5"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Community_Code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="5"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="City_Code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="3"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Country_code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="3"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Created_By" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Created_Date" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="Updated_by" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Update_date" nillable="true" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Generic_InstitutionCreationInSIBL_Request" type="GenInstitutionMst"/>
+            <xs:complexType name="GenInstitutionMst">
+                <xs:sequence>
+                    <xs:element name="instId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="instName" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="tradeLicenseNum" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="instType" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="custInstAddrSeq" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="City_Code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="3"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Country_Code" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="3"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Landline_num" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="alternatePhoneNum" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Fax_num" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Primary_contact" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="100"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Email_ID" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Active_flag" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Created_By" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Created_Date" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="Updated_by" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Update_date" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="instUrl" nillable="true">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="200"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="GenAddressDetailsCollection">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="GenAddressDetails"
+                                     type="GenAddressDetails"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Generic_CustomerOrInstitutionCreationInSIBL_Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Cust_Inst_ID" type="xs:integer"/>
+                        <xs:element name="Status" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Response_Code" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Response_Desc" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </WL5G3N0:types>
+    <WL5G3N0:message name="Generic_CustomerCreationInSIBLRequestMessage">
+        <WL5G3N0:part name="payload" element="WL5G3N2:Generic_CustomerCreationInSIBL_Request"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="Generic_CustomerOrInstitutionCreationInSIBLResponseMessage">
+        <WL5G3N0:part name="payload" element="WL5G3N2:Generic_CustomerOrInstitutionCreationInSIBL_Response"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="Generic_InstitutionCreationInSIBLRequestMessage">
+        <WL5G3N0:part name="payload" element="WL5G3N2:Generic_InstitutionCreationInSIBL_Request"/>
+    </WL5G3N0:message>
+    <WL5G3N0:portType name="Generic_CustomerOrInstitutionCreationInSIBL">
+        <WL5G3N0:operation name="Generic_CustomerCreationInSIBL">
+            <WL5G3N0:input message="WL5G3N2:Generic_CustomerCreationInSIBLRequestMessage"/>
+            <WL5G3N0:output message="WL5G3N2:Generic_CustomerOrInstitutionCreationInSIBLResponseMessage"/>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="Generic_InstitutionCreationInSIBL">
+            <WL5G3N0:input message="WL5G3N2:Generic_InstitutionCreationInSIBLRequestMessage"/>
+            <WL5G3N0:output message="WL5G3N2:Generic_CustomerOrInstitutionCreationInSIBLResponseMessage"/>
+        </WL5G3N0:operation>
+    </WL5G3N0:portType>
+    <WL5G3N0:binding name="Generic_CustomerOrInstitutionCreationInSIBLBinding" type="WL5G3N2:Generic_CustomerOrInstitutionCreationInSIBL">
+        <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <WL5G3N0:operation name="Generic_CustomerCreationInSIBL">
+            <WL5G3N3:operation style="document" soapAction="Generic_CustomerCreationInSIBL"/>
+            <WL5G3N0:input>
+                <WL5G3N3:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N3:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+        <WL5G3N0:operation name="Generic_InstitutionCreationInSIBL">
+            <WL5G3N3:operation style="document" soapAction="Generic_InstitutionCreationInSIBL"/>
+            <WL5G3N0:input>
+                <WL5G3N3:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N3:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+    </WL5G3N0:binding>
+    <WL5G3N0:service name="generic_customerorinstitutioncreationinsibl_client_ep">
+        <WL5G3N0:port name="Generic_CustomerOrInstitutionCreationInSIBL_pt" binding="WL5G3N2:Generic_CustomerOrInstitutionCreationInSIBLBinding">
+       <WL5G3N3:address location="http://cpmsfmwappdc.cpms.local:8011/Generic/CustomerOrInstitutionCreationInSIBL"/>
+       <!--      <WL5G3N3:address location="http://192.168.200.113:8003/Generic/CustomerOrInstitutionCreationInSIBL"/> -->
+      <!--      <WL5G3N3:address location="http://192.168.200.117:8011/Generic/CustomerOrInstitutionCreationInSIBL"/>-->
+      <!--      <WL5G3N3:address location="http://192.168.200.112:8011/Generic/CustomerOrInstitutionCreationInSIBL"/>-->
+      
+        </WL5G3N0:port>
+    </WL5G3N0:service>
+</WL5G3N0:definitions>

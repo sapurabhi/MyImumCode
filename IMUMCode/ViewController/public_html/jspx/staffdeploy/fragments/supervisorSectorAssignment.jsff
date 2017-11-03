@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelHeader text="#{viewcontrollerBundle.SUPERVISOR_SECTOR_ASSIGNMENT_1}" id="pb1"
+               inlineStyle="width:682px; height:495px;" >
+    <f:facet name="toolbar"/>
+    <af:spacer width="10" height="10" id="s3"/>
+    <af:panelFormLayout id="pfl3" rows="1" inlineStyle="width:664px;">
+      <af:panelGroupLayout id="pgl6" layout="horizontal"
+                           inlineStyle="width:640px;">
+        <af:inputDate label="#{viewcontrollerBundle.ASSIGN_START_DATE__0}" id="id1"
+                      binding="#{pageFlowScope.supervisorSectorAssignmentMB.startDate}"
+                      columns="15"
+                      value="#{pageFlowScope.supervisorSectorAssignmentMB.currentDate}"
+                      contentStyle="width:208px" showRequired="true">
+          <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:selectOneChoice value="#{bindings.supervisorlistVO1.inputValue}"
+                            label="#{viewcontrollerBundle.SUPERVISOR_NAME}"
+                            shortDesc="#{bindings.supervisorlistVO1.hints.tooltip}"
+                            id="soc2" inlineStyle="vertical-align:top;"
+                            showRequired="true" partialTriggers="cb1"
+                            contentStyle="width:170px">
+          <f:selectItems value="#{bindings.supervisorlistVO1.items}" id="si3"/>
+        </af:selectOneChoice>
+        <!--<af:selectOneChoice value="#{bindings.shiftlistVO1.inputValue}" contentStyle="width:35px"
+                                label="Shift"
+                                shortDesc="#{bindings.shiftlistVO1.hints.tooltip}"
+                                id="soc1">
+              <f:selectItems value="#{bindings.shiftlistVO1.items}" id="si1"/>
+            </af:selectOneChoice>-->
+      </af:panelGroupLayout>
+    </af:panelFormLayout>
+    <af:spacer width="10" height="10" id="s1"/>
+    <af:panelGroupLayout id="pgl1" inlineStyle="width:664px;">
+      
+      <af:panelGroupLayout id="pgl2" layout="horizontal"
+                           inlineStyle="width:628px; height:34px;">
+        <af:spacer width="8" height="10" id="s7"/>
+        <af:inputDate label="#{viewcontrollerBundle.ASSIGN_END_DATE}" id="id2"
+                      showRequired="true" contentStyle="width:208px"
+                      binding="#{pageFlowScope.supervisorSectorAssignmentMB.endDate}"
+                      columns="15"
+                      value="#{pageFlowScope.supervisorSectorAssignmentMB.currentEDate}">
+        <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+        </af:inputDate>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s4"/>
+    <af:panelFormLayout id="pfl1" rows="1" inlineStyle="width:662px;">
+      <f:facet name="footer"/>
+      <af:panelGroupLayout id="pgl7" layout="horizontal"
+                           inlineStyle="width:618px;">
+        <af:spacer width="11" height="10" id="s2"/>
+        <af:selectManyListbox value="#{bindings.sectorlistVo1.inputValue}"
+                            label="#{viewcontrollerBundle.SECTOR_NAMES}" id="sml1" showRequired="true"
+                            contentStyle="width:210px" partialTriggers="cb1 ::t1"
+                            size="5">
+        <f:selectItems value="#{bindings.sectorlistVo1.items}" id="si2"/>
+      </af:selectManyListbox>
+      </af:panelGroupLayout>
+    </af:panelFormLayout>
+    <af:panelGroupLayout id="pgl11">
+      <af:panelGroupLayout id="pgl8" layout="horizontal"
+                           inlineStyle="width:173px; height:53px;">
+        <af:spacer width="10" height="10" id="s6"/>
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT_6}" id="cb1"
+                          binding="#{pageFlowScope.supervisorSectorAssignmentMB.b1}"
+                          actionListener="#{bindings.Commit.execute}"
+                          inlineStyle="width:100px;text-align:center;background-color:#F39C11;"
+                          action="#{pageFlowScope.supervisorSectorAssignmentMB.doSave}"
+                          partialSubmit="true"/>
+        <af:spacer width="10" height="10" id="s8"/>
+        <af:commandButton text="#{viewcontrollerBundle.CANCEL_2}" id="cb3" binding="#{pageFlowScope.supervisorSectorAssignmentMB.b3}"
+                        inlineStyle="width:100px;text-align:center;background-color:#F39C11;"
+                          action="#{pageFlowScope.supervisorSectorAssignmentMB.cb3_action}"/>
+      </af:panelGroupLayout>
+      <!--<af:showDetailHeader text="Supervisor Sector Assignment" disclosed="true"
+                           id="sdh1"
+                           inlineStyle="color:Black; width:660px; height:25px;">-->
+        <af:panelHeader text="#{viewcontrollerBundle.SUPERVISOR_SECTOR_ASSIGNMENT_1}" id="pb2"
+               inlineStyle="width:682px; height:264px;" >
+        <af:spacer width="10" height="10" id="s5"/>
+          <af:table value="#{bindings.SupervisorSectorAssignmentVO1.collectionModel}"
+                    var="row"
+                    rows="#{bindings.SupervisorSectorAssignmentVO1.rangeSize}"
+                    emptyText="#{bindings.SupervisorSectorAssignmentVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.SupervisorSectorAssignmentVO1.rangeSize}"
+                    rowBandingInterval="1"
+                    filterModel="#{bindings.SupervisorSectorAssignmentVO1Query.queryDescriptor}"
+                    queryListener="#{bindings.SupervisorSectorAssignmentVO1Query.processQuery}"
+                    selectedRowKeys="#{bindings.SupervisorSectorAssignmentVO1.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.SupervisorSectorAssignmentVO1.collectionModel.makeCurrent}"
+                    rowSelection="single" id="t1" width="600"
+                    inlineStyle="height:129px;" scrollPolicy="page"
+                    autoHeightRows="0" first="0" styleClass="AFStretchWidth"
+                    filterVisible="true" columnBandingInterval="0"
+                    partialTriggers="::cb1">
+            <af:column sortProperty="#{bindings.SupervisorSectorAssignmentVO1.hints.supid.name}"
+                       headerText="#{viewcontrollerBundle.SUPERVISOR_NAME}" filterable="true"
+                       id="c2" width="130" displayIndex="-1">
+              <af:outputText value="#{row.supid}" id="ot6"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.SupervisorSectorAssignmentVO1.hints.AssgnStartDate.name}"
+                       headerText="#{viewcontrollerBundle.ASSIGN_START_DATE__0}"
+                        filterable="false"
+                       id="c4" >
+              <af:outputText value="#{row.AssgnStartDate}" id="ot5">
+                <af:convertDateTime pattern="#{bindings.SupervisorSectorAssignmentVO1.hints.AssgnStartDate.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.SupervisorSectorAssignmentVO1.hints.AssgnEndDate.name}"
+                       headerText="#{viewcontrollerBundle.ASSIGN_END_DATE_0}"
+                       filterable="false"
+                       id="c3"  >
+              <af:outputText value="#{row.AssgnEndDate}" id="ot1">
+                <af:convertDateTime pattern="#{bindings.SupervisorSectorAssignmentVO1.hints.AssgnEndDate.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.SupervisorSectorAssignmentVO1.hints.Sector.name}"
+                       headerText="#{viewcontrollerBundle.SECTOR_0}"
+                       filterable="false"
+                       id="c5" width="183" displayIndex="-1"  >
+              <af:outputText value="#{row.Sector}" id="ot2"/>
+            </af:column>
+            <af:column headerText="#{viewcontrollerBundle.ACTION}"
+                       id="c6" width="59" displayIndex="-1">
+              <af:commandButton text="#{viewcontrollerBundle.AMEND_9}" id="cb2"
+                                inlineStyle="width:auto;text-align:center;background-color:#F39C11;"
+                                action="success"
+                                binding="#{pageFlowScope.supervisorSectorAssignmentMB.b2}"
+                                actionListener="#{pageFlowScope.supervisorSectorAssignmentMB.amendScreen}"/>
+            </af:column>
+          </af:table>
+      <!--</af:showDetailHeader>-->
+      </af:panelHeader>
+    </af:panelGroupLayout>
+  </af:panelHeader>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:supervisorSectorAssignmentMB-->
+</jsp:root>

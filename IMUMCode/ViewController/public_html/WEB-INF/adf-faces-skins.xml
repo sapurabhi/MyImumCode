@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<skins xmlns="http://xmlns.oracle.com/adf/view/faces/skin">
+<skin>
+<id>id name</id>
+<family>masterCss</family>
+<render-kit-id>oracle.adf.desktop</render-kit-id>
+<style-sheet-name>css/style1.css</style-sheet-name>
+</skin>
+</skins> 

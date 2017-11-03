@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTIssuancePageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTIssuanceVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTIssuanceVO1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_PlateCategory" id="PlateCategory" DTSupportsMRU="true"/>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_PlateType" id="PlateType" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PVTIssuanceVO1Iterator" id="PlateNumber">
+      <AttrNames>
+        <Item Value="PlateNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_ContraventionCode" id="ContraventionCode"
+          DTSupportsMRU="false"/>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_Sector" id="Sector" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTIssuanceVO1Iterator"
+                     id="VehicleGeoLatitude">
+      <AttrNames>
+        <Item Value="VehicleGeoLatitude"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTIssuanceVO1Iterator"
+                     id="VehicleGeoLongitude">
+      <AttrNames>
+        <Item Value="VehicleGeoLongitude"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_VehicleMake" id="VehicleMake" DTSupportsMRU="false"/>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_VehicleModel" id="VehicleModel" DTSupportsMRU="false"/>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_VehicleColor" id="VehicleColor" DTSupportsMRU="false"/>
+    <methodAction id="getContraAmtForContraCode"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getContraAmtForContraCode"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getContraAmtForContraCode_TransactionsAMDataControl_dataProvider_getContraAmtForContraCode_result">
+      <NamedData NDName="ContraCode" NDType="int"/>
+    </methodAction>
+    <methodAction id="getPlateCountryForPlateCategory"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPlateCountryForPlateCategory"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getPlateCountryForPlateCategory_TransactionsAMDataControl_dataProvider_getPlateCountryForPlateCategory_result">
+      <NamedData NDName="PlateCategoryId" NDType="int"/>
+    </methodAction>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_TariffType" id="TariffType" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PVTIssuanceVO1Iterator" id="PVTIssuanceDate">
+      <AttrNames>
+        <Item Value="PVTIssuanceDate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_ContraventionDescription" id="ContraventionDescription"
+          DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PVTIssuanceVO1Iterator"
+                     id="ContraventionDescription1">
+      <AttrNames>
+        <Item Value="ContraventionDescription"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="checkPVTNumberExists"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="checkPVTNumberExists" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.checkPVTNumberExists_TransactionsAMDataControl_dataProvider_checkPVTNumberExists_result">
+      <NamedData NDName="pvtNumber" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_PlateCountry" id="PlateCountry" DTSupportsMRU="true"/>
+    <list IterBinding="PVTIssuanceVO1Iterator" StaticList="false"
+          Uses="LOV_Zone" id="Zone" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PVTIssuanceVO1Iterator" id="PVTNumber">
+      <AttrNames>
+        <Item Value="PVTNumber"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

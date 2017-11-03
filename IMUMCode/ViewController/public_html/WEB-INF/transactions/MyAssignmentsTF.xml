@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="MyAssignmentsTF">
+    <default-activity id="__1">executeMyAssignments</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__5">PVTPermitAssgBean</managed-bean-name>
+      <managed-bean-class id="__4">com.imum.cpms.transactions.pvt.PVTPermitAssgBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="MyAssignments">
+      <page>/jspx/transactions/fragments/MyAssignments.jsff</page>
+    </view>
+    <task-flow-call id="PVTRemarksTF">
+      <task-flow-reference>
+        <document>/WEB-INF/transactions/PVTRemarksTF.xml</document>
+        <id>PVTRemarksTF</id>
+      </task-flow-reference>
+    </task-flow-call>
+    <task-flow-call id="PermitRemarksTF">
+      <task-flow-reference>
+        <document>/WEB-INF/transactions/PermitRemarksTF.xml</document>
+        <id>PermitRemarksTF</id>
+      </task-flow-reference>
+    </task-flow-call>
+    <method-call id="executeMyAssignments">
+      <method>#{bindings.executeMyAssignments.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>executeMyAssignments</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__27">
+      <from-activity-id id="__28">MyAssignments</from-activity-id>
+      <control-flow-case id="__30">
+        <from-outcome id="__33">update</from-outcome>
+        <to-activity-id id="__29">PVTRemarksTF</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__32">
+        <from-outcome id="__34">update1</from-outcome>
+        <to-activity-id id="__31">PermitRemarksTF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">executeMyAssignments</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__10">executeMyAssignments</from-outcome>
+        <to-activity-id id="__9">MyAssignments</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

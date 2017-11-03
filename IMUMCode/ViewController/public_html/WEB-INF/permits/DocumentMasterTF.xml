@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="DocumentMasterTF">
+    <default-activity id="__1">documentMaster</default-activity>
+    <managed-bean id="__9">
+      <managed-bean-name id="__7">DocMstBean</managed-bean-name>
+      <managed-bean-class id="__6">com.imum.cpms.view.backing.DocMstBean</managed-bean-class>
+      <managed-bean-scope id="__8">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="documentMaster">
+      <page>/jspx/masters/fragments/documentMaster.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

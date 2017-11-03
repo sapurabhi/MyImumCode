@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="y">266.5</property>
+      <property
+         name="x">91.5</property>
+   </OverallProperties>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">clearCacheAllRows</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>clearCacheAllRows&lt;/b>&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">91.149414</property>
+      <property
+         name="x">275.01953</property>
+   </MethodCall>
+   <MethodCall
+      id="MethodCall3">
+      <property
+         name="activityId">CreateInsert</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>CreateInsert&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">98.79883</property>
+      <property
+         name="x">91.5</property>
+   </MethodCall>
+   <View
+      id="View4">
+      <property
+         name="activityId">cardIssuance</property>
+      <property
+         name="page">/jspx/transactions/fragments/CardIssuance.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>cardIssuance&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">91.149414</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">442.7256</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="MethodCall2"
+      to="View4">
+      <property
+         name="fromOutcome">clearCacheAllRows</property>
+      <property
+         name="sdm:polyPoints">R50,316.01953,90.79883,401.7256,90.79883,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="MethodCall3"
+      to="MethodCall2">
+      <property
+         name="fromOutcome">CreateInsert</property>
+      <property
+         name="sdm:polyPoints">R50,132.5,98.44824,234.01953,90.79883,L50</property>
+   </ControlFlowCase>
+</SDM>

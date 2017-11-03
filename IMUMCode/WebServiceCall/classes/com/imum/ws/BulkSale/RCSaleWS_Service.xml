@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle-webservice-clients xmlns:ns2="http://java.sun.com/xml/ns/javaee">
+   <webservice-client>
+      <service-qname namespaceURI="http://ws.sale.rc.mparking.infocomm.com/"
+                     localpart="RCSaleWS"/>
+      <port-info>
+         <wsdl-port namespaceURI="http://ws.sale.rc.mparking.infocomm.com/"
+                    localpart="RCSaleWSPort"/>
+         <runtime/>
+         <operations>
+            <operation name="checkRechargeCard"/>
+            <operation name="soldRechargeCard"/>
+            <operation name="rollbackRechargeCard"/>
+            <operation name="deactivateRechargeCard"/>
+            <operation name="deactivateRechargeCardByWeb"/>
+            <operation name="linkRechargeCard"/>
+            <operation name="topupMWallet"/>
+         </operations>
+      </port-info>
+   </webservice-client>
+</oracle-webservice-clients>

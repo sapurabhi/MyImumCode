@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTRemarksPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <searchRegion Criteria="PVTRemarksRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO1Iterator"
+                  id="PVTRemarksRVOCriteriaQuery"/>
+    <iterator id="PVTDocsVO1Iterator" Binds="PVTDocsVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateId"/>
+          <Item Value="PIID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO110">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="PlateId"/>
+          <Item Value="PIID"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="CreateNewRemarks"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CreateNewRemarks" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.CreateNewRemarks_TransactionsAMDataControl_dataProvider_CreateNewRemarks_result">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+      <NamedData NDName="PvthdrSeqBD" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="CreateNewPVTDocument"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CreateNewPVTDocument" IsViewObjectMethod="false">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="fullPath" NDType="java.lang.String"/>
+      <NamedData NDName="pvtHdrseq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="doctype" NDType="java.lang.String"/>
+      <NamedData NDName="DOCDesc" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="PVTDocsSeibelSync"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="PVTDocsSeibelSync" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.PVTDocsSeibelSync_TransactionsAMDataControl_dataProvider_PVTDocsSeibelSync_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doRollback" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doRollback_TransactionsAMDataControl_dataProvider_doRollback_result"/>
+  </bindings>
+</pageDefinition>

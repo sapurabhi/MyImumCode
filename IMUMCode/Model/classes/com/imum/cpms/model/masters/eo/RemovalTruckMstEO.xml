@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RemovalTruckMstEO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName=" PVT_ENFORCE_VHCL_MST"
+  AliasName="RemovalTruckMstEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="ENFORCEVHCLID"
+    IsUpdateable="false"
+    Precision="10"
+    Scale="0"
+    ColumnName="ENFORCE_VHCL_ID"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName=" PVT_ENFORCE_VHCL_MST"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.ENFORCEVHCLID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="VHCLDESC"
+    IsNotNull="true"
+    Precision="200"
+    ColumnName="VHCL_DESC"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.VHCLDESC_LABEL"/>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="VHCLTYPE"
+    IsNotNull="true"
+    Precision="1"
+    ColumnName="VHCL_TYPE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.VHCLTYPE_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="VHCLASSIGNSTATUS"
+    Precision="3"
+    Scale="0"
+    ColumnName="VHCL_ASSIGN_STATUS"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.VHCLASSIGNSTATUS_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PLATENUMBER"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="PLATE_NUMBER"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.PLATENUMBER_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PlateCountryID"
+    Precision="4"
+    Scale="0"
+    ColumnName="Plate_Country_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.PlateCountryID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PLATECTGID"
+    Precision="4"
+    Scale="0"
+    ColumnName="PLATE_CTG_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.PLATECTGID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PLATETYPEID"
+    Precision="4"
+    Scale="0"
+    ColumnName="PLATE_TYPE_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.PLATETYPEID_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="LocationID"
+    IsNotNull="true"
+    Precision="5"
+    Scale="0"
+    ColumnName="Location_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DEFCountrycode"
+    IsNotNull="true"
+    Precision="3"
+    ColumnName="DEF_Country_code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Remarks"
+    Precision="2000"
+    ColumnName="Remarks"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="200"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="ActiveFlag"
+    IsNotNull="true"
+    Precision="1"
+    ColumnName="Active_Flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.ActiveFlag_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    ColumnName="Created_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updatedby"
+    Precision="20"
+    ColumnName="Updated_by"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updateddate"
+    ColumnName="Updated_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="VHCLNAME"
+    IsNotNull="true"
+    Precision="20"
+    ColumnName="VHCL_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="mobilenum"
+    Precision="20"
+    Scale="0"
+    ColumnName="mobile_num"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName=" PVT_ENFORCE_VHCL_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="PKENFORCEVHCLID"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PK_ENFORCE_VHCL_ID"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.ENFORCEVHCLID"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="FKPVTENFORCEVHCLMSTGENCOUNTRYMST">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PK__Country___A0D392957F60ED59"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName"
+        Value="FK_PVT_ENFORCE_VHCL_MST_GEN_COUNTRY_MST"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.DEFCountrycode"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="FKPVTENFORCEVHCLMSTVehPlateCountrymst">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PK__Veh_Plat__D1E94B7A69BD5BAB"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName"
+        Value="FK_PVT_ENFORCE_VHCL_MST_Veh_Plate_Country_mst"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.PlateCountryID"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="FKPVTENFORCEVHCLMSTVehPlateCtgmst">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PK__Veh_Plat__5500B1196E8210C8"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName"
+        Value="FK_PVT_ENFORCE_VHCL_MST_Veh_Plate_Ctg_mst"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.PLATECTGID"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="FKPVTENFORCEVHCLMSTVehPlateTypemst">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PK__Veh_Plat__A02E38EB65ECCAC7"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName"
+        Value="FK_PVT_ENFORCE_VHCL_MST_Veh_Plate_Type_mst"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.RemovalTruckMstEO.PLATETYPEID"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

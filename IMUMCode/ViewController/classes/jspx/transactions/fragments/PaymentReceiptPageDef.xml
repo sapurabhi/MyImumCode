@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PaymentReceiptPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PaymetReceiptVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PaymetReceiptVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="PYMTType">
+      <AttrNames>
+        <Item Value="PYMTType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="ChqBankname">
+      <AttrNames>
+        <Item Value="ChqBankname"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="CCDType">
+      <AttrNames>
+        <Item Value="CCDType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="PYMTAMT">
+      <AttrNames>
+        <Item Value="PYMTAMT"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="CCDNum">
+      <AttrNames>
+        <Item Value="CCDNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="ChqDate">
+      <AttrNames>
+        <Item Value="ChqDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="ReceiptNum">
+      <AttrNames>
+        <Item Value="ReceiptNum"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PaymetReceiptVO1Iterator" id="PaymetReceiptVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PaymetReceiptVO"
+                      Name="PaymetReceiptVO10">
+        <AttrNames>
+          <Item Value="CCDType"/>
+          <Item Value="AUTHCode"/>
+          <Item Value="CCDNum"/>
+          <Item Value="ChqBankname"/>
+          <Item Value="ChqDate"/>
+          <Item Value="PYMTAMT"/>
+          <Item Value="PYMTType"/>
+          <Item Value="ReceiptNum"/>
+          <Item Value="Salehdrseq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="SaleAmt">
+      <AttrNames>
+        <Item Value="SaleAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="InstName">
+      <AttrNames>
+        <Item Value="InstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PaymetReceiptVO1Iterator" id="SaleDate">
+      <AttrNames>
+        <Item Value="SaleDate"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="pileavemangementTF">
+    <default-activity id="__1">getPISupId</default-activity>
+    <managed-bean id="__11">
+      <managed-bean-name id="__8">PileavemangementMB</managed-bean-name>
+      <managed-bean-class id="__9">com.imum.cpms.staffdeployment.PileavemangementMB</managed-bean-class>
+      <managed-bean-scope id="__10">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="pileavemangement">
+      <page>/jspx/staffdeploy/fragments/pileavemangement.jsff</page>
+    </view>
+    <method-call id="getPISupId">
+      <method>#{bindings.getPISupId.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>getPISupId</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="Serchleave">
+      <page>/jspx/staffdeploy/fragments/Serchleave.jsff</page>
+    </view>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">getPISupId</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__6">getPISupId</from-outcome>
+        <to-activity-id id="__7">pileavemangement</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__12">
+      <from-activity-id id="__13">pileavemangement</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__16">serach</from-outcome>
+        <to-activity-id id="__14">Serchleave</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__17">
+      <from-activity-id id="__18">Serchleave</from-activity-id>
+      <control-flow-case id="__20">
+        <from-outcome id="__21">back</from-outcome>
+        <to-activity-id id="__19">pileavemangement</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

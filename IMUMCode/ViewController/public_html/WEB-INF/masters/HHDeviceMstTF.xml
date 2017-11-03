@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="HHDeviceMstTF">
+    <default-activity id="__1">HHDeviceMst</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__3">HHDeviceMstBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.backing.HHDeviceMstBean</managed-bean-class>
+      <managed-bean-scope id="__4">request</managed-bean-scope>
+    </managed-bean>
+    <view id="HHDeviceMst">
+      <page>/jspx/masters/fragments/HHDeviceMst.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

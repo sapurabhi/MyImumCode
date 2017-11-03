@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="dynamicvoreportPageDef"
+                Package="jspx.staffdeploy.fragments">
+ <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="createDynamicVO_voType"
+                IsQueriable="false"/>
+    </variableIterator>
+    <iterator id="ReportDynamicVO1Iterator" Binds="ReportDynamicVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ReportDynamicVO1Iterator" id="ReportDynamicVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.ReportDynamicVO" Name="DynamicVO10"/>
+    </tree>
+  </bindings>
+</pageDefinition>

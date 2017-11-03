@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="PITrainingActivityTF_PITrainingActivityTF_piTrainingActivityOnLoadPageDef"
+                Package="staffdeploy" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="piTrainingActivityOnLoad" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="piTrainingActivityOnLoad"
+            IsViewObjectMethod="false" DataControl="StaffDeployDataControl"
+            InstanceName="StaffDeployDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

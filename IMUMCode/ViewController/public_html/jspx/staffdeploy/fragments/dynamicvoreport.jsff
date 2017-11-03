@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          >
+  
+      <af:messages id="m1"/>
+     
+        <af:panelGroupLayout id="pgl1">
+          <af:panelCollection id="pc1"
+                              inlineStyle="width:1334px; height:819px;">
+            <f:facet name="menus"/>
+            <af:table rows="#{bindings.ReportDynamicVO1.rangeSize}" fetchSize="#{bindings.ReportDynamicVO1.rangeSize}"
+                      emptyText="#{bindings.ReportDynamicVO1.viewable ? 'No data to display.' : 'Access Denied.'}" var="row"
+                      rowBandingInterval="0" value="#{bindings.ReportDynamicVO1.collectionModel}"
+                      selectedRowKeys="#{bindings.ReportDynamicVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.ReportDynamicVO1.collectionModel.makeCurrent}" rowSelection="single"
+                      id="t1" width="1307" inlineStyle="height:715px;">
+              <af:forEach items="#{bindings.ReportDynamicVO1.attributeDefs}" var="def">
+                <af:column  headerText="#{bindings.ReportDynamicVO1.labels[def.name]}" sortable="true"
+                           sortProperty="#{def.name}" id="c1">
+                  <af:outputText value="#{row[def.name]}"   id="ot1"/>
+                </af:column>
+              </af:forEach>
+            </af:table>
+          </af:panelCollection>
+          <af:commandButton text="Back" id="cb1"
+          inlineStyle="width:120px;text-align:center;background-color:#F39C11;"
+          action="back"/>
+        </af:panelGroupLayout>
+
+   
+</jsp:root>

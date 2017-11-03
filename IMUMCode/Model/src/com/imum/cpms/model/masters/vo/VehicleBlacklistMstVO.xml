@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VehicleBlacklistMstVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  OrderBy="Blacklist_seq desc"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="actDateFrom"
+    Kind="viewcriteria"
+    Type="java.sql.Date"/>
+  <Variable
+    Name="plateCtGid"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="plateNumber"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="plateTypeID"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="plateCountryID"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="vehicleColourID"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="veHMAkeID"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="vehModelID"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="actDateTo"
+    Kind="viewcriteria"
+    Type="java.sql.Date"/>
+  <Variable
+    Name="actFlag"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <ViewAccessor
+    Name="VehiclePlateCountryLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO">
+    <ViewCriteriaUsage
+      Name="getByPlalateCountryId"
+      FullName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO.getByPlalateCountryId"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehiclePlateCategoryLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCategoryLVO">
+    <ViewCriteriaUsage
+      Name="getByPlateCountryId"
+      FullName="com.imum.cpms.model.masters.vo.VehiclePlateCategoryLVO.getByPlateCountryId"/>
+    <ParameterMap>
+      <PIMap Variable="BindPlateCountryId">
+        <TransientExpression><![CDATA[PlateCountryID]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehiclePlateTypeLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateTypeLVO">
+    <ViewCriteriaUsage
+      Name="VehiclePlateTypeLVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.VehiclePlateTypeLVO.VehiclePlateTypeLVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="bindPlateCategory">
+        <TransientExpression><![CDATA[PLATECTGID]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehicleMakeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.VehicleMakeLOVVO">
+    <ViewCriteriaUsage
+      Name="VehicleMakeLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.VehicleMakeLOVVO.VehicleMakeLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehicleModelLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.VehicleModelLOVVO">
+    <ViewCriteriaUsage
+      Name="VehicleModelLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.VehicleModelLOVVO.VehicleModelLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="make_id">
+        <TransientExpression><![CDATA[VEHMAKEID]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehicleColourLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.VehicleColourLOVVO">
+    <ViewCriteriaUsage
+      Name="VehicleColourLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.VehicleColourLOVVO.VehicleColourLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="YesNoLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.YesNoLovVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_PlateCountryID"
+    ListVOName="VehiclePlateCountryLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PlateCountryID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateCountryID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PlateCountryID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PlateCountryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PLATECTGID"
+    ListVOName="VehiclePlateCategoryLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PLATECTGID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PLATECTGID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="platectgid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="platectgdesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PLATETYPEID"
+    ListVOName="VehiclePlateTypeLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PLATETYPEID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PLATETYPEID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PlateTypeID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PlateTypedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VEHMAKEID"
+    ListVOName="VehicleMakeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VEHMAKEID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHMAKEID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="makeid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="makename"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VEHMODELID"
+    ListVOName="VehicleModelLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VEHMODELID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHMODELID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="modelid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="modelname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VEHCOLOURID"
+    ListVOName="VehicleColourLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VEHCOLOURID_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VEHCOLOURID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="colourid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="colourname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Activeflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Activeflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Activeflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT VehicleBlacklistMstEO.Active_flag, 
+       VehicleBlacklistMstEO.Created_By, 
+       VehicleBlacklistMstEO.Created_Date, 
+       VehicleBlacklistMstEO.PLATE_CTG_ID, 
+       convert(varchar(20),VehicleBlacklistMstEO.PLATE_NUMBER)PLATE_NUMBER, 
+       VehicleBlacklistMstEO.PLATE_TYPE_ID, 
+       VehicleBlacklistMstEO.Plate_Country_ID, 
+       VehicleBlacklistMstEO.Plate_id, 
+       VehicleBlacklistMstEO.Updated_by, 
+       VehicleBlacklistMstEO.VEH_COLOUR_ID, 
+       VehicleBlacklistMstEO.VEH_MAKE_ID, 
+       VehicleBlacklistMstEO.VEH_MODEL_ID, 
+       VehicleBlacklistMstEO.Blacklist_seq, 
+       VehicleBlacklistMstEO.updated_date,
+       VehicleBlacklistMstEO.Active_Date_From, 
+       VehicleBlacklistMstEO.Active_Date_To 
+FROM Veh_Blacklist_mst VehicleBlacklistMstEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="VehicleBlacklistMstEO"
+    Entity="com.imum.cpms.model.masters.eo.VehicleBlacklistMstEO"/>
+  <ViewAttribute
+    Name="Activeflag"
+    LOVName="LOV_Activeflag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    DefaultValue="Y"
+    EntityAttrName="Activeflag"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Active_flag">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVO.Activeflag_LABEL"/>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="PLATECTGID"
+    LOVName="LOV_PLATECTGID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PLATECTGID"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="PLATE_CTG_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PLATENUMBER"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PLATENUMBER"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="PLATE_NUMBER"/>
+  <ViewAttribute
+    Name="PLATETYPEID"
+    LOVName="LOV_PLATETYPEID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PLATETYPEID"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="PLATE_TYPE_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateCountryID"
+    LOVName="LOV_PlateCountryID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PlateCountryID"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Plate_Country_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Plateid"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Plateid"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Plate_id"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="VEHCOLOURID"
+    LOVName="LOV_VEHCOLOURID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="VEHCOLOURID"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="VEH_COLOUR_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVO.VEHCOLOURID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHMAKEID"
+    LOVName="LOV_VEHMAKEID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="VEHMAKEID"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="VEH_MAKE_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVO.VEHMAKEID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VEHMODELID"
+    LOVName="LOV_VEHMODELID"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="VEHMODELID"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="VEH_MODEL_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVO.VEHMODELID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Blacklistseq"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="Blacklistseq"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Blacklist_seq">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVO.Blacklistseq_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="updateddate"
+    PrecisionRule="true"
+    EntityAttrName="updateddate"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="updated_date"/>
+  <ViewAttribute
+    Name="ActiveDateFrom"
+    PrecisionRule="true"
+    EntityAttrName="ActiveDateFrom"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Active_Date_From"/>
+  <ViewAttribute
+    Name="ActiveDateTo"
+    PrecisionRule="true"
+    EntityAttrName="ActiveDateTo"
+    EntityUsage="VehicleBlacklistMstEO"
+    AliasName="Active_Date_To"/>
+  <ViewCriteria
+    Name="VehicleBlacklistMstVOCriteria"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehicleBlacklistMstVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow106"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_Activeflag"
+        ViewAttribute="Activeflag"
+        Operator="="
+        Conjunction="AND"
+        Value=":actFlag"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_PLATECTGID"
+        ViewAttribute="PLATECTGID"
+        Operator="="
+        Conjunction="AND"
+        Value=":plateCtGid"
+        IsBindVarValue="true"
+        Required="Optional">
+        <Properties>
+          <CustomProperties>
+            <Property
+              Name="renderedMode"
+              Value="Advanced"/>
+          </CustomProperties>
+        </Properties>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_PLATENUMBER"
+        ViewAttribute="PLATENUMBER"
+        Operator="="
+        Conjunction="AND"
+        Value=":plateNumber"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_PLATETYPEID"
+        ViewAttribute="PLATETYPEID"
+        Operator="="
+        Conjunction="AND"
+        Value=":plateTypeID"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_PlateCountryID"
+        ViewAttribute="PlateCountryID"
+        Operator="="
+        Conjunction="AND"
+        Value=":plateCountryID"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_VEHCOLOURID"
+        ViewAttribute="VEHCOLOURID"
+        Operator="="
+        Conjunction="AND"
+        Value=":vehicleColourID"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_VEHMAKEID"
+        ViewAttribute="VEHMAKEID"
+        Operator="="
+        Conjunction="AND"
+        Value=":veHMAkeID"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_VEHMODELID"
+        ViewAttribute="VEHMODELID"
+        Operator="="
+        Conjunction="AND"
+        Value=":vehModelID"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_ActiveDateFrom"
+        ViewAttribute="ActiveDateFrom"
+        Operator="="
+        Conjunction="AND"
+        Value=":actDateFrom"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="VehicleBlacklistMstVOCriteria_vcrow106_ActiveDateTo"
+        ViewAttribute="ActiveDateTo"
+        Operator="="
+        Conjunction="AND"
+        Value=":actDateTo"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

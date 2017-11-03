@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="PvtWriteOffPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PvtSearchWriteOffRVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PvtSearchWriteOffRVO1Iterator"/>
+    <searchRegion Criteria="PvtSearchWriteOffRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PvtSearchWriteOffRVO1Iterator"
+                  id="PvtSearchWriteOffRVOCriteriaQuery1"/>
+    <iterator Binds="PvtWriteOffProgVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PvtWriteOffProgVO1Iterator"/>
+    <iterator Binds="PVTWRITEOFFDETAILSVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PVTWRITEOFFDETAILSVO1Iterator"/>
+    <iterator Binds="PVTWRITEOFFHEADERVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PVTWRITEOFFHEADERVO1Iterator"/>
+    <iterator Binds="PVTCourtReportDocsUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PVTCourtReportDocsUVO1Iterator"/>
+    <iterator Binds="PVTDocsVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="PVTDocsVO1Iterator"/>
+    <iterator id="PvtWiriteOffCount1Iterator" Binds="PvtWiriteOffCount1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <button IterBinding="PvtSearchWriteOffRVO1Iterator" id="SelectFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SelectFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <tree IterBinding="PvtSearchWriteOffRVO1Iterator"
+          id="PvtSearchWriteOffRVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PvtSearchWriteOffRVO"
+                      Name="PvtSearchWriteOffRVO110">
+        <AttrNames>
+          <Item Value="SelectFlag" Binds="SelectFlag"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="PVTAMTPAYABLE"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PvtWriteOffProgVO1Iterator" id="PvtWriteOffProgVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PvtWriteOffProgVO"
+                      Name="PvtWriteOffProgVO10">
+        <AttrNames>
+          <Item Value="PVTNo"/>
+          <Item Value="PVTDate"/>
+          <Item Value="OutstandingAmt"/>
+          <Item Value="Remarks"/>
+          <Item Value="Document"/>
+          <Item Value="Remove"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTWRITEOFFDETAILSVO1Iterator"
+          id="PVTWRITEOFFDETAILSVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTWRITEOFFDETAILSVO"
+                      Name="PVTWRITEOFFDETAILSVO10">
+        <AttrNames>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="RequesterRemarks"/>
+          <Item Value="Approvedflag"/>
+          <Item Value="ApproverRemarks"/>
+          <Item Value="PvtNo"/>
+          <Item Value="FileUpload"/>
+          <Item Value="pvtnumber"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTWRITEOFFHEADERVO1Iterator" id="PVTWRITEOFFHEADERVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTWRITEOFFHEADERVO"
+                      Name="PVTWRITEOFFHEADERVO10">
+        <AttrNames>
+          <Item Value="WRITEOFFHDRSeq"/>
+          <Item Value="WRITEOFFREQDATE"/>
+          <Item Value="PVTCOUNT"/>
+          <Item Value="WRITEOFFREQSTATUS"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="PVTWRITEOFFDETAILSVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="PVTCourtReportDocsUVO1Iterator"
+          id="PVTCourtReportDocsUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTCourtReportDocsUVO"
+                      Name="PVTCourtReportDocsUVO10">
+        <AttrNames>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="deleteflag"/>
+          <Item Value="DOCDesc"/>
+          <Item Value="DOCSEQ"/>
+          <Item Value="Docstage"/>
+          <Item Value="doctype"/>
+          <Item Value="filepath"/>
+          <Item Value="FileUpload"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="remarks"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getPvtWriteOffDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getPvtWriteOffDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.getPvtWriteOffDetails_MastersAMDataControl_dataProvider_getPvtWriteOffDetails_result">
+      <NamedData NDName="pvtWriteOffHeaderseq" NDValue=""
+                 NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="savePvtWriteOffDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="savePvtWriteOffDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.savePvtWriteOffDetails_MastersAMDataControl_dataProvider_savePvtWriteOffDetails_result">
+      <NamedData NDName="pvtWriteOffInitiationDate" NDType="java.sql.Date"/>
+      <NamedData NDName="totalNosPVTs" NDType="java.lang.Integer"/>
+      <NamedData NDName="status" NDType="java.lang.String"/>
+      <NamedData NDName="createdBy" NDType="java.lang.String"/>
+    </methodAction>
+    <action id="Commit" DataControl="MastersAMDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <methodAction id="getPvtWriteOffHeaderSeq"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getPvtWriteOffHeaderSeq"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.getPvtWriteOffHeaderSeq_MastersAMDataControl_dataProvider_getPvtWriteOffHeaderSeq_result"/>
+    <tree IterBinding="PVTWRITEOFFDETAILSVO1Iterator"
+          id="PVTWRITEOFFDETAILSVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTWRITEOFFDETAILSVO"
+                      Name="PVTWRITEOFFDETAILSVO110">
+        <AttrNames>
+          <Item Value="PvtNo"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="RequesterRemarks"/>
+          <Item Value="FileUpload"/>
+          <Item Value="pvtnumber"/>
+          <Item Value="filepath"/>
+          <Item Value="filename"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTDocsVO1Iterator" id="PVTDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDocsVO"
+                      Name="PVTDocsVO10">
+        <AttrNames>
+          <Item Value="CreatedBy"/>
+          <Item Value="DOCDesc"/>
+          <Item Value="doctype"/>
+          <Item Value="filepath"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="deleteflag"/>
+          <Item Value="DOCSEQ"/>
+          <Item Value="Docstage"/>
+          <Item Value="FileUpload"/>
+          <Item Value="FlageM"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="remarks"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+           <Item Value="filepath"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PVTWRITEOFFHEADERVO1Iterator"
+                     id="WRITEOFFHDRSeq">
+      <AttrNames>
+        <Item Value="WRITEOFFHDRSeq"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTWRITEOFFHEADERVO1Iterator" id="PVTCOUNT">
+      <AttrNames>
+        <Item Value="PVTCOUNT"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getPvtCount"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getPvtCount"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.getPvtCount_MastersAMDataControl_dataProvider_getPvtCount_result">
+      <NamedData NDName="pvtcount" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="hdrseq" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <attributeValues IterBinding="PVTDocsVO1Iterator" id="filepath">
+      <AttrNames>
+        <Item Value="filepath"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTWRITEOFFHEADERVO1Iterator"
+                     id="WRITEOFFREQSTATUS">
+      <AttrNames>
+        <Item Value="WRITEOFFREQSTATUS"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="updatePvtWriteOff"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="updatePvtWriteOff"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="reqstatus" NDType="int"/>
+      <NamedData NDName="pvtWriteOffHeaderseq" NDType="int"/>
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <tree IterBinding="PVTWRITEOFFDETAILSVO1Iterator"
+          id="PVTWRITEOFFDETAILSVO12">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTWRITEOFFDETAILSVO"
+                      Name="PVTWRITEOFFDETAILSVO120">
+        <AttrNames>
+          <Item Value="pvtnumber"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="RequesterRemarks"/>
+          <Item Value="filepath"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="DiscountSmsalert">
+    <default-activity id="__15">CreateInsert</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__5">DiscountsmsalertMB</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.transactions.DiscountsmsalertMB</managed-bean-class>
+      <managed-bean-scope id="__4">request</managed-bean-scope>
+    </managed-bean>
+    <view id="DiscountSmsalert1">
+      <page>/jspx/transactions/fragments/DiscountSmsalert.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__1">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__10">
+      <from-activity-id id="__11">CreateInsert</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome id="__14">CreateInsert</from-outcome>
+        <to-activity-id id="__13">DiscountSmsalert1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

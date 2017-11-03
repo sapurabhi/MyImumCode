@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="CardIssuanceTF_CardIssuanceTF_clearCacheAllRowsPageDef"
+                Package="transactions" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="clearCacheAllRows" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="clearCacheAllRows"
+            IsViewObjectMethod="true" DataControl="TransactionsAMDataControl"
+            InstanceName="TransactionsAMDataControl.CardIssueSrchCriVO1"/>
+  </bindings>
+</pageDefinition>

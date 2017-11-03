@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PrintADPReceiptTF">
+    <default-activity id="__1">ADPReportSerach</default-activity>
+    <managed-bean id="__14">
+      <managed-bean-name id="__13">ADPSearchReportMBean</managed-bean-name>
+      <managed-bean-class id="__15">com.imum.cpms.view.ADPSearchReportMBean</managed-bean-class>
+      <managed-bean-scope id="__12">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="ADPReportSerach">
+      <page>/jspx/transactions/fragments/ADPReportSerach.jsff</page>
+    </view>
+    <view id="PrintADPFaxReport">
+      <page>/jspx/transactions/fragments/PrintADPFaxReport.jsff</page>
+    </view>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">ADPReportSerach</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__6">print</from-outcome>
+        <to-activity-id id="__4">PrintADPFaxReport</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">PrintADPFaxReport</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__11">Back</from-outcome>
+        <to-activity-id id="__10">ADPReportSerach</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

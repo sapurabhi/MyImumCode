@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="pileavemangementPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="pisforsupervisorVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="pisforsupervisorVO1Iterator"/>
+    <iterator Binds="PILeaveMangementVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="PILeaveMangementVO1Iterator"/>
+    <iterator Binds="leavetypeLOV1" RangeSize="1000"
+              DataControl="StaffDeployLookUpDataControl"
+              id="leavetypeLOV1Iterator"/>
+    <invokeAction Binds="CreateInsert" id="insert"
+                  Refresh="prepareModelIfNeeded"/>
+    <iterator id="PImonthlyWorkAssignVO2Iterator" Binds="PImonthlyWorkAssignVO2"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <list IterBinding="pisforsupervisorVO1Iterator" ListOperMode="navigation"
+          ListIter="pisforsupervisorVO1Iterator" id="pisforsupervisorVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </list>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="StaffDeployDataControl"/>
+    <list IterBinding="leavetypeLOV1Iterator" ListOperMode="navigation"
+          ListIter="leavetypeLOV1Iterator" id="leavetypeLOV1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="leavetype"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="PILeaveMangementVO1Iterator" id="PILeaveMangementVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PILeaveMangementVO"
+                      Name="PILeaveMangementVO10">
+        <AttrNames>
+          <Item Value="Sno"/>
+          <Item Value="AppliedDate"/>
+          <Item Value="Attachment"/>
+          <Item Value="balencedLeaves"/>
+          <Item Value="FromDate"/>
+          <Item Value="LeaveReason"/>
+          <Item Value="LeavesApplied"/>
+          <Item Value="LeaveType"/>
+          <Item Value="PIid"/>
+          <Item Value="Status"/>
+          <Item Value="SupId"/>
+          <Item Value="ToDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doCommit"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.doCommit_StaffDeployDataControl_dataProvider_doCommit_result"/>
+    <action IterBinding="PILeaveMangementVO1Iterator" id="CreateInsert"
+            InstanceName="StaffDeployDataControl.PILeaveMangementVO1"
+            DataControl="StaffDeployDataControl" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <methodAction id="getCheckLeave"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getCheckLeave" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getCheckLeave_StaffDeployDataControl_dataProvider_getCheckLeave_result">
+      <NamedData NDName="pi" NDType="java.lang.String"/>
+      <NamedData NDName="fd" NDType="java.util.Date"/>
+      <NamedData NDName="td" NDType="java.util.Date"/>
+    </methodAction>
+    <methodAction id="getMandatoryType"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getMandatoryType" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getMandatoryType_StaffDeployDataControl_dataProvider_getMandatoryType_result">
+      <NamedData NDName="indexCount" NDType="int"/>
+    </methodAction>
+    <methodAction id="getFridaysOnly"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getFridaysOnly" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getFridaysOnly_StaffDeployDataControl_dataProvider_getFridaysOnly_result">
+      <NamedData NDName="stDate" NDType="java.lang.String"/>
+      <NamedData NDName="endDate" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getSupervisorUnderpis"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getSupervisorUnderpis" IsViewObjectMethod="false">
+      <NamedData NDName="sup_id" NDType="java.lang.String"/>
+      <NamedData NDName="pinumber" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="validateFromDate"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="validateFromDate" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.validateFromDate_StaffDeployDataControl_dataProvider_validateFromDate_result">
+      <NamedData NDName="startdate" NDType="java.util.Date"/>
+      <NamedData NDName="piNumber" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="callPopulatePILeaveProc"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callPopulatePILeaveProc"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="sno" NDType="java.lang.Integer"/>
+      <NamedData NDName="piid" NDType="java.lang.String"/>
+      <NamedData NDName="fromdate" NDType="java.sql.Date"/>
+      <NamedData NDName="todate" NDType="java.sql.Date"/>
+      <NamedData NDName="flag" NDType="java.lang.String"/>
+      <NamedData NDName="supid" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

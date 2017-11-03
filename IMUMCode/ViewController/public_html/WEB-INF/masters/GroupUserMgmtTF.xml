@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="UserMgmtTF">
+    <default-activity id="__1">displayDML</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">UserMgmtMBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.backing.UserMgmtMBean</managed-bean-class>
+      <managed-bean-scope id="__5">request</managed-bean-scope>
+    </managed-bean>
+    <view id="UserMgmt">
+      <page>/jspx/masters/fragments/UserMgmt.jsff</page>
+    </view>
+    <method-call id="displayDML">
+      <method>#{UserMgmtMBean.displayDML}</method>
+      <outcome id="__11">
+        <fixed-outcome>*callFragment</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">displayDML</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome id="__10">*callFragment</from-outcome>
+        <to-activity-id id="__9">UserMgmt</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

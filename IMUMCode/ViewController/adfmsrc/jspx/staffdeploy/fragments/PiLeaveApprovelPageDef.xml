@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PiLeaveApprovelPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="leaveApproveVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl"
+              id="leaveApproveVO1Iterator"/>
+    <searchRegion Binds="leaveApproveVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="leaveApproveVO11Query"/>
+    <iterator id="PImonthlyWorkAssignVO2Iterator" Binds="PImonthlyWorkAssignVO2"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="leaveApproveVO1Iterator" id="leaveApproveVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.leaveApproveVO"
+                      Name="leaveApproveVO10">
+        <AttrNames>
+          <Item Value="PIid"/>
+          <Item Value="FromDate"/>
+          <Item Value="ToDate"/>
+          <Item Value="LeavesApplied"/>
+          <Item Value="LeaveReason"/>
+          <Item Value="LeaveType"/>
+          <Item Value="Status"/>
+          <Item Value="Attachment"/>
+          <Item Value="StatusComments"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="StaffDeployDataControl"/>
+    <methodAction id="doCommit"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.doCommit_StaffDeployDataControl_dataProvider_doCommit_result"/>
+    <tree IterBinding="leaveApproveVO1Iterator" id="leaveApproveVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.leaveApproveVO"
+                      Name="leaveApproveVO110">
+        <AttrNames>
+          <Item Value="PIid"/>
+          <Item Value="FromDate"/>
+          <Item Value="ToDate"/>
+          <Item Value="LeavesApplied"/>
+          <Item Value="LeaveReason"/>
+          <Item Value="LeaveType"/>
+          <Item Value="Attachment"/>
+          <Item Value="Status"/>
+          <Item Value="StatusComments"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getvalues"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getvalues" IsViewObjectMethod="false"/>
+  </bindings>
+</pageDefinition>

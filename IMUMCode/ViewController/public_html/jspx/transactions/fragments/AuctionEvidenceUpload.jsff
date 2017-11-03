@@ -1,0 +1,478 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <af:panelGroupLayout id="pgl1" inlineStyle="width:751px; height:323px;"
+                       binding="#{pageFlowScope.AuctionEvidenceUploadBean.pg11}">
+    <af:panelGroupLayout id="pgl2" inlineStyle="width:735px; height:63px;"
+                         layout="horizontal" partialTriggers="t1:sbc1 d1"
+                         binding="#{pageFlowScope.AuctionEvidenceUploadBean.auctionEvidenceTopSearchForm}"
+                         visible="true">
+      <af:inputText label="Auction Batch ID" id="it1" autoSubmit="true"
+                    binding="#{pageFlowScope.AuctionEvidenceUploadBean.auctionBatchID}"
+                    valueChangeListener="#{pageFlowScope.AuctionEvidenceUploadBean.auctionIDChange}">
+            <af:convertNumber/>
+        </af:inputText>
+      <af:spacer width="10" height="10" id="s3"/>
+      
+      
+      <af:inputDate label="Initiation Date" id="it2" readOnly="true" value="#{pageFlowScope.AuctionEvidenceUploadBean.currentDate}"
+                    contentStyle="width:71.0px;">
+                     <af:convertDateTime pattern="dd-MM-yyyy" />
+                    </af:inputDate>
+      <af:commandButton text="Assign to Auction house"
+                        
+                        inlineStyle="background-color:#F39C11; width:155.0px;" id="cb1">
+        <af:showPopupBehavior popupId="confirm" triggerType="action" align="afterEnd"/>
+      </af:commandButton>
+      <af:popup id="confirm">
+            <af:dialog title="Confirm" dialogListener="#{pageFlowScope.AuctionEvidenceUploadBean.dialogListener}"
+                       id="d1" type="yesNo">
+              <af:activeOutputText value="Are you Confirm, Documents uploaded for each PVT? Not Uploaded, Please click NO"
+                                   id="aot1"/>
+            </af:dialog>
+          </af:popup>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl3" inlineStyle="width:735px; height:30px;"
+                         layout="horizontal" binding="#{pageFlowScope.AuctionEvidenceUploadBean.auctionEvidenceTopToolbarForm}"
+                         visible="true">
+         <af:toolbar id="t2">
+        <h:inputHidden id="ih1" value="false"
+                       binding="#{pageFlowScope.AuctionEvidenceUploadBean.searchClickedCheck}"/>
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb6"
+                          inlineStyle="background-color:#F39C11;" partialTriggers="t1:sbc1 d1"
+                          action="#{pageFlowScope.AuctionEvidenceUploadBean.submitAction}"
+                          binding="#{pageFlowScope.AuctionEvidenceUploadBean.submitBtnTop}"
+                          visible="false"/>
+        <af:spacer id="s135" width="10"/>
+        <af:commandButton text="#{viewcontrollerBundle.CANCEL}" partialTriggers="t1:sbc1 d1"
+                          inlineStyle="background-color:#F39C11;" id="cb7"
+                          binding="#{pageFlowScope.AuctionEvidenceUploadBean.cancelBtnTop}"
+                          action="#{pageFlowScope.AuctionEvidenceUploadBean.cancelAction}"
+                          visible="false"/>
+        <af:spacer id="s1" width="87"/>
+      <af:commandButton text="Search" id="cb2" partialTriggers="t1:sbc1 d1"
+                        action="#{pageFlowScope.AuctionEvidenceUploadBean.searchAuctionPvts}"
+                        inlineStyle="background-color:#F39C11;"
+                        binding="#{pageFlowScope.AuctionEvidenceUploadBean.auctionIDSearch}"/>
+      <af:spacer id="s2"/>
+      </af:toolbar>
+    </af:panelGroupLayout>
+    <af:spacer id="s4" width="10" height="10"/>
+    <af:panelGroupLayout id="pgl4" inlineStyle="width:736px; height:260px;"
+                         partialTriggers="t1:sbc1 it1 d1"
+                            binding="#{pageFlowScope.AuctionEvidenceUploadBean.autionEvidenceSearchForm}" visible="false">
+      <af:table value="#{bindings.AuctionEvidenceSearchVO1.collectionModel}"
+                var="row" rows="#{bindings.AuctionEvidenceSearchVO1.rangeSize}"
+                emptyText="#{bindings.AuctionEvidenceSearchVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.AuctionEvidenceSearchVO1.rangeSize}"
+                id="t1" inlineStyle="height:245px;" partialTriggers="::cb2"
+                binding="#{pageFlowScope.AuctionEvidenceUploadBean.auctionEvidenceSearchResultTable}"
+                rowBandingInterval="1" autoHeightRows="0"
+                scrollPolicy="scroll" width="1129"
+                selectedRowKeys="#{bindings.AuctionEvidenceSearchVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.AuctionEvidenceSearchVO1.collectionModel.makeCurrent}"
+                filterVisible="true" varStatus="vs" styleClass="AFStretchWidth"
+                rowSelection="single" >
+        <af:column id="c6" headerText="#{viewcontrollerBundle.SELECT}"
+                   align="center" width="114">
+          <!--<af:selectBooleanRadio value="#{row.bindings.SelectFlag.inputValue}"
+                                 label="#{row.bindings.SelectFlag.label}"
+                                 id="sbc1" disabled="#{row.DotApprvforAuctflag  == 'N'}"
+                                 valueChangeListener="#{backingBeanScope.AuctionEvidenceUploadBean.auctionEvidenceSearchSelectFlagListener}"
+                                 autoSubmit="true" text="Upload"/>-->
+            <af:commandButton text="Upload Docs" id="sbc1" partialSubmit="true"  disabled="#{row.DotApprvforAuctflag  == 'N'}"
+                                inlineStyle="width:auto;text-align:center;background-color:#F39C11;"
+                                actionListener="#{pageFlowScope.AuctionEvidenceUploadBean.auctionEvidenceSearchSelectFlagListener}"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.PVTNum.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.PVTNum.label}"
+                   id="c14" width="110">
+          <af:outputText value="#{row.PVTNum}" id="ot2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.CreatedDate.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.CreatedDate.label}"
+                   id="c10" width="110">
+          <af:outputText value="#{row.CreatedDate}" id="ot11">
+            <af:convertDateTime pattern="dd-MM-yyyy" />
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.vehownershiptypeid.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.vehownershiptypeid.label}"
+                   id="c5" width="110">
+          <!--<af:outputText value="#{row.vehownershiptypeid}" id="ot10"/>-->
+          <af:selectOneChoice value="#{row.bindings.vehownershiptypeid.inputValue}" readOnly="true"
+                              label="#{row.bindings.vehownershiptypeid.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO1.hints.vehownershiptypeid.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO1.hints.vehownershiptypeid.tooltip}"
+                              id="soc13">
+            <f:selectItems value="#{row.bindings.vehownershiptypeid.items}"
+                           id="si13"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.PVTAMTPAYABLE.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.PVTAMTPAYABLE.label}"
+                   id="c8" width="110">
+          <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot8">
+          <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.PLATENUMBER.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.PLATENUMBER.label}"
+                   id="c2" width="110">
+          <af:outputText value="#{row.PLATENUMBER}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECNTID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECNTID.label}"
+                   id="c13" width="110">
+          <!--<af:outputText value="#{row.PLATECNTID}" id="ot5">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECNTID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.PLATECNTID.inputValue}" readOnly="true"
+                              label="#{row.bindings.PLATECNTID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECNTID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECNTID.tooltip}"
+                              id="soc1">
+            <f:selectItems value="#{row.bindings.PLATECNTID.items}" id="si1"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECTGID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECTGID.label}"
+                   id="c9" width="115">
+          <!--<af:outputText value="#{row.PLATECTGID}" id="ot4">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECTGID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.PLATECTGID.inputValue}" readOnly="true"
+                              label="#{row.bindings.PLATECTGID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECTGID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO1.hints.PLATECTGID.tooltip}"
+                              id="soc2">
+            <f:selectItems value="#{row.bindings.PLATECTGID.items}" id="si2"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.PLATETYPEID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.PLATETYPEID.label}"
+                   id="c7" width="105">
+          <!--<af:outputText value="#{row.PLATETYPEID}" id="ot13">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO1.hints.PLATETYPEID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.PLATETYPEID.inputValue}" readOnly="true"
+                              label="#{row.bindings.PLATETYPEID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO1.hints.PLATETYPEID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO1.hints.PLATETYPEID.tooltip}"
+                              id="soc3">
+            <f:selectItems value="#{row.bindings.PLATETYPEID.items}" id="si3"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMAKEID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMAKEID.label}"
+                   id="c4" width="110">
+          <!--<af:outputText value="#{row.VEHMAKEID}" id="ot6">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMAKEID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.VEHMAKEID.inputValue}" readOnly="true"
+                              label="#{row.bindings.VEHMAKEID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMAKEID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMAKEID.tooltip}"
+                              id="soc4">
+            <f:selectItems value="#{row.bindings.VEHMAKEID.items}" id="si4"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMODELID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMODELID.label}"
+                   id="c1" width="110">
+          <!--<af:outputText value="#{row.VEHMODELID}" id="ot7">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMODELID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.VEHMODELID.inputValue}" readOnly="true"
+                              label="#{row.bindings.VEHMODELID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMODELID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO1.hints.VEHMODELID.tooltip}"
+                              id="soc5">
+            <f:selectItems value="#{row.bindings.VEHMODELID.items}" id="si5"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.VEHCOLOURID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.VEHCOLOURID.label}"
+                   id="c11" width="110">
+          <!--<af:outputText value="#{row.VEHCOLOURID}" id="ot9">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO1.hints.VEHCOLOURID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.VEHCOLOURID.inputValue}" readOnly="true"
+                              label="#{row.bindings.VEHCOLOURID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO1.hints.VEHCOLOURID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO1.hints.VEHCOLOURID.tooltip}"
+                              id="soc6">
+            <f:selectItems value="#{row.bindings.VEHCOLOURID.items}" id="si6"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.DotApprvforAuctflag.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.DotApprvforAuctflag.label}"
+                   id="c12" width="125">
+          <af:outputText value="#{row.DotApprvforAuctflag  == 'N'?'Reject':'Approved'}" id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO1.hints.Remarks.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO1.hints.Remarks.label}"
+                   id="c3" width="95">
+          <af:outputText value="#{row.Remarks}" id="ot12"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+     <af:panelGroupLayout id="pgl5" inlineStyle="width:736px; height:260px;"  partialTriggers="t1:sbc1 d1"
+                            binding="#{pageFlowScope.AuctionEvidenceUploadBean.autionEvidenceSearchSelectForm}" visible="false">
+      <af:spacer height="10" id="s8" width="0"/>
+      <h:inputHidden id="it3" 
+                    binding="#{pageFlowScope.AuctionEvidenceUploadBean.pvtSearchSelectedValue}"/>
+      <af:spacer height="10" id="s9" width="0"/>
+      <af:table value="#{bindings.AuctionEvidenceSearchVO11.collectionModel}" width="1129"
+                var="row" rows="#{bindings.AuctionEvidenceSearchVO11.rangeSize}" inlineStyle="height:90px;"
+                emptyText="#{bindings.AuctionEvidenceSearchVO11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.AuctionEvidenceSearchVO11.rangeSize}"
+                rowBandingInterval="0" id="t5">
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.PVTNum.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.PVTNum.label}"
+                   id="c29">
+          <af:outputText value="#{row.PVTNum}" id="ot6"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.CreatedDate.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.CreatedDate.label}"
+                   id="c24">
+          <af:outputText value="#{row.CreatedDate}" id="ot9">
+           <af:convertDateTime pattern="dd-MM-yyyy" />
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.vehownershiptypeid.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.vehownershiptypeid.label}"
+                   id="c26">
+          <!--<af:outputText value="#{row.vehownershiptypeid}" id="ot16"/>-->
+          <af:selectOneChoice value="#{row.bindings.vehownershiptypeid.inputValue}" readOnly="true"
+                              label="#{row.bindings.vehownershiptypeid.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO11.hints.vehownershiptypeid.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO11.hints.vehownershiptypeid.tooltip}"
+                              id="soc14">
+            <f:selectItems value="#{row.bindings.vehownershiptypeid.items}"
+                           id="si14"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.PVTAMTPAYABLE.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.PVTAMTPAYABLE.label}"
+                   id="c23">
+          <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot13">
+          <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+          
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.PLATENUMBER.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.PLATENUMBER.label}"
+                   id="c28">
+          <af:outputText value="#{row.PLATENUMBER}" id="ot15"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECNTID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECNTID.label}"
+                   id="c25">
+          <!--<af:outputText value="#{row.PLATECNTID}" id="ot14">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECNTID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.PLATECNTID.inputValue}" readOnly="true"
+                              label="#{row.bindings.PLATECNTID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECNTID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECNTID.tooltip}"
+                              id="soc7">
+            <f:selectItems value="#{row.bindings.PLATECNTID.items}" id="si7"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECTGID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECTGID.label}"
+                   id="c27">
+          <!--<af:outputText value="#{row.PLATECTGID}" id="ot17">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECTGID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.PLATECTGID.inputValue}" readOnly="true"
+                              label="#{row.bindings.PLATECTGID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECTGID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO11.hints.PLATECTGID.tooltip}"
+                              id="soc8">
+            <f:selectItems value="#{row.bindings.PLATECTGID.items}" id="si8"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.PLATETYPEID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.PLATETYPEID.label}"
+                   id="c21">
+          <!--<af:outputText value="#{row.PLATETYPEID}" id="ot18">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO11.hints.PLATETYPEID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.PLATETYPEID.inputValue}" readOnly="true"
+                              label="#{row.bindings.PLATETYPEID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO11.hints.PLATETYPEID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO11.hints.PLATETYPEID.tooltip}"
+                              id="soc9">
+            <f:selectItems value="#{row.bindings.PLATETYPEID.items}" id="si9"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMAKEID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMAKEID.label}"
+                   id="c20">
+          <!--<af:outputText value="#{row.VEHMAKEID}" id="ot4">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMAKEID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.VEHMAKEID.inputValue}" readOnly="true"
+                              label="#{row.bindings.VEHMAKEID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMAKEID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMAKEID.tooltip}"
+                              id="soc10">
+            <f:selectItems value="#{row.bindings.VEHMAKEID.items}" id="si10"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMODELID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMODELID.label}"
+                   id="c19">
+          <!--<af:outputText value="#{row.VEHMODELID}" id="ot5">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMODELID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.VEHMODELID.inputValue}" readOnly="true"
+                              label="#{row.bindings.VEHMODELID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMODELID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO11.hints.VEHMODELID.tooltip}"
+                              id="soc11">
+            <f:selectItems value="#{row.bindings.VEHMODELID.items}" id="si11"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.AuctionEvidenceSearchVO11.hints.VEHCOLOURID.name}"
+                   sortable="false"
+                   headerText="#{bindings.AuctionEvidenceSearchVO11.hints.VEHCOLOURID.label}"
+                   id="c22">
+          <!--<af:outputText value="#{row.VEHCOLOURID}" id="ot7">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.AuctionEvidenceSearchVO11.hints.VEHCOLOURID.format}"/>
+          </af:outputText>-->
+          <af:selectOneChoice value="#{row.bindings.VEHCOLOURID.inputValue}" readOnly="true"
+                              label="#{row.bindings.VEHCOLOURID.label}"
+                              required="#{bindings.AuctionEvidenceSearchVO11.hints.VEHCOLOURID.mandatory}"
+                              shortDesc="#{bindings.AuctionEvidenceSearchVO11.hints.VEHCOLOURID.tooltip}"
+                              id="soc12">
+            <f:selectItems value="#{row.bindings.VEHCOLOURID.items}" id="si12"/>
+          </af:selectOneChoice>
+        </af:column>
+      </af:table>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.UPLOAD_DOCUMENTS}" id="plam2" showRequired="false"> 
+           <af:panelGroupLayout id="pgl6" layout="vertical"
+                                inlineStyle="width:682px; height:137px;">   
+           
+        <af:table value="#{bindings.PVTDocsVO1.collectionModel}" var="row"
+                  rows="#{bindings.PVTDocsVO1.rangeSize}"  partialTriggers="t1:sbc1"
+                  emptyText="#{bindings.PVTDocsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.PVTDocsVO1.rangeSize}"
+                  rowBandingInterval="1" 
+                  selectedRowKeys="#{bindings.PVTDocsVO1.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.PVTDocsVO1.collectionModel.makeCurrent}"
+                  rowSelection="none" id="t4"
+                  scrollPolicy="scroll" styleClass="AFStretchWidth" 
+                  binding="#{pageFlowScope.AuctionEvidenceUploadBean.docTable}"
+                  width="673" inlineStyle="height:133px;">
+          <af:column sortable="true" width="281"
+                   headerText="#{viewcontrollerBundle.DOC_UPLOAD}"
+                   id="c15">
+                <af:inputFile label="#{bindings.PVTDocsVO1.hints.FileUpload.label}" id="if1" 
+                      showRequired="true" autoSubmit="true" value="#{row.bindings.FileUpload.inputValue}"
+                              valueChangeListener="#{pageFlowScope.AuctionEvidenceUploadBean.attachValueChangeListner}"/>
+                </af:column>
+          <af:column sortProperty="#{bindings.PVTDocsVO1.hints.DOCDesc.name}"
+                     sortable="true" width="180"
+                     headerText="Document Description"
+                     id="c16">
+            <af:inputText value="#{row.bindings.DOCDesc.inputValue}" disabled="true"
+                          label="#{bindings.PVTDocsVO1.hints.DOCDesc.label}"
+                          required="#{bindings.PVTDocsVO1.hints.DOCDesc.mandatory}"
+                          columns="#{bindings.PVTDocsVO1.hints.DOCDesc.displayWidth}"
+                          maximumLength="#{bindings.PVTDocsVO1.hints.DOCDesc.precision}"
+                          shortDesc="#{bindings.PVTDocsVO1.hints.DOCDesc.tooltip}"
+                          id="it5">
+              <f:validator binding="#{row.bindings.DOCDesc.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTDocsVO1.hints.remarks.name}"
+                     sortable="true" width="120"
+                     headerText="#{bindings.PVTDocsVO1.hints.remarks.label}"
+                     id="c17">
+            <af:inputText value="#{row.bindings.remarks.inputValue}"
+                          label="#{bindings.PVTDocsVO1.hints.remarks.label}"
+                          required="#{bindings.PVTDocsVO1.hints.remarks.mandatory}"
+                          columns="#{bindings.PVTDocsVO1.hints.remarks.displayWidth}"
+                          maximumLength="#{bindings.PVTDocsVO1.hints.remarks.precision}"
+                          shortDesc="#{bindings.PVTDocsVO1.hints.remarks.tooltip}"
+                          id="it4">
+              <f:validator binding="#{row.bindings.remarks.validator}"/>
+            </af:inputText>
+          </af:column>
+              <af:column headerText="Mandatary Flag"
+                         id="c18" width="70" align="center">
+                <!--<af:outputText value="#{row.FlageM}" id="ot5"/>-->
+                <af:selectBooleanCheckbox value="#{row.bindings.FlageM.inputValue}"
+                                          label="#{row.bindings.FlageM.label}" disabled="true"
+                                          shortDesc="#{bindings.PVTDocsVO1.hints.FlageM.tooltip}"
+                                          id="sbc2"/>
+              </af:column>
+              <!--<af:column sortable="true" width="30"
+                   headerText=""
+                   id="c11">
+               <af:commandImageLink 
+                             icon="/images/minus.png" actionListener="#{bindings.uploadDelete.execute}"
+                              disabled="#{!bindings.uploadDelete.enabled}" id="cl1"/>
+            </af:column>-->
+        </af:table>
+        </af:panelGroupLayout>
+        </af:panelLabelAndMessage>
+      
+      <af:toolbar id="t3">
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb3"
+                          inlineStyle="background-color:#F39C11;" partialTriggers="t1:sbc1 d1"
+                          action="#{pageFlowScope.AuctionEvidenceUploadBean.submitAction}"
+                          binding="#{pageFlowScope.AuctionEvidenceUploadBean.submitBtn}"
+                          visible="false"/>
+        <af:spacer width="10" id="s134"/>
+        <af:commandButton text="#{viewcontrollerBundle.CANCEL}" partialTriggers="t1:sbc1 d1"
+                          inlineStyle="background-color:#F39C11;" id="cb4"
+                          binding="#{pageFlowScope.AuctionEvidenceUploadBean.cancelBtn}"
+                          action="#{pageFlowScope.AuctionEvidenceUploadBean.cancelAction}"
+                          visible="false"/>
+      </af:toolbar>
+    </af:panelGroupLayout>
+    
+  </af:panelGroupLayout>
+  
+</jsp:root>

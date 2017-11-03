@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"> 
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelBox text="#{viewcontrollerBundle.HHCASSIGNMENT}" id="pb1" inlineStyle="height:278px;"
+               binding="#{pageFlowScope.HHCAssignMBean.pb1}">
+    <af:spacer width="10" height="10" id="s5"/>
+    
+    <af:panelFormLayout id="pfl0" rows="3">
+      <af:inputDate label="#{viewcontrollerBundle.HHC_ASSIGNMENT_DATE}" id="id1"
+      />
+      <af:selectOneChoice value="#{bindings.shiftlistVO1.inputValue}"
+                          label="#{viewcontrollerBundle.SHIFT}"
+                          binding="#{pageFlowScope.HHCAssignMBean.shift}"
+                          required="#{bindings.shiftlistVO1.hints.mandatory}"
+                          shortDesc="#{bindings.shiftlistVO1.hints.tooltip}"
+                          id="soc1">
+        <f:selectItems value="#{bindings.shiftlistVO1.items}" id="si1"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.Locationid.inputValue}"
+                          label="#{viewcontrollerBundle.LOCATION_TYPE}"
+                          required="#{bindings.Locationid.hints.mandatory}"
+                            binding="#{pageFlowScope.HHCAssignMBean.location}"
+                          shortDesc="#{bindings.Locationid.hints.tooltip}"
+                          id="soc2">
+        <f:selectItems value="#{bindings.Locationid.items}" id="si4"/>
+      </af:selectOneChoice>
+    </af:panelFormLayout>
+    <af:panelGroupLayout id="pgl1">
+      <af:selectOneRadio label="#{viewcontrollerBundle.ISSUERECEIVE}" id="sor1"
+                         valueChangeListener="#{pageFlowScope.HHCAssignMBean.IssueReceive}"
+                         autoSubmit="true">
+        <af:selectItem label="Issue" value="I" id="si3"/>
+        <af:selectItem label="Receive" value="R" id="si2"/>
+      </af:selectOneRadio>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl3">
+      <af:spacer width="10" height="10" id="s4"/>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl0" layout="vertical">
+      <af:panelFormLayout id="pfl3" rows="3" fieldWidth="20"
+                          labelWidth="10">
+        <af:inputText label="#{viewcontrollerBundle.HHC_ID}" 
+               binding="#{pageFlowScope.HHCAssignMBean.hhcId}"
+        id="it4" columns="30"/>
+        <af:inputText  label="#{viewcontrollerBundle.PI_ID_0}"
+                       columns="30" id="piId"
+                        binding="#{pageFlowScope.HHCAssignMBean.piId}"
+                        inlineStyle="width:300.0px;">
+            </af:inputText>
+        <af:inputText label="#{viewcontrollerBundle.COMMENTS}" id="it1" contentStyle="width:330.0px;"
+                      rows="1" binding="#{pageFlowScope.HHCAssignMBean.it1}"/>
+      </af:panelFormLayout>
+    </af:panelGroupLayout>
+    <af:panelFormLayout id="pfl2" rows="1"
+                        binding="#{pageFlowScope.HHCAssignMBean.pfl2}"
+                        maxColumns="3" inlineStyle="width:692px; height:28px;">
+      <af:spacer width="200" id="s1"/>
+      <af:panelGroupLayout id="pgl4" layout="horizontal">
+        <af:spacer width="20" id="s7"/>
+        <af:commandButton text="#{viewcontrollerBundle.ISSUE}" id="cb5"
+                          action="#{pageFlowScope.HHCAssignMBean.IssueHHC}"
+                          visible="#{pageFlowScope.HHCAssignMBean.flag1}"
+                          inlineStyle="width:auto;background-color:#F39C11;"
+                          partialTriggers="::sor1"/>
+        <af:spacer width="20" id="s8"/>
+        <af:commandButton text="#{viewcontrollerBundle.RECEIVE}" id="cb1"
+                          binding="#{pageFlowScope.HHCAssignMBean.cb1}"
+                          inlineStyle="width:auto;background-color:#F39C11;"
+                          disabled="#{!bindings.Commit.enabled}"
+                    
+                          action="#{pageFlowScope.HHCAssignMBean.ReceiveHHC}"
+                          visible="#{pageFlowScope.HHCAssignMBean.flag2}"
+                          partialTriggers="::sor1"/>
+        <af:spacer width="20" height="10" id="s6"/>
+      </af:panelGroupLayout>
+    </af:panelFormLayout>
+    <af:panelGroupLayout id="pgl6">
+      <af:table value="#{bindings.HHCAssignVO2.collectionModel}" var="row"
+                rows="#{bindings.HHCAssignVO2.rangeSize}"
+                emptyText="#{bindings.HHCAssignVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.HHCAssignVO2.rangeSize}"
+                rowBandingInterval="0"
+                selectionListener="#{bindings.HHCAssignVO2.collectionModel.makeCurrent}"
+                rowSelection="multiple" id="t1" inlineStyle="height:129px;">
+        <af:column sortProperty="#{bindings.HHCAssignVO2.hints.HHCID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.HHC_ID}"
+                   id="c3">
+          <af:inputText value="#{row.bindings.HHCID.inputValue}"
+                        label="#{bindings.HHCAssignVO2.hints.HHCID.label}"
+                        required="#{bindings.HHCAssignVO2.hints.HHCID.mandatory}"
+                        columns="#{bindings.HHCAssignVO2.hints.HHCID.displayWidth}"
+                        maximumLength="#{bindings.HHCAssignVO2.hints.HHCID.precision}"
+                        shortDesc="#{bindings.HHCAssignVO2.hints.HHCID.tooltip}"
+                        id="it3">
+            <f:validator binding="#{row.bindings.HHCID.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.HHCAssignVO2.hints.PIID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PI_ID_0}"
+                   id="c2">
+          <af:inputText value="#{row.bindings.PIID.inputValue}"
+                        label="#{bindings.HHCAssignVO2.hints.PIID.label}"
+                        required="#{bindings.HHCAssignVO2.hints.PIID.mandatory}"
+                        columns="#{bindings.HHCAssignVO2.hints.PIID.displayWidth}"
+                        maximumLength="#{bindings.HHCAssignVO2.hints.PIID.precision}"
+                        shortDesc="#{bindings.HHCAssignVO2.hints.PIID.tooltip}"
+                        id="it2">
+            <f:validator binding="#{row.bindings.PIID.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.HHCAssignVO2.hints.IssuedDate1.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.ISSUED_DATE_1}"
+                   id="c4">
+          <af:inputDate value="#{row.bindings.IssuedDate1.inputValue}"
+                        label="#{bindings.HHCAssignVO2.hints.IssuedDate1.label}"
+                        required="#{bindings.HHCAssignVO2.hints.IssuedDate1.mandatory}"
+                        shortDesc="#{bindings.HHCAssignVO2.hints.IssuedDate1.tooltip}"
+                        id="id2">
+            <f:validator binding="#{row.bindings.IssuedDate1.validator}"/>
+            <af:convertDateTime pattern="#{bindings.HHCAssignVO2.hints.IssuedDate1.format}"/>
+          </af:inputDate>
+        </af:column>
+        <af:column sortProperty="#{bindings.HHCAssignVO2.hints.RecievedDate.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.RECEIVED_DATE}"
+                   id="c1">
+          <af:inputDate value="#{row.bindings.RecievedDate.inputValue}"
+                        label="#{bindings.HHCAssignVO2.hints.RecievedDate.label}"
+                        required="#{bindings.HHCAssignVO2.hints.RecievedDate.mandatory}"
+                        shortDesc="#{bindings.HHCAssignVO2.hints.RecievedDate.tooltip}"
+                        id="id3">
+            <f:validator binding="#{row.bindings.RecievedDate.validator}"/>
+            <af:convertDateTime pattern="#{bindings.HHCAssignVO2.hints.RecievedDate.format}"/>
+          </af:inputDate>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl5">
+      <af:commandButton text="#{viewcontrollerBundle.SAVE}" id="cb4"
+                        actionListener="#{bindings.Commit.execute}"
+                       
+                        inlineStyle="width:auto;background-color:#F39C11;"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL_4}" id="cb2"
+                        binding="#{pageFlowScope.HHCAssignMBean.cb2}"
+                        inlineStyle="width:auto;background-color:#F39C11;"
+                        actionListener="#{bindings.Rollback.execute}"
+                        immediate="true">
+        <af:resetActionListener/>
+        <af:resetActionListener/>
+      </af:commandButton>
+    </af:panelGroupLayout>
+  </af:panelBox>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:HhcAssign-->
+  <!--oracle-jdev-comment:preferred-managed-bean-name:pageFlowScope.HHCAssignMBean-->
+</jsp:root>

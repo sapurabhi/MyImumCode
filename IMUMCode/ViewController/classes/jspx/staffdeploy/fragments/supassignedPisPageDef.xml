@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="supassignedPisPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="getPisAssignedtoSuperviosr_supid"
+                IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="PIAllocToSpvsrGrpUVO2" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PIAllocToSpvsrGrpUVO2Iterator"/>
+    <iterator Binds="SupervisorPisVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="SupervisorPisVO1Iterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getPisAssignedtoSuperviosr" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getPisAssignedtoSuperviosr"
+                  IsViewObjectMethod="false"
+                  DataControl="StaffDeployDataControl"
+                  InstanceName="StaffDeployDataControl.dataProvider">
+      <NamedData NDName="supid" NDType="java.lang.String"
+                 NDValue="${bindings.getPisAssignedtoSuperviosr_supid}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="supid">
+      <AttrNames>
+        <Item Value="getPisAssignedtoSuperviosr_supid"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PIAllocToSpvsrGrpUVO2Iterator"
+          id="PIAllocToSpvsrGrpUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIAllocToSpvsrGrpUVO"
+                      Name="PIAllocToSpvsrGrpUVO20">
+        <AttrNames>
+          <Item Value="AssignedTo"/>
+          <Item Value="PIid"/>
+          <Item Value="status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="SupervisorPisVO1Iterator" id="SupervisorPisVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.SupervisorPisVO"
+                      Name="SupervisorPisVO10">
+        
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

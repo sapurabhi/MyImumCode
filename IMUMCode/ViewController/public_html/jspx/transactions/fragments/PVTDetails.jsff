@@ -1,0 +1,1326 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" layout="scroll">
+    <!-- #{pageFlowScope.PVTDetailsMBean.PVTNum} -->
+    <!-- <af:resource type="javascript" source="http://js.arcgis.com/3.10/"/>
+    <af:resource type="javascript" source="/js/map.js"/>
+    <af:resource type="css" source="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/esri/css/esri.css"/>    -->
+    <af:resource type="javascript" source="/js/arcgis.js"/>
+    <af:resource type="css" source="/js/esri.css"/>
+    <af:resource type="javascript" source="/js/map.js"/>
+    
+    <af:panelGroupLayout id="pgl2554" layout="vertical" inlineStyle="text-align:left;">
+         
+         <af:commandButton id="cb167" text="#{viewcontrollerBundle.BACK}"
+                      inlineStyle="background-color:#F39C11;" action="back"/>
+  </af:panelGroupLayout>
+    
+    <af:panelGroupLayout id="pgl2" layout="vertical"
+                         inlineStyle="text-align:center;">
+      <af:outputText id="ottest01" value="#{viewcontrollerBundle.PVT_DETAILS_0}"
+                     inlineStyle="font-size:large; font-weight:bolder;"/>
+      <af:spacer width="10" height="10" id="spacer4"/>
+      <af:panelGroupLayout id="pfl1" layout="horizontal" valign="top">
+        <af:panelHeader text="#{viewcontrollerBundle.PVT_DETAILS_0}" id="sdh1"
+                        inlineStyle="text-align:left; border-color:Black; border-style:solid; border-width:thin;">
+          <table width="250">
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.PVTNum.hints.label}" id="ol1"
+                               inlineStyle="text-align:left;"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.PVTNum.inputValue == null ? '-' : bindings.PVTNum.inputValue}"
+                               id="ot46"/>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.PVTdatetime.hints.label}"
+                               id="ol5"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.PVTdatetime.inputValue  == null ? '-' : bindings.PVTdatetime.inputValue}"
+                               shortDesc="#{bindings.PVTdatetime.hints.tooltip}"
+                               id="id1">
+                  <f:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+                </af:outputText>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.PVTSTAGEID.label}" id="ol2"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl24" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputLabel value="#{'-'}"
+                                  visible="#{bindings.PVTSTAGEID.inputValue==null ? 'true' :'false'}"
+                                  id="ol29"/>
+                  <af:selectOneChoice value="#{bindings.PVTSTAGEID.inputValue}"
+                                      simple="true" readOnly="true"
+                                      visible="#{bindings.PVTSTAGEID.inputValue==null ? 'false' : 'true'}"
+                                      id="soc8">
+                    <f:selectItems value="#{bindings.PVTSTAGEID.items}"
+                                   id="si9"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.PVTStatusID.label}" id="ol3"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl28" layout="vertical"
+                                     inlineStyle=" text-align:left;">
+                  <af:outputLabel value="#{'-'}"
+                                  visible="#{bindings.PVTStatusID.inputValue==null ? 'true' :'false'}"
+                                  id="ol32"/>
+                  <af:selectOneChoice value="#{bindings.PVTStatusID.inputValue}"
+                                      simple="true" readOnly="true"
+                                      visible="#{bindings.PVTStatusID.inputValue==null ? 'false' : 'true'}"
+                                      id="soc4">
+                    <f:selectItems value="#{bindings.PVTStatusID.items}"
+                                   id="si3"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr valign="top">
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.ENFORCESTAGEID.label}"
+                               id="ol30"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl29" layout="horizontal"
+                                     inlineStyle=" text-align:left;">
+                  <af:selectOneChoice value="#{bindings.ENFORCESTAGEID1.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.ENFORCESTAGEID1.inputValue==null ? 'false' : 'true'}"
+                                      id="soc14">
+                    <f:selectItems value="#{bindings.ENFORCESTAGEID1.items}"
+                                   id="si14"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{viewcontrollerBundle.CONTRAVENTION_CODE}"
+                               id="ol6"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.Contracode.inputValue}"
+                               shortDesc="#{bindings.Contracode.hints.tooltip}"
+                               id="it19"/>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{viewcontrollerBundle.CONTRA_DESCRIPTION}"
+                               id="ol25"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl13" layout="vertical">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.Contracode1.inputValue==null ? 'true' :'false'}"
+                                 id="ol26"/>
+                  <af:selectOneChoice value="#{bindings.Contracode1.inputValue}"
+                                      readOnly="true"
+                                      visible="#{bindings.Contracode1.inputValue==null ? 'false' : 'true'}"
+                                      id="soc17" inlineStyle="text-align:left;"
+                                      simple="true">
+                    <f:selectItems value="#{bindings.Contracode1.items}"
+                                   id="si17"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.TariffID.label}" id="ol8"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl26" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.TariffID.inputValue==null ? 'true' :'false'}"
+                                 id="ot26"/>
+                  <af:selectOneChoice value="#{bindings.TariffID.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.TariffID.inputValue==null ? 'false' : 'true' }"
+                                      id="soc2">
+                    <f:selectItems value="#{bindings.TariffID.items}" id="si7"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.Baynum.label}" id="ot66"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl11" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.Baynum.inputValue==null ? 'true' :'false'}"
+                                 id="ot67"/>
+                  <af:selectOneChoice value="#{bindings.Baynum.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.Baynum.inputValue==null ? 'false' : 'true' }"
+                                      id="soc21">
+                    <f:selectItems value="#{bindings.Baynum.items}" id="si21"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.POUNDLocationID.label}"
+                               id="ot69"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl37" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.POUNDLocationID.inputValue==null ? 'true' :'false'}"
+                                 id="ot68"/>
+                  <af:selectOneChoice value="#{bindings.POUNDLocationID.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.POUNDLocationID.inputValue==null ? 'false' : 'true' }"
+                                      id="soc22">
+                    <f:selectItems value="#{bindings.POUNDLocationID.items}"
+                                   id="si22"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.SectorCode.label}" id="ot54"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl36" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.SectorCode1.inputValue==null ? 'true' :'false'}"
+                                 id="ot65"/>
+                  <!--<af:selectOneChoice value="#{bindings.SectorCode.inputValue}"
+                                      required="#{bindings.SectorCode.hints.mandatory}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.SectorCode.inputValue==null ? 'false' : 'true' }"
+                                      shortDesc="#{bindings.SectorCode.hints.tooltip}"
+                                      id="soc16">
+                    <f:selectItems value="#{bindings.SectorCode.items}"
+                                   id="si16"/>
+                  </af:selectOneChoice>-->
+                  <af:outputText value="#{bindings.SectorCode1.inputValue}" 
+                               visible="#{bindings.SectorCode1.inputValue==null ? 'false' : 'true' }"
+                                 id="ot93"/>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" valign="top" width="50%">
+                <af:outputText value="#{bindings.zonecode.label}" id="ol9"/>
+              </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl3" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.zonecode1.inputValue==null ? 'true' :'false'}"
+                                 id="ol31"/>
+                  <!--<af:selectOneChoice value="#{bindings.zonecode.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.zonecode.inputValue==null ? 'false' : 'true' }"
+                                      shortDesc="#{bindings.zonecode.hints.tooltip}"
+                                      id="soc5">
+                    <f:selectItems value="#{bindings.zonecode.items}" id="si2"/>
+                  </af:selectOneChoice>-->
+                  <af:outputText value="#{bindings.zonecode1.inputValue}"
+                                  visible="#{bindings.zonecode1.inputValue==null ? 'false' : 'true' }"
+                                 id="ot94"/>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             <tr>
+              <td align="left" valign="top" width="50%">
+                 <af:outputText value="Source"  id="ot91"/>
+               </td>
+              <td align="left" valign="top" width="50%">
+                <af:panelGroupLayout id="pgl6" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PVTSOURCE.inputValue==null ? 'true' :'false'}"
+                                 id="ot90"/>
+                  <af:outputText id="ot88" value="#{bindings.PVTSOURCE.inputValue == 'H' ? 'HHC' : (bindings.PVTSOURCE.inputValue  == 'M' ? 'Mannual' : (bindings.PVTSOURCE.inputValue  =='S' ? 'SMS' :  '' ))}"
+                                           visible="#{bindings.PVTSOURCE.inputValue == null ? 'false' : 'true' }" />
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+            
+          </table>
+        </af:panelHeader>
+        <af:spacer width="10" height="10" id="space1"/>
+        <af:panelGroupLayout id="pgl5" layout="vertical">
+          <af:panelHeader text="#{viewcontrollerBundle.CHARGES_DETAILS}"
+                          id="showDetailHeader1"
+                          inlineStyle="text-align:left; border-color:Black; border-style:solid; border-width:thin;">
+            <table>
+              <tr>
+                <td width="140">
+                  <af:spacer width="2" id="s4"/>
+                   
+                  <af:outputLabel value="#{bindings.CONTRAAMT.hints.label}"
+                                  id="ot48"/>
+                </td>
+                <td width="60" align="right">
+                  <af:outputText value="#{bindings.CONTRAAMT.inputValue}"
+                                 inlineStyle="text-align:right;"
+                                 shortDesc="#{bindings.CONTRAAMT.hints.tooltip}"
+                                 id="it5">
+                    <f:convertNumber pattern="#0.00"/>
+                  </af:outputText>
+                </td>
+              </tr>
+            </table>
+            <af:table value="#{bindings.PVTCategorizedChargesRVO1.collectionModel}"
+                      visible="#{ bindings.PVTCategorizedChargesRVO1.estimatedRowCount==0 ? 'false' : 'true' }"
+                      var="row" width="216" rowBandingInterval="0"
+                      autoHeightRows="0" scrollPolicy="page"
+                      rows="#{bindings.PVTCategorizedChargesRVO1.rangeSize}"
+                      emptyText="#{bindings.PVTCategorizedChargesRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PVTCategorizedChargesRVO1.rangeSize}"
+                      id="t3" horizontalGridVisible="false"
+                      verticalGridVisible="false" styleClass="AFStretchWidth"
+                      inlineStyle="border-style:none;">
+              <af:column sortable="false" width="209" id="c7">
+                <table>
+                  <tr>
+                    <td width="140">
+                      <af:selectOneChoice value="#{row.bindings.ChargeType.inputValue}"
+                                          readOnly="true" id="soc12">
+                        <f:selectItems value="#{row.bindings.ChargeType.items}"
+                                       id="si1"/>
+                      </af:selectOneChoice>
+                    </td>
+                    <td width="60" align="right">
+                      <af:outputText value="#{row.bindings.ChargeAmount.inputValue}"
+                                     id="it1">
+                        <f:convertNumber pattern="#0.00"/>
+                      </af:outputText>
+                    </td>
+                  </tr>
+                </table>
+              </af:column>
+            </af:table>
+            <table>
+              <tr>
+                <td width="140">
+                  <af:spacer width="2" id="s5"/>
+                   
+                  <af:outputLabel value="#{viewcontrollerBundle.DISCOUNT_AMOUNT}"
+                                  id="ol12"/>
+                </td>
+                <td width="60" align="right">
+                  <af:outputText value="#{bindings.Discountamt.inputValue}"
+                                 inlineStyle=" text-align:right;"
+                                 id="inputText4">
+                    <f:convertNumber pattern="-#00.00"/>
+                  </af:outputText>
+                </td>
+              </tr>
+               
+              <tr>
+                <td width="140">
+                  <af:spacer width="2" id="s6"/>
+                   
+                  <af:outputLabel value="#{viewcontrollerBundle.TOTAL_CHARGES}"
+                                  id="ol13" inlineStyle="font-weight:bold;"/>
+                </td>
+                <td width="60" align="right">
+                  <af:outputText value="#{pageFlowScope.PVTDetailsMBean.totalCost}"
+                                 inlineStyle="text-align:right; font-weight:bold;"
+                                 id="ot47">
+                    <f:convertNumber pattern="#00.00"/>
+                  </af:outputText>
+                </td>
+              </tr>
+            </table>
+            <af:spacer width="40" height="5" id="s8"/>
+          </af:panelHeader>
+          <af:spacer width="10" height="10" id="spacer1"/>
+          <af:panelHeader text="#{viewcontrollerBundle.PAYMENT_DETAILS}"
+                          id="showDetailHeader2"
+                          inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+            <table>
+              <tr>
+                <td width="140" align="left">
+                  <af:spacer width="2" id="s3"/><af:outputText value="#{bindings.PVTAMTPAID.hints.label}"
+                                                               id="ot50"/>
+                </td>
+                <td width="60" align="right">
+                  <af:outputText value="#{bindings.PVTAMTPAID.attributeValue == null ? '0.00' : bindings.PVTAMTPAID.attributeValue  }"
+                                 id="it6">
+                    <f:convertNumber pattern="#0.00"/>
+                  </af:outputText>
+                </td>
+              </tr>
+               
+              <tr>
+                <td width="140" align="left">
+                  <af:spacer width="2" id="s11"/>
+                   
+                  <af:outputText value="#{bindings.Balance.hints.label}"
+                                 id="ot49"/>
+                </td>
+                <td width="60" align="right">
+                  <af:outputText value="#{bindings.PVTAMTPAYABLE.inputValue}"
+                                 id="ot55">
+                    <f:convertNumber pattern="#0.00"/>
+                  </af:outputText>
+                </td>
+              </tr>
+              <!-- -->
+              
+             <tr>
+                <td width="140" align="left">
+                  <af:spacer width="2" id="s12"/><af:outputText value="Refund Amount"
+                                                               id="ot87"/>
+                </td>
+                <td width="60" align="right">
+                  <af:outputText value="#{bindings.PVTAMTREFUNDED.inputValue == null ? '0.00' : bindings.PVTAMTREFUNDED.attributeValue }"
+                                 id="ot89">
+                                  <f:convertNumber pattern="#0.00"/>
+                                 </af:outputText>
+                                 <!--<af:outputText value="#{bindings.PVTAMTPAID.attributeValue == null ? '0.00' : bindings.PVTAMTPAID.attributeValue  }"
+                                 id="ot88">
+                    <f:convertNumber pattern="#0.00"/>
+                  </af:outputText>-->
+                </td>
+              </tr>
+              
+              
+              <!-- -->
+            </table>
+            
+            
+          </af:panelHeader>
+        </af:panelGroupLayout>
+        <af:spacer width="10" height="10" id="s7"/>
+        <af:panelHeader text="#{viewcontrollerBundle.VEHICLE_DETAILS}"
+                        id="showDetailHeader3"
+                        inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+          <table>
+            <tr>
+              <td align="left">
+                <af:outputText value="#{bindings.PLATENUMBER.hints.label}"
+                               id="ol4"/>
+              </td>
+              <td align="left">
+                <af:outputText value="#{bindings.PLATENUMBER.inputValue ==null ? '-' : bindings.PLATENUMBER.inputValue}"
+                               id="it3"/>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <af:outputText value="#{bindings.CountryCode.label}" id="ol7"/>
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl30" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PLATECNTID.inputValue==null ? 'true' :'false'}"
+                                 id="ot28"/>
+                  <af:selectOneChoice value="#{bindings.PLATECNTID.inputValue}"
+                                      readOnly="true"
+                                      visible="#{bindings.PLATECNTID.inputValue==null ? 'false' :'true'}"
+                                      simple="true"
+                                      shortDesc="#{bindings.PLATECNTID.hints.tooltip}"
+                                      id="soc10">
+                    <f:selectItems value="#{bindings.PLATECNTID.items}"
+                                   id="si6"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <af:outputText value="#{bindings.PLATECTGID.label}" id="ol10"/>
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl31" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PLATECTGID.inputValue==null ? 'true' :'false'}"
+                                 id="ot32"/>
+                  <af:selectOneChoice value="#{bindings.PLATECTGID.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.PLATECTGID.inputValue==null ? 'false' : 'true'}"
+                                      required="#{bindings.PLATECTGID.hints.mandatory}"
+                                      shortDesc="#{bindings.PLATECTGID.hints.tooltip}"
+                                      id="soc1">
+                    <f:selectItems value="#{bindings.PLATECTGID.items}"
+                                   id="si10"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <af:outputText value="#{bindings.PLATETYPEID.label}" id="ol11"/>
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl35" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PLATETYPEID.inputValue==null ? 'true' :'false'}"
+                                 id="ot53"/>
+                  <af:selectOneChoice value="#{bindings.PLATETYPEID.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.PLATETYPEID.inputValue==null ? 'false' : 'true' }"
+                                      id="soc7">
+                    <f:selectItems value="#{bindings.PLATETYPEID.items}"
+                                   id="si5"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <af:outputText value="#{bindings.VEHMAKEID.label}" id="ot59"/>
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl34" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.VEHMAKEID.inputValue==null ? 'true' :'false'}"
+                                 id="ot51"/>
+                  <af:selectOneChoice value="#{bindings.VEHMAKEID.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.VEHMAKEID.inputValue==null ? 'false' : 'true'}"
+                                      required="#{bindings.VEHMAKEID.hints.mandatory}"
+                                      shortDesc="#{bindings.VEHMAKEID.hints.tooltip}"
+                                      id="soc9">
+                    <f:selectItems value="#{bindings.VEHMAKEID.items}"
+                                   id="si4"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <!--<af:outputText value="#{bindings.VEHMODELID.label}" id="ot60"/>-->
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl33" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                                      <af:popup id="p1" contentDelivery="lazyUncached" autoCancel="disabled">
+             <af:dialog id="pw6" 
+                          stretchChildren="first" contentWidth="700"
+                          contentHeight="500" type="none">
+                  <af:panelGroupLayout id="pgl4" >
+                    <af:table value="#{bindings.PVTHyperLinkVO1.collectionModel}"
+                              var="row" 
+                              rows="#{bindings.PVTHyperLinkVO1.rangeSize}"
+                              emptyText="#{bindings.PVTHyperLinkVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.PVTHyperLinkVO1.rangeSize}"
+                              rowBandingInterval="0" id="t8" width="694"
+                              inlineStyle="height:487px;">
+                      <af:column sortProperty="#{bindings.PVTHyperLinkVO1.hints.PVTNum.name}"
+                                 sortable="false"
+                                 headerText="#{viewcontrollerBundle.PVT_NUMBER_0}"
+                                 id="c29">
+                        <af:outputText value="#{row.PVTNum}" id="ot82"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PVTHyperLinkVO1.hints.PVTdatetime.name}"
+                                 sortable="false"
+                                 headerText="#{viewcontrollerBundle.PVT_ISSUANCE_DATE}"
+                                 id="c31" width="200">
+                        <af:outputText value="#{row.PVTdatetime}" id="ot801">
+                       
+                            <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PVTHyperLinkVO1.hints.StatusDesc.name}"
+                                 sortable="false"
+                                 headerText="#{viewcontrollerBundle.PVT_STATUS}"
+                                 id="c22" width="150" displayIndex="-1">
+                        <af:outputText value="#{row.StatusDesc}" id="ot85"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PVTHyperLinkVO1.hints.ReasonDesc.name}"
+                                 sortable="false"
+                                 headerText="#{viewcontrollerBundle.DECISION}"
+                                 id="c27">
+                        <af:outputText value="#{row.ReasonDesc}" id="ot84"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.PVTHyperLinkVO1.hints.valuedesc.name}"
+                                 sortable="false"
+                                 headerText="#{viewcontrollerBundle.APPEAL_STATUS}"
+                                 id="c28">
+                        <af:outputText value="#{row.valuedesc}" id="ot83"/>
+                      </af:column>
+                    </af:table>
+                  </af:panelGroupLayout>
+               </af:dialog>
+              </af:popup>
+                  <!--<af:outputText value="#{'-'}"
+                                 visible="#{bindings.VEHMODELID.inputValue==null ? 'true' :'false'}"
+                                 id="ot35"/>-->
+                  <!--<af:selectOneChoice value="#{bindings.VEHMODELID.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.VEHMODELID.inputValue==null ? 'false' : 'true'}"
+                                      id="soc3">
+                    <f:selectItems value="#{bindings.VEHMODELID.items}"
+                                   id="si12"/>
+                  </af:selectOneChoice>-->
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <af:outputText value="#{bindings.VEHCOLOURID.label}" id="ot61"/>
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl32" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.VEHCOLOURID.inputValue==null ? 'true' :'false'}"
+                                 id="ot33"/>
+                  <af:selectOneChoice value="#{bindings.VEHCOLOURID.inputValue}"
+                                      readOnly="true" simple="true"
+                                      visible="#{bindings.VEHCOLOURID.inputValue==null ? 'false' : 'true'}"
+                                      id="soc13">
+                    <f:selectItems value="#{bindings.VEHCOLOURID.items}"
+                                   id="si13"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <af:outputText value="#{'Vehicle Owner'}" id="ot3"/>
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl25" layout="horizontal"
+                                     inlineStyle=" text-align:left;">
+                  <af:outputText value="#{bindings.Salutation.inputValue!=null ? bindings.Salutation.inputValue : ''} #{bindings.FirstName.inputValue !=null ? bindings.FirstName.inputValue :''} #{bindings.MiddleName.inputValue != null ? bindings.MiddleName.inputValue : ''} #{bindings.LastName.inputValue != null ? bindings.LastName.inputValue : ''}"
+                                 rendered="#{bindings.CustID.inputValue ==null ? 'false' : 'true'}"
+                                 truncateAt="20" id="ot52"/>
+                  <af:outputText value="#{bindings.INSTNAME.inputValue}"
+                                 rendered="#{(bindings.CustID.inputValue ==null and bindings.INSTID.inputValue !=null) ?  'true' : 'false' }"
+                                 id="ot57"/>
+                  <af:outputText value="#{'-'}"
+                                 rendered="#{(bindings.INSTID.inputValue ==null and bindings.CustID.inputValue ==null) ? 'true' : 'false'}"
+                                 id="ot58"/>
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left">
+                <af:outputText value="#{viewcontrollerBundle.NO_OF_PVTS_ISSUED_FOR_VEHICLE}"
+                               id="ot62"/>
+              </td>
+             
+             <!-- <td align="left">
+                <af:outputText value="#{pageFlowScope.PVTDetailsMBean.PVTsForPlate ==null ? '0' : pageFlowScope.PVTDetailsMBean.PVTsForPlate}"
+                               id="ot56"/>
+                              
+              </td>-->
+               <td align="left">
+                <af:commandLink  
+                                                          id="cl3"
+                                text="#{pageFlowScope.PVTDetailsMBean.PVTsForPlate ==null ? '0' : pageFlowScope.PVTDetailsMBean.PVTsForPlate}"
+                                inlineStyle="color:Blue; font-weight:bold; text-decoration:underline;">
+                  <af:showPopupBehavior popupId="p1"/>
+                </af:commandLink>
+                                                          </td>
+            </tr>
+          </table>
+        </af:panelHeader>
+        <af:spacer width="10" height="10" id="s1"/>
+      </af:panelGroupLayout>
+      <af:spacer width="10" height="10" id="spacer5"/>
+      <af:panelTabbed id="plt1" inlineStyle="width:1020px;height:380px">
+        <af:showDetailItem text="#{viewcontrollerBundle.PVT_DETAILS_0}"
+                           id="showDetailItem1">
+          <af:panelGroupLayout id="pfl2" layout="horizontal" valign="top">
+            <af:panelHeader text="#{viewcontrollerBundle.PVT_DETAILS_0}"
+                            id="ph1"
+                            inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+              <af:panelFormLayout id="pfl3" maxColumns="2"
+                                  inlineStyle="width:290px; " rows="11">
+                <!--<af:outputLabel value="#{bindings.PIName.label}" id="ol14"/>-->
+                <af:outputLabel value="PI ID" id="ol33"/>
+                <af:outputLabel value="#{bindings.HHCID1.hints.label}"
+                                id="ol15"/>
+                <af:outputLabel value="#{bindings.ObsrvVHCLgeolat.hints.label}"
+                                id="ol16"/>
+                <af:outputLabel value="#{bindings.ObsrvVHCLgeolon.hints.label}"
+                                id="ol17"/>
+                <af:outputLabel value="#{bindings.OBSRVSTATUSCODE1.label}"
+                                id="ol18"/>
+                <af:outputLabel value="#{bindings.Obsrvfrom.hints.label}"
+                                id="ol19"/>
+                <af:outputLabel value="#{bindings.ObsrvTo.hints.label}"
+                                id="ol20"/>
+                <af:outputLabel value="#{bindings.responsetime.hints.label}"
+                                id="ol21"/>
+                <af:outputLabel value="#{bindings.CLOSUREREASONS.hints.label}"
+                                id="ol22"/>
+                <af:outputLabel value="#{bindings.CLOSUREREMARKS.hints.label}"
+                                id="ol23"/>
+                <af:outputLabel value="#{bindings.courtcasenumber.hints.label}"
+                                id="ol24"/>
+                <!--<af:panelGroupLayout id="pgl12" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PIName1.inputValue==null ? 'true' :'false'}"
+                                 id="ol27" inlineStyle="text-align:right;"/>
+                  <af:selectOneChoice value="#{bindings.PIName1.inputValue}"
+                                      readOnly="true"
+                                      visible="#{bindings.PIName1.inputValue==null ? 'false' : 'true' }"
+                                      required="#{bindings.PIName1.hints.mandatory}"
+                                      shortDesc="#{bindings.PIName1.hints.tooltip}"
+                                      id="soc15" simple="true"
+                                      inlineStyle="text-align:right;">
+                    <f:selectItems value="#{bindings.PIName1.items}" id="si15"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>-->
+                  <af:panelGroupLayout id="pgl7" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PVTSearchRVO1.inputValue==null ? 'true' :'false'}"
+                                 id="ot92" inlineStyle="text-align:right;"/>
+                 
+                  <af:selectOneChoice value="#{bindings.PVTSearchRVO1.inputValue}"
+                                      label="#{bindings.PVTSearchRVO1.label}"
+                                      readOnly="true"
+                                      visible="#{bindings.PVTSearchRVO1.inputValue==null ? 'false' : 'true' }"
+                                      required="#{bindings.PVTSearchRVO1.hints.mandatory}"
+                                      shortDesc="#{bindings.PVTSearchRVO1.hints.tooltip}"
+                                      id="soc23" simple="true"
+                                      inlineStyle="text-align:right;">
+                    <f:selectItems value="#{bindings.PVTSearchRVO1.items}" id="si23"/>
+                  </af:selectOneChoice>
+                  
+                  
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl14" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.HHCID.inputValue == null ? '-' : bindings.HHCID.inputValue}"
+                                 id="it13"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl15" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.PVTVHCLgeolat.inputValue==null ? '-' : bindings.PVTVHCLgeolat.inputValue}"
+                                 id="it12">
+                    <f:convertNumber pattern="#0.000"/>
+                  </af:outputText>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl23" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.PVTVHCLgeolon.inputValue==null ? '-' : bindings.PVTVHCLgeolon.inputValue}"
+                                 id="it11">
+                    <f:convertNumber pattern="#0.000"/>
+                  </af:outputText>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl16" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.OBSRVSTATUSCODE1.inputValue==null ? 'true' :'false'}"
+                                 id="ol28"/>
+                  <af:selectOneChoice value="#{bindings.OBSRVSTATUSCODE1.inputValue}"
+                                      readOnly="true"
+                                      visible="#{bindings.OBSRVSTATUSCODE1.inputValue==null ? 'false' : 'true' }"
+                                      required="#{bindings.OBSRVSTATUSCODE1.hints.mandatory}"
+                                      shortDesc="#{bindings.OBSRVSTATUSCODE1.hints.tooltip}"
+                                      id="soc11">
+                    <f:selectItems value="#{bindings.OBSRVSTATUSCODE1.items}"
+                                   id="si11"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl17" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.Obsrvfrom.inputValue==null ? '-' : bindings.Obsrvfrom.inputValue}"
+                                 id="id2"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl18" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.ObsrvTo.inputValue==null ? '-' : bindings.ObsrvTo.inputValue}"
+                                 id="id4"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl19" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.responsetime.inputValue==null ? '- ' : bindings.responsetime.inputValue}"
+                                 id="id3"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl20" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.CLOSUREREASONS.inputValue==null ? '-' : bindings.CLOSUREREASONS.inputValue}"
+                                 id="it7"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl21" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.CLOSUREREMARKS.inputValue==null ? '-' : bindings.CLOSUREREMARKS.inputValue}"
+                                 id="it22"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl22" layout="vertical"
+                                     inlineStyle="width:100px; text-align:right;  ">
+                  <af:outputText value="#{bindings.courtcasenumber.inputValue==null ? '-' : bindings.courtcasenumber.inputValue}"
+                                 id="it8"/>
+                </af:panelGroupLayout>
+              </af:panelFormLayout>
+            </af:panelHeader>
+            <af:spacer width="10" height="10" id="s2"/>
+            
+              <af:panelGroupLayout id="pgl27" layout="vertical">
+            <af:panelHeader text="#{viewcontrollerBundle.RECEIPT_DETAILS}"
+                            id="panelHeader1"
+                            inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+              <af:table value="#{bindings.PVTReceiptRVO1.collectionModel}"
+                        var="row" rows="#{bindings.PVTReceiptRVO1.rangeSize}"
+                        width="810" autoHeightRows="0"
+                        emptyText="#{bindings.PVTReceiptRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.PVTReceiptRVO1.rangeSize}"
+                        rowBandingInterval="0" id="t4" scrollPolicy="page">
+                  <af:column headerText="#{viewcontrollerBundle.PAYMENT_TYPE}"
+                             id="c30" width="143">
+                    <af:outputText value="#{row.pymttypedesc}" id="ot56"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.PVTReceiptRVO1.hints.receiptnum.name}"
+                           sortable="false" width="151"
+                           headerText="#{bindings.PVTReceiptRVO1.hints.receiptnum.label}"
+                           id="c8">
+                  <af:outputText value="#{row.receiptnum}" id="ot20"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.PVTReceiptRVO1.hints.saledate.name}"
+                           sortable="false" width="119"
+                           headerText="#{bindings.PVTReceiptRVO1.hints.saledate.label}"
+                           id="c9">
+                  <af:outputText value="#{row.saledate}" id="ot15">
+                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.PVTReceiptRVO1.hints.saleamt.name}"
+                           sortable="false" width="201"
+                           headerText="#{bindings.PVTReceiptRVO1.hints.saleamt.label}"
+                           id="c6">
+                  <af:outputText value="#{row.saleamt}" id="ot13">
+                    <f:convertNumber pattern="#0.00"/>
+                  </af:outputText>
+                </af:column>
+                </af:table>
+            </af:panelHeader>
+            <af:spacer width="10" height="10" id="spacer7"/>
+          
+              <af:panelHeader text="#{viewcontrollerBundle.PHOTOES}"
+                              id="panelHeader3"
+                              inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+                <af:outputText value="#{viewcontrollerBundle.NO_PHOTOES_AVAILABLE_FOR_PVT_}"
+                               visible="#{bindings.PVTPhotoRVO1.estimatedRowCount==0 ? 'true' : 'false'}"
+                               id="ot63"/>
+                <af:table value="#{bindings.PVTPhotoRVO1.collectionModel}"
+                          width="530" var="row"
+                          visible="#{bindings.PVTPhotoRVO1.estimatedRowCount==0 ? 'false' : 'true'}"
+                          rows="#{bindings.PVTPhotoRVO1.rangeSize}"
+                          rowBandingInterval="0" autoHeightRows="0"
+                          scrollPolicy="page"
+                          emptyText="#{bindings.PVTPhotoRVO1.viewable ? viewcontrollerBundle.NO_PHOTOES_AVAILABLE_FOR_PVT_ :  'Access Denied.'}"
+                          fetchSize="#{bindings.PVTPhotoRVO1.rangeSize}"
+                          id="t2">
+                  <af:column sortProperty="#{bindings.PVTPhotoRVO1.hints.filepath.name}"
+                             sortable="false"
+                             width="180"
+                             headerText="#{viewcontrollerBundle.DOCUMENT_NAME}"
+                             id="c5">
+                    <af:commandLink text="#{row.Docdesc}" id="cl2"
+                                    inlineStyle="color:Blue; font-size:small; font-style:italic; font-weight:normal;text-decoration:underline;"
+                                    binding="#{pageFlowScope.PVTDetailsMBean.filePropertyCommandLinkphoto}">
+                      <af:fileDownloadActionListener filename="#{row.filepath}"
+                                                     method="#{pageFlowScope.PVTDetailsMBean.downloadFileListener}"></af:fileDownloadActionListener>
+                      <f:attribute name="filePath" value="#{row.filepath}"/>
+                    </af:commandLink>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.PVTPhotoRVO1.hints.remarks.name}"
+                             sortable="false" width="180"
+                             headerText="#{bindings.PVTPhotoRVO1.hints.remarks.label}"
+                             id="c4">
+                    <af:outputText value="#{row.remarks}" id="ot5"/>
+                  </af:column>
+                  
+                    <af:column sortProperty="#{bindings.PVTPhotoRVO1.hints.CreatedDate.name}"
+                             sortable="false" width="130"
+                             headerText="#{bindings.PVTPhotoRVO1.hints.CreatedDate.label}"
+                             id="c45">
+                    <af:outputText value="#{row.CreatedDate}" id="ot885">
+                     <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+                    </af:outputText>
+                  </af:column>
+                </af:table>
+              </af:panelHeader>
+               <af:spacer width="10" height="10" id="spacerr7"/>
+               <af:panelHeader text="#{viewcontrollerBundle.DOCUMENTS_0}"
+                              id="panelHeader2"
+                              inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+                <af:outputText value="#{viewcontrollerBundle.NO_DOCS_AVAILABLE_FOR_THIS_PVT}"
+                               visible="#{bindings.PVTDocsVO1.estimatedRowCount==0 ? 'true' : 'false'}"
+                               id="ot64"/>
+                <af:table value="#{bindings.PVTDocsVO1.collectionModel}"
+                          var="row" width="530"
+                          visible="#{bindings.PVTDocsVO1.estimatedRowCount==0 ?  'false' : 'true' }"
+                          rows="#{bindings.PVTDocsVO1.rangeSize}"
+                          rowBandingInterval="0" autoHeightRows="0"
+                          scrollPolicy="page"
+                          emptyText="#{bindings.PVTPhotoRVO1.viewable ? viewcontrollerBundle.NO_DOCS_AVAILABLE_FOR_THIS_PVT : 'Access Denied.'}"
+                          fetchSize="#{bindings.PVTDocsVO1.rangeSize}" id="t1">
+              <!--<af:column sortProperty="#{bindings.PVTDocsVO1.hints.doctype.name}"
+                             sortable="false" width="90"
+                             headerText="#{bindings.PVTDocsVO1.hints.doctype.label}"
+                             id="c3">
+                    <af:selectOneChoice value="#{row.bindings.doctype.inputValue}"
+                                        readOnly="true"
+                                        required="#{bindings.PVTDocsVO1.hints.doctype.mandatory}"
+                                        shortDesc="#{bindings.PVTDocsVO1.hints.doctype.tooltip}"
+                                        id="soc6">
+                      <f:selectItems value="#{row.bindings.doctype.items}"
+                                     id="si8"/>
+                    </af:selectOneChoice>
+                  </af:column>-->
+                  <af:column sortProperty="#{bindings.PVTDocsVO1.hints.filepath.name}"
+                             sortable="false" width="180"
+                             headerText="#{viewcontrollerBundle.DOCUMENT_NAME}"
+                             id="c2">
+                    <af:commandLink text="#{row.DOCDesc}" id="cl1"
+                                    inlineStyle="color:Blue; font-size:small; font-style:italic; font-weight:normal;text-decoration:underline;"
+                                    binding="#{pageFlowScope.PVTDetailsMBean.filePropertyCommandLink}">
+                      <af:fileDownloadActionListener filename="#{row.filepath}"
+                                                     method="#{pageFlowScope.PVTDetailsMBean.downloadFileListener}"></af:fileDownloadActionListener>
+                      <f:attribute name="filePath" value="#{row.filepath}"/>
+                    </af:commandLink>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.PVTDocsVO1.hints.remarks.name}"
+                             sortable="false" width="180"
+                             headerText="#{bindings.PVTDocsVO1.hints.remarks.label}"
+                             id="c1">
+                    <af:outputText value="#{row.remarks}" id="ot1"/>
+                  </af:column>
+                  
+                  <af:column sortProperty="#{bindings.PVTDocsVO1.hints.CreatedDate.name}"
+                             sortable="false" width="130"
+                             headerText="#{bindings.PVTDocsVO1.hints.CreatedDate.label}"
+                             id="c475">
+                    <af:outputText value="#{row.CreatedDate}" id="ot695">
+                      <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+                    </af:outputText>
+                  </af:column>
+                  
+                  
+                </af:table>
+              </af:panelHeader>
+              
+              </af:panelGroupLayout>
+              <af:spacer width="10" height="10" id="spacer2"/>
+             
+         
+            <af:spacer width="10" height="10" id="spacer8"/>
+          </af:panelGroupLayout>
+        </af:showDetailItem>
+        <af:showDetailItem text="#{viewcontrollerBundle.APPEAL_DETAILS}"
+                           id="sdi2">
+          <af:spacer width="10" height="10" id="sr8"/>
+          <af:panelGroupLayout id="pgl38" layout="horizontal">
+            <af:outputText value="#{bindings.AppealstageID1.hints.label} : "
+                           id="ot2"
+                           rendered="#{bindings.AppealstageID1.inputValue==null ? 'false': 'true'}"/>
+            <af:selectOneChoice value="#{bindings.AppealstageID1.inputValue}"
+                                required="#{bindings.AppealstageID1.hints.mandatory}"
+                                shortDesc="#{bindings.AppealstageID1.hints.tooltip}"
+                                id="soc18">
+              <f:selectItems value="#{bindings.AppealstageID1.items}"
+                             id="si19"/>
+            </af:selectOneChoice>
+            <af:spacer width="30" height="10" id="s9"/>
+            <af:outputText value="#{bindings.AppealstatusID.hints.label} : "
+                           rendered="#{bindings.AppealstatusID1.inputValue==null ? 'false': 'true'}"
+                           id="ot71"/>
+            <af:selectOneChoice value="#{bindings.AppealstatusID1.inputValue}"
+                                required="#{bindings.AppealstatusID1.hints.mandatory}"
+                                shortDesc="#{bindings.AppealstatusID1.hints.tooltip}"
+                                id="soc20">
+              <f:selectItems value="#{bindings.AppealstatusID1.items}"
+                             id="si20"/>
+            </af:selectOneChoice>
+          </af:panelGroupLayout>
+          <af:spacer width="10" height="10" id="s10"/>
+          <af:table value="#{bindings.PVTAppealDetailsRVO1.collectionModel}"
+                    width="987" var="row"
+                    rows="#{bindings.PVTAppealDetailsRVO1.rangeSize}"
+                    emptyText="#{bindings.PVTAppealDetailsRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.PVTAppealDetailsRVO1.rangeSize}"
+                    rowBandingInterval="1" autoHeightRows="0"
+                    scrollPolicy="page" id="t5">
+            <af:column sortProperty="#{bindings.PVTAppealDetailsRVO1.hints.AppealSeq.name}"
+                       sortable="false"
+                       headerText="#{bindings.PVTAppealDetailsRVO1.hints.AppealSeq.label}"
+                       id="c16" width="115">
+              <af:outputText value="#{row.bindings.AppealSeq.inputValue}"
+                             id="it14"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAppealDetailsRVO1.hints.AppealDate.name}"
+                       sortable="false"
+                       headerText="#{bindings.PVTAppealDetailsRVO1.hints.AppealDate.label}"
+                       id="c17" width="115">
+              <af:outputText value="#{row.bindings.AppealDate.inputValue}"
+                             id="id5">
+                <af:convertDateTime pattern="dd-MM-yyyy"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAppealDetailsRVO1.hints.CommentsBy.name}"
+                       sortable="false"
+                       headerText="#{bindings.PVTAppealDetailsRVO1.hints.CommentsBy.label}"
+                       id="c10" width="115">
+              <af:outputText value="#{row.bindings.CommentsBy.inputValue}"
+                             id="it2"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAppealDetailsRVO1.hints.AppealComments.name}"
+                       sortable="false" width="155"
+                       headerText="#{bindings.PVTAppealDetailsRVO1.hints.AppealComments.label}"
+                       id="c14">
+              <af:outputText value="#{row.bindings.AppealComments.inputValue}"
+                             id="it10"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAppealDetailsRVO1.hints.PVTAppealstatusID.name}"
+                       sortable="false" width="143"
+                       headerText="#{bindings.PVTAppealDetailsRVO1.hints.PVTAppealstatusID.label}"
+                       id="c13">
+              <af:selectOneChoice value="#{row.bindings.PVTAppealstatusID.inputValue}"
+                                  readOnly="true" id="soc19">
+                <f:selectItems value="#{row.bindings.PVTAppealstatusID.items}"
+                               id="si18"/>
+              </af:selectOneChoice>
+            </af:column>
+            <af:column headerText="#{viewcontrollerBundle.ACCEPTREJECT_REASON}" 
+                       id="c23" width="227">
+              <af:outputText value="#{row.reasondesc}" id="ot86"/>
+            </af:column>
+          </af:table>
+        </af:showDetailItem>
+        <af:showDetailItem text="#{viewcontrollerBundle.PVT_HISTORY}" id="sdi1">
+          <af:table value="#{bindings.PVTEventHistoryRVO1.collectionModel}"
+                    scrollPolicy="page" autoHeightRows="0" width="905"
+                    var="row" rows="#{bindings.PVTEventHistoryRVO1.rangeSize}"
+                    emptyText="#{bindings.PVTEventHistoryRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.PVTEventHistoryRVO1.rangeSize}"
+                    rowBandingInterval="0" id="t6">
+            <af:column sortProperty="#{bindings.PVTEventHistoryRVO1.hints.eventid.name}"
+                       sortable="false" width="55"
+                       headerText="#{bindings.PVTEventHistoryRVO1.hints.eventid.label}"
+                       id="c19">
+              <af:outputText value="#{row.eventid}" id="ot73"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTEventHistoryRVO1.hints.LoginprintID.name}"
+                       sortable="false" width="70"
+                       headerText="#{bindings.PVTEventHistoryRVO1.hints.LoginprintID.label}"
+                       id="c3">
+              <af:outputText value="#{row.LoginprintID}" id="ot80"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTEventHistoryRVO1.hints.EVENTDATE.name}"
+                       sortable="false" width="120"
+                       headerText="#{bindings.PVTEventHistoryRVO1.hints.EVENTDATE.label}"
+                       id="c20">
+              <af:outputText value="#{row.EVENTDATE}" id="ot74">
+                <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTEventHistoryRVO1.hints.EventDesc.name}"
+                       sortable="false" width="220"
+                       headerText="#{bindings.PVTEventHistoryRVO1.hints.EventDesc.label}"
+                       id="c18">
+              <af:outputText value="#{row.EventDesc}"
+                             shortDesc="#{row.EventDesc}" id="ot76"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTEventHistoryRVO1.hints.remarks.name}"
+                       sortable="false" width="230"
+                       headerText="#{bindings.PVTEventHistoryRVO1.hints.remarks.label}"
+                       id="c11">
+              <af:outputText value="#{row.remarks}" shortDesc="#{row.remarks}"
+                             id="ot72"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTEventHistoryRVO1.hints.EventAmt.name}"
+                       sortable="false"
+                       headerText="#{bindings.PVTEventHistoryRVO1.hints.EventAmt.label}"
+                       id="c21" width="90">
+                       
+                       
+              <af:outputText value="#{row.EventAmt eq '0.0000' ? ' ' : row.EventAmt}"
+                             id="ot4">
+                <f:convertNumber pattern="#00.00"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTEventHistoryRVO1.hints.BalanceAmt.name}"
+                       sortable="false" width="110"
+                       headerText="#{bindings.PVTEventHistoryRVO1.hints.BalanceAmt.label}"
+                       id="c15">
+                      
+              <af:outputText  value="#{row.BalanceAmt eq '0.0000' ? ' ' : row.BalanceAmt}"
+                             id="ot75">
+                <f:convertNumber pattern="#00.00"/>
+              </af:outputText>
+            </af:column>
+          </af:table>
+        </af:showDetailItem>
+        <af:showDetailItem text="#{viewcontrollerBundle.CUSTOMER_DETAILS}"
+                           id="showDetailItem2">
+          <af:panelFormLayout id="pfl6"
+                              visible="#{bindings.CustID.inputValue eq null ? 'false' : 'true'}"
+                              inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.CUSTOMER_ID}"
+                                     id="plam14">
+              <af:outputText value="#{bindings.CustID.inputValue}" id="ot25"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.SALUTATION}"
+                                     id="plam8">
+              <af:outputText value="#{bindings.Salutation.inputValue}"
+                             id="ot6"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.FIRST_NAME}"
+                                     id="plam4">
+              <af:outputText value="#{bindings.FirstName.inputValue}" id="ot7"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.MIDDLE_NAME}"
+                                     id="plam21">
+              <af:outputText value="#{bindings.MiddleName.inputValue}"
+                             id="ot24"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.LAST_NAME}"
+                                     id="plam22">
+              <af:outputText value="#{bindings.LastName.inputValue}" id="ot8"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.LAND_LINE_NUMBER_0}"
+                                     id="plam18">
+              <af:outputText value="#{bindings.Landlinenum.inputValue}"
+                             id="ot19"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.ALTERNATE_PHONE_NUMBER}"
+                                     id="plam19">
+              <af:outputText value="#{bindings.ALTERNATEPHONENUM.inputValue}"
+                             id="ot14"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.MOBILE_NUMBER}"
+                                     id="plam3">
+              <af:outputText value="#{bindings.Mobilenum.inputValue}"
+                             id="ot23"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.GENDER}"
+                                     id="plam13">
+              <af:outputText value="#{bindings.Gender.inputValue}" id="ot21"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.RESIDENT_TYPE}"
+                                     id="plam6">
+              <af:outputText value="#{bindings.Residenttype.inputValue}"
+                             id="ot10"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.NATIONALITY}"
+                                     id="plam20">
+              <af:outputText value="#{bindings.Nationality.inputValue}"
+                             id="ot18"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.CITY}"
+                                     id="plam15">
+              <af:outputText value="#{bindings.CityCode.inputValue}" id="ot12"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.COUNTRY}"
+                                     id="plam10">
+              <af:outputText value="#{bindings.Countrycode.inputValue}"
+                             id="ot17"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMAIL_ID_0}"
+                                     id="plam11">
+              <af:outputText value="#{bindings.EmailID.inputValue}" id="ot27"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMIRATES_ID}"
+                                     id="plam9">
+              <af:outputText value="#{bindings.EmiratesID.inputValue}"
+                             id="ot16"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.LEGACY_INFO}"
+                                     id="plam5">
+              <af:outputText value="#{bindings.Legacyinfo.inputValue}"
+                             id="ot9"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.COMMENTS}"
+                                     id="plam7">
+              <af:outputText value="#{bindings.Comments.inputValue}" id="ot11"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                                     id="plam16">
+              <af:outputText value="#{bindings.Activeflag.inputValue}"
+                             id="ot22"/>
+            </af:panelLabelAndMessage>
+          </af:panelFormLayout>
+          <af:panelFormLayout id="pfl7"
+                              visible="#{bindings.INSTID.inputValue eq null ? 'false' : 'true'}"
+                              inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.INSTITUTION_ID}"
+                                     id="plam38">
+              <af:outputText value="#{bindings.INSTID.inputValue}" id="ot45"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.INSTITUTION_NAME}"
+                                     id="plam27">
+              <af:outputText value="#{bindings.INSTNAME.inputValue}" id="ot36"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.INSTITUTION_TYPE}"
+                                     id="plam36">
+              <af:outputText value="#{bindings.INSTTYPE.inputValue}" id="ot44"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.CUSTINSTADDRSEQ.hints.label}"
+                                     id="plam35">
+              <af:outputText value="#{bindings.CUSTINSTADDRSEQ.inputValue}"
+                             id="ot29"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.PRIMARY_CONTACT_NUMBER}"
+                                     id="plam24">
+              <af:outputText value="#{bindings.Primarycontact.inputValue}"
+                             id="ot30"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.LAND_LINE_NUMBER_0}"
+                                     id="plam40">
+              <af:outputText value="#{bindings.Landlinenum1.inputValue}"
+                             id="ot41"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.ALTERNATE_PHONE_NUMBER}"
+                                     id="plam31">
+              <af:outputText value="#{bindings.ALTERNATEPHONENUM1.inputValue}"
+                             id="ot38"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.CITY}"
+                                     id="plam33">
+              <af:outputText value="#{bindings.CityCode1.inputValue}"
+                             id="ot40"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.COUNTRY}"
+                                     id="plam23">
+              <af:outputText value="#{bindings.CountryCode1.inputValue}"
+                             id="ot42"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMAIL_ID_0}"
+                                     id="plam29">
+              <af:outputText value="#{bindings.EmailID1.inputValue}" id="ot39"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.FAX_NUMBER}"
+                                     id="plam25">
+              <af:outputText value="#{bindings.Faxnum.inputValue}" id="ot43"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.TRADE_LICENSE_NUMBER}"
+                                     id="plam39">
+              <af:outputText value="#{bindings.tradelicensenum.inputValue}"
+                             id="ot31"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.INSTITUTION_URL}"
+                                     id="plam26">
+              <af:outputText value="#{bindings.INSTURL.inputValue}" id="ot37"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                                     id="plam28">
+              <af:outputText value="#{bindings.Activeflag1.inputValue}"
+                             id="ot34"/>
+            </af:panelLabelAndMessage>
+          </af:panelFormLayout>
+        </af:showDetailItem>
+        <af:showDetailItem text="#{viewcontrollerBundle.ACCOUNT_DETAILS}"
+                           id="showDetailItem90">
+          <af:table value="#{bindings.PVTAccEntriesRVO1.collectionModel}"
+                    var="row" rows="#{bindings.PVTAccEntriesRVO1.rangeSize}"  width="900"
+                    scrollPolicy="scroll" autoHeightRows="0" 
+                    emptyText="#{bindings.PVTAccEntriesRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.PVTAccEntriesRVO1.rangeSize}"
+                    rowBandingInterval="0" id="t7">
+
+            <af:column sortProperty="#{bindings.PVTAccEntriesRVO1.hints.accdate.name}"
+                       sortable="false"  width="152"
+                       headerText="#{viewcontrollerBundle.ACCOUNT_DATE}"
+                       id="c24">
+              <af:outputText value="#{row.accdate}" id="ot78">
+                <af:convertDateTime pattern="#{bindings.PVTAccEntriesRVO1.hints.accdate.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAccEntriesRVO1.hints.acccode.name}"
+                       sortable="false" width="149"
+                       headerText="#{viewcontrollerBundle.ACCOUNT_CODE}"
+                       id="c25">
+              <af:outputText value="#{row.acccode}" id="ot79"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAccEntriesRVO1.hints.accdesc.name}"
+                       sortable="false" width="292"
+                       headerText="#{viewcontrollerBundle.ACCOUNT_DESCRIPTION}"
+                       id="c12">
+              <af:outputText value="#{row.accdesc}" id="ot81"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAccEntriesRVO1.hints.dramnt.name}"
+                       sortable="false" width="152"
+                       headerText="#{viewcontrollerBundle.DEBIT_AMOUNT}"
+                       id="c231">
+              <af:outputText value="#{row.dramnt eq '0.0000' ? ' ' : row.dramnt}" id="ot77">
+              <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.PVTAccEntriesRVO1.hints.cramnt.name}"
+                       sortable="false" width="152"  
+                       headerText="#{viewcontrollerBundle.CREDIT_AMOUNT}"
+                       id="c26">
+                       
+              <af:outputText value="#{row.cramnt eq '0.0000' ? ' ' : row.cramnt}" id="ot70">
+              <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+              
+            </af:column>
+          </af:table>
+       </af:showDetailItem>
+        <af:showDetailItem text="#{viewcontrollerBundle.MAP}"
+                           id="showDetailItem3">
+          <af:commandLink text="#{viewcontrollerBundle.CLICK_FOR_LOCATION}"
+                          id="cl1s"  partialSubmit="true"
+                          action="#{pageFlowScope.PVTDetailsMBean.map}">
+            <!--<af:clientAttribute name="lat"
+                                value="#{bindings.PVTVHCLgeolat.inputValue==null ? '-' : bindings.PVTVHCLgeolat.inputValue}"/>
+            <af:clientAttribute name="long"
+                                value="#{bindings.PVTVHCLgeolon.inputValue==null ? '-' : bindings.PVTVHCLgeolon.inputValue}"/>
+            <af:clientListener method="loadMap" type="click"/>-->
+          </af:commandLink>
+   <div id="map_Div" class="map_div"></div>
+          <span id="info"
+                style="position:absolute; left:15px; bottom:5px; color:#000; z-index:50;"></span>
+        </af:showDetailItem>
+      </af:panelTabbed>
+      <af:spacer width="10" height="10" id="spacer6"/>
+    </af:panelGroupLayout>
+    <af:commandButton id="cb1" text="#{viewcontrollerBundle.BACK}"
+                      inlineStyle="background-color:#F39C11;" action="back"/>
+  </af:panelGroupLayout>
+</jsp:root>

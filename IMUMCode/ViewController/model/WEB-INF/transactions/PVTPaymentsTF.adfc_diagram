@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="y">266.5</property>
+      <property
+         name="x">91.5</property>
+   </OverallProperties>
+   <View
+      id="View2">
+      <property
+         name="activityId">PVTPayments</property>
+      <property
+         name="page">/jspx/transactions/fragments/PVTPayments.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>PVTPayments&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">98.79883</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">91.5</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">PVTPaymentReceipt</property>
+      <property
+         name="page">/jspx/transactions/fragments/PVTPaymentReceipt.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>PVTPaymentReceipt&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">91.149414</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">278.69043</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">Success</property>
+      <property
+         name="sdm:polyPoints">R46,132.5,94.94824,237.43594,87.29883,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">backNav</property>
+      <property
+         name="sdm:polyPoints">L54,237.69043,94.29883,132.75418,101.94824,R54</property>
+   </ControlFlowCase>
+</SDM>

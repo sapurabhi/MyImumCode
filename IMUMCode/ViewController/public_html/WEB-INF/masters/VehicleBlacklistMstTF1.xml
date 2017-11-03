@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="VehicleBlacklistMstTF1">
+    <default-activity id="__1">vehicleBlacklistMst1</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__5">vehBlacklistMstBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.VehicleBlacklistMstBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="vehicleBlacklistMst1">
+      <page>/jspx/masters/fragments/vehicleBlacklistMst1.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

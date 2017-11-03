@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTPermitAssgTF">
+    <default-activity id="__12">PVTPermitAssg</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__5">PVTPermitAssgBean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.transactions.pvt.PVTPermitAssgBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTPermitAssg">
+      <page>/jspx/transactions/fragments/PVTPermitAssg.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

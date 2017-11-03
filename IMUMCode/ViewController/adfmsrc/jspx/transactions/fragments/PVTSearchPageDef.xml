@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTSearchPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTSearchRVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTSearchRVO1Iterator"/>
+    <searchRegion Criteria="PVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO1Iterator" id="PVTSearchRVOCriteriaQuery"/>
+    <searchRegion Criteria="PVTSearchRVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PVTSearchRVO1Iterator"
+                  id="PVTSearchRVOCriteriaQuery1"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PVTSearchRVO1Iterator" id="PVTSearchRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTSearchRVO"
+                      Name="PVTSearchRVO10">
+        <AttrNames>
+          <Item Value="Balance"/>
+          <Item Value="PVTNum"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PVTdatetime"/>
+          <Item Value="CustID"/>
+          <Item Value="PIID"/>
+          <Item Value="zonecode"/>
+          <Item Value="PVTAMTPAID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="HHCReAssignPageDef"
+                Package="jspx.staffdeployment.jsffragments">
+  <parameters/>
+  <executables>
+    <iterator Binds="HHCNewRe1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="HHCNewRe1Iterator"
+              Refresh="ifNeeded"/>
+    <iterator id="HHCAssignVO1Iterator" Binds="HHCAssignVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"
+              Refresh="ifNeeded"/>
+  </executables>
+  <bindings>
+   
+    <attributeValues IterBinding="HHCNewRe1Iterator" id="PIID">
+      <AttrNames>
+        <Item Value="PIID"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="validatePIID"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="validatePIID" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.validatePIID_StaffDeployDataControl_dataProvider_validatePIID_result">
+      <NamedData NDName="date" NDType="java.lang.String"/>
+      <NamedData NDName="PIID" NDType="java.lang.String"/>
+    </methodAction>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="StaffDeployDataControl"/>
+    <methodAction id="doCommit"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.doCommit_StaffDeployDataControl_dataProvider_doCommit_result"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="StaffDeployDataControl"/>
+    <methodAction id="backReAssign"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="backReAssign" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.backReAssign_StaffDeployDataControl_dataProvider_backReAssign_result"/>
+    <methodAction id="ReplacementHHC"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="ReplacementHHC" IsViewObjectMethod="false">
+      <NamedData NDName="PIID" NDType="java.lang.String"/>
+      <NamedData NDName="ReplacementId" NDType="java.lang.String"/>
+      <NamedData NDName="stDate" NDType="java.util.Date"/>
+      <NamedData NDName="comments" NDType="java.lang.String"/>
+      <NamedData NDName="oldHHCID" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="displayHHCdtls"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="displayHHCdtls" IsViewObjectMethod="false">
+      <NamedData NDName="shift" NDType="java.lang.String"/>
+      <NamedData NDName="location" NDType="java.lang.String"/>
+      <NamedData NDName="currentDate" NDType="java.sql.Date"/>
+    </methodAction>
+    <methodAction id="CheckUniqueForReassign"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CheckUniqueForReassign" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.CheckUniqueForReassign_StaffDeployDataControl_dataProvider_CheckUniqueForReassign_result">
+      <NamedData NDName="checkPIID" NDType="java.lang.String"/>
+      <NamedData NDName="stDate" NDType="java.util.Date"/>
+      <NamedData NDName="assignedstatuss" NDType="java.lang.String"/>
+      <NamedData NDName="status" NDType="java.lang.String"/>
+      <NamedData NDName="HhcId" NDType="java.lang.String"/>
+      <NamedData NDName="Shift" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="CheckUnique"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CheckUnique" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.CheckUnique_StaffDeployDataControl_dataProvider_CheckUnique_result">
+      <NamedData NDName="checkPIID" NDType="java.lang.String"/>
+      <NamedData NDName="stDate" NDType="java.util.Date"/>
+      <NamedData NDName="assignedstatuss" NDType="java.lang.String"/>
+      <NamedData NDName="status" NDType="java.lang.String"/>
+      <NamedData NDName="HhcId" NDType="java.lang.String"/>
+      <NamedData NDName="Shift" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>
+

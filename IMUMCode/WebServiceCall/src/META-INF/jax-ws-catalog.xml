@@ -1,0 +1,24 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <system systemId="http://192.168.200.113:8003/Generic/CustomerOrInstitutionCreationInSIBL?wsdl"
+          uri="../com/imum/ws/CustomerInstitution/generic_customerorinstitutioncreationinsibl_client_ep.wsdl"/>
+  <system systemId="http://192.168.200.113:8003/PVT/ObservationOrIssuance/#%7Bhttp%3A%2F%2Fwww.zoneparking.ae%2FPVT_ObservationOrIssuance%7Dpvt_observationorissuance_client_ep?wsdl"
+          uri="../com/imum/ws/PVTIssuance/pvt_observationorissuance_client_ep.wsdl"/>
+  <system systemId="http://192.168.200.113:8003/CARDS/Card_RechargeSale/#%7Bhttp%3A%2F%2Fws.sale.rc.mparking.infocomm.com%2F%7DRCSaleWS?wsdl"
+          uri="../com/imum/ws/BulkSale/RCSaleWS.wsdl"/>
+  <system systemId="http://192.168.200.113:8001/soa-infra/services/default/BulkDiscountApprovalBPM/BulkDiscountApprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/PVTRollbackDiscount/BulkDiscountApprovalBPMProcess.service.wsdl"/>
+  <system systemId="http://192.168.200.117:8001/soa-infra/services/default/PVTRemovalApprovalBPM/PVTRemovalApprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/PVTCancellation/PVTRemovalApprovalBPMProcess.service.wsdl"/>
+  <system systemId="http://192.168.200.112:8001/soa-infra/services/default/PVTRemovalApprovalBPM/PVTRemovalApprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/PVTCancellation/PVTRemovalApprovalBPMProcess.service.wsdl"/>
+  <system systemId="http://192.168.200.112:8001/soa-infra/services/default/BulkDiscountApprovalBPM/BulkDiscountApprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/PVTDiscount/BulkDiscountApprovalBPMProcess.service.wsdl"/>
+  <system systemId="http://cpmsfmwappdc.cpms.local:8001/soa-infra/services/default/PVTRemovalApprovalBPM/PVTRemovalApprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/PVTCancellation/PVTRemovalApprovalBPMProcess.service.wsdl"/>
+  <system systemId="http://192.168.200.112:8001/soa-infra/services/default/AuctionApprovalBPM/AuctionApprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/Auction/AuctionApprovalBPMProcess.service.wsdl"/>
+  <system systemId="http://cpmsfmwappdc.cpms.local:8001/soa-infra/services/default/BulkDiscountApprovalBPM/BulkDiscountApprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/PVTDiscount/BulkDiscountApprovalBPMProcess.service.wsdl"/>
+  <system systemId="http://192.168.200.112:8001/soa-infra/services/default/CardInactiveApprovalBPM/CardInactivepprovalBPMProcess.service?WSDL"
+          uri="../com/imum/ws/CardInactive/CardInactivepprovalBPMProcess.service.wsdl"/>
+</catalog>

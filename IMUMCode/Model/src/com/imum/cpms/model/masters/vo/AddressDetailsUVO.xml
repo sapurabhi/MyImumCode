@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AddressDetailsUVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  FromList=" GEN_ADDRESS_DETAILS AddressDetailsEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.AddressDetailsUVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.AddressDetailsUVOImpl"
+  SelectList="AddressDetailsEO.ADDRESS_DTL_SEQ, 
+       AddressDetailsEO.ADDR_LINE1, 
+       AddressDetailsEO.ADDR_LINE2, 
+       AddressDetailsEO.ADDR_LINE3, 
+       AddressDetailsEO.City_Code, 
+       AddressDetailsEO.Community_Code, 
+       AddressDetailsEO.Country_code, 
+       AddressDetailsEO.Created_By, 
+       AddressDetailsEO.Created_Date, 
+       AddressDetailsEO.Post_Box_Num, 
+       AddressDetailsEO.Sector_Code, 
+       AddressDetailsEO.TowTeeq_Num, 
+       AddressDetailsEO.UTIL_BILL_NUM, 
+       AddressDetailsEO.Update_date, 
+       AddressDetailsEO.Updated_by, 
+       AddressDetailsEO.Zone_Code">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|Prog|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="AddressDetailsUVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.AddressDetailsUVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CityLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.CityLovVO">
+    <ViewCriteriaUsage
+      Name="CityLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.CityLovVO.CityLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="CountryLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.CountryLovVO">
+    <ViewCriteriaUsage
+      Name="CountryLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.CountryLovVO.CountryLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="SectorLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.SectorLovVO">
+    <ViewCriteriaUsage
+      Name="SectorLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.SectorLovVO.SectorLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="ZoneLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.ZoneLovVO">
+    <ViewCriteriaUsage
+      Name="ZoneLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.ZoneLovVO.ZoneLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_ZoneCode"
+    ListVOName="ZoneLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ZoneCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZoneCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="zonecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="zonename"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SectorCode"
+    ListVOName="SectorLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_SectorCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Countrycode"
+    ListVOName="CountryLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Countrycode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Countrycode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CountryCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CountryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CityCode"
+    ListVOName="CityLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_CityCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CityCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CityCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CityName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="AddressDetailsEO"
+    Entity="com.imum.cpms.model.masters.eo.AddressDetailsEO"/>
+  <ViewAttribute
+    Name="ADDRESSDTLSEQ"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ADDRESSDTLSEQ"
+    EntityUsage="AddressDetailsEO"
+    AliasName="ADDRESS_DTL_SEQ"/>
+  <ViewAttribute
+    Name="ADDRLINE1"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ADDRLINE1"
+    EntityUsage="AddressDetailsEO"
+    AliasName="ADDR_LINE1"/>
+  <ViewAttribute
+    Name="ADDRLINE2"
+    PrecisionRule="true"
+    EntityAttrName="ADDRLINE2"
+    EntityUsage="AddressDetailsEO"
+    AliasName="ADDR_LINE2"/>
+  <ViewAttribute
+    Name="ADDRLINE3"
+    PrecisionRule="true"
+    EntityAttrName="ADDRLINE3"
+    EntityUsage="AddressDetailsEO"
+    AliasName="ADDR_LINE3"/>
+  <ViewAttribute
+    Name="CityCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CityCode"
+    EntityUsage="AddressDetailsEO"
+    AliasName="City_Code"
+    LOVName="LOV_CityCode"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CommunityCode"
+    PrecisionRule="true"
+    EntityAttrName="CommunityCode"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Community_Code"/>
+  <ViewAttribute
+    Name="Countrycode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Countrycode"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Country_code"
+    LOVName="LOV_Countrycode"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="PostBoxNum"
+    PrecisionRule="true"
+    EntityAttrName="PostBoxNum"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Post_Box_Num"/>
+  <ViewAttribute
+    Name="SectorCode"
+    PrecisionRule="true"
+    EntityAttrName="SectorCode"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Sector_Code"
+    LOVName="LOV_SectorCode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TowTeeqNum"
+    PrecisionRule="true"
+    EntityAttrName="TowTeeqNum"
+    EntityUsage="AddressDetailsEO"
+    AliasName="TowTeeq_Num"/>
+  <ViewAttribute
+    Name="UTILBILLNUM"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UTILBILLNUM"
+    EntityUsage="AddressDetailsEO"
+    AliasName="UTIL_BILL_NUM"/>
+  <ViewAttribute
+    Name="Updatedate"
+    PrecisionRule="true"
+    EntityAttrName="Updatedate"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Update_date"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="ZoneCode"
+    PrecisionRule="true"
+    EntityAttrName="ZoneCode"
+    EntityUsage="AddressDetailsEO"
+    AliasName="Zone_Code"
+    LOVName="LOV_ZoneCode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+</ViewObject>

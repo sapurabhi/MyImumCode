@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View3">
+      <property
+         name="activityId">ADPReportSerach</property>
+      <property
+         name="page">/jspx/transactions/fragments/ADPReportSerach.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>ADPReportSerach&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">147.74707</property>
+      <property
+         name="x">231.36426</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <View
+      id="View6">
+      <property
+         name="activityId">PrintADPFaxReport</property>
+      <property
+         name="page">/jspx/transactions/fragments/PrintADPFaxReport.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>PrintADPFaxReport&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">169.79883</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">502.68457</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="View3"
+      to="View6">
+      <property
+         name="fromOutcome">print</property>
+      <property
+         name="sdm:polyPoints">R46,272.77057,143.89648,461.68457,165.94824,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase8"
+      from="View6"
+      to="View3">
+      <property
+         name="fromOutcome">Back</property>
+      <property
+         name="sdm:polyPoints">L54,461.27783,172.94824,272.36426,150.89648,R54</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View3">
+      <property
+         name="activityId">GroupMgmt</property>
+      <property
+         name="page">/jspx/masters/fragments/GroupMgmt.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>GroupMgmt&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">142.59766</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">340.0</property>
+   </View>
+   <MethodCall
+      id="MethodCall4">
+      <property
+         name="activityId">displayDML</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>displayDML&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">129.29883</property>
+      <property
+         name="x">134.0</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="MethodCall4"
+      to="View3">
+      <property
+         name="fromOutcome">*callGroupMgmt</property>
+      <property
+         name="sdm:polyPoints">R50,175.0,128.94824,299.0,142.24707,L50</property>
+   </ControlFlowCase>
+</SDM>

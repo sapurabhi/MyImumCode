@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="codereportingPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTCourtReportUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PVTCourtReportUVO1Iterator"/>
+    <iterator Binds="PVTSearchRVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="PVTSearchRVO2Iterator"/>
+    <iterator Binds="PVTCourtReportDocsUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PVTCourtReportDocsUVO1Iterator"/>
+    <iterator Binds="PVTDocsVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl" id="PVTDocsVO1Iterator"/>
+    <iterator Binds="PVTCourtReportUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PVTCourtReportUVO2Iterator"/>
+    <iterator Binds="PVTDotRoleTypeRVO1" RangeSize="-1"
+              DataControl="LookupAMDataControl"
+              id="PVTDotRoleTypeRVO1Iterator"/>
+    <iterator Binds="PVTJudjmentStatusRVO1" RangeSize="-1"
+              DataControl="LookupAMDataControl"
+              id="PVTJudjmentStatusRVO1Iterator"/>
+    <iterator Binds="PVTCourtReportUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PVTCourtReportUVO1Iterator1"/>
+    <iterator id="CourtpvtHeaderVO1Iterator" Binds="CourtpvtHeaderVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="PVTEventDetailsVO1Iterator" Binds="PVTEventDetailsVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator Binds="PVTCourtcaseremarksVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PVTCourtcaseremarksVO1Iterator"/>
+    <iterator id="PVTCourtcaseremarksVO2Iterator" Binds="PVTCourtcaseremarksVO2"
+              DataControl="MastersAMDataControl" RangeSize="10"/>
+    <iterator Binds="PVTcourtsearchVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PVTcourtsearchVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree id="PVTCourtReportUVO1" IterBinding="PVTCourtReportUVO1Iterator1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTCourtReportUVO"
+                      Name="PVTCourtReportUVO10">
+        <AttrNames>
+          <Item Value="CasestatusID"/>
+          <Item Value="CourtReportingseq"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="DoTRoleType"/>
+          <Item Value="JudgementStatusID"/>
+          <Item Value="LawyerEmailID"/>
+          <Item Value="LawyerMobNum"/>
+          <Item Value="LawyerName"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="Updatedate"/>
+          <Item Value="Updatedby"/>
+          <Item Value="pvtnumber"/>
+          <Item Value="caseclosuredate"/>
+          <Item Value="caseinitiationdate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="executePVTSearchVO"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="executePVTSearchVO"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="pvtNumber" NDType="java.lang.String"/>
+    </methodAction>
+    
+    
+    
+    
+    <tree IterBinding="PVTCourtReportDocsUVO1Iterator"
+          id="PVTCourtReportDocsUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTCourtReportDocsUVO"
+                      Name="PVTCourtReportDocsUVO10">
+        <AttrNames>
+          <Item Value="DOCDesc"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="FileUpload"/>
+          <Item Value="filepath"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTDocsVO1Iterator" id="PVTDocsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTDocsVO"
+                      Name="PVTDocsVO10">
+        <AttrNames>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="deleteflag"/>
+          <Item Value="DOCDesc"/>
+          <Item Value="DOCSEQ"/>
+          <Item Value="Docstage"/>
+          <Item Value="doctype"/>
+          <Item Value="filepath"/>
+          <Item Value="FileUpload"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="remarks"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="PVTCourtReportUVO2Iterator" id="DoTRoleType"
+          DTSupportsMRU="false" StaticList="false"
+          ListIter="PVTDotRoleTypeRVO1Iterator">
+      <AttrNames>
+        <Item Value="DoTRoleType"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="View_code"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="View_desc"/>
+      </ListDisplayAttrNames>
+    </list>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator" id="LawyerName">
+      <AttrNames>
+        <Item Value="LawyerName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator" id="LawyerMobNum">
+      <AttrNames>
+        <Item Value="LawyerMobNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator"
+                     id="LawyerEmailID">
+      <AttrNames>
+        <Item Value="LawyerEmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator"
+                     id="Progressremarks">
+      <AttrNames>
+        <Item Value="Progressremarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator" id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTCourtReportUVO2Iterator" id="JudgementStatusID"
+          DTSupportsMRU="false" StaticList="false"
+          ListIter="PVTJudjmentStatusRVO1Iterator">
+      <AttrNames>
+        <Item Value="JudgementStatusID"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="Judge_code"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Judge_desc"/>
+      </ListDisplayAttrNames>
+    </list>
+    <button IterBinding="PVTCourtReportUVO2Iterator" id="CasestatusID"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="CasestatusID"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="2"/>
+        <Item Value="1"/>
+      </ValueList>
+    </button>
+    <methodAction id="executeCreateCourtReport"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="executeCreateCourtReport"
+                  IsViewObjectMethod="false"/>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator" id="CreatedDate">
+      <AttrNames>
+        <Item Value="CreatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <action IterBinding="PVTCourtReportDocsUVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="PVTCourtcaseremarksVO1Iterator"
+          id="PVTCourtcaseremarksVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PVTCourtcaseremarksVO"
+                      Name="PVTCourtcaseremarksVO10">
+        <AttrNames>
+          <Item Value="Remarksdate"/>
+          <Item Value="Remarks"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator"
+                     id="caseclosuredate">
+      <AttrNames>
+        <Item Value="caseclosuredate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTcourtsearchVO1Iterator" id="PVTdatetime">
+      <AttrNames>
+        <Item Value="PVTdatetime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTcourtsearchVO1Iterator" id="contraDesc">
+      <AttrNames>
+        <Item Value="contraDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTcourtsearchVO1Iterator" id="PVTAMTPAYABLE">
+      <AttrNames>
+        <Item Value="PVTAMTPAYABLE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTcourtsearchVO1Iterator" id="statusDesc">
+      <AttrNames>
+        <Item Value="statusDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTCourtReportUVO1Iterator"
+                     id="caseinitiationdate">
+      <AttrNames>
+        <Item Value="caseinitiationdate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTCourtReportUVO2Iterator"
+                     id="caseinitiationdate1">
+      <AttrNames>
+        <Item Value="caseinitiationdate"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

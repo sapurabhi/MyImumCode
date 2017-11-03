@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="PI Assignment - Amendment" id="pb1"
+               inlineStyle="height:497px;">
+    <af:panelSplitter id="ps1" orientation="vertical"
+                      inlineStyle="width:929px; height:397px;"
+                      splitterPosition="74">
+      <f:facet name="first">
+        <af:panelGroupLayout layout="scroll"
+                             xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                             id="pgl1">
+          <af:panelFormLayout id="pfl1" rows="1">
+            <af:inputDate label="Amendment Date:" id="id1"  />
+            <af:panelLabelAndMessage label="PI ID:"
+                                     id="plam1">
+              <af:outputText value="#{bindings.PIid.inputValue}" id="ot1"/>
+            </af:panelLabelAndMessage>
+          </af:panelFormLayout>
+          
+          <af:panelFormLayout id="pfl3"/>
+          <af:panelFormLayout id="pfl2" rows="1" inlineStyle="height:22px;"
+                              maxColumns="4">
+            <af:commandButton text="Edit" id="cb3"
+                              action="#{pageFlowScope.PIAssignmentDynamicRegion.editPITaskFlow}"/>
+            <af:commandButton text="Un-Assign" id="cb2"
+                              action="#{pageFlowScope.PIAssignmentDynamicRegion.getUnassignTaskFlow}"/>
+            <af:commandButton text="Re-Assign" id="cb1"
+                              action="#{pageFlowScope.PIAssignmentDynamicRegion.getReassignTaskFlow}"
+                              disabled="true"/>
+            <af:commandButton text="Overtime" id="cb4"
+                              action="#{pageFlowScope.PIAssignmentDynamicRegion.getOvertimeTaskFlow}"
+                              disabled="true"/>
+          </af:panelFormLayout>
+        </af:panelGroupLayout>
+      </f:facet>
+  <f:facet name="second">
+        <af:region value="#{bindings.dynamicRegion1.regionModel}" id="r1"/>
+      </f:facet>
+    </af:panelSplitter>
+    <af:panelFormLayout id="pfl4" rows="1">
+      <af:commandButton text="Back" id="cb5" action="back"/>
+    </af:panelFormLayout>
+  </af:panelBox>
+ 
+  <!--oracle-jdev-comment:preferred-managed-bean-name:PiAssign-->
+</jsp:root>

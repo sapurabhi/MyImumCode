@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTRollbackDiscountTF">
+    <default-activity id="__1">executeEmptyRowHeaderVO</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">PVTRollbackDiscountMBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.transactions.pvt.PVTRollbackDiscountMBean</managed-bean-class>
+      <managed-bean-scope id="__3">request</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTRollbackDiscount">
+      <page>/jspx/transactions/fragments/PVTRollbackDiscount.jsff</page>
+    </view>
+    <method-call id="executeEmptyRowHeaderVO">
+      <method>#{bindings.executeEmptyRowHeaderVO.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>executeEmptyRowHeaderVO</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">executeEmptyRowHeaderVO</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__11">executeEmptyRowHeaderVO</from-outcome>
+        <to-activity-id id="__10">PVTRollbackDiscount</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

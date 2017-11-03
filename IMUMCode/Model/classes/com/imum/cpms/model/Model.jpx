@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Model"
+  Version="11.1.1.64.93"
+  SeparateXMLFiles="true"
+  PackageName="com.imum.cpms.model">
+  <DesignTime>
+    <Attr Name="_jprName" Value="../../../../../Model.jpr"/>
+    <Attr Name="_jbo.SQLBuilder" Value="SQLServer"/>
+    <Attr Name="_jbo.TypeMapEntries" Value="Java"/>
+    <Attr Name="_NamedConnection" Value="CPMSDEV"/>
+    <Attr Name="_appModuleNames0"
+      Value="com.imum.cpms.model.masters.am.MastersAM"/>
+    <Attr Name="_appModuleNames1"
+      Value="com.imum.cpms.model.masters.am.LookupAM"/>
+    <Attr Name="_appModuleNames2" Value="com.imum.cpms.model.menu.am.MenuAM"/>
+    <Attr Name="_appModuleNames3"
+      Value="com.imum.cpms.model.menu.am.AppModule"/>
+    <Attr Name="_appModuleNames4" Value="com.imum.cpms.model.login.LoginAM"/>
+    <Attr Name="_appModuleNames5"
+      Value="com.imum.cpms.model.transactions.am.TransactionsAM"/>
+    <Attr Name="_appModuleNames7"
+      Value="com.imum.cpms.model.staffdeploy.am.StaffDeploy"/>
+    <Attr Name="_appModuleNames6"
+      Value="com.imum.cpms.model.staffdeploy.am.StaffDeployLookUp"/>
+  </DesignTime>
+  <Containee
+    Name="login"
+    PackageName="com.imum.cpms.model.login"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+      <Attr Name="_VO" Value="true"/>
+      <Attr Name="_EO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="am"
+    PackageName="com.imum.cpms.model.masters.am"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="eo"
+    PackageName="com.imum.cpms.model.masters.eo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+      <Attr Name="_AS" Value="true"/>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="vo"
+    PackageName="com.imum.cpms.model.masters.vo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+      <Attr Name="_VL" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="am"
+    PackageName="com.imum.cpms.model.menu.am"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="eo"
+    PackageName="com.imum.cpms.model.menu.eo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+      <Attr Name="_AS" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="vo"
+    PackageName="com.imum.cpms.model.menu.vo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+      <Attr Name="_VL" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="am"
+    PackageName="com.imum.cpms.model.staffdeploy.am"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="eo"
+    PackageName="com.imum.cpms.model.staffdeploy.eo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="vo"
+    PackageName="com.imum.cpms.model.staffdeploy.vo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="am"
+    PackageName="com.imum.cpms.model.transactions.am"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="eo"
+    PackageName="com.imum.cpms.model.transactions.eo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+      <Attr Name="_AS" Value="true"/>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="vo"
+    PackageName="com.imum.cpms.model.transactions.vo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+</JboProject>

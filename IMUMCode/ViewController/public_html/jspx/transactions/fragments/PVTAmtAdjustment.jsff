@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout layout="scroll" id="pgl1">
+    <af:panelGroupLayout id="pgl2" layout="horizontal" >
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.ENTER_PVT_NUMBER__}" id="plam3"/>
+      <af:spacer width="10" height="10" id="s5"/>
+      <af:inputText id="it1" value="#{pageFlowScope.PVTAmountAdjMBean.PVTNo}"
+                      maximumLength="20"/>
+
+      <af:spacer width="25" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.SEARCH}" id="cb1" partialSubmit="true"
+      inlineStyle="background-color:#F39C11; vertical-align:bottom;" 
+                        actionListener="#{pageFlowScope.PVTAmountAdjMBean.SearchPVT}"/>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl3" layout="vertical" partialTriggers="cb1"
+                         visible="#{pageFlowScope.PVTAmountAdjMBean.showDetailsLayout}">
+      <af:spacer width="10" height="10" id="s2"/>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.PVT_AMOUNT_PAYABLE_}"  id="plam1">
+        <af:outputText value="#{bindings.PVTAMTPAYABLE.inputValue}" id="ot1"
+        rendered="#{pageFlowScope.PVTAmountAdjMBean.showDetailsLayout}"
+        binding="#{pageFlowScope.PVTAmountAdjMBean.initialPVTPayableAmt}">
+          <af:convertNumber pattern="#0.00"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:selectOneRadio id="sor1" layout="horizontal" value="-"
+                         valueChangeListener="#{pageFlowScope.PVTAmountAdjMBean.calAmountPayable}"
+                         label="#{viewcontrollerBundle.PVT_PAYABLE_AMOUNT_TO_BE_}" autoSubmit="true"
+                         rendered="#{pageFlowScope.PVTAmountAdjMBean.showDetailsLayout}" 
+                         binding="#{pageFlowScope.PVTAmountAdjMBean.adjAmtAction}">
+        <af:selectItem label="#{viewcontrollerBundle.REDUCE_BY}" value="-" id="si1"/>
+        <af:selectItem label="#{viewcontrollerBundle.INCREASE_BY}" value="+" id="si2"/>
+      </af:selectOneRadio>
+      <af:spacer width="10" height="10" id="s4"/>
+      <af:panelGroupLayout id="pgl5" layout="horizontal"
+                           rendered="#{pageFlowScope.PVTAmountAdjMBean.showDetailsLayout}">
+        <af:inputText id="it2"
+                      label="#{viewcontrollerBundle.ADJUSTABLE_AMOUNT__}"
+                      value="#{pageFlowScope.PVTAmountAdjMBean.PVTAdjAmount}">
+          <af:convertNumber pattern="#0.00"/>
+        </af:inputText>
+        <af:spacer width="10" height="10" id="spacer5"/>
+        <af:commandButton text="#{viewcontrollerBundle.CHECK_NEW_PVT_PAYABLE_AMOUNT_}"
+                          id="cb4"
+                          inlineStyle="background-color:#F39C11; width:180.0px;" partialSubmit="true"
+                          action="#{pageFlowScope.PVTAmountAdjMBean.DisplayPVTPayableAmt}"/>
+      </af:panelGroupLayout>
+      <af:spacer width="10" height="10" id="spacer2"/>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.PVT_AMOUNT_AFTER_ADJUSTMENT__}"
+                               id="panelLabelAndMessage1">
+
+
+      <af:outputText value=" #{pageFlowScope.PVTAmountAdjMBean.newPVTPayableAmt}"
+      partialTriggers="cb4"
+      rendered="#{pageFlowScope.PVTAmountAdjMBean.showDetailsLayout}" id="ot2"/>
+            </af:panelLabelAndMessage>
+      <af:spacer width="10" height="10" id="spacer3"/>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.REMARKS}" id="plam2">
+        <af:inputText id="it3"
+                      binding="#{pageFlowScope.PVTAmountAdjMBean.remarks_ITB}"
+                      columns="62"/>
+      </af:panelLabelAndMessage>
+      <af:spacer width="10" height="10" id="spacer4"/>
+      <af:panelGroupLayout id="pgl4">
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb2"
+                          inlineStyle="background-color:#F39C11;"
+                          partialTriggers="cb4 sor1"
+                          disabled="#{pageFlowScope.PVTAmountAdjMBean.disableSubmit}" 
+                          action="#{pageFlowScope.PVTAmountAdjMBean.submitAdjAmount}"/>
+        <af:spacer width="10" height="10" id="spacer1"/>
+        <af:commandButton text="#{viewcontrollerBundle.CANCEL}" id="cb3"
+                          inlineStyle="background-color:#F39C11;"
+                          action="#{pageFlowScope.PVTAmountAdjMBean.CancelAmountAdjustment}"/>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
+</jsp:root>

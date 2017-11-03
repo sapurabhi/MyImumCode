@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="PI Un-Assign" id="pb1" inlineStyle="height:306px;">
+    <af:panelFormLayout id="pfl2" rows="3">
+      <af:panelLabelAndMessage label="#{bindings.PIid.hints.label}" id="plam2">
+        <af:outputText value="#{bindings.PIid.inputValue}" id="ot2"/>
+      </af:panelLabelAndMessage>
+      <!--<af:panelLabelAndMessage label="#{bindings.PIID.hints.label}:" id="plam1">
+        <af:outputText value="#{bindings.PIID.inputValue}" id="ot1"/>
+      </af:panelLabelAndMessage>-->
+      <af:panelLabelAndMessage label="#{bindings.Sector1.hints.label}"
+                               id="plam3">
+        <af:outputFormatted value="#{bindings.Sector1.inputValue}" id="of1"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{bindings.Zone1.hints.label}:" id="plam4">
+        <af:outputText value="#{bindings.Zone1.inputValue}" id="ot3"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{bindings.Beat1.hints.label}:" id="plam5">
+        <af:outputText value="#{bindings.Beat1.inputValue}" id="ot4"/>
+      </af:panelLabelAndMessage>
+      <af:inputText value="#{pageFlowScope.timeStamp}"
+                    label="#{bindings.unAssignTime.hints.label}"
+                    required="#{bindings.unAssignTime.hints.mandatory}"
+                    columns="#{bindings.unAssignTime.hints.displayWidth}"
+                    maximumLength="#{bindings.unAssignTime.hints.precision}"
+                    shortDesc="#{bindings.unAssignTime.hints.tooltip}" id="it1">
+        <f:validator binding="#{bindings.unAssignTime.validator}"/>
+      </af:inputText>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl3" rows="1">
+      <af:commandButton text="Save" id="cb1" action="#{pageFlowScope.unAssignMbean.saveDtls}"/>
+      <af:commandButton text="Cancel" id="cb2"/>
+    </af:panelFormLayout>
+  </af:panelBox>
+</jsp:root>

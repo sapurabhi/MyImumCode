@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="PiSearch_flow_definition_PiSearch_flow_definition_getEmptyTablePageDef"
+                Package="staffdeploy" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="getEmptyTable" RequiresUpdateModel="true" Action="invokeMethod"
+            MethodName="getEmptyTable" IsViewObjectMethod="false"
+            DataControl="StaffDeployDataControl"
+            InstanceName="StaffDeployDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

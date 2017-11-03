@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelBox text="#{viewcontrollerBundle.HHC_REASSIGNMENT}" id="pb1"
+               inlineStyle="height:284px;">
+    <f:facet name="toolbar"/>
+   
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:panelGroupLayout id="pgl2" inlineStyle="width:463px;">
+        <af:panelFormLayout id="pfl1">
+          <af:spacer width="10" height="10" id="s2"/>
+          <af:inputDate 
+                        id="id1"
+                        binding="#{HHCReAssignmentMBean.hhCDate}"
+                        label="#{viewcontrollerBundle.DATE}"
+                        value="#{HHCReAssignmentMBean.currentDate}"
+                        readOnly="true">
+                       <af:convertDateTime pattern= "dd-MM-yyyy HH:mm:ss" timeStyle = "short"/>
+          </af:inputDate>
+          <af:spacer height="5" id="s3"/>
+          <af:inputText label="#{viewcontrollerBundle.PI_NUMBER}"
+                        value="#{pageFlowScope.PIID}"
+                        columns="20" disabled="true" readOnly="true"
+                        maximumLength="#{bindings.PIID.hints.precision}"
+                        shortDesc="#{bindings.PIID.hints.tooltip}" id="it1"
+                        binding="#{HHCReAssignmentMBean.piIDNew}">
+            <f:validator binding="#{bindings.PIID.validator}"/>
+          </af:inputText>
+      
+        <af:spacer height="5" id="s4"/>
+   
+        <af:inputText label="#{viewcontrollerBundle.HHC_ID__0}" id="it3" value="#{pageFlowScope.HHCID}"
+                      disabled="true" readOnly="true" columns="20" 
+                      binding="#{HHCReAssignmentMBean.hhcassignId}"/>
+                        <af:spacer height="5" id="s5"/>
+        <af:inputText label="#{viewcontrollerBundle.REPLACEMENT_HHC_ID_}" id="it4"
+                      binding="#{HHCReAssignmentMBean.replacementHHCID}"/>
+                        <af:spacer height="5" id="s6"/>
+        <af:inputText label="#{viewcontrollerBundle.COMMENTS_0}" id="it2" value="#{pageFlowScope.Comments}"
+                                    binding="#{HHCReAssignmentMBean.comments}"/>
+                                      <af:spacer height="5" id="s7"/>
+        <af:panelGroupLayout id="pgl0">
+  <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb2"
+                          action="#{HHCReAssignmentMBean.HHCAssignSave}"
+                          inlineStyle="width:auto;background-color:#F39C11;"/>
+          <af:commandButton text="#{viewcontrollerBundle.CANCEL_}" id="cb3"
+                            inlineStyle="width:auto;background-color:#F39C11;"
+                            immediate="true"
+                            action="#{HHCReAssignmentMBean.Cancel}">
+            <af:resetActionListener/>
+           
+          </af:commandButton>
+        </af:panelGroupLayout>
+        
+      </af:panelFormLayout>
+      <af:panelGroupLayout id="pgl4">
+        <af:commandButton text="#{viewcontrollerBundle.BACK_1}" id="cb1" action="Back"
+                           inlineStyle="width:auto;background-color:#F39C11;"
+                          actionListener="#{pageFlowScope.HHCAssignMBean.showPanel}"
+                          partialSubmit="true"/>
+      </af:panelGroupLayout>
+      
+    </af:panelGroupLayout>
+  </af:panelBox>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:HHCReAssignmentMBean-->
+</jsp:root>

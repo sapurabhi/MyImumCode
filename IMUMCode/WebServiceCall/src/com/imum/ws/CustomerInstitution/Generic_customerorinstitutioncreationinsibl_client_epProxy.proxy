@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<jdevws:WebServiceProxy xmlns:jdevws="http://xmlns.oracle.com/jdeveloper/10130/webserviceproxy">
+   <list n="CHILD_NODES">
+      <url path="Generic_customerorinstitutioncreationinsibl_client_ep.xml"/>
+      <url path="generic_customerorinstitutioncreationinsibl_client_ep.wsdl"/>
+      <url path="GenericCustomerOrInstitutionCreationInSIBLResponse.java"/>
+      <url path="GenAddressDetails.java"/>
+      <url path="Generic_customerorinstitutioncreationinsibl_client_ep.java"/>
+      <url path="ObjectFactory.java"/>
+      <url path="package-info.java"/>
+      <url path="GenCustomerMst.java"/>
+      <url path="Generic_CustomerOrInstitutionCreationInSIBL.java"/>
+      <url path="GenInstitutionMst.java"/>
+      <url path="Generic_CustomerOrInstitutionCreationInSIBL_ptClient.java"/>
+   </list>
+   <hash n="DATA_MODEL">
+      <value n="ATTACHMENT_ENCODING" v="MTOM"/>
+      <list n="LOCAL_FILES"/>
+      <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.WebServiceProxy"/>
+      <url n="ORACLE_WEBSERVICES_XML" path="Generic_customerorinstitutioncreationinsibl_client_ep.xml"/>
+      <hash n="PROPERTY_GROUPS">
+         <hash n="WSDL_TO_JAVA_PROPERTIES">
+            <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.WSDLToJavaProperties"/>
+            <value n="WSDL2JAVA_DEFAULT_PACKAGE" v="com.imum.ws.CustomerInstitution"/>
+            <value n="WSDL2JAVA_ROOT_VALUE_PACKAGE" v="com.imum.ws.CustomerInstitution"/>
+            <value n="WSDL2JAVA_UNWRAP_PARAMETERS" v="false"/>
+         </hash>
+      </hash>
+      <value n="PROXY_ASYNC_METHODS" v="FOR_ENABLED"/>
+      <list n="PROXY_CLIENTS">
+         <url path="Generic_CustomerOrInstitutionCreationInSIBL_ptClient.java"/>
+      </list>
+      <value n="PROXY_MAPPING_URL"/>
+      <url n="PROXY_ORIGINAL_WSDL_URL" protocol="http" host="192.168.200.113" port="8003" path="/Generic/CustomerOrInstitutionCreationInSIBL" query="wsdl"/>
+      <hash n="PROXY_PORTS">
+         <hash n="Generic_CustomerOrInstitutionCreationInSIBL_pt">
+            <value n="ACCESSES_DOC_WRAPPPED" v="false"/>
+            <value n="ACCESSES_RPC_ENCODED" v="false"/>
+            <value n="CLASS_NAME" v="com.imum.ws.CustomerInstitution.Generic_CustomerOrInstitutionCreationInSIBL"/>
+            <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyPort"/>
+            <value n="NAME" v="Generic_CustomerOrInstitutionCreationInSIBL_pt"/>
+            <hash n="OPERATIONS">
+               <hash n="genericCustomerCreationInSIBL">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+               <hash n="genericInstitutionCreationInSIBL">
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.ProxyOperation"/>
+                  <hash n="PROPERTY_GROUPS"/>
+               </hash>
+            </hash>
+            <hash n="PROPERTY_GROUPS">
+               <hash n="WS_CLIENT_POLICY">
+                  <value n="addressing"/>
+                  <list n="management"/>
+                  <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.policy.PolicyClientModel"/>
+                  <value n="mtom"/>
+                  <hash n="POLICY_OVERRIDE_PROPERTIES"/>
+                  <list n="security"/>
+                  <value n="wsrm"/>
+               </hash>
+            </hash>
+            <url n="PROXY_ORIGINAL_PORT_ENDPOINT" protocol="http" host="192.168.200.113" port="8003" path="/Generic/CustomerOrInstitutionCreationInSIBL"/>
+         </hash>
+      </hash>
+      <value n="PROXY_SERVICE_NAME" v="generic_customerorinstitutioncreationinsibl_client_ep"/>
+      <value n="PROXY_SERVICE_NAMESPACE" v="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"/>
+      <url n="PROXY_TARGET_PROJECT" path="../../../../../WebServiceCall.jpr"/>
+      <list n="PROXY_WSDL_IMPORT_LIST"/>
+      <url n="PROXY_WSDL_URL" path="generic_customerorinstitutioncreationinsibl_client_ep.wsdl"/>
+      <hash n="REFERENCED_WEBSERVICE">
+         <list n="BD_">
+            <hash>
+               <value n="BD_DEFAULT_DOCUMENT_WRAPPED" v="false"/>
+               <value n="BOUND_PORT_TYPE" v="{http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL}Generic_CustomerOrInstitutionCreationInSIBL"/>
+               <value n="DEFAULT_NAME" v="false"/>
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPBinding"/>
+               <value n="NAME" v="{http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL}Generic_CustomerOrInstitutionCreationInSIBLBinding"/>
+               <list n="OP_BINDINGS">
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.imum.ws.CustomerInstitution.GenericCustomerOrInstitutionCreationInSIBLResponse.genericCustomerCreationInSIBL.com.imum.ws.CustomerInstitution.GenCustomerMst"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="BOUND_OPERATION" v="com.imum.ws.CustomerInstitution.GenericCustomerOrInstitutionCreationInSIBLResponse.genericInstitutionCreationInSIBL.com.imum.ws.CustomerInstitution.GenInstitutionMst"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPOperationBinding"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+               </list>
+               <hash n="PROPERTY_GROUPS"/>
+            </hash>
+         </list>
+         <list n="BINDING_FILES"/>
+         <value n="GUID" v="e92750a9-0147-1000-8002-c0a84d11a71e"/>
+         <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.WebServiceProxy$ProxyJavaWebService"/>
+         <list n="PO_">
+            <hash>
+               <value n="DEFAULT_NAME" v="false"/>
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.SOAPPort"/>
+               <value n="NAME" v="Generic_CustomerOrInstitutionCreationInSIBL_pt"/>
+               <value n="PORT_BINDING_NAME" v="{http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL}Generic_CustomerOrInstitutionCreationInSIBLBinding"/>
+               <list n="PORT_OPS">
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.imum.ws.CustomerInstitution.GenericCustomerOrInstitutionCreationInSIBLResponse.genericCustomerCreationInSIBL.com.imum.ws.CustomerInstitution.GenCustomerMst"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+                  <hash>
+                     <value n="EXPOSED_BD_OPERATION" v="com.imum.ws.CustomerInstitution.GenericCustomerOrInstitutionCreationInSIBLResponse.genericInstitutionCreationInSIBL.com.imum.ws.CustomerInstitution.GenInstitutionMst"/>
+                     <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.PortOperation"/>
+                     <hash n="PROPERTY_GROUPS"/>
+                  </hash>
+               </list>
+               <hash n="PROPERTY_GROUPS"/>
+               <url n="URL" protocol="http" host="192.168.200.113" port="8003" path="/Generic/CustomerOrInstitutionCreationInSIBL"/>
+            </hash>
+         </list>
+         <hash n="PROPERTY_GROUPS">
+            <hash n="WSDL_TO_JAVA_PROPERTIES">
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.WSDLToJavaProperties"/>
+               <value n="WSDL2JAVA_DEFAULT_PACKAGE" v="com.imum.ws.CustomerInstitution"/>
+               <value n="WSDL2JAVA_ROOT_VALUE_PACKAGE" v="com.imum.ws.CustomerInstitution"/>
+               <value n="WSDL2JAVA_UNWRAP_PARAMETERS" v="false"/>
+            </hash>
+         </hash>
+         <list n="PT_">
+            <hash>
+               <value n="AUTO_SERVICE_INTERFACE"/>
+               <value n="DEFAULT_NAME" v="false"/>
+               <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.java.JavaPortType"/>
+               <value n="NAME" v="{http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL}Generic_CustomerOrInstitutionCreationInSIBL"/>
+               <hash n="PROPERTY_GROUPS"/>
+               <value n="PT_CLASS" v="com.imum.ws.CustomerInstitution.Generic_CustomerOrInstitutionCreationInSIBLImpl"/>
+               <value n="PT_SERVICE_INTERFACE" v="com.imum.ws.CustomerInstitution.Generic_CustomerOrInstitutionCreationInSIBL"/>
+            </hash>
+         </list>
+         <url n="TARGET_PROJECT" path="../../../../../WebServiceCall.jpr"/>
+         <value n="WS_ORIG_GEN_DIRECTION" v="TOP_DOWN"/>
+         <value n="WS_TARGET_NAMESPACE" v="http://www.zoneparking.ae/Generic_CustomerOrInstitutionCreationInSIBL"/>
+         <value n="WS_URI" v="generic_customerorinstitutioncreationinsibl_client_ep"/>
+         <url n="WS_WSDL_FILE" path="generic_customerorinstitutioncreationinsibl_client_ep.wsdl"/>
+      </hash>
+      <value n="SERVICE_ASYNC" v="false"/>
+      <value n="USE_WSDL_LOCATION" v="true"/>
+   </hash>
+</jdevws:WebServiceProxy>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="locationMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="LocationMstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="LocationMstVO1Iterator"/>
+    <searchRegion Binds="LocationMstVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="LocationMstVO1Query"/>
+    <iterator Binds="LocationMstVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="LocationMstVO2Iterator"/>
+    <iterator id="PoundBayDetailVO1Iterator" Binds="PoundBayDetailVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="LocationMstLngVO1Iterator" Binds="LocationMstLngVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="LocationMstVO1Iterator" id="LocationMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.LocationMstVO"
+                      Name="LocationMstVO10">
+        <AttrNames>
+          <Item Value="COUNTRYCODE"/>
+          <Item Value="CommunityCode"/>
+          <Item Value="GoLiveDt"/>
+          <Item Value="LOCTYPE"/>
+          <Item Value="LocAdd1"/>
+          <Item Value="LocDesc"/>
+          <Item Value="LocationID"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="CountryName"/>
+          <Item Value="CommunityName"/>
+          <Item Value="LocationTypeName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="LocationMstVO2Iterator" StaticList="false"
+            Uses="LOV_ActiveFlag" id="ActiveFlag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+    </button>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="AddlCharge">
+      <AttrNames>
+        <Item Value="AddlCharge"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="BayCount">
+      <AttrNames>
+        <Item Value="BayCount"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="LocationMstVO2Iterator" StaticList="false"
+          Uses="LOV_COUNTRYCODE" id="COUNTRYCODE" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="Clampingcharges">
+      <AttrNames>
+        <Item Value="Clampingcharges"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="LocationMstVO2Iterator" StaticList="false"
+          Uses="LOV_CommunityCode" id="CommunityCode" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="ContactDetails">
+      <AttrNames>
+        <Item Value="ContactDetails"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="CreatedDate">
+      <AttrNames>
+        <Item Value="CreatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="Freedays">
+      <AttrNames>
+        <Item Value="Freedays"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="Geolatdeg">
+      <AttrNames>
+        <Item Value="Geolatdeg"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="Geolondeg">
+      <AttrNames>
+        <Item Value="Geolondeg"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="GoLiveDt">
+      <AttrNames>
+        <Item Value="GoLiveDt"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="LocationMstVO2Iterator" StaticList="false"
+          Uses="LOV_LOCTYPE" id="LOCTYPE" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="LocAdd1">
+      <AttrNames>
+        <Item Value="LocAdd1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="LocAdd2">
+      <AttrNames>
+        <Item Value="LocAdd2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="LocDesc">
+      <AttrNames>
+        <Item Value="LocDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="LocationID">
+      <AttrNames>
+        <Item Value="LocationID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="OpeningDt">
+      <AttrNames>
+        <Item Value="OpeningDt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="OprHrFrom">
+      <AttrNames>
+        <Item Value="OprHrFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="OprHrTo">
+      <AttrNames>
+        <Item Value="OprHrTo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="POBox">
+      <AttrNames>
+        <Item Value="POBox"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="RemovalCharge">
+      <AttrNames>
+        <Item Value="RemovalCharge"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="UpdatedBy">
+      <AttrNames>
+        <Item Value="UpdatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="UpdatedDate">
+      <AttrNames>
+        <Item Value="UpdatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="issCommPrmitflag">
+      <AttrNames>
+        <Item Value="issCommPrmitflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LocationMstVO2Iterator"
+                     id="issGovtPermitflag">
+      <AttrNames>
+        <Item Value="issGovtPermitflag"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doNewLoc" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNewLoc"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doEditLoc"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditLoc"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doAddBayDetail"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doAddBayDetail"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="bayStatusForLocation"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="bayStatusForLocation"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.bayStatusForLocation_MastersAMDataControl_dataProvider_bayStatusForLocation_result"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="LocationNameLng">
+      <AttrNames>
+        <Item Value="LocationNameLng"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="LocationMstVO2Iterator" StaticList="false"
+          Uses="LOV_Language" id="Language" DTSupportsMRU="true"/>
+    <button IterBinding="LocationMstVO2Iterator"
+            id="AllowCommercialPermitsflag" DTSupportsMRU="false"
+            StaticList="true">
+      <AttrNames>
+        <Item Value="AllowCommercialPermitsflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="LocationMstVO2Iterator" id="Storagecharge">
+      <AttrNames>
+        <Item Value="Storagecharge"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="pilocationmapPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="pissupVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl" id="pissupVO1Iterator"/>
+    <iterator Binds="SectorforSupVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="SectorforSupVO1Iterator"/>
+    <iterator Binds="PIMonthlyDeploymentVO1" RangeSize="-1"
+              DataControl="TransactionsAMDataControl"
+              id="PIMonthlyDeploymentVO1Iterator"/>
+    <iterator Binds="PiidMonthlyDeployment1" RangeSize="-1"
+              DataControl="TransactionsAMDataControl"
+              id="PiidMonthlyDeployment1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="pissupVO1Iterator" ListOperMode="navigation"
+          ListIter="pissupVO1Iterator" id="pissupVO1" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </list>
+    <methodAction id="getPiPvts"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPiPvts" IsViewObjectMethod="false">
+      <NamedData NDName="piid" NDType="java.lang.String"/>
+      <NamedData NDName="pidate" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="SectorforSupVO1Iterator" StaticList="false"
+          Uses="LOV_sector" id="sector" DTSupportsMRU="true"/>
+    <list IterBinding="PIMonthlyDeploymentVO1Iterator" ListOperMode="navigation"
+          ListIter="PIMonthlyDeploymentVO1Iterator" id="PIMonthlyDeploymentVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="SectorforSupVO1Iterator" ListOperMode="navigation"
+          ListIter="SectorforSupVO1Iterator" id="SectorforSupVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="sector"/>
+      </AttrNames>
+    </list>
+    <methodAction id="getPisforShiftSector"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPisforShiftSector" IsViewObjectMethod="false">
+      <NamedData NDName="sup_id" NDType="java.lang.String"/>
+      <NamedData NDName="SName" NDType="java.lang.String"/>
+      <NamedData NDName="Shift" NDType="int"/>
+      <NamedData NDName="pidate" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="PiidMonthlyDeployment1Iterator" ListOperMode="navigation"
+          ListIter="PiidMonthlyDeployment1Iterator" id="PiidMonthlyDeployment1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="PIID"/>
+      </AttrNames>
+    </list>
+    <methodAction id="getPiLocationCoordinates"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getPiLocationCoordinates"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="piid" NDType="java.lang.String"/>
+      <NamedData NDName="pidate" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

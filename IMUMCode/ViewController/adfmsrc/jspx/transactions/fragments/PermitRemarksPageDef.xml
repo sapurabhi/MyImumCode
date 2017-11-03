@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PermitRemarksPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PermitSearchCriteriaVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="PermitSearchCriteriaVO1Iterator"/>
+    <searchRegion Criteria="PermitSearchCriteriaVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PermitSearchCriteriaVO1Iterator"
+                  id="PermitSearchCriteriaVOCriteriaQuery"/>
+    <searchRegion Criteria="PermitSearchCriteriaVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PermitSearchCriteriaVO1Iterator"
+                  id="PermitSearchCriteriaVOCriteriaQuery1"/>
+    <iterator id="PermitRemarksEntityDetailsVO1Iterator"
+              Binds="PermitRemarksEntityDetailsVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PermitSearchCriteriaVO1Iterator"
+          id="PermitSearchCriteriaVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitSearchCriteriaVO"
+                      Name="PermitSearchCriteriaVO10">
+        <AttrNames>
+          <Item Value="Addtlchrgs"/>
+          <Item Value="AdminChrgs"/>
+          <Item Value="Appldate"/>
+          <Item Value="AssgReasonID"/>
+          <Item Value="AssignedBy"/>
+          <Item Value="AssignedOn"/>
+          <Item Value="AssignedTo"/>
+          <Item Value="AutoRenewFlag"/>
+          <Item Value="Changedflag"/>
+          <Item Value="CityCode"/>
+          <Item Value="CountryCode"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="CustID"/>
+          <Item Value="customername"/>
+          <Item Value="Mobilenum"/>
+          <Item Value="DoTApprovalStatus"/>
+          <Item Value="DoTApprovedDate"/>
+          <Item Value="DoTApprovedby"/>
+          <Item Value="DoTInspComments"/>
+          <Item Value="Emiratesid"/>
+          <Item Value="ExistingPermitcount"/>
+          <Item Value="InstQuotaseq"/>
+          <Item Value="Issuedate"/>
+          <Item Value="LastAssgNote"/>
+          <Item Value="LastUndoableOperation"/>
+          <Item Value="UTILBILLNUM"/>
+          <Item Value="PRMAPPLNUM"/>
+          <Item Value="PRMHeaderseq"/>
+          <Item Value="Paidflag"/>
+          <Item Value="PermitChrgs"/>
+          <Item Value="PermitEnddate"/>
+          <Item Value="PermitNumber"/>
+          <Item Value="PermitRefundAmt"/>
+          <Item Value="PermitRemarks"/>
+          <Item Value="Categcode"/>
+          <Item Value="PermitStatusID"/>
+          <Item Value="PermitType"/>
+          <Item Value="LocalFlag"/>
+          <Item Value="Permitstartdate"/>
+          <Item Value="Prmduration"/>
+          <Item Value="ProcChrgs"/>
+          <Item Value="SectorCode"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+          <Item Value="renewalcount"/>
+          <Item Value="vhlplateid"/>
+          <Item Value="permittypename"/>
+          <Item Value="statusname"/>
+          <Item Value="platenumber"/>
+          <Item Value="platecountry"/>
+          <Item Value="platecategory"/>
+          <Item Value="platetype"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="CreateNewRemarks"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="CreateNewRemarks"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="remarks" NDType="java.lang.String"/>
+      <NamedData NDName="PRMHeaderseqBD" NDType="java.math.BigDecimal"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="CreateNewPermitDocument"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="CreateNewPermitDocument"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="fullPath" NDType="java.lang.String"/>
+      <NamedData NDName="Prmseq" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="doctype" NDType="java.lang.String"/>
+      <NamedData NDName="DOCDesc" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <methodAction id="PermitDocsSeibelSync"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="PermitDocsSeibelSync"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.PermitDocsSeibelSync_MastersAMDataControl_dataProvider_PermitDocsSeibelSync_result"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTSearchTF">
+    <managed-bean id="__4">
+      <managed-bean-name id="__17">PVTSearchMBean</managed-bean-name>
+      <managed-bean-class id="__18">com.imum.cpms.PVTSearchMBean</managed-bean-class>
+      <managed-bean-scope id="__16">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <task-flow-call id="PVTDetailsTF">
+      <task-flow-reference>
+        <document>/WEB-INF/transactions/PVTDetailsTF.xml</document>
+        <id>PVTDetailsTF</id>
+      </task-flow-reference>
+
+      <input-parameter id="__3">
+        <name>PVTNum</name>
+        <value>#{pageFlowScope.PVTNum}</value>
+        <pass-by-value/>
+      </input-parameter>
+    </task-flow-call>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

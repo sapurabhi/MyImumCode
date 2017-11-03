@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PermitChargesVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  FromList=" PRM_Rule_Permit_Charges PermitChargesEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  ComponentClass="com.imum.cpms.model.masters.vo.PermitChargesVOImpl"
+  SelectList="PermitChargesEO.Active_flag, 
+       PermitChargesEO.Admin_Chrg, 
+       PermitChargesEO.Changed_flag, 
+       PermitChargesEO.Created_By, 
+       PermitChargesEO.Created_Date, 
+       PermitChargesEO.Num_of_Veh, 
+       PermitChargesEO.PRM_Charges_seq, 
+       PermitChargesEO.Permit_chrg, 
+       PermitChargesEO.Process_chrg, 
+       PermitChargesEO.Rule_Id, 
+       PermitChargesEO.Updated_by, 
+       PermitChargesEO.Vadity_Period, 
+       PermitChargesEO.Updated_date"
+  OrderBy="Created_Date Desc"
+  RowClass="com.imum.cpms.model.masters.vo.PermitChargesVORowImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|Prog|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.masters.vo.PermitChargesVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="PermitChargesVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitChargesVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="YesNoLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.YesNoLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="ValidityPeriodTypeVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.ValidityPeriodTypeVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_RuleId"
+    ListVOName="PermitChargesVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_RuleId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="RuleId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="RuleId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="RuleId"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VadityPeriod"
+    ListVOName="ValidityPeriodTypeVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VadityPeriod_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VadityPeriod"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Activeflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Activeflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Activeflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="PermitChargesEO"
+    Entity="com.imum.cpms.model.masters.eo.PermitChargesEO"/>
+  <ViewAttribute
+    Name="Activeflag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Activeflag"
+    EntityUsage="PermitChargesEO"
+    AliasName="Active_flag"
+    DefaultValue="N"
+    LOVName="LOV_Activeflag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AdminChrg"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="AdminChrg"
+    EntityUsage="PermitChargesEO"
+    AliasName="Admin_Chrg"
+    DefaultValue="0.00"/>
+  <ViewAttribute
+    Name="Changedflag"
+    PrecisionRule="true"
+    EntityAttrName="Changedflag"
+    EntityUsage="PermitChargesEO"
+    AliasName="Changed_flag"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="PermitChargesEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="PermitChargesEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="NumofVeh"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="NumofVeh"
+    EntityUsage="PermitChargesEO"
+    AliasName="Num_of_Veh"/>
+  <ViewAttribute
+    Name="PRMChargesseq"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PRMChargesseq"
+    EntityUsage="PermitChargesEO"
+    AliasName="PRM_Charges_seq"/>
+  <ViewAttribute
+    Name="Permitchrg"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Permitchrg"
+    EntityUsage="PermitChargesEO"
+    AliasName="Permit_chrg"
+    DefaultValue="0.00"/>
+  <ViewAttribute
+    Name="Processchrg"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Processchrg"
+    EntityUsage="PermitChargesEO"
+    AliasName="Process_chrg"
+    DefaultValue="0.00"/>
+  <ViewAttribute
+    Name="RuleId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RuleId"
+    EntityUsage="PermitChargesEO"
+    AliasName="Rule_Id"
+    LOVName="LOV_RuleId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="PermitChargesEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="VadityPeriod"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="VadityPeriod"
+    EntityUsage="PermitChargesEO"
+    AliasName="Vadity_Period"
+    LOVName="LOV_VadityPeriod">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Updateddate"
+    PrecisionRule="true"
+    EntityAttrName="Updateddate"
+    EntityUsage="PermitChargesEO"
+    AliasName="Updated_date"/>
+  <ViewAttribute
+    Name="BooleanActiveFlag"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="BIT"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="rowStatus"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

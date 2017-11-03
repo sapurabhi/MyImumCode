@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout layout="vertical" id="pgl1" styleClass="AFStretchWidth">
+    <af:panelHeader text="PVT Search" id="ph1">
+      <af:spacer width="10" height="10" id="s4"/>
+      <af:query id="qryId1" headerText="Search" disclosed="true"
+                value="#{bindings.PVTPaymentslogVCriteriaQuery.queryDescriptor}"
+                model="#{bindings.PVTPaymentslogVCriteriaQuery.queryModel}"
+                queryListener="#{bindings.PVTPaymentslogVCriteriaQuery.processQuery}"
+                queryOperationListener="#{bindings.PVTPaymentslogVCriteriaQuery.processQueryOperation}"
+                resultComponentId="::resId1" saveQueryMode="hidden"
+                modeChangeVisible="false"/>
+    </af:panelHeader>
+    <af:table value="#{bindings.PVTSearchRVO1.collectionModel}" var="row"
+              rows="#{bindings.PVTSearchRVO1.rangeSize}"
+              emptyText="#{bindings.PVTSearchRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PVTSearchRVO1.rangeSize}"
+              rowBandingInterval="0"
+              selectionListener="#{pageFlowScope.PVTPaymentsLOGMBean.SelectedPVT}"
+              rowSelection="single" id="resId1" width="732"  
+              inlineStyle="height:101px;"
+              binding="#{pageFlowScope.PVTPaymentsLOGMBean.resultstable}">
+      <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PVTNum.name}"
+                 sortable="false"
+                 headerText="#{bindings.PVTSearchRVO1.hints.PVTNum.label}"
+                 id="resId1c1" width="220">
+        <af:outputText value="#{row.PVTNum}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PVTdatetime.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.ISSUED_DATE}"
+                 id="resId1c2" width="193">
+        <af:outputText value="#{row.PVTdatetime}" id="ot3">
+        
+           <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:outputText>
+      </af:column>
+      <af:column headerText="#{bindings.PVTSearchRVO1.hints.PVTStatusID.label}"
+                 id="c1">
+        <af:selectOneChoice value="#{row.bindings.PVTStatusID.inputValue}"
+                            label="#{row.bindings.PVTStatusID.label}"
+                            required="#{bindings.PVTSearchRVO1.hints.PVTStatusID.mandatory}"
+                            shortDesc="#{bindings.PVTSearchRVO1.hints.PVTStatusID.tooltip}"
+                            id="soc2" readOnly="true">
+          <f:selectItems value="#{row.bindings.PVTStatusID.items}" id="si2"/>
+        </af:selectOneChoice>
+      </af:column>
+      <af:column sortProperty="#{bindings.PVTSearchRVO1.hints.PVTAMTPAYABLE.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.AMOUNT_PAYABLE}"
+                 id="resId1c4" width="151">
+        <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot1"/>
+      </af:column>
+    </af:table>
+  </af:panelGroupLayout>
+  <af:spacer width="10" height="30" id="s1"/>
+  <af:panelGroupLayout id="pgl2" 
+                       partialTriggers="resId1">
+    <af:showDetailHeader text="Payment Details" disclosed="true" id="sdh1"
+                      rendered ="#{pageFlowScope.Entered eq 'Update' ? 'true':'false'}" >
+      <af:spacer width="10" height="10" id="s2"/>
+      <af:panelFormLayout id="pfl0" rendered ="#{pageFlowScope.Entered eq 'Update' ? 'true':'false'}">
+  <af:inputText label="#{viewcontrollerBundle.PVT_PAID_AMOUNT}" id="it1"
+                binding="#{pageFlowScope.PVTPaymentsLOGMBean.pvTPaidAmount}"
+                showRequired="true"/>
+      <af:inputDate label="#{viewcontrollerBundle.PAYMENT_DATE}" id="id1"
+                    binding="#{pageFlowScope.PVTPaymentsLOGMBean.paymentDate}"
+                    showRequired="true">
+                      <af:convertDateTime pattern="dd-MM-yyyy"/>
+                      </af:inputDate>
+      <af:inputText label="#{viewcontrollerBundle.RECEIPT_NUMBER}" id="it3"
+                  binding="#{pageFlowScope.PVTPaymentsLOGMBean.receiptNumber}"
+                    showRequired="true"/>
+    <af:inputText label="#{viewcontrollerBundle.TXN_ID}" id="it4"
+                  binding="#{pageFlowScope.PVTPaymentsLOGMBean.transactionID}"
+                  showRequired="true"/>
+    <af:inputText label="#{viewcontrollerBundle.KIOSK_LOCATION}" id="it5"
+                  binding="#{pageFlowScope.PVTPaymentsLOGMBean.kioskLocation}"
+                  showRequired="true"/>
+        <af:selectOneChoice value="#{bindings.PaymentsTypesLOVVO1.inputValue}"
+                            label="#{viewcontrollerBundle.PAYMENT_CHANNEL}"
+                            required="#{bindings.PaymentsTypesLOVVO1.hints.mandatory}"
+                            shortDesc="#{bindings.PaymentsTypesLOVVO1.hints.tooltip}"
+                            id="soc1" showRequired="true"
+                            binding="#{pageFlowScope.PVTPaymentsLOGMBean.paymentlov}">
+          <f:selectItems value="#{bindings.PaymentsTypesLOVVO1.items}"
+                         id="si1"/>
+        </af:selectOneChoice>
+      </af:panelFormLayout>
+      <af:spacer width="10" height="30" id="s3"/>
+      <af:panelGroupLayout id="pgl3"  rendered ="#{pageFlowScope.Entered eq 'Update' ? 'true':'false'}">
+      <af:commandButton text="Submit" id="cb1"
+                        action="#{pageFlowScope.PVTPaymentsLOGMBean.SubmitPaymentslog}"
+                        inlineStyle="background-color:#F39C11"/>
+      <af:commandButton text="Cancel" id="cb2"
+                        inlineStyle="background-color:#F39C11"
+                        action="#{pageFlowScope.PVTPaymentsLOGMBean.Cancel}"/>
+    </af:panelGroupLayout>
+     </af:showDetailHeader>
+  </af:panelGroupLayout>
+</jsp:root>

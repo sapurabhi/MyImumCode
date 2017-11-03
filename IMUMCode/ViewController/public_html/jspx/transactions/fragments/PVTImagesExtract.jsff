@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:panelGroupLayout id="pgl1" layout="vertical">
+  <af:commandButton text="PVT Extraction" id="cb1" inlineStyle="width:100px;background-color:#F39C11;" 
+                    action="#{pvtImagesExtractBean.insertPvtImages}"/>
+                    
+                    
+     <af:spacer id="IN1" height="70"/>
+     
+  <af:outputText value="#{pvtImagesExtractBean.message}" id="ot1" partialTriggers="cb1"/>
+  </af:panelGroupLayout>
+  
+</jsp:root>

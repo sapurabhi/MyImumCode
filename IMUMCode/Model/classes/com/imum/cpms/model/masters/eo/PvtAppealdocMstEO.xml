@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PvtAppealdocMstEO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="PVT_APPEAL_DOC_MST"
+  AliasName="PvtAppealdocMstEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="APPEALDOCMSTSEQ"
+    IsUpdateable="false"
+    Precision="10"
+    Scale="0"
+    ColumnName="APPEAL_DOC_MST_SEQ"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName="PVT_APPEAL_DOC_MST"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PVTAPPEALREASONID"
+    Precision="3"
+    Scale="0"
+    ColumnName="PVT_APPEAL_REASON_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DocName"
+    Precision="200"
+    ColumnName="Doc_Name"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DocDesc"
+    Precision="2000"
+    ColumnName="Doc_Desc"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Mandatoryflag"
+    Precision="1"
+    ColumnName="Mandatory_flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Activeflag"
+    Precision="1"
+    ColumnName="Active_flag"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ActivefromDate"
+    ColumnName="Active_from_Date"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ActivetoDate"
+    ColumnName="Active_to_Date"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DEFCityCode"
+    Precision="3"
+    ColumnName="DEF_City_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DEFCountryMst"
+    Precision="3"
+    ColumnName="DEF_Country_Mst"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    ColumnName="Created_Date"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updatedby"
+    Precision="20"
+    ColumnName="Updated_by"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updatedate"
+    ColumnName="Update_date"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="date"
+    TableName="PVT_APPEAL_DOC_MST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="PvtappealdocmsteoPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PVTAPPEALDOCMSTEO_PRIMARY_KEY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.masters.eo.PvtAppealdocMstEO.APPEALDOCMSTSEQ"/>
+    </AttrArray>
+  </Key>
+</Entity>

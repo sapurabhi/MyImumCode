@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="vehicleWhitelistMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VehicleWhitelistMstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="VehicleWhitelistMstVO1Iterator"/>
+    <searchRegion Binds="VehicleWhitelistMstVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VehicleWhitelistMstVO1Query"/>
+    <iterator Binds="VehicleWhitelistMstVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="VehicleWhitelistMstVO2Iterator"/>
+    <iterator id="printVO1Iterator" Binds="printVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="VehicleWhitelistMstValidationRVO1Iterator"
+              Binds="VehicleWhitelistMstValidationRVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VehicleWhitelistMstVO1Iterator"
+          id="VehicleWhitelistMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehicleWhitelistMstVO"
+                      Name="VehicleWhitelistMstVO10">
+        <AttrNames>
+          <Item Value="Whitelistseq"/>
+          <Item Value="PLATENUMBER"/>
+          <Item Value="PlateCountryID"/>
+          <Item Value="PLATECTGID"/>
+          <Item Value="PLATETYPEID"/>
+          <Item Value="VEHMAKEID"/>
+          <Item Value="VEHMODELID"/>
+          <Item Value="VEHCOLOURID"/>
+          <Item Value="Activeflag"/>
+          <Item Value="ActiveDateFrom"/>
+          <Item Value="ActiveDateTo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VehicleWhitelistMstVO2Iterator"
+                     id="Whitelistseq">
+      <AttrNames>
+        <Item Value="Whitelistseq"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleWhitelistMstVO2Iterator"
+                     id="PLATENUMBER">
+      <AttrNames>
+        <Item Value="PLATENUMBER"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VehicleWhitelistMstVO2Iterator" StaticList="false"
+          Uses="LOV_PlateCountryID" id="PlateCountryID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleWhitelistMstVO2Iterator" StaticList="false"
+          Uses="LOV_PLATECTGID" id="PLATECTGID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleWhitelistMstVO2Iterator" StaticList="false"
+          Uses="LOV_PLATETYPEID" id="PLATETYPEID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleWhitelistMstVO2Iterator" StaticList="false"
+          Uses="LOV_VEHMAKEID" id="VEHMAKEID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleWhitelistMstVO2Iterator" StaticList="false"
+          Uses="LOV_VEHMODELID" id="VEHMODELID" DTSupportsMRU="false"/>
+    <list IterBinding="VehicleWhitelistMstVO2Iterator" StaticList="false"
+          Uses="LOV_VEHCOLOURID" id="VEHCOLOURID" DTSupportsMRU="false"/>
+    <button IterBinding="VehicleWhitelistMstVO2Iterator" id="Activeflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="doNewWhitelist"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNewWhitelist"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doEditWhitelist"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditWhitelist"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <attributeValues IterBinding="VehicleWhitelistMstVO2Iterator"
+                     id="ActiveDateFrom">
+      <AttrNames>
+        <Item Value="ActiveDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleWhitelistMstVO2Iterator"
+                     id="ActiveDateTo">
+      <AttrNames>
+        <Item Value="ActiveDateTo"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

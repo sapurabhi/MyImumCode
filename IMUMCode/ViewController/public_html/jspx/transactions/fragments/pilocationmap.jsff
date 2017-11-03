@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelFormLayout id="pfl0">
+  <!--<af:resource type="javascript" source="/js/arcgis.js"/>-->
+    <!--<af:resource type="css" source="/js/esri.css"/>-->
+   <af:resource type="css" source="/css/claro/claro.css"/>
+    <af:resource type="css" source="/css/esri/css/esri.css"/>
+    <af:resource type="javascript" source="/js/newarcgis.js"/>  
+    
+  <af:resource type="javascript">
+   <![CDATA[
+ 
+
+  
+var map;
+      
+       function loadMap(long,lat,long1,lat1,timestamp,active) {
+            require([
+                    "esri/map",
+                    "esri/layers/ArcGISDynamicMapServiceLayer",
+                    "esri/geometry/webMercatorUtils", "esri/graphicsUtils", "dojo/dom", "esri/geometry",
+                    "dojo/domReady!",
+                    "esri/symbols/SimpleMarkerSymbol",
+                    "esri/symbols/SimpleLineSymbol",
+                    "esri/symbols/PictureMarkerSymbol",
+                    "esri/Color"
+            ], function (Map, ArcGISDynamicMapServiceLayer, webMercatorUtils, graphicsUtils, dom) {
+                
+            
+                map = new Map("map_Div", {
+                    sliderOrientation: "horizontal"
+                });
+
+                //Takes a URL to a non cached map service.
+                var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://www.darb.ae/arcgis/rest/services/BaseMaps/DOT_StreetMap_En/MapServer", {
+                    "opacity": 5.9
+                });
+
+                map.on("load", function () {
+                    
+                   
+                   var graphics = [];
+                 
+                    for (var i = 0; i < long.length; i++) {
+                      
+                        var attributes = {
+                            "Date Time": timestamp[i]
+                        };
+                        
+                        var table = "<table style='font-size:12px;'>";
+                        table += "<tr><td>Date Time</td><td><b>:</b>&nbsp" + timestamp[i] + "</td></tr>";
+                        table += "</table>"
+                        
+                        var symbol;
+                        if(active[i] == '0'){
+                         symbol = ConfigureSymbol("https://cdn0.iconfinder.com/data/icons/classic-icons/128/090.png");
+                        }
+                        else if(active[i] == '1') 
+                        {
+                         symbol = ConfigureSymbol("https://cdn0.iconfinder.com/data/icons/classic-icons/128/087.png");
+                        }
+                        else if(active[i] == '2') 
+                        {
+                         symbol = ConfigureSymbol("https://cdn0.iconfinder.com/data/icons/classic-icons/128/089.png");
+                        }
+                       
+                     
+                        var template = { title: "Details", content: table };
+                        var infoTemplate = new esri.InfoTemplate(template);
+                        var graphic = new esri.Graphic(
+                           new esri.geometry.Point(parseFloat(long[i]), parseFloat(lat[i]), new esri.SpatialReference({ wkid: 4326 })),
+                           new esri.symbol.PictureMarkerSymbol(symbol), attributes, infoTemplate
+                         );
+                        
+                       
+                        map.graphics.add(graphic);
+                        graphics.push(graphic);
+                    }
+
+                    var graphicsExtent = graphicsUtils.graphicsExtent(graphics).expand(2);
+                    map.setExtent(graphicsExtent);
+                });
+
+                map.addLayer(dynamicMapServiceLayer);
+
+            });
+        }
+
+
+
+        function ConfigureSymbol(symbolurl) {
+            var retval = new esri.symbol.PictureMarkerSymbol({
+                "angle": 0,
+                "xoffset": 0,
+                "yoffset": 0,
+                "type": "esriPMS",
+                "url": symbolurl,
+                "contentType": "image/png",
+                "width": 7,
+                "height": 7
+            });
+
+            return retval;
+        }
+
+        
+      
+        ]]>
+      </af:resource>
+  <af:panelGroupLayout id="pgl1">
+    <af:panelGroupLayout  id="pfl1"  layout="horizontal"
+                         inlineStyle="width:1095px; height:51px;">
+        <af:spacer width="30" height="10" id="s1"/>
+        <af:selectOneChoice value="#{bindings.SectorforSupVO1.inputValue}"
+                            label="#{viewcontrollerBundle.SECTOR}"
+                            required="#{bindings.SectorforSupVO1.hints.mandatory}"
+                            shortDesc="#{bindings.SectorforSupVO1.hints.tooltip}"
+                            id="soc2" binding="#{pageFlowScope.PiLocation.s}"
+                            valueChangeListener="#{pageFlowScope.PiLocation.sectorVC}"
+                            autoSubmit="true" valuePassThru="true">
+          <f:selectItems value="#{bindings.SectorforSupVO1.items}" id="si2"/>
+        </af:selectOneChoice>
+       
+        <af:selectOneChoice label="#{viewcontrollerBundle.SHIFT}" id="soc3"
+                            valueChangeListener="#{pageFlowScope.PiLocation.shiftVC}"
+                            autoSubmit="true">
+          <af:selectItem label="1" value="1" id="si3"/>
+          <af:selectItem label="2" value="2" id="si5"/>
+          <af:selectItem label="3" value="3" id="si4"/>
+        </af:selectOneChoice>
+        <!--<af:selectOneChoice value="#{bindings.PIMonthlyDeploymentVO1.inputValue}"
+                            label="#{viewcontrollerBundle.PI_NUMBER}" 
+                            required="#{bindings.PIMonthlyDeploymentVO1.hints.mandatory}"
+                            shortDesc="#{bindings.PIMonthlyDeploymentVO1.hints.tooltip}"
+                            id="soc1" partialTriggers="soc3">
+          <f:selectItems value="#{bindings.PIMonthlyDeploymentVO1.items}"
+                         id="si1"/>
+        </af:selectOneChoice>-->
+        <af:selectOneChoice value="#{bindings.PiidMonthlyDeployment1.inputValue}"
+                           label="#{viewcontrollerBundle.PI_NUMBER}"
+                            required="#{bindings.PiidMonthlyDeployment1.hints.mandatory}"
+                            shortDesc="#{bindings.PiidMonthlyDeployment1.hints.tooltip}"
+                            id="soc4" partialTriggers="soc3">
+          <f:selectItems value="#{bindings.PiidMonthlyDeployment1.items}"
+                         id="si6"/>
+        </af:selectOneChoice>
+        <!--<af:selectOneChoice value="#{bindings.PIMonthlyDeploymentVO1.inputValue}"
+                            label="#{bindings.PIMonthlyDeploymentVO1.label}"
+                            required="#{bindings.PIMonthlyDeploymentVO1.hints.mandatory}"
+                            shortDesc="#{bindings.PIMonthlyDeploymentVO1.hints.tooltip}"
+                            id="soc1">
+          <f:selectItems value="#{bindings.PIMonthlyDeploymentVO1.items}"
+                         id="si1"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.pissupVO1.inputValue}"
+                            label="PI Number"
+                            required="#{bindings.pissupVO1.hints.mandatory}"
+                            shortDesc="#{bindings.pissupVO1.hints.tooltip}"
+                            id="soc1">
+          <f:selectItems value="#{bindings.pissupVO1.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:inputText label="PI Number" id="it2"
+                      binding="#{pageFlowScope.PiLocation.piidlocationmap}"
+                      showRequired="true">
+          <af:autoSuggestBehavior/>
+        </af:inputText>-->
+        <af:spacer width="10" height="10" id="s2"/>
+       <!-- <af:inputText label="Sectors" id="it1" value="#{pageFlowScope.Ssector}"
+                      binding="#{pageFlowScope.PiLocation.sector}"
+                      readOnly="true" columns="10"/>
+ Sectors  <af:outputText value="#{pageFlowScope.Ssector}" id="ot1"/>-->
+     
+       
+        <af:spacer width="10" height="10" id="s3"/>
+        <af:inputDate label="#{viewcontrollerBundle.SELECT_DATE}" id="id1"
+                      binding="#{pageFlowScope.PiLocation.pilocationDate}"
+                      showRequired="true" columns="15">
+                      <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:inputDate>
+      <af:commandButton text="#{viewcontrollerBundle.VIEW_PI_TRAVERSED_ROUTE}"  id="cb1" partialSubmit="true"
+                         clientComponent="true" inlineStyle="width:80.0%;background-color:#F39C11;"
+                        action="#{pageFlowScope.PiLocation.generateReport}"/>
+      
+     
+    
+    </af:panelGroupLayout>
+       
+  </af:panelGroupLayout>
+   
+</af:panelFormLayout>
+  <af:panelFormLayout id="pfl2" partialTriggers="cb1"  inlineStyle="width:1095px; height:51px;">
+  <div id="map_Div" class="map_div" style="width:1000px; height:360px;"></div>
+  </af:panelFormLayout>
+</jsp:root>

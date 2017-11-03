@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="InventorySearchTF">
+    <default-activity id="__1">clearCacheAllRows</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">InventorySearchMBean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.transactions.inventory.InventorySearchMBean</managed-bean-class>
+      <managed-bean-scope id="__2">request</managed-bean-scope>
+    </managed-bean>
+    <view id="InventorySearch">
+      <page>/jspx/transactions/fragments/InventorySearch.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="clearCacheAllRows">
+      <method>#{bindings.clearCacheAllRows.execute}</method>
+      <outcome id="__12">
+        <fixed-outcome>clearCacheAllRows</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">clearCacheAllRows</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome id="__10">clearCacheAllRows</from-outcome>
+        <to-activity-id id="__9">CreateInsert</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__13">
+      <from-activity-id id="__14">CreateInsert</from-activity-id>
+      <control-flow-case id="__16">
+        <from-outcome id="__17">CreateInsert</from-outcome>
+        <to-activity-id id="__15">InventorySearch</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

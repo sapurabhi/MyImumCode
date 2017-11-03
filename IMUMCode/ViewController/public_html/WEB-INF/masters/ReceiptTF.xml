@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ReceiptTF">
+    <default-activity id="__1">VehicleReceipt</default-activity>
+    <view id="VehicleReceipt">
+      <page>/jspx/masters/fragments/VehicleReceipt.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

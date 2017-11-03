@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="pieditPageDef"
+                Package="jspx.staffdeployment.jsffragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="EditVO1" RangeSize="25" DataControl="StaffDeployDataControl"
+              id="EditVO1Iterator"/>
+    <iterator Binds="PIAssignSearch1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="PIAssignSearch1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="EditVO1Iterator" id="PIID">
+      <AttrNames>
+        <Item Value="PIID"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="EditVO1Iterator" StaticList="false" Uses="LOV_Sector"
+          id="Sector" DTSupportsMRU="false"/>
+    <list IterBinding="EditVO1Iterator" StaticList="false" Uses="LOV_Zone"
+          id="Zone" DTSupportsMRU="false"/>
+    <list IterBinding="EditVO1Iterator" StaticList="false" Uses="LOV_Beat"
+          id="Beat" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="PIid">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="editSaveDtls"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="editSaveDtls"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.editSaveDtls_StaffDeployDataControl_dataProvider_editSaveDtls_result">
+      <NamedData NDName="pidVal" NDType="java.lang.String"/>
+      <NamedData NDName="secVal" NDType="java.lang.String"/>
+      <NamedData NDName="zoneVal" NDType="java.lang.String"/>
+      <NamedData NDName="beatVal" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getLovVal"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getLovVal"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getLovVal_StaffDeployDataControl_dataProvider_getLovVal_result">
+      <NamedData NDName="Val" NDType="java.lang.String"/>
+      <NamedData NDName="flag" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getSectorDetails"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getSectorDetails" IsViewObjectMethod="false"/>
+  </bindings>
+</pageDefinition>

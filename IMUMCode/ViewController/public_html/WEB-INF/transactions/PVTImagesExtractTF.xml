@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTImagesExtractTF">
+    <default-activity id="__1">PVTImagesExtract</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__3">managedBean1</managed-bean-name>
+      <managed-bean-class id="__5"></managed-bean-class>
+      <managed-bean-scope id="__4">request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__6">
+      <managed-bean-name id="__9">pvtImagesExtractBean</managed-bean-name>
+      <managed-bean-class id="__7">com.imum.cpms.transactions.pvt.PVTImagesExtractBean</managed-bean-class>
+      <managed-bean-scope id="__8">request</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTImagesExtract">
+      <page>/jspx/transactions/fragments/PVTImagesExtract.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

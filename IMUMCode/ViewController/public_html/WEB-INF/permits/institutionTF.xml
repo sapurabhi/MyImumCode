@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="institutionTF">
+    <default-activity id="__6">CustomerInstitution</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">institutionMBean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.institutionMBean</managed-bean-class>
+      <managed-bean-scope id="__2">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="institution">
+      <page>/jspx/masters/fragments/institution.jsff</page>
+    </view>
+    <view id="CustomerInstitution">
+      <page>/jspx/masters/fragments/CustomerInstitution.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

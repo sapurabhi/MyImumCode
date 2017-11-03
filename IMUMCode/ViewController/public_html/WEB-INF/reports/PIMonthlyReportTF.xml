@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PIMonthlyReportTF">
+    <default-activity id="__1">getSupId</default-activity>
+    <view id="PIMonthlyReport">
+      <page>/jspx/reports/fragments/PIMonthlyReport.jsff</page>
+    </view>
+    <method-call id="getSupId">
+      <method>#{bindings.getSupId.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>getSupId</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">getSupId</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__6">getSupId</from-outcome>
+        <to-activity-id id="__7">PIMonthlyReport</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

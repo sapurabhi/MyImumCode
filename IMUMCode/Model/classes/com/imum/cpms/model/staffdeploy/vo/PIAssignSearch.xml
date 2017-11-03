@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PIAssignSearch"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.staffdeploy.vo.PIAssignSearch_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bCurrentDate"
+    Kind="viewcriteria"
+    Type="java.sql.Date">
+    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+  </Variable>
+  <Variable
+    Name="supervisorId"
+    Kind="viewcriteria"
+    Type="java.lang.String"
+    DefaultValue="Supervisor2"/>
+  <ViewAccessor
+    Name="ReAssignShiftRVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.ReAssignShiftRVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_shift"
+    ListVOName="ReAssignShiftRVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="shift"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="shiftid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="shiftid"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[Select distinct PI_Sup_Alloc.PI_id,
+
+PI_Sup_Alloc.Assgn_StDate,
+PI_Sup_Alloc.Assgn_EndDate,
+SS.Shift,
+isnull(PI_attendance.AttendanceStatus,'NotPresent') as AttendanceStatus,
+Sup_Alloc.Sup_id,Sup_Alloc.Alloc_id,
+PI_WorkAssgn.Status,
+PI_WorkAssgn.Sector,
+
+PI_WorkAssgn.Zone,
+
+PI_WorkAssgn.Beat
+
+FROM Sup_Alloc inner join PI_Sup_Alloc 
+
+on Sup_Alloc.Alloc_id=PI_Sup_Alloc.Alloc_id
+
+left outer join
+PI_Attendance
+
+
+on PI_Sup_Alloc.PI_ID=PI_Attendance.pi_id
+left outer join pi_leavemgmt pl
+on pl.pi_id=PI_Sup_Alloc.pi_id
+left outer join Sup_Shift_Sector_Alloc SS on SS.Alloc_id=Sup_Alloc.Alloc_id
+left outer join PI_WorkAssgn 
+
+on PI_Attendance.PI_id=PI_WorkAssgn.PI_id where  PI_Sup_Alloc.Status='Assigned']]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="PIid"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="PI_id"
+    Expression="PI_id"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssgnStDate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="Assgn_StDate"
+    Expression="Assgn_StDate"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssgnEndDate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Date"
+    ColumnType="date"
+    AliasName="Assgn_EndDate"
+    Expression="Assgn_EndDate"
+    SQLType="DATE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Shift"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Shift"
+    Expression="Shift"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AttendanceStatus"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="AttendanceStatus"
+    Expression="AttendanceStatus"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Supid"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Sup_id"
+    Expression="Sup_id"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Allocid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="int"
+    AliasName="Alloc_id"
+    Expression="Alloc_id"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Status"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Status"
+    Expression="Status"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Sector"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Sector"
+    Expression="Sector"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Zone"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Zone"
+    Expression="Zone"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Beat"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="Beat"
+    Expression="Beat"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Selection"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="unAssignTime"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="shift"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_shift"/>
+  <ViewCriteria
+    Name="PIAssignSearchCriteria"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.PIAssignSearch"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow71"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="AssgnStDate"
+        ViewAttribute="AssgnStDate"
+        Operator="ONORBEFORE"
+        Conjunction="AND"
+        Value=":bCurrentDate"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PIAssignSearchCriteria_vcrow71_AssgnEndDate"
+        ViewAttribute="AssgnEndDate"
+        Operator="ONORAFTER"
+        Conjunction="OR"
+        Value=":bCurrentDate"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PIAssignSearchCriteria_vcrow71_AttendanceStatus"
+        ViewAttribute="AttendanceStatus"
+        Operator="STARTSWITH"
+        Conjunction="AND"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="Supid"
+        ViewAttribute="Supid"
+        Operator="="
+        Conjunction="AND"
+        Value=":supervisorId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

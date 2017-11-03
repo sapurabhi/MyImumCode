@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="KPIReportTF">
+    <default-activity id="__1">KPIReport</default-activity>
+    <view id="KPIReport">
+      <page>/jspx/reports/fragments/KPIReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

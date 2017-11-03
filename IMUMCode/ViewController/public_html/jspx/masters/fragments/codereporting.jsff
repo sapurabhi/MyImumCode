@@ -1,0 +1,669 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" layout="horizontal" >
+       <af:panelGroupLayout id="pgl9" layout="horizontal"  visible="#{pageFlowScope.PVTCourtReportingMbean.look}" partialTriggers="cb1">
+       <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb4" 
+                         inlineStyle="background-color:#F39C11;"                                              
+                         partialTriggers="t1" 
+                         disabled="#{! pageFlowScope.PVTCourtReportingMbean.enabled}"
+                           action="#{pageFlowScope.PVTCourtReportingMbean.submit}" 
+                       >
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" 
+                       
+                        action="#{pageFlowScope.PVTCourtReportingMbean.Cancel}"
+                        inlineStyle="background-color:#F39C11;" id="cb5" 
+                        immediate="true" >                        
+            <af:resetActionListener/> 
+            <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+       </af:commandButton> 
+       </af:panelGroupLayout>
+        <af:spacer width="425" height="10" id="s4"/>
+        <!--New,Edit,View buttons-->
+        <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"
+                          inlineStyle="background-color:#e3e3e3;"
+                          icon="/images/new.gif" partialSubmit="true"
+                          action="#{pageFlowScope.PVTCourtReportingMbean.newAction}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+
+          
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="cb2" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton" 
+                          inlineStyle="background-color:#e3e3e3;"                   
+                          icon="/images/edit.gif"
+                          action="#{pageFlowScope.PVTCourtReportingMbean.editAction}"
+                          disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="cb3" visible="#{!pageFlowScope.setvisible}"
+                          styleClass="checkoutbutton"                         
+                          inlineStyle="background-color:#e3e3e3;"                          
+                          icon="/images/view.gif"
+                          action="#{pageFlowScope.PVTCourtReportingMbean.viewAction}">
+                          
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s8"/>
+        </af:panelGroupLayout>
+        
+        <af:spacer width="10" height="10" id="s9"/>
+           <af:panelGroupLayout id="pgl2" layout="horizontal"
+                           inlineStyle="height:145px; width:794px;">
+        <af:showDetailHeader text="#{viewcontrollerBundle.COURT_REPORT_DETAILS}" disclosed="true"
+                             id="sdh2"                            
+                             inlineStyle="width:796px; text-align:center; vertical-align:middle;">
+                             
+  <af:table value="#{bindings.PVTCourtReportUVO1.collectionModel}" var="row"
+            rows="#{bindings.PVTCourtReportUVO1.rangeSize}" rowBandingInterval="1"
+            emptyText="#{bindings.PVTCourtReportUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+            fetchSize="#{bindings.PVTCourtReportUVO1.rangeSize}"
+            scrollPolicy="page" autoHeightRows="0" 
+            selectedRowKeys="#{bindings.PVTCourtReportUVO1.collectionModel.selectedRow}"
+            selectionListener="#{bindings.PVTCourtReportUVO1.collectionModel.makeCurrent}"
+            rowSelection="single" id="t1" inlineStyle="height:119px;"
+            width="561"
+            binding="#{pageFlowScope.PVTCourtReportingMbean.courttablebind}">
+    <af:column sortProperty="#{bindings.PVTCourtReportUVO1.hints.CourtReportingseq.name}"
+               sortable="false"
+               headerText="Seqence"
+               id="c1" width="50">
+      <af:outputText value="#{row.CourtReportingseq}" id="ot1"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.PVTCourtReportUVO1.hints.CreatedDate.name}"
+               sortable="false"
+               headerText="Case Initiated Date"
+               id="c4" width="100">
+         
+            <af:outputFormatted value="#{row.bindings.caseinitiationdate.inputValue}"
+                                id="of1">
+              <af:convertDateTime pattern="#{bindings.PVTCourtReportUVO1.hints.caseinitiationdate.format}"/>
+               <af:convertDateTime pattern="dd-MM-yyyy" />
+            </af:outputFormatted>
+         
+          <!--<af:outputText value="#{row.CreatedDate}" id="ot4">
+        <af:convertDateTime pattern="#{bindings.PVTCourtReportUVO1.hints.CreatedDate.format}"/>
+         <af:convertDateTime pattern="dd-MM-yyyy" />
+      </af:outputText>-->
+    </af:column>
+        <af:column headerText="Lawyer Name"
+                   id="c8" width="120">
+        
+            <af:outputText value="#{row.LawyerName}" id="ot8"/>
+         
+        </af:column>
+        <af:column headerText="Lawyer Mobile Number"
+                   id="c9" width="100">
+          <af:outputText value="#{row.LawyerMobNum}" id="ot9"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTCourtReportUVO1.hints.PVTHDRSEQ.name}"
+               sortable="false"
+               headerText="#{viewcontrollerBundle.PVT_NUMBER_0}"
+               id="c2" width="108">
+      <af:outputText value="#{row.pvtnumber}" id="ot3"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.PVTCourtReportUVO1.hints.CasestatusID.name}"
+               sortable="false"
+               headerText="Case status"
+               id="c3" width="50">
+      <af:outputText value="#{row.CasestatusID eq 1 ?'Open':'Closed'}" id="ot2">
+        <af:convertNumber groupingUsed="false"
+                          pattern="#{bindings.PVTCourtReportUVO1.hints.CasestatusID.format}"/>
+      </af:outputText>
+    </af:column>
+  </af:table>
+   </af:showDetailHeader>
+      </af:panelGroupLayout>
+      <af:spacer height="30" id="s345"/>
+       <af:panelGroupLayout id="pgl5"  >
+     
+        <af:showDetailHeader text="#{viewcontrollerBundle.PVT_SEARCH_0}" visible="#{pageFlowScope.PVTCourtReportingMbean.hide}" partialTriggers="cb1" 
+                             disclosed="true" id="sdh1" >
+                             <af:spacer height="10" id="s255"/>
+      <af:panelFormLayout id="pfl1" rows="1"  >
+      
+        <af:inputText label="PVT Number" id="it1"
+                      binding="#{pageFlowScope.PVTCourtReportingMbean.pvtNumber}"/>
+        <af:commandButton text="#{viewcontrollerBundle.SEARCH}" id="cb6"
+                          inlineStyle="background-color:#F39C11;"
+                          partialTriggers="t1" 
+                          actionListener="#{pageFlowScope.PVTCourtReportingMbean.pvtSearch}"
+                          binding="#{pageFlowScope.PVTCourtReportingMbean.sbutton}">
+            <af:setActionListener from="true" to="#{pageFlowScope.setvisiblePvt}"/>
+        </af:commandButton>
+      </af:panelFormLayout>
+       <af:spacer height="30" id="s5"/>
+      <!--<af:panelFormLayout id="pfl2" rows="2" visible="#{pageFlowScope.setvisiblePvt}">
+        
+        <af:inputDate value="#{bindings.PVTdatetime.inputValue}"
+                      label="#{viewcontrollerBundle.PVT_ISSUED_DATE}" disabled="true"
+                      required="#{bindings.PVTdatetime.hints.mandatory}"
+                      shortDesc="#{bindings.PVTdatetime.hints.tooltip}"
+                      id="id1">
+          <f:validator binding="#{bindings.PVTdatetime.validator}"/>
+          <af:convertDateTime pattern="#{bindings.PVTdatetime.format}"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.pvtamtpayable.inputValue}"
+                      label="PVT Outstanding Amount" disabled="true"
+                      required="#{bindings.pvtamtpayable.hints.mandatory}"
+                      columns="#{bindings.pvtamtpayable.hints.displayWidth}"
+                      maximumLength="#{bindings.pvtamtpayable.hints.precision}"
+                      shortDesc="#{bindings.pvtamtpayable.hints.tooltip}"
+                      id="it2">
+          <f:validator binding="#{bindings.pvtamtpayable.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.contraDesc.inputValue}"
+                      label="#{viewcontrollerBundle.CONTRA_CODE}" disabled="true"
+                      required="#{bindings.contraDesc.hints.mandatory}"
+                      columns="#{bindings.contraDesc.hints.displayWidth}"
+                      maximumLength="#{bindings.contraDesc.hints.precision}"
+                      shortDesc="#{bindings.contraDesc.hints.tooltip}" id="it4">
+          <f:validator binding="#{bindings.contraDesc.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.statusDesc.inputValue}"
+                       label="#{viewcontrollerBundle.PVT_STATUS}"
+                      required="#{bindings.statusDesc.hints.mandatory}" disabled="true"
+                      columns="#{bindings.statusDesc.hints.displayWidth}"
+                      maximumLength="#{bindings.statusDesc.hints.precision}"
+                      shortDesc="#{bindings.statusDesc.hints.tooltip}" id="it3">
+          <f:validator binding="#{bindings.statusDesc.validator}"/>
+        </af:inputText>
+      </af:panelFormLayout>-->
+      <af:panelBorderLayout id="pbl1"
+                                 >
+                               
+       
+      <af:panelGroupLayout id="pgl3"  visible="#{pageFlowScope.setvisiblePvt}"  >
+        
+        <af:panelGroupLayout id="pgl16" layout="horizontal">
+            <af:spacer width="10" height="30" id="s20"/>
+            <!--<af:inputDate value="#{bindings.PVTdatetime.inputValue}"
+                        label="#{viewcontrollerBundle.PVT_ISSUED_DATE}"
+                       
+                        shortDesc="#{bindings.PVTdatetime.hints.tooltip}"
+                        id="id1"  disabled="true">
+            <f:validator binding="#{bindings.PVTdatetime.validator}"/>
+            <af:convertDateTime pattern="#{bindings.PVTdatetime.format}"/>
+          </af:inputDate>-->
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.PVT_ISSUED_DATE}"
+                                     id="plam1">
+              
+            </af:panelLabelAndMessage>
+            <af:outputText value="#{bindings.PVTdatetime.inputValue}" inlineStyle="font-weight:bold;" id="ot16">
+             <af:convertDateTime pattern="dd-MM-yyyy" />
+            </af:outputText>
+            <af:spacer width="90" height="10" id="s11"/>
+           
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.CONTRA_CODE}"
+                                     id="plam2">
+             
+            </af:panelLabelAndMessage>
+            <af:outputText value="#{bindings.contraDesc.inputValue}" id="ot13"
+                           inlineStyle="font-weight:bold;"/>
+          </af:panelGroupLayout>
+          <af:spacer width="10" height="20" id="s12"/>
+          <af:panelGroupLayout id="pgl17" layout="horizontal">
+            <af:spacer width="10" height="30" id="s21"/>
+            <!--<af:inputText value="#{bindings.pvtamtpayable.inputValue}"
+                          label="PVT Outstanding Amount"
+                          maximumLength="#{bindings.pvtamtpayable.hints.precision}"
+                          shortDesc="#{bindings.pvtamtpayable.hints.tooltip}"
+                          id="it4" disabled="true">
+              <f:validator binding="#{bindings.pvtamtpayable.validator}"/>
+            </af:inputText>-->
+            <af:panelLabelAndMessage label="PVT Outstanding Amount"
+                                     id="plam3">
+              
+            </af:panelLabelAndMessage>
+           
+              <af:outputText value="#{bindings.PVTAMTPAYABLE.inputValue}"  inlineStyle="font-weight:bold;"
+                             id="ot14"/>
+            
+            <af:spacer width="73" height="11" id="spacer7"/>
+            <!--<af:inputText value="#{bindings.statusDesc.inputValue}"
+                          label="#{viewcontrollerBundle.PVT_STATUS}"
+                          maximumLength="#{bindings.statusDesc.hints.precision}"
+                          shortDesc="#{bindings.statusDesc.hints.tooltip}"
+                          id="it3" disabled="true">
+              <f:validator binding="#{bindings.statusDesc.validator}"/>
+            </af:inputText>-->
+            <af:panelLabelAndMessage label="#{viewcontrollerBundle.PVT_STATUS}"
+                                     id="plam4">
+              <af:outputText value="#{bindings.statusDesc.inputValue}"  inlineStyle="font-weight:bold;"
+                             id="ot15"/>
+            </af:panelLabelAndMessage>
+            
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:panelBorderLayout>
+       </af:showDetailHeader>
+<af:panelGroupLayout id="pgl6"  layout="horizontal" rendered="#{pageFlowScope.PVTCourtReportingMbean.hide}" >
+<af:spacer width="297" height="70" id="s6"/>
+                 <af:commandButton text="Initiate Court Case" id="cb7"  visible="#{pageFlowScope.setvisiblePvt}"
+                 
+                          inlineStyle="background-color:#F39C11;width:150px;"
+                          partialTriggers="t1"
+                            actionListener="#{pageFlowScope.PVTCourtReportingMbean.visibleInitiate}">          
+
+        </af:commandButton>
+</af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl12" visible="#{pageFlowScope.PVTCourtReportingMbean.look}" partialTriggers="cb1">
+      <af:selectOneRadio value="#{bindings.DoTRoleType.inputValue}"
+                         label="Role Type " showRequired="true"
+                         required="#{bindings.DoTRoleType.hints.mandatory}"
+                         disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                         shortDesc="#{bindings.DoTRoleType.hints.tooltip}"
+                         id="sor3" layout="horizontal">
+        <f:selectItems value="#{bindings.DoTRoleType.items}" id="si5"/>
+      </af:selectOneRadio>
+       <af:spacer width="10" height="10" id="s25"/>
+    </af:panelGroupLayout>
+    <af:panelFormLayout id="pfl2" rows="3" labelAlignment="start"
+                        inlineStyle="height:70px;" visible="#{pageFlowScope.PVTCourtReportingMbean.look}" partialTriggers="cb1"
+                        maxColumns="22">
+                        <af:inputText value="#{bindings.LawyerName.inputValue}"
+                    disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                    required="#{bindings.LawyerName.hints.mandatory}"
+                    showRequired="true"
+                    maximumLength="#{bindings.LawyerName.hints.precision}"
+                    shortDesc="#{bindings.LawyerName.hints.tooltip}" id="it12"
+                    label="#{viewcontrollerBundle.LAWYER_NAME}">
+        <f:validator binding="#{bindings.LawyerName.validator}"/>
+      </af:inputText>
+    
+      <af:spacer width="10" height="10" id="s24"/>
+      <af:inputText value="#{bindings.LawyerEmailID.inputValue}"
+                    disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                    required="#{bindings.LawyerEmailID.hints.mandatory}"
+                    showRequired="true"
+                    maximumLength="#{bindings.LawyerEmailID.hints.precision}"
+                    shortDesc="#{bindings.LawyerEmailID.hints.tooltip}" id="it6"
+                    label="#{viewcontrollerBundle.EMAIL_ID_0}">
+        <f:validator binding="#{bindings.LawyerEmailID.validator}"/>
+        <af:validateRegExp pattern="^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                           messageDetailNoMatch="#{viewcontrollerBundle.PLEASE_ENTER_VALID_MAIL_ID}"/>
+      </af:inputText>
+      
+      
+        <af:inputText value="#{bindings.LawyerMobNum.inputValue}"
+                    disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                    required="#{bindings.LawyerMobNum.hints.mandatory}"
+                    showRequired="true"
+                    maximumLength="10"
+                    shortDesc="#{bindings.LawyerMobNum.hints.tooltip}" id="it5"
+                    label="#{viewcontrollerBundle.MOBILE_NO}">
+        <f:validator binding="#{bindings.LawyerMobNum.validator}"/>
+      </af:inputText>
+      <af:spacer width="10" height="10" id="s26"/>
+      <af:inputDate value="#{bindings.caseinitiationdate1.inputValue}"
+                    label="Case Initiated Date" showRequired="true"
+                    required="#{bindings.caseinitiationdate1.hints.mandatory}"
+                    shortDesc="#{bindings.caseinitiationdate1.hints.tooltip}"
+                    disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                    id="id2">
+        <f:validator binding="#{bindings.caseinitiationdate1.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy" />
+      </af:inputDate>
+      <!--<af:inputDate value="#{bindings.CreatedDate.inputValue}"
+                    label="court case closed Date"
+                    disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                    showRequired="true"
+                    shortDesc="#{bindings.CreatedDate.hints.tooltip}" id="it13">
+        <f:validator binding="#{bindings.CreatedDate.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy"/>
+      </af:inputDate>-->
+      
+    </af:panelFormLayout>
+    <!--<af:panelGroupLayout id="pgl4"   visible="#{pageFlowScope.PVTCourtReportingMbean.look}" partialTriggers="cb1">
+        <af:spacer width="500" height="20" id="spacer1"/>
+        
+        
+        
+        
+       <af:panelGroupLayout id="pgl0">
+          <af:spacer width="100" height="5" id="spacer2"/> 
+          
+            <af:spacer width="10" height="10" id="s13"/>
+            <af:panelGroupLayout id="pgl18" layout="horizontal"
+                                 inlineStyle="width:681px;">
+              <af:spacer width="45" height="10" id="spacer8"/>    
+            </af:panelGroupLayout>
+            <af:spacer height="23" id="spacer3" width="0"/>
+            <af:panelGroupLayout id="pgl19" layout="horizontal"
+                                 inlineStyle="width:689px;">
+              <af:spacer width="45" height="10" id="s16"/>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        <af:panelFormLayout id="pfl0" rendered="false">
+          
+            <af:panelFormLayout id="pfl5">
+              <af:panelFormLayout id="pgl7" labelAlignment="start" rows="2"/>
+            </af:panelFormLayout>
+          </af:panelFormLayout>
+        </af:panelGroupLayout>-->
+    
+      <af:spacer width="10" height="10" id="s14"/>
+      <af:panelBorderLayout id="pbl3"    inlineStyle="width:966px;">
+    
+        <af:panelGroupLayout id="pgl8" visible="#{pageFlowScope.PVTCourtReportingMbean.look}"  >
+          <af:commandImageLink  text="#{viewcontrollerBundle.ADD_ROW}" icon="/images/plus.png"  partialSubmit="true"  disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+               id="cil3" actionListener="#{pageFlowScope.PVTCourtReportingMbean.addUploadDoc}"
+                />
+          <af:panelGroupLayout id="pgl10">
+            <af:table value="#{bindings.PVTCourtReportDocsUVO1.collectionModel}"
+                      var="row"
+                      rows="#{bindings.PVTCourtReportDocsUVO1.rangeSize}"
+                      emptyText="#{bindings.PVTCourtReportDocsUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PVTCourtReportDocsUVO1.rangeSize}" 
+                      rowBandingInterval="1" partialTriggers="cil3"  scrollPolicy="page"
+                      selectedRowKeys="#{bindings.PVTCourtReportDocsUVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.PVTCourtReportDocsUVO1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t2" width="968" autoHeightRows="0"
+                      inlineStyle="height:116px;" columnStretching="last"
+                      binding="#{pageFlowScope.PVTCourtReportingMbean.coderdoc}">
+              <af:column sortProperty="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.name}"
+                         sortable="true"
+                         headerText="#{viewcontrollerBundle.DOCUMENT_NAME}"
+                         id="c7" width="295">
+                <!--<af:inputText value="#{row.bindings.DOCDesc.inputValue}"
+                              label="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.label}"
+                              required="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.mandatory}"
+                              columns="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.displayWidth}"
+                              maximumLength="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.precision}"
+                              shortDesc="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.tooltip}"
+                              id="it8">
+                  <f:validator binding="#{row.bindings.DOCDesc.validator}"/>
+                </af:inputText>-->
+                  <!--<af:inputFile value="#{row.bindings.FileUpload.inputValue}" visible="#{row.bindings.filepath.inputValue == null ? 'true' : 'false'}"
+                             showRequired="true"  disabled="#{pageFlowScope.sectorMBean.viewBtnClicked}"
+                            valueChangeListener="#{pageFlowScope.sectorMBean.fileUploadVCE}"
+                             id="it16"/>-->
+                
+              <af:inputFile value="#{row.bindings.FileUpload.inputValue}" id="if3" autoSubmit="true" visible="#{row.filepath eq null ? 'true' : 'false'}"
+                            valueChangeListener="#{pageFlowScope.PVTCourtReportingMbean.fileuploadVC}"/>
+               <af:outputText  value="#{fn:substringAfter(row.filepath,'A')}" id="ot7" partialTriggers="if3"/>
+              <!--<af:inputText value="#{row.bindings.FileUpload.inputValue}"
+                            label="#{bindings.PVTCourtReportDocsUVO1.hints.FileUpload.label}"
+                            required="#{bindings.PVTCourtReportDocsUVO1.hints.FileUpload.mandatory}"
+                            columns="#{bindings.PVTCourtReportDocsUVO1.hints.FileUpload.displayWidth}"
+                            maximumLength="#{bindings.PVTCourtReportDocsUVO1.hints.FileUpload.precision}"
+                            shortDesc="#{bindings.PVTCourtReportDocsUVO1.hints.FileUpload.tooltip}"
+                            id="it8">
+                <f:validator binding="#{row.bindings.FileUpload.validator}"/>
+              </af:inputText>-->
+            </af:column>
+            <af:column headerText="Document Description"
+                       id="c13" rendered="#{pageFlowScope.PVTCourtReportingMbean.dcodesc}"
+                       width="117">
+              <af:inputText value="#{row.bindings.DOCDesc.inputValue}" autoSubmit="true"
+                            label="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.label}" visible="#{row.DOCDesc eq null ? 'true' : 'false'}"
+                               disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                            required="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.mandatory}"
+                            columns="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.displayWidth}"
+                            maximumLength="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.precision}"
+                            shortDesc="#{bindings.PVTCourtReportDocsUVO1.hints.DOCDesc.tooltip}"
+                            id="it8">
+                <f:validator binding="#{row.bindings.DOCDesc.validator}"/>
+              </af:inputText>
+              
+               <af:outputText  value="#{row.bindings.DOCDesc.inputValue}" 
+                              id="ot12" partialTriggers="it8"/>
+            </af:column>
+            <af:column headerText="Document"
+                       id="c14" rendered="#{pageFlowScope.PVTCourtReportingMbean.upload}"
+                       width="117">
+              <af:commandLink text="#{row.DOCDesc}" id="cl14" 
+                               inlineStyle="color:Navy; font-size:medium; font-style:italic; font-weight:bold; text-decoration:underline;"
+                              binding="#{pageFlowScope.PVTCourtReportingMbean.filePropertyCommandLink}">
+                <af:fileDownloadActionListener filename="#{row.filepath}"
+                                               method="#{pageFlowScope.PVTCourtReportingMbean.downloadFileListener}"/>
+                 <f:attribute name="filePath" value="#{row.filepath}"/>
+                  </af:commandLink>
+                  </af:column>
+           
+            <af:column sortProperty="#{bindings.PVTCourtReportDocsUVO1.hints.CreatedBy.name}"
+                         sortable="true"
+                         headerText="Uploaded By"
+                         id="c5" width="134">
+                <af:outputText value="#{row.CreatedBy}" id="ot5"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PVTCourtReportDocsUVO1.hints.CreatedDate.name}"
+                         sortable="true"
+                         headerText="Uploaded Date"
+                         id="c6" width="170">
+                <af:outputText value="#{row.CreatedDate}" id="ot6">
+                 <af:convertDateTime pattern="dd-MM-yyyy" />
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.PVTCourtReportDocsUVO1.hints.CreatedDate.name}"
+                         sortable="true" headerText="Action" 
+                         
+                         id="c12" width="78">
+                 <af:commandImageLink 
+                             icon="/images/minus.png"  disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                               id="cl1" 
+                                      actionListener="#{bindings.Delete.execute}"
+                                      text="Delete"
+                                     />
+              </af:column>
+            </af:table>
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="pgl11"  layout="horizontal">
+<af:spacer width="300" height="70" id="s7"/>
+                 <!--<af:commandButton text="Upload Document" id="cb8" 
+                
+                          inlineStyle="background-color:#F39C11;width:150px;"
+                          partialTriggers="t1"
+                           
+                                   
+                                   action="#{pageFlowScope.PVTCourtReportingMbean.uploadDoc}">
+              <af:showPopupBehavior popupId="p1"/>
+            </af:commandButton>-->
+ <af:spacer width="10" height="10" id="s10"/>
+ <af:commandButton text="Generate PVT Report" id="cb9" 
+                 
+                          inlineStyle="background-color:#F39C11;width:150px;"
+                          partialTriggers="t1"
+                            actionListener="#{pageFlowScope.PVTCourtReportingMbean.visibleInitiate}">          
+ </af:commandButton>
+</af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:panelBorderLayout>
+    <af:panelGroupLayout id="pgl4" rendered="#{pageFlowScope.PVTCourtReportingMbean.remarkstable}" >
+      <af:table value="#{bindings.PVTCourtcaseremarksVO1.collectionModel}"  
+                var="row" rows="#{bindings.PVTCourtcaseremarksVO1.rangeSize}"
+                emptyText="#{bindings.PVTCourtcaseremarksVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.PVTCourtcaseremarksVO1.rangeSize}"
+                rowBandingInterval="0"
+                selectedRowKeys="#{bindings.PVTCourtcaseremarksVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.PVTCourtcaseremarksVO1.collectionModel.makeCurrent}"
+                rowSelection="single" id="t3" width="586"
+                inlineStyle="height:111px;"
+                binding="#{pageFlowScope.PVTCourtReportingMbean.remarkestablebind}">
+        <af:column sortProperty="#{bindings.PVTCourtcaseremarksVO1.hints.Remarksdate.name}"
+                   sortable="false"
+                   headerText="Date"
+                   id="c11" width="125">
+          <af:outputText value="#{row.Remarksdate}" id="ot11">
+            <af:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTCourtcaseremarksVO1.hints.Remarks.name}"
+                   sortable="false"
+                   headerText="#{bindings.PVTCourtcaseremarksVO1.hints.Remarks.label}"
+                   id="c10" width="430">
+          <af:outputText value="#{row.Remarks}" id="ot10"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s15"/>
+      <af:panelBorderLayout id="pbl4"  >
+     
+        <af:panelGroupLayout id="pgl13" rendered="#{pageFlowScope.PVTCourtReportingMbean.look}"   >
+          <af:spacer width="500" height="20" id="s23"/>
+          <af:panelGroupLayout id="pgl14" layout="horizontal">            
+            <af:inputText value="#{bindings.Progressremarks.inputValue}"
+                          disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                         
+                          rows="3"
+                          showRequired="true"
+                          columns="50"
+                          
+                          shortDesc="#{bindings.Progressremarks.hints.tooltip}"
+                          id="it7"
+                          label="Progress Remarks">
+              <f:validator binding="#{bindings.Progressremarks.validator}"/>
+            </af:inputText>
+        
+          <af:spacer width="30" height="10" id="s19"/>
+            <!--<af:inputDate value="#{bindings.CreatedDate.inputValue}"
+                          label="#{viewcontrollerBundle.DATE_0}"
+                           disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                          showRequired="true"
+                                                
+                          shortDesc="#{bindings.CreatedDate.hints.tooltip}"
+                          id="it13">
+              <f:validator binding="#{bindings.CreatedDate.validator}"/>
+              <af:convertDateTime pattern="dd-MM-yyyy" />
+            </af:inputDate>-->
+          
+          </af:panelGroupLayout>
+          <af:spacer width="10" height="10" id="s17"/>
+          <af:panelGroupLayout id="pgl15" rendered="#{pageFlowScope.PVTCourtReportingMbean.editMode}">
+            <af:selectBooleanCheckbox value="#{bindings.CasestatusID.inputValue}"
+                                      label="#{viewcontrollerBundle.CLOSE_COURT_CASE}"
+                                       disabled="#{!pageFlowScope.PVTCourtReportingMbean.enabled}"
+                                      shortDesc="#{bindings.CasestatusID.hints.tooltip}"
+                                      id="sbc2" autoSubmit="true"
+                                      valueChangeListener="#{pageFlowScope.PVTCourtReportingMbean.closedDate}"/>
+          <af:spacer width="10" height="10" id="s13"/>
+          <af:inputDate value="#{bindings.caseclosuredate.inputValue}" 
+                    label="Court Case Closed Date" 
+                    disabled="true"
+                    required="#{bindings.caseclosuredate.hints.mandatory}"
+                    shortDesc="#{bindings.caseclosuredate.hints.tooltip}"
+                    id="id1" 
+                    binding="#{pageFlowScope.PVTCourtReportingMbean.caseclosedDate}">
+        <f:validator binding="#{bindings.caseclosuredate.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy"/>
+      </af:inputDate>
+          <af:spacer width="10" height="10" id="s16"/>
+          <af:selectOneRadio value="#{bindings.JudgementStatusID.inputValue}"
+                               label="#{viewcontrollerBundle.JUDGEMENT_STATUS}"
+                                disabled="true"
+                               required="#{bindings.JudgementStatusID.hints.mandatory}"
+                               shortDesc="#{bindings.JudgementStatusID.hints.tooltip}"
+                               id="sor1" layout="horizontal"
+                               binding="#{pageFlowScope.PVTCourtReportingMbean.judgement}">
+              <f:selectItems value="#{bindings.JudgementStatusID.items}"
+                             id="si1"/>
+            </af:selectOneRadio>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+        <af:spacer width="10" height="20" id="s22"/>
+        <af:panelGroupLayout id="panelGroupLayout1" layout="horizontal" partialTriggers="cb1"
+                             visible="#{pageFlowScope.PVTCourtReportingMbean.look}">
+          <af:commandButton text="#{viewcontrollerBundle.SUBMIT}"
+                            id="commandButton1"  disabled="#{! pageFlowScope.PVTCourtReportingMbean.enabled}"
+                             
+                            inlineStyle="background-color:#F39C11;"
+                            partialTriggers="t1"
+                            action="#{pageFlowScope.PVTCourtReportingMbean.submit}">
+            <af:setActionListener from="false"
+                                  to="#{pageFlowScope.setvisible}"/>
+          </af:commandButton>
+          <af:spacer width="10" height="10" id="spacer6"/>
+          <af:commandButton text="#{viewcontrollerBundle.CANCEL}"
+                          
+                            inlineStyle="background-color:#F39C11;"
+                            id="commandButton2" immediate="true"
+                            action="#{pageFlowScope.PVTCourtReportingMbean.Cancel}">
+            <af:resetActionListener/>
+            <af:setActionListener from="false"
+                                  to="#{pageFlowScope.setvisible}"/>
+          </af:commandButton>
+        </af:panelGroupLayout>
+      </af:panelBorderLayout>
+   
+       </af:panelGroupLayout>
+ 
+  
+   <!--<af:popup id="p1" contentDelivery="lazyUncached" partialTriggers="cb8">
+    <af:dialog id="d1" title="Court Reporting Documets Upload">
+    <af:panelLabelAndMessage label="#{viewcontrollerBundle.UPLOAD_DOCUMENTS}" id="plam2" showRequired="true"> 
+           <af:panelGroupLayout id="pgl12" layout="vertical">   
+          
+        <af:table value="#{bindings.PVTDocsVO1.collectionModel}" var="row" 
+                  rows="#{bindings.PVTDocsVO1.rangeSize}"
+                  emptyText="#{bindings.PVTDocsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.PVTDocsVO1.rangeSize}"
+                  rowBandingInterval="1" 
+                  selectedRowKeys="#{bindings.PVTDocsVO1.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.PVTDocsVO1.collectionModel.makeCurrent}"
+                  rowSelection="single" id="t3"
+                  scrollPolicy="page" styleClass="AFStretchWidth" autoHeightRows="0"
+                  binding="#{pageFlowScope.PVTCourtReportingMbean.docTable}">
+          <af:column sortable="true" width="281"
+                   headerText="#{viewcontrollerBundle.DOC_UPLOAD}"
+                   id="c9">
+                <af:inputFile label="#{bindings.PVTDocsVO1.hints.FileUpload.label}" id="if1" 
+                      showRequired="true" autoSubmit="true" value="#{row.bindings.FileUpload.inputValue}"
+                       valueChangeListener="#{pageFlowScope.PVTCourtReportingMbean.courtFileUpload}"/>
+                 
+                </af:column>
+          <af:column sortProperty="#{bindings.PVTDocsVO1.hints.DOCDesc.name}"
+                     sortable="true"
+                     headerText="#{bindings.PVTDocsVO1.hints.DOCDesc.label}"
+                     id="c8">
+            <af:inputText value="#{row.bindings.DOCDesc.inputValue}"
+                          label="#{bindings.PVTDocsVO1.hints.DOCDesc.label}"
+                          required="#{bindings.PVTDocsVO1.hints.DOCDesc.mandatory}"
+                          columns="#{bindings.PVTDocsVO1.hints.DOCDesc.displayWidth}"
+                          maximumLength="#{bindings.PVTDocsVO1.hints.DOCDesc.precision}"
+                          shortDesc="#{bindings.PVTDocsVO1.hints.DOCDesc.tooltip}"
+                          id="it9">
+              <f:validator binding="#{row.bindings.DOCDesc.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTDocsVO1.hints.remarks.name}"
+                     sortable="true"
+                     headerText="#{bindings.PVTDocsVO1.hints.remarks.label}"
+                     id="c10">
+            <af:inputText value="#{row.bindings.remarks.inputValue}"
+                          label="#{bindings.PVTDocsVO1.hints.remarks.label}"
+                          required="#{bindings.PVTDocsVO1.hints.remarks.mandatory}"
+                          columns="#{bindings.PVTDocsVO1.hints.remarks.displayWidth}"
+                          maximumLength="#{bindings.PVTDocsVO1.hints.remarks.precision}"
+                          shortDesc="#{bindings.PVTDocsVO1.hints.remarks.tooltip}"
+                          id="it10">
+              <f:validator binding="#{row.bindings.remarks.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortable="true" width="30"
+                   headerText=""
+                   id="c11">
+               <af:commandImageLink 
+                             icon="/images/minus.png" actionListener="#{bindings.uploadDelete.execute}"
+                            
+                                    id="cil1"/>
+            </af:column>
+        </af:table>
+        </af:panelGroupLayout>
+        </af:panelLabelAndMessage>
+    <af:inputFile label="Upload File" id="if2" autoSubmit="false"
+                  valueChangeListener="#{pageFlowScope.PVTCourtReportingMbean.courtFileUpload}"/>
+    </af:dialog>
+  </af:popup>-->
+</jsp:root>

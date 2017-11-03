@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="SectorMasterPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="SectorMstVO1"
+              DataControl="MastersAMDataControl" id="SectorMstVO1Iterator"
+              RangeSize="10" Refresh="always"/>
+    <searchRegion Binds="SectorMstVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="SectorMstVO11Query" Refresh="always"/>
+    <iterator Binds="ZoneMstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="ZoneMstVO1Iterator"/>
+    <iterator Binds="LinkedSectorsVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="LinkedSectorsVO1Iterator"/>
+    <iterator Binds="GenRefDataDocVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="GenRefDataDocVO1Iterator"/>
+    <iterator id="GenRefDataHeaderMstRVO1Iterator"
+              Binds="GenRefDataHeaderMstRVO1" DataControl="MastersAMDataControl"
+              RangeSize="25"/>
+    <iterator id="GenRefDataDetailMstRVO1Iterator"
+              Binds="GenRefDataDetailMstRVO1" DataControl="MastersAMDataControl"
+              RangeSize="25"/>
+    <iterator id="SectorMstLngVO1Iterator" Binds="SectorMstLngVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="ZoneMstLngVO1Iterator" Binds="ZoneMstLngVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator Binds="ZoneMstVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="ZoneMstVO2Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="SectorCode"
+                     ChangeEventPolicy="ppr">
+      <AttrNames>
+        <Item Value="SectorCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="SectorName">
+      <AttrNames>
+        <Item Value="SectorName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="CommunityCode">
+      <AttrNames>
+        <Item Value="CommunityCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="GeoLatDeg">
+      <AttrNames>
+        <Item Value="GeoLatDeg"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="GeoLonDeg">
+      <AttrNames>
+        <Item Value="GeoLonDeg"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="BayCount">
+      <AttrNames>
+        <Item Value="BayCount"/>
+      </AttrNames>
+    </attributeValues>
+   <attributeValues IterBinding="SectorMstVO1Iterator" id="GoLiveDate">
+      <AttrNames>
+        <Item Value="GoLiveDate"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createNewSector"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createNewSector"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.createNewSector_MastersAMDataControl_dataProvider_createNewSector_result">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <button IterBinding="SectorMstVO1Iterator" StaticList="false"
+            Uses="LOV_ActiveFlag" id="ActiveFlag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+    </button>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MastersAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="MastersAMDataControl"/>
+    <button IterBinding="SectorMstVO1Iterator" StaticList="false"
+            Uses="LOV_FreeSectorflag" id="FreeSectorflag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="FreeSectorflag"/>
+      </AttrNames>
+    </button>
+    <list IterBinding="SectorMstVO1Iterator" StaticList="false"
+          Uses="LOV_CommunityCode" id="CommunityCode1" DTSupportsMRU="false"/>
+    <button IterBinding="SectorMstVO1Iterator" StaticList="false"
+            Uses="LOV_DoTInspReqFlag" id="DoTInspReqFlag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="DoTInspReqFlag"/>
+      </AttrNames>
+    </button>
+    <methodAction id="getSectorRowCount"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getSectorRowCount"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.getSectorRowCount_MastersAMDataControl_dataProvider_getSectorRowCount_result"/>
+    <methodAction id="uploadSectorDocs"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="uploadSectorDocs"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="Sectorcode" NDType="java.lang.String"/>
+      <NamedData NDName="uploadFiles" NDType="java.util.ArrayList"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <tree IterBinding="SectorMstVO1Iterator" id="SectorMstVO12">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.SectorMstVO"
+                      Name="SectorMstVO120">
+        <AttrNames>
+          <Item Value="SectorCode"/>
+          <Item Value="CommunityCode"/>
+          <Item Value="BayCount"/>
+          <Item Value="GoLiveDate"/>
+          <Item Value="Maxpermitquota"/>
+          <Item Value="FreeSectorflag"/>
+          <Item Value="DoTInspReqFlag"/>
+          <Item Value="Countrycode"/>
+          <Item Value="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <action IterBinding="ZoneMstVO1Iterator" id="Delete"
+            InstanceName="MastersAMDataControl.ZoneMstVO1"
+            DataControl="MastersAMDataControl" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <tree IterBinding="ZoneMstVO1Iterator" id="ZoneMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.ZoneMstVO"
+                      Name="ZoneMstVO10">
+        <AttrNames>
+          <Item Value="ZoneName"/>
+          <Item Value="GeoLatDeg"/>
+          <Item Value="GeoLonDeg"/>
+          <Item Value="GoLiveDate"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="RemoveVehicleflag"/>
+          <Item Value="ZoneCode"/>
+          <Item Value="ZoneNameLng"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="LinkedSectorsVO1Iterator" id="LinkedSectorsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.LinkedSectorsVO"
+                      Name="LinkedSectorsVO10">
+        <AttrNames>
+          <Item Value="LINKEDSectorCode"/>
+          <Item Value="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="LinkedSectorsVO1Iterator" id="Delete1"
+            InstanceName="MastersAMDataControl.LinkedSectorsVO1"
+            DataControl="MastersAMDataControl" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <methodAction id="getZonesOfSector"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getZonesOfSector"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="Sector" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="Maxpermitquota">
+      <AttrNames>
+        <Item Value="Maxpermitquota"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="Countrycode">
+      <AttrNames>
+        <Item Value="Countrycode"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="SectorMstVO1Iterator" StaticList="false"
+            Uses="LOV_Changedflag" id="Changedflag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="Changedflag"/>
+      </AttrNames>
+    </button>
+    <tree IterBinding="GenRefDataDocVO1Iterator" id="GenRefDataDocVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.GenRefDataDocVO"
+                      Name="GenRefDataDocVO10">
+        <AttrNames>
+          <Item Value="FileUpload"/>
+          <Item Value="DOCDesc"/>
+          <Item Value="remarks"/>
+          <Item Value="DOCSEQ"/>
+          <Item Value="RELATEDTO"/>
+          <Item Value="referenceid"/>
+          <Item Value="doctype"/>
+          <Item Value="filepath"/>
+          <Item Value="deleteflag"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="GenRefDataDocVO1Iterator" id="Delete2"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <list IterBinding="SectorMstVO1Iterator" StaticList="false"
+          Uses="LOV_Language" id="Language" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="SectorMstVO1Iterator" id="SectorNameLng">
+      <AttrNames>
+        <Item Value="SectorNameLng"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="goLiveDateProcdure"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="goLiveDateProcdure"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="sectorCode" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="ZoneMstVO2Iterator" StaticList="false"
+          Uses="LOV_LanguageZone" id="LanguageZone" DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+           xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+          <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+         <af:image source="/images/mawaquif2.gif" shortDesc="mawaqif" id="i3"/>
+   <af:spacer width="350" height="10" id="s1"/>
+  <af:image source="/images/mawaquif.gif" shortDesc="DoT" id="i2"/>
+  
+         <af:panelHeader text="	   "
+                        id="showDetailHeader3"
+                        
+                        inlineStyle="border-color:Black; border-style:solid; border-width:thin;">
+          <table width="1328">
+            <tr>
+              <td align="left" height="17" style="border-color:Black;">
+                <af:outputText value="ADP Form	(Form VRF-4)	 "
+                               id="ol4"/>
+              </td>
+              <td align="left" height="17">
+                <af:outputText value="استمارة شرطة أبوظبي (استمارة رقم 4)	 "
+                               id="it3"/>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" style="border-style:groove; border-color:Black;">
+                <af:outputText value="Abu Dhabi / Department Of Transportation				 " id="ol7"/>
+              </td>
+              <td align="left">
+                <af:panelGroupLayout id="pgl30" layout="vertical"
+                                     inlineStyle="width:100px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                              
+                                 id="ot28"/>
+                   
+            
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+            <tr>
+            <td style="border-color:Black;">
+              <af:outputText value="Abu Dhabi / Department Of Transportation				 "
+                             id="ot15"/>
+            </td>
+            <td>
+              <af:outputText value="Abu Dhabi / Department Of Transportation				 "
+                             id="ot22"/>
+            </td>
+            <td> </td>
+            </tr>
+             
+            <tr>
+              <td align="left"><af:panelGroupLayout id="pgl1"
+                                                                                    layout="horizontal"
+                                                    inlineStyle="width:578px;">
+            <af:panelGroupLayout id="pgl2">
+              <af:outputText value="02/5121929	" id="ol10"/>
+              <af:spacer width="10" height="10" id="s2"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl3">
+              <af:outputText value="فاكس شرطة ابوظبي " id="ot1"/>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+          
+          <af:panelGroupLayout id="pgl5">
+           <af:outputText value="ADP Fax Number	 	 " id="ot2"/>
+              <af:spacer width="10" height="10" id="s3"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl6">
+              <af:outputText value="02/5121939	 	 " id="ot4"/>
+               </af:panelGroupLayout>
+        </td>
+      
+              <td align="left">
+                <af:panelGroupLayout id="pgl7"
+                                                                        layout="horizontal">
+            <af:panelGroupLayout id="pgl8">
+              <af:outputText value="............................	 " id="ot5"/>
+              <af:spacer width="10" height="10" id="s4"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl9">
+              <af:outputText value="هاتف شرطة ابوظبي :	 " id="ot6"/>
+            </af:panelGroupLayout>
+            
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="pgl12">
+            <af:panelGroupLayout id="pgl13" inlineStyle="height:8px;"/>
+                 <af:outputText value="عناية السيد مساعد اول / عبد الرحمن الحمادي		  " id="ot7"/>
+          </af:panelGroupLayout>
+           <af:panelGroupLayout id="pgl10">
+           <af:outputText value="ADP Phone Number:	 	 	 " id="ot9"/>
+              <af:spacer width="10" height="10" id="s5"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl11">
+              <af:outputText value=".............................	 	 	 " id="ot8"/>
+               </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+          
+          </table>
+               <table width="1328">
+            <tr>
+              <td align="left" height="17" width="591">
+                <af:outputText value="Vehicle Registration Details :		
+	 "
+                               id="ot3"/>
+              </td>
+              <td align="left" height="17" width="731">
+          <af:outputText value="تفاصيل اللوحة:	
+	
+	 " id="outputText1">
+            <td colspan="2" height="30" class="xl69" dir="RTL" width="199" style="border-right:
+  .5pt solid black;height:22.5pt;width:150pt">تفاصيل اللوحة:</td>
+          </af:outputText>
+        </td>
+            </tr>
+             
+            <tr>
+              <td align="left" width="591">
+                <af:outputText value="Color:
+				 "
+                               id="ot10"/>
+              </td>
+              <td align="left" width="731">
+                <af:panelGroupLayout id="pgl18" layout="vertical"
+                                     inlineStyle="width:719px; text-align:left;">
+                  <af:outputText value="#{'-'}"
+                              
+                                 id="ot16"/>
+                
+                
+                </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+            <tr>
+              <td align="left" width="591"><af:panelGroupLayout id="pgl16"
+                                                                                    layout="horizontal"
+                                                                inlineStyle="width:577px;">
+            <af:panelGroupLayout id="pgl4">
+              <af:outputText value="02/5121929	" id="ot11"/>
+              <af:spacer width="10" height="10" id="s6"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl15">
+              <af:outputText value="فاكس شرطة ابوظبي " id="ot13"/>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="pgl14">
+           <af:outputText value="ADP Fax Number	 	 " id="ot12"/>
+              <af:spacer width="10" height="10" id="s7"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl17">
+              <af:outputText value="02/5121939	 	 " id="ot14"/>
+               </af:panelGroupLayout>
+        </td>
+              <td align="left" width="731">
+                <af:panelGroupLayout id="pgl21"
+                                                                        layout="horizontal"
+                                     inlineStyle="width:705px;">
+            <af:panelGroupLayout id="pgl19">
+              <af:outputText value="............................	 " id="ot17"/>
+              <af:spacer width="10" height="10" id="s8"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl20">
+              <af:outputText value="هاتف شرطة ابوظبي :	 " id="ot18"/>
+            </af:panelGroupLayout>
+            
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="pgl23">
+            <af:panelGroupLayout id="pgl24" inlineStyle="height:8px;"/>
+                 <af:outputText value="عناية السيد مساعد اول / عبد الرحمن الحمادي		  "
+                                id="ot19"/>
+          </af:panelGroupLayout>
+           <af:panelGroupLayout id="pgl22">
+           <af:outputText value="ADP Phone Number:	 	 	 " id="ot20"/>
+              <af:spacer width="10" height="10" id="s9"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl25">
+              <af:outputText value=".............................	 	 	 "
+                             id="ot21"/>
+               </af:panelGroupLayout>
+              </td>
+            </tr>
+             
+          
+          </table>
+          
+          
+        </af:panelHeader>
+  <af:outputText value="released of Date" id="ot23"/>
+  <af:outputText value="#{bindings.EVENTDATE.inputValue}" id="ot24">
+    <af:convertDateTime pattern="#{bindings.EVENTDATE.format}"/>
+  </af:outputText>
+  <af:outputText value="Arrived at Date" id="ot27"/>
+  <af:outputText value="#{bindings.EVENTDATE1.inputValue}" id="ot29">
+    <af:convertDateTime pattern="#{bindings.EVENTDATE1.format}"/>
+  </af:outputText>
+  <af:outputText value="Lifted at date" id="ot31"/>
+  <af:outputText value="#{bindings.EVENTDATE2.inputValue}" id="ot33">
+    <af:convertDateTime pattern="#{bindings.EVENTDATE2.format}"/>
+  </af:outputText>
+  <af:panelLabelAndMessage label="#{bindings.PVTNum.hints.label}" id="plam1">
+    <af:outputText value="#{bindings.PVTNum.inputValue}" id="ot36"/>
+  </af:panelLabelAndMessage>
+  <af:selectOneChoice value="#{bindings.VEHMAKEID.inputValue}"
+                      label="#{bindings.VEHMAKEID.label}"
+                      required="#{bindings.VEHMAKEID.hints.mandatory}"
+                      shortDesc="#{bindings.VEHMAKEID.hints.tooltip}" id="soc1"
+                      readOnly="true">
+    <f:selectItems value="#{bindings.VEHMAKEID.items}" id="si1"/>
+  </af:selectOneChoice>
+  <af:selectOneChoice value="#{bindings.VEHMODELID.inputValue}"
+                      label="#{bindings.VEHMODELID.label}"
+                      required="#{bindings.VEHMODELID.hints.mandatory}"
+                      shortDesc="#{bindings.VEHMODELID.hints.tooltip}"
+                      id="soc2" readOnly="true">
+    <f:selectItems value="#{bindings.VEHMODELID.items}" id="si2"/>
+  </af:selectOneChoice>
+  <af:selectOneChoice value="#{bindings.VEHCOLOURID.inputValue}"
+                      label="#{bindings.VEHCOLOURID.label}"
+                      required="#{bindings.VEHCOLOURID.hints.mandatory}"
+                      shortDesc="#{bindings.VEHCOLOURID.hints.tooltip}"
+                      id="soc3" readOnly="true">
+    <f:selectItems value="#{bindings.VEHCOLOURID.items}" id="si3"/>
+  </af:selectOneChoice>
+  <af:selectOneChoice value="#{bindings.Contracode.inputValue}"
+                      label="#{bindings.Contracode.label}"
+                      required="#{bindings.Contracode.hints.mandatory}"
+                      shortDesc="#{bindings.Contracode.hints.tooltip}"
+                      id="soc4" readOnly="true">
+    <f:selectItems value="#{bindings.Contracode.items}" id="si4"/>
+  </af:selectOneChoice>
+  <af:outputText value="#{viewcontrollerBundle.POUND_CODE}" id="ot37"/>
+  <af:outputText value="#{bindings.locationdesc.inputValue}" id="ot38"/>
+</jsp:root>

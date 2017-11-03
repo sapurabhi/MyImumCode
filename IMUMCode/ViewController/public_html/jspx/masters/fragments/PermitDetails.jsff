@@ -1,0 +1,780 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelSplitter id="ps1" orientation="vertical" styleClass="AFStretchWidth"
+                    inlineStyle="height:694px;" splitterPosition="315">
+    <f:facet name="first">
+      <af:panelGroupLayout layout="horizontal"
+                           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                           id="pgl1" styleClass="AFStretchWidth">
+        <af:panelAccordion id="pa1" inlineStyle="width:262px;">
+          <af:showDetailItem text="#{viewcontrollerBundle.PERMIT_DETAILS}" id="sdi1">
+            <af:panelFormLayout id="pfl1">
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PERMIT_NUMBER_}"
+                                       id="plam1">
+                <af:outputText value="#{bindings.PermitNumber.inputValue}"
+                               id="ot1"/>
+              </af:panelLabelAndMessage>
+              
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PERMIT_STATUS_}"
+                                       id="panelLabelAndMessage1">
+                <af:outputText value="#{bindings.statusname.inputValue}"
+                               id="outputText1"/>
+              </af:panelLabelAndMessage>
+              
+              <af:selectOneChoice value="#{bindings.PermitType1.inputValue}"
+                                  label="#{viewcontrollerBundle.PERMIT_TYPE_PR}"
+                                  required="#{bindings.PermitType1.hints.mandatory}"
+                                  shortDesc="#{bindings.PermitType1.hints.tooltip}"
+                                  id="soc3" readOnly="true">
+                <f:selectItems value="#{bindings.PermitType1.items}" id="si3"/>
+              </af:selectOneChoice>
+           
+             
+              <af:selectOneChoice value="#{bindings.LocalFlag1.inputValue}"
+              label="#{viewcontrollerBundle.RESIDENT_TYPE_}"
+                                  required="#{bindings.LocalFlag1.hints.mandatory}"
+                                  shortDesc="#{bindings.LocalFlag1.hints.tooltip}"
+                                  id="soc4" readOnly="true">
+                <f:selectItems value="#{bindings.LocalFlag1.items}" id="si4"/>
+              </af:selectOneChoice>
+                           
+                <af:panelLabelAndMessage label="#{viewcontrollerBundle.UTIL_BILL_NUMBER_PRM}"
+                                       id="panelLabelAndMessage167">
+                <af:outputText value="#{bindings.UTILBILLNUM.inputValue}"
+                               id="outputText1y7"/>
+              </af:panelLabelAndMessage>
+              
+              
+              
+              
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PERMIT_START_DATE_}"
+                                       id="plam2">
+                <af:outputText value="#{bindings.Permitstartdate.inputValue}"
+                               id="ot3">
+                             
+                  <af:convertDateTime pattern="dd-MM-yyyy"/>
+                </af:outputText>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PERMIT_EXPIRY_DATE_}"
+                                       id="plam3">
+                <af:outputText value="#{bindings.PermitEnddate.inputValue}"
+                               id="ot2">
+                  <af:convertDateTime pattern="dd-MM-yyyy"/>
+                </af:outputText>
+              </af:panelLabelAndMessage>
+              <af:selectOneChoice value="#{bindings.Categcode1.inputValue}"
+                                  label="#{viewcontrollerBundle.PERMIT_CATEGORY_}"
+                                  required="#{bindings.Categcode1.hints.mandatory}"
+                                  shortDesc="#{bindings.Categcode1.hints.tooltip}"
+                                  id="soc2" readOnly="true">
+                <f:selectItems value="#{bindings.Categcode1.items}" id="si2"/>
+              </af:selectOneChoice>
+              <!--<af:panelLabelAndMessage label="#{viewcontrollerBundle.PERMIT_CATEGORY_}"
+                                       id="plam10">
+                <af:outputText value="#{bindings.Categcode.inputValue}"
+                               id="ot23"/>
+              </af:panelLabelAndMessage>-->
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.SECTOR__0}"
+                                       id="plam11">
+                <af:outputText value="#{bindings.SectorCode.inputValue}"
+                               id="ot28"/>
+              </af:panelLabelAndMessage>
+               <af:panelLabelAndMessage label="#{viewcontrollerBundle.RENEWAL_COUNT}"
+                                     id="plam14">
+                <af:outputText value="#{bindings.renewalcount.inputValue}"
+                               id="ot14">
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.renewalcount.format}"/>
+                </af:outputText>
+              </af:panelLabelAndMessage>
+               <af:panelLabelAndMessage label="DOT Inspection Comments:"
+                                       id="plam1433">
+              <af:outputText value="#{bindings.DoTInspComments.inputValue}"
+                             id="ot145555"/>
+                             </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="Permit Remarks:"
+                                       id="plam26">
+                <af:outputText value="#{bindings.PermitRemarks.inputValue}"
+                               id="ot48"/>
+                               </af:panelLabelAndMessage>
+                                     
+            </af:panelFormLayout>
+          </af:showDetailItem>
+        </af:panelAccordion>
+        <af:panelAccordion id="pa2" inlineStyle="width:276px;">
+          <af:showDetailItem text="#{viewcontrollerBundle.PAYMENT_DETAILS}" id="sdi2">
+            <af:panelFormLayout id="pfl2">
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PERMIT_CHARGESAED_}"
+                                       id="plam7">
+                <af:outputText value="#{bindings.PermitChrgs.inputValue}"
+                               id="ot9">
+                                <f:convertNumber pattern="#0.00" />
+                   </af:outputText>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.ADMIN_CHARGESAED_}"
+                                       id="plam4">
+                                      
+
+                <af:outputText value="#{bindings.AdminChrgs.inputValue}"
+                               id="ot13">
+                                <f:convertNumber pattern="#0.00" />
+                   </af:outputText>             
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.ADDITIONAL_CHARGES_AED_}"
+                                       id="plam9">
+                <af:outputText value="#{bindings.Addtlchrgs.inputValue}"
+                               id="ot8">
+                                <f:convertNumber pattern="#0.00" />
+                   </af:outputText>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PROCESSING_CHARGES_AED_}"
+                                       id="plam5">
+                <af:outputText value="#{bindings.ProcChrgs.inputValue}"
+                               id="ot7">
+                                <f:convertNumber pattern="#0.00" />
+                   </af:outputText>
+              </af:panelLabelAndMessage>
+              
+              
+             <!-- <af:panelLabelAndMessage label="#{viewcontrollerBundle.PAID_AED_}"
+                                       id="plam6">
+                <af:outputText value="#{bindings.Paidflag.inputValue}"
+                               id="ot6"/>
+              </af:panelLabelAndMessage>-->
+              
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PAID_AED_}"
+                                       id="plam6">
+                <af:outputText value="#{bindings.SaleAmt.inputValue}" id="ot6">
+                 <f:convertNumber pattern="#0.00" />
+                </af:outputText>
+               
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.PAYMENT_TYPE_0}"
+                                       id="plam10">
+                <af:outputText value="#{bindings.pymttypedesc.inputValue}" 
+                               id="ot11"/>
+                               
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.RECEIPT_NUMBER_0}"
+                                       id="plam12">
+                <af:outputText value="#{bindings.receiptnum.inputValue}"
+                               id="ot43"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.REFUND_AED_}"
+                                       id="plam8">
+                <af:outputText value="#{bindings.PermitRefundAmt.inputValue}"
+                               id="ot10">
+                                <f:convertNumber pattern="#0.00" />
+                   </af:outputText>
+              </af:panelLabelAndMessage>
+            </af:panelFormLayout>
+          </af:showDetailItem>
+        </af:panelAccordion>
+        <af:panelAccordion id="pa3" inlineStyle="width:290px;">
+          <af:showDetailItem text="#{viewcontrollerBundle.DOCUMENTS_0}" id="sdi3">
+          <!--  <af:table value="#{bindings.PermitDocumentsVO1.collectionModel}"
+                      var="row" rows="#{bindings.PermitDocumentsVO1.rangeSize}"
+                      emptyText="#{bindings.PermitDocumentsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PermitDocumentsVO1.rangeSize}"
+                      rowBandingInterval="0" id="t4" width="247">
+              <af:column sortProperty="#{bindings.PermitDocumentsVO1.hints.doctype.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.DOCUMENT_TYPE}"
+                         id="c12">
+                <af:outputText value="#{row.doctype}" id="ot11"/>
+              </af:column>
+              
+              
+              <af:column sortProperty="#{bindings.PermitDocumentsVO1.hints.filepath.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.FILE_NAME}"
+                         id="c11">
+               <af:commandLink text="#{row.docdesc}" id="cl1"     
+                     binding="#{pageFlowScope.PermitSearchResBean.filePropertyCommandLink}">
+                <af:fileDownloadActionListener filename="#{row.filepath}"
+                                                         method="#{pageFlowScope.PermitSearchResBean.downloadFileListener}"/>
+                 <f:attribute name="filePath" value="#{row.filepath}"/>
+             </af:commandLink>
+              
+              </af:column>
+
+            </af:table>-->
+            
+            
+            
+            <af:table value="#{bindings.PRMDocUVO1.collectionModel}" var="row"
+                      rows="#{bindings.PRMDocUVO1.rangeSize}"
+                      emptyText="#{bindings.PRMDocUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PRMDocUVO1.rangeSize}"
+                      rowBandingInterval="0" width="290"
+                      selectedRowKeys="#{bindings.PRMDocUVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.PRMDocUVO1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t4">
+                      
+                      
+            <!--  <af:column sortProperty="#{bindings.PRMDocUVO1.hints.doctype.name}"
+                         sortable="true"
+                         headerText="#{bindings.PRMDocUVO1.hints.doctype.label}"
+                         id="c12">-->
+                <!--<af:outputText value="#{row.doctype}" id="ot42"/>-->
+               <!-- <af:selectOneChoice value="#{row.bindings.doctype.inputValue}"
+                                        readOnly="true"
+                                        required="#{bindings.PRMDocUVO1.hints.doctype.mandatory}"
+                                        shortDesc="#{bindings.PRMDocUVO1.hints.doctype.tooltip}"
+                                        id="soc6">
+                      <f:selectItems value="#{row.bindings.doctype.items}"
+                                     id="si8"/>
+                    </af:selectOneChoice>
+              </af:column> -->
+              
+             
+              <af:column sortProperty="#{bindings.PRMDocUVO1.hints.DOCDesc.name}"
+                         sortable="true" width="140"
+                         headerText="#{bindings.PRMDocUVO1.hints.DOCDesc.label}"
+                         id="c18">
+                 <af:commandLink text="#{row.DOCDesc}" id="cl1"
+                                 inlineStyle="color:Blue; font-size:small; font-style:italic; font-weight:normal;text-decoration:underline;"  
+                     binding="#{pageFlowScope.PermitSearchResBean.filePropertyCommandLink}">
+                <af:fileDownloadActionListener filename="#{row.filepath}"
+                                                         method="#{pageFlowScope.PermitSearchResBean.downloadFileListener}"/>
+                 <f:attribute name="filePath" value="#{row.filepath}"/>
+             </af:commandLink>
+              </af:column>
+                <af:column sortProperty="#{bindings.PRMDocUVO1.hints.CreatedDate.name}"
+                         sortable="true" width="130"
+                         headerText="#{bindings.PRMDocUVO1.hints.CreatedDate.label}"
+                         id="c12">
+               <af:outputText value="#{row.CreatedDate}" id="ot42">
+               <f:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" type="both"/>
+               </af:outputText>
+             </af:column>
+            </af:table>
+            
+            
+            
+          </af:showDetailItem>
+        </af:panelAccordion>
+        <af:panelAccordion id="pa4" inlineStyle="width:270px;">
+          <af:showDetailItem text="#{viewcontrollerBundle.CUSTOMER_DETAILS}" id="sdi7">
+            <af:panelFormLayout id="pfl6" inlineStyle="width:316px;" visible="#{bindings.Categcode1.attributeValue=='INDI'? 'true':'false'}">
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.CUSTOMER_ID_}"
+                                       id="plam23">
+                <af:outputText value="#{bindings.CustID.inputValue}" id="ot19"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.SALUTATION_}"
+                                       id="plam25">
+                <af:outputText value="#{bindings.Salutation.inputValue}"
+                               id="ot18"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.FIRST_NAME_}"
+                                       id="plam16">
+                <af:outputText value="#{bindings.FirstName.inputValue}"
+                               id="ot27"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.LAST_NAME_}"
+                                       id="plam20">
+                <af:outputText value="#{bindings.LastName.inputValue}"
+                               id="ot21"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMIRATES_ID_}"
+                                       id="plam22">
+                <af:outputText value="#{bindings.EmiratesID.inputValue}"
+                               id="ot25"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.NATIONALITY_}"
+                                       id="plam15">
+                <af:outputText value="#{bindings.Nationality.inputValue}"
+                               id="ot22"/>
+              </af:panelLabelAndMessage>
+              <!--<af:panelLabelAndMessage label="#{viewcontrollerBundle.RESIDENT_TYPE_}"
+                                       id="plam14">
+                <af:outputText value="#{bindings.Residenttype.inputValue}"
+                               id="ot17"/>
+              </af:panelLabelAndMessage>-->
+              <!--<af:panelLabelAndMessage label="#{viewcontrollerBundle.RESIDENT_TYPE_}"
+                                       id="plam13">
+                <af:outputText value="#{bindings.Residenttype.inputValue}"
+                               id="ot35"/>
+              </af:panelLabelAndMessage>-->
+              <af:selectOneChoice value="#{bindings.Residenttype1.inputValue}"
+                                  label="#{viewcontrollerBundle.RESIDENT_TYPE_}" readOnly="true"
+                                  required="#{bindings.Residenttype1.hints.mandatory}"
+                                  shortDesc="#{bindings.Residenttype1.hints.tooltip}"
+                                  id="soc1">
+                <f:selectItems value="#{bindings.Residenttype1.items}"
+                               id="si1"/>
+              </af:selectOneChoice>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.LAND_LINE_NUMBER_}"
+                                       id="plam17">
+                <af:outputText value="#{bindings.Landlinenum.inputValue}"
+                               id="ot26"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.MOBILE_NUMBER_}"
+                                       id="plam19">
+                <af:outputText value="#{bindings.Mobilenum1.inputValue}"
+                               id="ot20"/>
+                              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{viewcontrollerBundle.EMAIL_ID_}"
+                                       id="plam24">
+                <af:outputText value="#{bindings.EmailID.inputValue}"
+                               id="ot24"/>
+              </af:panelLabelAndMessage>
+            </af:panelFormLayout>
+            <af:panelFormLayout id="pfl3"  inlineStyle="width:316px;" visible="#{bindings.Categcode1.attributeValue=='INST'? 'true':'false'}">
+              <af:panelLabelAndMessage label="Institution Name"
+                                       id="plam32">
+                <af:outputText value="#{bindings.INSTNAME.inputValue}"
+                               id="ot17"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Primary Contact"
+                                       id="plam30">
+                <af:outputText value="#{bindings.Primarycontact.inputValue}"
+                               id="ot36"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Alternate Phone Number"
+                                       id="plam18">
+                <af:outputText value="#{bindings.ALTERNATEPHONENUM.inputValue}"
+                               id="ot23"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Land Line Number"
+                                       id="plam13">
+                <af:outputText value="#{bindings.Landlinenum1.inputValue}"
+                               id="ot44"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Fax Number"
+                                       id="plam21">
+                <af:outputText value="#{bindings.Faxnum.inputValue}" id="ot35"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Email Address"
+                                       id="plam28">
+                <af:outputText value="#{bindings.EmailID1.inputValue}"
+                               id="ot39"/>
+              </af:panelLabelAndMessage>
+              <!--<af:panelLabelAndMessage label="#{bindings.Activeflag.hints.label}"
+                                       id="plam29">
+                <af:outputText value="#{bindings.Activeflag.inputValue}"
+                               id="ot41"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{bindings.CUSTINSTADDRSEQ.hints.label}"
+                                       id="plam14">
+                <af:outputText value="#{bindings.CUSTINSTADDRSEQ.inputValue}"
+                               id="ot40"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{bindings.CityCode.hints.label}"
+                                       id="plam12">
+                <af:outputText value="#{bindings.CityCode.inputValue}"
+                               id="ot42"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{bindings.CountryCode.hints.label}"
+                                       id="plam33">
+                <af:outputText value="#{bindings.CountryCode.inputValue}"
+                               id="ot38"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{bindings.INSTID.hints.label}"
+                                       id="plam10">
+                <af:outputText value="#{bindings.INSTID.inputValue}" id="ot45"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{bindings.INSTTYPE.hints.label}"
+                                       id="plam27">
+                <af:outputText value="#{bindings.INSTTYPE.inputValue}"
+                               id="ot37"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{bindings.tradelicensenum.hints.label}"
+                                       id="plam31">
+                <af:outputText value="#{bindings.tradelicensenum.inputValue}"
+                               id="ot33"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="#{bindings.INSTURL.hints.label}"
+                                       id="plam26">
+                <af:outputText value="#{bindings.INSTURL.inputValue}"
+                               id="ot43"/>
+              </af:panelLabelAndMessage>-->
+            </af:panelFormLayout>
+          </af:showDetailItem>
+        </af:panelAccordion>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="second">
+      <af:panelGroupLayout layout="vertical"
+                           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                           id="pgl2" styleClass="AFStretchWidth"
+                           inlineStyle="height:400px">
+        <af:panelTabbed id="pnlt1" styleClass="AFStretchWidth"
+                        inlineStyle="height:400px;">
+          <af:showDetailItem text="#{viewcontrollerBundle.PERMIT_HISTORY}" id="sdi4"
+                             inflexibleHeight="100">
+            <af:table value="#{bindings.PermitEventsVO1.collectionModel}"
+                      var="row" rows="#{bindings.PermitEventsVO1.rangeSize}"
+                      emptyText="#{bindings.PermitEventsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PermitEventsVO1.rangeSize}"
+                      rowBandingInterval="1" id="t2" scrollPolicy="page"
+                      styleClass="AFStretchWidth" autoHeightRows="0">
+              <af:column headerText="#{viewcontrollerBundle.EVENT_ID}"
+                          sortable="false" id="c11" width="75">
+                <af:outputText value="#{row.eventid}" id="ot45"/>
+              </af:column>
+              
+              <af:column sortProperty="#{bindings.PermitEventsVO1.hints.eventdate.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.DATE__TIME}"
+                         id="c3" width="155">
+                <af:outputText value="#{row.eventdate}" id="ot16">
+                  <af:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/>
+                </af:outputText>
+              </af:column>
+              <af:column headerText="#{viewcontrollerBundle.EVENT_DESCRIPTION_}"
+                         id="c20" width="227">
+                <af:outputText value="#{row.eventdesc}" id="ot47"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitEventsVO1.hints.remarks.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.REMARKS}"
+                         id="c1" width="350">
+                <af:outputText value="#{row.remarks}" id="ot15"/>
+              </af:column>
+              <af:column headerText="#{viewcontrollerBundle.EVENT_AMOUNT}"
+                         sortable="false" id="c19" width="104">
+                <af:outputText value="#{row.EVENTAMT eq '0.0000' ? ' ': row.EVENTAMT }" id="ot46">
+                <f:convertNumber pattern="#0.00" />
+          </af:outputText>
+              </af:column>
+              <!--<af:column sortProperty="#{bindings.PermitEventsVO1.hints.createdby.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.USER_ID}"
+                         id="col2" width="50">
+              <af:outputText value="#{row.createdby}" id="ot14" />
+                
+              </af:column>-->
+              <af:column sortProperty="#{bindings.PermitEventsVO1.hints.LoginprintID.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.USER_NAME}"
+                         id="c2" width="100">
+                         
+                          <af:outputText value="#{row.LoginprintID}" id="ot41" />
+                         
+              <!--  <af:selectOneChoice value="#{row.bindings.createdby.inputValue}" readOnly="true"
+                                    id="soc3">
+                  <f:selectItems value="#{row.bindings.createdby.items}"
+                                 id="si3"/>
+                </af:selectOneChoice>-->
+              </af:column>
+            </af:table>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{viewcontrollerBundle.VEHICLE_DETAILS}" id="sdi5"
+                             styleClass="AFStretchWidth">
+            <af:table value="#{bindings.PermitVehicleDetailsVO1.collectionModel}"
+                      var="row"
+                      rows="#{bindings.PermitVehicleDetailsVO1.rangeSize}"
+                      emptyText="#{bindings.PermitVehicleDetailsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PermitVehicleDetailsVO1.rangeSize}"
+                      rowBandingInterval="1"
+                      selectedRowKeys="#{bindings.PermitVehicleDetailsVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.PermitVehicleDetailsVO1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t3" scrollPolicy="page"
+                      autoHeightRows="0" styleClass="AFStretchWidth">
+              <af:column sortProperty="#{bindings.PermitVehicleDetailsVO1.hints.platenumber.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.PLATE_NUMBER}"
+                         id="c9" inlineStyle="width:100px">
+                <af:outputText value="#{row.platenumber}" id="ot34">
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.PermitVehicleDetailsVO1.hints.platenumber.format}"/>
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitVehicleDetailsVO1.hints.vehmakeid.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.MAKE_0}"
+                         id="c6" inlineStyle="width:150px" width="150">
+                <af:outputText value="#{row.makedesc}" id="ot29"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitVehicleDetailsVO1.hints.vehmodelid.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.MODEL}"
+                         id="c5" inlineStyle="width:150px" width="150"
+                         visible="false">
+                <af:outputText value="#{row.modeldesc}" id="ot5"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitVehicleDetailsVO1.hints.vehcolourid.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.COLOUR}"
+                         id="c7" inlineStyle="width:100px">
+                <af:outputText value="#{row.colourdesc}" id="ot31"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitVehicleDetailsVO1.hints.platectgid.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.CATEGORY}" id="c8"
+                         inlineStyle="width:150px" width="150">
+                <af:outputText value="#{row.categorydesc}" id="ot4"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitVehicleDetailsVO1.hints.platetypeid.name}"
+                         sortable="false"
+                         headerText="#{viewcontrollerBundle.TYPE}" id="c10"
+                         width="150" inlineStyle="width:150px">
+                <af:outputText value="#{row.typename}" id="ot32"
+                               inlineStyle="text-align:left;"/>
+              </af:column>
+              <af:column headerText="#{viewcontrollerBundle.COUNTRY}"
+                         id="c4" inlineStyle="width:150px" width="150">
+                <af:outputText value="#{row.countrydesc}" id="ot30"/>
+              </af:column>
+            </af:table>
+          </af:showDetailItem>
+          
+          
+           <af:showDetailItem text="#{viewcontrollerBundle.ACCOUNT_DETAILS}" id="sd89"
+                             styleClass="AFStretchWidth">
+            <af:table value="#{bindings.PermitAccountEntriesRVO1.collectionModel}"
+                      var="row"
+                      rows="#{bindings.PermitAccountEntriesRVO1.rangeSize}"
+                      emptyText="#{bindings.PermitAccountEntriesRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.PermitAccountEntriesRVO1.rangeSize}"
+                      rowBandingInterval="0"
+                      width="900%"
+                      selectedRowKeys="#{bindings.PermitAccountEntriesRVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.PermitAccountEntriesRVO1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t5" autoHeightRows="0" scrollPolicy="page" columnStretching="multiple"
+                      styleClass="AFStretchWidth" >
+              <af:column sortProperty="#{bindings.PermitAccountEntriesRVO1.hints.accdate.name}"
+                         sortable="true" width="152"
+                         headerText="#{viewcontrollerBundle.ACCOUNT_DATE}"
+                         id="c14">
+                <af:outputText value="#{row.accdate}" id="ot38">
+                  <af:convertDateTime pattern="#{bindings.PermitAccountEntriesRVO1.hints.accdate.format}"/>
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitAccountEntriesRVO1.hints.acccode.name}"
+                         sortable="true" width="149"
+                         headerText="#{viewcontrollerBundle.ACCOUNT_CODE}"
+                         id="c17">
+                <af:outputText value="#{row.acccode}" id="ot37"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitAccountEntriesRVO1.hints.accdesc.name}"
+                         sortable="true" width="320"
+                         headerText="#{viewcontrollerBundle.ACCOUNT_DESCRIPTION}"
+                         id="c16">
+                <af:outputText value="#{row.accdesc}" id="ot40"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitAccountEntriesRVO1.hints.dramnt.name}"
+                         sortable="true" width="140"
+                         headerText="#{viewcontrollerBundle.DEBIT_AMOUNT}"
+                         id="c15">
+                <af:outputText value="#{row.dramnt eq '0.0000' ? ' ' : row.dramnt}" id="ot12" rendered="#{row.dramnt ne '0.0000'}" inlineStyle="text-align:left">
+                  <f:convertNumber pattern="#0.00"/>
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.PermitAccountEntriesRVO1.hints.cramnt.name}"
+                         sortable="true" width="140"
+                         headerText="#{viewcontrollerBundle.CREDIT_AMOUNT}"
+                         id="c13">
+                <af:outputText value="#{row.cramnt eq '0.0000' ? ' ' : row.cramnt}" id="ot33" rendered="#{row.cramnt ne '0.0000'}" inlineStyle="text-align:left">
+                <f:convertNumber pattern="#0.00"/>
+                </af:outputText>
+              </af:column>
+            </af:table>
+          </af:showDetailItem>
+          <af:showDetailItem text="Tawtheeq Details" id="sdi6">
+          <af:panelFormLayout id="pfl4" rows="2" maxColumns="2">
+              <af:panelLabelAndMessage label="Tawtheeq ID"
+                                       id="plam50">
+                <af:outputText value="#{bindings.ContractNumber.inputValue}"
+                               id="ot88"/>
+                               <af:outputText value="#{'-'}"
+                                 visible="#{bindings.ContractNumber.inputValue==null ? 'true' :'false'}"
+                                 id="ot89"/> 
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Tenant Tawtheeq ID"
+                                         id="plam33">
+                  <af:outputText value="#{bindings.TenantTawtheeqID.inputValue}"
+                                 id="ot71"/>
+                   <af:outputText value="#{'-'}"
+                                 visible="#{bindings.TenantTawtheeqID.inputValue==null ? 'true' :'false'}"
+                                 id="ot49"/>              
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Tenant Name"
+                                         id="plam38">
+                  <af:outputText value="#{bindings.TenantName.inputValue}"
+                                 id="ot76"/>
+                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.TenantName.inputValue==null ? 'true' :'false'}"
+                                 id="ot50"/>                  
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Owner Tawtheeq ID"
+                                         id="plam36">
+                  <af:outputText value="#{bindings.OwnerTawtheeqID.inputValue}"
+                                 id="ot70"/>
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.OwnerTawtheeqID.inputValue==null ? 'true' :'false'}"
+                                 id="ot51"/>                 
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Owner Name"
+                                         id="plam31">
+                  <af:outputText value="#{bindings.OwnerName.inputValue}"
+                                 id="ot77"/>
+                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.OwnerName.inputValue==null ? 'true' :'false'}"
+                                 id="ot52"/>  
+                </af:panelLabelAndMessage>
+               
+                <af:panelLabelAndMessage label="No.Of Bedrooms"
+                                         id="plam39">
+                  <af:outputText value="#{bindings.NumberOfBedrooms.inputValue}"
+                                 id="ot75">
+                                 
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.NumberOfBedrooms.format}"/>
+                  </af:outputText>
+                  <af:outputText value="#{'-'}"
+                                 visible="#{bindings.NumberOfBedrooms.inputValue==null ? 'true' :'false'}"
+                                 id="ot55"/>  
+                </af:panelLabelAndMessage>
+        
+                <af:panelLabelAndMessage label="Sector Name AR"
+                                         id="plam40">
+                  <af:outputText value="#{bindings.SectorNameAR.inputValue}"
+                                 id="ot74"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.TenantTawtheeqID.inputValue==null ? 'true' :'false'}"
+                                 id="ot58"/>  
+                </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="Utility Bill No."
+                                         id="plam41">
+                  <af:outputText value="#{bindings.UTILBILLNUM.inputValue}"
+                                 id="ot69"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.UTILBILLNUM.inputValue==null ? 'true' :'false'}"
+                                 id="ot64"/>  
+                </af:panelLabelAndMessage>
+                   <af:panelLabelAndMessage label="Contract Expiry Date"
+                                       id="plam42">
+                <af:outputText value="#{bindings.ContractExpiryDate.inputValue}"
+                               id="ot61"/>
+                               <af:outputText value="#{'-'}"
+                                 visible="#{bindings.ContractExpiryDate.inputValue==null ? 'true' :'false'}"
+                                 id="ot63"/> 
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Tawtheeq Int Status"
+                                       id="plam37">
+                <af:outputText value="#{bindings.TawtheeqIntStatus.inputValue}"
+                               id="ot59"/>
+                               <af:outputText value="#{'-'}"
+                                 visible="#{bindings.TawtheeqIntStatus.inputValue==null ? 'true' :'false'}"
+                                 id="ot80"/>
+              </af:panelLabelAndMessage>
+              <!--<af:panelLabelAndMessage label="#{bindings.ResponseCode.hints.label}"
+                                         id="plam42">
+                  <af:outputText value="#{bindings.ResponseCode.inputValue}"
+                                 id="ot73"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.ResponseCode.inputValue==null ? 'true' :'false'}"
+                                 id="ot60"/>  
+                </af:panelLabelAndMessage>-->
+                <!--<af:panelLabelAndMessage label="#{bindings.ResponseDesc.hints.label}"
+                                         id="plam34">
+                  <af:outputText value="#{bindings.ResponseDesc.inputValue}"
+                                 id="ot79"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.ResponseDesc.inputValue==null ? 'true' :'false'}"
+                                 id="ot61"/>  
+                </af:panelLabelAndMessage>-->
+                <af:panelLabelAndMessage label="Unit No."
+                                         id="plam45">
+                  <af:outputText value="#{bindings.UnitNumber.inputValue}"
+                                 id="ot68"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.UnitNumber.inputValue==null ? 'true' :'false'}"
+                                 id="ot62"/>  
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Unit Type"
+                                         id="plam29">
+                  <af:outputText value="#{bindings.UnitType.inputValue}"
+                                 id="ot66"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.UnitType.inputValue==null ? 'true' :'false'}"
+                                 id="ot86"/>  
+                </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="Mobile No."
+                                         id="plam43">
+                  <af:outputText value="#{bindings.MobileNumber.inputValue}"
+                                 id="ot81"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.MobileNumber.inputValue==null ? 'true' :'false'}"
+                                 id="ot56"/>  
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.Nationality1.hints.label}"
+                                         id="plam44">
+                  <af:outputText value="#{bindings.Nationality1.inputValue}"
+                                 id="ot78"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.Nationality1.inputValue==null ? 'true' :'false'}"
+                                 id="ot57"/>  
+                </af:panelLabelAndMessage>
+                 <af:panelLabelAndMessage label="Floor No."
+                                         id="plam27">
+                  <af:outputText value="#{bindings.FloorNumber.inputValue}"
+                                 id="ot72"/>
+                   <af:outputText value="#{'-'}"
+                                 visible="#{bindings.FloorNumber.inputValue==null ? 'true' :'false'}"
+                                 id="ot53"/>                
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Lessor Name"
+                                         id="plam35">
+                  <af:outputText value="#{bindings.LessorName.inputValue}"
+                                 id="ot67"/>
+                                 <af:outputText value="#{'-'}"
+                                 visible="#{bindings.LessorName.inputValue==null ? 'true' :'false'}"
+                                 id="ot54"/>  
+                </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Actual Usage"
+                                       id="plam34">
+                <af:outputText value="#{bindings.ActualUsage.inputValue}"
+                               id="ot60"/>
+                               <af:outputText value="#{'-'}"
+                                 visible="#{bindings.ActualUsage.inputValue==null ? 'true' :'false'}"
+                                 id="ot82"/>
+              </af:panelLabelAndMessage>
+           
+              <af:panelLabelAndMessage label="Property Type"
+                                       id="plam46">
+                <af:outputText value="#{bindings.PropertyType.inputValue}"
+                               id="ot65"/>
+                                <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PropertyType.inputValue==null ? 'true' :'false'}"
+                                 id="ot83"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Premise No."
+                                       id="plam47">
+                <af:outputText value="#{bindings.PremiseNumber.inputValue}"
+                               id="ot73"/>
+                                <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PremiseNumber.inputValue==null ? 'true' :'false'}"
+                                 id="ot84"/>
+              </af:panelLabelAndMessage>
+              <af:panelLabelAndMessage label="Premise Info"
+                                       id="plam48">
+                <af:outputText value="#{bindings.PremiseInfo.inputValue}"
+                               id="ot79"/>
+                                <af:outputText value="#{'-'}"
+                                 visible="#{bindings.PremiseInfo.inputValue==null ? 'true' :'false'}"
+                                 id="ot85"/>
+              </af:panelLabelAndMessage>
+    
+            </af:panelFormLayout>
+          
+          </af:showDetailItem>
+        </af:panelTabbed>
+       
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:panelSplitter>
+   <af:toolbox id="t1">
+          <af:commandButton text="#{viewcontrollerBundle.BACK}" id="cb2"
+                             inlineStyle="background-color:#F39C11;"
+                            action="Back"/>
+        </af:toolbox>
+  
+</jsp:root>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PiSupervisorMappingPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="supervisormappingvo1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="supervisormappingvo1Iterator"/>
+    <iterator Binds="SavePISupMappingVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="SavePISupMappingVO1Iterator"/>
+    <iterator Binds="PIsForGenPoolVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="PIsForGenPoolVO1Iterator" Refresh="ifNeeded"/>
+    <iterator Binds="SpvsrDtlsVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="SpvsrDtlsVO1Iterator" Refresh="ifNeeded"/>
+    <iterator Binds="PIAllocToSpvsrGrpUVO2" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PIAllocToSpvsrGrpUVO2Iterator"/>
+    <iterator Binds="PiTempRVO1" RangeSize="100"
+              DataControl="StaffDeployDataControl" id="PiTempRVO1Iterator"/>
+    <iterator Binds="SupervisorPisVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="SupervisorPisVO1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="supervisormappingvo1Iterator" ListOperMode="navigation"
+          ListIter="supervisormappingvo1Iterator" id="supervisormappingvo1"
+          DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </list>
+    <action IterBinding="supervisormappingvo1Iterator" id="Create"
+            InstanceName="StaffDeployDataControl.supervisormappingvo1"
+            DataControl="StaffDeployDataControl"
+            RequiresUpdateModel="true" Action="createRow"/>
+    <list IterBinding="supervisormappingvo1Iterator" ListOperMode="navigation"
+          ListIter="supervisormappingvo1Iterator" id="supervisormappingvo11"
+          DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="userid"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="SavePISupMappingVO1Iterator" ListOperMode="multiSelect"
+          ListIter="SavePISupMappingVO1Iterator" id="SavePISupMappingVO1">
+      <AttrNames>
+        <Item Value="CreatedDate"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="CreatedDate"/>
+        <Item Value="Sno"/>
+        <Item Value="Createdby"/>
+        <Item Value="PIuserid"/>
+        <Item Value="SVid"/>
+        <Item Value="Status"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="SpvsrDtlsVO1Iterator" ListOperMode="navigation"
+          ListIter="SpvsrDtlsVO1Iterator" id="SpvsrDtlsVO1"
+          DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="Supid"/>
+      </AttrNames>
+    </list>
+    <methodAction id="clearList"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="clearList" IsViewObjectMethod="false">
+      <NamedData NDName="indices" NDType="[I"/>
+    </methodAction>
+    <methodAction id="SavePIDtls"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="SavePIDtls" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.SavePIDtls_StaffDeployDataControl_dataProvider_SavePIDtls_result">
+      <NamedData NDName="PId" NDType="java.lang.String"/>
+      <NamedData NDName="selectedPIds" NDType="java.util.ArrayList"/>
+      <NamedData NDName="startDate" NDType="java.util.Date"/>
+      <NamedData NDName="endDate" NDType="java.util.Date"/>
+    </methodAction>
+    <attributeValues IterBinding="PIAllocToSpvsrGrpUVO2Iterator" id="status">
+      <AttrNames>
+        <Item Value="status"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PiTempRVO1Iterator" id="PiTempRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PiTempRVO"
+                      Name="PiTempRVO10">
+        <AttrNames>
+          <Item Value="SupName"/>
+          <Item Value="PIId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="addDetails"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addDetails" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.addDetails_StaffDeployDataControl_dataProvider_addDetails_result">
+      <NamedData NDName="PId" NDType="java.lang.String"/>
+      <NamedData NDName="selectedPIds" NDType="java.util.ArrayList"/>
+    </methodAction>
+    <methodAction id="removeDetails"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="removeDetails" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.removeDetails_StaffDeployDataControl_dataProvider_removeDetails_result"/>
+    <methodAction id="clearListSpvsr"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="clearListSpvsr" IsViewObjectMethod="false">
+      <NamedData NDName="indices" NDType="[I"/>
+    </methodAction>
+    <methodAction id="doCommit"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.doCommit_StaffDeployDataControl_dataProvider_doCommit_result"/>
+    <list IterBinding="PIsForGenPoolVO1Iterator" ListOperMode="multiSelect"
+          ListIter="PIsForGenPoolVO1Iterator" id="PIsForGenPoolVO1">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="PIid"/>
+      </ListDisplayAttrNames>
+    </list>
+    <tree IterBinding="SupervisorPisVO1Iterator" id="SupervisorPisVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.SupervisorPisVO"
+                      Name="SupervisorPisVO10">
+        <AttrNames>
+          <Item Value="AssignedTo"/>
+          <Item Value="Piid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>
+

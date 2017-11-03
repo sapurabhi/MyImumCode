@@ -1,0 +1,437 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+          <af:showDetailHeader text="#{viewcontrollerBundle.USER}" id="sdh3"
+                               disclosed="true">
+            <af:spacer height="10" id="spacer6"/>
+             <af:toolbar id="t41">
+                    <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb11"
+                        inlineStyle="background-color:#F39C11;"
+                        actionListener="#{UserMgmtMBean.submitAction}"
+                         rendered="#{pageFlowScope.mode eq 'VIEW' ? 'false':'true'}"/> 
+                    <af:spacer width="10" id="s1134"/>
+                     <af:commandButton text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"
+                                        id="ct1b2" actionListener="#{UserMgmtMBean.cancelAction}" immediate="true"
+                                        rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}"/>
+                    <af:spacer width="303" id="s13d4"/>
+                  <af:commandButton text="#{viewcontrollerBundle.NEW}" id="NewUser" icon="/images/new.gif"
+                                    actionListener="#{UserMgmtMBean.newUserAction}"
+                                    rendered="#{pageFlowScope.display eq 'DML' ? 'true':'false'}">
+                     <af:setPropertyListener from="NEW" to="#{pageFlowScope.clickedButton}" type="action"/> 
+                    </af:commandButton>
+                  <af:spacer width="10" height="10" id="s1"/>
+                  <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="EditUSer" icon="/images/edit.gif"
+                                    actionListener="#{UserMgmtMBean.editUserAction}"
+                                    rendered="#{pageFlowScope.display eq 'DML' ? 'true':'false'}">
+                 <af:setPropertyListener from="EDIT" to="#{pageFlowScope.clickedButton}" type="action"/> 
+                    </af:commandButton>
+                  <af:spacer width="10" height="10" id="s2"/>
+                  <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="ViewUser" icon="/images/view.gif"
+                                    actionListener="#{UserMgmtMBean.viewUserAction}"
+                                    rendered="#{pageFlowScope.display eq 'DML' ? 'true':'false'}">
+                    </af:commandButton>
+             </af:toolbar>
+              <af:spacer height="10" id="spacer7"/>
+            <af:table value="#{bindings.UserMstUVO2.collectionModel}" var="row"
+                      rows="#{bindings.UserMstUVO2.rangeSize}"
+                      emptyText="#{bindings.UserMstUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.UserMstUVO2.rangeSize}"
+                      rowBandingInterval="1"
+                      filterModel="#{bindings.UserMstUVO2Query.queryDescriptor}"
+                      queryListener="#{bindings.UserMstUVO2Query.processQuery}"
+                      filterVisible="true" varStatus="vs"
+                      selectedRowKeys="#{bindings.UserMstUVO2.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.UserMstUVO2.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t1" width="54%"
+                      autoHeightRows="0" scrollPolicy="page">
+                  <af:column sortProperty="#{bindings.UserMstUVO2.hints.UserId.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{viewcontrollerBundle.USER_ID}"
+                             id="c2" align="left">
+                        <af:outputText value="#{row.UserId}" id="ot4"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.UserMstUVO2.hints.FirstName.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{viewcontrollerBundle.FIRST_NAME}"
+                             id="c5" align="left">
+                        <af:outputText value="#{row.FirstName}" id="ot5"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.UserMstUVO2.hints.LastName.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{viewcontrollerBundle.LAST_NAME}"
+                             id="c4" align="left">
+                        <af:outputText value="#{row.LastName}" id="ot2"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.UserMstUVO2.hints.GroupName.name}"
+                             headerText="#{viewcontrollerBundle.GROUP}"
+                             id="c1" filterable="true" sortable="true"
+                             align="left">
+                        <af:outputText value="#{row.GroupName}" id="ot1"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.UserMstUVO2.hints.ActiveFlag.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                             id="c3" align="center">
+                        <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag1.inputValue}"
+                                                  label="#{row.bindings.ActiveFlag1.label}"
+                                                  shortDesc="#{bindings.UserMstUVO2.hints.ActiveFlag1.tooltip}"
+                                                  id="sbc1" readOnly="true"/>
+                  </af:column>
+            </af:table>
+            <af:spacer height="10" id="spacer8"/>
+                <af:showDetailHeader text="#{viewcontrollerBundle.DETAILS_OF_USER}" id="sdh4"
+                               disclosed="true" 
+                               rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}">                                     
+                                     <af:spacer height="10" id="spacer9"/>
+                  <af:panelFormLayout id="pfl1" fieldWidth="50" rows="15"
+                                      labelWidth="330" maxColumns="2">
+                        <af:inputText value="#{bindings.UserId.inputValue}"
+                                      label="#{viewcontrollerBundle.USER_ID}"
+                                      required="#{bindings.UserId.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'NEW' ? 'false':'true'}"
+                                      maximumLength="#{bindings.UserId.hints.precision}"
+                                      shortDesc="#{bindings.UserId.hints.tooltip}"
+                                      id="it9" showRequired="true"
+                                      binding="#{UserMgmtMBean.userIdBinding}">
+                              <f:validator binding="#{bindings.UserId.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.FirstName.inputValue}"
+                                      label="#{viewcontrollerBundle.FIRST_NAME}"
+                                      required="#{bindings.FirstName.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.FirstName.hints.precision}"
+                                      shortDesc="#{bindings.FirstName.hints.tooltip}"
+                                      id="it2" showRequired="true">
+                              <f:validator binding="#{bindings.FirstName.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.LastName.inputValue}"
+                                      label="#{viewcontrollerBundle.LAST_NAME}"
+                                      required="#{bindings.LastName.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.LastName.hints.precision}"
+                                      shortDesc="#{bindings.LastName.hints.tooltip}"
+                                      id="it13" showRequired="true">
+                              <f:validator binding="#{bindings.LastName.validator}"/>
+                        </af:inputText>
+                        <af:selectOneRadio value="#{bindings.Gender.inputValue}"
+                                           label="#{viewcontrollerBundle.GENDER}"
+                                           required="#{bindings.Gender.hints.mandatory}"
+                                           shortDesc="#{bindings.Gender.hints.tooltip}"
+                                           id="sor1"
+                                           disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                           showRequired="true">
+                              <f:selectItems value="#{bindings.Gender.items}"
+                                             id="si1"/>
+                        </af:selectOneRadio>
+                        <af:inputDate value="#{bindings.BirthDate.inputValue}"
+                                      label="#{viewcontrollerBundle.DATE_OF_BIRTH}"
+                                      shortDesc="#{bindings.BirthDate.hints.tooltip}"
+                                      id="id10"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}">
+                              <f:validator binding="#{bindings.BirthDate.validator}"/>
+                            <af:convertDateTime pattern="dd-MM-yyyy"/>
+                        </af:inputDate>
+                        <af:selectOneChoice value="#{bindings.LocalCountry.inputValue}"
+                                            label="#{viewcontrollerBundle.LOCAL_COUNTRY}"
+                                            required="#{bindings.LocalCountry.hints.mandatory}"
+                                            shortDesc="#{bindings.LocalCountry.hints.tooltip}"
+                                            id="soc5"
+                                            disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                            showRequired="true">
+                              <f:selectItems value="#{bindings.LocalCountry.items}"
+                                             id="si2"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.LocalCity.inputValue}"
+                                            label="#{viewcontrollerBundle.LOCAL_CITY}"
+                                            required="#{bindings.LocalCity.hints.mandatory}"
+                                            shortDesc="#{bindings.LocalCity.hints.tooltip}"
+                                            id="soc3"
+                                            disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                            showRequired="true">
+                              <f:selectItems value="#{bindings.LocalCity.items}"
+                                             id="si3"/>
+                        </af:selectOneChoice>
+                        <af:inputText value="#{bindings.LocalAdd1.inputValue}"
+                                      label="#{viewcontrollerBundle.LOCAL_ADDRESS_1}"
+                                      required="#{bindings.LocalAdd1.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.LocalAdd1.hints.precision}"
+                                      shortDesc="#{bindings.LocalAdd1.hints.tooltip}"
+                                      id="it18">
+                              <f:validator binding="#{bindings.LocalAdd1.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.LocalAdd2.inputValue}"
+                                      label="#{viewcontrollerBundle.LOCAL_ADDRESS_2}"
+                                      required="#{bindings.LocalAdd2.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.LocalAdd2.hints.precision}"
+                                      shortDesc="#{bindings.LocalAdd2.hints.tooltip}"
+                                      id="it17">
+                              <f:validator binding="#{bindings.LocalAdd2.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.LocalPOBox.inputValue}"
+                                      label="#{viewcontrollerBundle.LOCAL_POST_BOX}"
+                                      required="#{bindings.LocalPOBox.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.LocalPOBox.hints.precision}"
+                                      shortDesc="#{bindings.LocalPOBox.hints.tooltip}"
+                                      id="it15">
+                              <f:validator binding="#{bindings.LocalPOBox.validator}"/>
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.LocalPOBox.format}"/>
+                        </af:inputText>
+                        <af:selectOneChoice value="#{bindings.PermCountry.inputValue}"
+                                            label="#{viewcontrollerBundle.PERMANENT_COUNTRY}"
+                                            required="#{bindings.PermCountry.hints.mandatory}"
+                                            shortDesc="#{bindings.PermCountry.hints.tooltip}"
+                                            id="soc2"
+                                            disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                            >
+                              <f:selectItems value="#{bindings.PermCountry.items}"
+                                             id="si4"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.PermCity.inputValue}"
+                                            label="#{viewcontrollerBundle.PERMANENT_CITY}"
+                                            required="#{bindings.PermCity.hints.mandatory}"
+                                            shortDesc="#{bindings.PermCity.hints.tooltip}"
+                                            id="soc1"
+                                            disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                            >
+                              <f:selectItems value="#{bindings.PermCity.items}"
+                                             id="si5"/>
+                        </af:selectOneChoice>
+                        <af:inputText value="#{bindings.PermAdd1.inputValue}"
+                                      label="#{viewcontrollerBundle.PERMANENT_ADDRESS_1}"
+                                      required="#{bindings.PermAdd1.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.PermAdd1.hints.precision}"
+                                      shortDesc="#{bindings.PermAdd1.hints.tooltip}"
+                                      id="it21">
+                              <f:validator binding="#{bindings.PermAdd1.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.PermAdd2.inputValue}"
+                                      label="#{viewcontrollerBundle.PERMANENT_ADDRESS_2}"
+                                      required="#{bindings.PermAdd2.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.PermAdd2.hints.precision}"
+                                      shortDesc="#{bindings.PermAdd2.hints.tooltip}"
+                                      id="it3">
+                              <f:validator binding="#{bindings.PermAdd2.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.PermPOBox.inputValue}"
+                                      label="#{viewcontrollerBundle.PERMANENT_POST_BOX_NUMBER}"
+                                      required="#{bindings.PermPOBox.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.PermPOBox.hints.precision}"
+                                      shortDesc="#{bindings.PermPOBox.hints.tooltip}"
+                                      id="it23">
+                              <f:validator binding="#{bindings.PermPOBox.validator}"/>
+                              <af:convertNumber groupingUsed="false"
+                                                pattern="#{bindings.PermPOBox.format}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.MailId.inputValue}"
+                                      label="#{viewcontrollerBundle.MAIL_ID}"
+                                      required="#{bindings.MailId.hints.mandatory}"
+                                     disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.MailId.hints.precision}"
+                                      id="it8"
+                                      shortDesc="#{viewcontrollerBundle.PLEASE_ENTER_EMAIL_ID_LIKE_ABC}">
+                              <f:validator binding="#{bindings.MailId.validator}"/>
+                              <af:validateRegExp pattern="^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                                 messageDetailNoMatch="#{viewcontrollerBundle.PLEASE_ENTER_VALID_MAIL_ID}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.MobileNo.inputValue}"
+                                      label="#{viewcontrollerBundle.MOBILE_NUMBER}"
+                                      required="#{bindings.MobileNo.hints.mandatory}"
+                                     disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.MobileNo.hints.precision}"
+                                      shortDesc="#{bindings.MobileNo.hints.tooltip}"
+                                      id="it11">
+                              <f:validator binding="#{bindings.MobileNo.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.PersonalMailId.inputValue}"
+                                      label="#{viewcontrollerBundle.PERSONAL_MAIL_ID}"
+                                      required="#{bindings.PersonalMailId.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.PersonalMailId.hints.precision}"
+                                      shortDesc="#{viewcontrollerBundle.PLEASE_ENTER_EMAIL_ID_LIKE_ABC}"
+                                      id="it5">
+                              <f:validator binding="#{bindings.PersonalMailId.validator}"/>
+                              <af:validateRegExp pattern="^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                                 messageDetailNoMatch="#{viewcontrollerBundle.PLEASE_ENTER_VALID_PERSONAL_MA}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.Designation.inputValue}"
+                                      label="#{viewcontrollerBundle.DESIGNATION}"
+                                      required="#{bindings.Designation.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.Designation.hints.precision}"
+                                      shortDesc="#{bindings.Designation.hints.tooltip}"
+                                      id="it6">
+                              <f:validator binding="#{bindings.Designation.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.BaseLocation.inputValue}"
+                                      label="#{viewcontrollerBundle.BASE_LOCATION}"
+                                      required="#{bindings.BaseLocation.hints.mandatory}"
+                                     disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.BaseLocation.hints.precision}"
+                                      shortDesc="#{bindings.BaseLocation.hints.tooltip}"
+                                      id="it16">
+                              <f:validator binding="#{bindings.BaseLocation.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.Secretqust.inputValue}"
+                                      label="#{viewcontrollerBundle.SECRET_QUESTION}"
+                                      required="#{bindings.Secretqust.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.Secretqust.hints.precision}"
+                                      shortDesc="#{bindings.Secretqust.hints.tooltip}"
+                                      id="it10" showRequired="true">
+                              <f:validator binding="#{bindings.Secretqust.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.Secretans.inputValue}"
+                                      label="#{viewcontrollerBundle.SECRET_ANSWER}"
+                                      required="#{bindings.Secretans.hints.mandatory}"
+                                     disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.Secretans.hints.precision}"
+                                      shortDesc="#{bindings.Secretans.hints.tooltip}"
+                                      id="it12" showRequired="true">
+                              <f:validator binding="#{bindings.Secretans.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.Password.inputValue}"
+                                      label="#{viewcontrollerBundle.PASSWORD}"
+                                      required="#{bindings.Password.hints.mandatory}"
+                                      maximumLength="20"
+                                      shortDesc="#{bindings.Password.hints.tooltip}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      id="it1" secret="true" showRequired="true">
+                              <f:validator binding="#{bindings.Password.validator}"/>
+                          <!--    <af:validateLength maximum="20" minimum="8"
+                                                 messageDetailMinimum="#{viewcontrollerBundle.PASSWORD_MUST_BE_OF_MINIMUM_8_}"
+                                                 messageDetailMaximum="#{viewcontrollerBundle.PASSWORD_MUST_BE_OF_MAXIMUM_20}"/> -->
+                              <af:validateRegExp pattern="((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*(!@#)$^%]).{8,20})"
+                                                 messageDetailNoMatch="#{viewcontrollerBundle.PASSWORD_NOT_VALID}"/>
+                        </af:inputText>
+                        <af:selectOneChoice value="#{bindings.GroupId.inputValue}"
+                                            label="#{viewcontrollerBundle.GROUP}"
+                                            required="#{bindings.GroupId.hints.mandatory}"
+                                            shortDesc="#{bindings.GroupId.hints.tooltip}"
+                                            id="soc4"
+                                            disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                            showRequired="true">
+                              <f:selectItems value="#{bindings.GroupId.items}"
+                                             id="si6"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.ManagerId.inputValue}"
+                                            label="#{viewcontrollerBundle.MANAGER}"
+                                            shortDesc="#{bindings.ManagerId.hints.tooltip}"
+                                             disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                            id="soc7">
+                              <f:selectItems value="#{bindings.ManagerId.items}"
+                                             id="si9"/>
+                        </af:selectOneChoice>
+                        <af:selectBooleanCheckbox value="#{bindings.ActiveOnStreetFlag.inputValue}"
+                                                  label="#{viewcontrollerBundle.ACTIVE_ON_STREET}"
+                                                  shortDesc="#{bindings.ActiveOnStreetFlag.hints.tooltip}"
+                                                  disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                                  id="sbc3"/>
+                        <af:selectBooleanCheckbox value="#{bindings.AssignAvailableflag.inputValue}"
+                                                  label="#{viewcontrollerBundle.ASSIGN_AVAILABLE}"
+                                                  shortDesc="#{bindings.AssignAvailableflag.hints.tooltip}"
+                                                  disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                                  id="sbc4"/>
+                        <af:selectBooleanCheckbox value="#{bindings.Extuserflag.inputValue}"
+                                                  label="#{viewcontrollerBundle.EXTERNAL_USER}"
+                                                  shortDesc="#{bindings.Extuserflag.hints.tooltip}"
+                                                  disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                                  id="sbc5"/>
+                        <af:inputText value="#{bindings.LoginPrintID.inputValue}"
+                                      label="#{viewcontrollerBundle.LOGIN_PRINT_ID}"
+                                      required="#{bindings.LoginPrintID.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                      maximumLength="#{bindings.LoginPrintID.hints.precision}"
+                                      shortDesc="#{bindings.LoginPrintID.hints.tooltip}"
+                                      id="it24" showRequired="true">
+                              <f:validator binding="#{bindings.LoginPrintID.validator}"/>
+                        </af:inputText>
+                        <af:selectOneChoice value="#{bindings.PrefComm1.inputValue}"
+                                            label="#{viewcontrollerBundle.PREFERED_COMMUNICATION}"
+                                            required="#{bindings.PrefComm1.hints.mandatory}"
+                                            shortDesc="#{bindings.PrefComm1.hints.tooltip}"
+                                            id="soc6" showRequired="true"
+                                            disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}">
+                              <f:selectItems value="#{bindings.PrefComm1.items}"
+                                             id="si8"/>
+                        </af:selectOneChoice>
+                        <af:selectBooleanCheckbox value="#{bindings.ActiveFlag2.inputValue}"
+                                                  label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                                                  shortDesc="#{bindings.ActiveFlag2.hints.tooltip}"
+                                                  disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                                  id="sbc2"/>
+                  </af:panelFormLayout>
+                     <af:spacer height="10" id="spacer10"/>
+                  <af:outputText id="ot7" rendered="#{pageFlowScope.mode eq 'VIEW' ? 'false':'true'}"
+                                 value="#{viewcontrollerBundle.NOTE__PASSWORD_MUST_CONTAIN_AT}"/>
+                  <af:spacer height="10" id="spacer2"/>
+      <!--            <af:showDetailHeader text="#{viewcontrollerBundle.ROLE__USER_MAPPING}" id="sdh5"
+                               disclosed="true" 
+                               rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}"> 
+                                  <af:spacer height="10" id="spacer11"/> -->
+                    <af:panelBox text="#{viewcontrollerBundle.ROLE__USER_MAPPING}" id="pb1" inlineStyle="width:750px;" 
+                            rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}" showDisclosure="false">
+                        <af:selectManyShuttle id="sms1"
+                                              value="#{UserMgmtMBean.selectedRoles}"
+                                              showRequired="true"
+                                              inlineStyle="margin:20px"
+                                              disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                              leadingHeader="#{viewcontrollerBundle.AVAILABLE_ROLES}"
+                                              trailingHeader="#{viewcontrollerBundle.SELECTED_ROLES}">
+                              <f:selectItems value="#{UserMgmtMBean.allRoles}" id="si7"/>
+                        </af:selectManyShuttle>
+                          </af:panelBox>         
+                        <af:spacer height="10" id="spacer1"/>
+                 <!--       <af:table value="#{bindings.UserRoleMapUVO3.collectionModel}"
+                                  var="row"
+                                  rows="#{bindings.UserRoleMapUVO3.rangeSize}"
+                                  emptyText="#{bindings.UserRoleMapUVO3.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.UserRoleMapUVO3.rangeSize}"
+                                  rowBandingInterval="1" id="t2"
+                                  rendered="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                  autoHeightRows="0" scrollPolicy="page"
+                                  width="45%">
+                              <af:column sortProperty="#{bindings.UserRoleMapUVO3.hints.RoleName.name}"
+                                         sortable="false"
+                                          headerText="#{viewcontrollerBundle.ROLE}"
+                                         id="c7" align="center">
+                                    <af:outputText value="#{row.RoleName}"
+                                                   id="ot3"/>
+                              </af:column>
+                              <af:column sortProperty="#{bindings.UserRoleMapUVO3.hints.RoleDesc.name}"
+                                         sortable="false"
+                                         headerText="#{viewcontrollerBundle.DESCRIPTION}"
+                                         id="c6" align="center" width="250">
+                                    <af:outputText value="#{row.RoleDesc}"
+                                                   id="ot6"/>
+                              </af:column>
+                        </af:table>
+                  </af:showDetailHeader>  -->                                
+            </af:showDetailHeader>
+                      <af:toolbar id="t3">
+                          <af:commandButton id="ctb1"
+                                            inlineStyle="background-color:#F39C11;"
+                                            text="#{viewcontrollerBundle.SUBMIT}"
+                                            actionListener="#{UserMgmtMBean.submitAction}"
+                                             rendered="#{pageFlowScope.mode eq 'VIEW' ? 'false':'true'}"/>
+                          <af:spacer width="10" id="s134"/>
+                          <af:commandButton inlineStyle="background-color:#F39C11;"
+                                            id="ctb2" text="#{viewcontrollerBundle.CANCEL}"
+                                            immediate="true"
+                                            actionListener="#{UserMgmtMBean.cancelAction}"
+                                            rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}">
+                        <af:resetActionListener/>
+                        </af:commandButton>
+    </af:toolbar>
+            </af:showDetailHeader>
+         </jsp:root>

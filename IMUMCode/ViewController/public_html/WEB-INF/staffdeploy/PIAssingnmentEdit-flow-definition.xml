@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PIAssingnmentEdit-flow-definition">
+    <default-activity id="__1">getSectorDetails</default-activity>
+    <managed-bean id="__10">
+      <managed-bean-name id="__8">PiDeployement</managed-bean-name>
+      <managed-bean-class id="__11">com.imum.cpms.staffdeploy.PiDeployement</managed-bean-class>
+      <managed-bean-scope id="__9">request</managed-bean-scope>
+    </managed-bean>
+    <view id="piedit">
+      <page>/jspx/staffdeploy/fragments/piedit.jsff</page>
+    </view>
+    <method-call id="getSectorDetails">
+      <method>#{bindings.getSectorDetails.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>getSectorDetails</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">getSectorDetails</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__7">getSectorDetails</from-outcome>
+        <to-activity-id id="__6">piedit</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

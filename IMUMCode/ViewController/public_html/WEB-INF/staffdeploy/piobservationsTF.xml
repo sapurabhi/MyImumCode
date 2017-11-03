@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="piobservationsTF">
+    <default-activity id="__1">getpisforobser</default-activity>
+    <managed-bean id="__9">
+      <managed-bean-name id="__8">piobservationsMB</managed-bean-name>
+      <managed-bean-class id="__11">com.imum.cpms.staffdeployment.piobservationsMB</managed-bean-class>
+      <managed-bean-scope id="__10">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="piobservations">
+      <page>/jspx/staffdeploy/fragments/piobservations.jsff</page>
+    </view>
+    <method-call id="getpisforobser">
+      <method>#{bindings.getpisforobser.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>getpisforobser</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">getpisforobser</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__7">getpisforobser</from-outcome>
+        <to-activity-id id="__6">piobservations</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

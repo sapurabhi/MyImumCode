@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          
+          xmlns:f="http://java.sun.com/jsf/core">
+ 
+  <af:panelGroupLayout id="pgl7">
+    <af:panelGroupLayout id="pgl3" inlineStyle="width:70.0px;">
+      <c:set var="viewcontrollerBundle"
+             value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+      <af:panelGroupLayout id="pgl1" layout="horizontal">
+        <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1"  
+                          action="#{pageFlowScope.institutionMBean.doNew}" 
+                          icon="/images/new.gif"
+                          >
+                         
+         <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/> 
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="cb2"  
+                        icon="/images/edit.gif"
+                          action="#{pageFlowScope.institutionMBean.doEditInstitution}">
+          <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"  />
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="cb5"
+                        icon="/images/view.gif"
+                          action="#{pageFlowScope.institutionMBean.doView}">
+         <af:setActionListener from="true" to="#{pageFlowScope.setvisible}" />
+        </af:commandButton>
+        <af:spacer width="10" height="10" id="s3"/>
+      </af:panelGroupLayout>
+      <af:panelGroupLayout id="pgl2" layout="horizontal"
+                           styleClass="AFStretchWidth"
+                           inlineStyle="width:100.0px;"  >
+                           
+        <af:table value="#{bindings.InstitutionUVO1.collectionModel}" var="row"
+                  rows="#{bindings.InstitutionUVO1.rangeSize}"
+                  emptyText="#{bindings.InstitutionUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.InstitutionUVO1.rangeSize}"
+                  rowBandingInterval="0"
+                  selectedRowKeys="#{bindings.InstitutionUVO1.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.InstitutionUVO1.collectionModel.makeCurrent}"
+                  rowSelection="single" id="t1" 
+                  partialTriggers="::cb2 ::cb1" styleClass="tableStyle" width="100%"
+                  binding="#{pageFlowScope.institutionMBean.instTable}">
+          <af:column sortProperty="#{bindings.InstitutionUVO1.hints.INSTID.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.INSTITUTION_ID}" 
+                     id="c3" >
+            <af:outputText value="#{row.INSTID}" id="ot4"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.InstitutionUVO1.hints.INSTNAME.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.INSTITUTION_NAME}"
+                     id="c4">
+            <af:outputText value="#{row.INSTNAME}" id="ot2"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.InstitutionUVO1.hints.INSTTYPE.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.INSTITUTION_TYPE}"
+                     id="c2">
+            <af:outputText value="#{row.INSTTYPE}" id="ot3"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.InstitutionUVO1.hints.Primarycontact.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PRIMARY_CONTACT_NUMBER}"
+                     id="c1">
+            <af:outputText value="#{row.Primarycontact}" id="ot1"/>
+          </af:column>
+        </af:table>
+      </af:panelGroupLayout>
+      
+     
+      <af:panelGroupLayout id="pgl5" >
+        <af:panelFormLayout id="pfl1"  visible="#{pageFlowScope.setvisible}">
+                            
+          <af:inputText value="#{bindings.Activeflag.inputValue}"
+                        label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                        required="#{bindings.Activeflag.hints.mandatory}"
+                        columns="#{bindings.Activeflag.hints.displayWidth}"
+                        maximumLength="#{bindings.Activeflag.hints.precision}"
+                        shortDesc="#{bindings.Activeflag.hints.tooltip}"
+                        id="it1"   disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.Activeflag.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.EmailID.inputValue}"
+                        label="#{viewcontrollerBundle.EMAIL_ID}"
+                        required="#{bindings.EmailID.hints.mandatory}"
+                        columns="20"
+                        maximumLength="#{bindings.EmailID.hints.precision}"
+                        shortDesc="#{bindings.EmailID.hints.tooltip}" id="it9" 
+                        disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.EmailID.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.Faxnum.inputValue}"
+                        label="#{viewcontrollerBundle.FAX_NUMBER}"
+                        required="#{bindings.Faxnum.hints.mandatory}"
+                        columns="#{bindings.Faxnum.hints.displayWidth}"
+                        maximumLength="#{bindings.Faxnum.hints.precision}"
+                        shortDesc="#{bindings.Faxnum.hints.tooltip}" id="it8" 
+                        disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.Faxnum.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.INSTID.inputValue}"
+                        label="#{viewcontrollerBundle.INSTITUTION_ID}"
+                        required="#{bindings.INSTID.hints.mandatory}"
+                        columns="#{bindings.INSTID.hints.displayWidth}"
+                        maximumLength="#{bindings.INSTID.hints.precision}"
+                        shortDesc="#{bindings.INSTID.hints.tooltip}" id="it5" 
+                        disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.INSTID.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.INSTNAME.inputValue}"
+                        label="#{viewcontrollerBundle.INSTITUTION_NAME}"
+                        required="#{bindings.INSTNAME.hints.mandatory}"
+                        columns="20"
+                        maximumLength="#{bindings.INSTNAME.hints.precision}"
+                        shortDesc="#{bindings.INSTNAME.hints.tooltip}" id="it3" 
+                        disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.INSTNAME.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.INSTTYPE.inputValue}"
+                        label="#{viewcontrollerBundle.INSTITUTION_TYPE}"
+                        required="#{bindings.INSTTYPE.hints.mandatory}"
+                        columns="#{bindings.INSTTYPE.hints.displayWidth}"
+                        maximumLength="#{bindings.INSTTYPE.hints.precision}"
+                        shortDesc="#{bindings.INSTTYPE.hints.tooltip}" id="it6" 
+                        disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.INSTTYPE.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.Landlinenum.inputValue}"
+                        label="#{viewcontrollerBundle.LAND_LINE_NUMBER}"
+                        required="#{bindings.Landlinenum.hints.mandatory}"
+                        columns="#{bindings.Landlinenum.hints.displayWidth}"
+                        maximumLength="#{bindings.Landlinenum.hints.precision}"
+                        shortDesc="#{bindings.Landlinenum.hints.tooltip}"
+                        id="it4" disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.Landlinenum.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.Primarycontact.inputValue}"
+                        label="#{viewcontrollerBundle.PRIMARY_CONTACT_NUMBER}"
+                        required="#{bindings.Primarycontact.hints.mandatory}"
+                        columns="20"
+                        maximumLength="#{bindings.Primarycontact.hints.precision}"
+                        shortDesc="#{bindings.Primarycontact.hints.tooltip}"
+                        id="it7" disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.Primarycontact.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.ALTERNATEPHONENUM.inputValue}"
+                        label="#{bindings.ALTERNATEPHONENUM.hints.label}"
+                        required="#{bindings.ALTERNATEPHONENUM.hints.mandatory}"
+                        columns="#{bindings.ALTERNATEPHONENUM.hints.displayWidth}"
+                        maximumLength="#{bindings.ALTERNATEPHONENUM.hints.precision}"
+                        shortDesc="#{bindings.ALTERNATEPHONENUM.hints.tooltip}"
+                        id="it17">
+            <f:validator binding="#{bindings.ALTERNATEPHONENUM.validator}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.tradelicensenum.inputValue}"
+                        label="#{viewcontrollerBundle.TRADE_LICENSE_NUMBER}"
+                        required="#{bindings.tradelicensenum.hints.mandatory}"
+                        columns="#{bindings.tradelicensenum.hints.displayWidth}"
+                        maximumLength="#{bindings.tradelicensenum.hints.precision}"
+                        shortDesc="#{bindings.tradelicensenum.hints.tooltip}"
+                        id="it2" disabled="#{!pageFlowScope.institutionMBean.enabled}">
+            <f:validator binding="#{bindings.tradelicensenum.validator}"/>
+          </af:inputText>
+        </af:panelFormLayout>
+         
+      </af:panelGroupLayout>
+     
+    </af:panelGroupLayout>
+    
+    <af:panelGroupLayout id="pgl8" layout="horizontal">
+      <af:inputText value="#{bindings.UTILBILLNUM.inputValue}"
+                    label="#{viewcontrollerBundle.UTIL_BILL_NUMBER}"
+                    required="#{bindings.UTILBILLNUM.hints.mandatory}"
+                    columns="#{bindings.UTILBILLNUM.hints.displayWidth}"
+                    maximumLength="#{bindings.UTILBILLNUM.hints.precision}"
+                    shortDesc="#{bindings.UTILBILLNUM.hints.tooltip}" id="it16"
+                    binding="#{pageFlowScope.institutionMBean.utilityBillNumber}">
+        <f:validator binding="#{bindings.UTILBILLNUM.validator}"/>
+      </af:inputText>
+      <af:commandButton text="#{viewcontrollerBundle.SEARCH}" id="cb7" inlineStyle="background-color:#F39C11;"
+                        action="#{pageFlowScope.institutionMBean.searchInstitution}"/>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl4">
+      <af:panelFormLayout id="pfl2" visible="#{pageFlowScope.setvisible}"  >
+        <af:table value="#{bindings.AddressDetailsUVO1.collectionModel}"
+                  var="row" rows="#{bindings.AddressDetailsUVO1.rangeSize}"
+                  emptyText="#{bindings.AddressDetailsUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.AddressDetailsUVO1.rangeSize}"
+                  rowBandingInterval="0"
+                  selectedRowKeys="#{bindings.AddressDetailsUVO1.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.AddressDetailsUVO1.collectionModel.makeCurrent}"
+                  rowSelection="single" id="t2" partialTriggers="cb6"
+                  width="100%" inlineStyle="height:100px;">
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.UTITLITY_BILL_NUMBER}"
+                     id="c11">
+            <af:inputText value="#{row.bindings.UTILBILLNUM.inputValue}"
+                          label="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.label}"
+                          required="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.mandatory}"
+                          columns="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.displayWidth}"
+                          maximumLength="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.precision}"
+                          shortDesc="#{bindings.AddressDetailsUVO1.hints.UTILBILLNUM.tooltip}"
+                          id="it12"
+                          disabled='#{!pageFlowScope.institutionMBean.enabled}'>
+              <f:validator binding="#{row.bindings.UTILBILLNUM.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.TOW_TEEQ_NUM}"
+                     id="c10">
+            <af:inputText value="#{row.bindings.TowTeeqNum.inputValue}"
+                          label="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.label}"
+                          required="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.mandatory}"
+                          columns="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.displayWidth}"
+                          maximumLength="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.precision}"
+                          shortDesc="#{bindings.AddressDetailsUVO1.hints.TowTeeqNum.tooltip}"
+                          id="it10"
+                          disabled='#{!pageFlowScope.institutionMBean.enabled}'>
+              <f:validator binding="#{row.bindings.TowTeeqNum.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ADDRESS_LINE_1}"
+                     id="c6">
+            <af:inputText value="#{row.bindings.ADDRLINE1.inputValue}"
+                          label="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.label}"
+                          required="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.mandatory}"
+                          columns="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.displayWidth}"
+                          maximumLength="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.precision}"
+                          shortDesc="#{bindings.AddressDetailsUVO1.hints.ADDRLINE1.tooltip}"
+                          id="it14"
+                          disabled="#{!pageFlowScope.institutionMBean.enabled}">
+              <f:validator binding="#{row.bindings.ADDRLINE1.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ADDRESS_LINE_2}"
+                     id="c7">
+            <af:inputText value="#{row.bindings.ADDRLINE2.inputValue}"
+                          label="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.label}"
+                          required="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.mandatory}"
+                          columns="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.displayWidth}"
+                          maximumLength="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.precision}"
+                          shortDesc="#{bindings.AddressDetailsUVO1.hints.ADDRLINE2.tooltip}"
+                          id="it11"
+                          disabled="#{!pageFlowScope.institutionMBean.enabled}">
+              <f:validator binding="#{row.bindings.ADDRLINE2.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ADDRESS_LINE_3}"
+                     id="c8">
+            <af:inputText value="#{row.bindings.ADDRLINE3.inputValue}"
+                          label="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.label}"
+                          required="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.mandatory}"
+                          columns="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.displayWidth}"
+                          maximumLength="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.precision}"
+                          shortDesc="#{bindings.AddressDetailsUVO1.hints.ADDRLINE3.tooltip}"
+                          id="it15"
+                          disabled="#{!pageFlowScope.institutionMBean.enabled}">
+              <f:validator binding="#{row.bindings.ADDRLINE3.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.POST_BOX_NUMBER}"
+                     id="c5">
+            <af:inputText value="#{row.bindings.PostBoxNum.inputValue}"
+                          label="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.label}"
+                          required="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.mandatory}"
+                          columns="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.displayWidth}"
+                          maximumLength="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.precision}"
+                          shortDesc="#{bindings.AddressDetailsUVO1.hints.PostBoxNum.tooltip}"
+                          id="it13"
+                          disabled="#{!pageFlowScope.institutionMBean.enabled}">
+              <f:validator binding="#{row.bindings.PostBoxNum.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column headerText="#{viewcontrollerBundle.CITY}"
+                     id="c14">
+            <af:selectOneChoice value="#{row.bindings.CityCode.inputValue}"
+                                label="#{row.bindings.CityCode.label}"
+                                required="#{bindings.AddressDetailsUVO1.hints.CityCode.mandatory}"
+                                shortDesc="#{bindings.AddressDetailsUVO1.hints.CityCode.tooltip}" unselectedLabel="#{viewcontrollerBundle.CHOOSE}"
+                                id="soc1"
+                                disabled="#{!pageFlowScope.institutionMBean.enabled}">
+              <f:selectItems value="#{row.bindings.CityCode.items}" id="si1"/>
+            </af:selectOneChoice>
+          </af:column>
+          <af:column headerText="#{viewcontrollerBundle.COUNTRY}"
+                     id="c15">
+            <af:selectOneChoice value="#{row.bindings.Countrycode.inputValue}"
+                                label="#{row.bindings.Countrycode.label}"
+                                required="#{bindings.AddressDetailsUVO1.hints.Countrycode.mandatory}"
+                                shortDesc="#{bindings.AddressDetailsUVO1.hints.Countrycode.tooltip}" unselectedLabel="#{viewcontrollerBundle.CHOOSE}"
+                                id="soc2"
+                                disabled='#{!pageFlowScope.institutionMBean.enabled}'>
+              <f:selectItems value="#{row.bindings.Countrycode.items}"
+                             id="si2"/>
+            </af:selectOneChoice>
+          </af:column>
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.SectorCode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.SECTOR_CODE}"
+                     id="c9">
+            <af:selectOneChoice value="#{row.bindings.SectorCode.inputValue}"
+                                label="#{row.bindings.SectorCode.label}"
+                                required="#{bindings.AddressDetailsUVO1.hints.SectorCode.mandatory}"
+                                shortDesc="#{bindings.AddressDetailsUVO1.hints.SectorCode.tooltip}"
+                                id="soc4"
+                                disabled='#{!pageFlowScope.institutionMBean.enabled}'>
+              <f:selectItems value="#{row.bindings.SectorCode.items}" id="si4"/>
+            </af:selectOneChoice>
+          </af:column>
+          <af:column sortProperty="#{bindings.AddressDetailsUVO1.hints.ZoneCode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ZONE_CODE}"
+                     id="c12">
+            <af:selectOneChoice value="#{row.bindings.ZoneCode.inputValue}"
+                                label="#{row.bindings.ZoneCode.label}"
+                                required="#{bindings.AddressDetailsUVO1.hints.ZoneCode.mandatory}"
+                                shortDesc="#{bindings.AddressDetailsUVO1.hints.ZoneCode.tooltip}"
+                                id="soc3"
+                                disabled='#{!pageFlowScope.institutionMBean.enabled}}'>
+              <f:selectItems value="#{row.bindings.ZoneCode.items}" id="si3"/>
+            </af:selectOneChoice>
+          </af:column>
+          <af:column id="c13">
+            <af:commandButton text="#{viewcontrollerBundle.ADD_ROW}" id="cb6"
+                              actionListener="#{bindings.CreateInsert.execute}" inlineStyle="background-color:#F39C11;"
+                              disabled="#{!pageFlowScope.institutionMBean.enabled}"/>
+          </af:column>
+        </af:table>
+        <af:panelGroupLayout id="pgl6">
+        <af:commandButton 
+                        text="#{viewcontrollerBundle.SUBMIT}" 
+                        id="cb3" 
+                        disabled="#{!pageFlowScope.institutionMBean.enabled}"
+                        inlineStyle="background-color:#F39C11;"
+                          action="#{pageFlowScope.institutionMBean.doSubmitInstitution}"/>
+      <af:spacer width="10" height="10" id="s4"/>
+      <af:spacer width="10" height="10" id="s5"/>
+      <af:commandButton actionListener="#{bindings.Rollback.execute}" 
+      disabled="#{!pageFlowScope.institutionMBean.enabled}"
+                        immediate="true" id="cb4"
+                        text="#{viewcontrollerBundle.CANCEL}"
+                        inlineStyle="background-color:#F39C11;">
+        <af:resetActionListener/>
+      </af:commandButton>
+          
+        </af:panelGroupLayout>
+        
+      </af:panelFormLayout>
+    </af:panelGroupLayout>
+  
+  </af:panelGroupLayout>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:institutionMBean-->
+</jsp:root>

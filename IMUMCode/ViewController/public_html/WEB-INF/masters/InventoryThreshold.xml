@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="InventoryThreshold">
+    <default-activity id="__1">InventoryThreshold1</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__4">InventoryThresholdMB</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.InventoryThresholdMB</managed-bean-class>
+      <managed-bean-scope id="__2">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="InventoryThreshold1">
+      <page>/jspx/masters/fragments/InventoryThreshold.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

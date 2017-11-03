@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PermitRuleUVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.PermitRuleUVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.PermitRuleUVOImpl"
+  DefClass="com.imum.cpms.model.masters.vo.PermitRuleUVODefImpl"
+  OrderBy="Rule_Id desc">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Def|Coll|Prog|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="ResidenceTypeVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.ResidenceTypeVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PermitCategLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitCategLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PermitTypeVO2"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitTypeVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="YesNoLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.YesNoLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PermitTypeLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitTypeLovVO">
+    <ViewCriteriaUsage
+      Name="PermitTypeLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.PermitTypeLovVO.PermitTypeLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="ctg_code">
+        <TransientExpression><![CDATA[CategCode]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PermitCategLovVO2"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitCategLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PermitTypeLovVO2"
+    ViewObjectName="com.imum.cpms.model.masters.vo.PermitTypeLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="docverifictionlov1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.docverifictionlov"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_ActiveFlag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ActiveFlag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ActiveFlag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CategCode"
+    ListVOName="PermitCategLovVO2"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_CategCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CategCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="categcode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CategDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_LocalFlag"
+    ListVOName="ResidenceTypeVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_LocalFlag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LocalFlag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_TypeCode"
+    ListVOName="PermitTypeLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_TypeCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="TypeCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Typecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PermitType"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_docverificationflag"
+    ListVOName="docverifictionlov1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_docverificationflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="docverificationflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="valuecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="valuedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT PermitRuleEO.Rule_Id, 
+       PermitRuleEO.Categ_Code, 
+       PermitRuleEO.Short_Code, 
+       PermitRuleEO.Local_Flag, 
+       PermitRuleEO.Valid_Months, 
+       PermitRuleEO.Renwal_Mnths, 
+       PermitRuleEO.Renwal_Grace, 
+       PermitRuleEO.Max_Quota, 
+       PermitRuleEO.PVT_grace_Period, 
+       PermitRuleEO.Free_Permits, 
+       PermitRuleEO.Valid_Insp, 
+       PermitRuleEO.Admin_Chrgs, 
+       PermitRuleEO.Proc_Chrgs, 
+       PermitRuleEO.Permit_Chrgs, 
+       PermitRuleEO.Bay_Type, 
+       PermitRuleEO.Effective_date_From, 
+       PermitRuleEO.Effective_date_To, 
+       PermitRuleEO.Type_Code, 
+       PermitRuleEO.Active_Flag, 
+       PermitRuleEO.Changed_flag, 
+       PermitRuleEO.Renewal_period_before_exp,
+       PermitRuleEO.doc_verification_flag,
+       PermitRuleEO.Created_By, 
+       PermitRuleEO.Created_Date, 
+       PermitRuleEO.Updated_By, 
+       PermitRuleEO.Updated_Date,(select Permit_Type from  prm_permit_type_mst ptm where ptm.type_code = PermitRuleEO.Type_Code)permitTypeName,(select Value_Desc from  GEN_Ref_data_Detail_mst where ref_data_header_seq = 4 AND Value_Code = PermitRuleEO.Local_Flag)residence,(select Categ_Desc from  PRM_Permit_Catg_Mst where categ_code = PermitRuleEO.Categ_Code)catg_desc
+FROM  PRM_PERMIT_RULE_MST PermitRuleEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="PermitRuleEO"
+    Entity="com.imum.cpms.model.masters.eo.PermitRuleEO"/>
+  <ViewAttribute
+    Name="RuleId"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RuleId"
+    EntityUsage="PermitRuleEO"
+    AliasName="Rule_Id"/>
+  <ViewAttribute
+    Name="CategCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CategCode"
+    EntityUsage="PermitRuleEO"
+    AliasName="Categ_Code"
+    LOVName="LOV_CategCode"
+    DefaultValue="INDI">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ShortCode"
+    PrecisionRule="true"
+    EntityAttrName="ShortCode"
+    EntityUsage="PermitRuleEO"
+    AliasName="Short_Code"/>
+  <ViewAttribute
+    Name="LocalFlag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LocalFlag"
+    EntityUsage="PermitRuleEO"
+    AliasName="Local_Flag"
+    LOVName="LOV_LocalFlag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ValidMonths"
+    PrecisionRule="true"
+    EntityAttrName="ValidMonths"
+    EntityUsage="PermitRuleEO"
+    AliasName="Valid_Months"/>
+  <ViewAttribute
+    Name="RenwalMnths"
+    PrecisionRule="true"
+    EntityAttrName="RenwalMnths"
+    EntityUsage="PermitRuleEO"
+    AliasName="Renwal_Mnths"/>
+  <ViewAttribute
+    Name="RenwalGrace"
+    PrecisionRule="true"
+    EntityAttrName="RenwalGrace"
+    EntityUsage="PermitRuleEO"
+    AliasName="Renwal_Grace"/>
+  <ViewAttribute
+    Name="MaxQuota"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MaxQuota"
+    EntityUsage="PermitRuleEO"
+    AliasName="Max_Quota"/>
+  <ViewAttribute
+    Name="PVTgracePeriod"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PVTgracePeriod"
+    EntityUsage="PermitRuleEO"
+    AliasName="PVT_grace_Period"/>
+  <ViewAttribute
+    Name="FreePermits"
+    PrecisionRule="true"
+    EntityAttrName="FreePermits"
+    EntityUsage="PermitRuleEO"
+    AliasName="Free_Permits"/>
+  <ViewAttribute
+    Name="ValidInsp"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ValidInsp"
+    EntityUsage="PermitRuleEO"
+    AliasName="Valid_Insp"/>
+  <ViewAttribute
+    Name="AdminChrgs"
+    PrecisionRule="true"
+    EntityAttrName="AdminChrgs"
+    EntityUsage="PermitRuleEO"
+    AliasName="Admin_Chrgs"/>
+  <ViewAttribute
+    Name="ProcChrgs"
+    PrecisionRule="true"
+    EntityAttrName="ProcChrgs"
+    EntityUsage="PermitRuleEO"
+    AliasName="Proc_Chrgs"/>
+  <ViewAttribute
+    Name="PermitChrgs"
+    PrecisionRule="true"
+    EntityAttrName="PermitChrgs"
+    EntityUsage="PermitRuleEO"
+    AliasName="Permit_Chrgs"/>
+  <ViewAttribute
+    Name="BayType"
+    PrecisionRule="true"
+    EntityAttrName="BayType"
+    EntityUsage="PermitRuleEO"
+    AliasName="Bay_Type"/>
+  <ViewAttribute
+    Name="EffectivedateFrom"
+    PrecisionRule="true"
+    EntityAttrName="EffectivedateFrom"
+    EntityUsage="PermitRuleEO"
+    AliasName="Effective_date_From"/>
+  <ViewAttribute
+    Name="EffectivedateTo"
+    PrecisionRule="true"
+    EntityAttrName="EffectivedateTo"
+    EntityUsage="PermitRuleEO"
+    AliasName="Effective_date_To"/>
+  <ViewAttribute
+    Name="TypeCode"
+    PrecisionRule="true"
+    EntityAttrName="TypeCode"
+    EntityUsage="PermitRuleEO"
+    AliasName="Type_Code"
+    LOVName="LOV_TypeCode">
+    <Dependencies>
+      <Item
+        Value="CategCode"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ActiveFlag"
+    PrecisionRule="true"
+    EntityAttrName="ActiveFlag"
+    EntityUsage="PermitRuleEO"
+    AliasName="Active_Flag"
+    LOVName="LOV_ActiveFlag"
+    DefaultValue="N">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Changedflag"
+    PrecisionRule="true"
+    EntityAttrName="Changedflag"
+    EntityUsage="PermitRuleEO"
+    AliasName="Changed_flag"/>
+  <ViewAttribute
+    Name="Renewalperiodbeforeexp"
+    PrecisionRule="true"
+    EntityAttrName="Renewalperiodbeforeexp"
+    EntityUsage="PermitRuleEO"
+    AliasName="Renewal_period_before_exp"/>
+  <ViewAttribute
+    Name="docverificationflag"
+    PrecisionRule="true"
+    EntityAttrName="docverificationflag"
+    EntityUsage="PermitRuleEO"
+    AliasName="doc_verification_flag"
+    LOVName="LOV_docverificationflag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="PermitRuleEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="PermitRuleEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="UpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedBy"
+    EntityUsage="PermitRuleEO"
+    AliasName="Updated_By"/>
+  <ViewAttribute
+    Name="UpdatedDate"
+    PrecisionRule="true"
+    EntityAttrName="UpdatedDate"
+    EntityUsage="PermitRuleEO"
+    AliasName="Updated_Date"/>
+  <ViewAttribute
+    Name="permitTypeName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="permitTypeName"
+    Expression="permitTypeName"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="residence"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="residence"
+    Expression="residence"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="catgdesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="catg_desc"
+    Expression="catg_desc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="rowStatus"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"/>
+</ViewObject>

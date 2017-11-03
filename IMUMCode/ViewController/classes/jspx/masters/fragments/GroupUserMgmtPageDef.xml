@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="GroupUserMgmtPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>   
+    <iterator Binds="UserMstUVO2" RangeSize="10"
+              DataControl="MastersAMDataControl" id="UserMstUVO2Iterator"/>
+    <searchRegion Binds="UserMstUVO2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="UserMstUVO2Query"/>
+    <iterator Binds="UserMstUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="UserMstUVO1Iterator"/>
+    <iterator id="UserRoleMapUVO2Iterator" Binds="UserRoleMapUVO2"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="RoleLOVVO1Iterator" Binds="RoleLOVVO1"
+              DataControl="MastersAMDataControl"/>
+    <iterator id="UserRoleMapUVO3Iterator" Binds="UserRoleMapUVO3"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="GroupMstUVO1Iterator" Binds="GroupMstUVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="GenRoleUVO2Iterator" Binds="GenRoleUVO2"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>   
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <tree IterBinding="UserMstUVO2Iterator" id="UserMstUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.UserMstUVO"
+                      Name="UserMstUVO20">
+        <AttrNames>
+          <Item Value="UserId"/>
+          <Item Value="FirstName"/>
+          <Item Value="LastName"/>
+          <Item Value="GroupId"/>
+          <Item Value="ActiveFlag" Binds="ActiveFlag1"/>
+          <Item Value="GroupName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="UserId">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="BaseLocation">
+      <AttrNames>
+        <Item Value="BaseLocation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="BirthDate">
+      <AttrNames>
+        <Item Value="BirthDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="Designation">
+      <AttrNames>
+        <Item Value="Designation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="FirstName">
+      <AttrNames>
+        <Item Value="FirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false" Uses="LOV_Gender"
+          id="Gender" DTSupportsMRU="false"/>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false"
+          Uses="LOV_GroupId" id="GroupId" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="LastName">
+      <AttrNames>
+        <Item Value="LastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="LocalAdd1">
+      <AttrNames>
+        <Item Value="LocalAdd1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="LocalAdd2">
+      <AttrNames>
+        <Item Value="LocalAdd2"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false"
+          Uses="LOV_LocalCity" id="LocalCity" DTSupportsMRU="false"/>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false"
+          Uses="LOV_LocalCountry" id="LocalCountry" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="LocalPOBox">
+      <AttrNames>
+        <Item Value="LocalPOBox"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="LoginPrintID">
+      <AttrNames>
+        <Item Value="LoginPrintID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="MailId">
+      <AttrNames>
+        <Item Value="MailId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="MobileNo">
+      <AttrNames>
+        <Item Value="MobileNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="Password">
+      <AttrNames>
+        <Item Value="Password"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="PermAdd1">
+      <AttrNames>
+        <Item Value="PermAdd1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="PermAdd2">
+      <AttrNames>
+        <Item Value="PermAdd2"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false"
+          Uses="LOV_PermCity" id="PermCity" DTSupportsMRU="false"/>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false"
+          Uses="LOV_PermCountry" id="PermCountry" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="PermPOBox">
+      <AttrNames>
+        <Item Value="PermPOBox"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="PersonalMailId">
+      <AttrNames>
+        <Item Value="PersonalMailId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="PrefComm">
+      <AttrNames>
+        <Item Value="PrefComm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="Secretans">
+      <AttrNames>
+        <Item Value="Secretans"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserMstUVO1Iterator" id="Secretqust">
+      <AttrNames>
+        <Item Value="Secretqust"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="UserMstUVO2Iterator" id="ActiveFlag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="UserMstUVO1Iterator" id="ActiveFlag2"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="UserMstUVO1Iterator" id="ActiveOnStreetFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveOnStreetFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="UserMstUVO1Iterator" id="AssignAvailableflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="AssignAvailableflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="UserMstUVO1Iterator" id="Extuserflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Extuserflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false"
+          Uses="LOV_PrefComm" id="PrefComm1" DTSupportsMRU="true"/>
+    <tree IterBinding="UserRoleMapUVO3Iterator" id="UserRoleMapUVO3">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.UserRoleMapUVO"
+                      Name="UserRoleMapUVO30">
+        <AttrNames>
+          <Item Value="RoleName"/>
+          <Item Value="RoleDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="UserMstUVO1Iterator" StaticList="false"
+          Uses="LOV_ManagerId" id="ManagerId" DTSupportsMRU="true"/>
+    <methodAction id="getHashString"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getHashString"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.getHashString_MastersAMDataControl_dataProvider_getHashString_result">
+      <NamedData NDName="str" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="encryptLdapData"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="encryptLdapData"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.encryptLdapData_MastersAMDataControl_dataProvider_encryptLdapData_result">
+      <NamedData NDName="value" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="convertPwdSecAns"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="convertPwdSecAns"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="userId" NDType="java.lang.String"/>
+      <NamedData NDName="pwd" NDType="java.lang.String"/>
+      <NamedData NDName="secans" NDType="java.lang.String"/>
+      <NamedData NDName="isPwdMod" NDType="java.lang.String"/>
+      <NamedData NDName="isSaMod" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="CreateGenEventDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="CreateGenEventDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.CreateGenEventDetails_MastersAMDataControl_dataProvider_CreateGenEventDetails_result">
+      <NamedData NDName="depositAckSeqbigD" NDType="java.lang.String"/>
+      <NamedData NDName="NewDepSlip" NDType="java.lang.String"/>
+      <NamedData NDName="OldDepSlip" NDType="java.lang.String"/>
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+      <NamedData NDName="EventId" NDType="java.lang.Integer"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

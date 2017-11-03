@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="PIAssingnmentEdit_flow_definition_PIAssingnmentEdit_flow_definition_getSectorDetailsPageDef"
+                Package="staffdeploy" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="getSectorDetails" RequiresUpdateModel="true"
+            Action="invokeMethod" MethodName="getSectorDetails"
+            IsViewObjectMethod="false" DataControl="StaffDeployDataControl"
+            InstanceName="StaffDeployDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

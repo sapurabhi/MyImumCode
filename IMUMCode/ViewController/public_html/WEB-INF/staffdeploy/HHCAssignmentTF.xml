@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="HHCAssignmentTF">
+    <default-activity id="__1">HHCNewAssignment</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__2">HHCAssignMBean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.staffdeploy.HHCAssignMBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__19">
+      <managed-bean-name id="__20">HHCReAssignmentMBean</managed-bean-name>
+      <managed-bean-class id="__22">com.imum.cpms.staffdeployment.HHCReAssignmentMBean</managed-bean-class>
+      <managed-bean-scope id="__21">request</managed-bean-scope>
+    </managed-bean>
+    <view id="HHCNewAssignment">
+      <page>/jspx/staffdeploy/fragments/HHCNewAssignment.jsff</page>
+    </view>
+    <view id="HHCReAssignment">
+      <page>/jspx/staffdeploy/fragments/HHCReAssignment.jsff</page>
+    </view>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">HHCNewAssignment</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome id="__10">reassign</from-outcome>
+        <to-activity-id id="__9">HHCReAssignment</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__27">
+      <from-activity-id id="__28">HHCReAssignment</from-activity-id>
+      <control-flow-case id="__29">
+        <from-outcome id="__31">Back</from-outcome>
+        <to-activity-id id="__30">HHCNewAssignment</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="SectorMasterTF">
+    <default-activity id="__1">SectorMaster</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__3">sectorMBean</managed-bean-name>
+      <managed-bean-class>com.imum.cpms.sectorMBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="SectorMaster">
+      <page>/jspx/masters/fragments/SectorMaster.jsff</page>
+    </view>
+    <method-call id="getSectorRowCount">
+      <method>#{bindings.getSectorRowCount.execute}</method>
+      <outcome id="__5">
+        <fixed-outcome>getSectorRowCount</fixed-outcome>
+      </outcome>
+    </method-call>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

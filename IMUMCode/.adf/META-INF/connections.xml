@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+   <Reference name="CPMSDEV" className="oracle.jdeveloper.db.adapter.DatabaseProvider" credentialStoreKey="CPMSDEV" xmlns="">
+      <Factory className="oracle.jdeveloper.db.adapter.DatabaseProviderFactory"/>
+      <RefAddresses>
+         <StringRefAddr addrType="port">
+            <Contents>1433</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="DeployPassword">
+            <Contents>true</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="dataSourceName">
+            <Contents>CPMSPROD</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="user">
+            <Contents>cpmsuser</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="subtype">
+            <Contents>SQLServer</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="hostname">
+            <Contents>192.168.200.100</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="instanceName">
+            <Contents/>
+         </StringRefAddr>
+         <SecureRefAddr addrType="password"/>
+         <StringRefAddr addrType="driver">
+            <Contents>com.microsoft.sqlserver.jdbc.SQLServerDriver</Contents>
+         </StringRefAddr>
+      </RefAddresses>
+   </Reference>
+</References>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PermitSearchPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PermitSearchCriteriaVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PermitSearchCriteriaVO1Iterator"/>
+    <searchRegion Criteria="PermitSearchCritVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PermitSearchCriteriaVO1Iterator"
+                  id="PermitSearchCritVOCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <methodAction id="submit_PermitCharges"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="submit_PermitCharges"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="PermitDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="PermitDetails"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="CustomerId" NDType="java.lang.String"/>
+      <NamedData NDName="PermitSequence" NDType="java.lang.String"/>
+      <NamedData NDName="PlateId" NDType="java.lang.Number"/>
+      <NamedData NDName="CategCode" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="PermitSearchCriteriaVO1Iterator"
+          id="PermitSearchCriteriaVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitSearchCriteriaVO"
+                      Name="PermitSearchCriteriaVO10">
+        <AttrNames>
+          <Item Value="PermitNumber"/>
+          <Item Value="statusname"/>
+          <Item Value="PermitType"/>
+          <Item Value="Appldate"/>
+          <Item Value="Issuedate"/>
+          <Item Value="PermitEnddate"/>
+          <Item Value="SectorCode"/>
+          <Item Value="platenumber"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

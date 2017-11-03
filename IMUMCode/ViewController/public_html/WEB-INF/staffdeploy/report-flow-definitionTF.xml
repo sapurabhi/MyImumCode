@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="report-flow-definitionTF">
+    <default-activity id="__16">homereport</default-activity>
+    <managed-bean id="__29">
+      <managed-bean-name id="__30">CreateTable</managed-bean-name>
+      <managed-bean-class id="__28">com.imum.cpms.staffdeploy.CreateTable</managed-bean-class>
+      <managed-bean-scope id="__27">request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__34">
+      <managed-bean-name id="__32">dynamicReportBean</managed-bean-name>
+      <managed-bean-class id="__31">com.imum.cpms.staffdeploy.dynamicReport</managed-bean-class>
+      <managed-bean-scope id="__33">backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="report">
+      <page>/jspx/staffdeploy/fragments/report.jsff</page>
+    </view>
+    <view id="dynamicvoreport">
+      <page>/jspx/staffdeploy/fragments/dynamicvoreport.jsff</page>
+    </view>
+    <view id="homereport">
+      <page>/jspx/staffdeploy/fragments/homereport.jsff</page>
+    </view>
+    <control-flow-rule id="__17">
+      <from-activity-id id="__18">homereport</from-activity-id>
+      <control-flow-case id="__19">
+        <from-outcome id="__21">dynamicVO</from-outcome>
+        <to-activity-id id="__20">dynamicvoreport</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__22">
+      <from-activity-id id="__23">dynamicvoreport</from-activity-id>
+      <control-flow-case id="__25">
+        <from-outcome id="__26">back</from-outcome>
+        <to-activity-id id="__24">homereport</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

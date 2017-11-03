@@ -1,0 +1,554 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+           xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+          <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+         <af:image source="/images/mawaquif2.gif" shortDesc="mawaqif" id="i3"/>
+   <af:spacer width="350" height="10" id="s1"/>
+  <af:image source="/images/mawaquif.gif" shortDesc="DoT" id="i2"/>
+  <table style="width:100%">
+  <tr>
+<td width="764" height="32">ADP Form (Form VRF-4) </td>
+<td width="798">
+                    <af:outputText value="استمارة شرطة أبوظبي (استمارة رقم 4)	
+" id="ot3"/>
+               </td>
+
+</tr>
+
+  </table>
+<table style="width:100%">
+
+<tr>
+<td width="394" height="33">
+                    <af:outputText value="Abu Dhabi/Department of Transportation" id="ot2"/>
+               </td>
+<td width="272" height="33">
+                    <af:outputText value="أبوظبي/ دائرة النقل			
+" id="ot1"/>
+               </td>
+</tr>
+<tr>
+<td width="394" height="19">
+                    <af:outputText value="Pound Code:" id="ot4"/><af:outputText value="#{bindings.locationdesc.inputValue}"
+                                                                                id="ot5"/>
+               </td>
+               <td width="272" height="19">
+                    <af:outputText value="رمز مجمع حجز مركبات مواقف : 1			
+" id="ot6"/>
+               </td>
+</tr>
+<tr>
+<td width="394">
+<table width="617">
+<tr>
+<td height="25" width="421">
+                                   <af:outputText value="02/5121929	
+" id="ot7"/>
+                              </td>
+<td width="190">
+                                   <af:outputText value="فاكس شرطة ابوظبي	
+" id="ot8"/>
+                              </td>
+
+
+</tr>
+
+<tr>
+<td height="25" width="421">
+                                   <af:outputText value="ADP Fax Number	
+" id="ot9"/>
+                              </td>
+<td width="190">
+                                   <af:outputText value="02/5121939	
+"
+                                                  id="ot10"/>
+                              </td>
+
+</tr>
+
+</table>
+</td>
+<td width="272">
+<table width="493" height="73">
+<tr>
+<td height="26">
+                                   <af:outputText value="............................	
+"
+                                                  id="ot11"/>
+                              </td>
+<td height="26">
+                                   <af:outputText value="هاتف شرطة ابوظبي :	
+"
+                                                  id="ot12"/>
+                              </td>
+
+</tr>
+<tr>
+<td height="18">
+                                   <af:outputText value="عناية السيد مساعد اول / عبد الرحمن الحمادي		
+"
+                                                  id="ot13"/>
+                              </td>
+
+
+</tr>
+<tr>
+<td >
+                                   <af:outputText value="ADP Phone Number:		.............................	
+"
+                                                  id="ot14"/>
+                              </td>
+<td height="25">
+</td>
+
+</tr>
+
+</table>
+</td>
+</tr>
+
+
+
+</table>
+<table width="1326">
+<tr>
+<td height="17" width="783">
+<table width="749" height="19">
+<tr>
+<td width="378">
+                                   <af:outputText value="Vehicle Registration Details :		
+"
+                                                  id="ot15"/>
+                              </td>
+<td width="365">
+                                   <af:outputText value="#{bindings.PLATENUMBER.inputValue}"
+                                                  id="ot16"/>
+                              </td>
+
+</tr>
+</table>
+
+</td>
+<td height="17" width="537">
+<table width="749" height="19">
+<tr>
+<td>
+                                   <af:outputText value="/	
+"
+                                                  id="ot17"/>
+                              </td>
+<td>
+                                   <af:outputText value="تفاصيل اللوحة:	
+"
+                                                  id="ot18"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td height="10" width="783">
+<table width="749" height="20">
+<tr>
+<td>
+                                   <af:outputText value="Color:
+"
+                                                  id="ot19"/>
+                              </td>
+<td>
+                                   <af:outputText value="#{bindings.VEHCOLOURID.inputValue}"
+                                                  id="ot20">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.VEHCOLOURID.format}"/>
+                                   </af:outputText>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td height="10" width="537">
+<table width="749" height="19">
+<tr>
+<td>
+                                   <af:outputText value="#{bindings.VEHCOLOURID.inputValue}"
+                                                  id="ot24">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.VEHCOLOURID.format}"/>
+                                   </af:outputText>
+                              </td>
+<td>
+                                   <af:outputText value="اللون :
+"
+                                                  id="ot21"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td height="18" width="783">
+<table width="749" height="14">
+<tr>
+<td>
+                                   <af:outputText value="Model:
+"
+                                                  id="ot22"/><af:outputText value="#{bindings.VEHMODELID.inputValue}"
+                                                                            id="ot25">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.VEHMODELID.format}"/>
+                                   </af:outputText>
+                              </td>
+<td>
+                                   <af:outputText value="#{bindings.VEHMODELID.inputValue}"
+                                                  id="ot23">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.VEHMODELID.format}"/>
+                                   </af:outputText><af:outputText value="	الموديل/الطراز:
+"
+                                                                  id="ot26"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td height="18" width="537">
+<table width="749" height="19">
+<tr>
+<td width="372">
+                                   <af:outputText value="Make :
+"
+                                                  id="ot27"/><af:outputText value="#{bindings.VEHMAKEID.inputValue}"
+                                                                            id="ot28">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.VEHMAKEID.format}"/>
+                                   </af:outputText>
+                              </td>
+<td width="371">
+                                   <af:outputText value="#{bindings.VEHMAKEID.inputValue}"
+                                                  id="ot29">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.VEHMAKEID.format}"/>
+                                   </af:outputText><af:outputText value="النوع
+"
+                                                                  id="ot30"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td  height="18" width="783">
+<table width="749" height="17">
+<tr>
+<td width="372">
+                                   <af:outputText value="Parked/Offence Location :		
+"
+                                                  id="ot31"/>
+                              </td>
+                              
+<td width="371">
+                                   <af:outputText value="#{bindings.zonecode.inputValue}"
+                                                  id="ot32"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td  height="18" width="537">
+<table width="749" height="14">
+<tr>
+<td width="372">
+                                   <af:outputText value="#{bindings.zonecode.inputValue}"
+                                                  id="ot33"/><af:outputText value="موقع المخالفة:
+"
+                                                                            id="ot34"/>
+                              </td>
+<td width="371">
+</td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td  height="18" width="783">
+<table width="749" height="21">
+<tr>
+<td>
+                                   <af:outputText value="PVT:
+"
+                                                  id="ot35"/><af:outputText value="#{bindings.PVTNum.inputValue}"
+                                                                            id="ot36"/>
+                              </td>
+<td>
+                                   <af:outputText value="رقم المخالفة:	
+"
+                                                  id="ot37"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td  height="18" width="537">
+<table width="749" height="17">
+<tr>
+<td>
+                                   <af:outputText value="Contravention Code:	
+"
+                                                  id="ot38"/><af:outputText value="#{bindings.Contracode.inputValue}"
+                                                                            id="ot39">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Contracode.format}"/>
+                                   </af:outputText>
+                              </td>
+<td>
+                                   <af:outputText value="بند المخالفة:
+"
+                                                  id="ot40"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table width="873">
+<tr>
+<td height="15" width="773">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="Disposed Of  "
+                                                  id="ot41"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="Released"
+                                                  id="ot42"/>
+                              </td>
+</tr>
+
+
+</table>
+</td>
+<td height="15" width="775">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="arrived at Pound"
+                                                  id="ot43"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="Lifted"
+                                                  id="ot44"/>
+                              </td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+<tr>
+<td height="15" width="773">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="Time
+"
+                                                  id="ot45"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="#{bindings.EVENTDATE.inputValue}"
+                                                  id="ot47">
+                                        <af:convertDateTime pattern="#{bindings.EVENTDATE.format}"/>
+                                   </af:outputText>
+                              </td>
+<td height="15">
+                                   <af:outputText value="#{bindings.EVENTDATE1.inputValue}"
+                                                  id="ot48">
+                                        <af:convertDateTime pattern="#{bindings.EVENTDATE1.format}"/>
+                                   </af:outputText>
+                              </td>
+</tr>
+
+
+</table>
+</td>
+<td height="15" width="775">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="#{bindings.EVENTDATE2.inputValue}"
+                                                  id="ot49">
+                                        <af:convertDateTime pattern="#{bindings.EVENTDATE2.format}"/>
+                                   </af:outputText>
+                              </td>
+<td height="15">
+</td>
+<td height="15">
+                                   <af:outputText value="الوقت
+"
+                                                  id="ot50"/>
+                              </td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+<tr>
+<td height="15" width="773">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="Date
+"
+                                                  id="ot46"/>
+                              </td>
+<td height="15">
+</td>
+<td height="15">
+</td>
+</tr>
+
+
+</table>
+</td>
+<td height="15" width="775">
+<table width="768">
+<tr>
+<td height="15">
+</td>
+<td height="15">
+</td>
+<td height="15">
+</td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+
+</table>
+<table width="1557">
+<tr>
+<td height="11" width="780">
+                    <af:outputText value="Moved To Location	
+" id="ot51"/>
+               </td>
+               <td height="29" class="xl68" dir="RTL" align="right" width="90" style="height:21.75pt;
+  width:68pt">
+                    <af:outputText value="نقلت المركبة الى
+" id="ot52"/>
+               </td>
+          </tr>
+<tr>
+<td width="780" height="15">
+
+</td>
+<td width="782" height="15">
+</td>
+</tr>
+<tr>
+<td width="780">
+                    <af:outputText value="DoT Pound Contact Details			
+" id="ot53"/>
+               </td>
+<td width="782">
+                    <af:outputText value="تفاصيل الاتصال بدائرة النقل (قسم مجمع حجز المركبات):			
+" id="ot54"/>
+               </td>
+</tr>
+<tr>
+<td width="780">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="02-4914298		
+"
+                                                  id="ot55"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="رقم الفاكس :	
+"
+                                                  id="ot56"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+<td width="782">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="02-4914260		
+"
+                                                  id="ot59"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="رقم الهاتف :
+"
+                                                  id="ot60"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+</tr>
+<tr>
+<td width="780">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="Pound Fax Number: 	
+"
+                                                  id="ot57"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="02-4914298		
+"
+                                                  id="ot58"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+<td width="782">
+<table width="768">
+<tr>
+<td height="15">
+                                   <af:outputText value="Pound Phone Number :		
+"
+                                                  id="ot61"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="02-4914260
+"
+                                                  id="ot62"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+
+
+
+
+</tr>
+</table>
+
+</jsp:root>

@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout layout="vertical" id="pgl1">
+   
+        <af:panelHeader text="PVT Seach" id="ph1" inlineStyle="width:903px;">
+          <af:query id="qryId1" headerText="Search" disclosed="true"
+                    value="#{bindings.AuctionSearchRVOCriteriaQuery.queryDescriptor}"
+                    model="#{bindings.AuctionSearchRVOCriteriaQuery.queryModel}"
+                    queryListener="#{bindings.AuctionSearchRVOCriteriaQuery.processQuery}"
+                    queryOperationListener="#{bindings.AuctionSearchRVOCriteriaQuery.processQueryOperation}"
+                    resultComponentId="::resId1" rows="3" maxColumns="2"
+                    saveQueryMode="hidden" partialTriggers="::resId1"/>
+        </af:panelHeader>
+        <af:table value="#{bindings.AuctionSearchRVO1.collectionModel}"
+                  var="row" rows="#{bindings.AuctionSearchRVO1.rangeSize}"
+                  emptyText="#{bindings.AuctionSearchRVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.AuctionSearchRVO1.rangeSize}"
+                  rowBandingInterval="0" id="resId1" width="804"  rowSelection="single" 
+                  selectionListener="#{pageFlowScope.AuctionOwnershipmBean.SelectedBean}"
+                  inlineStyle="height:86px;"
+                  binding="#{pageFlowScope.AuctionOwnershipmBean.auctionPVTTableBind}">
+                 
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.PVTNum.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_NUMBER_0}"
+                     id="resId1c1" width="105">
+            <af:outputText value="#{row.PVTNum}" id="ot4"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.PVTSTAGEID.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_STAGE}"
+                     id="resId1c5" width="105">
+        <af:selectOneChoice value="#{row.bindings.PVTSTAGEID.inputValue}"
+                            label="#{row.bindings.PVTSTAGEID.label}" readOnly="true"
+                            required="#{bindings.AuctionSearchRVO1.hints.PVTSTAGEID.mandatory}"
+                            shortDesc="#{bindings.AuctionSearchRVO1.hints.PVTSTAGEID.tooltip}"
+                            id="soc2">
+          <f:selectItems value="#{row.bindings.PVTSTAGEID.items}" id="si2"/>
+        </af:selectOneChoice>
+        <!--<af:outputText value="#{row.PVTSTAGEID}" id="ot2">
+              --><!--<af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.AuctionSearchRVO1.hints.PVTSTAGEID.format}"/>--><!--
+                                
+            </af:outputText>-->
+          </af:column>
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.PVTStatusID.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_STATUS}"
+                     id="resId1c4" width="104">
+        <af:selectOneChoice value="#{row.bindings.PVTStatusID.inputValue}"
+                            label="#{row.bindings.PVTStatusID.label}" readOnly="true"
+                            required="#{bindings.AuctionSearchRVO1.hints.PVTStatusID.mandatory}"
+                            shortDesc="#{bindings.AuctionSearchRVO1.hints.PVTStatusID.tooltip}"
+                            id="soc3">
+          <f:selectItems value="#{row.bindings.PVTStatusID.items}" id="si3"/>
+        </af:selectOneChoice>
+        <!--<af:outputText value="#{row.PVTStatusID}" id="ot7">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.AuctionSearchRVO1.hints.PVTStatusID.format}"/>
+            </af:outputText>-->
+          </af:column>
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.SectorCode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.SECTOR}"
+                     id="resId1c2" width="106">
+            <af:outputText value="#{row.SectorCode}" id="ot1"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.PVTdatetime.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_ISSUED_DATE}"
+                     id="resId1c3" width="105">
+            <af:outputText value="#{row.PVTdatetime}" id="ot3">
+              <af:convertDateTime pattern="#{bindings.AuctionSearchRVO1.hints.PVTdatetime.format}"/>
+               <af:convertDateTime pattern="dd-MM-yyyy" />
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.PLATENUMBER.name}"
+                     sortable="false"
+                     headerText="#{bindings.AuctionSearchRVO1.hints.PLATENUMBER.label}"
+                     id="resId1c6" width="105"
+                     align="#{viewcontrollerBundle.PLATE_NUMBER}">
+            <af:outputText value="#{row.PLATENUMBER}" id="ot8"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.VEHMAKEID.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.VEHICLE_MAKE}"
+                     id="resId1c7" width="105">
+        <af:selectOneChoice value="#{row.bindings.VEHMAKEID.inputValue}"
+                            label="#{row.bindings.VEHMAKEID.label}" readOnly="true"
+                            required="#{bindings.AuctionSearchRVO1.hints.VEHMAKEID.mandatory}"
+                            shortDesc="#{bindings.AuctionSearchRVO1.hints.VEHMAKEID.tooltip}"
+                            id="soc4">
+          <f:selectItems value="#{row.bindings.VEHMAKEID.items}" id="si4"/>
+        </af:selectOneChoice>
+        <!--<af:outputText value="#{row.VEHMAKEID}" id="ot6">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.AuctionSearchRVO1.hints.VEHMAKEID.format}"/>
+            </af:outputText>-->
+          </af:column>
+          <af:column sortProperty="#{bindings.AuctionSearchRVO1.hints.VEHMODELID.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.VEHICLE_MODEL}"
+                     id="resId1c8" width="105" visible="false">
+        <af:selectOneChoice value="#{row.bindings.VEHMODELID.inputValue}"
+                            label="#{row.bindings.VEHMODELID.label}" readOnly="true"
+                            required="#{bindings.AuctionSearchRVO1.hints.VEHMODELID.mandatory}"
+                            shortDesc="#{bindings.AuctionSearchRVO1.hints.VEHMODELID.tooltip}"
+                            id="soc5">
+          <f:selectItems value="#{row.bindings.VEHMODELID.items}" id="si5"/>
+        </af:selectOneChoice>
+        <!--<af:outputText value="#{row.VEHMODELID}" id="ot5">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.AuctionSearchRVO1.hints.VEHMODELID.format}"/>
+            </af:outputText>-->
+          </af:column>
+        </af:table>
+    <af:spacer width="10" height="20" id="s2"/>
+    <af:panelGroupLayout id="pgl3" visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}" partialTriggers="cb1 resId1">
+      <af:panelFormLayout id="pfl2"    
+                          partialTriggers="resId1" inlineStyle="width:963px;">
+        <af:inputText value="#{bindings.PVTNum.inputValue}" label="PVT Number"
+                      required="#{bindings.PVTNum.hints.mandatory}"
+                      columns="20"
+                      maximumLength="#{bindings.PVTNum.hints.precision}"
+                      shortDesc="#{bindings.PVTNum.hints.tooltip}" id="it2"
+                      disabled="true">
+          <f:validator binding="#{bindings.PVTNum.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.CustFirstName.inputValue}"
+                      required="#{bindings.CustFirstName.hints.mandatory}"
+                      columns="20"
+                      maximumLength="#{bindings.CustFirstName.hints.precision}"
+                      shortDesc="#{bindings.CustFirstName.hints.tooltip}"
+                      id="it4" label="Customer First Name">
+          <f:validator binding="#{bindings.CustFirstName.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.CustLastName.inputValue}"
+                      label="Customer Last Name"
+                      required="#{bindings.CustLastName.hints.mandatory}"
+                      columns="20"
+                      maximumLength="#{bindings.CustLastName.hints.precision}"
+                      shortDesc="#{bindings.CustLastName.hints.tooltip}"
+                      id="it1">
+          <f:validator binding="#{bindings.CustLastName.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.CustMobilenum.inputValue}"
+                      label="Mobile Number"
+                      required="#{bindings.CustMobilenum.hints.mandatory}"
+                      columns="20" maximumLength="12"
+                      shortDesc="#{bindings.CustMobilenum.hints.tooltip}"
+                      id="it3">
+          <f:validator binding="#{bindings.CustMobilenum.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.Vehownershiptypeid.inputValue}"
+                            label="Vehicle Ownership Type"
+                            required="#{bindings.Vehownershiptypeid.hints.mandatory}"
+                            shortDesc="#{bindings.Vehownershiptypeid.hints.tooltip}"
+                            id="soc1">
+          <f:selectItems value="#{bindings.Vehownershiptypeid.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:inputText value="#{bindings.CustEmailID.inputValue}"
+                      label="E-mail ID" 
+                      required="#{bindings.CustEmailID.hints.mandatory}"
+                      columns="20"
+                      maximumLength="#{bindings.CustEmailID.hints.precision}"
+                      shortDesc="#{bindings.CustEmailID.hints.tooltip}"
+                      id="it5">
+          <f:validator binding="#{bindings.CustEmailID.validator}"/>
+           <af:validateRegExp pattern="^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                           messageDetailNoMatch="#{viewcontrollerBundle.PLEASE_ENTER_VALID_MAIL_ID}"/>
+        </af:inputText>
+      </af:panelFormLayout>
+      <af:spacer width="10" height="40" id="s1"/>
+      <af:panelGroupLayout id="pgl2"
+                            visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}"
+                           partialTriggers="resId1">
+        <af:commandButton text="Submit" id="cb1"
+                          inlineStyle="background-color:#F39C11;"
+                          action="#{pageFlowScope.AuctionOwnershipmBean.Submit}"/>
+                    
+        <af:commandButton text="Cancel" id="cb2"
+                          inlineStyle="background-color:#F39C11;"
+                          actionListener="#{pageFlowScope.AuctionOwnershipmBean.Cancel}"/>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
+</jsp:root>

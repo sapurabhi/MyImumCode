@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PvtWriteOffTF">
+    <default-activity id="__1">resetPvtWriteOff</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__3">PvtWriteOffBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.transactions.pvt.PvtWriteOffBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PvtWriteOff">
+      <page>/jspx/transactions/fragments/PvtWriteOff.jsff</page>
+    </view>
+    <method-call id="resetPvtWriteOff">
+      <method>#{bindings.resetPvtWriteOff.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>resetPvtWriteOff</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">resetPvtWriteOff</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome id="__11">resetPvtWriteOff</from-outcome>
+        <to-activity-id id="__9">PvtWriteOff</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

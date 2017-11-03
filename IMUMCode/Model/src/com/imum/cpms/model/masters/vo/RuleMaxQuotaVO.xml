@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RuleMaxQuotaVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="RuleMaxQuotaEO.PRM_Quota_seq, 
+       RuleMaxQuotaEO.Rule_Id, 
+       RuleMaxQuotaEO.Sector_Code, 
+       RuleMaxQuotaEO.Active_flag, 
+       RuleMaxQuotaEO.Num_Permits_issued, 
+       RuleMaxQuotaEO.Renewal_allowed_flag, 
+       RuleMaxQuotaEO.Changed_flag, 
+       RuleMaxQuotaEO.Created_By, 
+       RuleMaxQuotaEO.Created_Date, 
+       RuleMaxQuotaEO.Updated_by, 
+       RuleMaxQuotaEO.Updated_date, 
+       RuleMaxQuotaEO.quota_num"
+  FromList=" PRM_Rule_Max_quota RuleMaxQuotaEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.RuleMaxQuotaVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.RuleMaxQuotaVOImpl"
+  DefClass="com.imum.cpms.model.masters.vo.RuleMaxQuotaVODefImpl"
+  OrderBy="Created_Date Desc">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Def|Coll|Prog|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="SectorLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.SectorLovVO">
+    <ViewCriteriaUsage
+      Name="SectorLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.SectorLovVO.SectorLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="YesNoLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.YesNoLovVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_SectorCode"
+    ListVOName="SectorLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_SectorCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Renewalallowedflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Renewalallowedflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Renewalallowedflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Activeflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Activeflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Activeflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="RuleMaxQuotaEO"
+    Entity="com.imum.cpms.model.masters.eo.RuleMaxQuotaEO"/>
+  <ViewAttribute
+    Name="PRMQuotaseq"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PRMQuotaseq"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="PRM_Quota_seq"/>
+  <ViewAttribute
+    Name="RuleId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RuleId"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Rule_Id"/>
+  <ViewAttribute
+    Name="SectorCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SectorCode"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Sector_Code"
+    LOVName="LOV_SectorCode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Activeflag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Activeflag"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Active_flag"
+    LOVName="LOV_Activeflag"
+    DefaultValue="N">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NumPermitsissued"
+    PrecisionRule="true"
+    EntityAttrName="NumPermitsissued"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Num_Permits_issued"/>
+  <ViewAttribute
+    Name="Renewalallowedflag"
+    PrecisionRule="true"
+    EntityAttrName="Renewalallowedflag"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Renewal_allowed_flag"
+    LOVName="LOV_Renewalallowedflag"
+    DefaultValue="N">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Changedflag"
+    PrecisionRule="true"
+    EntityAttrName="Changedflag"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Changed_flag"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="Updateddate"
+    PrecisionRule="true"
+    EntityAttrName="Updateddate"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="Updated_date"/>
+  <ViewAttribute
+    Name="ActiveFlagBoolean"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="BIT"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="RenewalFlagBoolean"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="BIT"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="quotanum"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="quotanum"
+    EntityUsage="RuleMaxQuotaEO"
+    AliasName="quota_num"/>
+  <ViewAttribute
+    Name="rowStatus"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

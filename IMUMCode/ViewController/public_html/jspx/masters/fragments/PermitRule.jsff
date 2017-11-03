@@ -1,0 +1,598 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+        
+  <af:panelGroupLayout id="pgl5" layout="vertical">
+    <c:set var="viewcontrollerBundle"
+           value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+    <af:spacer width="10" height="10" id="spacer4"/>
+    <af:panelGroupLayout id="pgl1" layout="horizontal">
+      <af:panelGroupLayout id="pgl7" layout="horizontal" visible="#{pageFlowScope.setvisible}">
+        <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="cb4"
+                          inlineStyle="background-color:#F39C11;"
+                          disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                          action="#{pageFlowScope.permitRulesMBean.SubmitRule}"
+                          partialTriggers="t2"
+                          rendered="#{!pageFlowScope.permitRulesMBean.hide}">
+        <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:commandButton
+                            text="#{viewcontrollerBundle.CANCEL}"
+                            inlineStyle="background-color:#F39C11;" id="cb5" 
+                        actionListener="#{bindings.Rollback.execute}"
+                        immediate="true"
+                        rendered="#{!pageFlowScope.permitRulesMBean.hide}">
+          <af:resetActionListener/>
+          <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+        </af:commandButton>
+      </af:panelGroupLayout>
+      <af:spacer width="425" height="10" id="spacer1"/>
+      <af:commandButton text="#{viewcontrollerBundle.NEW}" id="cb1"  visible="#{!pageFlowScope.setvisible}"
+                        styleClass="checkoutbutton"
+                        inlineStyle="background-color:#e3e3e3;"
+                        icon="/images/new.gif"
+                        action="#{pageFlowScope.permitRulesMBean.NewPermit}"
+                        disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+        <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="cb2" visible="#{!pageFlowScope.setvisible}"
+                        styleClass="checkoutbutton" disabled="#{pageFlowScope.permitRulesMBean.isDisabled}"
+                        inlineStyle="background-color:#e3e3e3;" 
+                        action="#{pageFlowScope.permitRulesMBean.Edit_PermitRule}"
+                        icon="/images/edit.gif">
+        <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s2"/>
+      <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="cb3" visible="#{!pageFlowScope.setvisible}"
+                        styleClass="checkoutbutton"
+                        inlineStyle="background-color:#e3e3e3;"
+                        action="#{pageFlowScope.permitRulesMBean.View_permitRule}"
+                        icon="/images/view.gif">
+        <af:setActionListener from="true" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+    </af:panelGroupLayout>
+   
+      
+  
+    <af:panelGroupLayout id="pgl2"
+                         layout="default">
+                         <af:showDetailHeader text="#{viewcontrollerBundle.PERMIT_RULE}"
+                           disclosed="true" id="sdh6">
+        <af:table value="#{bindings.PermitRuleUVO1.collectionModel}" var="row" 
+                  rows="#{bindings.PermitRuleUVO1.rangeSize}"
+                  emptyText="#{bindings.PermitRuleUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.PermitRuleUVO1.rangeSize}"
+                  rowBandingInterval="1"
+                          varStatus="vs" id="t2"
+                   rowSelection="single" 
+                  selectionListener="#{bindings.PermitRuleUVO1.collectionModel.makeCurrent}"
+                  selectedRowKeys="#{bindings.PermitRuleUVO1.collectionModel.selectedRow}"
+                  inlineStyle="height:234px; width:850px; " scrollPolicy="page" autoHeightRows="0"
+                  binding="#{pageFlowScope.permitRulesMBean.ruleTable}"
+                  filterVisible="true"
+                  filterModel="#{bindings.PermitRuleUVO11Query.queryDescriptor}"
+                  queryListener="#{bindings.PermitRuleUVO11Query.processQuery}"
+                  partialTriggers="::cb4 ::cb5 ::commandButton1 ::commandButton2">
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.RuleId.name}"
+                     filterable="true" sortable="true" filterFeatures="caseInsensitive"
+                     headerText="#{viewcontrollerBundle.RULE_ID}"
+                     id="c5" width="60">
+            <af:outputText value="#{row.RuleId}" id="ot1">
+              <!--<af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.PermitRuleUVO1.hints.RuleId.format}"/>-->
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.catgdesc.name}"
+                     filterable="true" sortable="true"  filterFeatures="caseInsensitive"
+                     headerText="#{viewcontrollerBundle.PERMIT_CATEGORY}"
+                     id="c3" width="105">
+            <af:outputText value="#{row.catgdesc}" id="ot3"/>
+            <!--<f:facet name="filter">
+              <af:image source="/jspx/masters/fragments/Filter.PNG"
+                        shortDesc="Filter Results" id="i1"/>
+            </f:facet>-->
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.permitTypeName.name}"
+                     filterable="true" sortable="true"  filterFeatures="caseInsensitive"
+                     headerText="#{viewcontrollerBundle.PERMIT_TYPE}"
+                     id="c2" width="105">
+            <af:outputText value="#{row.permitTypeName}" id="ot5"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.residence.name}"
+                     filterable="true" sortable="true"  filterFeatures="caseInsensitive"
+                     id="c1" width="105"
+                     headerText="#{viewcontrollerBundle.RESIDENCE_TYPE}">
+            <af:outputText value="#{row.residence}" id="ot2"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.MaxQuota.name}"
+                     filterable="false" sortable="true"
+                     id="c4" width="105"
+                     headerText="#{viewcontrollerBundle.QUOTAUTILITY_BILL}"
+                     align="right">
+            <af:outputText value="#{row.MaxQuota}" id="ot4">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.PermitRuleUVO1.hints.MaxQuota.format}"/>
+            </af:outputText>
+          </af:column>
+          <!--<af:column sortProperty="#{bindings.PermitRuleUVO1.hints.ShortCode.name}"
+                     filterable="false" sortable="true"
+                     id="column3" width="145"
+                     headerText="#{viewcontrollerBundle.SHORT_CODE}">
+            <af:outputText value="#{row.ShortCode}" id="outputText3"/>
+          </af:column>-->
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.EffectivedateFrom.name}"
+                     filterable="false" sortable="true" id="column4" width="115"
+                     headerText="#{viewcontrollerBundle.ACTIVE_FROM_DATE}">
+            <af:outputText value="#{row.EffectivedateFrom}" id="outputText4"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.EffectivedateTo.name}"
+                     filterable="false" sortable="true" id="column2" width="115"
+                     headerText="#{viewcontrollerBundle.ACTIVE_TO_DATE}">
+            <af:outputText value="#{row.EffectivedateTo}" id="outputText2"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitRuleUVO1.hints.ActiveFlag.name}"
+                     filterable="false" sortable="true"
+                     headerText="#{viewcontrollerBundle.ACTIVE_FLAG}" id="column1" width="80"
+                     align="center">
+            <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                      label="#{row.bindings.ActiveFlag.label}" disabled="true"
+                                      shortDesc="#{bindings.PermitRuleUVO1.hints.ActiveFlag.tooltip}"
+                                      id="sbc5"/>
+            <!--<af:outputText value="#{row.ActiveFlag}" id="outputText1">
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.PermitRuleUVO1.hints.MaxQuota.format}"/>
+            </af:outputText>-->
+          </af:column>
+        </af:table>
+      </af:showDetailHeader>
+      
+    </af:panelGroupLayout>
+    <af:spacer width="0" height="10" id="spacer2"/>
+    <af:panelGroupLayout id="pgl9" layout="horizontal"
+                         rendered="#{pageFlowScope.setvisible}"
+                         inlineStyle="width:1000px; ">
+      <af:showDetailHeader text="#{viewcontrollerBundle.PERMIT_RULE}"
+                           disclosed="true" id="sdh2"
+                           inlineStyle="width:1009px;"
+                           rendered="#{!pageFlowScope.permitRulesMBean.hide}">
+        <af:panelFormLayout id="pfl1" rows="1"
+                            inlineStyle="height:122px; width:944px;">
+          <af:selectOneChoice value="#{bindings.CategCode.inputValue}" 
+                              label="#{viewcontrollerBundle.PERMIT_CATEGORY}" immediate="true"
+                              required="#{bindings.CategCode.hints.mandatory}"
+                              shortDesc="#{bindings.CategCode.hints.tooltip}"
+                              id="soc1" autoSubmit="true" showRequired="true"
+                              disabled="true"> <!-- #{!pageFlowScope.permitRulesMBean.submitBtnEnabled} -->
+            <f:selectItems value="#{bindings.CategCode.items}" id="si1"/>
+          </af:selectOneChoice>
+          <af:selectOneChoice value="#{bindings.TypeCode.inputValue}"
+                              label="#{viewcontrollerBundle.PERMIT_TYPE}" 
+                              required="#{bindings.TypeCode.hints.mandatory}"
+                              shortDesc="#{bindings.TypeCode.hints.tooltip}"
+                              id="soc3" partialTriggers="soc1"
+                              showRequired="true" 
+                              disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}">
+            <f:selectItems value="#{bindings.TypeCode.items}" id="si2"/>
+          </af:selectOneChoice>
+          <!--<af:outputText id="ottest1" partialTriggers="soc1" value ="#{bindings.CategCode.attributeValue}  #{bindings.CategCode.inputValue=='INDI'?'true':'false'}"/>-->
+          <af:selectOneChoice value="#{bindings.LocalFlag.inputValue}" 
+                              label="#{viewcontrollerBundle.RESIDENCE_TYPE}"
+                              required="#{bindings.CategCode.attributeValue=='INDI'? 'true' : 'false'}" 
+                              shortDesc="#{bindings.LocalFlag.hints.tooltip}"
+                              id="soc4" partialTriggers="soc3"
+                              disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                              requiredMessageDetail="#{viewcontrollerBundle.PLEASE_SELECT_RESIDENCE_TYPE_F}"
+                              binding="#{pageFlowScope.permitRulesMBean.flag}"
+                              showRequired="#{bindings.CategCode.attributeValue=='INDI'? 'true' : 'false'}" >
+            <f:selectItems value="#{bindings.LocalFlag.items}" id="si4"/>
+          </af:selectOneChoice>
+          <af:inputText value="#{bindings.MaxQuota.inputValue}"
+                        label="#{viewcontrollerBundle.QUOTAUTILITY_BILL}"
+                        required="#{bindings.MaxQuota.hints.mandatory}"
+                        columns="#{bindings.MaxQuota.hints.displayWidth}"
+                        maximumLength="#{bindings.MaxQuota.hints.precision}"
+                        shortDesc="#{bindings.MaxQuota.hints.tooltip}" id="it4"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_MAXPERMIT_QUOTA}"
+                        binding="#{pageFlowScope.permitRulesMBean.maxQuota}"
+                        showRequired="true" >
+            <f:validator binding="#{bindings.MaxQuota.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.MaxQuota.format}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.FreePermits.inputValue}"
+                        label="#{viewcontrollerBundle.FREE_PERMITS}"
+                        required="#{bindings.FreePermits.hints.mandatory}"
+                        columns="#{bindings.FreePermits.hints.displayWidth}"
+                        maximumLength="#{bindings.FreePermits.hints.precision}"
+                        shortDesc="#{bindings.FreePermits.hints.tooltip}"
+                        id="it5"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        binding="#{pageFlowScope.permitRulesMBean.freePermits}">
+            <f:validator binding="#{bindings.FreePermits.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.FreePermits.format}"/>
+          </af:inputText>
+         
+          <af:inputText value="#{bindings.ShortCode.inputValue}"
+                        required="#{bindings.ShortCode.hints.mandatory}"
+                        columns="#{bindings.ShortCode.hints.displayWidth}"
+                        maximumLength="#{bindings.ShortCode.hints.precision}"
+                        shortDesc="#{bindings.ShortCode.hints.tooltip}"
+                        id="it2"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        binding="#{pageFlowScope.permitRulesMBean.shortCode}"
+                        showRequired="true"
+                        label="#{viewcontrollerBundle.SHORT_CODE}">
+            <f:validator binding="#{bindings.ShortCode.validator}"/>
+          </af:inputText>
+          <af:inputDate value="#{bindings.EffectivedateFrom.inputValue}"
+                        label="#{viewcontrollerBundle.EFFECTIVE_FROM_DATE}"
+                        required="#{bindings.EffectivedateFrom.hints.mandatory}"
+                        shortDesc="#{bindings.EffectivedateFrom.hints.tooltip}"
+                        id="id1"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        binding="#{pageFlowScope.permitRulesMBean.startDate}"
+                        showRequired="true">
+            <f:validator binding="#{bindings.EffectivedateFrom.validator}"/>
+            <af:convertDateTime pattern="dd-MM-yyyy" />
+          </af:inputDate>
+          <af:inputDate value="#{bindings.EffectivedateTo.inputValue}"
+                        label="#{viewcontrollerBundle.EFFECTIVE_TO_DATE}"
+                        required="#{bindings.EffectivedateTo.hints.mandatory}"
+                        shortDesc="#{bindings.EffectivedateTo.hints.tooltip}"
+                        id="id2"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        binding="#{pageFlowScope.permitRulesMBean.fromDate}"
+                        showRequired="false">
+            <f:validator binding="#{bindings.EffectivedateTo.validator}"/>
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:inputDate>
+          <af:selectOneRadio value="#{bindings.docverificationflag.inputValue}"
+                             disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                             label="Document Verification Flag"
+                             required="#{bindings.docverificationflag.hints.mandatory}"
+                             shortDesc="#{bindings.docverificationflag.hints.tooltip}"
+                             id="sor1">
+            <f:selectItems value="#{bindings.docverificationflag.items}"
+                           id="si5"/>
+          </af:selectOneRadio>
+          <af:selectBooleanCheckbox value="#{bindings.ActiveFlag1.inputValue}"
+                                    label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                                    shortDesc="#{bindings.ActiveFlag1.hints.tooltip}"
+                                    id="sbc3"
+                                    disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                    binding="#{pageFlowScope.permitRulesMBean.active}"/>
+          <af:inputText value="#{bindings.RenwalGrace.inputValue}"
+                        label="#{viewcontrollerBundle.RENEWAL_GRACE_PERIOD}(In Days) "
+                        required="#{bindings.RenwalGrace.hints.mandatory}"
+                        columns="5"
+                        maximumLength="#{bindings.RenwalGrace.hints.precision}"
+                        shortDesc="#{bindings.RenwalGrace.hints.tooltip}"
+                        id="it1"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        binding="#{pageFlowScope.permitRulesMBean.renewalGrace}">
+            <f:validator binding="#{bindings.RenwalGrace.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.RenwalGrace.format}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.Renewalperiodbeforeexp.inputValue}"
+                        label="Renewal grace period before Permit end date(In Days)"
+                        required="#{bindings.Renewalperiodbeforeexp.hints.mandatory}"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        columns="5"
+                        maximumLength="#{bindings.Renewalperiodbeforeexp.hints.precision}"
+                        shortDesc="#{bindings.Renewalperiodbeforeexp.hints.tooltip}"
+                        id="it9">
+            <f:validator binding="#{bindings.Renewalperiodbeforeexp.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.Renewalperiodbeforeexp.format}"/>
+          </af:inputText>
+          <af:inputText value="#{bindings.PVTgracePeriod.inputValue}"
+                        label="#{viewcontrollerBundle.PVT_GRACE_PERIOD}(In Days) "
+                        required="#{bindings.PVTgracePeriod.hints.mandatory}"
+                        columns="5"
+                        maximumLength="#{bindings.PVTgracePeriod.hints.precision}"
+                        shortDesc="#{bindings.PVTgracePeriod.hints.tooltip}"
+                        id="it3"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_PVT_GRACE_PERIOD_}"
+                        binding="#{pageFlowScope.permitRulesMBean.pvTGrace}"
+                        showRequired="true">
+            <f:validator binding="#{bindings.PVTgracePeriod.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.PVTgracePeriod.format}"/>
+          </af:inputText>
+        </af:panelFormLayout>
+      </af:showDetailHeader>
+    </af:panelGroupLayout>
+    <af:spacer width="0" height="10" id="spacer3"/>
+    <af:panelGroupLayout id="pgl3" layout="horizontal"
+                         rendered="#{pageFlowScope.setvisible}"
+                         
+                          inlineStyle=" width:120px;">
+      <af:showDetailHeader text="#{viewcontrollerBundle.PERMIT_SECTOR_QUOTA}"
+                           disclosed="true" id="sdh1"
+                          inlineStyle=" width:1000px;"
+                           rendered="#{!pageFlowScope.permitRulesMBean.hide}">
+                           
+                           <af:group id="g1">
+                           <af:commandImageLink id="cil1" icon="/images/plus.png"
+                                 disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                 action="#{pageFlowScope.permitRulesMBean.AddRow_Quota}"
+                                 rendered="#{!pageFlowScope.permitRulesMBean.addRowNew}"
+                                 text="#{viewcontrollerBundle.ADD_ROW}"/>
+                                 
+                                 <af:commandImageLink id="commandImageLink2" icon="/images/plus.png"
+                                 disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                 action="#{pageFlowScope.permitRulesMBean.AddRowEdit_Quota}"
+                                 rendered="#{!pageFlowScope.permitRulesMBean.addRowEdit}"
+                                                      text="#{viewcontrollerBundle.ADD_ROW}"/>
+        <af:table value="#{bindings.RuleMaxQuotaVO1.collectionModel}" var="row"
+                  rows="#{bindings.RuleMaxQuotaVO1.rangeSize}"
+                  emptyText="#{bindings.RuleMaxQuotaVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.RuleMaxQuotaVO1.rangeSize}"
+                  rowBandingInterval="1" id="t1"
+                  scrollPolicy="page" autoHeightRows="0"
+                  inlineStyle="height:178px;width:700px">
+          <af:column sortProperty="#{bindings.RuleMaxQuotaVO1.hints.SectorCode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.SECTOR_}"
+                     id="c10" width="100">
+            <af:selectOneChoice value="#{row.bindings.SectorCode.inputValue}"
+                                label="#{row.bindings.SectorCode.label}"
+                                required="#{bindings.RuleMaxQuotaVO1.hints.SectorCode.mandatory}"
+                                shortDesc="#{bindings.RuleMaxQuotaVO1.hints.SectorCode.tooltip}"
+                                id="soc2" autoSubmit="true"
+                                valueChangeListener="#{pageFlowScope.permitRulesMBean.AllSectorCodeCheck}"
+                                disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                requiredMessageDetail="#{viewcontrollerBundle.PLEASE_SELECT_SECTOR_FROM_LIST}"
+                                showRequired="true">
+              <f:selectItems value="#{row.bindings.SectorCode.items}" id="si6"/>
+            </af:selectOneChoice>
+          </af:column>
+          <af:column sortProperty="#{bindings.RuleMaxQuotaVO1.hints.Renewalallowedflag.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.RENEWAL_ALLOWED}"
+                     id="c6" width="100" align="center">
+            <af:selectBooleanCheckbox value="#{row.bindings.RenewalFlagBoolean.inputValue}"
+                                      label="#{row.bindings.RenewalFlagBoolean.label}"
+                                      shortDesc="#{bindings.RuleMaxQuotaVO1.hints.RenewalFlagBoolean.tooltip}"
+                                      id="sbc2"
+                                      disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                      inlineStyle="text-align:center;"/>
+          </af:column>
+          <af:column headerText="#{bindings.RuleMaxQuotaVO1.hints.quotanum.label}"
+                     id="c7" width="202">
+            <af:inputText value="#{row.bindings.quotanum.inputValue}"
+                          label="#{bindings.RuleMaxQuotaVO1.hints.quotanum.label}"
+                          required="#{bindings.RuleMaxQuotaVO1.hints.quotanum.mandatory}"
+                          columns="#{bindings.RuleMaxQuotaVO1.hints.quotanum.displayWidth}"
+                          maximumLength="#{bindings.RuleMaxQuotaVO1.hints.quotanum.precision}"
+                          shortDesc="#{bindings.RuleMaxQuotaVO1.hints.quotanum.tooltip}"
+                          id="it6"
+                          disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                          showRequired="true">
+              <f:validator binding="#{row.bindings.quotanum.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.RuleMaxQuotaVO1.hints.NumPermitsissued.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.NOOF_PERMITSSECTOR}"
+                     id="c8" width="148">
+              <af:outputText value="#{row.bindings.NumPermitsissued.inputValue}"
+                             shortDesc="#{bindings.RuleMaxQuotaVO1.hints.NumPermitsissued.tooltip}"
+                             id="it7" inlineStyle="width:auto;"/>
+              <!--<af:inputText value="#{row.bindings.NumPermitsissued.inputValue}"
+                          label="#{bindings.RuleMaxQuotaVO1.hints.NumPermitsissued.label}"
+                          required="#{bindings.RuleMaxQuotaVO1.hints.NumPermitsissued.mandatory}"
+                          columns="#{bindings.RuleMaxQuotaVO1.hints.NumPermitsissued.displayWidth}"
+                          maximumLength="#{bindings.RuleMaxQuotaVO1.hints.NumPermitsissued.precision}"
+                          shortDesc="#{bindings.RuleMaxQuotaVO1.hints.NumPermitsissued.tooltip}"
+                          id="it7" readOnly="#{pageFlowScope.permitRulesMBean.enabled}"
+                          disabled="#{!pageFlowScope.permitRulesMBean.enabled}"
+                          inlineStyle="width:auto;" rows="1">
+              <f:validator binding="#{row.bindings.NumPermitsissued.validator}"/>
+            </af:inputText>-->
+          </af:column>
+          <af:column sortProperty="#{bindings.RuleMaxQuotaVO1.hints.Activeflag.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                     id="c9" width="50" align="center">
+            <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlagBoolean.inputValue}"
+                                      label="#{row.bindings.ActiveFlagBoolean.label}"
+                                      shortDesc="#{bindings.RuleMaxQuotaVO1.hints.ActiveFlagBoolean.tooltip}"
+                                      id="sbc1"
+                                      disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                      inlineStyle="text-align:center;"
+                                      showRequired="true"/>
+          </af:column>
+         
+          
+          <af:column id="c19" width="50">
+            <af:commandImageLink id="cil3"
+                                 icon="/images/minus.png"
+                                 actionListener="#{bindings.Delete.execute}"
+                                 disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                 />
+          </af:column>
+        </af:table>
+        </af:group>
+      </af:showDetailHeader>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s7"/>
+    <af:panelGroupLayout id="pgl6" layout="horizontal"
+                         rendered="#{pageFlowScope.setvisible}"
+                         inlineStyle="width:920px;">
+      <af:showDetailHeader text="#{viewcontrollerBundle.PERMIT_CHARGES}"
+                           disclosed="true" id="sdh8"
+                           rendered="#{!pageFlowScope.permitRulesMBean.hide}">
+                           <af:group id="g3">
+                           <af:commandImageLink id="cil2" icon="/images/plus.png"
+                                 disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                 action="#{pageFlowScope.permitRulesMBean.AddRow_Charges}"
+                                 rendered="#{!pageFlowScope.permitRulesMBean.addRowNew}"
+                                                text="#{viewcontrollerBundle.ADD_ROW}"/>
+                                 <af:commandImageLink id="commandImageLink1" icon="/images/plus.png"
+                                 disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                                 action="#{pageFlowScope.permitRulesMBean.AddRowEdit_Charges}"
+                                  rendered="#{!pageFlowScope.permitRulesMBean.addRowEdit}"
+                                                      text="#{viewcontrollerBundle.ADD_ROW}"/>
+          
+        <af:table value="#{bindings.PermitChargesVO12.collectionModel}"
+                  var="row" rows="#{bindings.PermitChargesVO12.rangeSize}"
+                  emptyText="#{bindings.PermitChargesVO12.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.PermitChargesVO12.rangeSize}"
+                  rowBandingInterval="1" id="t3"
+                  inlineStyle="height:178px;width:700px" scrollPolicy="page" autoHeightRows="0">
+          <af:column sortProperty="#{bindings.PermitChargesVO12.hints.VadityPeriod.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.VALIDITY_PERIOD}"
+                     id="c11" width="120">
+              <af:selectOneChoice value="#{row.bindings.VadityPeriod.inputValue}"
+                                  label="#{row.bindings.VadityPeriod.label}"
+                                  required="#{bindings.PermitChargesVO12.hints.VadityPeriod.mandatory}"
+                                  shortDesc="#{bindings.PermitChargesVO12.hints.VadityPeriod.tooltip}"
+                                  disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                          id="soc5" requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_VALIDITY_PERIOD}"
+                                  showRequired="true" >
+                <f:selectItems value="#{row.bindings.VadityPeriod.items}"
+                               id="si3"/>
+              </af:selectOneChoice>
+              <!--<af:inputText value="#{row.bindings.VadityPeriod.inputValue}"
+                          label="#{bindings.PermitChargesVO12.hints.VadityPeriod.label}"
+                          required="#{bindings.PermitChargesVO12.hints.VadityPeriod.mandatory}"
+                          columns="#{bindings.PermitChargesVO12.hints.VadityPeriod.displayWidth}"
+                          maximumLength="#{bindings.PermitChargesVO12.hints.VadityPeriod.precision}"
+                          shortDesc="#{bindings.PermitChargesVO12.hints.VadityPeriod.tooltip}"
+                          id="it9"
+                          disabled="#{!pageFlowScope.permitRulesMBean.enabled}"
+                          requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_VALIDITY_PERIOD}"
+                          showRequired="true">
+              <f:validator binding="#{row.bindings.VadityPeriod.validator}"/>
+            </af:inputText>-->
+          </af:column>
+          <af:column headerText="#{viewcontrollerBundle.VEHICLE_NO}"
+                     id="c18" width="85">
+            <af:inputText value="#{row.bindings.NumofVeh.inputValue}"
+                          label="#{bindings.PermitChargesVO12.hints.NumofVeh.label}"
+                          required="#{bindings.PermitChargesVO12.hints.NumofVeh.mandatory}"
+                          columns="#{bindings.PermitChargesVO12.hints.NumofVeh.displayWidth}"
+                          maximumLength="#{bindings.PermitChargesVO12.hints.NumofVeh.precision}"
+                          shortDesc="#{bindings.PermitChargesVO12.hints.NumofVeh.tooltip}"
+                          id="it12"
+                          disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                          requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_VEHICLE_NO}"
+                          showRequired="true">
+              <f:validator binding="#{row.bindings.NumofVeh.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitChargesVO12.hints.AdminChrg.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ADMIN_CHARGESAED}"
+                     id="c12" width="85">
+            <af:inputText value="#{row.bindings.AdminChrg.inputValue}"
+                          label="#{bindings.PermitChargesVO12.hints.AdminChrg.label}"
+                          required="#{bindings.PermitChargesVO12.hints.AdminChrg.mandatory}"
+                          columns="#{bindings.PermitChargesVO12.hints.AdminChrg.displayWidth}"
+                          maximumLength="#{bindings.PermitChargesVO12.hints.AdminChrg.precision}"
+                          shortDesc="#{bindings.PermitChargesVO12.hints.AdminChrg.tooltip}"
+                          id="it10"
+                          disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                          requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_ADMIN_CHARGES}"
+                          showRequired="true">
+              <f:validator binding="#{row.bindings.AdminChrg.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitChargesVO12.hints.Processchrg.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PROCESSING_CHARGESAED}"
+                     id="c13" width="105">
+            <af:inputText value="#{row.bindings.Processchrg.inputValue}"
+                          label="#{bindings.PermitChargesVO12.hints.Processchrg.label}"
+                          required="#{bindings.PermitChargesVO12.hints.Processchrg.mandatory}"
+                          columns="#{bindings.PermitChargesVO12.hints.Processchrg.displayWidth}"
+                          maximumLength="#{bindings.PermitChargesVO12.hints.Processchrg.precision}"
+                          shortDesc="#{bindings.PermitChargesVO12.hints.Processchrg.tooltip}"
+                          id="it11"
+                          disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                          requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_PROCESSING_CHARGE}"
+                          showRequired="true">
+              <f:validator binding="#{row.bindings.Processchrg.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitChargesVO12.hints.Permitchrg.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PERMIT_CHARGESAED}"
+                     id="c15" width="105">
+            <af:inputText value="#{row.bindings.Permitchrg.inputValue}"
+                          label="#{bindings.PermitChargesVO12.hints.Permitchrg.label}"
+                          required="#{bindings.PermitChargesVO12.hints.Permitchrg.mandatory}"
+                          columns="#{bindings.PermitChargesVO12.hints.Permitchrg.displayWidth}"
+                          maximumLength="#{bindings.PermitChargesVO12.hints.Permitchrg.precision}"
+                          shortDesc="#{bindings.PermitChargesVO12.hints.Permitchrg.tooltip}"
+                          id="it8"
+                          disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                          requiredMessageDetail="#{viewcontrollerBundle.PLEASE_ENTER_PERMIT_CHARGES}"
+                          showRequired="true">
+              <f:validator binding="#{row.bindings.Permitchrg.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PermitChargesVO12.hints.Activeflag.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                     id="c14" width="105" align="center">
+            <af:selectBooleanCheckbox value="#{row.bindings.Activeflag.inputValue}"
+                                      label="#{row.bindings.Activeflag.label}"
+                                      shortDesc="#{bindings.PermitChargesVO12.hints.Activeflag.tooltip}"
+                                      id="sbc4"
+                                      showRequired="true"
+                                      disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"/>
+          </af:column>
+          
+           
+         
+            
+          <af:column id="c20" width="50">
+            <af:commandImageLink id="cil4" icon="/images/minus.png"
+                                 actionListener="#{bindings.Delete1.execute}"
+                                 disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"/>
+          </af:column>
+        </af:table>
+        </af:group>
+      </af:showDetailHeader>
+    </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s5"/>
+    <af:panelGroupLayout id="pgl4" rendered="#{pageFlowScope.setvisible}">
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}"
+                        id="commandButton1"
+                        inlineStyle="background-color:#F39C11;"
+                        disabled="#{!pageFlowScope.permitRulesMBean.submitBtnEnabled}"
+                        action="#{pageFlowScope.permitRulesMBean.SubmitRule}"
+                       partialTriggers="t2"
+                        rendered="#{!pageFlowScope.permitRulesMBean.hide}">
+                        <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+                        </af:commandButton>
+      <af:spacer width="10" height="10" id="s6"/>
+      <af:commandButton actionListener="#{bindings.Rollback.execute}"   
+                        text="#{viewcontrollerBundle.CANCEL}"
+                        immediate="true"
+                        inlineStyle="background-color:#F39C11;"
+                        id="commandButton2"                       
+                        rendered="#{!pageFlowScope.permitRulesMBean.hide}">
+        <af:resetActionListener/>
+        <af:setActionListener from="false" to="#{pageFlowScope.setvisible}"/>
+      </af:commandButton>
+      <af:spacer width="10" height="10" id="s4"/>
+      
+      
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
+
+  
+  <!--oracle-jdev-comment:preferred-managed-bean-name:permitRulesMBean-->
+</jsp:root>

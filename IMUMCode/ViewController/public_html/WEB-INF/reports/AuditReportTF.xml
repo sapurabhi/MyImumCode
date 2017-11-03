@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AuditReportTF">
+    <default-activity id="__1">AuditReport</default-activity>
+    <view id="AuditReport">
+      <page>/jspx/reports/fragments/AuditReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

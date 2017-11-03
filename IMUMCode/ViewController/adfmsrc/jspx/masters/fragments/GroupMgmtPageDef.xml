@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="GroupMgmtPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GroupMstUVO2" RangeSize="10"
+              DataControl="MastersAMDataControl" id="GroupMstUVO2Iterator"/>
+    <searchRegion Binds="GroupMstUVO2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="GroupMstUVO2Query"/>
+    <iterator Binds="GroupMstUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="GroupMstUVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="GroupMstUVO2Iterator" id="GroupMstUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.GroupMstUVO"
+                      Name="GroupMstUVO20">
+        <AttrNames>
+          <Item Value="GroupId"/>
+          <Item Value="GroupName"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="ActiveFlag" Binds="ActiveFlag"/>
+          <Item Value="CountryName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="GroupMstUVO2Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <list IterBinding="GroupMstUVO1Iterator" StaticList="false"
+          Uses="LOV_CountryCode" id="CountryCode" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="GroupMstUVO1Iterator" id="GroupName">
+      <AttrNames>
+        <Item Value="GroupName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GroupMstUVO1Iterator" id="GroupDesc">
+      <AttrNames>
+        <Item Value="GroupDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="GroupMstUVO1Iterator" id="ActiveFlag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <attributeValues IterBinding="GroupMstUVO1Iterator" id="GroupId">
+      <AttrNames>
+        <Item Value="GroupId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

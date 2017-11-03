@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="piunassignPageDef"
+                Package="jspx.staffdeployment.jsffragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="EditVO1" RangeSize="25" DataControl="StaffDeployDataControl"
+              id="EditVO1Iterator"/>
+    <iterator Binds="PIAssignSearch1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="PIAssignSearch1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="EditVO1Iterator" id="PIID">
+      <AttrNames>
+        <Item Value="PIID"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="EditVO1Iterator" StaticList="false" Uses="LOV_Sector"
+          id="Sector" DTSupportsMRU="false"/>
+    <list IterBinding="EditVO1Iterator" StaticList="false" Uses="LOV_Zone"
+          id="Zone" DTSupportsMRU="false"/>
+    <list IterBinding="EditVO1Iterator" StaticList="false" Uses="LOV_Beat"
+          id="Beat" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="PIid">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="Sector1">
+      <AttrNames>
+        <Item Value="Sector"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="Zone1">
+      <AttrNames>
+        <Item Value="Zone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="Beat1">
+      <AttrNames>
+        <Item Value="Beat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="unAssignTime">
+      <AttrNames>
+        <Item Value="unAssignTime"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="saveUnassignDtls"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="saveUnassignDtls"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="time" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="PIAssignSearch1Iterator" StaticList="false"
+          Uses="LOV_shift" id="shift" DTSupportsMRU="true"/>
+    <methodAction id="saveReassignDtls"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveReassignDtls" IsViewObjectMethod="false">
+      <NamedData NDName="pidVal" NDType="java.lang.String"/>
+      <NamedData NDName="secVal" NDType="java.lang.String"/>
+      <NamedData NDName="zoneVal" NDType="java.lang.String"/>
+      <NamedData NDName="beatVal" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="NOCpvtReport">
+    <default-activity id="__1">nocpvtsearch</default-activity>
+    <managed-bean id="__15">
+      <managed-bean-name id="__14">NOCreportMB</managed-bean-name>
+      <managed-bean-class id="__12">com.imum.cpms.NOCreportMB</managed-bean-class>
+      <managed-bean-scope id="__13">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="nocpvtsearch">
+      <page>/jspx/transactions/fragments/nocpvtsearch.jsff</page>
+    </view>
+    <view id="NOCReport">
+      <page>/jspx/transactions/fragments/NOCReport.jsff</page>
+    </view>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">nocpvtsearch</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__10">print</from-outcome>
+        <to-activity-id id="__4">NOCReport</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">NOCReport</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome id="__11">Back</from-outcome>
+        <to-activity-id id="__9">nocpvtsearch</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

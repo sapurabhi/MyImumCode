@@ -1,0 +1,749 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+           xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+          <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+         <af:image source="/images/mawaquif2.gif" shortDesc="mawaqif" id="i3"/>
+   <af:spacer width="220" height="10" id="s1"/>
+  <af:image source="/images/mawaquif.gif" shortDesc="DoT" id="i2"/>
+  <table style="width:80%" width="905">
+  <tr >
+<td width="681" height="32"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="ADP Form (Form VRF-4)" id="ot63"
+                                   inlineStyle="font-weight:bolder;"/>
+                                   
+               </td>
+<td width="657" align= "right"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="استمارة شرطة أبوظبي (استمارة رقم 4)	
+" id="ot3" inlineStyle="text-decoration:underline; font-weight:bolder; text-align:right; "/>
+
+               </td>
+
+</tr>
+
+  </table>
+     <af:spacer width="10" height="30" id="s2"/>
+     <table style="width:70%; border-color:Black; border-style:double; border-width:thin;"
+            width="0" height="191">
+          <tr>
+               <td width="442" height="33"
+                   style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="Abu Dhabi/Department of Transportation"
+                                   id="ot2" inlineStyle="font-weight:bolder;"/>
+               </td>
+               <td width="616" height="33" align="right"
+                   style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="أبوظبي/ دائرة النقل			
+" id="ot1" inlineStyle="font-weight:bolder; text-align:left;"/>
+               </td>
+          </tr>
+           
+          <tr>
+               <td width="442" height="19"
+                   style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="Pound Code:" id="ot4"
+                                   inlineStyle="font-weight:bolder;"/><af:outputText value="#{bindings.locationdesc.inputValue}"
+                                                                                     id="ot5"
+                                                                                     inlineStyle="font-weight:bold;"/>
+               </td>
+               <td width="616" height="19" align="right"
+                   style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="رمز مجمع حجز مركبات مواقف : 1			
+" id="ot6" inlineStyle="font-weight:bolder;"/>
+               </td>
+          </tr>
+           
+          <tr>
+               <td width="442" style="border-width:thin;">
+                    <table width="430">
+                         <tr>
+                              <td width="289" height="19"
+                                  style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="02/5121929	
+" id="ot7" inlineStyle="font-weight:bold;"/>
+                              </td>
+                              <td width="256" align="right"
+                                  style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="فاكس شرطة ابوظبي	
+" id="ot8"/>
+                              </td>
+                         </tr>
+                          
+                         <tr>
+                              <td width="289" height="19"> </td>
+                              <td height="13" width="256"> </td>
+                         </tr>
+                          
+                         <tr>
+                              <td height="25" width="289"
+                                  style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="ADP Fax Number	
+" id="ot9" inlineStyle="font-weight:bolder;"/>
+                              </td>
+                              <td width="256"
+                                  style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="02/5121939	
+" id="ot10" inlineStyle="font-weight:bold;"/>
+                              </td>
+                         </tr>
+                    </table>
+               </td>
+               <td width="616">
+                    <table width="493" height="73">
+                         <tr>
+                              <td width="284" height="21"
+                                  style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="............................	
+" id="ot11" inlineStyle="font-weight:bold;"/>
+                              </td>
+                              <td height="21" align="right"
+                                  style="border-color:Black; border-style:double; border-width:thin;"
+                                  width="203">
+
+                                   <af:outputText value="هاتف شرطة ابوظبي :	
+" id="ot12"/>
+                              </td>
+                         </tr>
+                          
+                         <tr>
+                              <td height="18" align="right"
+                                  style="border-color:Black; border-style:double; border-width:thin;"
+                                  width="284">
+                                   <af:outputText value="عناية السيد مساعد اول / عبد الرحمن الحمادي		
+" id="ot13" inlineStyle="font-weight:bolder;"/>
+                              </td>
+                         </tr>
+                          
+                         <tr>
+                              <td style="border-color:Black; border-style:double; border-width:thin;"
+                                  width="284">
+                                   <af:outputText value="ADP Phone Number:		02-4914260	
+" id="ot14" inlineStyle="font-weight:bolder;"/>
+                              </td>
+                              <td height="25" width="203"> </td>
+                         </tr>
+                    </table>
+               </td>
+          </tr>
+     </table>
+ <af:spacer width="10" height="30" id="s3"/>
+<table  style="width:70%; border-color:Black; border-style:double; border-width:thin;"
+            width="0" height="156">
+<tr>
+<td height="17" width="448">
+<table width="438" height="19">
+<tr>
+<td width="197"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="Vehicle Registration Details :		
+"
+                                                  id="ot15"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+<td width="430"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="#{bindings.PLATENUMBER.inputValue}"
+                                                  id="ot16"
+                                                  inlineStyle="font-weight:bold;"/>
+                              </td>
+
+</tr>
+</table>
+
+</td>
+<td height="17" width="485">
+<table width="349" height="19">
+<tr>
+<td style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="/	
+"
+                                                  id="ot17"/>
+                              </td>
+<td style="border-color:Black; border-style:double; border-width:thin;" align = "right">
+                                   <af:outputText value="تفاصيل اللوحة:	
+"
+                                                  id="ot18"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td height="10" width="448">
+<table width="429" height="20">
+<tr>
+<td  width="237" style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="Color:
+"
+                                                  id="ot19"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+<td style="border-color:Black; border-style:double; border-width:thin;"
+   width="186">
+                                   <af:selectOneChoice value="#{bindings.VEHCOLOURID1.inputValue}"
+                                                      
+                                                       required="#{bindings.VEHCOLOURID1.hints.mandatory}"
+                                                       shortDesc="#{bindings.VEHCOLOURID1.hints.tooltip}"
+                                                       id="soc1"
+                                                       readOnly="true"
+                                                       inlineStyle="font-weight:bold;">
+                                        <f:selectItems value="#{bindings.VEHCOLOURID1.items}"
+                                                       id="si1"/>
+                                   </af:selectOneChoice>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td height="10" width="485">
+<table width="349" height="19">
+<tr>
+<td style="border-color:Black; border-style:double; border-width:thin;"
+    width="193">
+                                   <af:selectOneChoice value="#{bindings.VEHCOLOURID1.inputValue}"
+                                                      
+                                                       required="#{bindings.VEHCOLOURID1.hints.mandatory}"
+                                                       shortDesc="#{bindings.VEHCOLOURID1.hints.tooltip}"
+                                                       id="soc2"
+                                                       readOnly="true">
+                                        <f:selectItems value="#{bindings.VEHCOLOURID1.items}"
+                                                       id="si2"/>
+                                   </af:selectOneChoice>
+                              </td>
+<td style="border-color:Black; border-style:double; border-width:thin;" align = "right"
+    width="150">
+                                   <af:outputText value="اللون :
+"
+                                                  id="ot21"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td height="18" width="448">
+<table width="429" height="14">
+<tr>
+<td style="border-color:Black; border-style:double; border-width:thin;"
+    width="211">
+                                   <af:outputText value="Model:
+"
+                                                  id="ot22"
+                                                  inlineStyle="font-weight:bolder;"/><af:selectOneChoice value="#{bindings.VEHMODELID1.inputValue}"
+                                                                                                        
+                                                                                                         required="#{bindings.VEHMODELID1.hints.mandatory}"
+                                                                                                         shortDesc="#{bindings.VEHMODELID1.hints.tooltip}"
+                                                                                                         id="soc3"
+                                                                                                         readOnly="true">
+                                        <f:selectItems value="#{bindings.VEHMODELID1.items}"
+                                                       id="si3"/>
+                                   </af:selectOneChoice>
+                              </td>
+<td style="border-color:Black; border-style:double; border-width:thin;" align = "right" 
+    width="221">
+                                   <af:selectOneChoice value="#{bindings.VEHMODELID1.inputValue}"
+                                                     
+                                                       required="#{bindings.VEHMODELID1.hints.mandatory}"
+                                                       shortDesc="#{bindings.VEHMODELID1.hints.tooltip}"
+                                                       id="soc4"
+                                                       readOnly="true">
+                                        <f:selectItems value="#{bindings.VEHMODELID1.items}"
+                                                       id="si4"/>
+                                   </af:selectOneChoice><af:outputText value="	الموديل/الطراز:
+"
+                                                                  id="ot26"
+                                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td height="18" width="485">
+<table width="349" height="19">
+<tr>
+<td width="212"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="Make :
+"
+                                                  id="ot27"
+                                                  inlineStyle="font-weight:bolder;"/><af:selectOneChoice value="#{bindings.VEHMAKEID1.inputValue}"
+                                                                                                        
+                                                                                                         required="#{bindings.VEHMAKEID1.hints.mandatory}"
+                                                                                                         shortDesc="#{bindings.VEHMAKEID1.hints.tooltip}"
+                                                                                                         id="soc5"
+                                                                                                         readOnly="true">
+                                        <f:selectItems value="#{bindings.VEHMAKEID1.items}"
+                                                       id="si5"/>
+                                   </af:selectOneChoice>
+                              </td>
+<td width="180"
+    style="border-color:Black; border-style:double; border-width:thin;" align = "right">
+                                 <af:selectOneChoice value="#{bindings.VEHMAKEID1.inputValue}"
+                                                                                                        
+                                                                                                         required="#{bindings.VEHMAKEID1.hints.mandatory}"
+                                                                                                         shortDesc="#{bindings.VEHMAKEID1.hints.tooltip}"
+                                                      id="soc7"
+                                                                                                         readOnly="true">
+                                        <f:selectItems value="#{bindings.VEHMAKEID1.items}"
+                                                       id="si7"/>
+                                   </af:selectOneChoice>
+                                   <af:outputText value="النوع
+"
+                                                                  id="ot30"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td  height="16" width="448">
+<table width="422" height="17">
+<tr>
+<td width="208"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="Parked/Offence Location :		
+"
+                                                  id="ot31"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+                              
+<td width="181"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:selectOneChoice value="#{bindings.zonecode1.inputValue}"
+                                                     
+                                                       required="#{bindings.zonecode1.hints.mandatory}"
+                                                       shortDesc="#{bindings.zonecode1.hints.tooltip}"
+                                                       id="soc6"
+                                                       readOnly="true">
+                                        <f:selectItems value="#{bindings.zonecode1.items}"
+                                                       id="si6"/>
+                                   </af:selectOneChoice>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td  height="16" width="485">
+<table width="349" height="14">
+<tr>
+<td width="372"
+    style="border-color:Black; border-style:double; border-width:thin;" align = "right">
+                                   <af:outputText value="#{bindings.zonecode.inputValue}"
+                                                  id="ot33"
+                                                  inlineStyle="font-weight:bold;"/><af:outputText value="موقع المخالفة:
+"
+                                                                            id="ot34" inlineStyle="font-weight:bolder;"/>
+                              </td>
+<td width="371"> </td>
+
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td  height="18" width="448">
+<table width="423" height="21">
+<tr>
+<td style="border-color:Black; border-style:double; border-width:thin;"
+    width="209">
+                                   <af:outputText value="PVT:
+"
+                                                  id="ot35"
+                                                  inlineStyle="font-weight:bolder;"/><af:outputText value="#{bindings.PVTNum.inputValue}"
+                                                                            id="ot36" inlineStyle="font-weight:bold;"/>
+                              </td>
+<td style="border-color:Black; border-style:double; border-width:thin;" align = "right"
+    width="134">
+                                   <af:outputText value="رقم المخالفة:	
+"
+                                                  id="ot37"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+<td  height="18" width="485">
+<table width="349" height="17">
+<tr>
+<td style="border-color:Black; border-style:double; border-width:thin;"
+    width="200">
+                                   <af:outputText value="Contravention Code:	
+"
+                                                  id="ot38"
+                                                  inlineStyle="font-weight:bolder;"/><af:outputText value="#{bindings.Contracode.inputValue}"
+                                                                            id="ot39" inlineStyle="font-weight:bold;">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Contracode.format}"/>
+                                   </af:outputText>
+                              </td>
+<td style="border-color:Black; border-style:double; border-width:thin;" align = "right"
+    width="143">
+                                   <af:outputText value="بند المخالفة:
+"
+                                                  id="ot40"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+
+</tr>
+</table>
+</td>
+</tr>
+</table>
+ <af:spacer width="10" height="30" id="s5"/>
+ 
+<table style="width:70%; border-color:Black; border-style:double; border-width:thin;"
+       width="0" height="245">
+<tr>
+<td height="24"
+    style="border-color:Black; border-style:double; border-width:thin;"
+    width="451">
+                    <af:outputText value="Removed To Pound	
+" id="ot32" inlineStyle="font-weight:bolder;"/>
+               </td>
+<td align = "right" height="24"
+    style="border-color:Black; border-style:double; border-width:thin;"
+    width="482">تفاصيل قطر المركبة </td>
+</tr>
+<tr>
+<td height="37" width="451">
+<table width="551">
+<tr>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;"
+    width="399">
+    <table width="393">
+    
+    <tr>
+    <td style="border-color:Black; border-style:double; border-width:thin; text-align:center;"
+        width="197">
+
+       <af:outputText value = " وقت وتاريخ الاعفاء"
+
+                                                  id="ot41"
+                      inlineStyle="font-weight:bolder;"/>	
+
+    </td>
+     <td style="border-color:Black; border-style:double; border-width:thin; text-align:center;"
+         width="226">
+
+       <af:outputText value = "وقت وتاريخ الوصول"
+
+                                                  id="ot42"
+                      inlineStyle="font-weight:bolder;"/>	
+
+    </td>
+    </tr>
+    <tr>
+    <td style="text-align:center; border-color:Black; border-style:double; border-width:thin;"
+        width="197">
+    
+                                   <af:outputText value="arrived At Pound  "
+                                                  id="ot64"
+                                                  inlineStyle="font-weight:bolder;"/>
+    </td>
+     <td style="text-align:center; border-color:Black; border-style:double; border-width:thin;"
+         width="226">
+    
+                                   <af:outputText value="Released  "
+                                                  id="ot43"
+                                                  inlineStyle="font-weight:bolder;"/>
+    </td>
+    </tr>
+    
+    </table>
+                              </td>
+                              <td width="146"> </td>
+</tr>
+</table>
+</td>
+<td height="37" width="482">
+<table width="199">
+<tr>
+
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;"
+    width="329">
+                                  <table width="162">
+    <tr>
+    <td style="border-color:Black; border-style:double; border-width:thin; text-align:center;">
+
+       <af:outputText value = "وقت وتاريخ القطر"
+
+                                                  id="ot46"
+                                                  inlineStyle="font-weight:bolder;"/>	
+
+    </td>
+    </tr>
+    <tr>
+    <td style="border-color:Black; border-style:double; border-width:thin; text-align:center;">
+    
+                                   <af:outputText value="Lifted	  "
+                                                  id="ot66"
+                                                  inlineStyle="font-weight:bolder;"/>
+    </td>
+    </tr>
+    </table>
+                              </td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+<tr>
+<td height="15" width="451">
+<table width="434">
+<tr>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;"
+    width="46">
+                                   <af:outputText value="Time
+"
+                                                  id="ot45"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;"
+    width="153">
+                                   <af:outputText value="#{bindings.EVENTDATE.inputValue}"
+                                                  id="ot47"
+                                                  inlineStyle="font-weight:bold;">
+                                        <af:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/>
+                                   </af:outputText>
+                              </td>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;"
+    width="229">
+                                   <af:outputText value="#{bindings.EVENTDATE1.inputValue}"
+                                                  id="ot48"
+                                                  inlineStyle="font-weight:bold;">
+                                          <af:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/>
+                                   </af:outputText>
+                              </td>
+</tr>
+
+
+</table>
+</td>
+<td height="15" width="482">
+<table width="360">
+<tr>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="#{bindings.EVENTDATE2.inputValue}"
+                                                  id="ot49"
+                                                  inlineStyle="font-weight:bold;">
+                                           <af:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/>
+                                   </af:outputText>
+                              </td>
+<td height="15"> </td>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;" align = "right">
+                                   <af:outputText value="الوقت
+"
+                                                  id="ot50"/>
+                              </td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+
+
+</table>
+ <af:spacer width="10" height="30" id="s4"/>
+<table style="width:70%; border-color:Black; border-style:double; border-width:thin;">
+<tr>
+<td height="4">
+                    <af:outputText value="Relocated / Street To Street		
+" id="ot29" inlineStyle="font-weight:bolder;"/>
+               </td>
+<td height="4" align = "right">
+                    <af:outputText value="تفاصيل تحريك المركبة	
+" id="ot44" inlineStyle="font-weight:bolder;"/>
+               </td>
+</tr>
+<tr>
+<td height="11" width="776"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="Moved To Location" id="ot51" inlineStyle="font-weight:bolder;"/>
+               </td>
+               <td height="29" class="xl68" dir="RTL" align="right" width="772"
+                   style="height:21.75pt; width:68pt; border-color:Black; border-style:double; border-width:thin;" >
+                    <af:outputText value="نقلت المركبة الى
+" id="ot52" inlineStyle="font-weight:bolder;"/>
+               </td>
+          </tr>
+<tr>
+<td width="776" height="15"> </td>
+<td width="772" height="15"> </td>
+</tr>
+<tr>
+<td width="776"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                    <af:outputText value="DoT Pound Contact Details			
+" id="ot53" inlineStyle="font-weight:bolder;"/>
+               </td>
+<td width="772"
+    style="border-color:Black; border-style:double; border-width:thin;" align = "right">
+                    <af:outputText value="تفاصيل الاتصال بدائرة النقل (قسم مجمع حجز المركبات):			
+" id="ot54" inlineStyle="font-weight:bolder;"/>
+               </td>
+</tr>
+<tr>
+<td width="776">
+<table width="466">
+<tr>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="02-4914298		
+"
+                                                  id="ot55"
+                                                  inlineStyle="font-weight:bold;"/>
+                              </td>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;" align = "right">
+                                   <af:outputText value="رقم الفاكس :	
+"
+                                                  id="ot56"
+                                                  inlineStyle="font-weight:bold;"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+<td width="772">
+<table width="454">
+<tr>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;" >
+                                   <af:outputText value="02-4914260		
+"
+                                                  id="ot59"
+                                                  inlineStyle="font-weight:bold;"/>
+                              </td>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;" align = "right">
+                                   <af:outputText value="رقم الهاتف :
+"
+                                                  id="ot60"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+</tr>
+<tr>
+<td width="776">
+<table width="467">
+<tr>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="Pound Fax Number: 	
+"
+                                                  id="ot57"
+                                                  inlineStyle="font-weight:bolder;"/>
+                              </td>
+<td height="15"
+    style="border-color:Black; border-style:double; border-width:thin;">
+                                   <af:outputText value="02-4914298		
+"
+                                                  id="ot58"
+                                                  inlineStyle="font-weight:bold;"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+<td width="772">
+<table width="448">
+<tr>
+<td height="15">
+                                   <af:outputText value="Pound Phone Number :		
+"
+                                                  id="ot61"
+                                                  inlineStyle="font-weight:bold;"/>
+                              </td>
+<td height="15">
+                                   <af:outputText value="02-4914260
+"
+                                                  id="ot62"
+                                                  inlineStyle="font-weight:bold;"/>
+                              </td>
+
+</tr>
+
+
+</table>
+</td>
+
+
+
+
+</tr>
+</table>
+<table width="922"
+       style="border-color:Black; border-style:double; border-width:thin;">
+<tr>
+<td height="3" align = "center">
+                    <af:outputText value="Note  	
+" id="ot20" inlineStyle="font-weight:bolder;"/>
+               </td>
+<td height="3" align = "center">
+                    <af:outputText value="اسباب تأخر الشاحنة ان وجد :	
+" id="ot23" inlineStyle="font-weight:bolder;"/>
+               </td>
+<td height="3" align = "right">
+                    <af:outputText value="خاص بموظفي دائرة النقل :	
+" id="ot24" inlineStyle="font-weight:bolder;"/>
+               </td>
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+<td  align = "right">
+                    <af:outputText value="التسجيل الاول :
+" id="ot25" inlineStyle="font-weight:bolder;"/>
+               </td>
+
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+<td  align = "right">
+                    <af:outputText value= "التسجيل النهائى :
+" id="ot28" inlineStyle="font-weight:bolder;"/>
+               </td>
+</tr>
+
+</table>
+     <af:panelGroupLayout id="pgl1">
+          <af:commandButton text="Print" id="cb1"
+                            inlineStyle="background-color:#F39C11;"
+                            action="Back">
+               <af:showPrintablePageBehavior/>
+               <af:showPrintablePageBehavior/>
+          </af:commandButton>
+          <af:commandButton text="Back " id="cb2"  inlineStyle="background-color:#F39C11;"
+                            action="Back"/>
+     </af:panelGroupLayout>
+     
+</jsp:root>
+

@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl2">
+   <af:spacer width="425" height="10" id="s4"/>
+    <af:commandButton text="Edit" id="cb1"
+     styleClass="checkoutbutton"
+       icon="/images/edit.gif"
+        inlineStyle="background-color:#e3e3e3;"
+                      action="#{pageFlowScope.BeatMstBean.EditBeatMst}"
+                      disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+                         <af:spacer width="10" height="10" id="s2"/>
+    <af:commandButton text="View" id="cb2"    icon="/images/view.gif"    styleClass="checkoutbutton" inlineStyle="background-color:#e3e3e3;"
+                      action="#{pageFlowScope.BeatMstBean.View}"/>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl0">
+    <af:showDetailHeader text="Beat Master" disclosed="true" id="sdh3">
+    
+   
+    <af:table value="#{bindings.ZoneMstVO1.collectionModel}" var="row"
+            rows="#{bindings.ZoneMstVO1.rangeSize}" autoHeightRows="0"
+            emptyText="#{bindings.ZoneMstVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+            fetchSize="#{bindings.ZoneMstVO1.rangeSize}" rowBandingInterval="1"
+            selectedRowKeys="#{bindings.ZoneMstVO1.collectionModel.selectedRow}"
+            selectionListener="#{bindings.ZoneMstVO1.collectionModel.makeCurrent}"   
+            rowSelection="single" id="t1" inlineStyle="height:126px;" 
+            width="455" styleClass="AFStretchWidth" scrollPolicy="page">
+            
+    <af:column sortProperty="#{bindings.ZoneMstVO1.hints.ZoneCode.name}"
+               sortable="false"
+               headerText="#{bindings.ZoneMstVO1.hints.ZoneCode.label}" id="c4"
+               width="108">
+      <af:outputText value="#{row.ZoneCode}" id="ot2"/>
+    </af:column>
+    <af:column sortProperty="#{bindings.ZoneMstVO1.hints.ZoneName.name}"
+               sortable="false"
+               headerText="#{bindings.ZoneMstVO1.hints.ZoneName.label}" id="c2"
+               width="111">
+      <af:outputText value="#{row.ZoneName}" id="ot4"/>
+    </af:column>
+        <af:column headerText="#{bindings.ZoneMstVO1.hints.GoLiveDate.label}"
+                   id="c11" width="106">
+          <af:outputText value="#{row.GoLiveDate}" id="ot1">
+            <af:convertDateTime pattern="#{bindings.ZoneMstVO1.hints.GoLiveDate.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column 
+                   id="c1" headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                   width="105">
+          <af:selectBooleanCheckbox value="#{bindings.ActiveFlag1.inputValue}"
+                                   label="#{bindings.ActiveFlag1.label}"
+                                  shortDesc="#{bindings.ActiveFlag1.hints.tooltip}"
+                                    id="sbc4" disabled="true"/>
+        </af:column>
+      </af:table>
+   </af:showDetailHeader>
+</af:panelGroupLayout>
+  <af:spacer width="10" height="10" id="s1"/>
+  <af:panelGroupLayout id="pgl3"  visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}" >
+    <af:showDetailHeader text="Zone Details" disclosed="true" id="sdh1">
+      <af:panelFormLayout id="pfl1">
+        <af:panelLabelAndMessage label="#{bindings.ZoneCode.hints.label}"
+                                 id="plam2">
+          <af:outputText value="#{bindings.ZoneCode.inputValue}" id="ot13"/>
+        </af:panelLabelAndMessage>
+        <af:panelLabelAndMessage label="#{bindings.ZoneName.hints.label}"
+                                 id="plam1">
+          <af:outputText value="#{bindings.ZoneName.inputValue}" id="ot14"/>
+        </af:panelLabelAndMessage>
+        <af:panelLabelAndMessage label="#{viewcontrollerBundle.SECTOR_1}"
+                                 id="plam11">
+          <af:outputText value="#{bindings.SectorCode.inputValue}" id="ot7"/>
+        </af:panelLabelAndMessage>
+      
+        <af:selectBooleanCheckbox value="#{bindings.ActiveFlag1.inputValue}"
+                                  label="#{bindings.ActiveFlag1.label}"
+                                  shortDesc="#{bindings.ActiveFlag1.hints.tooltip}"
+                                  id="sbc3" disabled="true"/>
+      </af:panelFormLayout>
+    </af:showDetailHeader>
+  </af:panelGroupLayout>
+  <af:spacer width="10" height="10" id="s3"/>
+  <af:showDetailHeader text="Beat Details" disclosed="true" id="sdh2"  visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}"  >
+    
+    <af:panelGroupLayout id="pgl6">
+  <af:panelGroupLayout id="pgl4">
+  
+                      <af:commandImageLink  action="#{pageFlowScope.BeatMstBean.AddRow}"
+                            text="#{viewcontrollerBundle.ADD_ROW}" icon="/images/plus.png"  disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"                          
+                           id="cil5" />
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl1"  >
+    <af:table value="#{bindings.BeatMstUVO1.collectionModel}" var="row"
+              rows="#{bindings.BeatMstUVO1.rangeSize}"
+              emptyText="#{bindings.BeatMstUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.BeatMstUVO1.rangeSize}"
+              rowBandingInterval="0"
+              selectedRowKeys="#{bindings.BeatMstUVO1.collectionModel.selectedRow}"
+              selectionListener="#{bindings.BeatMstUVO1.collectionModel.makeCurrent}"
+              rowSelection="single" id="t2" inlineStyle="height:151px;"
+              width="867" >
+      <af:column sortProperty="#{bindings.BeatMstUVO1.hints.BeatCode.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.BEAT_CODE}"
+                 id="c6" >
+        <af:inputText value="#{row.bindings.BeatCode.inputValue}" 
+                      label="#{bindings.BeatMstUVO1.hints.BeatCode.label}"
+                      required="#{bindings.BeatMstUVO1.hints.BeatCode.mandatory}"
+                      columns="#{bindings.BeatMstUVO1.hints.BeatCode.displayWidth}"
+                      maximumLength="#{bindings.BeatMstUVO1.hints.BeatCode.precision}"
+                      shortDesc="#{bindings.BeatMstUVO1.hints.BeatCode.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"  
+                      id="it5">
+          <f:validator binding="#{row.bindings.BeatCode.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.BeatMstUVO1.hints.BeatName.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.BEAT_NAME}"
+                 id="c10">
+        <af:inputText value="#{row.bindings.BeatName.inputValue}"
+                      label="#{bindings.BeatMstUVO1.hints.BeatName.label}"
+                      required="#{bindings.BeatMstUVO1.hints.BeatName.mandatory}"
+                      columns="#{bindings.BeatMstUVO1.hints.BeatName.displayWidth}"
+                      maximumLength="#{bindings.BeatMstUVO1.hints.BeatName.precision}"
+                      shortDesc="#{bindings.BeatMstUVO1.hints.BeatName.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                      id="it2">
+          <f:validator binding="#{row.bindings.BeatName.validator}"/>
+        </af:inputText>
+      </af:column>
+          <af:column headerText="#{viewcontrollerBundle.LATTITUDE}"
+                     id="c3">
+            <af:inputText value="#{row.bindings.GeoLatDeg.inputValue}"
+                          label="#{bindings.BeatMstUVO1.hints.GeoLatDeg.label}"
+                          required="#{bindings.BeatMstUVO1.hints.GeoLatDeg.mandatory}"
+                          columns="#{bindings.BeatMstUVO1.hints.GeoLatDeg.displayWidth}"
+                          maximumLength="#{bindings.BeatMstUVO1.hints.GeoLatDeg.precision}"
+                          shortDesc="#{bindings.BeatMstUVO1.hints.GeoLatDeg.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          id="it1">
+              <f:validator binding="#{row.bindings.GeoLatDeg.validator}"/>
+             <!--  <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.BeatMstUVO1.hints.GeoLatDeg.format}"/> -->
+                                   <f:convertNumber pattern="#0.000000" />
+            </af:inputText>
+          </af:column>
+          <af:column headerText="#{viewcontrollerBundle.LONGITUDE}"
+                     id="c5">
+            <af:inputText value="#{row.bindings.GeoLonDeg.inputValue}"
+                          label="#{bindings.BeatMstUVO1.hints.GeoLonDeg.label}"
+                          required="#{bindings.BeatMstUVO1.hints.GeoLonDeg.mandatory}"
+                          columns="#{bindings.BeatMstUVO1.hints.GeoLonDeg.displayWidth}"
+                          maximumLength="#{bindings.BeatMstUVO1.hints.GeoLonDeg.precision}"
+                          shortDesc="#{bindings.BeatMstUVO1.hints.GeoLonDeg.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          id="it3">
+              <f:validator binding="#{row.bindings.GeoLonDeg.validator}"/>
+            <!--   <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.BeatMstUVO1.hints.GeoLonDeg.format}"/> -->
+                                 <f:convertNumber pattern="#0.000000" />
+            </af:inputText>
+          </af:column>
+          <af:column headerText="#{viewcontrollerBundle.GO_LIVE_DATE}"
+                     id="c8">
+            <af:inputDate value="#{row.bindings.GoLiveDate.inputValue}"
+                          label="#{bindings.BeatMstUVO1.hints.GoLiveDate.label}"
+                          required="#{bindings.BeatMstUVO1.hints.GoLiveDate.mandatory}"
+                          shortDesc="#{bindings.BeatMstUVO1.hints.GoLiveDate.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          id="id1">
+              <f:validator binding="#{row.bindings.GoLiveDate.validator}"/>
+              <af:convertDateTime pattern="#{bindings.BeatMstUVO1.hints.GoLiveDate.format}"/>
+            </af:inputDate>
+          </af:column>
+          <af:column sortProperty="#{bindings.BeatMstUVO1.hints.ParkingCap.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.PARKING_CAPACITY}"
+                 id="c9">
+        <af:inputText value="#{row.bindings.ParkingCap.inputValue}"
+                      label="#{bindings.BeatMstUVO1.hints.ParkingCap.label}"
+                      required="#{bindings.BeatMstUVO1.hints.ParkingCap.mandatory}"
+                      columns="#{bindings.BeatMstUVO1.hints.ParkingCap.displayWidth}"
+                      maximumLength="#{bindings.BeatMstUVO1.hints.ParkingCap.precision}"
+                      shortDesc="#{bindings.BeatMstUVO1.hints.ParkingCap.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                      id="it6">
+          <f:validator binding="#{row.bindings.ParkingCap.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.BeatMstUVO1.hints.ParkingCap.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.BeatMstUVO1.hints.RemoveVehicle.name}"
+                 sortable="false"
+                 headerText="#{viewcontrollerBundle.REMOVE_VEHICLE}"
+                 id="c12">
+        <af:selectBooleanCheckbox value="#{row.bindings.RemoveVehicle.inputValue}"
+                                  label="#{row.bindings.RemoveVehicle.label}"
+                                  shortDesc="#{bindings.BeatMstUVO1.hints.RemoveVehicle.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                                  id="sbc2"/>
+      </af:column>
+          <af:column headerText="#{bindings.BeatMstUVO1.hints.ActiveFlag.label}"
+                     id="c7">
+            <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                      label="#{row.bindings.ActiveFlag.label}"
+                                      shortDesc="#{bindings.BeatMstUVO1.hints.ActiveFlag.tooltip}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                                      id="sbc1"/>
+          </af:column>
+        </af:table>
+  </af:panelGroupLayout>
+  </af:panelGroupLayout>
+  </af:showDetailHeader>
+  <af:spacer width="10" height="30" id="s5"/>
+  <af:panelGroupLayout id="pgl5" visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}"  >
+    <af:commandButton text="Submit" id="cb4"  inlineStyle="background-color:#F39C11;"
+                      action="#{pageFlowScope.BeatMstBean.Submit}" disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"/>
+    <af:commandButton text="Cancel"  inlineStyle="background-color:#F39C11;"   id="cb5" 
+                        immediate="true"
+                      actionListener="#{pageFlowScope.BeatMstBean.Cancel}"/>
+  </af:panelGroupLayout>
+</jsp:root>

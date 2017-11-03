@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AuctionEvidenceUploadTF">
+    <default-activity id="__27">auctionEvidenceUpload</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">AuctionEvidenceUploadBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.transactions.aution.AuctionEvidenceUploadBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="auctionEvidenceUpload">
+      <page>/jspx/transactions/fragments/AuctionEvidenceUpload.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

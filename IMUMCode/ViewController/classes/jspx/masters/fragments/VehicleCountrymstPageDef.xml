@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="VehicleCountrymstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VehicleCountrymstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="VehicleCountrymstVO1Iterator"/>
+    <iterator Binds="VehicleCountrymstVO2" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="VehicleCountrymstVO2Iterator"/>
+    <iterator id="VehicleCountrymstlngVO1Iterator"
+              Binds="VehicleCountrymstlngVO1" DataControl="MastersAMDataControl"
+              RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VehicleCountrymstVO1Iterator" id="VehicleCountrymstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehicleCountrymstVO"
+                      Name="VehicleCountrymstVO10">
+        <AttrNames>
+          <Item Value="PlateCountryID"/>
+          <Item Value="Countrycode"/>
+          <Item Value="PlateCountryName"/>
+          <Item Value="mParkPlateCountry"/>
+          <Item Value="ActiveFlag" Binds="ActiveFlag"/>
+          <Item Value="adpplatecountryID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="VehicleCountrymstVO1Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="VehicleCountrymstVO2Iterator"
+                     id="PlateCountryName">
+      <AttrNames>
+        <Item Value="PlateCountryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleCountrymstVO2Iterator"
+                     id="mParkPlateCountry">
+      <AttrNames>
+        <Item Value="mParkPlateCountry"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VehicleCountrymstVO2Iterator"
+                     id="ActiveFlag1">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="VehicleCountrymstVO2Iterator" id="ActiveFlag2"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doNewVehicleCountry"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNewVehicleCountry"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <methodAction id="doEditVehicleCountry"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditVehicleCountry"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doEditVehicleCountry_MastersAMDataControl_dataProvider_doEditVehicleCountry_result">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <button IterBinding="VehicleCountrymstVO2Iterator" id="adpsyncreqflag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="adpsyncreqflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="VehicleCountrymstVO2Iterator"
+                     id="adpplatecountryID">
+      <AttrNames>
+        <Item Value="adpplatecountryID"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

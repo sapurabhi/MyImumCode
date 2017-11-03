@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PVTAppealDetailsRVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  FetchMode="FETCH_AS_NEEDED"
+  FetchSize="11"
+  RangeSize="10">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="BindPvtHdrSeq"
+    Kind="viewcriteria"
+    Type="java.math.BigDecimal">
+    <AttrArray Name="ExtendedDataInts">
+      <Item Value="0"/>
+    </AttrArray>
+  </Variable>
+  <ViewAccessor
+    Name="GenRefDataDetailLovVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.GenRefDataDetailLovVO">
+    <ViewCriteriaUsage
+      Name="GetByRefDataHeaderSeq"
+      FullName="com.imum.cpms.model.transactions.vo.GenRefDataDetailLovVO.GetByRefDataHeaderSeq"/>
+    <ParameterMap>
+      <PIMap Variable="bindRefDataHeaderSeq">
+        <TransientExpression><![CDATA[21]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="GenRefDataDetailLovVO2"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.GenRefDataDetailLovVO">
+    <ViewCriteriaUsage
+      Name="GetByRefDataHeaderSeq"
+      FullName="com.imum.cpms.model.transactions.vo.GenRefDataDetailLovVO.GetByRefDataHeaderSeq"/>
+    <ParameterMap>
+      <PIMap Variable="bindRefDataHeaderSeq">
+        <TransientExpression><![CDATA[23]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="GenRefDataDetailLovVO3"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.GenRefDataDetailLovVO">
+    <ViewCriteriaUsage
+      Name="GetByRefDataHeaderSeq"
+      FullName="com.imum.cpms.model.transactions.vo.GenRefDataDetailLovVO.GetByRefDataHeaderSeq"/>
+    <ParameterMap>
+      <PIMap Variable="bindRefDataHeaderSeq">
+        <TransientExpression><![CDATA[24]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_PVTAppealstatusID"
+    ListVOName="GenRefDataDetailLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PVTAppealstatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AppealstageID"
+    ListVOName="GenRefDataDetailLovVO2"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AppealstageID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AppealstatusID"
+    ListVOName="GenRefDataDetailLovVO3"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AppealstatusID"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[select 
+ah.Appeal_Seq,ah.Appeal_Date, ah.Appeal_stage_ID, ah.Appeal_status_ID, ah.Comments as headerComments,
+ad.PVT_HDR_SEQ, ad.PVT_Appeal_status_ID, ad.APPEALS_PVT_DETAILS_SEQ,ah.reason_id,(select reason_Desc from GEN_Reason_MST where reason_id=ad.decision_reason_id) reason_desc,
+ac.APPEALS_STAGE_DESC, ac.Comments AppealComments,ac.Comments_By CommentsBy
+from 
+PVT_Appeals_Header ah join
+PVT_APPEALS_PVT_DETAILS ad 
+on ah.Appeal_Seq = ad.Appeal_Seq
+left outer join PVT_APPEALS_PVT_Comments ac on ac.APPEALS_PVT_DETAILS_SEQ = ad.APPEALS_PVT_DETAILS_SEQ]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="AppealSeq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="BIGINT"
+    AliasName="Appeal_Seq"
+    Expression="Appeal_Seq"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.AppealSeq_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AppealDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    AliasName="Appeal_Date"
+    Expression="Appeal_Date"
+    SQLType="TIMESTAMP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.AppealDate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AppealstageID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Appeal_stage_ID"
+    Expression="Appeal_stage_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_AppealstageID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.AppealstageID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AppealstatusID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="Appeal_status_ID"
+    Expression="Appeal_status_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_AppealstatusID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.AppealstatusID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="headerComments"
+    IsUpdateable="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CLOB"
+    SQLType="VARCHAR"
+    AliasName="headerComments"
+    Expression="headerComments">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2147483647"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.headerComments_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTHDRSEQ"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="PVT_HDR_SEQ"
+    Expression="PVT_HDR_SEQ"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.PVTHDRSEQ_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTAppealstatusID"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="PVT_Appeal_status_ID"
+    Expression="PVT_Appeal_status_ID"
+    SQLType="INTEGER"
+    LOVName="LOV_PVTAppealstatusID">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.PVTAppealstatusID_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="APPEALSPVTDETAILSSEQ"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    AliasName="APPEALS_PVT_DETAILS_SEQ"
+    Expression="APPEALS_PVT_DETAILS_SEQ"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="reasonid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="3"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    AliasName="reason_id"
+    Expression="reason_id"
+    SQLType="INTEGER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="reasondesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="250"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="reason_desc"
+    Expression="reason_desc"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="250"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="APPEALSSTAGEDESC"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    AliasName="APPEALS_STAGE_DESC"
+    Expression="APPEALS_STAGE_DESC"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO.APPEALSSTAGEDESC_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AppealComments"
+    IsUpdateable="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2147483647"
+    Type="java.lang.String"
+    ColumnType="CLOB"
+    SQLType="VARCHAR"
+    AliasName="AppealComments"
+    Expression="AppealComments">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2147483647"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="APPEAL_COMMENTS"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CommentsBy"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    SQLType="VARCHAR"
+    AliasName="CommentsBy"
+    Expression="CommentsBy">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="GetByPvtHeaderSeq"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PVTAppealDetailsRVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow49"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="PVTHDRSEQ"
+        ViewAttribute="PVTHDRSEQ"
+        Operator="="
+        Conjunction="AND"
+        Value=":BindPvtHdrSeq"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

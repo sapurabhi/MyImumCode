@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelBox text="#{viewcontrollerBundle.LEAVE_SEARCH}" id="pb1"
+               inlineStyle="height:371px; width:1139px;">
+    <f:facet name="toolbar"/>
+    <af:panelFormLayout id="pfl1" inlineStyle="height:82px; width:1218px;">
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:inputText label="#{viewcontrollerBundle.PI_NUMBER_1}" id="it1" disabled="true"
+                    value="#{pageFlowScope.piName}"
+                    binding="#{pageFlowScope.PileavemangementMB.piName}"/>
+      <af:inputDate label="#{viewcontrollerBundle.FROM_DATE}" id="id1"
+                    binding="#{pageFlowScope.PileavemangementMB.id1}"
+                    showRequired="true">
+        <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+      </af:inputDate>
+      <af:inputDate label="#{viewcontrollerBundle.TO_DATE}" id="id2"
+                    binding="#{pageFlowScope.PileavemangementMB.id2}"
+                    showRequired="true">
+        <af:convertDateTime pattern="dd-MM-yyyy" hintDate="dd-MM-yyyy"/>
+      </af:inputDate>
+    
+    </af:panelFormLayout>
+     <af:spacer width="10" height="25" id="s2"/>
+    <af:panelGroupLayout id="pgl2">
+      <af:panelGroupLayout id="pgl1" layout="horizontal"
+                           inlineStyle="width:164px; height:42px;">
+        <af:spacer width="15" height="10" id="s4"/>
+        <af:commandButton text="#{viewcontrollerBundle.SEARCH_3}"
+                         inlineStyle="width:100px;text-align:center;background-color:#F39C11;"
+                          id="cb1"
+                          action="#{pageFlowScope.PileavemangementMB.pileaveSerach}"/>
+        <af:spacer width="10" height="10" id="s3"/>
+        <af:commandButton text="#{viewcontrollerBundle.__BACK}" id="cb2" inlineStyle="width:100px;text-align:center;background-color:#F39C11;"
+                          action="back"
+                          actionListener="#{pageFlowScope.PileavemangementMB.doBack}"/>
+      </af:panelGroupLayout>
+      <af:spacer width="10" height="10" id="s6"/>
+      <af:panelGroupLayout id="pgl3">
+        <af:table value="#{bindings.serchleaveVO1.collectionModel}" var="row"
+                rows="#{bindings.serchleaveVO1.rangeSize}"
+                emptyText="#{bindings.serchleaveVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.serchleaveVO1.rangeSize}"
+                rowBandingInterval="1" id="t1"   width="705"
+                     scrollPolicy="page" autoHeightRows="0" first="0" styleClass="AFStretchWidth"
+                    filterVisible="true" inlineStyle="height:181px;" partialTriggers="::cb1 ::cb2" 
+                rowSelection="single" columnBandingInterval="0">
+        <af:column sortProperty="#{bindings.serchleaveVO1.hints.piid.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PI_NUMBER_2}"
+                   id="c5" width="110">
+          <af:outputText value="#{row.piid}" id="ot4"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.serchleaveVO1.hints.leavetype.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.LEAVE_TYPE}"
+                   id="c4" width="125">
+          <af:outputText value="#{row.leavetype}" id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.serchleaveVO1.hints.fromdate.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.FROM_DATE_0}"
+                   id="c3" width="108">
+          <af:outputText value="#{row.fromdate}" id="ot2">
+            <af:convertDateTime pattern="#{bindings.serchleaveVO1.hints.fromdate.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.serchleaveVO1.hints.ToDate.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.TO_DATE_0}"
+                   id="c1" width="113">
+          <af:outputText value="#{row.ToDate}" id="ot6">
+            <af:convertDateTime pattern="#{bindings.serchleaveVO1.hints.ToDate.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.serchleaveVO1.hints.leavesapplied.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.LEAVES_APPLIED_0}"
+                   id="c6" width="109">
+          <af:outputText value="#{row.leavesapplied}" id="ot5">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.serchleaveVO1.hints.leavesapplied.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.serchleaveVO1.hints.status.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.STATUS_2}"
+                   id="c2" width="107" displayIndex="-1">
+          <af:outputText value="#{row.status}" id="ot3"/>
+        </af:column>
+      </af:table>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+  </af:panelBox>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:PileavemangementMB-->
+</jsp:root>

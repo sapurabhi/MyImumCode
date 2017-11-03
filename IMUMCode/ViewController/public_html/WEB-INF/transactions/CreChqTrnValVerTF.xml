@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="CreChqTrnValVerTF">
+    <default-activity id="__1">CreChqTrnValVer</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__5">CreChqTrnValVerMBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.backing.CreChqTrnValVerMBean</managed-bean-class>
+      <managed-bean-scope id="__4">request</managed-bean-scope>
+    </managed-bean>
+    <view id="CreChqTrnValVer">
+      <page>/jspx/transactions/fragments/CreChqTrnValVer.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

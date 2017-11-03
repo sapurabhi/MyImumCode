@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<skins xmlns="http://myfaces.apache.org/trinidad/skin">
+<skin>
+       <id>cpmsSkin.desktop</id>
+       <family>cpmsSkin</family>
+       <extends>simple.desktop</extends>
+       <render-kit-id>org.apache.myfaces.trinidad.desktop</render-kit-id>
+       <style-sheet-name>css/style1.css</style-sheet-name>
+</skin>
+</skins>

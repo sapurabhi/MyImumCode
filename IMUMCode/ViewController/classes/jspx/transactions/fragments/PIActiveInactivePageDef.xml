@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.65.57" id="PIActiveInactivePageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="jspx.common.cpmsEnglishTemplatePageDef" id="pageTemplateBinding"
+          Refresh="ifNeeded"/>
+    <iterator Binds="GenpiShiftMstVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="GenpiShiftMstVO1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="GenpiShiftMstVO1Iterator" ListOperMode="navigation"
+          ListIter="GenpiShiftMstVO1Iterator" id="GenpiShiftMstVO1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="pishiftdesc"/>
+      </AttrNames>
+    </list>
+    <methodAction id="callGenPiGpsDataMapProc"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callGenPiGpsDataMapProc"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.callGenPiGpsDataMapProc_TransactionsAMDataControl_dataProvider_callGenPiGpsDataMapProc_result">
+      <NamedData NDName="date" NDType="java.sql.Date"/>
+      <NamedData NDName="shift" NDType="java.lang.Integer"/>
+    </methodAction>
+    <methodAction id="getallpicoordinates"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getallpicoordinates" IsViewObjectMethod="false">
+      <NamedData NDName="runseqno" NDType="java.lang.Integer"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

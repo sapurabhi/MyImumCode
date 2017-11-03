@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="MSPPaymentReportTF">
+    <default-activity id="__1">MSPPaymentReport</default-activity>
+    <view id="MSPPaymentReport">
+      <page>/jspx/reports/fragments/MSPPaymentReport.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

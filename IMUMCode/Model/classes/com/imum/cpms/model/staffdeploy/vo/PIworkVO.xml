@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PIworkVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="PIWorkEO.ID, 
+       PIWorkEO.Alloc_id, 
+       PIWorkEO.PI_ID, 
+       PIWorkEO.Status, 
+       PIWorkEO.Sector, 
+       PIWorkEO.Zone, 
+       PIWorkEO.Beat, 
+       PIWorkEO.Assgn_StDate, 
+       PIWorkEO.Assgn_EndDate, 
+       PIWorkEO.CreatedDate"
+  FromList="PI_WorkAssgn PIWorkEO, sup_shift_sector_alloc SupervisorSectorEO"
+  BindingStyle="JDBC"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.staffdeploy.vo.PIworkVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="SectorVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.SectorVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="GenZoneMstLOVVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.GenZoneMstLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="GenBeatMstLOVVO1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.GenBeatMstLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="sectorlistVo1"
+    ViewObjectName="com.imum.cpms.model.staffdeploy.vo.sectorlistVo"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_Sector"
+    ListVOName="sectorlistVo1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Sector"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="sectorname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="sectorname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Zone"
+    ListVOName="GenZoneMstLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Zone"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ZoneCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ZoneName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Beat"
+    ListVOName="GenBeatMstLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Beat"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="BeatCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="BeatName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="PIWorkEO"
+    Entity="com.imum.cpms.model.staffdeploy.eo.PIWorkEO"/>
+  <EntityUsage
+    Name="SupervisorSectorEO"
+    Entity="com.imum.cpms.model.staffdeploy.eo.SupervisorSectorEO"
+    SourceUsage="com.imum.cpms.model.staffdeploy.vo.PIworkVO.PIWorkEO"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <ViewAttribute
+    Name="ID"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="ID"
+    EntityUsage="PIWorkEO"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Allocid"
+    PrecisionRule="true"
+    EntityAttrName="Allocid"
+    EntityUsage="PIWorkEO"
+    AliasName="Alloc_id"/>
+  <ViewAttribute
+    Name="PIID"
+    PrecisionRule="true"
+    EntityAttrName="PIID"
+    EntityUsage="PIWorkEO"
+    AliasName="PI_ID"/>
+  <ViewAttribute
+    Name="Status"
+    PrecisionRule="true"
+    EntityAttrName="Status"
+    EntityUsage="PIWorkEO"
+    AliasName="Status"/>
+  <ViewAttribute
+    Name="Sector"
+    PrecisionRule="true"
+    EntityAttrName="Sector"
+    EntityUsage="PIWorkEO"
+    AliasName="Sector"
+    LOVName="LOV_Sector">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Zone"
+    PrecisionRule="true"
+    EntityAttrName="Zone"
+    EntityUsage="PIWorkEO"
+    AliasName="Zone"
+    LOVName="LOV_Zone">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Beat"
+    PrecisionRule="true"
+    EntityAttrName="Beat"
+    EntityUsage="PIWorkEO"
+    AliasName="Beat"
+    LOVName="LOV_Beat">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssgnStDate"
+    PrecisionRule="true"
+    EntityAttrName="AssgnStDate"
+    EntityUsage="PIWorkEO"
+    AliasName="Assgn_StDate"/>
+  <ViewAttribute
+    Name="AssgnEndDate"
+    PrecisionRule="true"
+    EntityAttrName="AssgnEndDate"
+    EntityUsage="PIWorkEO"
+    AliasName="Assgn_EndDate"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="PIWorkEO"
+    AliasName="CreatedDate"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

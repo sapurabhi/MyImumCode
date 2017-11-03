@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AuditcarddetailsTF">
+    <default-activity id="__1">Auditcarddetails1</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__2">AuditcarddetailsMB</managed-bean-name>
+      <managed-bean-class id="__4">com.imum.cpms.model.masters.AuditcarddetailsMB</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="Auditcarddetails1">
+      <page>/jspx/masters/fragments/Auditcarddetails1.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

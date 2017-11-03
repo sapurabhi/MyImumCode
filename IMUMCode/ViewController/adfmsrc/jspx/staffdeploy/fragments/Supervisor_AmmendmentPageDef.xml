@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="Supervisor_AmmendmentPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="shiftlistVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl" id="shiftlistVO1Iterator"/>
+    <iterator Binds="sectorlistVo1" RangeSize="1000"
+              DataControl="StaffDeployDataControl" id="sectorlistVo1Iterator"/>
+    <iterator Binds="SpvsrDtlsVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl" id="SpvsrDtlsVO1Iterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getSupervisorCurrentSector"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getSupervisorCurrentSector"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.getSupervisorCurrentSector_StaffDeployDataControl_dataProvider_getSupervisorCurrentSector_result">
+      <NamedData NDName="supervisorName" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="shiftlistVO1Iterator" ListOperMode="navigation"
+          ListIter="shiftlistVO1Iterator" id="shiftlistVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="shiftId"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="sectorlistVo1Iterator" ListOperMode="multiSelect"
+          ListIter="sectorlistVo1Iterator" id="sectorlistVo1">
+      <AttrNames>
+        <Item Value="sectorname"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="sectorname"/>
+      </ListDisplayAttrNames>
+    </list>
+    <methodAction id="SaveSup"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="SaveSup" IsViewObjectMethod="false">
+      <NamedData NDName="supname" NDType="java.lang.String"/>
+      <NamedData NDName="mang" NDType="java.lang.String"/>
+      <NamedData NDName="sdate" NDType="java.util.Date"/>
+      <NamedData NDName="endDate" NDType="java.util.Date"/>
+    </methodAction>
+    <methodAction id="SaveAllocDtls"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="SaveAllocDtls" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.SaveAllocDtls_StaffDeployDataControl_dataProvider_SaveAllocDtls_result">
+      <NamedData NDName="selectedsector" NDType="java.util.ArrayList"/>
+    </methodAction>
+    <methodAction id="saveUnAssignPreValues"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveUnAssignPreValues" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.saveUnAssignPreValues_StaffDeployDataControl_dataProvider_saveUnAssignPreValues_result">
+      <NamedData NDName="newAllocid" NDType="java.lang.String"/>
+      <NamedData NDName="oldAllocid" NDType="java.lang.String"/>
+      <NamedData NDName="mang" NDType="java.lang.String"/>
+      <NamedData NDName="supname" NDType="java.lang.String"/>
+      <NamedData NDName="sdate" NDType="java.util.Date"/>
+      <NamedData NDName="endDate" NDType="java.util.Date"/>
+    </methodAction>
+    <list IterBinding="SpvsrDtlsVO1Iterator" ListOperMode="navigation"
+          ListIter="SpvsrDtlsVO1Iterator" id="SpvsrDtlsVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="Supid"/>
+      </AttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

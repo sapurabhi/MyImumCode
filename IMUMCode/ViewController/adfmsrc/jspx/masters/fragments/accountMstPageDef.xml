@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="accountMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AccountMstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="AccountMstVO1Iterator"/>
+    <searchRegion Binds="AccountMstVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="AccountMstVO1Query"/>
+    <iterator Binds="AccountMstVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="AccountMstVO2Iterator"/>
+    <iterator id="AccountMapMstVO1Iterator" Binds="AccountMapMstVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="AccountMstVO1Iterator" id="AccountMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AccountMstVO"
+                      Name="AccountMstVO10">
+        <AttrNames>
+          <Item Value="accmstseq"/>
+          <Item Value="acccode"/>
+          <Item Value="acccode1"/>
+          <Item Value="acccode2"/>
+          <Item Value="acctype"/>
+          <Item Value="accdesc"/>
+          <Item Value="opnbal"/>
+          <Item Value="accrmrks"/>
+          <Item Value="activeflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="AccountMstVO2Iterator" id="accmstseq">
+      <AttrNames>
+        <Item Value="accmstseq"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccountMstVO2Iterator" id="acccode">
+      <AttrNames>
+        <Item Value="acccode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccountMstVO2Iterator" id="acccode1">
+      <AttrNames>
+        <Item Value="acccode1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccountMstVO2Iterator" id="acccode2">
+      <AttrNames>
+        <Item Value="acccode2"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="AccountMstVO2Iterator" StaticList="false"
+          Uses="LOV_acctype" id="acctype" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="AccountMstVO2Iterator" id="accdesc">
+      <AttrNames>
+        <Item Value="accdesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccountMstVO2Iterator" id="opnbal">
+      <AttrNames>
+        <Item Value="opnbal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AccountMstVO2Iterator" id="accrmrks">
+      <AttrNames>
+        <Item Value="accrmrks"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doNewAccnt"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doNewAccnt"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="AccountMstVO1Iterator" id="AccountMstVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AccountMstVO"
+                      Name="AccountMstVO110">
+        <AttrNames>
+          <Item Value="accmstseq"/>
+          <Item Value="acccode"/>
+          <Item Value="acccode1"/>
+          <Item Value="acccode2"/>
+          <Item Value="acctype"/>
+          <Item Value="accdesc"/>
+          <Item Value="opnbal"/>
+          <Item Value="accrmrks"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="doEditAccnt"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doEditAccnt"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doEditAccnt_MastersAMDataControl_dataProvider_doEditAccnt_result">
+      <NamedData NDName="loggerName" NDType="java.lang.String"/>
+      <NamedData NDName="mode" NDType="java.lang.String"/>
+    </methodAction>
+    <button IterBinding="AccountMstVO2Iterator" StaticList="false"
+            Uses="LOV_activeflag" id="activeflag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="activeflag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <list IterBinding="AccountMstVO2Iterator" StaticList="false"
+          Uses="LOV_RevGrpCode" id="RevGrpCode" DTSupportsMRU="true"/>
+    <list IterBinding="AccountMstVO2Iterator" StaticList="false"
+          Uses="LOV_RevTypeCode" id="RevTypeCode" DTSupportsMRU="true"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="HolidayMstTF">
+    <default-activity id="__1">HolidayMst</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__5">HolidayMstMBean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.view.backing.HolidayMstMBean</managed-bean-class>
+      <managed-bean-scope id="__4">request</managed-bean-scope>
+    </managed-bean>
+    <view id="HolidayMst">
+      <page>/jspx/masters/fragments/HolidayMst.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

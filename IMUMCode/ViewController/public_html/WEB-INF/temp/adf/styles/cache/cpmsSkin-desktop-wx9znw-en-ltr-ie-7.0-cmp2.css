@@ -1,0 +1,38 @@
+.x105 .xqe,.x10m .xqe {margin-left:0px}
+.x1pb {position:absolute;background:none;top:-5px;margin-left:2px;width:0px;height:0px;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #ffffff;border-top:none;z-index:2}
+.x1pb.p_AFSelected,.x1pb.p_AFHighlighted {margin-top:1px}
+.x1pe {position:absolute;background:none;top:-1px;width:0px;height:0px;margin-left:3px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #ffffff;border-bottom:none;z-index:2}
+.x1pf {height:0px;width:0px;margin-left:-1px;margin-top:-7px;background:transparent;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid white;z-index:2;position:absolute}
+*.p_AFActiveInlineEditableContainer *.p_AFHoverTarget {border:solid 2px #3399ff}
+.xf2:hover {background-image:url(/afr/ci_ovr.png);width:16px;height:16px}
+.x7j:hover,.x7l:hover,.x7k:hover,.xf6:hover,.xf4:hover,.AFNoteWindowAllButton:hover,.xf5:hover,.x7j:focus:hover,.x7l:focus:hover,.x7k:focus:hover,.xf6:focus:hover,.xf4:focus:hover,.AFNoteWindowAllButton:focus:hover,.xf5:focus:hover,.xlq:hover,.xlr:hover {background-color:#EDFFFF;font-family:Arial,Helvetica,Geneva,sans-serif;font-size:10pt;font-weight:normal;color:#000000}
+.xgw:hover {background-image:url(/afr/timedate_ovr.png)}
+.xjb:hover {background-image:url(/afr/breadcrumb_overflow_mo.png)}
+.xjv:hover,.xjw:hover,.xjr:hover,.xjy:hover,.xjs:hover,.xjt:hover {background-image:url(/afr/overflow_end_mo.png)}
+.xky:hover {background-image:url(/afr/mTrain_unvisited_mo.png);background-repeat:no-repeat;display:block;width:13px;height:13px;text-decoration:none}
+.xkz:hover {height:13px;width:13px;background-image:url(/afr/mTrain_visited_mo.png);background-repeat:no-repeat;display:block;text-decoration:none}
+.xlg:hover {background-image:url(/afr/mTrain_visited_mo.png)}
+.xlh:hover {background-image:url(/afr/mTrain_unvisited_mo.png)}
+.xmv.p_AFSelected:hover,.xmw.p_AFSelected:hover,.xmu.p_AFSelected:hover {background-color:#9CACC9;color:#FFFFFF;text-decoration:underline}
+.xmw:hover,.xmu:hover {text-decoration:underline;color:#9CACC9}
+.xmj:hover {text-decoration:underline;padding:1px}
+.xsv:hover,.xt5:hover {font-size:14px;padding-right:16px;margin-left:1px;margin-right:1px;background-repeat:no-repeat;display:inline-block;background-image:url(/afr/hierchselector_ovr.png);background-position:top;margin:0px}
+.x10b:hover {background-image:url(/afr/sort_asc_mo.png)}
+.x10c:hover {background-image:url(/afr/sort_des_mo.png)}
+.x12c:hover {background-image:url(/afr/tearOff_bg_mo.png)}
+.x12d:hover {background-image:url(/afr/grip_mo.png)}
+.x170:hover {background-image:url(/afr/delete_ovr.png)}
+.x18p:hover,.x18q:hover {background-image:url(/afr/play_ovr.png)}
+.x18r:hover,.x18s:hover {background-image:url(/afr/pause_ovr.png)}
+.xjn:hover,.xjx:hover,.xjo:hover,.xjp:hover {background-image:url(/afr/overflow_start_mo.png)}
+.xko:hover,.xkp:hover {background-image:url(/afr/conv_l_ovr.png)}
+.xkq:hover,.xkr:hover {background-image:url(/afr/conv_r_ovr.png)}
+.xsg.p_AFCompact:hover,.xsg.p_AFSmall:hover {background-image:url(/afr/singleCard_left_ovr.png)}
+.xsg.p_AFCompact:active:hover,.xsg.p_AFSmall:active:hover {background-image:url(/afr/singleCard_left_dwn.png)}
+.xsh.p_AFCompact:hover,.xsh.p_AFSmall:hover {background-image:url(/afr/singleCard_right_ovr.png)}
+.xsh.p_AFCompact:active:hover,.xsh.p_AFSmall:active:hover {background-image:url(/afr/singleCard_right_dwn.png)}
+.xsi.p_AFCompact:hover,.xsi.p_AFSmall:hover {background-image:url(/afr/singleCard_up_ovr.png)}
+.xsi.p_AFCompact:active:hover,.xsi.p_AFSmall:active:hover {background-image:url(/afr/singleCard_up_dwn.png)}
+.xsj.p_AFCompact:hover,.xsj.p_AFSmall:hover {background-image:url(/afr/singleCard_down_ovr.png)}
+.xsj.p_AFCompact:active:hover,.xsj.p_AFSmall:active:hover {background-image:url(/afr/singleCard_down_dwn.png)}
+/* The number of CSS selectors in this file is 78 */

@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PVTIssuanceVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  FetchMode="FETCH_AS_NEEDED"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+  ComponentClass="com.imum.cpms.model.transactions.vo.PVTIssuanceVOImpl"
+  RowClass="com.imum.cpms.model.transactions.vo.PVTIssuanceVORowImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.transactions.vo.PVTIssuanceVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="ContraCodeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.ContraCodeLOVVO">
+    <ViewCriteriaUsage
+      Name="ContraCodeLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.ContraCodeLOVVO.ContraCodeLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PlateCategoryLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PlateCategoryLOVVO">
+    <ViewCriteriaUsage
+      Name="PlateCategoryLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.PlateCategoryLOVVO.PlateCategoryLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="bindplateCountrynewId">
+        <TransientExpression><![CDATA[PlateCountry]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PlateTypeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PlateTypeLOVVO">
+    <ViewCriteriaUsage
+      Name="PlateTypeLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.PlateTypeLOVVO.PlateTypeLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="plate_ctg_id">
+        <TransientExpression><![CDATA[PlateCategory]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehicleMakeLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.VehicleMakeLOVVO">
+    <ViewCriteriaUsage
+      Name="VehicleMakeLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.VehicleMakeLOVVO.VehicleMakeLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehicleModelLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.VehicleModelLOVVO">
+    <ViewCriteriaUsage
+      Name="VehicleModelLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.VehicleModelLOVVO.VehicleModelLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="make_id">
+        <TransientExpression><![CDATA[VehicleMake]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="SectorLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.SectorLovVO">
+    <ViewCriteriaUsage
+      Name="SectorLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.SectorLovVO.SectorLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="VehicleColourLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.VehicleColourLOVVO">
+    <ViewCriteriaUsage
+      Name="VehicleColourLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.VehicleColourLOVVO.VehicleColourLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PVTTariffTypesLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.PVTTariffTypesLOVVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VehiclePlateCountryLVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO">
+    <ViewCriteriaUsage
+      Name="getByPlalateCountryId"
+      FullName="com.imum.cpms.model.masters.vo.VehiclePlateCountryLVO.getByPlalateCountryId"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="ZoneLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.ZoneLOVVO">
+    <ViewCriteriaUsage
+      Name="ZoneLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.ZoneLOVVO.ZoneLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="bindSectorCode">
+        <TransientExpression><![CDATA[Sector]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="ContraDescLOVVO1"
+    ViewObjectName="com.imum.cpms.model.transactions.vo.ContraDescLOVVO">
+    <ViewCriteriaUsage
+      Name="ContraDescLOVVOCriteria"
+      FullName="com.imum.cpms.model.transactions.vo.ContraDescLOVVO.ContraDescLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="bindContraCode">
+        <TransientExpression><![CDATA[ContraventionCode]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_ContraventionCode"
+    ListVOName="ContraCodeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ContraventionCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ContraventionCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ContraCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CodeNameEn"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlateCategory"
+    ListVOName="PlateCategoryLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PlateCategory_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateCategory"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="platectgid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="platectgdesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlateType"
+    ListVOName="PlateTypeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PlateType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="platetypeid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="platetypedesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Sector"
+    ListVOName="SectorLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Sector_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Sector"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VehicleMake"
+    ListVOName="VehicleMakeLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VehicleMake_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VehicleMake"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="makeid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="makename"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VehicleModel"
+    ListVOName="VehicleModelLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VehicleModel_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VehicleModel"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="modelid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="modelname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_VehicleColor"
+    ListVOName="VehicleColourLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_VehicleColor_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="VehicleColor"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="colourid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="colourname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_TariffType"
+    ListVOName="PVTTariffTypesLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_TariffType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="TariffType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ValueDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlateCountry"
+    ListVOName="VehiclePlateCountryLVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_PlateCountry_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlateCountry"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PlateCountryID"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PlateCountryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Zone"
+    ListVOName="ZoneLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Zone_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Zone"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="zonecode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="zonename"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ContraventionDescription"
+    ListVOName="ContraDescLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ContraventionDescription_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ContraventionDescription"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ContraCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DescEn"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ViewAttribute
+    Name="PVTNumber"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <validation:RegExpValidationBean
+      Name="PVTNumber_Rule_1"
+      ResId="com.imum.cpms.model.transactions.vo.PVTIssuanceVO.PVTNumber_Rule_2"
+      OnAttribute="PVTNumber"
+      Pattern="^([0-9A-D\-])*$"
+      Inverse="false"/>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateCategory"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="Plate_Category"
+    SQLType="INTEGER"
+    LOVName="LOV_PlateCategory"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <AUTOSUBMIT
+          Value="true"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateType"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="Plate_Type"
+    SQLType="VARCHAR"
+    LOVName="LOV_PlateType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateNumber"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="ContraventionCode"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_ContraventionCode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Sector"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_Sector">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Country"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    DefaultValue="ARE"/>
+  <ViewAttribute
+    Name="City"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    DefaultValue="DFA"/>
+  <ViewAttribute
+    Name="VehicleGeoLatitude"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="VehicleGeoLongitude"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="VehicleMake"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_VehicleMake">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VehicleModel"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_VehicleModel">
+    <Dependencies>
+      <Item
+        Value="VehicleMake"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="VehicleColor"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_VehicleColor">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TariffType"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_TariffType"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlateCountry"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    LOVName="LOV_PlateCountry"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Zone"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    IsQueriable="false"
+    LOVName="LOV_Zone">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PVTIssuanceDate"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    AliasName="VIEW_ATTR"
+    SQLType="TIMESTAMP"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="ContraventionDescription"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"
+    IsQueriable="false"
+    LOVName="LOV_ContraventionDescription">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

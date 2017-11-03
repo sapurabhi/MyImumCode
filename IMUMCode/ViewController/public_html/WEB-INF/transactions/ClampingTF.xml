@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ClampingTF">
+    <default-activity id="__1">Clamping</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__5">ClampingMbean</managed-bean-name>
+      <managed-bean-class id="__3">com.imum.cpms.transactions.ClampingMbean</managed-bean-class>
+      <managed-bean-scope id="__2">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="Clamping">
+      <page>/jspx/transactions/fragments/Clamping.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

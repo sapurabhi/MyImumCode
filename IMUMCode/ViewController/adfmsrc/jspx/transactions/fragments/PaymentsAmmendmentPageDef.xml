@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PaymentsAmmendmentPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="SaleReceiptDetailVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="SaleReceiptDetailVO1Iterator"/>
+    <iterator Binds="saleReceiptSettlVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="saleReceiptSettlVO1Iterator"/>
+    <iterator Binds="saleReceiptSettlVO2" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="saleReceiptSettlVO2Iterator"/>
+    <iterator Binds="PaymentTypeLOVVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PaymentTypeLOVVO1Iterator"/>
+    <iterator Binds="PaymentTypeLOVVO1" RangeSize="-1"
+              DataControl="TransactionsAMDataControl"
+              id="PaymentTypeLOVVO1Iterator1"/>
+    <iterator Binds="BulkCreditTypeLOVVO1" RangeSize="-1"
+              DataControl="TransactionsAMDataControl"
+              id="BulkCreditTypeLOVVO1Iterator"/>
+    <iterator Binds="BulkCreditTypeLOVVO1" RangeSize="-1"
+              DataControl="TransactionsAMDataControl"
+              id="BulkCreditTypeLOVVO1Iterator1"/>
+    <iterator Binds="PaymentTypeLOVVO1" RangeSize="-1"
+              DataControl="TransactionsAMDataControl"
+              id="PaymentTypeLOVVO1Iterator2"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="SaleReceiptDetailVO1Iterator" id="SaleReceiptDetailVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.SaleReceiptDetailVO"
+                      Name="SaleReceiptDetailVO10">
+        <AttrNames>
+          <Item Value="Prodcode"/>
+          <Item Value="SaleAmt"/>
+          <Item Value="prodname"/>
+          <Item Value="TransactionRefNo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="SearchReceiptNumber"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="SearchReceiptNumber" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.SearchReceiptNumber_TransactionsAMDataControl_dataProvider_SearchReceiptNumber_result">
+      <NamedData NDName="receiptNumber" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="saleReceiptSettlVO1Iterator" id="saleReceiptSettlVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.saleReceiptSettlVO"
+                      Name="saleReceiptSettlVO10">
+        <AttrNames>
+          <Item Value="PYMTAMT"/>
+          <Item Value="PYMTType" Binds="PYMTType2"/>
+          <Item Value="Paymentdesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="AuthCode">
+      <AttrNames>
+        <Item Value="AuthCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="CCDType">
+      <AttrNames>
+        <Item Value="CCDType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="CCDnum">
+      <AttrNames>
+        <Item Value="CCDnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="ChqBankname">
+      <AttrNames>
+        <Item Value="ChqBankname"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="ChqDate">
+      <AttrNames>
+        <Item Value="ChqDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="Chqnum">
+      <AttrNames>
+        <Item Value="Chqnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="CreatedDate">
+      <AttrNames>
+        <Item Value="CreatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="PYMTAMT">
+      <AttrNames>
+        <Item Value="PYMTAMT"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO1Iterator" id="PYMTType">
+      <AttrNames>
+        <Item Value="PYMTType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO2Iterator" id="AuthCode1">
+      <AttrNames>
+        <Item Value="AuthCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO2Iterator" id="CCDType1">
+      <AttrNames>
+        <Item Value="CCDType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO2Iterator" id="CCDnum1">
+      <AttrNames>
+        <Item Value="CCDnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO2Iterator"
+                     id="ChqBankname1">
+      <AttrNames>
+        <Item Value="ChqBankname"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO2Iterator" id="ChqDate1">
+      <AttrNames>
+        <Item Value="ChqDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO2Iterator" id="Chqnum1">
+      <AttrNames>
+        <Item Value="Chqnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="saleReceiptSettlVO2Iterator" id="PYMTAMT1">
+      <AttrNames>
+        <Item Value="PYMTAMT"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="saleReceiptSettlVO2Iterator" id="PYMTType1"
+          DTSupportsMRU="true" Uses="LOV_PYMTType" StaticList="false"/>
+    <list IterBinding="saleReceiptSettlVO1Iterator" id="PYMTType2"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="PaymentTypeLOVVO1Iterator2">
+      <AttrNames>
+        <Item Value="PYMTType"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="Payment_code"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Paymnt_desc"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="saleReceiptSettlVO1Iterator" id="CCDType2"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="BulkCreditTypeLOVVO1Iterator">
+      <AttrNames>
+        <Item Value="CCDType"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="CreditType"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="CreditDesc"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="saleReceiptSettlVO2Iterator" id="CCDType3"
+          DTSupportsMRU="true" StaticList="false"
+          ListIter="BulkCreditTypeLOVVO1Iterator1">
+      <AttrNames>
+        <Item Value="CCDType"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="CreditType"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="CreditDesc"/>
+      </ListDisplayAttrNames>
+    </list>
+    <methodAction id="PRMentryEventDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="PRMentryEventDetails" IsViewObjectMethod="false">
+      <NamedData NDName="oldpayment" NDType="java.lang.String"/>
+      <NamedData NDName="newpayment" NDType="java.lang.String"/>
+      <NamedData NDName="permitnumber" NDType="java.lang.String"/>
+      <NamedData NDName="loggedinuser" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="PVTentryEventDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="PVTentryEventDetails" IsViewObjectMethod="false">
+      <NamedData NDName="oldpayment" NDType="java.lang.String"/>
+      <NamedData NDName="newpayment" NDType="java.lang.String"/>
+      <NamedData NDName="PVTNumber" NDType="java.lang.String"/>
+      <NamedData NDName="loggedinuser" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="CARDentryEventDetails"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CARDentryEventDetails" IsViewObjectMethod="false">
+      <NamedData NDName="oldpayment" NDType="java.lang.String"/>
+      <NamedData NDName="newpayment" NDType="java.lang.String"/>
+      <NamedData NDName="cardnumber" NDType="java.lang.String"/>
+      <NamedData NDName="loggedinuser" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <methodAction id="doRollback"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doRollback" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doRollback_TransactionsAMDataControl_dataProvider_doRollback_result"/>
+    <tree IterBinding="saleReceiptSettlVO1Iterator" id="saleReceiptSettlVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.saleReceiptSettlVO"
+                      Name="saleReceiptSettlVO110">
+        <AttrNames>
+          <Item Value="PYMTAMT"/>
+          <Item Value="PYMTType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

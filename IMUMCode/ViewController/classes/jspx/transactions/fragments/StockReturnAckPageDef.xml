@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="StockReturnAckPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="StckRetAckVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="StckRetAckVO1Iterator"/>
+    <iterator Binds="InvDetailUVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="InvDetailUVO1Iterator"/>
+    <iterator Binds="IssReturnDtlUVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="IssReturnDtlUVO1Iterator"/>
+    <iterator Binds="LocationIDRVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="LocationIDRVO1Iterator"/>
+    <iterator Binds="IssReturnHdrUVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="IssReturnHdrUVO1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="StckRetAckVO1Iterator" StaticList="false"
+          Uses="LOV_CardStatus" id="CardStatus" DTSupportsMRU="true"/>
+    <tree IterBinding="InvDetailUVO1Iterator" id="InvDetailUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InvDetailUVO"
+                      Name="InvDetailUVO10">
+        <AttrNames>
+          <Item Value="SelectFlag" Binds="SelectFlag"/>
+          <Item Value="CardDenomAmt"/>
+          <Item Value="Cardnum"/>
+          <Item Value="cardTypeDesc"/>
+          <Item Value="cardStatusDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="InvDetailUVO1Iterator" id="SelectFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SelectFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <methodAction id="pushIssReturnHeader"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="pushIssReturnHeader" IsViewObjectMethod="false">
+      <NamedData NDName="toLoc" NDType="java.lang.Integer"/>
+      <NamedData NDName="fromLoc" NDType="java.lang.Integer"/>
+      <NamedData NDName="dispatchDate" NDType="java.sql.Date"/>
+      <NamedData NDName="createdBy" NDType="java.lang.String"/>
+      <NamedData NDName="tranType" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="IssReturnDtlUVO1Iterator" id="IssReturnDtlUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.IssReturnDtlUVO"
+                      Name="IssReturnDtlUVO10">
+        <AttrNames>
+          <Item Value="CardDenomAmt"/>
+          <Item Value="CardType"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="FromCardnum"/>
+          <Item Value="Issreturntrndetailseq"/>
+          <Item Value="Issreturntrnseq"/>
+          <Item Value="RetrunReasons"/>
+          <Item Value="Tocardnum"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getissdetailSeq"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getissdetailSeq" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.getissdetailSeq_TransactionsAMDataControl_dataProvider_getissdetailSeq_result"/>
+    <list IterBinding="LocationIDRVO1Iterator" ListOperMode="navigation"
+          ListIter="LocationIDRVO1Iterator" id="LocationIDRVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="LocDesc"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="IssReturnHdrUVO1Iterator" id="IssReturnHdrUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.IssReturnHdrUVO"
+                      Name="IssReturnHdrUVO10">
+        <AttrNames>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="DispatchDate"/>
+          <Item Value="FromLocation"/>
+          <Item Value="Issreturntrnseq"/>
+          <Item Value="ToLocation"/>
+          <Item Value="TrnType"/>
+          <Item Value="Updatedby"/>
+          <Item Value="Updateddate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

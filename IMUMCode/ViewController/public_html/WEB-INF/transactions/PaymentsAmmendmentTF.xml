@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PaymentsAmmendmentTF">
+    <default-activity id="__1">PaymentsAmmendment</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__4">PaymentsAmmMBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.PaymentsAmmMBean</managed-bean-class>
+      <managed-bean-scope id="__5">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PaymentsAmmendment">
+      <page>/jspx/transactions/fragments/PaymentsAmmendment.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

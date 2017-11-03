@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="Auditcarddetails1PageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AuditHeaderVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="AuditHeaderVO1Iterator"/>
+    <iterator Binds="AuditCardsearchVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="AuditCardsearchVO1Iterator"/>
+    <iterator id="AuditHeaderVO2Iterator" Binds="AuditHeaderVO2"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="AuditCardcountdtlsVO1Iterator" Binds="AuditCardcountdtlsVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="AuditCardcountdtlsVO2Iterator" Binds="AuditCardcountdtlsVO2"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator Binds="AuditcardDetailsVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="AuditcardDetailsVO1Iterator"/>
+    <iterator Binds="AuditcardDetailsVO2" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="AuditcardDetailsVO2Iterator"/>
+    <iterator Binds="auditcardDetailsRVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="auditcardDetailsRVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="AuditHeaderVO1Iterator" id="AuditHeaderVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditHeaderVO"
+                      Name="AuditHeaderVO10">
+        <AttrNames>
+          <Item Value="AuditSeq"/>
+          <Item Value="AuditDate"/>
+          <Item Value="locationid"/>
+          <Item Value="AuditorID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="loctionSearch"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="loctionSearch"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.loctionSearch_MastersAMDataControl_dataProvider_loctionSearch_result">
+      <NamedData NDName="locid" NDType="int"/>
+      <NamedData NDName="date" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <list IterBinding="AuditHeaderVO2Iterator" StaticList="false"
+          Uses="LOV_locationid" id="locationid" DTSupportsMRU="true"/>
+    <tree IterBinding="AuditCardcountdtlsVO2Iterator"
+          id="AuditCardcountdtlsVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditCardcountdtlsVO"
+                      Name="AuditCardcountdtlsVO20">
+        <AttrNames>
+          <Item Value="Cardnumfrom"/>
+          <Item Value="CardnumTo"/>
+          <Item Value="Systemcount"/>
+          <Item Value="actualcount"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AuditCardcountdtlsVO2Iterator"
+          id="AuditCardcountdtlsVO21">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditCardcountdtlsVO"
+                      Name="AuditCardcountdtlsVO210">
+        <AttrNames>
+          <Item Value="Cardnumfrom"/>
+          <Item Value="CardnumTo"/>
+          <Item Value="CardTypeCode"/>
+          <Item Value="Systemcount"/>
+          <Item Value="actualcount"/>
+          <Item Value="Auditcardcntseq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AuditcardDetailsVO1Iterator" id="AuditcardDetailsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditcardDetailsVO"
+                      Name="AuditcardDetailsVO10">
+        <AttrNames>
+          <Item Value="cardnumber"/>
+          <Item Value="Remarks"/>
+          <Item Value="excessshortageflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MastersAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="MastersAMDataControl"/>
+    <action IterBinding="AuditcardDetailsVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="AuditcardDetailsVO1Iterator" id="AuditcardDetailsVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditcardDetailsVO"
+                      Name="AuditcardDetailsVO110">
+        <AttrNames>
+          <Item Value="cardnumber"/>
+          <Item Value="Remarks"/>
+          <Item Value="excessshortageflag"/>
+          <Item Value="auditseq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AuditCardsearchVO1Iterator" id="AuditCardsearchVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditCardsearchVO"
+                      Name="AuditCardsearchVO110">
+        <AttrNames>
+          <Item Value="DenominationType"/>
+          <Item Value="cardfrom"/>
+          <Item Value="cardto"/>
+          <Item Value="totalcards"/>
+          <Item Value="countcards"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AuditcardDetailsVO1Iterator" id="AuditcardDetailsVO12">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditcardDetailsVO"
+                      Name="AuditcardDetailsVO120">
+        <AttrNames>
+          <Item Value="cardnumber"/>
+          <Item Value="Remarks"/>
+          <Item Value="excessshortageflag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AuditcardDetailsVO2Iterator" id="AuditcardDetailsVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.AuditcardDetailsVO"
+                      Name="AuditcardDetailsVO20">
+        <AttrNames>
+          <Item Value="Auditcardseq"/>
+          <Item Value="Auditcardcntseq"/>
+          <Item Value="auditseq"/>
+          <Item Value="cardnumber"/>
+          <Item Value="createdby"/>
+          <Item Value="createddate"/>
+          <Item Value="excessshortageflag"/>
+          <Item Value="Remarks"/>
+          <Item Value="updatedby"/>
+          <Item Value="updateddate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="auditcardDetailsRVO1Iterator" id="auditcardDetailsRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.auditcardDetailsRVO"
+                      Name="auditcardDetailsRVO10">
+        <AttrNames>
+          <Item Value="Auditcardseq"/>
+          <Item Value="Auditcardcntseq"/>
+          <Item Value="auditseq"/>
+          <Item Value="cardnumber"/>
+          <Item Value="cardtype1"/>
+          <Item Value="createdby"/>
+          <Item Value="createddate"/>
+          <Item Value="excessshortageflag"/>
+          <Item Value="Remarks"/>
+          <Item Value="updatedby"/>
+          <Item Value="updateddate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

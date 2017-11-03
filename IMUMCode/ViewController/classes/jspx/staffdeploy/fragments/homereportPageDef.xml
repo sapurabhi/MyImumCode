@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="homereportPageDef"
+                Package="jspx.staffdeploy.fragments">
+ <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="createDynamicVO_voType"
+                IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="variables" id="voType">
+      <AttrNames>
+        <Item Value="createDynamicVO_voType"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createDynamicVOReport"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createDynamicVOReport" IsViewObjectMethod="false">
+      <NamedData NDName="dynamicReportMonthYear" NDType="java.util.Date"/>
+      <NamedData NDName="dynamicReportShift" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

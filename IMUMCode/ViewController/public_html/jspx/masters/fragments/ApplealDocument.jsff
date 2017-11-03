@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl2">
+   <af:panelGroupLayout id="pgl5" visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}"  >
+    <af:commandButton text="Submit" id="cb4"  inlineStyle="background-color:#F39C11;"
+                       disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                      action="#{pageFlowScope.ApplealDocumentsMB.Submit}"/>
+    <af:commandButton text="Cancel"  inlineStyle="background-color:#F39C11;"   id="cb5" 
+                        immediate="true"
+                      action="#{pageFlowScope.ApplealDocumentsMB.cancel}"/>
+                      
+  </af:panelGroupLayout>
+   <af:spacer width="425" height="10" id="s4"/>
+    <af:commandButton text="Edit" id="cb1"
+     styleClass="checkoutbutton"
+       icon="/images/edit.gif"
+        inlineStyle="background-color:#e3e3e3;"
+                      action="#{pageFlowScope.ApplealDocumentsMB.editApplealDocuments}"
+                      disabled="#{sessionScope.rolename eq 'MDReadOnly'}"/>
+                         <af:spacer width="10" height="10" id="s2"/>
+    <af:commandButton text="View" id="cb2"    icon="/images/view.gif"    styleClass="checkoutbutton" inlineStyle="background-color:#e3e3e3;"
+                      action="#{pageFlowScope.ApplealDocumentsMB.viewApplealDocuments}"/>
+  </af:panelGroupLayout>
+  
+  <af:panelGroupLayout id="pgl0">
+  <af:spacer width="20" height="20" id="s6"/>
+    <af:showDetailHeader text="#{viewcontrollerBundle.APPEAL_REASON_DETAILS}" disclosed="true" id="sdh3">
+      <af:table value="#{bindings.appealResVO1.collectionModel}" var="row"
+                rows="#{bindings.appealResVO1.rangeSize}" autoHeightRows="0"
+                emptyText="#{bindings.appealResVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.appealResVO1.rangeSize}" rowBandingInterval="1"
+               styleClass="AFStretchWidth" scrollPolicy="page"
+                selectedRowKeys="#{bindings.appealResVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.appealResVO1.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" width="515"
+                inlineStyle="height:187px;">
+        <af:column sortProperty="#{bindings.appealResVO1.hints.ReasonTypeDesc.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.REASON_TYPE_}"
+                   id="c3" width="142">
+          <af:outputText value="#{row.ReasonTypeDesc}" id="ot4"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.appealResVO1.hints.ReasonID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.REASON_ID}"
+                   id="c2" width="111">
+          <af:outputText value="#{row.ReasonID}" id="ot1">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.appealResVO1.hints.ReasonID.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.appealResVO1.hints.ReasonDesc.name}"
+                   sortable="false" width="244"
+                   headerText="#{viewcontrollerBundle.REASON_DESCRIPTION}"
+                   id="c1">
+          <af:outputText value="#{row.ReasonDesc}" id="ot5"/>
+        </af:column>
+        <!--<af:column sortProperty="#{bindings.appealResVO1.hints.Activeflag.name}"
+                   sortable="false" width="95" align="center"
+                   headerText="#{viewcontrollerBundle.ACTIVE_FLAG_1}"
+                   id="c11" >
+                   
+          --><!--<af:outputText value="#{row.Activeflag}" id="ot3"/>--><!--
+          <af:selectBooleanCheckbox value="#{bindings.Activeflag1.inputValue}"
+                                label="#{bindings.Activeflag1.label}" disabled="true"
+                                shortDesc="#{bindings.Activeflag1.hints.tooltip}"
+                                id="sbc2"/>
+        </af:column>-->
+      </af:table>
+    </af:showDetailHeader>
+</af:panelGroupLayout>
+  <af:spacer width="10" height="10" id="s1"/>
+  <af:panelGroupLayout id="pgl3"  visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}" >
+    <af:showDetailHeader text="#{viewcontrollerBundle.APPEAL_REASON_DETAILS}" disclosed="true" id="sdh1">
+      <af:panelFormLayout id="pfl0">
+  <f:facet name="footer"/>
+  <af:panelLabelAndMessage label="#{viewcontrollerBundle.REASON_TYPE_}"
+                               id="plam1">
+        <af:outputText value="#{bindings.ReasonTypeDesc1.inputValue}" id="ot2"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.REASON_ID}"
+                               id="plam2">
+        <af:outputText value="#{bindings.ReasonID1.inputValue}" id="ot3">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ReasonID1.format}"/>
+        </af:outputText>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="#{viewcontrollerBundle.REASON_DESCRIPTION}"
+                               id="plam3">
+        <af:outputText value="#{bindings.ReasonDesc1.inputValue}" id="ot6"/>
+      </af:panelLabelAndMessage>
+      <!--<af:selectBooleanCheckbox value="#{bindings.Activeflag1.inputValue}" disabled="true"
+                                label="#{viewcontrollerBundle.ACTIVE_FLAG}" visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}"
+                                shortDesc="#{bindings.Activeflag1.hints.tooltip}"
+                                id="sbc1"/>-->
+</af:panelFormLayout>
+    </af:showDetailHeader>
+  </af:panelGroupLayout>
+  <af:spacer width="10" height="10" id="s3"/>
+  <af:showDetailHeader text="#{viewcontrollerBundle.APPEAL_DOCUMENTS}" disclosed="true" id="sdh2"  visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}"  >
+    
+    <af:panelGroupLayout id="pgl6">
+  <af:panelGroupLayout id="pgl4">
+  
+ <af:commandImageLink  
+                            text="#{viewcontrollerBundle.ADD_ROW}" icon="/images/plus.png"  disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"                          
+                           id="cil5"
+                      action="#{pageFlowScope.ApplealDocumentsMB.getNewRow}"/>
+  </af:panelGroupLayout>
+  <af:panelGroupLayout id="pgl1"  >
+        <af:table value="#{bindings.PvtAppealdocMstVO1.collectionModel}"
+                  var="row" rows="#{bindings.PvtAppealdocMstVO1.rangeSize}"
+                  emptyText="#{bindings.PvtAppealdocMstVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.PvtAppealdocMstVO1.rangeSize}"
+                  rowBandingInterval="0"
+                  selectedRowKeys="#{bindings.PvtAppealdocMstVO1.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.PvtAppealdocMstVO1.collectionModel.makeCurrent}"
+                  rowSelection="single" id="t2" width="632"
+                  inlineStyle="height:280px;">
+          <af:column sortProperty="#{bindings.PvtAppealdocMstVO1.hints.DocName.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.DOCUMENT_NAME}"
+                     id="c8">
+            <af:inputText value="#{row.bindings.DocName.inputValue}"
+                          label="#{bindings.PvtAppealdocMstVO1.hints.DocName.label}" 
+                           disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          required="#{bindings.PvtAppealdocMstVO1.hints.DocName.mandatory}"
+                          columns="#{bindings.PvtAppealdocMstVO1.hints.DocName.displayWidth}"
+                          maximumLength="#{bindings.PvtAppealdocMstVO1.hints.DocName.precision}"
+                          shortDesc="#{bindings.PvtAppealdocMstVO1.hints.DocName.tooltip}"
+                          id="it1">
+              <f:validator binding="#{row.bindings.DocName.validator}"/>
+            </af:inputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PvtAppealdocMstVO1.hints.DocDesc.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.DOCUMENT_DESCRIPTION}"
+                     id="c5">
+            <af:inputText value="#{row.bindings.DocDesc.inputValue}"
+                          label="#{bindings.PvtAppealdocMstVO1.hints.DocDesc.label}"
+                          required="#{bindings.PvtAppealdocMstVO1.hints.DocDesc.mandatory}"
+                           disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          columns="#{bindings.PvtAppealdocMstVO1.hints.DocDesc.displayWidth}"
+                          maximumLength="#{bindings.PvtAppealdocMstVO1.hints.DocDesc.precision}"
+                          shortDesc="#{bindings.PvtAppealdocMstVO1.hints.DocDesc.tooltip}"
+                          id="it2">
+              <f:validator binding="#{row.bindings.DocDesc.validator}"/>
+            </af:inputText>
+          </af:column>
+          <!--<af:column sortProperty="#{bindings.PvtAppealdocMstVO1.hints.Mandatoryflag.name}"
+                     sortable="false" align="center"
+                    
+                     headerText="#{viewcontrollerBundle.MANDATORY_FLAG}"
+                     id="c7">
+            --><!--<af:inputText value="#{row.bindings.Mandatoryflag.inputValue}"
+                          label="#{bindings.PvtAppealdocMstVO1.hints.Mandatoryflag.label}"
+                          required="#{bindings.PvtAppealdocMstVO1.hints.Mandatoryflag.mandatory}"
+                           disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          columns="#{bindings.PvtAppealdocMstVO1.hints.Mandatoryflag.displayWidth}"
+                          maximumLength="#{bindings.PvtAppealdocMstVO1.hints.Mandatoryflag.precision}"
+                          shortDesc="#{bindings.PvtAppealdocMstVO1.hints.Mandatoryflag.tooltip}"
+                          id="it3">
+              <f:validator binding="#{row.bindings.Mandatoryflag.validator}"/>
+            </af:inputText>--><!--
+            --><!--<af:selectBooleanCheckbox value="#{row.bindings.Mandatoryflag.inputValue}"
+                             disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                                      label="#{row.bindings.Mandatoryflag.label}"
+                                      shortDesc="#{bindings.PvtAppealdocMstVO1.hints.Mandatoryflag.tooltip}"
+                                      id="sbc3"/>--><!--
+          </af:column>-->
+          <!--<af:column sortProperty="#{bindings.PvtAppealdocMstVO1.hints.Activeflag.name}"
+                     sortable="false" align="center"
+                     headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                     id="c10">
+            --><!--<af:inputText value="#{row.bindings.Activeflag.inputValue}"
+                          label="#{bindings.PvtAppealdocMstVO1.hints.Activeflag.label}"
+                          required="#{bindings.PvtAppealdocMstVO1.hints.Activeflag.mandatory}"
+                          columns="#{bindings.PvtAppealdocMstVO1.hints.Activeflag.displayWidth}"
+                           disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          maximumLength="#{bindings.PvtAppealdocMstVO1.hints.Activeflag.precision}"
+                          shortDesc="#{bindings.PvtAppealdocMstVO1.hints.Activeflag.tooltip}"
+                          id="it4">
+              <f:validator binding="#{row.bindings.Activeflag.validator}"/>
+            </af:inputText>--><!--
+            <af:selectBooleanCheckbox value="#{row.bindings.Activeflag.inputValue}"
+                                      label="#{row.bindings.Activeflag.label}"
+                                       disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                                      shortDesc="#{bindings.PvtAppealdocMstVO1.hints.Activeflag.tooltip}"
+                                      id="sbc4"/>
+          </af:column>-->
+          <af:column sortProperty="#{bindings.PvtAppealdocMstVO1.hints.ActivefromDate.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ACTIVE_FROM_0}"
+                     id="c6">
+            <af:inputDate value="#{row.bindings.ActivefromDate.inputValue}"
+                          label="#{bindings.PvtAppealdocMstVO1.hints.ActivefromDate.label}"
+                          required="#{bindings.PvtAppealdocMstVO1.hints.ActivefromDate.mandatory}"
+                           disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          shortDesc="#{bindings.PvtAppealdocMstVO1.hints.ActivefromDate.tooltip}"
+                          id="id1">
+              <f:validator binding="#{row.bindings.ActivefromDate.validator}"/>
+               <af:convertDateTime pattern="dd-MM-yyyy" />
+             
+            </af:inputDate>
+          </af:column>
+          <af:column sortProperty="#{bindings.PvtAppealdocMstVO1.hints.ActivetoDate.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ACTIVE_TO_0}"
+                     id="c9">
+            <af:inputDate value="#{row.bindings.ActivetoDate.inputValue}"
+                          label="#{bindings.PvtAppealdocMstVO1.hints.ActivetoDate.label}"
+                          required="#{bindings.PvtAppealdocMstVO1.hints.ActivetoDate.mandatory}"
+                           disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                          shortDesc="#{bindings.PvtAppealdocMstVO1.hints.ActivetoDate.tooltip}"
+                          id="id2">
+              <f:validator binding="#{row.bindings.ActivetoDate.validator}"/>
+               <af:convertDateTime pattern="dd-MM-yyyy" />
+              
+            </af:inputDate>
+          </af:column>
+          <af:column headerText="#{viewcontrollerBundle.ACTIVE_FLAG}" align="center"
+                     id="c4">
+            <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlagBoolean.inputValue}"
+                                      label="#{row.bindings.ActiveFlagBoolean.label}"  disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                                      shortDesc="#{bindings.PvtAppealdocMstVO1.hints.ActiveFlagBoolean.tooltip}"
+                                      id="sbc3"/>
+          </af:column>
+          <af:column headerText="#{viewcontrollerBundle.MANDATORY_FLAG}" align="center"
+                     id="c12">
+            <af:selectBooleanCheckbox value="#{row.bindings.MFlagBoolean.inputValue}"
+                                      label="#{row.bindings.MFlagBoolean.label}"  disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                                      shortDesc="#{bindings.PvtAppealdocMstVO1.hints.MFlagBoolean.tooltip}"
+                                      id="sbc4"/>
+          </af:column>
+        </af:table>
+      </af:panelGroupLayout>
+  </af:panelGroupLayout>
+  </af:showDetailHeader>
+  <af:spacer width="10" height="30" id="s5"/>
+  <af:panelGroupLayout id="pgl7" visible="#{pageFlowScope.Mode eq 'Edit' ? 'true':'false'}"  >
+    <af:commandButton text="Submit" id="cb3"  inlineStyle="background-color:#F39C11;"
+                       disabled="#{pageFlowScope.RenderedMode eq 'View' ? 'true':'false'}"
+                      action="#{pageFlowScope.ApplealDocumentsMB.Submit}"/>
+    <af:commandButton text="Cancel"  inlineStyle="background-color:#F39C11;"
+                      id="cb6" 
+                        immediate="true"
+                      action="#{pageFlowScope.ApplealDocumentsMB.cancel}"/>
+  </af:panelGroupLayout>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:ApplealDocumentsMB-->
+</jsp:root>

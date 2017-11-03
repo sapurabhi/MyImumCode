@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="appealResVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.appealResVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.appealResVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.imum.cpms.model.masters.vo.appealResVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery>
+    <![CDATA[SELECT GenReasonMstEO.Active_flag, 
+       GenReasonMstEO.Country_Code, 
+       GenReasonMstEO.Created_By, 
+       GenReasonMstEO.Created_Date, 
+       GenReasonMstEO.Reason_Desc, 
+       GenReasonMstEO.Reason_ID, 
+       GenReasonMstEO.Reason_Type_ID, 
+       GenReasonMstEO.Updated_by, 
+       GenReasonMstEO.Updated_date, 
+       GenReasonTypeMstEO.Active_flag AS Activeflag1, 
+       GenReasonTypeMstEO.Country_Code AS CountryCode1, 
+       GenReasonTypeMstEO.Created_By AS CreatedBy1, 
+       GenReasonTypeMstEO.Created_Date AS CreatedDate1, 
+       GenReasonTypeMstEO.Reason_Type_Desc, 
+       GenReasonTypeMstEO.Reason_Type_ID AS ReasonTypeID1, 
+       GenReasonTypeMstEO.Updated_by AS Updatedby1, 
+       GenReasonTypeMstEO.Updated_date AS Updateddate1
+FROM GEN_Reason_MST GenReasonMstEO, GEN_Reason_Type_MST GenReasonTypeMstEO where 
+GenReasonTypeMstEO.Reason_Type_ID=GenReasonMstEO.Reason_Type_ID and GenReasonTypeMstEO.Reason_Type_ID in('702','703')]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="GenReasonMstEO"
+    Entity="com.imum.cpms.model.masters.eo.GenReasonMstEO"/>
+  <EntityUsage
+    Name="GenReasonTypeMstEO"
+    Entity="com.imum.cpms.model.masters.eo.GenReasonTypeMstEO"
+    SourceUsage="com.imum.cpms.model.masters.vo.appealResVO.GenReasonMstEO"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <ViewAttribute
+    Name="Activeflag"
+    PrecisionRule="true"
+    EntityAttrName="Activeflag"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Active_flag"/>
+  <ViewAttribute
+    Name="CountryCode"
+    PrecisionRule="true"
+    EntityAttrName="CountryCode"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Country_Code"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Created_By"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Created_Date"/>
+  <ViewAttribute
+    Name="ReasonDesc"
+    PrecisionRule="true"
+    EntityAttrName="ReasonDesc"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Reason_Desc"/>
+  <ViewAttribute
+    Name="ReasonID"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="ReasonID"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Reason_ID"/>
+  <ViewAttribute
+    Name="ReasonTypeID"
+    PrecisionRule="true"
+    EntityAttrName="ReasonTypeID"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Reason_Type_ID"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Updated_by"/>
+  <ViewAttribute
+    Name="Updateddate"
+    PrecisionRule="true"
+    EntityAttrName="Updateddate"
+    EntityUsage="GenReasonMstEO"
+    AliasName="Updated_date"/>
+  <ViewAttribute
+    Name="Activeflag1"
+    PrecisionRule="true"
+    EntityAttrName="Activeflag"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="Activeflag1"/>
+  <ViewAttribute
+    Name="CountryCode1"
+    PrecisionRule="true"
+    EntityAttrName="CountryCode"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="CountryCode1"/>
+  <ViewAttribute
+    Name="CreatedBy1"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="CreatedBy1"/>
+  <ViewAttribute
+    Name="CreatedDate1"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="CreatedDate1"/>
+  <ViewAttribute
+    Name="ReasonTypeDesc"
+    PrecisionRule="true"
+    EntityAttrName="ReasonTypeDesc"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="Reason_Type_Desc"/>
+  <ViewAttribute
+    Name="ReasonTypeID1"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="ReasonTypeID"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="ReasonTypeID1"/>
+  <ViewAttribute
+    Name="Updatedby1"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="Updatedby1"/>
+  <ViewAttribute
+    Name="Updateddate1"
+    PrecisionRule="true"
+    EntityAttrName="Updateddate"
+    EntityUsage="GenReasonTypeMstEO"
+    AliasName="Updateddate1"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

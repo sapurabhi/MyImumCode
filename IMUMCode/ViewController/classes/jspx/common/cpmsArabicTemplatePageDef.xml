@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="cpmsArabicTemplatePageDef"
+                Package="jspx.common">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MenuMstLngVO1" RangeSize="25"
+              DataControl="MenuAMDataControl" id="MenuMstLngVO1Iterator"/>
+    <iterator Binds="MenuLngDetailVO1" RangeSize="10"
+              DataControl="MenuAMDataControl" id="MenuLngDetailVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MenuLngDetailVO1Iterator" id="MenuLngDetailVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.menu.vo.MenuLngDetailVO"
+                      Name="MenuLngDetailVO10">
+        <AttrNames>
+          <Item Value="MenuLNGdetailSeq"/>
+          <Item Value="LNGCODE"/>
+          <Item Value="MenuDefinition"/>
+          <Item Value="MenuID"/>
+          <Item Value="MenuMstMenuID"/>
+          <Item Value="menuurl"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="MenuIDMenuLngDetailVO"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

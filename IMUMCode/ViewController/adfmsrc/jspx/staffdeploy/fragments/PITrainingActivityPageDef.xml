@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PITrainingActivityPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GenPINumberLOVVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="GenPINumberLOVVO1Iterator"/>
+    
+    <iterator Binds="GenCoursesLOVVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="GenCoursesLOVVO1Iterator"/>
+    <iterator Binds="genPITypeLOVVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="genPITypeLOVVO1Iterator"/>
+    <iterator Binds="PITrainingActivityUVO1" RangeSize="10"
+      DataControl="StaffDeployDataControl"
+      id="PITrainingActivityUVO1Iterator"/>
+    <searchRegion id="PITrainingActivityUVO1Query"
+                  Binds="PITrainingActivityUVO1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+    <iterator id="GenUserDocsVO1Iterator" Binds="GenUserDocsVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator id="PINumFromUserMstVO1Iterator" Binds="PINumFromUserMstVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <list IterBinding="GenPINumberLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="GenPINumberLOVVO1Iterator" id="GenPINumberLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="userid"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="PITrainingActivityUVO1Iterator"
+          id="PITrainingActivityUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PITrainingActivityUVO"
+                      Name="PITrainingActivityUVO10">
+        <AttrNames>
+          <Item Value="Coursename"/>
+          <Item Value="CourseDesc"/>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="Result"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PITrainingActivityUVO1Iterator"
+                     id="CourseDesc">
+      <AttrNames>
+        <Item Value="CourseDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PITrainingActivityUVO1Iterator"
+                     id="StartDate">
+      <AttrNames>
+        <Item Value="StartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PITrainingActivityUVO1Iterator" id="EndDate">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PITrainingActivityUVO1Iterator" id="Result">
+      <AttrNames>
+        <Item Value="Result"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PITrainingActivityUVO1Iterator" StaticList="false"
+          Uses="LOV_Coursename" id="Coursename" DTSupportsMRU="true"/>
+    <methodAction id="GetPINumberLOV"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="GetPINumberLOV" IsViewObjectMethod="false">
+      <NamedData NDName="PIType" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="GenCoursesLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="GenCoursesLOVVO1Iterator" id="GenCoursesLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="coursename"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="genPITypeLOVVO1Iterator" ListOperMode="navigation"
+          ListIter="genPITypeLOVVO1Iterator" id="genPITypeLOVVO1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="groupname"/>
+      </AttrNames>
+    </list>
+    <methodAction id="SetEndDateValue"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="SetEndDateValue" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.SetEndDateValue_StaffDeployDataControl_dataProvider_SetEndDateValue_result">
+      <NamedData NDName="startdate" NDType="java.util.Date"/>
+      <NamedData NDName="coursename" NDType="java.lang.String"/>
+      <NamedData NDName="piType" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="CreateTrainingRow"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="CreateTrainingRow" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.CreateTrainingRow_StaffDeployDataControl_dataProvider_CreateTrainingRow_result">
+      <NamedData NDName="PINO" NDType="java.lang.String"/>
+      <NamedData NDName="coursename" NDType="java.lang.String"/>
+      <NamedData NDName="coursedesc" NDType="java.lang.String"/>
+      <NamedData NDName="startdate" NDType="java.util.Date"/>
+      <NamedData NDName="enddate" NDType="java.util.Date"/>
+      <NamedData NDName="result" NDType="java.lang.String"/>
+      <NamedData NDName="userName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="UpdateTrainingRow"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="UpdateTrainingRow" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.UpdateTrainingRow_StaffDeployDataControl_dataProvider_UpdateTrainingRow_result">
+      <NamedData NDName="PINO" NDType="java.lang.String"/>
+      <NamedData NDName="SNOHidden" NDType="java.lang.String"/>
+      <NamedData NDName="coursename" NDType="java.lang.String"/>
+      <NamedData NDName="coursedesc" NDType="java.lang.String"/>
+      <NamedData NDName="startdate" NDType="java.util.Date"/>
+      <NamedData NDName="enddate" NDType="java.util.Date"/>
+      <NamedData NDName="result" NDType="java.lang.String"/>
+      <NamedData NDName="userName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="validateStartDateTrainingActivate"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="validateStartDateTrainingActivate"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.validateStartDateTrainingActivate_StaffDeployDataControl_dataProvider_validateStartDateTrainingActivate_result">
+      <NamedData NDName="startdate" NDType="java.util.Date"/>
+      <NamedData NDName="piNumber" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="BeatMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ZoneMstVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="ZoneMstVO1Iterator"/>
+    <iterator Binds="BeatMstUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="BeatMstUVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ZoneMstVO1Iterator" id="ZoneMstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.ZoneMstVO"
+                      Name="ZoneMstVO10">
+        <AttrNames>
+          <Item Value="ActiveFlag" Binds="ActiveFlag1"/>
+          <Item Value="GoLiveDate"/>
+          <Item Value="ZoneCode"/>
+          <Item Value="ZoneName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="BeatMstUVO1Iterator" id="BeatMstUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.BeatMstUVO"
+                      Name="BeatMstUVO10">
+        <AttrNames>
+          <Item Value="ZoneCode"/>
+          <Item Value="BeatName"/>
+          <Item Value="GeoLatDeg"/>
+          <Item Value="GeoLonDeg"/>
+          <Item Value="GoLiveDate"/>
+          <Item Value="ParkingCap"/>
+          <Item Value="RemoveVehicle" Binds="RemoveVehicle"/>
+          
+          <Item Value="BeatCode"/>
+          <Item Value="ActiveFlag" Binds="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="ZoneMstVO1Iterator" id="RemoveVehicleflag">
+      <AttrNames>
+        <Item Value="RemoveVehicleflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ZoneMstVO1Iterator" id="SectorCode">
+      <AttrNames>
+        <Item Value="SectorCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ZoneMstVO1Iterator" id="ZoneCode">
+      <AttrNames>
+        <Item Value="ZoneCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ZoneMstVO1Iterator" id="ZoneName">
+      <AttrNames>
+        <Item Value="ZoneName"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <button IterBinding="BeatMstUVO1Iterator" id="RemoveVehicle"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="RemoveVehicle"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="ZoneMstVO1Iterator" id="CreatedDate">
+      <AttrNames>
+        <Item Value="CreatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ZoneMstVO1Iterator" id="UpdatedBy">
+      <AttrNames>
+        <Item Value="UpdatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ZoneMstVO1Iterator" id="UpdatedDate">
+      <AttrNames>
+        <Item Value="UpdatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="BeatMstUVO1Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="ZoneMstVO1Iterator" StaticList="false"
+            Uses="LOV_ActiveFlag" id="ActiveFlag1" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+    </button>
+    <methodAction id="createnewBeat"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createnewBeat"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="zonecode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+  </bindings>
+</pageDefinition>

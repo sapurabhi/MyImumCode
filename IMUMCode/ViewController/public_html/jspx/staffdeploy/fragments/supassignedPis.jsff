@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout id="pgl1" inlineStyle="width:958px; height:341px;">
+    <af:panelFormLayout id="pfl1" inlineStyle="height:72px;">
+      <af:panelFormLayout id="pfl3" rows="1" inlineStyle="width:80%;">
+        <af:inputText value="#{bindings.supid.inputValue}"
+                      label="Select Supervisor"
+                      required="#{bindings.supid.hints.mandatory}"
+                      columns="#{bindings.supid.hints.displayWidth}"
+                      maximumLength="#{bindings.supid.hints.precision}"
+                      shortDesc="#{bindings.supid.hints.tooltip}" id="it1">
+          <f:validator binding="#{bindings.supid.validator}"/>
+        </af:inputText>
+        <af:commandButton actionListener="#{bindings.getPisAssignedtoSuperviosr.execute}"
+                          text="Get Assigned PI's" 
+                          disabled="#{!bindings.getPisAssignedtoSuperviosr.enabled}"
+                          id="cb1" inlineStyle="width:75.0%;"
+                          partialSubmit="true"/>
+      </af:panelFormLayout>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl2" inlineStyle="height:284px;" rows="1">
+      <af:table value="#{bindings.PIAllocToSpvsrGrpUVO2.collectionModel}"
+                var="row" rows="#{bindings.PIAllocToSpvsrGrpUVO2.rangeSize}"
+                emptyText="#{bindings.PIAllocToSpvsrGrpUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.PIAllocToSpvsrGrpUVO2.rangeSize}"
+                rowBandingInterval="0" id="t1" partialTriggers="::cb1">
+        <af:column sortProperty="#{bindings.PIAllocToSpvsrGrpUVO2.hints.AssignedTo.name}"
+                   sortable="false" headerText="Supervisor ID" id="c3">
+          <af:outputText value="#{row.AssignedTo}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PIAllocToSpvsrGrpUVO2.hints.PIid.name}"
+                   sortable="false" headerText="PI Number" id="c2">
+          <af:outputText value="#{row.PIid}" id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PIAllocToSpvsrGrpUVO2.hints.status.name}"
+                   sortable="false" headerText="Status" id="c1">
+          <af:outputText value="#{row.status}" id="ot2"/>
+        </af:column>
+      </af:table>
+      <af:table value="#{bindings.SupervisorPisVO1.collectionModel}" var="row"
+                rows="#{bindings.SupervisorPisVO1.rangeSize}"
+                emptyText="#{bindings.SupervisorPisVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.SupervisorPisVO1.rangeSize}"
+                rowBandingInterval="0" id="t2" width="611">
+        <af:column sortProperty="#{bindings.SupervisorPisVO1.hints.AssignedTo.name}"
+                   sortable="false" headerText="SupervisorID" id="c5">
+          <af:outputText value="#{row.AssignedTo}" id="ot5"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.SupervisorPisVO1.hints.piid.name}"
+                   sortable="false" headerText="PI Numbers" id="c4" width="500">
+          <af:outputText value="#{row.piid}" id="ot4"/>
+        </af:column>
+      </af:table>
+    </af:panelFormLayout>
+  </af:panelGroupLayout>
+</jsp:root>

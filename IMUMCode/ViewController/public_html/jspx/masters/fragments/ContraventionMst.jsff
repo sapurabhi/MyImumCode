@@ -1,0 +1,403 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelGroupLayout id="pgl1" layout="horizontal">
+    <af:toolbar id="t2">
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb11"
+                        inlineStyle="background-color:#F39C11;"
+                        action="#{ContraventionMBean.Submit_action}"
+                        visible="false"
+                        binding="#{ContraventionMBean.submitTop}"/>
+      <af:spacer width="10" id="s1134"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"
+                        id="ct1b2" binding="#{ContraventionMBean.cancelTop}"
+                        visible="false"
+                        action="#{ContraventionMBean.Cancel_action}"/>
+        <af:spacer width="625" id="s13d4"/>
+      <af:commandButton text="#{viewcontrollerBundle.NEW}" id="New" icon="/images/new.gif"
+                        action="#{ContraventionMBean.New_action}"
+                        binding="#{ContraventionMBean.newBtn}"
+                        disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="Edit" icon="/images/edit.gif"
+                        action="#{ContraventionMBean.Edit_action}"
+                        binding="#{ContraventionMBean.editBtn}"
+                        disabled="#{sessionScope.rolename eq 'MDReadOnly'}">
+        </af:commandButton>
+      <af:spacer width="10" height="10" id="spacer1"/>
+      <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="View" icon="/images/view.gif"
+                        action="#{ContraventionMBean.View_action}"
+                        binding="#{ContraventionMBean.viewBtn}">
+        </af:commandButton>
+    </af:toolbar>
+  </af:panelGroupLayout>
+  <af:spacer height="5" id="spacer2"/>
+  <af:showDetailHeader text="#{viewcontrollerBundle.CONTRAVENTION_CODE_MASTER}" disclosed="true" id="sdh1">
+    <af:spacer height="10" id="spacer4"/>
+    <af:panelGroupLayout id="pgl2">
+      <af:table value="#{bindings.ContraventionMstUVO2.collectionModel}"
+                var="row" rows="#{bindings.ContraventionMstUVO2.rangeSize}"
+                emptyText="#{bindings.ContraventionMstUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.ContraventionMstUVO2.rangeSize}"
+                rowBandingInterval="1"
+                selectionListener="#{bindings.ContraventionMstUVO2.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" scrollPolicy="page"
+                autoHeightRows="0" inlineStyle="height:83px;"
+                width="97%" filterVisible="true" contentDelivery="immediate"
+                filterModel="#{bindings.ContraventionMstUVO2Query.queryDescriptor}"
+                queryListener="#{bindings.ContraventionMstUVO2Query.processQuery}">
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.ContraCode.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.CONTRAVENTION_CODE}"
+                   id="c2" align="right" width="89" filterable="true">
+          <af:outputText value="#{row.ContraCode}" id="ot7">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.ContraventionMstUVO2.hints.ContraCode.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.CodeNameEn.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.CONTRAVENTION_CODE_NAME}"
+                   id="c5" align="left" width="110" filterable="true">
+          <af:outputText value="#{row.CodeNameEn}" id="ot2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.DescEn.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.DESCRIPTION}"
+                   id="c4" align="left" width="200" filterable="true">
+          <af:outputText value="#{row.DescEn}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.CountryName.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.COUNTRY}"
+                   id="c1" align="left" width="175" filterable="true">
+          <af:outputText value="#{row.CountryName}" id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.BaseCostAmt.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.BASE_COST}"
+                   id="c6" align="right" filterable="true">
+          <af:outputText value="#{row.BaseCostAmt}" id="ot5">
+          <f:convertNumber pattern="#0.00"/> </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.ValidFrom.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.START_DATE}"
+                   id="c3" align="left">
+          <af:outputText value="#{row.ValidFrom}" id="ot6">
+            <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.ValidTo.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.END_DATE}"
+                   id="c7" align="left">
+          <af:outputText value="#{row.ValidTo}" id="ot4">
+           <af:convertDateTime pattern="dd-MM-yyyy"/>
+          </af:outputText>
+        </af:column>
+        <af:column id="c8" headerText="#{viewcontrollerBundle.ACTIVE_FLAG}" align="center" width="50">
+          <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                    label="#{row.bindings.ActiveFlag.label}"
+                                    shortDesc="#{bindings.ContraventionMstUVO2.hints.ActiveFlag.tooltip}"
+                                    id="sbc13" readOnly="true"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+    <af:spacer height="10" id="spacer3"/>
+    <af:showDetailHeader id="pgl3"
+                         text="#{viewcontrollerBundle.CONTRAVENTION_CODE_MASTER_DETA}" disclosed="true"
+                         binding="#{ContraventionMBean.cntrCodeForm}"
+                         visible="false">
+      <af:panelFormLayout id="pfl1" rows="11" maxColumns="2" labelWidth="400"
+                          fieldWidth="10">
+        <af:inputText value="#{bindings.ContraCode.inputValue}"
+                      label="#{viewcontrollerBundle.CONTRAVENTION_CODE}"
+                      required="#{bindings.ContraCode.hints.mandatory}"
+                      maximumLength="#{bindings.ContraCode.hints.precision}"
+                      shortDesc="#{bindings.ContraCode.hints.tooltip}"
+                      id="it20" 
+                      showRequired="true"
+                      disabled="#{pageFlowScope.actionMode eq 'New' ? 'false':'true'}">
+          <f:validator binding="#{bindings.ContraCode.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ContraCode.format}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.CodeNameEn.inputValue}"
+                      label="#{viewcontrollerBundle.CONTRAVENTION_CODE_NAME}"
+                      required="#{bindings.CodeNameEn.hints.mandatory}"
+                      maximumLength="#{bindings.CodeNameEn.hints.precision}"
+                      shortDesc="#{bindings.CodeNameEn.hints.tooltip}" id="it3"
+                      disabled="#{ContraventionMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.CodeNameEn.validator}"/>
+        </af:inputText>
+        
+        <af:panelLabelAndMessage label="#{viewcontrollerBundle.CONTRA_CODE_IN}" id="plam3" showRequired="true">
+         <af:panelGroupLayout id="pgl0" layout="horizontal">
+            <af:selectOneChoice value="#{bindings.Language.inputValue}" 
+                                disabled="#{ContraventionMBean.isDisabled}"
+                                required="#{bindings.Language.hints.mandatory}"
+                                shortDesc="#{bindings.Language.hints.tooltip}"
+                                id="soc2">
+              <f:selectItems value="#{bindings.Language.items}" id="si2"/>
+            </af:selectOneChoice>
+            <af:inputText value="#{bindings.ContraCodeLng.inputValue}" 
+                          disabled="#{ContraventionMBean.isDisabled}"
+                          required="#{bindings.ContraCodeLng.hints.mandatory}"
+                          columns="#{bindings.ContraCodeLng.hints.displayWidth}"
+                          maximumLength="#{bindings.ContraCodeLng.hints.precision}"
+                          shortDesc="#{bindings.ContraCodeLng.hints.tooltip}"
+                          id="it4">
+              <f:validator binding="#{bindings.ContraCodeLng.validator}"/>
+            </af:inputText>
+          </af:panelGroupLayout>
+        </af:panelLabelAndMessage>
+        
+        <af:inputText value="#{bindings.DescEn.inputValue}"
+                      label="#{viewcontrollerBundle.DESCRIPTION}"
+                      required="#{bindings.DescEn.hints.mandatory}"
+                      maximumLength="#{bindings.DescEn.hints.precision}"
+                      shortDesc="#{bindings.DescEn.hints.tooltip}" id="it14"
+                      disabled="#{ContraventionMBean.isDisabled}">
+          <f:validator binding="#{bindings.DescEn.validator}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.CountryCode.inputValue}"
+                            required="#{bindings.CountryCode.hints.mandatory}"
+                            shortDesc="#{bindings.CountryCode.hints.tooltip}"
+                            id="soc1" label="#{viewcontrollerBundle.COUNTRY}"
+                             disabled="#{ContraventionMBean.isDisabled}"
+                            showRequired="true">
+          <f:selectItems value="#{bindings.CountryCode.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:inputText value="#{bindings.LawVerNo.inputValue}"
+                      label="#{viewcontrollerBundle.LAW_VERSIONREFNO}"
+                      required="#{bindings.LawVerNo.hints.mandatory}"
+                      maximumLength="#{bindings.LawVerNo.hints.precision}"
+                      shortDesc="#{bindings.LawVerNo.hints.tooltip}" id="it16"
+                      disabled="#{ContraventionMBean.isDisabled}">
+          <f:validator binding="#{bindings.LawVerNo.validator}"/>
+        </af:inputText>
+        <af:inputDate value="#{bindings.LawVerDt.inputValue}"
+                      label="#{viewcontrollerBundle.LAW_ISSUANCE_DATE}"
+                      required="#{bindings.LawVerDt.hints.mandatory}"
+                      shortDesc="#{bindings.LawVerDt.hints.tooltip}" id="id3"
+                      disabled="#{ContraventionMBean.isDisabled}">
+          <f:validator binding="#{bindings.LawVerDt.validator}"/>
+          <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.BaseCostAmt.inputValue}"
+                      label="#{viewcontrollerBundle.BASE_COST}"
+                      required="#{bindings.BaseCostAmt.hints.mandatory}"
+                      maximumLength="#{bindings.BaseCostAmt.hints.precision}"
+                      shortDesc="#{bindings.BaseCostAmt.hints.tooltip}"
+                      id="it22" disabled="#{ContraventionMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.BaseCostAmt.validator}"/>
+          <f:convertNumber pattern="#0.00"/>
+        </af:inputText>
+        <af:selectBooleanCheckbox value="#{bindings.RemovalReqflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.REMOVAL_REQUIRED}"
+                                  shortDesc="#{bindings.RemovalReqflag1.hints.tooltip}"
+                                  id="sbc7"
+                                  disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.Observreqflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.OBSERVATION_REQUIRED}"
+                                  shortDesc="#{bindings.Observreqflag1.hints.tooltip}"
+                                  id="sbc10"
+                                  disabled="#{ContraventionMBean.isDisabled}"
+                                  valueChangeListener="#{ContraventionMBean.obsrFlagCheck}"
+                                  immediate="true" autoSubmit="true"/>
+        <af:inputText value="#{bindings.ObservTime.inputValue}"
+                      label="#{viewcontrollerBundle.OBSERVATION_TIME_IN_MINS}"
+                      required="#{bindings.ObservTime.hints.mandatory}"
+                      maximumLength="#{bindings.ObservTime.hints.precision}"
+                      shortDesc="#{bindings.ObservTime.hints.tooltip}" id="it13"
+                      binding="#{ContraventionMBean.obsTime}"
+                      partialTriggers="sbc10" autoSubmit="true" disabled="true">
+          <f:validator binding="#{bindings.ObservTime.validator}"/>
+        </af:inputText>
+        <af:selectBooleanCheckbox value="#{bindings.ActiveFlag1.inputValue}"
+                                  label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                                  shortDesc="#{bindings.ActiveFlag1.hints.tooltip}"
+                                  id="sbc1"
+                                  disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.valonholidayflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.VALID_ON_HOLIDAYS}"
+                                  shortDesc="#{bindings.valonholidayflag1.hints.tooltip}"
+                                  id="sbc3"
+                                  disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:inputDate value="#{bindings.ValidFrom.inputValue}"
+                      label="#{viewcontrollerBundle.EFFECTIVE_DATE_FROM}"
+                      required="#{bindings.ValidFrom.hints.mandatory}"
+                      shortDesc="#{bindings.ValidFrom.hints.tooltip}" id="id1"
+                      disabled="#{ContraventionMBean.isDisabled}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.ValidFrom.validator}"/>
+          <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:inputDate value="#{bindings.ValidTo.inputValue}"
+                      required="#{bindings.ValidTo.hints.mandatory}"
+                      shortDesc="#{bindings.ValidTo.hints.tooltip}" id="id2"
+                      disabled="#{ContraventionMBean.isDisabled}"
+                      label="#{viewcontrollerBundle.EFFECTIVE_DATE_TO}"
+                      showRequired="true">
+          <f:validator binding="#{bindings.ValidTo.validator}"/>
+          <af:convertDateTime pattern="dd-MM-yyyy"/>
+        </af:inputDate>
+        <af:selectBooleanCheckbox value="#{bindings.isPymtRelatedflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.IS_PAYMENT_RELATED}"
+                                  shortDesc="#{bindings.isPymtRelatedflag1.hints.tooltip}"
+                                  id="sbc12" disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.isPermitRelated1.inputValue}"
+                                  label="#{viewcontrollerBundle.IS_PERMIT_RELATED}"
+                                  shortDesc="#{bindings.isPermitRelated1.hints.tooltip}"
+                                  id="sbc11" disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.ClampReqflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.CLAMPING_REQUIRED}"
+                                  shortDesc="#{bindings.ClampReqflag1.hints.tooltip}"
+                                  id="sbc9"
+                                  disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.Stickerreqflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.STICKER_REQUIRED}"
+                                  shortDesc="#{bindings.Stickerreqflag1.hints.tooltip}"
+                                  id="sbc8" disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.Warningreqflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.WARNING_REQUIRED}"
+                                  shortDesc="#{bindings.Warningreqflag1.hints.tooltip}"
+                                  id="sbc6" disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.mParkcheckreqflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.MPARK_CHECK_REQUIRED}"
+                                  shortDesc="#{bindings.mParkcheckreqflag1.hints.tooltip}"
+                                  id="sbc5" disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.PermitcheckReqflag1.inputValue}"
+                                  label="#{viewcontrollerBundle.PERMIT_CHECK_REQUIRED}"
+                                  shortDesc="#{bindings.PermitcheckReqflag1.hints.tooltip}"
+                                  id="sbc4" disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:selectBooleanCheckbox value="#{bindings.WhiteListFlag1.inputValue}"
+                                  label="#{viewcontrollerBundle.WHITE_LIST_FLAG}"
+                                  shortDesc="#{bindings.WhiteListFlag1.hints.tooltip}"
+                                  id="sbc2" disabled="#{ContraventionMBean.isDisabled}"/>
+        <af:panelLabelAndMessage id="plam1"
+                                 label="#{viewcontrollerBundle.REMOVAL_REQUEST_CAN_BE_TRIGGER}">
+          <af:panelGroupLayout id="pgl4" layout="horizontal" halign="left">
+            <af:inputText value="#{bindings.EnfreqPVTcnt.inputValue}"
+                          required="#{bindings.EnfreqPVTcnt.hints.mandatory}"
+                          columns="#{bindings.EnfreqPVTcnt.hints.displayWidth}"
+                          maximumLength="#{bindings.EnfreqPVTcnt.hints.precision}"
+                          shortDesc="#{bindings.EnfreqPVTcnt.hints.tooltip}"
+                          id="it1" inlineStyle="width:25px;" disabled="#{ContraventionMBean.isDisabled}">
+              <f:validator binding="#{bindings.EnfreqPVTcnt.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.EnfreqPVTcnt.format}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.Enfreqdays.inputValue}"
+                          label="#{viewcontrollerBundle.IN_NO_OF_DAYS}"
+                          required="#{bindings.Enfreqdays.hints.mandatory}"
+                          columns="#{bindings.Enfreqdays.hints.displayWidth}"
+                          maximumLength="#{bindings.Enfreqdays.hints.precision}"
+                          shortDesc="#{bindings.Enfreqdays.hints.tooltip}"
+                          id="it2" inlineStyle="width:170px;" disabled="#{ContraventionMBean.isDisabled}">
+              <f:validator binding="#{bindings.Enfreqdays.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.Enfreqdays.format}"/>
+            </af:inputText>
+          </af:panelGroupLayout>
+        </af:panelLabelAndMessage>
+        <!--<af:inputText value="#{bindings.Discpctamt.inputValue}"
+                      label="#{viewcontrollerBundle.DISCOUNT_ELIGIBILITY_}"
+                      required="#{bindings.Discpctamt.hints.mandatory}"
+                      columns="#{bindings.Discpctamt.hints.displayWidth}"
+                      maximumLength="#{bindings.Discpctamt.hints.precision}"
+                      shortDesc="#{bindings.Discpctamt.hints.tooltip}" id="it5">
+          <f:validator binding="#{bindings.Discpctamt.validator}"/>
+          
+        </af:inputText>-->
+        <af:inputText value="#{bindings.DiscountPCT.inputValue}"
+                      label="Discount Percentage"
+                      required="#{bindings.DiscountPCT.hints.mandatory}"
+                      columns="#{bindings.DiscountPCT.hints.displayWidth}"
+                      maximumLength="#{bindings.DiscountPCT.hints.precision}"
+                      shortDesc="#{bindings.DiscountPCT.hints.tooltip}"
+                      id="it5">
+          <f:validator binding="#{bindings.DiscountPCT.validator}"/>
+        </af:inputText>
+      </af:panelFormLayout>
+    </af:showDetailHeader>
+    
+    <!--vamsi code start -->
+    
+     <af:showDetailHeader id="sdh2" text="Exception Zones"  disclosed="true"
+                          >
+         <af:commandImageLink  text="#{viewcontrollerBundle.ADD_ROW}" icon="/images/plus.png"  partialSubmit="true"  
+               id="cil3" disabled="true" 
+                actionListener="#{ContraventionMBean.addRow}"
+                              binding="#{ContraventionMBean.addrowbind}"/>                                       
+                                                
+      <af:table value="#{bindings.PVTExceptionzoneVO1.collectionModel}"
+                var="row" rows="#{bindings.PVTExceptionzoneVO1.rangeSize}"
+                emptyText="#{bindings.PVTExceptionzoneVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.PVTExceptionzoneVO1.rangeSize}"
+                rowBandingInterval="0" partialTriggers="cil3"
+                selectedRowKeys="#{bindings.PVTExceptionzoneVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.PVTExceptionzoneVO1.collectionModel.makeCurrent}"
+                rowSelection="single" id="t4" width="375"
+                inlineStyle="height:137px;">
+        <af:column sortProperty="#{bindings.ContraventionMstUVO2.hints.ContraCode.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.CONTRAVENTION_CODE}"
+                   id="c9">
+          <af:outputText value="#{row.CONTRACODE}" id="ot8">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.PVTExceptionzoneVO1.hints.CONTRACODE.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="Zone Code"
+                   sortable="false" width="180"
+                   headerText="Zone Code"
+                   id="c10">
+          <af:selectOneChoice value="#{row.bindings.ZoneCode.inputValue}" 
+                              label="#{row.bindings.ZoneCode.label}"
+                              required="#{bindings.PVTExceptionzoneVO1.hints.ZoneCode.mandatory}"
+                              shortDesc="#{bindings.PVTExceptionzoneVO1.hints.ZoneCode.tooltip}"
+                              id="soc3"
+                              binding="#{ContraventionMBean.zonecode}">
+            <f:selectItems value="#{row.bindings.ZoneCode.items}" id="si3"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column headerText="Active Flag"
+                   id="c11" align="center" width="80">
+          <af:selectBooleanCheckbox value="#{row.bindings.activeflag.inputValue}"
+                                    label="#{row.bindings.activeflag.label}" 
+                                    shortDesc="#{bindings.PVTExceptionzoneVO1.hints.activeflag.tooltip}"
+                                    id="sbc14"
+                                    binding="#{ContraventionMBean.actflag}"/>
+        </af:column>
+      </af:table>
+   
+    </af:showDetailHeader>
+    
+    <!--vamsi code end -->
+    <af:spacer height="10" id="s12344"/>
+        <af:toolbar id="t3">
+      <af:commandButton id="ctb1"
+                        inlineStyle="background-color:#F39C11;"
+                        action="#{ContraventionMBean.Submit_action}"
+                        visible="false"
+                        binding="#{ContraventionMBean.submitBottom}"
+                        text="#{viewcontrollerBundle.SUBMIT}"/>
+      <af:spacer width="10" id="s134"/>
+      <af:commandButton inlineStyle="background-color:#F39C11;"
+                        id="ctb2" binding="#{ContraventionMBean.cancelBottom}"
+                        visible="false"
+                        action="#{ContraventionMBean.Cancel_action}"
+                        text="#{viewcontrollerBundle.CANCEL}"/>
+    </af:toolbar>
+  </af:showDetailHeader>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:ContraventionMBean-->
+</jsp:root>

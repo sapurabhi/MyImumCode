@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PiProfileTF">
+    <default-activity id="__1">PIProfileOnLoad</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__5">PINewProfileMBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.PINewProfileMBean</managed-bean-class>
+      <managed-bean-scope id="__4">request</managed-bean-scope>
+    </managed-bean>
+    <view id="PiProfile">
+      <page>/jspx/staffdeploy/fragments/PiProfile.jsff</page>
+    </view>
+    <method-call id="PIProfileOnLoad">
+      <method>#{bindings.PIProfileOnLoad.execute}</method>
+      <outcome id="__6">
+        <fixed-outcome>PIProfileOnLoad</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">PIProfileOnLoad</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__11">PIProfileOnLoad</from-outcome>
+        <to-activity-id id="__10">PiProfile</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

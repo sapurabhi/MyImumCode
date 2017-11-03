@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelFormLayout id="pfl1" inlineStyle="height:342px; width:1066px;">
+    <af:panelBox text="PI DEPLOY ADHOC" id="pb1"
+                 inlineStyle="height:440px; width:1057px;" showHeader="always">
+      <f:facet name="toolbar"/>
+      <af:panelGroupLayout xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                           id="pgl1" halign="left" layout="vertical">
+        <af:panelGroupLayout layout="horizontal" halign="left"
+                             inlineStyle="width:1033px;">
+        
+
+          <af:selectOneChoice label="#{viewcontrollerBundle.PI_NUMBER}"
+                              required="#{bindings.PIAssignListVO1.hints.mandatory}"
+                              shortDesc="#{bindings.PIAssignListVO1.hints.tooltip}"
+                              id="soc4"  autoSubmit="true" 
+                              binding="#{pageFlowScope.CreateTable.selectedpi}"
+                              valueChangeListener="#{pageFlowScope.CreateTable.pWorkVORefresh}">
+            <f:selectItems value="#{bindings.PIAssignListVO1.items}" id="si4"/>
+          </af:selectOneChoice>
+          <af:inputText label="PI Name" id="it1" 
+                          disabled="true"
+                         binding="#{pageFlowScope.CreateTable.userName1}"/>
+          
+
+          <af:inputDate label="#{viewcontrollerBundle.ASSIGNED_DATE}" id="id1" autoSubmit="true"
+                        binding="#{pageFlowScope.CreateTable.montyear}"
+                        minValue="#{pageFlowScope.CreateTable.curDate}"
+                        columns="10">
+            <af:convertDateTime pattern="dd-MM-yyyy" dateStyle="dd-MM-yyyy"/>
+          </af:inputDate>
+ 
+          <af:commandButton text="#{viewcontrollerBundle.SEARCH_0}" id="cb3"
+                            actionListener="#{pageFlowScope.CreateTable.createTable}" partialSubmit="true"
+                             inlineStyle="width:100px;font-weight:bold; background-color:#FFA500;"
+                            binding="#{pageFlowScope.CreateTable.searchbtnbind}"/>
+        </af:panelGroupLayout>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:panelGroupLayout id="pfl3"
+                             inlineStyle="width:350.0px; height:320px;"
+                             halign="center">
+
+          <af:table value="#{bindings.PImonthlyWorkAssignVO11.collectionModel}"
+                    var="row"
+                    rows="#{bindings.PImonthlyWorkAssignVO11.rangeSize}"
+                    emptyText="#{bindings.PImonthlyWorkAssignVO11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.PImonthlyWorkAssignVO11.rangeSize}"
+                    rowBandingInterval="0"
+                    width="67%" 
+                    inlineStyle="height:293px;" styleClass="AFStretchWidth"
+                    selectedRowKeys="#{bindings.PImonthlyWorkAssignVO11.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.PImonthlyWorkAssignVO11.collectionModel.makeCurrent}"
+                    rowSelection="single" id="t1"
+                    binding="#{pageFlowScope.CreateTable.tableBind}">
+            <af:column sortProperty="#{bindings.PImonthlyWorkAssignVO11.hints.AssgnDate.name}"
+                       sortable="false" width="100"
+
+                       headerText="Assignment Date"
+                       id="c2">
+              <af:inputDate value="#{row.bindings.AssgnDate.inputValue}"
+                            label="#{bindings.PImonthlyWorkAssignVO11.hints.AssgnDate.label}"
+                            required="#{bindings.PImonthlyWorkAssignVO11.hints.AssgnDate.mandatory}"
+                            shortDesc="#{bindings.PImonthlyWorkAssignVO11.hints.AssgnDate.tooltip}"
+                            id="id2" disabled="true">
+                <f:validator binding="#{row.bindings.AssgnDate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.PImonthlyWorkAssignVO11.hints.AssgnDate.format}"/>
+              </af:inputDate>
+            </af:column>
+            <af:column sortProperty="#{bindings.PImonthlyWorkAssignVO11.hints.PiAvailabitystatusID.name}"
+                       sortable="false" width="140"
+                       headerText="PI Availabilty Status"
+                       id="c4">
+
+              <af:selectOneChoice value="#{row.bindings.PiAvailabitystatusID.inputValue}"
+                                  label="#{row.bindings.PiAvailabitystatusID.label}"
+                                  disabled="#{row.dbval eq 'true'}" autoSubmit="true"
+                                  required="#{bindings.PImonthlyWorkAssignVO11.hints.PiAvailabitystatusID.mandatory}"
+                                  shortDesc="#{bindings.PImonthlyWorkAssignVO11.hints.PiAvailabitystatusID.tooltip}"
+                                  id="soc3"
+                                  valueChangeListener="#{pageFlowScope.CreateTable.statusVCL}">
+                <f:selectItems value="#{row.bindings.PiAvailabitystatusID.items}"
+                               id="si3"/>
+              </af:selectOneChoice>
+            </af:column>
+            <af:column sortProperty="#{bindings.PImonthlyWorkAssignVO11.hints.Shift.name}"
+                       sortable="false" width="210"
+                       headerText="#{bindings.PImonthlyWorkAssignVO11.hints.Shift.label}"
+                       id="c1">
+              <af:selectOneChoice value="#{row.bindings.Shift.inputValue}"
+                                  label="#{row.bindings.Shift.label}"
+                                  required="#{bindings.PImonthlyWorkAssignVO11.hints.Shift.mandatory}"
+                                  shortDesc="#{bindings.PImonthlyWorkAssignVO11.hints.Shift.tooltip}"
+                                  id="soc5" autoSubmit="true"
+                                  disabled="#{row.dbval eq 'true' or (row.bindings.PiAvailabitystatusID.inputValue eq 2) or (row.bindings.PiAvailabitystatusID.inputValue eq 3) or (row.bindings.PiAvailabitystatusID.inputValue eq 4)}" partialTriggers="soc3">
+                <f:selectItems value="#{row.bindings.Shift.items}" id="si1"/>
+              </af:selectOneChoice>
+            </af:column>
+            <af:column sortProperty="#{bindings.PImonthlyWorkAssignVO11.hints.SectorName.name}"
+                       sortable="false"
+                       headerText="#{bindings.PImonthlyWorkAssignVO11.hints.SectorName.label}"
+                       id="c3">
+              <af:selectOneChoice value="#{row.bindings.SectorName.inputValue}"
+                                  label="#{row.bindings.SectorName.label}" autoSubmit="true"
+                                  required="#{bindings.PImonthlyWorkAssignVO11.hints.SectorName.mandatory}"
+                                  shortDesc="#{bindings.PImonthlyWorkAssignVO11.hints.SectorName.tooltip}"
+                                  id="soc1" disabled="#{row.dbval eq 'true' or (row.bindings.PiAvailabitystatusID.inputValue eq 2) or (row.bindings.PiAvailabitystatusID.inputValue eq 3) or (row.bindings.PiAvailabitystatusID.inputValue eq 4)}" partialTriggers="soc3"
+                                  valueChangeListener="#{pageFlowScope.CreateTable.sectorVCL}">
+                <f:selectItems value="#{row.bindings.SectorName.items}"
+                               id="si2"/>
+              </af:selectOneChoice>
+            </af:column>
+            <af:column sortProperty="#{bindings.PImonthlyWorkAssignVO11.hints.ZoneName.name}"
+                       sortable="false"
+                       headerText="#{bindings.PImonthlyWorkAssignVO11.hints.ZoneName.label}"
+                       id="c5">
+              <af:selectOneChoice value="#{row.bindings.ZoneName.inputValue}"
+                                  label="#{row.bindings.ZoneName.label}" autoSubmit="true"
+                                  required="#{bindings.PImonthlyWorkAssignVO11.hints.ZoneName.mandatory}"
+                                  shortDesc="#{bindings.PImonthlyWorkAssignVO11.hints.ZoneName.tooltip}"
+                                  id="soc2"  disabled="#{row.dbval eq 'true' or (row.bindings.PiAvailabitystatusID.inputValue eq 2) or (row.bindings.PiAvailabitystatusID.inputValue eq 3) or (row.bindings.PiAvailabitystatusID.inputValue eq 4)}" partialTriggers="soc3" >
+                <f:selectItems value="#{row.bindings.ZoneName.items}" id="si5"/>
+              </af:selectOneChoice>
+            </af:column>
+          </af:table>
+        </af:panelGroupLayout>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:panelGroupLayout id="pgl2" halign="left" layout="horizontal"
+                             inlineStyle="width:312px; height:25px;">
+          <af:commandButton text="#{viewcontrollerBundle.SUBMIT_3}" id="cb1" 
+       		actionListener="#{pageFlowScope.CreateTable.submitAction}"                     
+			partialSubmit="true"
+                            inlineStyle="width:100px;font-weight:bold; background-color:#FFA500;"
+                            binding="#{pageFlowScope.CreateTable.cb1}"/>
+          <af:spacer width="10" height="10" id="s3"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </af:panelBox>
+  </af:panelFormLayout>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:CreateTable-->
+</jsp:root>

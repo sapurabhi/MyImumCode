@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93"
+                id="pisupervisormapping_pisupervisormapping_getDatePageDef"
+                Package="staffdeploy" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="PIsForGenPoolVO1Iterator" Binds="PIsForGenPoolVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator id="SpvsrDtlsVO1Iterator" Binds="SpvsrDtlsVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator id="PiTempRVO1Iterator" Binds="PiTempRVO1"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <methodAction id="updateStatusAfterAssignment"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="updateStatusAfterAssignment"
+                  IsViewObjectMethod="false"/>
+  </bindings>
+</pageDefinition>

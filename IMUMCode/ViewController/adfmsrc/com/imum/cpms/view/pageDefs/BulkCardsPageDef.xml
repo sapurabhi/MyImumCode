@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="BulkCardsPageDef"
+                Package="com.imum.cpms.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="BulkCardsCustomerVO1" RangeSize="25"
+              DataControl="MastersAMDataControl"
+              id="BulkCardsCustomerVO1Iterator"/>
+    <searchRegion Criteria="BulkCardsCustomerVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="BulkCardsCustomerVO1Iterator"
+                  id="BulkCardsCustomerVOCriteriaQuery"/>
+    <iterator Binds="BulkCardsCustomerVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="BulkCardsCustomerVO1Iterator1"/>
+    <iterator Binds="BulkCardsInstVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="BulkCardsInstVO1Iterator"/>
+    <iterator Binds="CardIssueSrchCriVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="CardIssueSrchCriVO1Iterator"/>
+    <iterator Binds="InvDetailUVO1"
+              DataControl="TransactionsAMDataControl"
+              id="InvDetailUVO1Iterator"/>
+    <iterator Binds="SalesSettlementUVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="SalesSettlementUVO1Iterator"/>
+    <iterator Binds="SalesHeaderUVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="SalesHeaderUVO1Iterator"/>
+    <iterator Binds="CardsInputFieldsVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="CardsInputFieldsVO1Iterator"/>
+    <iterator id="ParkingCardTypesUVO1Iterator" Binds="ParkingCardTypesUVO1"
+              DataControl="TransactionsAMDataControl" RangeSize="25"/>
+    <iterator Binds="PaymetReceiptVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PaymetReceiptVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="BulkCardsCustomerVO1Iterator" id="BulkCardsCustomerVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.BulkCardsCustomerVO"
+                      Name="BulkCardsCustomerVO10">
+        <AttrNames>
+          <Item Value="CustID"/>
+          <Item Value="FirstName"/>
+          <Item Value="LastName"/>
+          <Item Value="Mobilenum"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="BulkCardsCustomerVO1Iterator1" id="CustID">
+      <AttrNames>
+        <Item Value="CustID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsCustomerVO1Iterator1"
+                     id="CustomerType">
+      <AttrNames>
+        <Item Value="CustomerType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsCustomerVO1Iterator1" id="FirstName">
+      <AttrNames>
+        <Item Value="FirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsCustomerVO1Iterator1" id="LastName">
+      <AttrNames>
+        <Item Value="LastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsCustomerVO1Iterator1" id="Mobilenum">
+      <AttrNames>
+        <Item Value="Mobilenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsInstVO1Iterator" id="instid">
+      <AttrNames>
+        <Item Value="instid"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsInstVO1Iterator" id="instname">
+      <AttrNames>
+        <Item Value="instname"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="BulkCardsInstVO1Iterator" id="BulkCardsInstVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.BulkCardsInstVO"
+                      Name="BulkCardsInstVO10">
+        <AttrNames>
+          <Item Value="instid"/>
+          <Item Value="instname"/>
+          <Item Value="primarycontact"/>
+          <Item Value="landlinenum"/>
+          <Item Value="insturl"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CardIssueSrchCriVO1Iterator" id="CardIssueSrchCriVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.CardIssueSrchCriVO"
+                      Name="CardIssueSrchCriVO10">
+        <AttrNames>
+          <Item Value="CardType"/>
+          <Item Value="Denomination"/>
+          <Item Value="NoOfCards"/>
+          <Item Value="StartNum"/>
+          <Item Value="EndNum"/>
+          <Item Value="RemoveFlag" Binds="RemoveFlag"/>
+          <Item Value="BulkSaleCardType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="InvDetailUVO1Iterator" id="InvDetailUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.InvDetailUVO"
+                      Name="InvDetailUVO10">
+        <AttrNames>
+          <Item Value="Cardnum"/>
+          <Item Value="CardDenomAmt"/>
+          <Item Value="SelectFlag" Binds="SelectFlag"/>
+          <Item Value="cardTypeDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="SalesSettlementUVO1Iterator" id="SalesSettlementUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.SalesSettlementUVO"
+                      Name="SalesSettlementUVO10">
+        <AttrNames>
+          <Item Value="PYMTType"/>
+          <Item Value="PYMTAMT"/>
+          <Item Value="Chqnum"/>
+          <Item Value="CCDType"/>
+          <Item Value="CCDnum"/>
+          <Item Value="AuthCode"/>
+          <Item Value="ChqBankname"/>
+          <Item Value="ChqDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="SalesSettlementUVO1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <button IterBinding="InvDetailUVO1Iterator" id="SelectFlag"
+            DTSupportsMRU="false" StaticList="true" ChangeEventPolicy="ppr">
+      <AttrNames>
+        <Item Value="SelectFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="True"/>
+        <Item Value="False"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="SalesHeaderUVO1Iterator" id="USERID">
+      <AttrNames>
+        <Item Value="USERID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsInstVO1Iterator" id="landlinenum">
+      <AttrNames>
+        <Item Value="landlinenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsInstVO1Iterator" id="insturl">
+      <AttrNames>
+        <Item Value="insturl"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="searchCritRow"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="searchCritRow" IsViewObjectMethod="false"/>
+    <attributeValues IterBinding="CardsInputFieldsVO1Iterator" id="Saledate">
+      <AttrNames>
+        <Item Value="Saledate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="BulkCardsInstVO1Iterator" id="primarycontact">
+      <AttrNames>
+        <Item Value="primarycontact"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="CardIssueSrchCriVO1Iterator" id="RemoveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="RemoveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <methodAction id="commit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="commit" IsViewObjectMethod="false"/>
+    <action IterBinding="SalesSettlementUVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="SalesHeaderUVO1Iterator" id="ReceiptNum">
+      <AttrNames>
+        <Item Value="ReceiptNum"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="PaymetReceiptVO1Iterator" id="Create"
+            InstanceName="TransactionsAMDataControl.PaymetReceiptVO1"
+            DataControl="TransactionsAMDataControl" RequiresUpdateModel="true"
+            Action="createRow"/>
+    <methodAction id="cardTypeLength"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="cardTypeLength" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.cardTypeLength_TransactionsAMDataControl_dataProvider_cardTypeLength_result">
+      <NamedData NDName="cardType" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="addPaymentRow"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addPaymentRow" IsViewObjectMethod="false">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCreatePayment"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCreatePayment" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCreatePayment_TransactionsAMDataControl_dataProvider_doCreatePayment_result">
+      <NamedData NDName="CustomerId" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="SaleReceiptNumber" NDType="java.lang.Number"/>
+      <NamedData NDName="SaleDate" NDType="java.sql.Date"/>
+      <NamedData NDName="location" NDType="java.lang.String"/>
+      <NamedData NDName="Totalamount" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="CardsInputFieldsVO1Iterator"
+                     id="SaleReceiptnumber">
+      <AttrNames>
+        <Item Value="SaleReceiptnumber"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="clearCacheAllRows" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="clearCacheAllRows"
+                  IsViewObjectMethod="true"
+                  DataControl="TransactionsAMDataControl"
+                  InstanceName="TransactionsAMDataControl.CardIssueSrchCriVO1"/>
+    <action IterBinding="CardsInputFieldsVO1Iterator" id="CreateInsert"
+            InstanceName="TransactionsAMDataControl.CardsInputFieldsVO1"
+            DataControl="TransactionsAMDataControl" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="BulkCardsInstVO1Iterator" id="CreateInsert2"
+            InstanceName="TransactionsAMDataControl.BulkCardsInstVO1"
+            DataControl="TransactionsAMDataControl" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <methodAction id="doRollback"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doRollback" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doRollback_TransactionsAMDataControl_dataProvider_doRollback_result"/>
+  </bindings>
+</pageDefinition>

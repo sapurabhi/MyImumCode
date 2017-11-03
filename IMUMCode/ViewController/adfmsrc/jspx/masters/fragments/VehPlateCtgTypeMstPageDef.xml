@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="VehPlateCtgTypeMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VehiclePlateCategoryVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="VehiclePlateCategoryVO1Iterator" Refresh="always"/>
+    <searchRegion Binds="VehiclePlateCategoryVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VehiclePlateCategoryVO1Query"/>
+    <iterator Binds="VehiclePlateTypeVO1"
+              DataControl="MastersAMDataControl"
+              id="VehiclePlateTypeVO1Iterator" RangeSize="10"/>
+    <iterator Binds="VehiclePlateTypeVO2" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="VehiclePlateTypeVO2Iterator"/>
+    <iterator id="VehiclePlateCategoryLVO1Iterator"
+              Binds="VehiclePlateCategoryLVO1"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="VehPlateCtgMstLngVO2Iterator" Binds="VehPlateCtgMstLngVO2"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="VehPlateTypeMstLngVO2Iterator" Binds="VehPlateTypeMstLngVO2"
+              DataControl="MastersAMDataControl" RangeSize="25"/>
+    <iterator id="VehPlateTypeTypeIdRVO1Iterator" Binds="VehPlateTypeTypeIdRVO1"
+              DataControl="MastersAMDataControl" RangeSize="10"/>
+    <iterator id="VehiclePlateCountryLVO2Iterator"
+              Binds="VehiclePlateCountryLVO2" DataControl="MastersAMDataControl"
+              RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VehiclePlateCategoryVO1Iterator"
+          id="VehiclePlateCategoryVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehiclePlateCategoryVO"
+                      Name="VehiclePlateCategoryVO10">
+        <AttrNames>
+          <Item Value="PlateCtgID"/>
+          <Item Value="PlateCtgDesc"/>
+          <Item Value="PlateCountryID"/>
+          <Item Value="Countrycode"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="adpplatectgid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VehiclePlateCategoryVO1Iterator"
+                     id="PlateCtgDesc">
+      <AttrNames>
+        <Item Value="PlateCtgDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="VehiclePlateCategoryVO1Iterator" StaticList="false"
+            Uses="LOV_ActiveFlag" id="ActiveFlag" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+    </button>
+    <action IterBinding="VehiclePlateTypeVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <list Uses="LOV_PlateCountryID" StaticList="false"
+          IterBinding="VehiclePlateCategoryVO1Iterator" id="PlateCountryID"/>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <tree IterBinding="VehiclePlateTypeVO1Iterator" id="VehiclePlateTypeVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehiclePlateTypeVO"
+                      Name="VehiclePlateTypeVO10">
+        <AttrNames>
+          <Item Value="PlateTypeID"/>
+          <Item Value="PlateCategoryID"/>
+          <Item Value="PlateTypedesc"/>
+          <Item Value="TypeOrder"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="Countrycode"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="UpdatedBy"/>
+          <Item Value="UpdatedDate"/>
+          <Item Value="VehTypeNameLng"/>
+          <Item Value="adpplatetypeid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VehiclePlateTypeVO2Iterator" id="VehiclePlateTypeVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.VehiclePlateTypeVO"
+                      Name="VehiclePlateTypeVO20">
+        <AttrNames>
+          <Item Value="PlateTypeID"/>
+          <Item Value="PlateCategoryID"/>
+          <Item Value="PlateTypedesc"/>
+          <Item Value="TypeOrder"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="Countrycode"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="UpdatedBy"/>
+          <Item Value="UpdatedDate"/>
+          <Item Value="VehTypeNameLng"/>
+          <Item Value="adpplatetypeid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="VehiclePlateTypeVO2Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <list IterBinding="VehiclePlateCategoryVO1Iterator" StaticList="false"
+          Uses="LOV_Language" id="Language" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="VehiclePlateCategoryVO1Iterator"
+                     id="VehCtgNameLng">
+      <AttrNames>
+        <Item Value="VehCtgNameLng"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createNewCtgLangRec"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createNewCtgLangRec"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.createNewCtgLangRec_MastersAMDataControl_dataProvider_createNewCtgLangRec_result">
+      <NamedData NDName="Lang" NDType="java.lang.String"/>
+      <NamedData NDName="CtgName" NDType="java.lang.String"/>
+      <NamedData NDName="currentPlateCtgId" NDType="java.lang.String"/>
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createNewTypeLangRec"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createNewTypeLangRec"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.createNewTypeLangRec_MastersAMDataControl_dataProvider_createNewTypeLangRec_result">
+      <NamedData NDName="Lang" NDType="java.lang.String"/>
+      <NamedData NDName="TypeName" NDType="java.lang.String"/>
+      <NamedData NDName="currentTypeId" NDType="java.lang.String"/>
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getLangRecForCtg"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getLangRecForCtg"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="Lang" NDType="java.lang.String"/>
+      <NamedData NDName="currentCtgId" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="VehiclePlateCategoryVO1Iterator"
+                     id="mParkPlateCtg">
+      <AttrNames>
+        <Item Value="mParkPlateCtg"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createNewVehCategoryMstDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="createNewVehCategoryMstDetails"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.createNewVehCategoryMstDetails_MastersAMDataControl_dataProvider_createNewVehCategoryMstDetails_result">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="VehiclePlateCategoryVO1Iterator"
+                     id="adpplatectgid">
+      <AttrNames>
+        <Item Value="adpplatectgid"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,398 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+   <af:showDetailHeader text="PVT Details" disclosed="true" id="sdh1">
+      
+    <af:panelFormLayout id="pfl0" labelAlignment="start" rows="7"
+                        styleClass="AFStretchWidth">
+    <af:spacer width="5" height="10" id="s3"/>
+      <af:inputText label="Seqence No" id="it1"  binding="#{DiscountsmsalertMB.seq}"/>
+      <af:inputText label="PVT Number" id="it2"  binding="#{DiscountsmsalertMB.pvtno}"/>
+        <af:selectOneChoice value="#{bindings.Contracode1.inputValue}"
+                            label="Contra Code"
+                            required="#{bindings.Contracode1.hints.mandatory}"
+                            shortDesc="#{bindings.Contracode1.hints.tooltip}" binding="#{DiscountsmsalertMB.contracodelov}"
+                            id="soc1">
+          <f:selectItems value="#{bindings.Contracode1.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.SectorCode1.inputValue}"
+                            label="Sector Code" autoSubmit="true"
+                            required="#{bindings.SectorCode1.hints.mandatory}" binding="#{DiscountsmsalertMB.sectorlov}"
+                            id="soc2">
+          <f:selectItems value="#{bindings.SectorCode1.items}" id="si2"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.zonecode1.inputValue}"
+                            label="Zone Code"
+                            required="#{bindings.zonecode1.hints.mandatory}" partialTriggers="soc2"
+                            shortDesc="#{bindings.zonecode1.hints.tooltip}" binding="#{DiscountsmsalertMB.zonelov}"
+                            id="soc3">
+          <f:selectItems value="#{bindings.zonecode1.items}" id="si3"/>
+        </af:selectOneChoice>
+        <!--<af:selectOneChoice value="#{bindings.Contracode.inputValue}"
+                            label="#{bindings.Contracode.label}" 
+                            required="#{bindings.Contracode.hints.mandatory}"
+                            shortDesc="#{bindings.Contracode.hints.tooltip}"
+                            id="soc3"
+                            binding="#{DiscountsmsalertMB.contracodelov}">
+          <f:selectItems value="#{bindings.Contracode.items}" id="si3"/>
+        </af:selectOneChoice>-->
+        <!--<af:selectOneChoice value="#{bindings.SectorCode.inputValue}"
+                            label="#{bindings.SectorCode.label}" autoSubmit="true"
+                            required="#{bindings.SectorCode.hints.mandatory}" 
+                            shortDesc="#{bindings.SectorCode.hints.tooltip}"
+                            id="soc2" binding="#{DiscountsmsalertMB.sectorlov}">
+          <f:selectItems value="#{bindings.SectorCode.items}" id="si2"/>
+        </af:selectOneChoice>-->
+        <!--<af:selectOneChoice value="#{bindings.zonecode.inputValue}"
+                            label="#{bindings.zonecode.label}" partialTriggers="soc2"
+                            required="#{bindings.zonecode.hints.mandatory}"
+                            shortDesc="#{bindings.zonecode.hints.tooltip}"
+                            id="soc1" binding="#{DiscountsmsalertMB.zonelov}">
+          <f:selectItems value="#{bindings.zonecode.items}" id="si1"/>
+        </af:selectOneChoice>-->
+        <af:commandButton text="Search" id="cb1"
+                          inlineStyle="background-color:#F39C11;"
+                          actionListener="#{DiscountsmsalertMB.search}"/>                          
+      </af:panelFormLayout>
+    <af:spacer  height="20" id="s4"/>
+    <!-- seq search table-->
+     <af:panelGroupLayout id="pfl1" inlineStyle="width:900.0px;">
+    
+      <af:table value="#{bindings.discountsearchVO1.collectionModel}" var="row"
+                rows="#{bindings.discountsearchVO1.rangeSize}" rendered="false"
+                emptyText="#{bindings.discountsearchVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.discountsearchVO1.rangeSize}"
+                rowBandingInterval="0" width="95%"
+                selectedRowKeys="#{bindings.discountsearchVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.discountsearchVO1.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" 
+                binding="#{DiscountsmsalertMB.tablebind}"
+                inlineStyle="height:247px;">
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.PVTNum.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_NUMBER_0}"
+                   id="c7" width="90">
+          <af:outputText value="#{row.PVTNum}" id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.PVTStatusID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_STATUS}"
+                   id="c5" width="70">
+          <af:selectOneChoice value="#{row.bindings.PVTStatusID.inputValue}"
+                              label="#{row.bindings.PVTStatusID.label}" readOnly="true"
+                              required="#{bindings.discountsearchVO1.hints.PVTStatusID.mandatory}"
+                              shortDesc="#{bindings.discountsearchVO1.hints.PVTStatusID.tooltip}"
+                              id="soc5">
+            <f:selectItems value="#{row.bindings.PVTStatusID.items}" id="si5"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.PVTAMTPAYABLE.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_AMOUNT}"
+                   id="c4" width="80">
+          <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.zonecode.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.ZONE_CODE}"
+                   id="c1" width="80">
+          <af:outputText value="#{row.zonecode}" id="ot4"/>
+         
+        </af:column>
+       
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.PVTSTAGEID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_STAGE}"
+                   id="c9" width="90">
+          <af:selectOneChoice value="#{row.bindings.PVTSTAGEID.inputValue}"
+                              label="#{row.bindings.PVTSTAGEID.label}" readOnly="true"
+                              required="#{bindings.discountsearchVO1.hints.PVTSTAGEID.mandatory}"
+                              shortDesc="#{bindings.discountsearchVO1.hints.PVTSTAGEID.tooltip}"
+                              id="soc4">
+            <f:selectItems value="#{row.bindings.PVTSTAGEID.items}" id="si4"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.CustFirstName.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.FIRST_NAME}"
+                   id="c2" width="130">
+          <af:inputText value="#{row.bindings.CustFirstName.inputValue}"
+                        label="#{bindings.discountsearchVO1.hints.CustFirstName.label}"
+                        required="#{bindings.discountsearchVO1.hints.CustFirstName.mandatory}"
+                        columns="50"
+                        maximumLength="#{bindings.discountsearchVO1.hints.CustFirstName.precision}"
+                        shortDesc="#{bindings.discountsearchVO1.hints.CustFirstName.tooltip}"
+                        id="it3">
+            <f:validator binding="#{row.bindings.CustFirstName.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.CustLastName.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.LAST_NAME}"
+                   id="c10" width="120">
+          <af:inputText value="#{row.bindings.CustLastName.inputValue}"
+                        label="#{bindings.discountsearchVO1.hints.CustLastName.label}"
+                        required="#{bindings.discountsearchVO1.hints.CustLastName.mandatory}"
+                        columns="50"
+                        maximumLength="#{bindings.discountsearchVO1.hints.CustLastName.precision}"
+                        shortDesc="#{bindings.discountsearchVO1.hints.CustLastName.tooltip}"
+                        id="it7">
+            <f:validator binding="#{row.bindings.CustLastName.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.CustMobilenum.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.MOBILE_NUMBER}"
+                   id="c6" width="120">
+          <af:inputText value="#{row.bindings.CustMobilenum.inputValue}"
+                        label="#{bindings.discountsearchVO1.hints.CustMobilenum.label}"
+                        required="#{bindings.discountsearchVO1.hints.CustMobilenum.mandatory}"
+                       
+                         maximumLength="12"
+                        shortDesc="#{bindings.discountsearchVO1.hints.CustMobilenum.tooltip}"
+                        id="it5">
+                        
+            <f:validator binding="#{row.bindings.CustMobilenum.validator}"/>
+            
+                                                      
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.discountsearchVO1.hints.CustEmailID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.EMAIL_ID_0}"
+                   id="c8" width="200">
+          <af:inputText value="#{row.bindings.CustEmailID.inputValue}"
+                        label="#{bindings.discountsearchVO1.hints.CustEmailID.label}"
+                        required="#{bindings.discountsearchVO1.hints.CustEmailID.mandatory}"
+                        columns="#{bindings.discountsearchVO1.hints.CustEmailID.displayWidth}"
+                        maximumLength="#{bindings.discountsearchVO1.hints.CustEmailID.precision}"
+                        shortDesc="#{bindings.discountsearchVO1.hints.CustEmailID.tooltip}"
+                        id="it4"> 
+            <f:validator binding="#{row.bindings.CustEmailID.validator}"/>
+             <af:validateRegExp pattern="^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                                 messageDetailNoMatch="#{viewcontrollerBundle.PLEASE_ENTER_VALID_MAIL_ID}"/>
+         </af:inputText>
+        </af:column>
+      </af:table>
+  
+   </af:panelGroupLayout>
+                     
+    <!-- pvt number serach table    -->
+    <af:panelGroupLayout id="pgl2" inlineStyle="width:900.0px;" visible="#{DiscountsmsalertMB.vis2}">
+       
+   
+      <af:table value="#{bindings.PVTHeadersmsVO11.collectionModel}" var="row"
+                rows="#{bindings.PVTHeadersmsVO11.rangeSize}"  rendered="false"
+                emptyText="#{bindings.PVTHeadersmsVO11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.PVTHeadersmsVO11.rangeSize}"  width="95%"
+                rowBandingInterval="0" binding="#{DiscountsmsalertMB.pvtsearchtable}"
+                selectedRowKeys="#{bindings.PVTHeadersmsVO11.collectionModel.selectedRow}"
+                selectionListener="#{bindings.PVTHeadersmsVO11.collectionModel.makeCurrent}"
+                rowSelection="single" id="t2" inlineStyle="height:242px;">
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.PVTNum.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_NUMBER_0}"
+                   id="c3" width="90">
+          <!--<af:inputText value="#{row.bindings.PVTNum.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.PVTNum.label}" 
+                        required="#{bindings.PVTHeadersmsVO11.hints.PVTNum.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.PVTNum.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.PVTNum.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.PVTNum.tooltip}"
+                        id="it10">
+            <f:validator binding="#{row.bindings.PVTNum.validator}"/>
+          </af:inputText>-->
+           <af:outputText value="#{row.PVTNum}" id="ot6"/>
+        </af:column>
+        <!--<af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.Contracode.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.CONTRAVENTION_CODE}"
+                   id="c14">
+          --><!--<af:inputText value="#{row.bindings.Contracode.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.Contracode.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.Contracode.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.Contracode.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.Contracode.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.Contracode.tooltip}"
+                        id="it13">
+            <f:validator binding="#{row.bindings.Contracode.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.PVTHeadersmsVO11.hints.Contracode.format}"/>
+          </af:inputText>--><!--
+           <af:outputText value="#{row.Contracode}" id="ot7"/>
+        </af:column>-->
+        <!--<af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.SectorCode.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.SECTOR_0}"
+                   id="c12">
+          --><!--<af:inputText value="#{row.bindings.SectorCode.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.SectorCode.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.SectorCode.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.SectorCode.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.SectorCode.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.SectorCode.tooltip}"
+                        id="it14">
+            <f:validator binding="#{row.bindings.SectorCode.validator}"/>
+            
+          </af:inputText>--><!--
+          <af:outputText value="#{row.SectorCode}" id="ot8"/>
+        </af:column>-->
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_STATUS}"
+                   id="c13" width="70">
+          <!--<af:inputText value="#{row.bindings.PVTStatusID.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.tooltip}"
+                        id="it16">
+            <f:validator binding="#{row.bindings.PVTStatusID.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.format}"/>
+          </af:inputText>-->
+          <!--<af:outputText value="#{row.PVTStatusID}" id="ot9"/>-->
+          <af:selectOneChoice value="#{row.bindings.PVTStatusID.inputValue}"
+                              label="#{row.bindings.PVTStatusID.label}" readOnly="true"
+                              required="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.mandatory}"
+                              shortDesc="#{bindings.PVTHeadersmsVO11.hints.PVTStatusID.tooltip}"
+                              id="soc6">
+            <f:selectItems value="#{row.bindings.PVTStatusID.items}" id="si6"/>
+          </af:selectOneChoice>
+        </af:column>
+        
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.PVTAMTPAYABLE.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.PVT_AMOUNT}"
+                   id="c19" width="80">
+          <!--<af:inputText value="#{row.bindings.PVTAMTPAYABLE.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.PVTAMTPAYABLE.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.PVTAMTPAYABLE.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.PVTAMTPAYABLE.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.PVTAMTPAYABLE.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.PVTAMTPAYABLE.tooltip}"
+                        id="it12">
+            <f:validator binding="#{row.bindings.PVTAMTPAYABLE.validator}"/>
+          </af:inputText>-->
+          <af:outputText value="#{row.PVTAMTPAYABLE}" id="ot11"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.zonecode.name}"
+                   sortable="false"
+                   headerText="Zone Code"
+                   id="c18" width="80">
+          <!--<af:inputText value="#{row.bindings.zonecode.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.zonecode.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.zonecode.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.zonecode.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.zonecode.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.zonecode.tooltip}"
+                        id="it6">
+            <f:validator binding="#{row.bindings.zonecode.validator}"/>
+          </af:inputText>-->
+          <af:outputText value="#{row.zonecode}" id="ot12"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.name}"
+                   sortable="false" rendered="true"
+                   headerText="#{viewcontrollerBundle.PVT_STAGE}"
+                   id="c11" width="107">
+          <!--<af:inputText value="#{row.bindings.PVTSTAGEID.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.tooltip}"
+                        id="it17">
+            <f:validator binding="#{row.bindings.PVTSTAGEID.validator}"/>
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.format}"/>
+          </af:inputText>-->
+           <!--<af:outputText value="#{row.PVTSTAGEID}" id="ot10"/>-->
+          <af:selectOneChoice value="#{row.bindings.PVTSTAGEID.inputValue}"
+                              label="#{row.bindings.PVTSTAGEID.label}" readOnly="true"
+                              required="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.mandatory}"
+                              shortDesc="#{bindings.PVTHeadersmsVO11.hints.PVTSTAGEID.tooltip}"
+                              id="soc7">
+            <f:selectItems value="#{row.bindings.PVTSTAGEID.items}" id="si7"/>
+          </af:selectOneChoice>
+        </af:column>
+        
+        
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.CustFirstName.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.FIRST_NAME}"
+                   id="c20" width="120">
+          <af:inputText value="#{row.bindings.CustFirstName.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.CustFirstName.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.CustFirstName.mandatory}"
+                        columns="20"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.CustFirstName.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.CustFirstName.tooltip}"
+                        id="it9">
+            <f:validator binding="#{row.bindings.CustFirstName.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.CustLastName.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.LAST_NAME}"
+                   id="c17" width="120">
+          <af:inputText value="#{row.bindings.CustLastName.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.CustLastName.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.CustLastName.mandatory}"
+                        columns="20"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.CustLastName.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.CustLastName.tooltip}"
+                        id="it8">
+            <f:validator binding="#{row.bindings.CustLastName.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.CustMobilenum.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.MOBILE_NUMBER}"
+                   id="c16" width="120">
+          <af:inputText value="#{row.bindings.CustMobilenum.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.CustMobilenum.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.CustMobilenum.mandatory}"
+                        columns="12"
+                        maximumLength="12"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.CustMobilenum.tooltip}"
+                        id="it11">
+            <f:validator binding="#{row.bindings.CustMobilenum.validator}"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.PVTHeadersmsVO11.hints.CustEmailID.name}"
+                   sortable="false"
+                   headerText="#{viewcontrollerBundle.EMAIL_ID_0}"
+                   id="c15" width="200">
+          <af:inputText value="#{row.bindings.CustEmailID.inputValue}"
+                        label="#{bindings.PVTHeadersmsVO11.hints.CustEmailID.label}"
+                        required="#{bindings.PVTHeadersmsVO11.hints.CustEmailID.mandatory}"
+                        columns="#{bindings.PVTHeadersmsVO11.hints.CustEmailID.displayWidth}"
+                        maximumLength="#{bindings.PVTHeadersmsVO11.hints.CustEmailID.precision}"
+                        shortDesc="#{bindings.PVTHeadersmsVO11.hints.CustEmailID.tooltip}"
+                        id="it15">
+            <f:validator binding="#{row.bindings.CustEmailID.validator}"/>
+            <af:validateRegExp pattern="^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                                 messageDetailNoMatch="#{viewcontrollerBundle.PLEASE_ENTER_VALID_MAIL_ID}"/>
+          </af:inputText>
+        </af:column>
+      </af:table>
+ </af:panelGroupLayout>
+ <af:spacer  height="20" id="s2"/>
+    <af:panelGroupLayout id="pgl1" layout="horizontal" visible="#{DiscountsmsalertMB.vis}" partialTriggers="cb1">
+      <af:spacer width="300" height="20" id="s5"/>
+      <af:commandButton text="Save" id="cb3" inlineStyle="background-color:#F39C11;"
+                       
+                        actionListener="#{DiscountsmsalertMB.save}"/>
+      <af:spacer width="20" height="10" id="s1"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}" id="cb2" inlineStyle="background-color:#F39C11;"
+                        action="#{DiscountsmsalertMB.Cancel}"/>
+    </af:panelGroupLayout>
+   
+    </af:showDetailHeader>
+    <!--oracle-jdev-comment:preferred-managed-bean-name:DiscountsmsalertMB-->
+</jsp:root>

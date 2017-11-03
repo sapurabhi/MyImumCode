@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="DiscountSmsalertPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTHeadersmsVO1" RangeSize="2000"
+              DataControl="TransactionsAMDataControl"
+              id="PVTHeadersmsVO1Iterator"/>
+    <iterator Binds="discountsearchVO1" RangeSize="2000"
+              DataControl="TransactionsAMDataControl"
+              id="discountsearchVO1Iterator"/>
+    <iterator Binds="PVTHeadersmsVO2" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTHeadersmsVO2Iterator"/>
+    <iterator Binds="PVTdissmsVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTdissmsVO1Iterator"/>
+  </executables>
+  <bindings>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="TransactionsAMDataControl"/>
+    <tree IterBinding="PVTHeadersmsVO1Iterator" id="PVTHeadersmsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTHeadersmsVO"
+                      Name="PVTHeadersmsVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="Contracode"/>
+          <Item Value="SectorCode"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="zonecode"/>
+          <Item Value="CustFirstName"/>
+          <Item Value="CustLastName"/>
+          <Item Value="CustMobilenum"/>
+          <Item Value="CustEmailID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="discountsearchVO1Iterator" id="discountsearchVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.discountsearchVO"
+                      Name="discountsearchVO10">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="Approvedflag"/>
+          <Item Value="ApproverRemarks"/>
+          <Item Value="CustEmailID"/>
+          <Item Value="CustFirstName"/>
+          <Item Value="CustLastName"/>
+          <Item Value="CustMobilenum"/>
+          <Item Value="DISCCNCLDtlSeq"/>
+          <Item Value="DISCCNCLhdrSeq"/>
+          <Item Value="DISCCNCLhdrSeq1"/>
+          <Item Value="DISCCNCLSTATUS"/>
+          <Item Value="DISCCNCLTYPE"/>
+          <Item Value="DISCPROMOCODE"/>
+          <Item Value="DISCPROMONAME"/>
+          <Item Value="Promoeffectivedatefrom"/>
+          <Item Value="PromoeffectivedateTo"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="PVTHDRSEQ"/>
+          <Item Value="PVTHDRSEQ1"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="SectorCode"/>
+          <Item Value="zonecode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PVTHeadersmsVO1Iterator" id="PVTHeadersmsVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTHeadersmsVO"
+                      Name="PVTHeadersmsVO110">
+        <AttrNames>
+          <Item Value="PVTNum"/>
+          <Item Value="Contracode"/>
+          <Item Value="SectorCode"/>
+          <Item Value="PVTStatusID"/>
+          <Item Value="PVTSTAGEID"/>
+          <Item Value="PVTAMTPAYABLE"/>
+          <Item Value="zonecode"/>
+          <Item Value="CustFirstName"/>
+          <Item Value="CustLastName"/>
+          <Item Value="CustMobilenum"/>
+          <Item Value="CustEmailID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="pvtdiscountsearch"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="pvtdiscountsearch" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.pvtdiscountsearch_TransactionsAMDataControl_dataProvider_pvtdiscountsearch_result">
+      <NamedData NDName="sector" NDType="java.lang.String"/>
+      <NamedData NDName="zone" NDType="java.lang.String"/>
+      <NamedData NDName="pvtnum" NDType="java.lang.String"/>
+      <NamedData NDName="contracode" NDType="java.lang.String"/>
+      <NamedData NDName="seq" NDType="int"/>
+    </methodAction>
+    <methodAction id="pvtSearch"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="pvtSearch" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.pvtSearch_TransactionsAMDataControl_dataProvider_pvtSearch_result">
+      <NamedData NDName="sector" NDType="java.lang.String"/>
+      <NamedData NDName="zone" NDType="java.lang.String"/>
+      <NamedData NDName="pvtnum" NDType="java.lang.String"/>
+      <NamedData NDName="contracode" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="PVTHeadersmsVO2Iterator" StaticList="false"
+          Uses="LOV_zonecode" id="zonecode" DTSupportsMRU="true"/>
+    <list IterBinding="PVTHeadersmsVO2Iterator" StaticList="false"
+          Uses="LOV_SectorCode" id="SectorCode" DTSupportsMRU="true"/>
+    <list IterBinding="PVTHeadersmsVO2Iterator" StaticList="false"
+          Uses="LOV_Contracode" id="Contracode" DTSupportsMRU="true"/>
+    <list IterBinding="PVTdissmsVO1Iterator" StaticList="false"
+          Uses="LOV_Contracode" id="Contracode1" DTSupportsMRU="true"/>
+    <list IterBinding="PVTdissmsVO1Iterator" StaticList="false"
+          Uses="LOV_SectorCode" id="SectorCode1" DTSupportsMRU="true"/>
+    <list IterBinding="PVTdissmsVO1Iterator" StaticList="false"
+          Uses="LOV_zonecode" id="zonecode1" DTSupportsMRU="true"/>
+    <methodAction id="doCommit"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCommit" IsViewObjectMethod="false"
+                  ReturnName="data.TransactionsAMDataControl.methodResults.doCommit_TransactionsAMDataControl_dataProvider_doCommit_result"/>
+  </bindings>
+  
+</pageDefinition>

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PermitDetailsPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PermitSearchCriteriaVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PermitSearchCriteriaVO1Iterator"/>
+    <iterator Binds="PermitEventsVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="PermitEventsVO1Iterator"/>
+    <iterator Binds="CustomerIndividualUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="CustomerIndividualUVO1Iterator"/>
+    <iterator Binds="PermitVehicleDetailsVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PermitVehicleDetailsVO1Iterator"/>
+    <iterator Binds="PermitDocumentsVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PermitDocumentsVO1Iterator"/>
+    <iterator Binds="CustomerInstitutionVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="CustomerInstitutionVO1Iterator"/>
+    <iterator Binds="PermitAccountEntriesRVO1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PermitAccountEntriesRVO1Iterator"/>
+    <iterator Binds="PermitPaidDetails1" RangeSize="10"
+              DataControl="MastersAMDataControl"
+              id="PermitPaidDetails1Iterator"/>
+    <iterator Binds="PRMDocUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="PRMDocUVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="Addtlchrgs">
+      <AttrNames>
+        <Item Value="Addtlchrgs"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="AdminChrgs">
+      <AttrNames>
+        <Item Value="AdminChrgs"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="Paidflag">
+      <AttrNames>
+        <Item Value="Paidflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="PermitChrgs">
+      <AttrNames>
+        <Item Value="PermitChrgs"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PermitRefundAmt">
+      <AttrNames>
+        <Item Value="PermitRefundAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="ProcChrgs">
+      <AttrNames>
+        <Item Value="ProcChrgs"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PermitEventsVO1Iterator" id="PermitEventsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitEventsVO"
+                      Name="PermitEventsVO10">
+        <AttrNames>
+          <Item Value="eventdate"/>
+          <Item Value="LoginprintID"/>
+          <Item Value="remarks"/>
+          <Item Value="createdby"/>
+          <Item Value="prmheaderseq"/>
+          <Item Value="eventid"/>
+          <Item Value="EVENTAMT"/>
+          <Item Value="eventdesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="CustID">
+      <AttrNames>
+        <Item Value="CustID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="EmailID">
+      <AttrNames>
+        <Item Value="EmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="EmiratesID">
+      <AttrNames>
+        <Item Value="EmiratesID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="FirstName">
+      <AttrNames>
+        <Item Value="FirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Landlinenum">
+      <AttrNames>
+        <Item Value="Landlinenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="LastName">
+      <AttrNames>
+        <Item Value="LastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Nationality">
+      <AttrNames>
+        <Item Value="Nationality"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Residenttype">
+      <AttrNames>
+        <Item Value="Residenttype"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator"
+                     id="Salutation">
+      <AttrNames>
+        <Item Value="Salutation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PermitEnddate">
+      <AttrNames>
+        <Item Value="PermitEnddate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PermitNumber">
+      <AttrNames>
+        <Item Value="PermitNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="Permitstartdate">
+      <AttrNames>
+        <Item Value="Permitstartdate"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PermitVehicleDetailsVO1Iterator"
+          id="PermitVehicleDetailsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitVehicleDetailsVO"
+                      Name="PermitVehicleDetailsVO10">
+        <AttrNames>
+          <Item Value="plateid"/>
+          <Item Value="platenumber"/>
+          <Item Value="platecntid"/>
+          <Item Value="platectgid"/>
+          <Item Value="platetypeid"/>
+          <Item Value="vehmakeid"/>
+          <Item Value="vehmodelid"/>
+          <Item Value="vehcolourid"/>
+          <Item Value="countrycode"/>
+          <Item Value="makedesc"/>
+          <Item Value="modeldesc"/>
+          <Item Value="colourdesc"/>
+          <Item Value="categorydesc"/>
+          <Item Value="countrydesc"/>
+          <Item Value="typename"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="statusname">
+      <AttrNames>
+        <Item Value="statusname"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="PermitDetails"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="PermitDetails"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="CustomerId" NDType="java.lang.String"/>
+      <NamedData NDName="PermitSequence" NDType="java.lang.String"/>
+      <NamedData NDName="PlateId" NDType="java.lang.Number"/>
+    </methodAction>
+    <attributeValues IterBinding="CustomerIndividualUVO1Iterator" id="Mobilenum1">
+      <AttrNames>
+        <Item Value="Mobilenum"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PermitDocumentsVO1Iterator" id="PermitDocumentsVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitDocumentsVO"
+                      Name="PermitDocumentsVO10">
+        <AttrNames>
+          <Item Value="doctype"/>
+          <Item Value="filepath"/>
+          <Item Value="docdesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="Categcode">
+      <AttrNames>
+        <Item Value="Categcode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator" id="SectorCode">
+      <AttrNames>
+        <Item Value="SectorCode"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CustomerIndividualUVO1Iterator" StaticList="false"
+          Uses="LOV_Residenttype" id="Residenttype1" DTSupportsMRU="true"/>
+    <list IterBinding="PermitSearchCriteriaVO1Iterator" StaticList="false"
+          Uses="LOV_Categcode" id="Categcode1" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTNAME">
+      <AttrNames>
+        <Item Value="INSTNAME"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="Primarycontact">
+      <AttrNames>
+        <Item Value="Primarycontact"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="ALTERNATEPHONENUM">
+      <AttrNames>
+        <Item Value="ALTERNATEPHONENUM"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="Landlinenum1">
+      <AttrNames>
+        <Item Value="Landlinenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="Faxnum">
+      <AttrNames>
+        <Item Value="Faxnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="EmailID1">
+      <AttrNames>
+        <Item Value="EmailID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="Activeflag">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="CUSTINSTADDRSEQ">
+      <AttrNames>
+        <Item Value="CUSTINSTADDRSEQ"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="CityCode">
+      <AttrNames>
+        <Item Value="CityCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="CountryCode">
+      <AttrNames>
+        <Item Value="CountryCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTID">
+      <AttrNames>
+        <Item Value="INSTID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTTYPE">
+      <AttrNames>
+        <Item Value="INSTTYPE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator"
+                     id="tradelicensenum">
+      <AttrNames>
+        <Item Value="tradelicensenum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CustomerInstitutionVO1Iterator" id="INSTURL">
+      <AttrNames>
+        <Item Value="INSTURL"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PermitAccountEntriesRVO1Iterator"
+          id="PermitAccountEntriesRVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitAccountEntriesRVO"
+                      Name="PermitAccountEntriesRVO10">
+        <AttrNames>
+          <Item Value="accdate"/>
+          <Item Value="acccode"/>
+          <Item Value="accdesc"/>
+          <Item Value="dramnt"/>
+          <Item Value="cramnt"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PermitPaidDetails1Iterator" id="PYMTAMT">
+      <AttrNames>
+        <Item Value="PYMTAMT"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitPaidDetails1Iterator" id="SaleAmt">
+      <AttrNames>
+        <Item Value="SaleAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PRMDocUVO1Iterator" id="PRMDocUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PRMDocUVO"
+                      Name="PRMDocUVO10">
+        <AttrNames>
+          <Item Value="DOCDesc"/>
+          <Item Value="doctype"/>
+          <Item Value="filepath"/>
+          <Item Value="CreatedDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PermitType">
+      <AttrNames>
+        <Item Value="PermitType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="LocalFlag">
+      <AttrNames>
+        <Item Value="LocalFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PermitSearchCriteriaVO1Iterator" StaticList="false"
+          Uses="LOV_PermitType" id="PermitType1" DTSupportsMRU="true"/>
+    <list IterBinding="PermitSearchCriteriaVO1Iterator" StaticList="false"
+          Uses="LOV_LocalFlag" id="LocalFlag1" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="UTILBILLNUM">
+      <AttrNames>
+        <Item Value="UTILBILLNUM"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitPaidDetails1Iterator" id="receiptnum">
+      <AttrNames>
+        <Item Value="receiptnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitPaidDetails1Iterator" id="pymttypedesc">
+      <AttrNames>
+        <Item Value="pymttypedesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="renewalcount">
+      <AttrNames>
+        <Item Value="renewalcount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="DoTInspComments">
+      <AttrNames>
+        <Item Value="DoTInspComments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PermitRemarks">
+      <AttrNames>
+        <Item Value="PermitRemarks"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PermitSearchCriteriaVO1Iterator"
+          id="PermitSearchCriteriaVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitSearchCriteriaVO"
+                      Name="PermitSearchCriteriaVO10">
+        <AttrNames>
+          <Item Value="TenantTawtheeqID"/>
+          <Item Value="TenantName"/>
+          <Item Value="OwnerTawtheeqID"/>
+          <Item Value="OwnerName"/>
+          <Item Value="FloorNumber"/>
+          <Item Value="LessorName"/>
+          <Item Value="NumberOfBedrooms"/>
+          <Item Value="MobileNumber"/>
+          <Item Value="Nationality"/>
+          <Item Value="SectorNameAR"/>
+           <Item Value="UnitNumber"/>
+          <Item Value="UnitType"/>
+          <Item Value="ResponseCode"/>
+          <Item Value="ResponseDesc"/>
+          <Item Value="UTILBILLNUM"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="TenantTawtheeqID">
+      <AttrNames>
+        <Item Value="TenantTawtheeqID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="TenantName">
+      <AttrNames>
+        <Item Value="TenantName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="OwnerTawtheeqID">
+      <AttrNames>
+        <Item Value="OwnerTawtheeqID"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="OwnerName">
+      <AttrNames>
+        <Item Value="OwnerName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="FloorNumber">
+      <AttrNames>
+        <Item Value="FloorNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="LessorName">
+      <AttrNames>
+        <Item Value="LessorName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="NumberOfBedrooms">
+      <AttrNames>
+        <Item Value="NumberOfBedrooms"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="MobileNumber">
+      <AttrNames>
+        <Item Value="MobileNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="Nationality1">
+      <AttrNames>
+        <Item Value="Nationality"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="SectorNameAR">
+      <AttrNames>
+        <Item Value="SectorNameAR"/>
+      </AttrNames>
+    </attributeValues>
+ <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="ResponseCode">
+      <AttrNames>
+        <Item Value="ResponseCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="ResponseDesc">
+      <AttrNames>
+        <Item Value="ResponseDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="UnitNumber">
+      <AttrNames>
+        <Item Value="UnitNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="UnitType">
+      <AttrNames>
+        <Item Value="UnitType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="ActualUsage">
+      <AttrNames>
+        <Item Value="ActualUsage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="ContractExpiryDate">
+      <AttrNames>
+        <Item Value="ContractExpiryDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PropertyType">
+      <AttrNames>
+        <Item Value="PropertyType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PremiseNumber">
+      <AttrNames>
+        <Item Value="PremiseNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="PremiseInfo">
+      <AttrNames>
+        <Item Value="PremiseInfo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="TawtheeqIntStatus">
+      <AttrNames>
+        <Item Value="TawtheeqIntStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitSearchCriteriaVO1Iterator"
+                     id="ContractNumber">
+      <AttrNames>
+        <Item Value="ContractNumber"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

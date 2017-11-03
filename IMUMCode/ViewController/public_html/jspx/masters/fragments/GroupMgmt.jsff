@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+         <af:showDetailHeader text="#{viewcontrollerBundle.GROUP_MAINTANENCE}" id="sdh3"
+                               disclosed="true">
+           <af:spacer height="10" id="spacer6"/>
+             <af:toolbar id="t41">
+                    <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb11"
+                        inlineStyle="background-color:#F39C11;"
+                        rendered="#{pageFlowScope.mode eq 'VIEW' ? 'false':'true'}"
+                                      actionListener="#{GroupMgmtMBean.submitAction}"/> 
+                    <af:spacer width="10" id="s1134"/>
+                     <af:commandButton text="#{viewcontrollerBundle.CANCEL}" inlineStyle="background-color:#F39C11;"
+                                        id="ct1b2"  immediate="true"
+                                        rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}"
+                                       actionListener="#{GroupMgmtMBean.cancelAction}"/>
+                    <af:spacer width="300" id="s13d4"/>
+                  <af:commandButton text="#{viewcontrollerBundle.NEW}" id="NewUser" icon="/images/new.gif"
+                                    rendered="#{pageFlowScope.display eq 'DML' ? 'true':'false'}"
+                                    actionListener="#{GroupMgmtMBean.newUserAction}">
+                    </af:commandButton>
+                  <af:spacer width="10" height="10" id="s1"/>
+                  <af:commandButton text="#{viewcontrollerBundle.EDIT}" id="EditUSer" icon="/images/edit.gif"
+                                    rendered="#{pageFlowScope.display eq 'DML' ? 'true':'false'}"
+                                    actionListener="#{GroupMgmtMBean.editUserAction}">
+                    </af:commandButton>
+                  <af:spacer width="10" height="10" id="s2"/>
+                  <af:commandButton text="#{viewcontrollerBundle.VIEW}" id="ViewUser" icon="/images/view.gif"
+                                    rendered="#{pageFlowScope.display eq 'DML' ? 'true':'false'}"
+                                    actionListener="#{GroupMgmtMBean.viewUserAction}">
+                    </af:commandButton>
+             </af:toolbar>
+              <af:spacer height="10" id="spacer7"/>
+          <af:table value="#{bindings.GroupMstUVO2.collectionModel}" var="row"
+                    rows="#{bindings.GroupMstUVO2.rangeSize}"
+                    emptyText="#{bindings.GroupMstUVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.GroupMstUVO2.rangeSize}"
+                    rowBandingInterval="1"
+                    filterModel="#{bindings.GroupMstUVO2Query.queryDescriptor}"
+                    queryListener="#{bindings.GroupMstUVO2Query.processQuery}"
+                    filterVisible="true" varStatus="vs"
+                    selectedRowKeys="#{bindings.GroupMstUVO2.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.GroupMstUVO2.collectionModel.makeCurrent}"
+                    rowSelection="single" id="t1" width="52%"
+                    autoHeightRows="0" scrollPolicy="page">
+               <af:column sortProperty="#{bindings.GroupMstUVO2.hints.GroupId.name}"
+                          filterable="true" sortable="true"
+                          headerText="#{viewcontrollerBundle.GROUP_ID}"
+                          id="c4" align="right" width="50">
+                    <af:outputText value="#{row.GroupId}" id="ot4">
+                         <af:convertNumber groupingUsed="false"
+                                           pattern="#{bindings.GroupMstUVO2.hints.GroupId.format}"/>
+                    </af:outputText>
+               </af:column>
+               <af:column sortProperty="#{bindings.GroupMstUVO2.hints.GroupName.name}"
+                          filterable="true" sortable="true"
+                          headerText="#{viewcontrollerBundle.GROUP_NAME}"
+                          id="c3" align="left" width="200">
+                    <af:outputText value="#{row.GroupName}" id="ot1"/>
+               </af:column>
+               <af:column headerText="#{viewcontrollerBundle.COUNTRY}"
+                          id="c2" align="left" width="175" filterable="true"
+                          sortable="true">
+                    <af:outputText value="#{row.CountryName}" id="ot2"/>
+               </af:column>
+               <af:column sortProperty="#{bindings.GroupMstUVO2.hints.ActiveFlag.name}"
+                          filterable="true" sortable="true"
+                          headerText="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                          id="c1" align="center" width="75">
+                    <af:selectBooleanCheckbox value="#{row.bindings.ActiveFlag.inputValue}"
+                                              label="#{row.bindings.ActiveFlag.label}"
+                                              shortDesc="#{bindings.GroupMstUVO2.hints.ActiveFlag.tooltip}"
+                                              id="sbc1" readOnly="true"/>
+               </af:column>
+          </af:table>
+          <af:spacer height="10" id="spacer8"/>
+          <af:showDetailHeader text="#{viewcontrollerBundle.GROUP_DETAILS}" id="sdh4"
+                               disclosed="true" 
+                               rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}">                                     
+               <af:spacer height="10" id="spacer9"/>
+               <af:panelFormLayout id="pfl1" rows="5" maxColumns="1"
+                                   fieldWidth="50" labelWidth="250">
+                    <af:inputText value="#{bindings.GroupId.inputValue}"
+                                  label="#{viewcontrollerBundle.GROUP_ID}"
+                                  required="#{bindings.GroupId.hints.mandatory}"
+                                  maximumLength="#{bindings.GroupId.hints.precision}"
+                                  shortDesc="#{bindings.GroupId.hints.tooltip}"
+                                  id="it1" disabled="true">
+                         <f:validator binding="#{bindings.GroupId.validator}"/>
+                         <af:convertNumber groupingUsed="false"
+                                           pattern="#{bindings.GroupId.format}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.GroupName.inputValue}"
+                                  label="#{viewcontrollerBundle.GROUP_NAME}"
+                                  required="#{bindings.GroupName.hints.mandatory}"
+                                  disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                  maximumLength="#{bindings.GroupName.hints.precision}"
+                                  shortDesc="#{bindings.GroupName.hints.tooltip}"
+                                  id="it4" showRequired="true">
+                         <f:validator binding="#{bindings.GroupName.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.GroupDesc.inputValue}"
+                                  label="#{viewcontrollerBundle.DESCRIPTION}"
+                                  required="#{bindings.GroupDesc.hints.mandatory}"
+                                  disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                  maximumLength="#{bindings.GroupDesc.hints.precision}"
+                                  shortDesc="#{bindings.GroupDesc.hints.tooltip}"
+                                  id="it3">
+                         <f:validator binding="#{bindings.GroupDesc.validator}"/>
+                    </af:inputText>
+                    <af:selectOneChoice value="#{bindings.CountryCode.inputValue}"
+                                        label="#{viewcontrollerBundle.COUNTRY}"
+                                        required="#{bindings.CountryCode.hints.mandatory}"
+                                        shortDesc="#{bindings.CountryCode.hints.tooltip}"
+                                        id="soc1"
+                                        disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                        showRequired="true">
+                         <f:selectItems value="#{bindings.CountryCode.items}"
+                                        id="si1"/>
+                    </af:selectOneChoice>
+                    <af:selectBooleanCheckbox value="#{bindings.ActiveFlag1.inputValue}"
+                                              label="#{viewcontrollerBundle.ACTIVE_FLAG}"
+                                              shortDesc="#{bindings.ActiveFlag1.hints.tooltip}"
+                                              disabled="#{pageFlowScope.mode eq 'VIEW' ? 'true':'false'}"
+                                              id="sbc2"/>
+               </af:panelFormLayout>
+          </af:showDetailHeader>
+           <af:spacer height="10" id="spacer10"/>
+           <af:toolbar id="t3">
+                  <af:commandButton id="ctb1"
+                                    inlineStyle="background-color:#F39C11;"
+                                    text="#{viewcontrollerBundle.SUBMIT}"
+                                    actionListener="#{GroupMgmtMBean.submitAction}"
+                                    rendered="#{pageFlowScope.mode eq 'VIEW' ? 'false':'true'}"/>
+                  <af:spacer width="10" id="s134"/>
+                  <af:commandButton inlineStyle="background-color:#F39C11;"
+                                    id="ctb2" text="#{viewcontrollerBundle.CANCEL}"
+                                    immediate="true"
+                                    actionListener="#{GroupMgmtMBean.cancelAction}"
+                                    rendered="#{pageFlowScope.display eq 'TCL' ? 'true':'false'}">
+                <af:resetActionListener/>
+                </af:commandButton>
+    </af:toolbar>
+     </af:showDetailHeader>
+     <!--oracle-jdev-comment:preferred-managed-bean-name:GroupMgmtMBean-->
+</jsp:root>

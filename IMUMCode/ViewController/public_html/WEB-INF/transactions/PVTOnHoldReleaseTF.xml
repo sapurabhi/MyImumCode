@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTOnHoldReleaseTF">
+    <default-activity id="__6">PVTOnHoldRelease</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__5">pvtOnHoldReleaseBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.transactions.PVTOnHoldReleaseBean</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTOnHoldRelease">
+      <page>/jspx/transactions/fragments/PVTOnHoldRelease.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

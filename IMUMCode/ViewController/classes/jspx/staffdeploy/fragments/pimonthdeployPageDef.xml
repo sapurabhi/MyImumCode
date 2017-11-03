@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="pideploymentPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables" Refresh="ifNeeded"/>
+    <iterator Binds="TempViewObj1" RangeSize="1000"
+              DataControl="StaffDeployDataControl" id="TempViewObj1Iterator"
+              Refresh="ifNeeded"/>
+    <iterator Binds="PIAssignListVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="PIAssignListVO1Iterator"/>
+    <iterator Binds="PImonthlyWorkAssignVO1" RangeSize="1000"
+              DataControl="StaffDeployDataControl"
+              id="PImonthlyWorkAssignVO1Iterator" Refresh="ifNeeded"/>
+    <iterator Binds="PImonthlyWorkAssignVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl"
+              id="PImonthlyWorkAssignVO1Iterator1" Refresh="ifNeeded"/>
+    <iterator Binds="PImonthlyWorkAssignVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl"
+              id="PImonthlyWorkAssignVO1Iterator2"/>
+    <iterator id="PIUserMstUVO2Iterator" Binds="PIUserMstUVO2"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+    <iterator Binds="PIUserMstUVO2" RangeSize="10"
+              DataControl="StaffDeployDataControl" id="PIUserMstUVO2Iterator1"/>
+    <iterator id="PILeaveMangementVO2Iterator" Binds="PILeaveMangementVO2"
+              DataControl="StaffDeployDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TempViewObj1Iterator" id="TempViewObj1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.TempViewObj"
+                      Name="TempViewObj10">
+        <AttrNames>
+          <Item Value="Day"/>
+          <Item Value="Shift1"/>
+          <Item Value="Shift2"/>
+          <Item Value="Shift3"/>
+          <Item Value="Temp"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="PIAssignListVO1Iterator" ListOperMode="navigation"
+          ListIter="PIAssignListVO1Iterator" id="PIAssignListVO1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="TempViewObj1Iterator" id="TempViewObj11">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.TempViewObj"
+                      Name="TempViewObj110">
+        <AttrNames>
+          <Item Value="Day"/>
+          <Item Value="Shift1"/>
+          <Item Value="Shift2"/>
+          <Item Value="Shift3"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="TempViewObj1Iterator" id="TempViewObj12">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.TempViewObj"
+                      Name="TempViewObj120">
+        <AttrNames>
+          <Item Value="Day"/>
+          <Item Value="Shift1"/>
+          <Item Value="Shift2"/>
+          <Item Value="Shift3"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree
+          id="PImonthlyWorkAssignVO1"
+          IterBinding="PImonthlyWorkAssignVO1Iterator2">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PImonthlyWorkAssignVO"
+                      Name="PImonthlyWorkAssignVO10">
+        <AttrNames>
+          <Item Value="Sno"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="AllocId"/>
+          <Item Value="AssgnDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="Day"/>
+          <Item Value="Disable"/>
+          <Item Value="leaveDataTemp"/>
+          <Item Value="PIid"/>
+          <Item Value="SectorName"/>
+          <Item Value="SectorZone"/>
+          <Item Value="Shift"/>
+          <Item Value="Shift1"/>
+          <Item Value="Shift1Flag"/>
+          <Item Value="Shift2"/>
+          <Item Value="Shift2Flag"/>
+          <Item Value="Shift3"/>
+          <Item Value="Shift3Flag"/>
+          <Item Value="SupId"/>
+          <Item Value="Temp"/>
+          <Item Value="UpdatedBy"/>
+          <Item Value="UpdatedDate"/>
+          <Item Value="ZoneName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="insertMonthlyPIAllocation"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="insertMonthlyPIAllocation"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.insertMonthlyPIAllocation_StaffDeployDataControl_dataProvider_insertMonthlyPIAllocation_result">
+      <NamedData NDName="piid" NDType="java.lang.String"/>
+      <NamedData NDName="date" NDType="java.util.Date"/>
+      <NamedData NDName="assignmonth" NDType="int"/>
+      <NamedData NDName="assignyear" NDType="int"/>
+    </methodAction>
+    <methodAction id="resetWorkAssignVO"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="resetWorkAssignVO" IsViewObjectMethod="false"/>
+    <tree IterBinding="PIUserMstUVO2Iterator1" id="PIUserMstUVO2">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PIUserMstUVO"
+                      Name="PIUserMstUVO20">
+        <AttrNames>
+          <Item Value="GroupId"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="ActiveOnStreetFlag"/>
+          <Item Value="AssignAvailableflag"/>
+          <Item Value="Attachment"/>
+          <Item Value="BaseLocation"/>
+          <Item Value="BirthDate"/>
+          <Item Value="comments"/>
+          <Item Value="Createdby"/>
+          <Item Value="Createddate"/>
+          <Item Value="DeactivationReason"/>
+          <Item Value="Designation"/>
+          <Item Value="EducationalQualifications"/>
+          <Item Value="EmiratesId"/>
+          <Item Value="ExtTrainingStatus"/>
+          <Item Value="Extuserflag"/>
+          <Item Value="FirstName"/>
+          <Item Value="Gender"/>
+          <Item Value="HealthInsuranceDetails"/>
+          <Item Value="HireDate"/>
+          <Item Value="IntExtTrainingStatus"/>
+          <Item Value="Lastlogindatetime"/>
+          <Item Value="LastName"/>
+          <Item Value="LocalAdd1"/>
+          <Item Value="LocalAdd2"/>
+          <Item Value="LocalCity"/>
+          <Item Value="LocalCountry"/>
+          <Item Value="LocalPOBox"/>
+          <Item Value="LoginPrintID"/>
+          <Item Value="MailId"/>
+          <Item Value="ManagerId"/>
+          <Item Value="MedicalExaminationsDetails"/>
+          <Item Value="MobileNo"/>
+          <Item Value="Nationality"/>
+          <Item Value="PassportNumber"/>
+          <Item Value="Password"/>
+          <Item Value="Password1"/>
+          <Item Value="Password2"/>
+          <Item Value="Password3"/>
+          <Item Value="Password4"/>
+          <Item Value="PermAdd1"/>
+          <Item Value="PermAdd2"/>
+          <Item Value="PermCity"/>
+          <Item Value="PermCountry"/>
+          <Item Value="PermPOBox"/>
+          <Item Value="PersonalMailId"/>
+          <Item Value="PrefComm"/>
+          <Item Value="PSSPTDateofExpiry"/>
+          <Item Value="pssptDateofIssue"/>
+          <Item Value="Secretans"/>
+          <Item Value="Secretqust"/>
+          <Item Value="Trainingstatus"/>
+          <Item Value="UpdatedBy"/>
+          <Item Value="UpdatedDate"/>
+          <Item Value="UserId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="createTab"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createTab" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.createTab_StaffDeployDataControl_dataProvider_createTab_result">
+      <NamedData NDName="days" NDType="int"/>
+      <NamedData NDName="piselected" NDType="java.lang.String"/>
+      <NamedData NDName="currentdate" NDType="java.util.Date"/>
+    </methodAction>
+    <methodAction id="createTab1"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createTab1" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.createTab1_StaffDeployDataControl_dataProvider_createTab1_result">
+      <NamedData NDName="piselected" NDType="java.lang.String"/>
+      <NamedData NDName="currentdate" NDType="java.util.Date"/>
+    </methodAction>
+    <tree IterBinding="PImonthlyWorkAssignVO1Iterator"
+          id="PImonthlyWorkAssignVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PImonthlyWorkAssignVO"
+                      Name="PImonthlyWorkAssignVO110">
+        <AttrNames>
+          <Item Value="AssgnDate"/>
+          <Item Value="PiAvailabitystatusID"/>
+          <Item Value="Shift"/>
+          <Item Value="SectorName"/>
+          <Item Value="ZoneName"/>
+          <Item Value="dbval"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="callRollback"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callRollback" IsViewObjectMethod="false"/>
+    <methodAction id="saveDB" InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveDB" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.saveDB_StaffDeployDataControl_dataProvider_saveDB_result"/>
+  </bindings>
+</pageDefinition>

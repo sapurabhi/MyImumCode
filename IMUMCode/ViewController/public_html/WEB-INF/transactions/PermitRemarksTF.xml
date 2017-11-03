@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PermitRemarksTF">
+    <default-activity id="__1">PermitRemarks</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__4">PermitRemarksMBean</managed-bean-name>
+      <managed-bean-class id="__5">com.imum.cpms.view.PermitRemarksMBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PermitRemarks">
+      <page>/jspx/transactions/fragments/PermitRemarks.jsff</page>
+    </view>
+    <task-flow-return id="taskFlowReturn1">
+      <outcome id="__11">
+        <name>taskFlowReturn1</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__12">
+      <from-activity-id id="__13">PermitRemarks</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome id="__16">back</from-outcome>
+        <to-activity-id id="__14">taskFlowReturn1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PermitQuotaVO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="JDBC"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.masters.vo.PermitQuotaVORowImpl"
+  ComponentClass="com.imum.cpms.model.masters.vo.PermitQuotaVOImpl"
+  DefClass="com.imum.cpms.model.masters.vo.PermitQuotaVODefImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Def|Coll|Prog|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="SectorLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.SectorLovVO">
+    <ViewCriteriaUsage
+      Name="SectorLovVOCriteria"
+      FullName="com.imum.cpms.model.masters.vo.SectorLovVO.SectorLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="lng">
+        <TransientExpression><![CDATA[adf.context.locale.language]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="YesNoLovVO1"
+    ViewObjectName="com.imum.cpms.model.masters.vo.YesNoLovVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_Renewalallowedflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Renewalallowedflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Renewalallowedflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Activeflag"
+    ListVOName="YesNoLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_Activeflag_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Activeflag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SectorCode"
+    ListVOName="SectorLovVO1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_SectorCode_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SectorCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SectorName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT PermitQuotaEO.PRM_Quota_seq, 
+       PermitQuotaEO.Rule_Id, 
+       PermitQuotaEO.Sector_Code, 
+       PermitQuotaEO.quota_num, 
+       PermitQuotaEO.Active_flag, 
+       PermitQuotaEO.Num_Permits_issued, 
+       PermitQuotaEO.Renewal_allowed_flag, 
+       PermitQuotaEO.Changed_flag, 
+       PermitQuotaEO.Created_By, 
+       PermitQuotaEO.Created_Date, 
+       PermitQuotaEO.Updated_by, 
+       PermitQuotaEO.Updated_date
+FROM  PRM_Rule_Max_quota PermitQuotaEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="PermitQuotaEO"
+    Entity="com.imum.cpms.model.masters.eo.PermitQuotaEO"/>
+  <ViewAttribute
+    Name="PRMQuotaseq"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PRMQuotaseq"
+    EntityUsage="PermitQuotaEO"
+    AliasName="PRM_Quota_seq"/>
+  <ViewAttribute
+    Name="RuleId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RuleId"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Rule_Id"/>
+  <ViewAttribute
+    Name="quotanum"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="quotanum"
+    EntityUsage="PermitQuotaEO"
+    AliasName="quota_num"/>
+  <ViewAttribute
+    Name="Activeflag"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Activeflag"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Active_flag"
+    LOVName="LOV_Activeflag"
+    DefaultValue="N">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NumPermitsissued"
+    PrecisionRule="true"
+    EntityAttrName="NumPermitsissued"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Num_Permits_issued"/>
+  <ViewAttribute
+    Name="Renewalallowedflag"
+    PrecisionRule="true"
+    EntityAttrName="Renewalallowedflag"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Renewal_allowed_flag"
+    LOVName="LOV_Renewalallowedflag">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Changedflag"
+    PrecisionRule="true"
+    EntityAttrName="Changedflag"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Changed_flag"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Created_By"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="CreatedDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedDate"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Created_Date"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="Updatedby"
+    PrecisionRule="true"
+    EntityAttrName="Updatedby"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Updated_by"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="Updateddate"
+    PrecisionRule="true"
+    EntityAttrName="Updateddate"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Updated_date"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="SectorCode"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SectorCode"
+    EntityUsage="PermitQuotaEO"
+    AliasName="Sector_Code"
+    LOVName="LOV_SectorCode">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+</ViewObject>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PermitRulePageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PermitRuleUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="PermitRuleUVO1Iterator"/>
+    <iterator Binds="PermitRuleUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="PermitRuleUVO2Iterator"/>
+    <iterator Binds="PermitChargesVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="PermitChargesVO1Iterator"/>
+    <iterator Binds="PermitQuotaVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="PermitQuotaVO1Iterator"/>
+    <iterator Binds="RuleMaxQuotaVO1"
+              DataControl="MastersAMDataControl" id="RuleMaxQuotaVO1Iterator"
+              RangeSize="10"/>
+    <searchRegion Binds="PermitRuleUVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="PermitRuleUVO11Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PermitChargesVO1Iterator" id="PermitChargesVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitChargesVO"
+                      Name="PermitChargesVO10">
+        <AttrNames>
+          <Item Value="RuleId"/>
+          <Item Value="VadityPeriod"/>
+          <Item Value="AdminChrg"/>
+          <Item Value="Processchrg"/>
+          <Item Value="Activeflag"/>
+          <Item Value="Permitchrg"/>
+          <Item Value="rowStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="cb1_action_new_permitRules"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="cb1_action_new_permitRules"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="cb4_action_submit_PermitRules"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="cb4_action_submit_PermitRules"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="submit_PermitSectorQuota"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="submit_PermitSectorQuota"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="submit_PermitCharges"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="submit_PermitCharges"
+                  IsViewObjectMethod="false"/>
+    <tree IterBinding="PermitRuleUVO1Iterator" id="PermitRuleUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitRuleUVO"
+                      Name="PermitRuleUVO10">
+        <AttrNames>
+          <Item Value="RuleId"/>
+          <Item Value="CategCode"/>
+          <Item Value="TypeCode"/>
+          <Item Value="LocalFlag"/>
+          <Item Value="MaxQuota"/>
+          <Item Value="permitTypeName"/>
+          <Item Value="residence"/>
+          <Item Value="catgdesc"/>
+          <Item Value="ShortCode"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="EffectivedateFrom"/>
+          <Item Value="EffectivedateTo"/>
+          <Item Value="rowStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="MaxQuota">
+      <AttrNames>
+        <Item Value="MaxQuota"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="FreePermits">
+      <AttrNames>
+        <Item Value="FreePermits"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="ShortCode">
+      <AttrNames>
+        <Item Value="ShortCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator"
+                     id="EffectivedateFrom">
+      <AttrNames>
+        <Item Value="EffectivedateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="EffectivedateTo">
+      <AttrNames>
+        <Item Value="EffectivedateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PermitRuleUVO2Iterator" StaticList="false"
+          Uses="LOV_LocalFlag" id="LocalFlag" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="RenwalGrace">
+      <AttrNames>
+        <Item Value="RenwalGrace"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="PVTgracePeriod">
+      <AttrNames>
+        <Item Value="PVTgracePeriod"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PermitRuleUVO2Iterator" StaticList="false"
+          Uses="LOV_ActiveFlag" id="ActiveFlag" DTSupportsMRU="false"/>
+    <tree IterBinding="PermitChargesVO1Iterator" id="PermitChargesVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitChargesVO"
+                      Name="PermitChargesVO110">
+        <AttrNames>
+          <Item Value="VadityPeriod"/>
+          <Item Value="AdminChrg"/>
+          <Item Value="Processchrg"/>
+          <Item Value="Permitchrg"/>
+          <Item Value="Activeflag"/>
+          <Item Value="rowStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MastersAMDataControl"/>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="CategCode1">
+      <AttrNames>
+        <Item Value="CategCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator" id="TypeCode1">
+      <AttrNames>
+        <Item Value="TypeCode"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="PermitRuleUVO2Iterator" StaticList="false"
+            Uses="LOV_ActiveFlag" id="ActiveFlag1" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+    </button>
+    <button IterBinding="PermitChargesVO1Iterator" StaticList="false"
+            Uses="LOV_Activeflag" id="Activeflag1" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="Activeflag"/>
+      </AttrNames>
+    </button>
+    <attributeValues IterBinding="PermitQuotaVO2Iterator" id="Updateddate">
+      <AttrNames>
+        <Item Value="Updateddate"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="PermitChargesVO1Iterator" id="PermitChargesVO12">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.PermitChargesVO"
+                      Name="PermitChargesVO120">
+        <AttrNames>
+          <Item Value="VadityPeriod"/>
+          <Item Value="AdminChrg"/>
+          <Item Value="Processchrg"/>
+          <Item Value="Permitchrg"/>
+          <Item Value="Activeflag"/>
+          <Item Value="NumofVeh"/>
+          <Item Value="BooleanActiveFlag"/>
+          <Item Value="rowStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Rollback"
+            Action="rollbackTransaction" DataControl="MastersAMDataControl"/>
+    <tree IterBinding="RuleMaxQuotaVO1Iterator" id="RuleMaxQuotaVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.RuleMaxQuotaVO"
+                      Name="RuleMaxQuotaVO10">
+        <AttrNames>
+          <Item Value="SectorCode"/>
+          <Item Value="Renewalallowedflag"/>
+          <Item Value="quotanum"/>
+          <Item Value="NumPermitsissued"/>
+          <Item Value="Activeflag"/>
+          <Item Value="ActiveFlagBoolean"/>
+          <Item Value="RenewalFlagBoolean"/>
+          <Item Value="rowStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="RuleMaxQuotaVO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <methodAction id="submitPermitRule"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="submitPermitRule"
+                  IsViewObjectMethod="false"/>
+    <button IterBinding="RuleMaxQuotaVO1Iterator" id="ActiveFlagBoolean"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlagBoolean"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="RuleMaxQuotaVO1Iterator" id="RenewalFlagBoolean"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="RenewalFlagBoolean"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <button IterBinding="PermitChargesVO1Iterator" id="BooleanActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="BooleanActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <list IterBinding="PermitRuleUVO2Iterator" StaticList="false"
+          Uses="LOV_CategCode" id="CategCode" DTSupportsMRU="true"/>
+    <list IterBinding="PermitRuleUVO2Iterator" StaticList="false"
+          Uses="LOV_TypeCode" id="TypeCode" DTSupportsMRU="true"/>
+    <action IterBinding="RuleMaxQuotaVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="PermitChargesVO1Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="NewRule" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="NewRule"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.NewRule_MastersAMDataControl_dataProvider_NewRule_result">
+      <NamedData NDName="encoder" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="PermitRuleUVO2Iterator"
+                     id="Renewalperiodbeforeexp">
+      <AttrNames>
+        <Item Value="Renewalperiodbeforeexp"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PermitRuleUVO2Iterator" StaticList="false"
+          Uses="LOV_docverificationflag" id="docverificationflag"
+          DTSupportsMRU="false"/>
+  </bindings>
+</pageDefinition>

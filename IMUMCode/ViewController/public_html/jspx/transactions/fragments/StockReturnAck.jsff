@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:showDetailHeader text="#{viewcontrollerBundle.STOCK_RETURN_ACKNOWLEDGMENT}" disclosed="true" id="sdh1">
+    <af:spacer height="30" id="s123"/>
+    <af:panelGroupLayout id="pfl1"
+                         layout="horizontal">
+      <af:selectOneChoice value="#{bindings.CardStatus.inputValue}"
+                          label="#{viewcontrollerBundle.CARD_TYPE}"
+                         
+                          shortDesc="#{bindings.CardStatus.hints.tooltip}" 
+                          id="soc1" binding="#{pageFlowScope.StockReturnAckMBean.card_type}"
+                          unselectedLabel="#{viewcontrollerBundle.SELECT}">
+        <f:selectItems value="#{bindings.CardStatus.items}" id="si1"/>
+         </af:selectOneChoice>
+      <af:spacer width="10"  id="s3"/>
+      <af:selectOneChoice value="#{bindings.LocationIDRVO1.inputValue}"
+                          label="Location"
+                          required="#{bindings.LocationIDRVO1.hints.mandatory}"
+                          shortDesc="#{bindings.LocationIDRVO1.hints.tooltip}"
+                          id="soc2">
+        <f:selectItems value="#{bindings.LocationIDRVO1.items}" id="si2"/>
+      </af:selectOneChoice>
+       <af:spacer width="10" id="s1"/>
+      <af:commandButton id="cil1"
+                        inlineStyle="width:auto;background-color:#F39C11;"
+                        text="#{viewcontrollerBundle.SEARCH_CARDS}"
+                        action="#{pageFlowScope.StockReturnAckMBean.fetchCards_Action}"/>
+    </af:panelGroupLayout>
+    <af:spacer height="30" id="s2"/>
+    <af:commandButton id="commandButton1"
+                      text="#{viewcontrollerBundle.SELECTDESELECT_ALL}"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      rendered="#{pageFlowScope.StockReturnAckMBean.hide}"
+                      action="#{pageFlowScope.StockReturnAckMBean.selectDeselect_All}"
+                      binding="#{pageFlowScope.StockReturnAckMBean.selectDeselect}"/>
+    <af:spacer width="5" id="s203"/>
+    <af:commandButton id="commandButton2"
+                      text="#{viewcontrollerBundle.REMOVE_UNSELECTED_ROWS}"
+                      inlineStyle="width:auto;background-color:#F39C11;"
+                      rendered="#{pageFlowScope.StockReturnAckMBean.hide}"
+                      action="#{pageFlowScope.StockReturnAckMBean.removeUnselectedRows}"
+                      binding="#{pageFlowScope.StockReturnAckMBean.removeUnselected}"/>
+    <af:spacer height="5" id="s2503"/>
+    <af:table value="#{bindings.InvDetailUVO1.collectionModel}" var="row"
+              rows="#{bindings.InvDetailUVO1.rangeSize}"
+              emptyText="#{bindings.InvDetailUVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.InvDetailUVO1.rangeSize}"
+              rowBandingInterval="1" id="t1"
+              binding="#{pageFlowScope.StockReturnAckMBean.resultsTbl}"
+              rendered="#{pageFlowScope.StockReturnAckMBean.hide}" width="85%"
+              inlineStyle="height:300px;">
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.SelectFlag.name}"
+                 sortable="false"
+                 id="c3" headerText="#{viewcontrollerBundle.SELECT}"
+                 align="center">
+        <af:selectBooleanCheckbox value="#{row.bindings.SelectFlag.inputValue}"
+                                  label="#{row.bindings.SelectFlag.label}"
+                                  shortDesc="#{bindings.InvDetailUVO1.hints.SelectFlag.tooltip}"
+                                  id="sbc1"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.Cardnum.name}"
+                 sortable="false"
+                 id="c1" headerText="#{viewcontrollerBundle.CARD_}"
+                 align="right" width="300">
+        <af:outputText value="#{row.Cardnum}" id="ot5"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.cardTypeDesc.name}"
+                 sortable="false"
+                 id="c5" headerText="#{viewcontrollerBundle.CARD_TYPE}"
+                 align="left" width="150">
+        <af:outputText value="#{row.cardTypeDesc}" id="ot4"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.cardStatusDesc.name}"
+                 sortable="false"
+                 id="c4" headerText="#{viewcontrollerBundle.CARD_STATUS}"
+                 align="left" width="150">
+        <af:outputText value="#{row.cardStatusDesc}" id="ot1"/>
+      </af:column>
+      <af:column sortProperty="#{bindings.InvDetailUVO1.hints.CardDenomAmt.name}"
+                 sortable="false"
+                 id="c2" headerText="#{viewcontrollerBundle.DENOMINATION}"
+                 align="right" width="150">
+        <af:outputText value="#{row.CardDenomAmt}" id="ot2">
+        <f:convertNumber pattern="#0.00" />
+           </af:outputText>
+      </af:column>
+    </af:table>
+    <af:spacer height="30" id="spacer1"/>
+    <af:toolbar id="t3">
+    <af:spacer width="300" id="spac6er1"/>
+      <af:commandButton text="#{viewcontrollerBundle.SUBMIT}" id="ctb1"
+                        inlineStyle="background-color:#F39C11;"
+                        action="#{pageFlowScope.StockReturnAckMBean.Submit_Action}"
+                        rendered="#{pageFlowScope.StockReturnAckMBean.hide}"
+                        binding="#{pageFlowScope.StockReturnAckMBean.submitBtn}"/>
+       <af:spacer width="10" id="sgpacer1"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}"
+                        inlineStyle="background-color:#F39C11;" id="ctb2"
+                        action="#{pageFlowScope.StockReturnAckMBean.Reset_Action}"
+                        rendered="#{pageFlowScope.StockReturnAckMBean.hide}"
+                        binding="#{pageFlowScope.StockReturnAckMBean.resetBtn}">
+        <af:resetActionListener/>
+      </af:commandButton>
+    </af:toolbar>
+  </af:showDetailHeader>
+</jsp:root>

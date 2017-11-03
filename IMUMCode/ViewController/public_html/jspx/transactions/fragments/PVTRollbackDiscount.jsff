@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core">
+<c:set var="viewcontrollerBundle" 
+       value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+<af:showDetailHeader text="#{viewcontrollerBundle.PVT_DISCOUNT_ROLLBACK}" disclosed="true" id="sdh1">
+<af:spacer height="30" id="s123"/>
+    <af:panelFormLayout id="headersearchform" maxColumns="4" rows="8" inlineStyle="width:900px;border:1px solid black;height:180px;"
+                        binding="#{PVTRollbackDiscountMBean.headersearchform}">
+      <af:inputText value="#{bindings.DISCCNCLhdrSeq.inputValue}"
+                    label="#{viewcontrollerBundle.DISCOUNT_SEQ_}"
+                    required="#{bindings.DISCCNCLhdrSeq.hints.mandatory}"
+                    columns="#{bindings.DISCCNCLhdrSeq.hints.displayWidth}"
+                    maximumLength="#{bindings.DISCCNCLhdrSeq.hints.precision}"
+                    shortDesc="#{bindings.DISCCNCLhdrSeq.hints.tooltip}"
+                    id="discountseq"
+                    binding="#{PVTRollbackDiscountMBean.discountseq}">
+        <f:validator binding="#{bindings.DISCCNCLhdrSeq.validator}"/>
+      </af:inputText>
+      <af:inputDate value="#{bindings.PVTdatefrom.inputValue}"
+                    label="#{viewcontrollerBundle.PVT_ISSUED_DATE_FROM}"
+                    required="#{bindings.PVTdatefrom.hints.mandatory}"
+                    shortDesc="#{bindings.PVTdatefrom.hints.tooltip}" id="pvtissueddatefrom"
+                    binding="#{PVTRollbackDiscountMBean.pvtissueddatefrom}">
+        <f:validator binding="#{bindings.PVTdatefrom.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy"/>
+      </af:inputDate>
+      <af:inputDate value="#{bindings.PVTdateto.inputValue}"
+                    label="#{viewcontrollerBundle.PVT_ISSUED_DATE_TO}"
+                    required="#{bindings.PVTdateto.hints.mandatory}"
+                    shortDesc="#{bindings.PVTdateto.hints.tooltip}" id="pvtissueddateto"
+                    binding="#{PVTRollbackDiscountMBean.pvtissueddateto}">
+        <f:validator binding="#{bindings.PVTdateto.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy"/>
+      </af:inputDate>
+      <af:inputText value="#{bindings.DISCPCT.inputValue}"
+                    label="#{viewcontrollerBundle.DISCOUNT_PERCENTAGE}"
+                    required="#{bindings.DISCPCT.hints.mandatory}"
+                    columns="#{bindings.DISCPCT.hints.displayWidth}"
+                    maximumLength="#{bindings.DISCPCT.hints.precision}"
+                    shortDesc="#{bindings.DISCPCT.hints.tooltip}" id="discountpercentage"
+                    binding="#{PVTRollbackDiscountMBean.discountpercentage}">
+        <f:validator binding="#{bindings.DISCPCT.validator}"/>
+      </af:inputText>
+      <af:inputText value="#{bindings.DISCFLATAMT.inputValue}"
+                    label="#{viewcontrollerBundle.DISCOUNT_FLAT}"
+                    required="#{bindings.DISCFLATAMT.hints.mandatory}"
+                    columns="#{bindings.DISCFLATAMT.hints.displayWidth}"
+                    maximumLength="#{bindings.DISCFLATAMT.hints.precision}"
+                    shortDesc="#{bindings.DISCFLATAMT.hints.tooltip}" id="discountflat"
+                    binding="#{PVTRollbackDiscountMBean.discountflat}">
+        <f:validator binding="#{bindings.DISCFLATAMT.validator}"/>
+      </af:inputText>
+      <af:inputText value="#{bindings.PVTAmtRangefrom.inputValue}"
+                    label="#{viewcontrollerBundle.AMOUNT_RANGE_FROM}"
+                    required="#{bindings.PVTAmtRangefrom.hints.mandatory}"
+                    columns="#{bindings.PVTAmtRangefrom.hints.displayWidth}"
+                    maximumLength="#{bindings.PVTAmtRangefrom.hints.precision}"
+                    shortDesc="#{bindings.PVTAmtRangefrom.hints.tooltip}"
+                    id="amtrangefrom"
+                    binding="#{PVTRollbackDiscountMBean.amtrangefrom}">
+        <f:validator binding="#{bindings.PVTAmtRangefrom.validator}"/>
+      </af:inputText>
+      <af:inputText value="#{bindings.PVTAmtRangeTo.inputValue}"
+                    label="#{viewcontrollerBundle.AMOUNT_RANGE_TO}"
+                    required="#{bindings.PVTAmtRangeTo.hints.mandatory}"
+                    columns="#{bindings.PVTAmtRangeTo.hints.displayWidth}"
+                    maximumLength="#{bindings.PVTAmtRangeTo.hints.precision}"
+                    shortDesc="#{bindings.PVTAmtRangeTo.hints.tooltip}"
+                    id="amtrangeto"
+                    binding="#{PVTRollbackDiscountMBean.amtrangeto}">
+        <f:validator binding="#{bindings.PVTAmtRangeTo.validator}"/>
+      </af:inputText>
+      <af:selectOneChoice value="#{bindings.Contracode.inputValue}"
+                          label="#{viewcontrollerBundle.CONTRAVENTION_CODE}"
+                          required="#{bindings.Contracode.hints.mandatory}"
+                          shortDesc="#{bindings.Contracode.hints.tooltip}"
+                          id="contracode" contentStyle="width:200px"
+                          unselectedLabel="#{viewcontrollerBundle.SELECT}"
+                          binding="#{PVTRollbackDiscountMBean.contracode}">
+        <f:selectItems value="#{bindings.Contracode.items}" id="si1"/>
+      </af:selectOneChoice>
+      <af:inputDate value="#{bindings.Promoeffectivedatefrom.inputValue}"
+                    label="#{viewcontrollerBundle.PROMO_EFFECTIVE_DATE_FROM}"
+                    required="#{bindings.Promoeffectivedatefrom.hints.mandatory}"
+                    shortDesc="#{bindings.Promoeffectivedatefrom.hints.tooltip}"
+                    id="promoeffectivedatefrom"
+                    binding="#{PVTRollbackDiscountMBean.promoeffectivedatefrom}">
+        <f:validator binding="#{bindings.Promoeffectivedatefrom.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy"/>
+      </af:inputDate>
+      <af:inputDate value="#{bindings.PromoeffectivedateTo.inputValue}"
+                    label="#{viewcontrollerBundle.PROMO_EFFECTIVE_DATE_TO}"
+                    required="#{bindings.PromoeffectivedateTo.hints.mandatory}"
+                    shortDesc="#{bindings.PromoeffectivedateTo.hints.tooltip}"
+                    id="promoeffectivedateto"
+                    binding="#{PVTRollbackDiscountMBean.promoeffectivedateto}">
+        <f:validator binding="#{bindings.PromoeffectivedateTo.validator}"/>
+        <af:convertDateTime pattern="dd-MM-yyyy"/>
+      </af:inputDate>
+      <af:selectOneChoice value="#{bindings.SectorCode.inputValue}"
+                          label="#{viewcontrollerBundle.SECTOR}"
+                          required="#{bindings.SectorCode.hints.mandatory}"
+                          shortDesc="#{bindings.SectorCode.hints.tooltip}"
+                          id="sector"
+                          unselectedLabel="#{viewcontrollerBundle.SELECT}"
+                          binding="#{PVTRollbackDiscountMBean.sector}">
+        <f:selectItems value="#{bindings.SectorCode.items}" id="si3"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.zonecode.inputValue}"
+                          label="#{viewcontrollerBundle.ZONE}"
+                          required="#{bindings.zonecode.hints.mandatory}"
+                          shortDesc="#{bindings.zonecode.hints.tooltip}"
+                          id="zone" unselectedLabel="#{viewcontrollerBundle.SELECT}" binding="#{PVTRollbackDiscountMBean.zone}">
+        <f:selectItems value="#{bindings.zonecode.items}" id="si5"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.PVTSTAGEID.inputValue}"
+                          label="#{viewcontrollerBundle.PVT_STAGE}"
+                          required="#{bindings.PVTSTAGEID.hints.mandatory}"
+                          shortDesc="#{bindings.PVTSTAGEID.hints.tooltip}"
+                          id="pvtstage" unselectedLabel="#{viewcontrollerBundle.SELECT}"
+                          binding="#{PVTRollbackDiscountMBean.pvtstage}">
+        <f:selectItems value="#{bindings.PVTSTAGEID.items}" id="si2"/>
+      </af:selectOneChoice>
+      <af:selectOneChoice value="#{bindings.PVTStatusID.inputValue}"
+                          label="#{viewcontrollerBundle.PVT_STATUS}"
+                          required="#{bindings.PVTStatusID.hints.mandatory}"
+                          shortDesc="#{bindings.PVTStatusID.hints.tooltip}"
+                          id="pvtstatus" unselectedLabel="#{viewcontrollerBundle.SELECT}"
+                          binding="#{PVTRollbackDiscountMBean.pvtstatus}">
+        <f:selectItems value="#{bindings.PVTStatusID.items}" id="si4"/>
+      </af:selectOneChoice>
+      <af:inputText value="#{bindings.Remarks.inputValue}"
+                    label="#{viewcontrollerBundle.REMARKS}"
+                    required="#{bindings.Remarks.hints.mandatory}"
+                    columns="35"
+                    maximumLength="#{bindings.Remarks.hints.precision}"
+                    shortDesc="#{bindings.Remarks.hints.tooltip}" id="remarks"
+                    rows="2" binding="#{PVTRollbackDiscountMBean.remarks}">
+        <f:validator binding="#{bindings.Remarks.validator}"/>
+      </af:inputText>
+    </af:panelFormLayout>
+    <af:spacer height="20" id="s1434"/>
+  
+   <af:toolbar id="t3">
+      <af:spacer height="50" width="250" id="s1234"/>
+      <af:commandButton text="#{viewcontrollerBundle.DISCOUNTED_PVTS_SEARCH}"
+                        id="pvtsearch" inlineStyle="background-color:#F39C11;width:170px;"
+                        action="#{PVTRollbackDiscountMBean.DiscountedPVTsSearch}"/>
+        <af:spacer width="20" id="s134"/>
+      <af:commandButton text="#{viewcontrollerBundle.RESET}" immediate="true"
+                        inlineStyle="background-color:#F39C11;" id="resetaction"
+                        action="#{PVTRollbackDiscountMBean.ResetDiscountedPVTsSearch}">
+             <af:resetActionListener/>
+    </af:commandButton>
+   </af:toolbar>
+    
+     <af:spacer height="20" id="s1233"/>
+    
+      <af:panelGroupLayout id="pg121" rendered="#{PVTRollbackDiscountMBean.hide}" 
+                           partialTriggers="pvtsearch"
+                           binding="#{PVTRollbackDiscountMBean.discountedPVTsSearchResultsPanel}">
+                           
+      <af:outputText value="#{viewcontrollerBundle.TOTAL_NUMBER_OF_AVAILABLE_PVTS}" id="ot111"/> 
+      <af:outputText value="#{pageFlowScope.TotalPVTs}" id="ot211" inlineStyle="font-weight:bold;"/> 
+      
+      <af:spacer height="10" id="s11237"/>
+      
+        <af:table value="#{bindings.PVTRollbackDiscountSearchVO1.collectionModel}"
+                  var="row"
+                  rows="#{bindings.PVTRollbackDiscountSearchVO1.rangeSize}"
+                  emptyText="#{bindings.PVTRollbackDiscountSearchVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.PVTRollbackDiscountSearchVO1.rangeSize}"
+                  rowBandingInterval="1" id="t1" inlineStyle="height:200px;" width="900"
+                  scrollPolicy="page" autoHeightRows="0"
+                  summary="#{viewcontrollerBundle.DISCOUNT_RESULTS_TO_ROLLBACK}"
+                  first="0">
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.disccnclhdrseq.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.DISCOUNT_SEQ_}"
+                     id="c15">
+            <af:outputText value="#{row.disccnclhdrseq}" id="ot7"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtnum.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_NUMBER}"
+                     id="c8">
+            <af:outputText value="#{row.pvtnum}" id="ot9"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtdatetime.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_DATE}"
+                     id="c13">
+            <af:outputText value="#{row.pvtdatetime}" id="ot11">
+              <af:convertDateTime pattern="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtdatetime.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.contracode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.CONTRA_CODE}"
+                     id="c17">
+            <af:outputText value="#{row.ContraCodeDesc}" id="ot8">
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtdatefrom.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_DATE_FROM}"
+                     id="c10">
+            <af:outputText value="#{row.pvtdatefrom}" id="ot12">
+              <af:convertDateTime pattern="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtdatefrom.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtdateto.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_DATE_TO}"
+                     id="c11">
+            <af:outputText value="#{row.pvtdateto}" id="ot6">
+              <af:convertDateTime pattern="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtdateto.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.promoeffectivedatefrom.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PROMO_EFFECTIVE_DATE_FROM}"
+                     id="c6">
+            <af:outputText value="#{row.promoeffectivedatefrom}" id="ot17">
+              <af:convertDateTime pattern="#{bindings.PVTRollbackDiscountSearchVO1.hints.promoeffectivedatefrom.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.promoeffectivedateto.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PROMO_EFFECTIVE_DATE_TO}"
+                     id="c12">
+            <af:outputText value="#{row.promoeffectivedateto}" id="ot15">
+              <af:convertDateTime pattern="#{bindings.PVTRollbackDiscountSearchVO1.hints.promoeffectivedateto.format}"/>
+            </af:outputText>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.sectorcode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.SECTOR}"
+                     id="c18">
+            <af:outputText value="#{row.SectorDesc}" id="ot18"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.zonecode.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.ZONE}"
+                     id="c5">
+            <af:outputText value="#{row.ZoneDesc}" id="ot10"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.remarks.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.REMARKS}"
+                     id="c9">
+            <af:outputText value="#{row.remarks}" id="ot14"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.discpct.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.DISCOUNT__0}"
+                     id="c14" align="right">
+            <af:outputText value="#{row.discpct}" id="ot5"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.discflatamt.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.DISCOUNT_FLAT}"
+                     id="c7" align="right">
+            <af:outputText value="#{row.discflatamt}" id="ot13"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.pvtamtpayable.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.PVT_AMOUNT}"
+                     id="c3" align="right">
+            <af:outputText value="#{row.pvtamtpayable}" id="ot16"/>
+          </af:column>
+          <af:column sortProperty="#{bindings.PVTRollbackDiscountSearchVO1.hints.contraamt.name}"
+                     sortable="false"
+                     headerText="#{viewcontrollerBundle.CONTRA_AMOUNT}"
+                     id="c16" align="right">
+            <af:outputText value="#{row.contraamt}" id="ot1"/>
+          </af:column>
+      </af:table>
+        <af:toolbar id="t31">
+    <af:spacer height="50" width="282" id="s1232"/>
+      <af:commandButton text="#{viewcontrollerBundle.ROLLBACK_DISCOUNT}"
+                        id="pvtsubmit"
+                        inlineStyle="background-color:#F39C11;width:120px;"
+                        action="#{PVTRollbackDiscountMBean.RollbackDiscountOnSubmit}"/>
+        <af:spacer width="20" id="s124"/>
+      <af:commandButton text="#{viewcontrollerBundle.CANCEL}"
+                        inlineStyle="background-color:#F39C11;" id="cancellaction" immediate="true"
+                        action="#{PVTRollbackDiscountMBean.ResetDiscountedPVTsSearch}">
+            <af:resetActionListener/>
+      </af:commandButton>
+        
+    </af:toolbar>
+    </af:panelGroupLayout>
+  
+  </af:showDetailHeader>
+  
+</jsp:root>

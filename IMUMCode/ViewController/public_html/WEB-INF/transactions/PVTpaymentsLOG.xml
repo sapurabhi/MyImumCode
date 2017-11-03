@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="PVTpaymentsLOG">
+    <default-activity id="__1">PVTPaymentsLog</default-activity>
+    <managed-bean id="__2">
+      <managed-bean-name id="__5">PVTPaymentsLOGMBean</managed-bean-name>
+      <managed-bean-class id="__4">com.imum.cpms.view.PVTPaymentsLOGMBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="PVTPaymentsLog">
+      <page>/jspx/transactions/fragments/PVTPaymentsLog.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

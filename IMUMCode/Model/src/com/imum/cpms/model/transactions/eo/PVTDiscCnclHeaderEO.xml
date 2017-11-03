@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PVTDiscCnclHeaderEO"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="table"
+  DBObjectName="PVT_DISC_CNCL_HEADER"
+  AliasName="PVTDiscCnclHeaderEO"
+  BindingStyle="JDBC"
+  UseGlueCode="false"
+  RowClass="com.imum.cpms.model.transactions.eo.PVTDiscCnclHeaderEOImpl"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Init|Delete|Access|DML"/>
+    <AttrArray Name="_publishEvents"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="DISCCNCLhdrSeq"
+    Precision="10"
+    Scale="0"
+    ColumnName="DISC_CNCL_hdr_Seq"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName="PVT_DISC_CNCL_HEADER"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="12"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DISCCNCLTYPE"
+    Precision="1"
+    ColumnName="DISC_CNCL_TYPE"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DISCPROMOCODE"
+    Precision="50"
+    ColumnName="DISC_PROMO_CODE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DISCPROMONAME"
+    Precision="200"
+    ColumnName="DISC_PROMO_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Contracode"
+    Precision="2"
+    Scale="0"
+    ColumnName="Contra_code"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PVTdatefrom"
+    ColumnName="PVT_date_from"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PVTdateto"
+    ColumnName="PVT_date_to"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PVTSOURCE"
+    Precision="1"
+    ColumnName="PVT_SOURCE"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="char"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PVTStatusID"
+    Precision="3"
+    Scale="0"
+    ColumnName="PVT_Status_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PVTSTAGEID"
+    Precision="3"
+    Scale="0"
+    ColumnName="PVT_STAGE_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DISCPCT"
+    Precision="4"
+    Scale="2"
+    ColumnName="DISC_PCT"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="numeric"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DISCFLATAMT"
+    Precision="19"
+    Scale="4"
+    ColumnName="DISC_FLAT_AMT"
+    SQLType="DECIMAL"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PVTAmtRangefrom"
+    Precision="19"
+    Scale="4"
+    ColumnName="PVT_Amt_Range_from"
+    SQLType="DECIMAL"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+    <validation:RegExpValidationBean
+      Name="PVTAmtRangefrom_Rule_0"
+      ResId="PLEASE_ENTER_VALID_OUTSTANDI_2"
+      OnAttribute="PVTAmtRangefrom"
+      Pattern="[0-9]+"
+      Inverse="false"/>
+  </Attribute>
+  <Attribute
+    Name="PVTAmtRangeTo"
+    Precision="19"
+    Scale="4"
+    ColumnName="PVT_Amt_Range_To"
+    SQLType="DECIMAL"
+    Type="java.math.BigDecimal"
+    ColumnType="money"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="21"/>
+    </DesignTime>
+    <validation:RegExpValidationBean
+      Name="PVTAmtRangeTo_Rule_0"
+      ResId="PLEASE_ENTER_VALID_OUTSTANDI_1"
+      OnAttribute="PVTAmtRangeTo"
+      Pattern="[0-9]+"
+      Inverse="false"/>
+  </Attribute>
+  <Attribute
+    Name="Promoeffectivedatefrom"
+    ColumnName="Promo_effective_date_from"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PromoeffectivedateTo"
+    ColumnName="Promo_effective_date_To"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PlateCountryID"
+    Precision="4"
+    Scale="0"
+    ColumnName="Plate_Country_ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SectorCode"
+    Precision="20"
+    ColumnName="Sector_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="zonecode"
+    Precision="20"
+    ColumnName="zone_code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DISCCNCLSTATUS"
+    Precision="3"
+    Scale="0"
+    ColumnName="DISC_CNCL_STATUS"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="numeric"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Remarks"
+    Precision="2000"
+    ColumnName="Remarks"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ApprovedBy"
+    Precision="20"
+    ColumnName="Approved_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ApprovedDate"
+    ColumnName="Approved_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ApproverRemarks"
+    Precision="2000"
+    ColumnName="Approver_Remarks"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DEFCityCode"
+    Precision="3"
+    ColumnName="DEF_City_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER"
+    DefaultValue="DFA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="DEFCountryCode"
+    Precision="3"
+    ColumnName="DEF_Country_Code"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER"
+    DefaultValue="ARE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedBy"
+    Precision="20"
+    ColumnName="Created_By"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreatedDate"
+    ColumnName="Created_Date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updatedby"
+    Precision="20"
+    ColumnName="Updated_by"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="varchar"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="updateddate"
+    ColumnName="updated_date"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="datetime"
+    TableName="PVT_DISC_CNCL_HEADER">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="23"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="PvtdisccnclheadereoPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PVTDISCCNCLHEADEREO_PRIMARY_KE"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.imum.cpms.model.transactions.eo.PVTDiscCnclHeaderEO.DISCCNCLhdrSeq"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.imum.cpms.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

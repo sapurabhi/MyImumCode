@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="PI Over Time" id="pb1" inlineStyle="height:267px;">
+    <af:panelFormLayout id="panelFormLayout1" rows="1" maxColumns="300">
+      <af:outputText value="PIID:" id="ot1"/>
+      <af:outputText value="123456" id="ot2"/>
+      <af:inputText label="UnAssignTime:" id="it1"/>
+      <af:inputText label="Shift:" id="it4"/>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl2" rows="1" inlineStyle="text-align:right;">
+      <af:inputText label="Zone:" id="it2" />
+      <af:inputText label="Beat:" id="it3"/>
+      <af:selectOneChoice value="#{bindings.SectorVO1.inputValue}"
+                          label="#{bindings.SectorVO1.label}"
+                          required="#{bindings.SectorVO1.hints.mandatory}"
+                          shortDesc="#{bindings.SectorVO1.hints.tooltip}"
+                          id="soc1">
+        <f:selectItems value="#{bindings.SectorVO1.items}" id="si1"/>
+      </af:selectOneChoice>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl1" inlineStyle="height:37px;" rows="1">
+      <af:commandButton text="Save" id="cb1"/>
+      <af:commandButton text="Cancel" id="cb2"/>
+    </af:panelFormLayout>
+  </af:panelBox>
+</jsp:root>

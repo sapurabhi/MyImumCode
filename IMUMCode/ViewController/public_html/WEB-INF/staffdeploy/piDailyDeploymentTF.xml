@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="piDailyDeploymentTF">
+    <default-activity id="__19">emptyPiDailywork</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__5">CreateTable</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.staffdeploy.CreateTable</managed-bean-class>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="piDailyAssign">
+      <page>/jspx/staffdeploy/fragments/piDailyAssign.jsff</page>
+    </view>
+    <method-call id="getDate">
+      <method>#{pageFlowScope.CreateTable.getDate}</method>
+      <outcome id="__11">
+        <fixed-outcome>dailyAssign</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="emptyPiDailywork">
+      <method>#{bindings.emptyPiDailywork.execute}</method>
+      <outcome id="__1">
+        <fixed-outcome>emptyPiDailywork</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">getDate</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">dailyAssign</from-outcome>
+        <to-activity-id id="__8">piDailyAssign</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__12">
+      <from-activity-id id="__13">emptyPiDailywork</from-activity-id>
+      <control-flow-case id="__16">
+        <from-outcome id="__14">emptyPiDailywork</from-outcome>
+        <to-activity-id id="__15">piDailyAssign</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

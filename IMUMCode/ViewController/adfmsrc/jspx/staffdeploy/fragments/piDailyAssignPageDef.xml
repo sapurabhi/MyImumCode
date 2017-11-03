@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="piDailyAssignPageDef"
+                Package="jspx.staffdeploy.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PImonthlyWorkAssignVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl"
+              id="PImonthlyWorkAssignVO1Iterator" Refresh="ifNeeded"/>
+    <iterator Binds="PImonthlyWorkAssignVO1" RangeSize="10"
+              DataControl="StaffDeployDataControl"
+              id="PImonthlyWorkAssignVO1Iterator1"/>
+    <iterator Binds="PiDailyWorkAssignVO1" RangeSize="-1"
+              DataControl="StaffDeployDataControl"
+              id="PiDailyWorkAssignVO1Iterator"/>
+    <iterator Binds="PiDailyWorkAssignVO1" RangeSize="-1"
+              DataControl="StaffDeployDataControl"
+              id="PiDailyWorkAssignVO1Iterator1"/>
+  </executables>
+  <bindings>
+    <tree
+          id="PImonthlyWorkAssignVO1"
+          IterBinding="PiDailyWorkAssignVO1Iterator">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PiDailyWorkAssignVO"
+                      Name="PImonthlyWorkAssignVO10">
+        <AttrNames>
+          <Item Value="Sno"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="AllocId"/>
+          <Item Value="AssgnDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="Day"/>
+          <Item Value="Disable"/>
+          <Item Value="leaveDataTemp"/>
+          <Item Value="PIid"/>
+          <Item Value="SectorName"/>
+          <Item Value="SectorZone"/>
+          <Item Value="Shift"/>
+          <Item Value="Shift1"/>
+          <Item Value="Shift1Flag"/>
+          <Item Value="Shift2"/>
+          <Item Value="Shift2Flag"/>
+          <Item Value="Shift3"/>
+          <Item Value="Shift3Flag"/>
+          <Item Value="SupId"/>
+          <Item Value="Temp"/>
+          <Item Value="UpdatedBy"/>
+          <Item Value="UpdatedDate"/>
+          <Item Value="ZoneName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="piDailyAssign"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="piDailyAssign" IsViewObjectMethod="false">
+      <NamedData NDName="dailyAssignDate" NDType="java.util.Date"/>
+    </methodAction>
+    <methodAction id="piDailyUnassign"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="piDailyUnassign" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.piDailyUnassign_StaffDeployDataControl_dataProvider_piDailyUnassign_result"/>
+    <methodAction id="piDailyDeploymentUpdate"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="piDailyDeploymentUpdate"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.piDailyDeploymentUpdate_StaffDeployDataControl_dataProvider_piDailyDeploymentUpdate_result">
+      <NamedData NDName="dailyAssignDate" NDType="java.util.Date"/>
+    </methodAction>
+    <tree IterBinding="PiDailyWorkAssignVO1Iterator1" id="PiDailyWorkAssignVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PiDailyWorkAssignVO"
+                      Name="PiDailyWorkAssignVO10">
+        <AttrNames>
+          <Item Value="Sno"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="AllocId"/>
+          <Item Value="AssgnDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreatedDate"/>
+          <Item Value="Day"/>
+          <Item Value="Disable"/>
+          <Item Value="leaveDataTemp"/>
+          <Item Value="PIid"/>
+          <Item Value="SectorName"/>
+          <Item Value="SectorZone"/>
+          <Item Value="Shift"/>
+          <Item Value="Shift1"/>
+          <Item Value="Shift1Flag"/>
+          <Item Value="Shift2"/>
+          <Item Value="Shift2Flag"/>
+          <Item Value="Shift3"/>
+          <Item Value="Shift3Flag"/>
+          <Item Value="SupId"/>
+          <Item Value="Temp"/>
+          <Item Value="UpdatedBy"/>
+          <Item Value="UpdatedDate"/>
+          <Item Value="ZoneName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="PiDailyWorkAssignVO1Iterator" id="PiDailyWorkAssignVO11">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.PiDailyWorkAssignVO"
+                      Name="PiDailyWorkAssignVO110">
+        <AttrNames>
+          <Item Value="PIid"/>
+          <Item Value="AssgnDate"/>
+          <Item Value="PiAvailabitystatusID"/>
+          <Item Value="Shift"/>
+          <Item Value="SectorName"/>
+          <Item Value="ZoneName"/>
+          <Item Value="PIAttendancestatusid"/>
+          <Item Value="dbpasi"/>
+          <Item Value="dbval"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="saveDB" InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveDB" IsViewObjectMethod="false"
+                  ReturnName="data.StaffDeployDataControl.methodResults.saveDB_StaffDeployDataControl_dataProvider_saveDB_result"/>
+    <methodAction id="resetdailyWorkAssignNewVO"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="resetdailyWorkAssignNewVO"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="callRollback"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="callRollback" IsViewObjectMethod="false"/>
+    <methodAction id="emptyPiDailywork"
+                  InstanceName="StaffDeployDataControl.dataProvider"
+                  DataControl="StaffDeployDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="emptyPiDailywork" IsViewObjectMethod="false"/>
+  </bindings>
+</pageDefinition>

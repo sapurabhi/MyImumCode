@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="pisearchPageDef"
+                Package="jspx.staffdeployment.jsffragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TempTableVO1" RangeSize="25"
+              DataControl="StaffDeployDataControl" id="TempTableVO1Iterator"/>
+    <taskFlow id="dynamicRegion1"
+              taskFlowId="${pageFlowScope.PIAssignmentDynamicRegion.dynamicTaskFlowId}"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="PIAssignSearch1" RangeSize="25"
+              DataControl="StaffDeployDataControl"
+              id="PIAssignSearch1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TempTableVO1Iterator" id="TempTableVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.staffdeploy.vo.TempTableVO"
+                      Name="TempTableVO10">
+        <AttrNames>
+          <Item Value="PIID"/>
+          <Item Value="Sector"/>
+          <Item Value="Zone"/>
+          <Item Value="Beat"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PIAssignSearch1Iterator" id="PIid">
+      <AttrNames>
+        <Item Value="PIid"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

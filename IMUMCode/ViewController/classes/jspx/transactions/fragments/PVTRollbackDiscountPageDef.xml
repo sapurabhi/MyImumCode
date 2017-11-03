@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="PVTRollbackDiscountPageDef"
+                Package="jspx.transactions.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PVTDiscCnclHeaderVO1" RangeSize="25"
+              DataControl="TransactionsAMDataControl"
+              id="PVTDiscCnclHeaderVO1Iterator"/>
+    <iterator Binds="PVTRollbackDiscountSearchVO1" RangeSize="10"
+              DataControl="TransactionsAMDataControl"
+              id="PVTRollbackDiscountSearchVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="DISCCNCLhdrSeq">
+      <AttrNames>
+        <Item Value="DISCCNCLhdrSeq"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_Contracode" id="Contracode" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PVTdatefrom">
+      <AttrNames>
+        <Item Value="PVTdatefrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator" id="PVTdateto">
+      <AttrNames>
+        <Item Value="PVTdateto"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator" id="DISCPCT">
+      <AttrNames>
+        <Item Value="DISCPCT"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="DISCFLATAMT">
+      <AttrNames>
+        <Item Value="DISCFLATAMT"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PVTAmtRangefrom">
+      <AttrNames>
+        <Item Value="PVTAmtRangefrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PVTAmtRangeTo">
+      <AttrNames>
+        <Item Value="PVTAmtRangeTo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="Promoeffectivedatefrom">
+      <AttrNames>
+        <Item Value="Promoeffectivedatefrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator"
+                     id="PromoeffectivedateTo">
+      <AttrNames>
+        <Item Value="PromoeffectivedateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_SectorCode" id="SectorCode" DTSupportsMRU="false"/>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_zonecode" id="zonecode" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="PVTDiscCnclHeaderVO1Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_PVTSTAGEID" id="PVTSTAGEID" DTSupportsMRU="true"/>
+    <list IterBinding="PVTDiscCnclHeaderVO1Iterator" StaticList="false"
+          Uses="LOV_PVTStatusID" id="PVTStatusID" DTSupportsMRU="true"/>
+    <tree IterBinding="PVTRollbackDiscountSearchVO1Iterator"
+          id="PVTRollbackDiscountSearchVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.transactions.vo.PVTRollbackDiscountSearchVO"
+                      Name="PVTRollbackDiscountSearchVO10">
+        <AttrNames>
+          <Item Value="disccnclhdrseq"/>
+          <Item Value="pvtnum"/>
+          <Item Value="pvtdatetime"/>
+          <Item Value="contracode"/>
+          <Item Value="pvtdatefrom"/>
+          <Item Value="pvtdateto"/>
+          <Item Value="pvtamtrangefrom"/>
+          <Item Value="pvtamtrangeto"/>
+          <Item Value="promoeffectivedatefrom"/>
+          <Item Value="promoeffectivedateto"/>
+          <Item Value="sectorcode"/>
+          <Item Value="zonecode"/>
+          <Item Value="remarks"/>
+          <Item Value="discpct"/>
+          <Item Value="discflatamt"/>
+          <Item Value="pvtamtpayable"/>
+          <Item Value="contraamt"/>
+          <Item Value="orgcontraamt"/>
+          <Item Value="compdisconcontraamt"/>
+          <Item Value="SectorDesc"/>
+          <Item Value="ZoneDesc"/>
+          <Item Value="ContraCodeDesc"/>
+          <Item Value="uniqueDiscountSeq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="updateRollbackDiscountStatus"
+                  InstanceName="TransactionsAMDataControl.dataProvider"
+                  DataControl="TransactionsAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="updateRollbackDiscountStatus"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="userName" NDType="java.lang.String"/>
+      <NamedData NDName="rollbackDiscountSeq" NDType="int"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

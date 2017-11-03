@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="RevenueGroupMstPageDef"
+                Package="jspx.masters.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RevenueGroupUVO1" RangeSize="10"
+              DataControl="MastersAMDataControl" id="RevenueGroupUVO1Iterator"/>
+    <iterator Binds="RevenueTypeUVO1" RangeSize="25"
+              DataControl="MastersAMDataControl" id="RevenueTypeUVO1Iterator"/>
+    <iterator Binds="RevenueGroupUVO2" RangeSize="25"
+              DataControl="MastersAMDataControl" id="RevenueGroupUVO2Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="RevenueGroupUVO1Iterator" id="RevenueGroupUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.RevenueGroupUVO"
+                      Name="RevenueGroupUVO10">
+        <AttrNames>
+         
+          <Item Value="RevGrpCode"/>
+          <Item Value="RevGrpDesc"/>
+          <Item Value="ActiveFlag" Binds="ActiveFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="RevenueTypeUVO1Iterator" id="RevenueTypeUVO1">
+      <nodeDefinition DefName="com.imum.cpms.model.masters.vo.RevenueTypeUVO"
+                      Name="RevenueTypeUVO10">
+        <AttrNames>
+          <Item Value="RevTypeCode"/>
+          <Item Value="RevGrpCode"/>
+          <Item Value="RevTypeDesc"/>
+        
+          <Item Value="ActiveFlag" Binds="ActiveFlag2"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="RevenueGroupUVO2Iterator" id="RevGrpCode1">
+      <AttrNames>
+        <Item Value="RevGrpCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RevenueGroupUVO2Iterator" id="RevGrpDesc1">
+      <AttrNames>
+        <Item Value="RevGrpDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createRevenueGroupType"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createRevenueGroupType"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createRevenueTypeRow"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="createRevenueTypeRow"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="GroupCode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="doCommit" InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doCommit"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doCommit_MastersAMDataControl_dataProvider_doCommit_result"/>
+    <methodAction id="doRollback"
+                  InstanceName="MastersAMDataControl.dataProvider"
+                  DataControl="MastersAMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="doRollback"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.MastersAMDataControl.methodResults.doRollback_MastersAMDataControl_dataProvider_doRollback_result"/>
+    <button IterBinding="RevenueGroupUVO1Iterator" id="ActiveFlag"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="RevenueGroupUVO2Iterator" id="ActiveFlag1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="RevenueTypeUVO1Iterator" id="ActiveFlag2"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ActiveFlag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

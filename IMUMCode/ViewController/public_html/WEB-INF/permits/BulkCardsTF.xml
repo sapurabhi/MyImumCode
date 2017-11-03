@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-6" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="BulkCardsTF">
+    <default-activity id="__1">CreateInsert</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">BulkCardsMBean</managed-bean-name>
+      <managed-bean-class id="__2">com.imum.cpms.view.BulkCardsMBean</managed-bean-class>
+      <managed-bean-scope id="__5">request</managed-bean-scope>
+    </managed-bean>
+    <view id="BulkCards">
+      <page>/jspx/transactions/fragments/BulkCards.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__11">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="CustomerInstitution">
+      <page>/jspx/masters/fragments/CustomerInstitution.jsff</page>
+    </view>
+    <view id="PaymentReceipt">
+      <page>/jspx/transactions/fragments/PaymentReceipt.jsff</page>
+    </view>
+    <method-call id="clearCacheAllRows">
+      <method>#{bindings.clearCacheAllRows.execute}</method>
+      <outcome id="__20">
+        <fixed-outcome>clearCacheAllRows</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="CreateInsert1">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__12">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">BulkCards</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome id="__19">Institution</from-outcome>
+        <to-activity-id id="__18">CustomerInstitution</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">Success</from-outcome>
+        <to-activity-id id="__8">PaymentReceipt</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__42">
+      <from-activity-id id="__43">clearCacheAllRows</from-activity-id>
+      <control-flow-case id="__46">
+        <from-outcome id="__44">clearCacheAllRows</from-outcome>
+        <to-activity-id id="__45">BulkCards</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__13">
+      <from-activity-id id="__14">CreateInsert</from-activity-id>
+      <control-flow-case id="__21">
+        <from-outcome id="__15">CreateInsert</from-outcome>
+        <to-activity-id id="__16">CreateInsert1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__27">
+      <from-activity-id id="__28">CreateInsert1</from-activity-id>
+      <control-flow-case id="__29">
+        <from-outcome id="__31">CreateInsert</from-outcome>
+        <to-activity-id id="__30">clearCacheAllRows</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__22">
+      <from-activity-id id="__23">PaymentReceipt</from-activity-id>
+      <control-flow-case id="__24">
+        <from-outcome id="__26">backNav</from-outcome>
+        <to-activity-id id="__25">BulkCards</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

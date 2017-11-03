@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['com.imum.cpms.view.ViewControllerBundle']}"/>
+  <af:panelBox text="PIAssignment" id="panelBox1" inlineStyle="height:260px;">
+    <f:facet name="toolbar"/>
+    <af:panelFormLayout id="panelFormLayout1" rows="1" maxColumns="5">
+      <af:inputDate label="Assignment Date:" id="startDate"
+                    binding="#{pageFlowScope.AddToTempTable.startDate}"
+                    
+                    showRequired="true" required="true"
+                    value="#{pageFlowScope.AddToTempTable.currentdate}"/>
+      <af:inputDate label="Assign End Date:" id="endDate"
+                    binding="#{pageFlowScope.AddToTempTable.endDate}"
+                    required="false" visible="false"/>
+      <af:panelLabelAndMessage label="#{bindings.Shift.hints.label}" id="plam1">
+        <af:outputText value="#{bindings.Shift.inputValue}" id="ot1"/>
+      </af:panelLabelAndMessage>
+      <af:panelLabelAndMessage label="Logged in Supervisor:" id="plam2">
+        <af:outputText value="#{bindings.Supid.inputValue}" id="ot6"/>
+      </af:panelLabelAndMessage>
+      <af:outputText value="" id="outputText1"/>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="panelFormLayout2" rows="1">
+      <af:table value="#{bindings.PIAssignSearch1.collectionModel}" var="row"
+                rows="#{bindings.PIAssignSearch1.rangeSize}"
+                emptyText="#{bindings.TempTableVO1.viewable ? 'No Data To Display' : 'Access Denied.'}"
+                fetchSize="#{bindings.PIAssignSearch1.rangeSize}"
+                rowBandingInterval="0" partialTriggers="::commandButton1 ::cb1"
+                selectedRowKeys="#{bindings.PIAssignSearch1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.PIAssignSearch1.collectionModel.makeCurrent}"
+                rowSelection="single" id="table1" width="918"
+                autoHeightRows="10" binding="#{pageFlowScope.AddToTempTable.selectedrow}">
+        <af:column sortProperty="#{bindings.PIAssignSearch1.hints.PIid.name}"
+                   sortable="false"
+                   headerText="PI ID"
+                   id="column2" width="108">
+          <af:outputText value="#{row.PIid}" id="outputText2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PIAssignSearch1.hints.AttendanceStatus.name}"
+                   sortable="false"
+                   headerText="#{bindings.PIAssignSearch1.hints.AttendanceStatus.label}"
+                   id="column3" width="165">
+          <af:outputText value="#{row.AttendanceStatus}" id="outputText3"/>
+        </af:column>
+        <af:column
+                   id="c6" width="108"
+                   headerText="#{viewcontrollerBundle.ASSIGNED_SECTOR}">
+          <af:outputText value="#{row.Sector}" id="ot3"/>
+        </af:column>
+        <af:column headerText=" Assigned Zone"
+                   id="c7" width="110">
+          <af:outputText value="#{row.Zone}" id="ot4"/>
+        </af:column>
+        <af:column headerText="Assigned Beat"
+                   id="c8" width="110">
+          <af:outputText value="#{row.Beat}" id="ot2"/>
+        </af:column>
+        <af:column headerText="#{bindings.PIAssignSearch1.hints.Status.label}"
+                   id="c9" width="112">
+          <af:outputText value="#{row.Status}" id="ot5"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.PIAssignSearch1.hints.Selection.name}"
+                   sortable="false"
+                   headerText="#{bindings.PIAssignSearch1.hints.Selection.label}"
+                   id="column1" width="147"
+                   attributeChangeListener="#{AddToTempTable.column1_attributeChangeListener}">
+          <af:selectBooleanRadio id="selectBooleanRadio1" group="group"/>
+        </af:column>
+      </af:table>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="panelFormLayout3" rows="1">
+      <af:commandButton text="Add" id="commandButton1"
+                        action="#{pageFlowScope.AddToTempTable.insertToTable}"
+                        partialSubmit="true"/>
+      <af:commandButton text="Amend" id="commandButton2"
+                        action="#{pageFlowScope.AddToTempTable.Ammend_action}"/>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="pfl2" rows="1" inlineStyle="width:556px;">
+      <af:table value="#{bindings.PIworkVO1.collectionModel}" var="row"
+                rows="#{bindings.PIworkVO1.rangeSize}" 
+                emptyText="#{bindings.PIworkVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.PIworkVO1.rangeSize}"
+                rowBandingInterval="0"
+                selectedRowKeys="#{bindings.PIworkVO1.collectionModel.selectedRow}"
+                selectionListener="#{bindings.PIworkVO1.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" width="547"
+                partialTriggers="::commandButton1 ::cb1">
+        <af:column sortProperty="#{bindings.PIworkVO1.hints.PIID.name}"
+                   sortable="false"
+                   headerText="#{bindings.PIworkVO1.hints.PIID.label}" id="c1">
+                   <af:outputText value="#{row.bindings.PIID.inputValue}"  
+                   shortDesc="#{bindings.PIworkVO1.hints.PIID.tooltip}"
+                        id="it1"/>
+          <!--<af:inputText value="#{row.bindings.PIID.inputValue}"
+                        label="#{bindings.PIworkVO1.hints.PIID.label}"
+                        required="#{bindings.PIworkVO1.hints.PIID.mandatory}"
+                        columns="#{bindings.PIworkVO1.hints.PIID.displayWidth}"
+                        maximumLength="#{bindings.PIworkVO1.hints.PIID.precision}"
+                        shortDesc="#{bindings.PIworkVO1.hints.PIID.tooltip}"
+                        id="it1">
+            <f:validator binding="#{row.bindings.PIID.validator}"/>
+          </af:inputText>-->
+        </af:column>
+        <af:column sortProperty="#{bindings.PIworkVO1.hints.Sector.name}"
+                   sortable="false"
+                   headerText="#{bindings.PIworkVO1.hints.Sector.label}"
+                   id="c2">
+          <af:selectOneChoice value="#{row.bindings.Sector.inputValue}"
+                              label="#{row.bindings.Sector.label}"
+                              required="#{bindings.PIworkVO1.hints.Sector.mandatory}"
+                              shortDesc="#{bindings.PIworkVO1.hints.Sector.tooltip}"
+                              id="soc3">
+            <f:selectItems value="#{row.bindings.Sector.items}" id="si1"/>
+          </af:selectOneChoice>
+          <!--<af:selectOneChoice value="#{bindings.SectorVO1.inputValue}"
+                              label="#{bindings.SectorVO1.label}"
+                              required="#{bindings.SectorVO1.hints.mandatory}"
+                              shortDesc="#{bindings.SectorVO1.hints.tooltip}"
+                              id="soc3">
+            <f:selectItems value="#{bindings.SectorVO1.items}" id="si1"/>
+          </af:selectOneChoice>-->
+         
+        </af:column>
+        <af:column sortProperty="#{bindings.PIworkVO1.hints.Zone.name}"
+                   sortable="false"
+                   headerText="#{bindings.PIworkVO1.hints.Zone.label}" id="c4">
+          <af:selectOneChoice value="#{row.bindings.Zone.inputValue}"
+                              label="#{row.bindings.Zone.label}"
+                              required="#{bindings.PIworkVO1.hints.Zone.mandatory}"
+                              shortDesc="#{bindings.PIworkVO1.hints.Zone.tooltip}"
+                              id="soc2">
+            <f:selectItems value="#{row.bindings.Zone.items}" id="si2"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.PIworkVO1.hints.Beat.name}"
+                   sortable="false"
+                   headerText="#{bindings.PIworkVO1.hints.Beat.label}" id="c3">
+          <af:selectOneChoice value="#{row.bindings.Beat.inputValue}"
+                              label="#{row.bindings.Beat.label}"
+                              required="#{bindings.PIworkVO1.hints.Beat.mandatory}"
+                              shortDesc="#{bindings.PIworkVO1.hints.Beat.tooltip}"
+                              id="soc1">
+            <f:selectItems value="#{row.bindings.Beat.items}" id="si3"/>
+          </af:selectOneChoice>
+        </af:column>
+        <af:column sortProperty="#{bindings.PIworkVO1.hints.Beat.name}"
+                   sortable="false"
+                   headerText="Action" id="c5">
+          
+          <af:commandButton text="Delete"
+                   action="#{pageFlowScope.AddToTempTable.deleteFromTable}" id="cb2"/>
+                   </af:column>
+      </af:table>
+    </af:panelFormLayout>
+    <af:panelFormLayout id="panelFormLayout4">
+      <af:panelFormLayout id="pfl1" rows="1">
+        <!--<af:commandButton text="Save" id="cb1"/>-->
+        <af:commandButton text="Assign"  
+                          id="cb1"
+                          actionListener="#{pageFlowScope.AddToTempTable.assignValuesToWorkVO}"/>
+                     
+      </af:panelFormLayout>
+    </af:panelFormLayout>
+  </af:panelBox>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:AddToTempTable-->
+</jsp:root>
